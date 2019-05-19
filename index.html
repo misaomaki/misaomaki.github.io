@@ -40,68 +40,134 @@
 	}
 </style>
 
-<div id="stats">
-	<span class="form-label" id="cheats">Stars:</span> <span id="l_s">0</span><br>
-	<span class="form-label">Total Runs:</span> <span id="l_r">0</span><br>
-	<span class="form-label">Total Success By Star Catch:</span> <span id="l_sc">0</span><br>
-	<span class="form-label">Total Fails Within Star Catch:</span> <span id="l_sc_f">0</span><br>
-	<span class="form-label">Total Fails:</span> <span id="l_f">0</span><br>
-	<span class="form-label">Total Booms:</span> <span id="l_b">0</span><br>
-	<span class="form-label">Total Safeguards 12-15:</span> <span id="l_sg12">0</span><br>
-	<span class="form-label">Total Safeguards 15-17:</span> <span id="l_sg15">0</span><br>
-	<span class="form-label">Total Passed 15:</span> <span id="l_p15">0</span><br>
-	<span class="form-label">Total Passed 20:</span> <span id="l_p20">0</span><br>
-	<span class="form-label">Total Cost:</span> <span id="l_c">0</span> <br>
-	<span class="form-label">Total Safeguard Cost 12-15:</span> <span id="l_c_sg12">0</span> <br>
-	<span class="form-label">Total Safeguard Cost 15-17:</span> <span id="l_c_sg15">0</span>
+<style>
+    .flex-container {
+        display: flex;
+        margin-bottom:10px;
+    }
+
+    .flex-item {
+        border: 1px solid black;
+        margin: 5px;
+    }
+
+    .flex-header {
+        width: 100%;
+        padding: 3px 0 3px 0;
+        text-align: center;
+        display: block;
+        border-bottom: 1px solid black;
+    }
+
+    .stats {
+        background-color: #afbcff;
+    }
+
+    .options {
+        background-color: #ffafaf;
+    }
+
+    .options2 {
+        background-color: #afffb9;
+    }
+
+    .item {
+        background-color: #d98dff;
+    }
+
+    .item2 {
+        background-color: #ffcd99;
+    }
+
+    .cost {
+        background-color: #fdff99;
+    }
+</style>
+
+<div class="flex-container">
+    <div class="flex-item" style="min-width:300px;">
+        <span class="flex-header stats">Stats</span>
+        <div id="stats">
+            <span class="form-label" id="cheats">Stars:</span> <span id="l_s">0</span><br>
+            <span class="form-label">Total Runs:</span> <span id="l_r">0</span><br>
+            <span class="form-label">Total Success By Star Catch:</span> <span id="l_sc">0</span><br>
+            <span class="form-label">Total Fails Within Star Catch:</span> <span id="l_sc_f">0</span><br>
+            <span class="form-label">Total Fails:</span> <span id="l_f">0</span><br>
+            <span class="form-label">Total Booms:</span> <span id="l_b">0</span><br>
+            <span class="form-label">Total Safeguards 12-15:</span> <span id="l_sg12">0</span><br>
+            <span class="form-label">Total Safeguards 15-17:</span> <span id="l_sg15">0</span><br>
+            <span class="form-label">Total Passed 15:</span> <span id="l_p15">0</span><br>
+            <span class="form-label">Total Passed 20:</span> <span id="l_p20">0</span><br>
+            <span class="form-label">Total Cost:</span> <span id="l_c">0</span> <br>
+            <span class="form-label">Total Safeguard Cost 12-15:</span> <span id="l_c_sg12">0</span> <br>
+            <span class="form-label">Total Safeguard Cost 15-17:</span> <span id="l_c_sg15">0</span>
+        </div>
+    </div>
+    <div class="flex-item">
+        <span class="flex-header options">Options</span>
+        <label for="cb_sc"><input type="checkbox" id="cb_sc" class="sc" title="Assumption: 5% increased multiplicatively"> Star Catch</label> <br>
+        <label for="cb_sf12"><input type="checkbox" id="cb_sf12" class="sf"> Safeguard from 12 to 15</label> <br>
+        <label for="cb_sf15"><input type="checkbox" id="cb_sf15" class="sf"> Safeguard from 15 to 17</label> <br>
+        <hr>
+        <label for="cb_e_0o"><input type="radio" id="cb_e_0o" name="mvp_dc" class="ev mvp-dc" value="0" checked> No Discount</label> <br>
+        <label for="cb_e_3o"><input type="radio" id="cb_e_3o" name="mvp_dc" class="ev mvp-dc" value="0.03"> Silver MVP (3% off)</label> <br>
+        <label for="cb_e_5o"><input type="radio" id="cb_e_5o" name="mvp_dc" class="ev mvp-dc" value="0.05"> Gold MVP (5% off)</label>  <br>
+        <label for="cb_e_10o"><input type="radio" id="cb_e_10o" name="mvp_dc" class="ev mvp-dc" value="0.10"> Diamond MVP (10% off)</label>
+        <hr>
+        <label for="cb_e_30o"><input type="checkbox" id="cb_e_30o" class="ev"> 30% off event</label>
+        <br>
+        <label for="cb_e_mod5s"><input type="checkbox" id="cb_e_mod5s" class="ev"> 100% 5/10/15</label>
+    </div>
+    <div class="flex-item hidden" id="cheat_panel">
+        <span class="flex-header options2">Fluff</span>
+        <label for="cb_ch_sf17"><input type="checkbox" id="cb_ch_sf17" class="ev ch"> Safeguard from 17 to 20</label> <br>
+        <label for="cb_ch_sf20"><input type="checkbox" id="cb_ch_sf20" class="ev ch"> Safeguard from 20 to 22</label> <br>
+        <label for="cb_ch_sf22"><input type="checkbox" id="cb_ch_sf22" class="ev ch"> Safeguard from 22 to 25</label> <br>
+        <label for="cb_ch_showq"><input type="checkbox" id="cb_ch_showq" class="ch" title="Show the Pseudorandom Number generated to determine the starforce outcome."> Show PRN</label> <br>
+    </div> 
 </div>
-<hr>
-Item Level: <select id="itemLevel">
-	<option value="150">150</option>
-	<option value="160">160</option>
-	<option value="200">200</option>
-	<option value="-150">Superior</option>
-</select>
-<hr>
-<label for="cb_sc"><input type="checkbox" id="cb_sc" class="sc" title="Assumption: 5% increased multiplicatively"> Star Catch</label> <br>
-<label for="cb_sf12"><input type="checkbox" id="cb_sf12" class="sf"> Safeguard from 12 to 15</label> <br>
-<label for="cb_sf15"><input type="checkbox" id="cb_sf15" class="sf"> Safeguard from 15 to 17</label> <br>
-<hr>
-<label for="cb_e_0o"><input type="radio" id="cb_e_0o" name="mvp_dc" class="ev mvp-dc" value="0" checked> No Discount</label> <br>
-<label for="cb_e_3o"><input type="radio" id="cb_e_3o" name="mvp_dc" class="ev mvp-dc" value="0.03"> Silver MVP (3% off)</label> <br>
-<label for="cb_e_5o"><input type="radio" id="cb_e_5o" name="mvp_dc" class="ev mvp-dc" value="0.05"> Gold MVP (5% off)</label>  <br>
-<label for="cb_e_10o"><input type="radio" id="cb_e_10o" name="mvp_dc" class="ev mvp-dc" value="0.10"> Diamond MVP (10% off)</label>
-<br>
-<label for="cb_e_30o"><input type="checkbox" id="cb_e_30o" class="ev"> 30% off event</label>
-<br>
-<label for="cb_e_mod5s"><input type="checkbox" id="cb_e_mod5s" class="ev"> 100% 5/10/15</label>
-<hr>
 
-<div class="hidden" id="cheat_panel">
-    <label for="cb_ch_sf17"><input type="checkbox" id="cb_ch_sf17" class="ev ch"> Safeguard from 17 to 20</label> <br>
-    <label for="cb_ch_sf20"><input type="checkbox" id="cb_ch_sf20" class="ev ch"> Safeguard from 20 to 22</label> <br>
-    <label for="cb_ch_sf22"><input type="checkbox" id="cb_ch_sf22" class="ev ch"> Safeguard from 22 to 25</label> <br>
-    <label for="cb_ch_showq"><input type="checkbox" id="cb_ch_showq" class="ev ch" title="Show the Pseudorandom Number generated to determine the starforce outcome."> Show PRN</label> <br>
-    <hr>
-</div> 
-Start At: <input type="number" min="10" max="25" id="numStart" value="10"> <button id="btnNew">New Item</button><br><br>
-<button id="btn">Enhance</button>
+<div class="flex-container">
+    <div class="flex-item" style="min-width:200px;">
+        <span class="flex-header item">Starforce Enhancement</span>
+        Item Level: <select id="itemLevel">
+            <option value="150">150</option>
+            <option value="160">160</option>
+            <option value="200">200</option>
+            <option value="-150">Superior</option>
+        </select>
 
-<hr>
+        <br><br>
 
-<input type="number" min="11" max="25" id="num" value="22">
-<button id="btnGoToStar">Go To Star</button> <button id="btnStop" class="hidden">Stop</button>
-<hr>
-<div id="currentStats">
-	<span class="form-label">Next Star:</span><span id="c_ns">0</span><br>
-	<span class="form-label">Success:</span><span id="c_s">0</span><br>
-	<span class="form-label">Fail:</span><span id="c_f">0</span><br>
-	<span class="form-label">Destroy:</span><span id="c_d">0</span><br>
-	<span class="form-label">Cost:</span><span id="c_c">0</span><br>
-	<span class="form-label">Star Catch:</span><span id="c_sc">No</span><br>
+        Start At: <input type="number" min="10" max="25" id="numStart" value="10"> 
+        <button id="btnNew">New Item</button>
+    </div>
+    <div class="flex-item" style="align-items:center;justify-content: center;">
+        <span class="flex-header item2">Auto Enhancement</span>
+        
+        <input type="number" min="11" max="25" id="num" value="22">
+        <button id="btnGoToStar">Go To Star</button> <button id="btnStop" class="hidden">Stop</button>
+    </div>
 </div>
+
+<div class="flex-container">
+    <div class="flex-item" style="min-width:500px;">
+        <span class="flex-header cost">Star Cost</span>
+        <div id="currentStats">
+            <span class="form-label">Next Star:</span><span id="c_ns">0</span><br>
+            <span class="form-label">Success:</span><span id="c_s">0</span><br>
+            <span class="form-label">Fail:</span><span id="c_f">0</span><br>
+            <span class="form-label">Destroy:</span><span id="c_d">0</span><br>
+            <span class="form-label">Cost:</span><span id="c_c">0</span><br>
+            <span class="form-label">Star Catch:</span><span id="c_sc">No</span><br>
+        </div>
+        <button id="btn" style="width:100%;">Enhance</button>
+    </div>
+</div>
+
 <hr>
-<canvas id="lineChart" width="400px" height="100px"></canvas>
+<button id="lineChartShowHide">Show Graph</button>
+<canvas id="lineChart" width="400px" height="100px" class="hidden"></canvas>
 <table id="starforce-output" style="width:45%;">
 	<thead>
 		<th style="width:5%">Attempt</th>
@@ -128,6 +194,22 @@ $(function() {
     var level = 150;
 
     var numStart = $("#numStart");
+
+    var graphShown = false;
+    $("#lineChartShowHide").on("click", function() {
+        var graph = $("#lineChart");
+        var _this = $(this);
+        if (graphShown) {
+            graph.addClass("hidden");
+            _this.html("Show Graph");
+            graphShown = false;
+        } else {
+            graph.removeClass("hidden");
+            _this.html("Hide Graph");
+            graphShown = true;
+        }
+    });
+
     $("#itemLevel").on("change", function() {
         level = +$(this).val();
 
@@ -146,9 +228,21 @@ $(function() {
     });
 
     var mc = "";
+    var currMax = 0;
     var generateLineGraph = function(item) {
         var graphData = item.sfData.slice(Math.max(item.sfData.length - 500, 1)).map((a) => {return {x: a.id, y: a.current_star}});
-        if (mc === "") {
+
+        var isSuperior = $("#itemLevel").val() == -150;
+
+        var min = 10;
+        var max = 25;
+
+        if (isSuperior) {
+            min = 1;
+            max = 15;
+        }
+
+        if (mc === "" || currMax !== max) {
             var ctx = $("#lineChart");
             mc = new Chart(ctx, {
                 type: "scatter",
@@ -178,8 +272,8 @@ $(function() {
                     scales: {
                         yAxes: [{
                             ticks: {
-                                min: 10,
-                                max: 25,
+                                min: min,
+                                max: max,
                                 stepSize: 1
                             }
                         }],
@@ -191,6 +285,8 @@ $(function() {
                     }
                 }
             });
+
+            currMax = max;
         } else {
             mc.config.data.datasets[0].data = graphData;
             mc.update();
