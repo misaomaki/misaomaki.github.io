@@ -1,1 +1,1053 @@
-test
+<style>
+	.form-label {
+		width:200px;
+		display:inline-block;
+	}
+
+	.hidden {
+		display: none !important;
+	}
+
+	.output {
+		width: 200px;
+		display: inline-block;
+	}
+
+	.destroy-output {
+		background-color: grey;
+		display: inline-block;
+		color: white;
+	}
+
+
+	#starforce-output {
+	  border-collapse: collapse;
+	  width: 50%;
+	}
+
+	#starforce-output td, #starforce-output th {
+	  border: 1px solid #ddd;
+	}
+
+	#starforce-output tr:nth-child(even){background-color: #f2f2f2;}
+
+	#starforce-output tr:hover {background-color: #ddd;}
+
+	#starforce-output th {
+	  text-align: left;
+	  background-color: #949494;
+	  color: white;
+	}
+</style>
+
+<div id="stats">
+	<span class="form-label" id="cheats">Stars:</span> <span id="l_s">0</span><br>
+	<span class="form-label">Total Runs:</span> <span id="l_r">0</span><br>
+	<span class="form-label">Total Success By Star Catch:</span> <span id="l_sc">0</span><br>
+	<span class="form-label">Total Fails Within Star Catch:</span> <span id="l_sc_f">0</span><br>
+	<span class="form-label">Total Fails:</span> <span id="l_f">0</span><br>
+	<span class="form-label">Total Booms:</span> <span id="l_b">0</span><br>
+	<span class="form-label">Total Safeguards 12-15:</span> <span id="l_sg12">0</span><br>
+	<span class="form-label">Total Safeguards 15-17:</span> <span id="l_sg15">0</span><br>
+	<span class="form-label">Total Passed 15:</span> <span id="l_p15">0</span><br>
+	<span class="form-label">Total Passed 20:</span> <span id="l_p20">0</span><br>
+	<span class="form-label">Total Cost:</span> <span id="l_c">0</span> <br>
+	<span class="form-label">Total Safeguard Cost 12-15:</span> <span id="l_c_sg12">0</span> <br>
+	<span class="form-label">Total Safeguard Cost 15-17:</span> <span id="l_c_sg15">0</span>
+</div>
+<hr>
+Item Level: <select id="itemLevel">
+	<option value="150">150</option>
+	<option value="160">160</option>
+	<option value="200">200</option>
+	<option value="-150">Superior</option>
+</select>
+<hr>
+<label for="cb_sc"><input type="checkbox" id="cb_sc" class="sc" title="Assumption: 5% increased multiplicatively"> Star Catch</label> <br>
+<label for="cb_sf12"><input type="checkbox" id="cb_sf12" class="sf"> Safeguard from 12 to 15</label> <br>
+<label for="cb_sf15"><input type="checkbox" id="cb_sf15" class="sf"> Safeguard from 15 to 17</label> <br>
+<hr>
+<label for="cb_e_0o"><input type="radio" id="cb_e_0o" name="mvp_dc" class="ev mvp-dc" value="0" checked> No Discount</label> <br>
+<label for="cb_e_3o"><input type="radio" id="cb_e_3o" name="mvp_dc" class="ev mvp-dc" value="0.03"> Silver MVP (3% off)</label> <br>
+<label for="cb_e_5o"><input type="radio" id="cb_e_5o" name="mvp_dc" class="ev mvp-dc" value="0.05"> Gold MVP (5% off)</label>  <br>
+<label for="cb_e_10o"><input type="radio" id="cb_e_10o" name="mvp_dc" class="ev mvp-dc" value="0.10"> Diamond MVP (10% off)</label>
+<br>
+<label for="cb_e_30o"><input type="checkbox" id="cb_e_30o" class="ev"> 30% off event</label>
+<br>
+<label for="cb_e_mod5s"><input type="checkbox" id="cb_e_mod5s" class="ev"> 100% 5/10/15</label>
+<hr>
+
+<div class="hidden" id="cheat_panel">
+    <label for="cb_ch_sf17"><input type="checkbox" id="cb_ch_sf17" class="ev ch"> Safeguard from 17 to 20</label> <br>
+    <label for="cb_ch_sf20"><input type="checkbox" id="cb_ch_sf20" class="ev ch"> Safeguard from 20 to 22</label> <br>
+    <label for="cb_ch_sf22"><input type="checkbox" id="cb_ch_sf22" class="ev ch"> Safeguard from 22 to 25</label> <br>
+    <label for="cb_ch_showq"><input type="checkbox" id="cb_ch_showq" class="ev ch" title="Show the Pseudorandom Number generated to determine the starforce outcome."> Show PRN</label> <br>
+    <hr>
+</div> 
+Start At: <input type="number" min="10" max="25" id="numStart" value="10"> <button id="btnNew">New Item</button><br><br>
+<button id="btn">Enhance</button>
+
+<hr>
+
+<input type="number" min="11" max="25" id="num" value="22">
+<button id="btnGoToStar">Go To Star</button> <button id="btnStop" class="hidden">Stop</button>
+<hr>
+<div id="currentStats">
+	<span class="form-label">Next Star:</span><span id="c_ns">0</span><br>
+	<span class="form-label">Success:</span><span id="c_s">0</span><br>
+	<span class="form-label">Fail:</span><span id="c_f">0</span><br>
+	<span class="form-label">Destroy:</span><span id="c_d">0</span><br>
+	<span class="form-label">Cost:</span><span id="c_c">0</span><br>
+	<span class="form-label">Star Catch:</span><span id="c_sc">No</span><br>
+</div>
+<hr>
+<canvas id="lineChart" width="400px" height="100px"></canvas>
+<table id="starforce-output" style="width:45%;">
+	<thead>
+		<th style="width:5%">Attempt</th>
+		<th style="width:5%">Star</th>
+		<th style="width:35%">Result</th>
+		<th>Total Cost</th>
+        <th style="width:10%" class="ch-row hidden">PRN</th>
+	</thead>
+	<tbody id="t-output">
+		
+	</tbody>
+<table>
+    
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+
+
+<script>
+$(function() {
+    var level = 150;
+
+    var numStart = $("#numStart");
+    $("#itemLevel").on("change", function() {
+        level = +$(this).val();
+
+        if (level === -150) {
+        	numStart.val(1).attr("max", 15);
+        	$(".sf,.ev").prop("disabled", true).prop("checked", false);
+        	$("#num").val(12).attr("max", 15);
+        } else {
+        	numStart.val(10).attr("max", 25);
+        	$(".sf,.ev").prop("disabled", false);
+        	$("#num").val(22).attr("max", 25);
+        }
+
+        getNextStar(level, 10);
+        $("#btnNew").trigger("click");
+    });
+
+    var mc = "";
+    var generateLineGraph = function(item) {
+        var graphData = item.sfData.slice(Math.max(item.sfData.length - 500, 1)).map((a) => {return {x: a.id, y: a.current_star}});
+        if (mc === "") {
+            var ctx = $("#lineChart");
+            mc = new Chart(ctx, {
+                type: "scatter",
+                data: {
+                    datasets: [{
+                        label: "Starforce (Last 500 Attempts)",
+                        showLine: true,
+                        data: graphData
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    animations: false,
+                    elements: {
+                        point: {
+                            radius: 0
+                        }
+                    },
+                    tooltips: {
+                        mode: "index",
+                        intersect: false
+                    },
+                    hover: {
+                        mode: "nearest",
+                        intersect: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                min: 10,
+                                max: 25,
+                                stepSize: 1
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }]
+                    }
+                }
+            });
+        } else {
+            mc.config.data.datasets[0].data = graphData;
+            mc.update();
+        }
+    }
+
+    generateLineGraph({sfData: []});
+
+    var generateTable = function(item, startAt = 0) {
+    	var data = item.sfData;
+
+        var unhideRow = $("#cb_ch_showq").prop("checked");
+
+    	var tbody = "";
+    	for (let i = data.length - 1; i >= startAt; --i) {
+    		let _d = data[i];
+    		var thisResult = "";
+
+    		switch (_d.type) {
+    			case 1: 
+    				thisResult = '<span style="color:green">Success!</span>';
+    			break;
+    			case 2:
+    				thisResult = '<span style="color:red">Failed</span>';
+    			break;
+    			case 3:
+    				thisResult = '<span style="color:green">Success (Star Catch)!</span>'; 
+    			break;
+    			case 4:
+    				thisResult = '<span style="color:red">Failed (Star Catch)!</span>'; 
+    			break;
+    			case 5:
+    				thisResult = '<span style="color:white">Destroyed!</span>'; 
+    			break;
+    			case 6:
+    				thisResult = '<span style="color:white">Safeguard!</span>'; 
+    			break;
+    			case 7:
+    				thisResult = '<span style="color:white">Safeguard!</span>'; 
+    			break;
+                case 8:
+                    thisResult = '<span style="color:white">Safeguard!</span>'; 
+                break;
+                case 9:
+                    thisResult = '<span style="color:white">Safeguard!</span>'; 
+                break;
+                case 10:
+                    thisResult = '<span style="color:white">Safeguard!</span>'; 
+                break;
+    		}
+
+    		if (_d.is_chance_time) {
+    			tbody += `
+    				<tr>
+    					<td colspan="100%" style="text-align:center;background-color:white;">
+    						Chance Time!
+    					</td>
+    				</tr>
+    			`;
+    		}
+
+    		var bgColor = "none";
+    		var color = "black";
+
+    		if (_d.current_star === 22) {
+    			bgColor = "#0070dd";
+    			color = "white";
+    		} else if (_d.current_star === 23) {
+    			bgColor = "#a335ee";
+    			color = "white";
+    		} else if (_d.current_star === 24) {
+    			bgColor = "#ff8000";
+    			color = "white";
+    		} else if (_d.current_star === 25) {
+    			bgColor = "##00f70a";
+    			color: "white";
+    		}
+
+    		tbody += `
+    			<tr>
+    				<td>${i + 1}</td>
+    				<td style="background-color:${bgColor};color:${color}">${_d.current_star}</td>
+    				<td ${_d.type >= 5 && _d.type <= 10 ? 'style="background-color:grey"' : ''}>${thisResult}</td>
+    				<td>${_d.current_total_cost}</td>
+                    <td class="ch-row ${unhideRow ? "" : "hidden"}">${_d.q}</td>
+    			</tr>
+    		`;
+    	}
+
+    	if (startAt === 0) {
+    		$("#t-output").html(tbody);
+    	} else {
+    		$("#t-output").prepend(tbody);
+    	}
+    };
+
+    var getNextStar = function(level, star, chanceTime) {
+        var thisSf = sf["s" + level];
+        var _sf1 = thisSf.filter(a => {
+            return a.level === star
+        })[0];
+
+
+        var sf12 = $("#cb_sf12").prop("checked");
+        var sf15 = $("#cb_sf15").prop("checked");
+
+        var sf17 = $("#cb_ch_sf17").prop("checked");
+        var sf20 = $("#cb_ch_sf20").prop("checked");
+        var sf22 = $("#cb_ch_sf22").prop("checked");
+
+        var sc = $("#cb_sc").prop("checked");
+        var _mvp = $(".mvp-dc:checked");
+        var mvp = _mvp.length > 0;
+        var mvpVal = +_mvp.val();
+        var o30 = $("#cb_e_30o").prop("checked");
+        var mod5s = $("#cb_e_mod5s").prop("checked");
+
+        var isSafe = false;
+        isSafe = isSafe || (sf12 && star >= 12 && star < 15);
+        isSafe = isSafe || (sf15 && star >= 15 && star < 17);
+        isSafe = isSafe || (sf17 && star >= 17 && star < 20);
+        isSafe = isSafe || (sf20 && star >= 20 && star < 22);
+        isSafe = isSafe || (sf22 && star >= 22 && star < 25);
+
+        var is100 = (mod5s && star % 5 === 0 && star < 20) || chanceTime >= 2;
+        var effectiveCost = parseFloat((_sf1.cost - (o30 ? _sf1.cost * 0.3 : 0) - (mvp && star < 17 ? _sf1.cost * mvpVal : 0)).toFixed(0)) + (isSafe && !is100 ? _sf1.cost : 0);
+
+        var success = parseFloat(_sf1.success * 100).toFixed(1) + "%";
+        var fail = parseFloat(_sf1.fail * 100).toFixed(1) + "%";
+        var destroy = parseFloat(_sf1.destroy * 100).toFixed(1) + "%";
+
+        if (is100) {
+            success = '<strike>' + success + '</strike> 100%';
+            fail = '0%';
+            destroy = '0%';
+        }
+
+        $("#c_ns").html(star + 1);
+        $("#c_s").html(success);
+        $("#c_f").html(fail);
+        $("#c_d").html(destroy);
+        $("#c_c").html(effectiveCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $("#c_sc").html(sc ? "Yes" : "No");
+    };
+
+    var star = function(o) {
+        this.currStar = o.star || 1;
+        this.chanceTime = 0;
+        this.currRun = 0;
+        this.level = o.level || "150";
+        this.sf = sf["s" + this.level];
+        this.totalCost = 0;
+        this.totBoom = 0;
+        this.totFail = 0;
+        this.totRuns = 0;
+        this.totp15 = 0;
+        this.totp20 = 0;
+        this.totSg12 = 0;
+        this.totSg15 = 0;
+        this.totSg17 = 0;
+        this.totSg20 = 0;
+        this.totSg22 = 0;
+        this.totCostSg12 = 0;
+        this.totCostSg15 = 0;
+        this.totSc = 0;
+        this.totScF = 0;
+
+        this._prev15 = true;
+        this._prev20 = true;
+
+        this._private = {
+            fail: function(_this) {
+                _this.totFail += 1;
+                if (_this.currStar !== 1) {
+                    if (_this.currStar % 5 !== 0 || _this.level === -150) {
+                        _this.currStar -= 1;
+                        _this.chanceTime += 1;
+                    }
+                }
+            }
+        };
+
+        this.sfData = [];
+
+        this.starforce = function(_o) {
+            this.totRuns += 1;
+            _o = $.extend({}, _o);
+
+            var _d = {
+            	type: 0,
+            	current_star: 0,
+            	total_current_cost: 0,
+            	current_cost: 0,
+            	q: 0,
+            	is_chance_time: false
+            };
+
+            this.currRun += 1;
+            _d.id = this.currRun;
+
+            var ran = 0;
+            var isChance = false;
+
+            if (this.chanceTime >= 2) {
+                this.chanceTime = 0;
+                isChance = true;
+            } else {
+                ran = Math.random();
+                _d.q = ran;
+            }
+
+            var message = "";
+
+            var boomLevel = 12;
+
+            if (this.level === -150) {
+            	boomLevel = 1;
+            }
+
+            var _sf = this.sf.filter(a => {
+                return a.level === this.currStar
+            })[0];
+
+            var sf12 = $("#cb_sf12").prop("checked");
+            var sf15 = $("#cb_sf15").prop("checked");
+
+            var sf17 = $("#cb_ch_sf17").prop("checked");
+            var sf20 = $("#cb_ch_sf20").prop("checked");
+            var sf22 = $("#cb_ch_sf22").prop("checked");
+
+            var sc = $("#cb_sc").prop("checked");
+            var _mvp = $(".mvp-dc:checked");
+            var mvp = _mvp.length > 0;
+            var mvpVal = +_mvp.val();
+            var o30 = $("#cb_e_30o").prop("checked");
+            var mod5s = $("#cb_e_mod5s").prop("checked");
+
+            var isSafe12 = sf12 && this.currStar >= 12 && this.currStar < 15;
+            var isSafe15 = sf15 && this.currStar >= 15 && this.currStar < 17;
+            var isSafe17 = sf17 && this.currStar >= 17 && this.currStar < 20;
+            var isSafe20 = sf20 && this.currStar >= 20 && this.currStar < 22;
+            var isSafe22 = sf22 && this.currStar >= 22 && this.currStar < 25;
+
+            var isSafe = isSafe12 || isSafe15 || isSafe17 || isSafe20 || isSafe22;
+
+            var is100 = (mod5s && this.currStar % 5 === 0 && this.currStar < 20) || isChance;
+
+            var currCost = _sf.cost;
+
+            var effectiveCost = parseFloat((currCost - (o30 ? currCost * 0.3 : 0) - (mvp && this.currStar < 17 ? currCost * mvpVal : 0)).toFixed(0)) + (isSafe && !is100 ? currCost : 0);
+
+            this.totalCost += effectiveCost;
+            _d.current_cost = effectiveCost;
+            
+            var totCost = this.totalCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            _d.current_total_cost = totCost;
+            var sg12Cost = 0;
+            var sg15Cost = 0;
+
+            if (isSafe12 && !is100) {
+                this.totCostSg12 += currCost;
+            }
+
+            if (isSafe15 && !is100) {
+                this.totCostSg15 += currCost;
+            }
+
+            var scSuccess = _sf.success * 1.05;
+
+
+            if (this.level !== -150 && mod5s && this.currStar % 5 === 0 && this.currStar < 20) {
+                ran = 0;
+            }
+
+            if (ran !== 0 && ran <= _sf.destroy) {
+                if (isSafe12) {
+                    this._private.fail(this);
+                    this.totSg12 += 1;
+                    _d.type = 6; //destroyed, safeguard 12-15
+                } else if (isSafe15) {
+                    this._private.fail(this);
+                    this.totSg15 += 1;
+                    _d.type = 7;  //destroyed, safeguard 15-17
+                } else if (isSafe17) {
+                    this._private.fail(this);
+                    this.totSg17 += 1;
+                    _d.type = 8;  //destroyed, safeguard 17-20
+                } else if (isSafe20) {
+                    this._private.fail(this);
+                    this.totSg20 += 1;
+                    _d.type = 9;  //destroyed, safeguard 20-22
+                } else if (isSafe22) {
+                    this._private.fail(this);
+                    this.totSg22 += 1;
+                    _d.type = 10;  //destroyed, safeguard 22-25
+                } else {
+                    this.currStar = boomLevel;
+                    this.totBoom += 1; 
+                    this.chanceTime = 0;
+                    this._prev15 = true;
+                    this._prev20 = true;
+                    _d.type = 5; //destroyed
+                }
+            } else if (ran <= _sf.destroy + _sf.success) {
+                this.currStar += 1;
+                 _d.type = 1; //success
+                this.chanceTime = 0;
+            } else if (ran <= _sf.destroy + scSuccess) {
+            	if (sc) {
+	                this.currStar += 1;
+	                this.totSc += 1;
+	                _d.type = 3; //star catch success
+	                this.chanceTime = 0;
+            	} else {
+            		this.totScF += 1;
+            		_d.type = 4; //fail, but within star catch
+            		this._private.fail(this);
+            	}
+            } else {
+                this._private.fail(this);
+                 _d.type = 2; //fail
+            }
+
+            if (this.currStar >= 15 && this._prev15) {
+                this.totp15 += 1;
+                this._prev15 = false;
+            }
+
+            if (this.currStar >= 20 && this._prev20) {
+                this.totp20 += 1;
+                this._prev20 = false;
+            }
+
+            if (this.currStar === 0) {
+            	this.currStar = 1;
+            }
+
+            sg12Cost = this.totCostSg12.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            sg15Cost = this.totCostSg15.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            $("#l_s").html(this.currStar);
+            $("#l_r").html(this.totRuns);
+            $("#l_sc").html(this.totSc);
+            $("#l_sc_f").html(this.totScF);
+            $("#l_f").html(this.totFail);
+            $("#l_b").html(this.totBoom);
+            $("#l_sg12").html(this.totSg12);
+            $("#l_sg15").html(this.totSg15);
+            $("#l_p15").html(this.totp15);
+            $("#l_p20").html(this.totp20);
+            $("#l_c").html(totCost);
+            $("#l_c_sg12").html(sg12Cost);
+            $("#l_c_sg15").html(sg15Cost);
+
+            getNextStar(this.level, this.currStar, item.chanceTime);
+
+            if (this.chanceTime === 2) {
+            	_d.is_chance_time = true; //chance time
+            }
+
+            _d.current_star = this.currStar;
+            this.sfData.push(_d);
+
+            if (typeof _o.cb_end === 'function') {
+                _o.cb_end();
+            }
+        }
+    };
+
+    var start = +numStart.val();
+    var item = new star({
+        star: start,
+        level: level
+    });
+    getNextStar(level, start, 0);
+
+    $("#btn").on("click", function() {
+        item.starforce();
+
+        generateTable(item, item.sfData.length - 1);
+        generateLineGraph(item);
+    });
+
+    var n = 0;
+    var max_n = 1000000;
+    var n_stop = false;
+    $("#btnNew").on("click", function() {
+        n = 0;
+        n_stop = true;
+        var start = +numStart.val();
+        item = new star({
+        	level: level,
+            star: start
+        });
+        getNextStar(level, start);
+        generateLineGraph(item);
+        $("#t-output").html("");
+    });
+
+    var btnStop = $("#btnStop");
+    btnStop.on("click", function() {
+        n_stop = true;
+        setTimeout(function() {
+            $("#output").prepend("Stopped.<br>");
+        }, 100);
+
+    });
+
+    $("#num").on("keyup", function() {
+        var val = +$(this).val();
+
+        if (val >= 24) {
+            btnStop.removeClass("hidden");
+        } else {
+            btnStop.addClass("hidden");
+        }
+    });
+
+    $("body").on("keydown", function(e) {
+        if (e.which === 13 || e.keyCode === 13) {
+            e.preventDefault();
+            $("#btn").trigger("click");
+        }
+    });
+
+
+    var recursive_starforce = function(v) {
+        item.starforce({
+            cb_end: function() {
+                if ((n <= max_n && item.currStar < v) && !n_stop) {
+                    setTimeout(function() {
+                        recursive_starforce(v);
+                    }, 1);
+
+                    n += 1;
+
+                    generateTable(item, item.sfData.length - 1);
+                    generateLineGraph(item);
+
+                    if (n > max_n) {
+                        setTimeout(function() {
+                            $("#output").prepend("Unable to get to this star in " + max_n + " tries.<br>");
+                        }, 100);
+
+                        n_stop = true;
+                    }
+                }
+                if (n_stop) {
+                    n_stop = false;
+                }
+            }
+        });
+    }
+
+    $("#btnGoToStar").on("click", function() {
+        var value = +$("#num").val();
+        n = 0;
+        n_stop = false;
+
+        if (isNaN(value)) {
+            return false;
+        }
+
+        var currVal = item.currStar;
+
+        if (value < 24) {
+            while (item.currStar < value) {
+                item.starforce();
+                currVal = item.currStar;
+            }
+
+            generateTable(item);
+            generateLineGraph(item);
+        } else {
+            recursive_starforce(value);
+        }
+    });
+
+    $(".sf,.sc,.ev").on("click", function() {
+        getNextStar(level, item.currStar, item.chanceTime);
+    });
+
+    $("#cheats").on("click", function() {
+        $("#cheat_panel").toggleClass("hidden");
+
+        $(".ch").prop("checked", false);
+
+        $(".ch").trigger("change");
+    });
+
+    $("#cb_ch_showq").on("change", function(e) {
+        if (e.target.checked) {
+            $(".ch-row").removeClass("hidden");
+        } else {
+            $(".ch-row").addClass("hidden");
+        }
+    });
+});
+
+var sf = {
+    s140: [], //add 140 data here
+    s150: [{
+        level: 10,
+        success: 0.45,
+        fail: 0.55,
+        destroy: 0,
+        cost: 5470800
+    }, {
+        level: 11,
+        success: 0.35,
+        fail: 0.65,
+        destroy: 0,
+        cost: 6919400
+    }, {
+        level: 12,
+        success: 0.30,
+        fail: 0.693,
+        destroy: 0.007,
+        cost: 8588400
+    }, {
+        level: 13,
+        success: 0.30,
+        fail: 0.686,
+        destroy: 0.014,
+        cost: 10490600
+    }, {
+        level: 14,
+        success: 0.30,
+        fail: 0.686,
+        destroy: 0.014,
+        cost: 12638500
+    }, {
+        level: 15,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 50144700
+    }, {
+        level: 16,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 59062500
+    }, {
+        level: 17,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 68918300
+    }, {
+        level: 18,
+        success: 0.30,
+        fail: 0.672,
+        destroy: 0.028,
+        cost: 87000300
+    }, {
+        level: 19,
+        success: 0.30,
+        fail: 0.672,
+        destroy: 0.028,
+        cost: 99923200
+    }, {
+        level: 20,
+        success: 0.30,
+        fail: 0.63,
+        destroy: 0.07,
+        cost: 125391900
+    }, {
+        level: 21,
+        success: 0.30,
+        fail: 0.63,
+        destroy: 0.07,
+        cost: 142173300
+    }, {
+        level: 22,
+        success: 0.03,
+        fail: 0.776,
+        destroy: 0.194,
+        cost: 160303000
+    }, {
+        level: 23,
+        success: 0.02,
+        fail: 0.686,
+        destroy: 0.294,
+        cost: 179823500
+    }, {
+        level: 24,
+        success: 0.01,
+        fail: 0.594,
+        destroy: 0.396,
+        cost: 200777000
+    }],
+    s160: [{
+        level: 10,
+        success: 0.45,
+        fail: 0.55,
+        destroy: 0,
+        cost: 6639400
+    }, {
+        level: 11,
+        success: 0.35,
+        fail: 0.65,
+        destroy: 0,
+        cost: 8397300
+    }, {
+        level: 12,
+        success: 0.30,
+        fail: 0.693,
+        destroy: 0.007,
+        cost: 10422900
+    }, {
+        level: 13,
+        success: 0.30,
+        fail: 0.686,
+        destroy: 0.014,
+        cost: 12731500
+    }, {
+        level: 14,
+        success: 0.30,
+        fail: 0.686,
+        destroy: 0.014,
+        cost: 15338200
+    }, {
+        level: 15,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 60856900
+    }, {
+        level: 16,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 71679800
+    }, {
+        level: 17,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 83641100
+    }, {
+        level: 18,
+        success: 0.30,
+        fail: 0.672,
+        destroy: 0.028,
+        cost: 105585900
+    }, {
+        level: 19,
+        success: 0.30,
+        fail: 0.672,
+        destroy: 0.028,
+        cost: 121269600
+    }, {
+        level: 20,
+        success: 0.30,
+        fail: 0.63,
+        destroy: 0.07,
+        cost: 152179100
+    }, {
+        level: 21,
+        success: 0.30,
+        fail: 0.63,
+        destroy: 0.07,
+        cost: 172545500
+    }, {
+        level: 22,
+        success: 0.03,
+        fail: 0.776,
+        destroy: 0.194,
+        cost: 194548300
+    }, {
+        level: 23,
+        success: 0.02,
+        fail: 0.686,
+        destroy: 0.294,
+        cost: 218239000
+    }, {
+        level: 24,
+        success: 0.01,
+        fail: 0.594,
+        destroy: 0.396,
+        cost: 243668700
+    }],
+    s200: [{
+        level: 10,
+        success: 0.45,
+        fail: 0.55,
+        destroy: 0,
+        cost: 12966500
+    }, {
+        level: 11,
+        success: 0.35,
+        fail: 0.65,
+        destroy: 0,
+        cost: 16400100
+    }, {
+        level: 12,
+        success: 0.30,
+        fail: 0.693,
+        destroy: 0.007,
+        cost: 20356300
+    }, {
+        level: 13,
+        success: 0.30,
+        fail: 0.686,
+        destroy: 0.014,
+        cost: 24865300
+    }, {
+        level: 14,
+        success: 0.30,
+        fail: 0.686,
+        destroy: 0.014,
+        cost: 29956500
+    }, {
+        level: 15,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 118860200
+    }, {
+        level: 16,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 139998700
+    }, {
+        level: 17,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 163360500
+    }, {
+        level: 18,
+        success: 0.30,
+        fail: 0.672,
+        destroy: 0.028,
+        cost: 206221600
+    }, {
+        level: 19,
+        success: 0.30,
+        fail: 0.672,
+        destroy: 0.028,
+        cost: 236853700
+    }, {
+        level: 20,
+        success: 0.30,
+        fail: 0.63,
+        destroy: 0.07,
+        cost: 297223800
+    }, {
+        level: 21,
+        success: 0.30,
+        fail: 0.63,
+        destroy: 0.07,
+        cost: 337002000
+    }, {
+        level: 22,
+        success: 0.03,
+        fail: 0.776,
+        destroy: 0.194,
+        cost: 379976100
+    }, {
+        level: 23,
+        success: 0.02,
+        fail: 0.686,
+        destroy: 0.294,
+        cost: 426247000
+    }, {
+        level: 24,
+        success: 0.01,
+        fail: 0.594,
+        destroy: 0.396,
+        cost: 475914500
+    }],
+    "s-150": [{
+        level: 1,
+        success: 0.50,
+        fail: 0.50,
+        destroy: 0,
+        cost: 55832200
+    }, {
+        level: 2,
+        success: 0.45,
+        fail: 0.55,
+        destroy: 0,
+        cost: 55832200
+    }, {
+        level: 3,
+        success: 0.40,
+        fail: 0.60,
+        destroy: 0,
+        cost: 55832200
+    }, {
+        level: 4,
+        success: 0.40,
+        fail: 0.60,
+        destroy: 0,
+        cost: 55832200
+    }, {
+        level: 5,
+        success: 0.40,
+        fail: 0.582,
+        destroy: 0.018,
+        cost: 55832200
+    }, {
+        level: 6,
+        success: 0.40,
+        fail: 0.57,
+        destroy: 0.03,
+        cost: 55832200
+    }, {
+        level: 7,
+        success: 0.40,
+        fail: 0.558,
+        destroy: 0.042,
+        cost: 55832200
+    }, {
+        level: 8,
+        success: 0.40,
+        fail: 0.54,
+        destroy: 0.06,
+        cost: 55832200
+    }, {
+        level: 9,
+        success: 0.37,
+        fail: 0.535,
+        destroy: 0.095,
+        cost: 55832200
+    }, {
+        level: 10,
+        success: 0.35,
+        fail: 0.52,
+        destroy: 0.13,
+        cost: 55832200
+    }, {
+        level: 11,
+        success: 0.35,
+        fail: 0.487,
+        destroy: 0.163,
+        cost: 55832200
+    }, {
+        level: 12,
+        success: 0.03,
+        fail: 0.485,
+        destroy: 0.485,
+        cost: 55832200
+    }, {
+        level: 13,
+        success: 0.02,
+        fail: 0.49,
+        destroy: 0.49,
+        cost: 55832200
+    }, {
+        level: 14,
+        success: 0.01,
+        fail: 0.495,
+        destroy: 0.495,
+        cost: 55832200
+    }]
+};
+</script>
