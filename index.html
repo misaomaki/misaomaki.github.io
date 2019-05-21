@@ -150,7 +150,7 @@
     </div>
 </div>
 
-<div class="flex-container">
+<div class="flex-container" id="star_cost">
     <div class="flex-item" style="min-width:500px;">
         <span class="flex-header cost">Star Cost</span>
         <div id="currentStats">
@@ -168,12 +168,12 @@
 <hr>
 <button id="lineChartShowHide">Show Graph</button>
 <canvas id="lineChart" width="400px" height="100px" class="hidden"></canvas>
-<table id="starforce-output" style="width:45%;">
+<table id="starforce-output" style="width:45%;min-width:600px;">
 	<thead>
 		<th style="width:5%">Attempt</th>
 		<th style="width:5%">Star</th>
 		<th style="width:35%">Result</th>
-		<th>Total Cost</th>
+        <th>Total Cost</th>
         <th style="width:10%" class="ch-row hidden">PRN</th>
 	</thead>
 	<tbody id="t-output">
@@ -191,6 +191,10 @@
 
 <script>
 $(function() {
+    Number.prototype.toNumber = function() {
+        return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     var level = 150;
 
     var numStart = $("#numStart");
@@ -307,7 +311,7 @@ $(function() {
 
     		switch (_d.type) {
     			case 1: 
-    				thisResult = '<span style="color:green">Success!</span>';
+                    thisResult = '<span style="color:green">Success!</span>';
     			break;
     			case 2:
     				thisResult = '<span style="color:red">Failed</span>';
@@ -336,8 +340,8 @@ $(function() {
                 case 10:
                     thisResult = '<span style="color:white">Safeguard!</span>'; 
                 break;
-    		}
-
+            }
+            
     		if (_d.is_chance_time) {
     			tbody += `
     				<tr>
@@ -361,7 +365,7 @@ $(function() {
     			bgColor = "#ff8000";
     			color = "white";
     		} else if (_d.current_star === 25) {
-    			bgColor = "##00f70a";
+    			bgColor = "#00f70a";
     			color: "white";
     		}
 
@@ -370,7 +374,7 @@ $(function() {
     				<td>${i + 1}</td>
     				<td style="background-color:${bgColor};color:${color}">${_d.current_star}</td>
     				<td ${_d.type >= 5 && _d.type <= 10 ? 'style="background-color:grey"' : ''}>${thisResult}</td>
-    				<td>${_d.current_total_cost}</td>
+                    <td>${_d.current_total_cost}</td>
                     <td class="ch-row ${unhideRow ? "" : "hidden"}">${_d.q}</td>
     			</tr>
     		`;
@@ -383,7 +387,14 @@ $(function() {
     	}
     };
 
+    var star_cost = $("#star_cost");
     var getNextStar = function(level, star, chanceTime) {
+        star_cost.removeClass("hidden");
+        if (star === 25) {
+            star_cost.addClass("hidden");
+            return false;
+        }
+
         var thisSf = sf["s" + level];
         var _sf1 = thisSf.filter(a => {
             return a.level === star
@@ -428,7 +439,7 @@ $(function() {
         $("#c_s").html(success);
         $("#c_f").html(fail);
         $("#c_d").html(destroy);
-        $("#c_c").html(effectiveCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $("#c_c").html(effectiveCost.toNumber());
         $("#c_sc").html(sc ? "Yes" : "No");
     };
 
@@ -541,7 +552,7 @@ $(function() {
             this.totalCost += effectiveCost;
             _d.current_cost = effectiveCost;
             
-            var totCost = this.totalCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            var totCost = this.totalCost.toNumber();
             _d.current_total_cost = totCost;
             var sg12Cost = 0;
             var sg15Cost = 0;
@@ -624,8 +635,8 @@ $(function() {
             	this.currStar = 1;
             }
 
-            sg12Cost = this.totCostSg12.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            sg15Cost = this.totCostSg15.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            sg12Cost = this.totCostSg12.toNumber();
+            sg15Cost = this.totCostSg15.toNumber();
             $("#l_s").html(this.currStar);
             $("#l_r").html(this.totRuns);
             $("#l_sc").html(this.totSc);
