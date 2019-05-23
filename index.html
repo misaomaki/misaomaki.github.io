@@ -154,7 +154,7 @@
         <br><br>
         <label for="cbHeuristic" id="heur" class="hidden">
             <input type="checkbox" id="cbHeuristic"> Enable Heuristic Enhancement <span id="h_info" style="cursor:pointer;" title='Enabling this will take a slightly different approach to starforcing. The current method is to starforce as you would in the game, just quickly.
-This method will start all enhancements at 22, and all booms will drop it back to 22. 
+This method will start all enhancements at 22, and all booms will start it at 22. 
 All booms are recorded and once it hits its desired star, the program will go back and run the starforce algorithm for stars 12-20 per boom. 
 This is faster, but will not update the graph or table. It can take up to several minutes, depending on the luck. Starcatching and safeguarding are recommended.
 Run 25 at your own peril.'>[?]</span>
@@ -970,12 +970,15 @@ $(function() {
             heuristic_item_backfilled[j] += initItem[j];
         }
 
-        for (var i = 0; i < booms; ++i) {
-            
-            setTimeout(function(_i) {
-                btnGoToStar.html("Beginning backfill..." + parseFloat(((_i + 1)/ booms) * 100).toFixed(1) + "%");
-                heuristic_backfill(booms, st, _i);
-            }, 0, i);
+        if (booms > 0) {
+            for (var i = 0; i < booms; ++i) {
+                setTimeout(function(_i) {
+                    btnGoToStar.html("Beginning backfill..." + parseFloat(((_i + 1)/ booms) * 100).toFixed(1) + "%");
+                    heuristic_backfill(booms, st, _i);
+                }, 0, i);
+            }
+        } else {
+            heuristic_backfill_done(st, true);
         }
     }
 
@@ -1020,12 +1023,14 @@ $(function() {
 
         var isH = $("#cbHeuristic").prop("checked");
         if (isH) {
+            runs = 0;
             $("#t-output").html("");
             _this.html("Running heuristic...");
             //reset heuristic
             heuristic = {};
             heuristic_end_star = value;
-            return recursiveHeuristic(value - 1);
+            recursiveHeuristic(value - 1);
+            return false;
         }
 
         
