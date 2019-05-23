@@ -82,6 +82,10 @@
     .cost {
         background-color: #fdff99;
     }
+
+    .hInfo {
+        background-color: #d9ffaf;
+    }
 </style>
 
 <div class="flex-container">
@@ -142,11 +146,19 @@
         Start At: <input type="number" min="10" max="25" id="numStart" value="10"> 
         <button id="btnNew">New Item</button>
     </div>
-    <div class="flex-item" style="align-items:center;justify-content: center;">
+    <div class="flex-item">
         <span class="flex-header item2">Auto Enhancement</span>
         
         <input type="number" min="11" max="25" id="num" value="22">
         <button id="btnGoToStar">Go To Star</button> <button id="btnStop" class="hidden">Stop</button>
+        <br><br>
+        <label for="cbHeuristic" id="heur" class="hidden">
+            <input type="checkbox" id="cbHeuristic"> Enable Heuristic Enhancement <span id="h_info" style="cursor:pointer;" title='Enabling this will take a slightly different approach to starforcing. The current method is to starforce as you would in the game, just quickly.
+This method will start all enhancements at 20, and all booms will drop it back to 20. 
+All booms are recorded and once it hits its desired star, the program will go back and run the starforce algorithm for stars 12-20 per boom. 
+This is faster, but will not update the graph or table. It can take up to several minutes, depending on the luck. Starcatching and safeguarding are recommended.
+Run 25 at your own peril.'>[?]</span>
+        </label>
     </div>
 </div>
 
@@ -191,6 +203,8 @@
 
 <script>
 $(function() {
+    var enhanceBtn = $("#btn");
+
     Number.prototype.toNumber = function() {
         return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
@@ -198,6 +212,8 @@ $(function() {
     var level = 150;
 
     var numStart = $("#numStart");
+    var itemLevel = $("#itemLevel");
+    var btnGoToStar = $("#btnGoToStar");
 
     var graphShown = false;
     $("#lineChartShowHide").on("click", function() {
@@ -214,7 +230,7 @@ $(function() {
         }
     });
 
-    $("#itemLevel").on("change", function() {
+    itemLevel.on("change", function() {
         level = +$(this).val();
 
         if (level === -150) {
@@ -227,8 +243,14 @@ $(function() {
         	$("#num").val(22).attr("max", 25);
         }
 
-        getNextStar(level, 10);
+        var thisItem = {
+            level: level,
+            currStar: 10
+        };
+
+        getNextStar(thisItem);
         $("#btnNew").trigger("click");
+        $("#num").trigger("keyup");
     });
 
     var mc = "";
@@ -236,7 +258,7 @@ $(function() {
     var generateLineGraph = function(item) {
         var graphData = item.sfData.slice(Math.max(item.sfData.length - 500, 1)).map((a) => {return {x: a.id, y: a.current_star}});
 
-        var isSuperior = $("#itemLevel").val() == -150;
+        var isSuperior = itemLevel.val() == -150;
 
         var min = 10;
         var max = 25;
@@ -388,7 +410,10 @@ $(function() {
     };
 
     var star_cost = $("#star_cost");
-    var getNextStar = function(level, star, chanceTime) {
+    var getNextStar = function(o, updStats = false) {
+        var level = o.level;
+        var star = o.currStar;
+        var chanceTime = o.chancetime;
         star_cost.removeClass("hidden");
         if (star === 25) {
             star_cost.addClass("hidden");
@@ -435,21 +460,44 @@ $(function() {
             destroy = '0%';
         }
 
+        //update next star value
         $("#c_ns").html(star + 1);
         $("#c_s").html(success);
         $("#c_f").html(fail);
         $("#c_d").html(destroy);
         $("#c_c").html(effectiveCost.toNumber());
         $("#c_sc").html(sc ? "Yes" : "No");
+
+        //update stats
+        if (updStats) {
+            update_stats(o);
+        }
     };
 
-    var star = function(o) {
+    var update_stats = function (o) {
+        $("#l_s").html(o.currStar);
+        $("#l_r").html(o.totRuns);
+        $("#l_sc").html(o.totSc);
+        $("#l_sc_f").html(o.totScF);
+        $("#l_f").html(o.totFail);
+        $("#l_b").html(o.totBoom);
+        $("#l_sg12").html(o.totSg12);
+        $("#l_sg15").html(o.totSg15);
+        $("#l_p15").html(o.totp15);
+        $("#l_p20").html(o.totp20);
+        $("#l_c").html(o.totalCostFormatted);
+        $("#l_c_sg12").html(o.totCostSg12.toNumber());
+        $("#l_c_sg15").html(o.totCostSg15.toNumber());
+    }
+
+    var star = function(o, updStats = true) {
         this.currStar = o.star || 1;
         this.chanceTime = 0;
         this.currRun = 0;
         this.level = o.level || "150";
         this.sf = sf["s" + this.level];
         this.totalCost = 0;
+        this.totalCostFormatted = 0;
         this.totBoom = 0;
         this.totFail = 0;
         this.totRuns = 0;
@@ -521,6 +569,7 @@ $(function() {
                 return a.level === this.currStar
             })[0];
 
+            //TODO: make global variable and update them with event
             var sf12 = $("#cb_sf12").prop("checked");
             var sf15 = $("#cb_sf15").prop("checked");
 
@@ -552,8 +601,8 @@ $(function() {
             this.totalCost += effectiveCost;
             _d.current_cost = effectiveCost;
             
-            var totCost = this.totalCost.toNumber();
-            _d.current_total_cost = totCost;
+            _d.current_total_cost = this.totalCost.toNumber();;
+            this.totalCostFormatted = _d.current_total_cost;
             var sg12Cost = 0;
             var sg15Cost = 0;
 
@@ -635,23 +684,9 @@ $(function() {
             	this.currStar = 1;
             }
 
-            sg12Cost = this.totCostSg12.toNumber();
-            sg15Cost = this.totCostSg15.toNumber();
-            $("#l_s").html(this.currStar);
-            $("#l_r").html(this.totRuns);
-            $("#l_sc").html(this.totSc);
-            $("#l_sc_f").html(this.totScF);
-            $("#l_f").html(this.totFail);
-            $("#l_b").html(this.totBoom);
-            $("#l_sg12").html(this.totSg12);
-            $("#l_sg15").html(this.totSg15);
-            $("#l_p15").html(this.totp15);
-            $("#l_p20").html(this.totp20);
-            $("#l_c").html(totCost);
-            $("#l_c_sg12").html(sg12Cost);
-            $("#l_c_sg15").html(sg15Cost);
-
-            getNextStar(this.level, this.currStar, item.chanceTime);
+            if (updStats) {
+                getNextStar(this, true);
+            }
 
             if (this.chanceTime === 2) {
             	_d.is_chance_time = true; //chance time
@@ -663,6 +698,10 @@ $(function() {
             if (typeof _o.cb_end === 'function') {
                 _o.cb_end();
             }
+
+            if (!updStats) {
+                return _d;
+            }
         }
     };
 
@@ -671,9 +710,9 @@ $(function() {
         star: start,
         level: level
     });
-    getNextStar(level, start, 0);
+    getNextStar(item);
 
-    $("#btn").on("click", function() {
+    enhanceBtn.on("click", function() {
         item.starforce();
 
         generateTable(item, item.sfData.length - 1);
@@ -691,22 +730,32 @@ $(function() {
         	level: level,
             star: start
         });
-        getNextStar(level, start);
+        getNextStar(item);
         generateLineGraph(item);
         $("#t-output").html("");
     });
 
     var btnStop = $("#btnStop");
+    var cbHeuristicContainer = $("#heur");
+    var cbHeuristic = $("#cbHeuristic");
     btnStop.on("click", function() {
         n_stop = true;
         setTimeout(function() {
             $("#output").prepend("Stopped.<br>");
         }, 100);
 
+        resetGoToButton();
     });
 
     $("#num").on("keyup", function() {
         var val = +$(this).val();
+        cbHeuristic.prop("checked", false);
+
+        if (val >= 23) {
+            cbHeuristicContainer.removeClass("hidden");
+        } else {
+            cbHeuristicContainer.addClass("hidden");
+        }
 
         if (val >= 24) {
             btnStop.removeClass("hidden");
@@ -718,17 +767,24 @@ $(function() {
     $("body").on("keydown", function(e) {
         if (e.which === 13 || e.keyCode === 13) {
             e.preventDefault();
-            $("#btn").trigger("click");
+            enhanceBtn.trigger("click");
         }
     });
 
+    $("#cbHeuristic").on("click", function(e) {
+        if (e.target.checked) {
+            btnStop.addClass("hidden");
+        } else {
+            btnStop.removeClass("hidden");
+        }
+    });
 
-    var recursive_starforce = function(v) {
+    var recursive_starforce = function(v, done) {
         item.starforce({
             cb_end: function() {
-                if ((n <= max_n && item.currStar < v) && !n_stop) {
+                if ((n <= max_n && item.currStar <= v) && !n_stop) {
                     setTimeout(function() {
-                        recursive_starforce(v);
+                        recursive_starforce(v, done);
                     }, 1);
 
                     n += 1;
@@ -741,7 +797,15 @@ $(function() {
                             $("#output").prepend("Unable to get to this star in " + max_n + " tries.<br>");
                         }, 100);
 
+                        if (typeof done === 'function') {
+                            done();
+                        }
+
                         n_stop = true;
+                    }
+                } else {
+                    if (typeof done === 'function') {
+                        done();
                     }
                 }
                 if (n_stop) {
@@ -751,8 +815,220 @@ $(function() {
         });
     }
 
-    $("#btnGoToStar").on("click", function() {
+    function resetGoToButton() {
+        btnGoToStar.prop("disabled", false).html("Go To Star");
+    }
+
+    var heuristic = {};
+    var heuristic_end_star = 0;
+    var runs = 0;
+    function recursiveHeuristic(st) {
+        var level = itemLevel.val();
+
+        if (heuristic_end_star === st) {
+            heuristic_done(st);
+            return false;
+        }
+
+        runs += 1;
+
+        if (typeof heuristic["t" + st] === 'undefined') {
+            heuristic["t" + st] = {
+                runs: 0,
+                fails: 0,
+                fail_starcatch: 0,
+                success_starcatch: 0,
+                destroy: 0,
+                cost: 0
+            };
+        }
+
+        var hItem = new star({
+            star: st,
+            level: level
+        }, false);
+
+        hItem.starforce();
+
+        var sf = hItem.sfData[0];
+        var type = sf.type;
+        var currstar = sf.current_star;
+        var cost = hItem.totalCost;
+        
+
+        var estar = 0;
+        //fail
+        heuristic["t" + st].cost += cost;
+        heuristic["t" + st].runs += 1;
+        if (sf.type === 2 || sf.type === 4) {
+            if (sf.type === 4) {
+                heuristic["t" + st].fail_starcatch += 1;
+            }
+            heuristic["t" + st].fails += 1;
+            estar = currstar;
+        //destroyed
+        } else if (sf.type === 5) {
+            heuristic["t" + st].destroy += 1;
+            estar = 20;
+        } else {
+        //success
+            if (sf.type === 3) {
+                heuristic["t" + st].success_starcatch += 1;
+            }
+            estar = currstar;
+        }
+
+        //anti-call stack exceed
+        if (runs > 2000) {
+                setTimeout(function() {recursiveHeuristic(estar);},0);
+                runs = 0;
+            } else {
+                {recursiveHeuristic(estar);
+            }
+        }
+    }
+
+    var heuristic_item_backfilled = {
+        totRuns: 0,
+        totSc: 0,
+        totScF: 0,
+        totFail: 0,
+        totBoom: 0,
+        totSg12: 0,
+        totSg15: 0,
+        totp15: 0,
+        totp20: 0,
+        totalCost: 0,
+        totCostSg12: 0,
+        totCostSg15: 0
+    };
+    var heuristic_done = function(st) {
+        var totalRuns = 0;
+        var failStarcatch = 0;
+        var successStarcatch = 0;
+        var totalCost = 0;
+        var totalDestroy = 0;
+        var totalFail = 0;
+        for (var i in heuristic) {
+            totalRuns += heuristic[i].runs;
+            failStarcatch += heuristic[i].fail_starcatch;
+            successStarcatch += heuristic[i].success_starcatch;
+            totalCost += heuristic[i].cost;
+            totalDestroy += heuristic[i].destroy;
+            totalFail += heuristic[i].fails;
+        }
+        
+        var heuristicItem = {
+            currStar: st,
+            totRuns: totalRuns,
+            totSc: successStarcatch,
+            totScF: failStarcatch,
+            totBoom: totalDestroy,
+            totalCost: totalCost,
+            totFail: totalFail,
+            totCostSg12: 0,
+            totCostSg15: 0
+        };
+
+        //reset heuristic item
+        heuristic_item_backfilled = {
+            totRuns: 0,
+            totSc: 0,
+            totScF: 0,
+            totFail: 0,
+            totBoom: 0,
+            totSg12: 0,
+            totSg15: 0,
+            totp15: 0,
+            totp20: 0,
+            totalCost: 0,
+            totCostSg12: 0,
+            totCostSg15: 0
+        };
+
+        for (var j in heuristic_item_backfilled) {
+            heuristic_item_backfilled[j] += heuristicItem[j] || 0;
+        }
+
+        btnGoToStar.html("Beginning backfill...");
+        setTimeout(function() {
+            heuristic_backfill_init(totalDestroy, st);
+        }, 0);
+    }
+
+    var heuristic_backfill_init = function(booms, st) {
+        var initItem = new star({
+            star: start,
+            level: level
+        }, false);
+
+        while (initItem.currStar < 20) {
+            initItem.starforce()
+        }
+
+        for (var j in heuristic_item_backfilled) {
+            heuristic_item_backfilled[j] += initItem[j];
+        }
+
+        for (var i = 0; i < booms; ++i) {
+            
+            setTimeout(function(_i) {
+                btnGoToStar.html("Beginning backfill..." + parseFloat(((_i + 1)/ booms) * 100).toFixed(1) + "%");
+                heuristic_backfill(booms, st, _i);
+            }, 0, i);
+        }
+    }
+
+    var heuristic_backfill = function(booms, st, i) {
+        var hbfItem = new star({
+            star: 12,
+            level: level
+        }, false);
+
+        while (hbfItem.currStar < 20) {
+            hbfItem.starforce()
+        }
+
+        for (var j in heuristic_item_backfilled) {
+            heuristic_item_backfilled[j] += hbfItem[j];
+        }
+
+        heuristic_backfill_done(st, i + 1 === booms);
+    }
+
+    function heuristic_backfill_done (st, done) {
+        heuristic_item_backfilled.currStar = st;
+        heuristic_item_backfilled.totalCostFormatted = heuristic_item_backfilled.totalCost.toNumber();
+        heuristic_item_backfilled.level = level;
+       
+        update_stats(heuristic_item_backfilled);
+        
+        if (done) {
+            item = new star({
+                star: st,
+                level: level
+            });
+            getNextStar(heuristic_item_backfilled);
+            resetGoToButton(); 
+        }
+    }
+
+    btnGoToStar.on("click", function() {
+        var _this = $(this);
+        _this.prop("disabled", true).html("Processing...");
         var value = +$("#num").val();
+
+        var isH = $("#cbHeuristic").prop("checked");
+        if (isH) {
+            $("#t-output").html("");
+            _this.html("Running heuristic...");
+            //reset heuristic
+            heuristic = {};
+            heuristic_end_star = value;
+            return recursiveHeuristic(value - 1);
+        }
+
+        
         n = 0;
         n_stop = false;
 
@@ -770,13 +1046,16 @@ $(function() {
 
             generateTable(item);
             generateLineGraph(item);
+            resetGoToButton();
         } else {
-            recursive_starforce(value);
+            recursive_starforce(value, function() {
+                resetGoToButton();
+            });
         }
     });
 
     $(".sf,.sc,.ev").on("click", function() {
-        getNextStar(level, item.currStar, item.chanceTime);
+        getNextStar(item);
     });
 
     $("#cheats").on("click", function() {
@@ -793,6 +1072,13 @@ $(function() {
         } else {
             $(".ch-row").addClass("hidden");
         }
+    });
+
+    var h_info_container = $("#h_info_container");
+    $("#h_info").on("mouseover", function() {
+        h_info_container.removeClass("hidden");
+    }).on("mouseout", function() {
+        h_info_container.addClass("hidden");
     });
 });
 
