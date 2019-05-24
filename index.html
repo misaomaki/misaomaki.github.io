@@ -749,7 +749,15 @@ $(function() {
     });
 
     numBtn.on("change", function() {
-        var val = +$(this).val();
+        var _this = $(this);
+        var val = +_this.val();
+
+        if (val < 11) {
+            _this.val(11);
+        } else if (val > 25) {
+            _this.val(25);
+        }
+
         cbHeuristic.prop("checked", false);
 
         if (val >= 23) {
@@ -762,6 +770,25 @@ $(function() {
             btnStop.removeClass("hidden");
         } else {
             btnStop.addClass("hidden");
+        }
+    });
+
+    numStart.on("change", function() {
+        var _this = $(this);
+        var val = +_this.val();
+
+        if (level == -150) {
+            if (val < 1) {
+                _this.val(1);
+            } else if (val > 15) {
+                _this.val(15);
+            }
+        } else {
+            if (val < 10) {
+                _this.val(10);
+            } else if (val > 24) {
+                _this.val(24);
+            }
         }
     });
 
