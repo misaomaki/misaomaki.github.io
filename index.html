@@ -153,10 +153,10 @@
         <button id="btnGoToStar">Go To Star</button> <button id="btnStop" class="hidden">Stop</button>
         <br><br>
         <label for="cbHeuristic" id="heur" class="hidden">
-            <input type="checkbox" id="cbHeuristic"> Enable Heuristic Enhancement <span id="h_info" style="cursor:pointer;" title='Enabling this will take a slightly different approach to starforcing. The current method is to starforce as you would in the game, just quickly.
-This method will start all enhancements at 22, and all booms will start it at 22. 
-All booms are recorded and once it hits its desired star, the program will go back and run the starforce algorithm for stars 12-20 per boom. 
-This is faster, but will not update the graph or table. It can take up to several minutes, depending on the luck. Starcatching and safeguarding are recommended.
+            <input type="checkbox" id="cbHeuristic"> Use Heuristic Enhancement <span id="h_info" style="cursor:pointer;" title='Uses an alternative starforcing method. The current method is to starforce as you would in game, just quickly.
+This method assumes you have an infinite number of 22-star items. Booming the item means you toss the trace and start again with a new 22-star item. 
+Once the desired star is reached, the code goes back and runs starforcing for each boom, going from 12->22. One run will go from {start}->22 to account for your first run at the desired start level. 
+While faster, it does not update the table or show the starforce data on a per-star basis.
 Run 25 at your own peril.'>[?]</span>
         </label>
     </div>
@@ -214,6 +214,7 @@ $(function() {
     var numStart = $("#numStart");
     var itemLevel = $("#itemLevel");
     var btnGoToStar = $("#btnGoToStar");
+    var numBtn = $("#num");
 
     var graphShown = false;
     $("#lineChartShowHide").on("click", function() {
@@ -236,11 +237,11 @@ $(function() {
         if (level === -150) {
         	numStart.val(1).attr("max", 15);
         	$(".sf,.ev").prop("disabled", true).prop("checked", false);
-        	$("#num").val(12).attr("max", 15);
+        	numBtn.val(12).attr("max", 15);
         } else {
         	numStart.val(10).attr("max", 25);
         	$(".sf,.ev").prop("disabled", false);
-        	$("#num").val(22).attr("max", 25);
+        	numBtn.val(22).attr("max", 25);
         }
 
         var thisItem = {
@@ -250,7 +251,7 @@ $(function() {
 
         getNextStar(thisItem);
         $("#btnNew").trigger("click");
-        $("#num").trigger("keyup");
+        numBtn.trigger("change");
     });
 
     var mc = "";
@@ -747,7 +748,7 @@ $(function() {
         resetGoToButton();
     });
 
-    $("#num").on("keyup", function() {
+    numBtn.on("change", function() {
         var val = +$(this).val();
         cbHeuristic.prop("checked", false);
 
@@ -880,11 +881,10 @@ $(function() {
 
         //anti-call stack exceed
         if (runs > 2000) {
-                setTimeout(function() {recursiveHeuristic(estar);},0);
-                runs = 0;
-            } else {
-                {recursiveHeuristic(estar);
-            }
+            setTimeout(function() {recursiveHeuristic(estar);},0);
+            runs = 0;
+        } else {
+            recursiveHeuristic(estar);
         }
     }
 
@@ -1019,7 +1019,7 @@ $(function() {
     btnGoToStar.on("click", function() {
         var _this = $(this);
         _this.prop("disabled", true).html("Processing...");
-        var value = +$("#num").val();
+        var value = +numBtn.val();
 
         var isH = $("#cbHeuristic").prop("checked");
         if (isH) {
