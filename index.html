@@ -110,6 +110,14 @@
     <div class="flex-item">
         <span class="flex-header options">Options</span>
         <label for="cb_sc"><input type="checkbox" id="cb_sc" class="sc" title="Assumption: 5% increased multiplicatively"> Star Catch</label> <br>
+        <label for="starForceFilter" id="sff_label" class="hidden">
+            <span style="font-size:0.8em">
+                Star catch only at these stars.<br>
+                Comma-delimited <span style="cursor:pointer;" title="If you want to star force only at 14, 20, and 21, input: &quot;14,20,21&quot;">[?]</span>.  
+                Leave blank to star catch at all stars.</span> <Br>
+            <textarea id="starForceFilter" style="resize:none;" placeholder="All stars"></textarea>
+            <br>
+        </label>
         <label for="cb_sf12"><input type="checkbox" id="cb_sf12" class="sf"> Safeguard from 12 to 15</label> <br>
         <label for="cb_sf15"><input type="checkbox" id="cb_sf15" class="sf"> Safeguard from 15 to 17</label> <br>
         <hr>
@@ -157,7 +165,7 @@
 This method assumes you have an infinite number of 22-star items. Booming the item means you toss the trace and start again with a new 22-star item. 
 Once the desired star is reached, the code goes back and runs starforcing for each boom, going from 12->22. One run will go from {start}->22 to account for your first run at the desired start level. 
 While faster, it does not update the table or show the starforce data on a per-star basis.
-Run 25 at your own peril.'>[?]</span>
+Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck.'>[?]</span>
         </label>
     </div>
 </div>
@@ -203,6 +211,10 @@ Run 25 at your own peril.'>[?]</span>
 
 <script>
 $(function() {
+    //global variables for starforce
+    var sffilter = "";
+
+
     var enhanceBtn = $("#btn");
 
     Number.prototype.toNumber = function() {
@@ -230,6 +242,22 @@ $(function() {
             graphShown = true;
         }
     });
+    
+    var cbSc = $("#cb_sc");
+    cbSc.on("click", function(e) {
+        var sff = $("#sff_label");
+
+        if (e.target.checked) {
+            sff.removeClass("hidden");
+        } else {
+            sff.addClass("hidden");
+        }
+    });
+
+    $("#starForceFilter").on("change", function() {
+        sffilter = $(this).val().trim();
+    });
+
 
     itemLevel.on("change", function() {
         level = +$(this).val();
@@ -579,6 +607,12 @@ $(function() {
             var sf22 = $("#cb_ch_sf22").prop("checked");
 
             var sc = $("#cb_sc").prop("checked");
+
+            if (sc && sffilter !== "") {
+                sc = sffilter.split(",").indexOf(this.currStar.toString()) !== -1
+            }
+
+
             var _mvp = $(".mvp-dc:checked");
             var mvp = _mvp.length > 0;
             var mvpVal = +_mvp.val();
@@ -883,7 +917,6 @@ $(function() {
         var currstar = sf.current_star;
         var cost = hItem.totalCost;
         
-
         var estar = 0;
         //fail
         heuristic["t" + st].cost += cost;
