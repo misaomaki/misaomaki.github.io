@@ -801,7 +801,7 @@ $(function() {
         if (level == "-150") {
             minVal = 1;
             maxVal = 15;
-            minHeursitic = 13;
+            minHeuristic = 13;
             minQuickLoop = 13;
         }
 
@@ -813,7 +813,7 @@ $(function() {
 
         cbHeuristic.prop("checked", false);
 
-        if (val >= minHeursitic) {
+        if (val >= minHeuristic) {
             cbHeuristicContainer.removeClass("hidden");
         } else {
             cbHeuristicContainer.addClass("hidden");
