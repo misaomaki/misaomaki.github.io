@@ -255,7 +255,14 @@ $(function() {
     });
 
     $("#starForceFilter").on("change", function() {
-        sffilter = $(this).val().trim();
+        var val = $(this).val().trim();
+
+        if (val === "") {
+            sffilter = "";
+            return false;
+        }
+        sffilter = val.split(",");
+        console.log(sffilter);
     });
 
 
@@ -609,7 +616,7 @@ $(function() {
             var sc = $("#cb_sc").prop("checked");
 
             if (sc && sffilter !== "") {
-                sc = sffilter.split(",").indexOf(this.currStar.toString()) !== -1
+                sc = sffilter.indexOf(this.currStar.toString()) !== -1
             }
 
 
@@ -786,21 +793,33 @@ $(function() {
         var _this = $(this);
         var val = +_this.val();
 
-        if (val < 11) {
-            _this.val(11);
-        } else if (val > 25) {
-            _this.val(25);
+        var minVal = 11;
+        var maxVal = 25;
+        var minHeuristic = 23;
+        var minQuickLoop = 24;
+
+        if (level == "-150") {
+            minVal = 1;
+            maxVal = 15;
+            minHeursitic = 13;
+            minQuickLoop = 13;
+        }
+
+        if (val < minVal) {
+            _this.val(minVal);
+        } else if (val > maxVal) {
+            _this.val(maxVal);
         }
 
         cbHeuristic.prop("checked", false);
 
-        if (val >= 23) {
+        if (val >= minHeursitic) {
             cbHeuristicContainer.removeClass("hidden");
         } else {
             cbHeuristicContainer.addClass("hidden");
         }
 
-        if (val >= 24) {
+        if (val >= minQuickLoop) {
             btnStop.removeClass("hidden");
         } else {
             btnStop.addClass("hidden");
@@ -884,6 +903,8 @@ $(function() {
     var heuristic = {};
     var heuristic_end_star = 0;
     var runs = 0;
+    var heuristic_boom_start = 22;
+    var heuristic_init_start = 12;
     function recursiveHeuristic(st) {
         var level = itemLevel.val();
 
@@ -930,7 +951,7 @@ $(function() {
         //destroyed
         } else if (sf.type === 5) {
             heuristic["t" + st].destroy += 1;
-            estar = 22;
+            estar = heuristic_boom_start;
         } else {
         //success
             if (sf.type === 3) {
@@ -1022,7 +1043,7 @@ $(function() {
             level: level
         }, false);
 
-        while (initItem.currStar < 22) {
+        while (initItem.currStar < heuristic_boom_start) {
             initItem.starforce()
         }
 
@@ -1044,11 +1065,11 @@ $(function() {
 
     var heuristic_backfill = function(booms, st, i) {
         var hbfItem = new star({
-            star: 12,
+            star: heuristic_init_start,
             level: level
         }, false);
 
-        while (hbfItem.currStar < 22) {
+        while (hbfItem.currStar < heuristic_boom_start) {
             hbfItem.starforce()
         }
 
@@ -1083,6 +1104,14 @@ $(function() {
 
         var isH = $("#cbHeuristic").prop("checked");
         if (isH) {
+            if (level == "-150") {
+                heuristic_init_start = 1;
+                heuristic_boom_start = 12;
+            } else {
+                heuristic_init_start = 12;
+                heuristic_boom_start = 22;
+            }
+
             runs = 0;
             $("#t-output").html("");
             _this.html("Running heuristic...");
