@@ -811,19 +811,26 @@ $(function() {
             _this.val(maxVal);
         }
 
-        cbHeuristic.prop("checked", false);
-
         if (val >= minHeuristic) {
             cbHeuristicContainer.removeClass("hidden");
         } else {
             cbHeuristicContainer.addClass("hidden");
+            cbHeuristic.prop("checked", false);
         }
-
-        if (val >= minQuickLoop) {
-            btnStop.removeClass("hidden");
+    
+        if (!cbHeuristic.prop("checked")) {
+            if (val >= minQuickLoop) {
+                btnStop.removeClass("hidden");
+            } else {
+                btnStop.addClass("hidden");
+            }
         } else {
             btnStop.addClass("hidden");
         }
+    });
+
+    cbHeuristic.on("click", function() {
+        numBtn.trigger("change");
     });
 
     numStart.on("change", function() {
@@ -852,18 +859,17 @@ $(function() {
         }
     });
 
-    $("#cbHeuristic").on("click", function(e) {
-        if (e.target.checked) {
-            btnStop.addClass("hidden");
-        } else {
-            btnStop.removeClass("hidden");
-        }
-    });
-
+    var max_rows = 500;
+    var current_rows = 0;
     var recursive_starforce = function(v, done) {
+        current_rows += 1;
         item.starforce({
             cb_end: function() {
                 if ((n <= max_n && item.currStar <= v) && !n_stop) {
+                    if (current_rows >= max_rows) {
+                        $("#t-output tr:last").remove();
+                    }
+
                     setTimeout(function() {
                         recursive_starforce(v, done);
                     }, 1);
@@ -1136,6 +1142,12 @@ $(function() {
             while (item.currStar < value) {
                 item.starforce();
                 currVal = item.currStar;
+
+                var t_tr = $("#t-output tr");
+
+                if (t_tr >= 500) {
+
+                }
             }
 
             generateTable(item);
