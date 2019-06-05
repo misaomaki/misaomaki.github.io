@@ -105,9 +105,13 @@
             <span class="form-label">Total Cost:</span> <span id="l_c">0</span> <br>
             <span class="form-label">Total Safeguard Cost 12-15:</span> <span id="l_c_sg12">0</span> <br>
             <span class="form-label">Total Safeguard Cost 15-17:</span> <span id="l_c_sg15">0</span>
+            <div class="superior hidden">
+                <span class="form-label">Total AEE:</span> <span id="l_aee">0</span> <br>
+                <span class="form-label">Total No Boom AEE:</span> <span id="l_nb">0</span>
+            </div>
         </div>
     </div>
-    <div class="flex-item">
+    <div class="flex-item" style="min-width:350px;">
         <span class="flex-header options">Options</span>
         <label for="cb_sc"><input type="checkbox" id="cb_sc" class="sc" title="Assumption: 5% increased multiplicatively"> Star Catch</label> <br>
         <label for="starForceFilter" id="sff_label" class="hidden">
@@ -151,13 +155,13 @@
 
         <br><br>
 
-        Start At: <input type="number" min="10" max="25" id="numStart" value="10"> 
+        Start At: <input type="number" min="1" max="25" id="numStart" value="10"> 
         <button id="btnNew">New Item</button>
     </div>
-    <div class="flex-item">
+    <div class="flex-item" style="min-width:250px;">
         <span class="flex-header item2">Auto Enhancement</span>
         
-        <input type="number" min="11" max="25" id="num" value="22">
+        <input type="number" min="1" max="25" id="num" value="22">
         <button id="btnGoToStar">Go To Star</button> <button id="btnStop" class="hidden">Stop</button>
         <br><br>
         <label for="cbHeuristic" id="heur" class="hidden">
@@ -167,6 +171,14 @@ Once the desired star is reached, the code goes back and runs starforcing for ea
 While faster, it does not update the table or show the starforce data on a per-star basis.
 Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck.'>[?]</span>
         </label>
+        <div class="superior hidden">
+            <label for="cbAee" class="hidden">
+                <input type="checkbox" class="cbaee" id="cbAee"> Use AEE
+            </label>
+            <label for="cbAeeNb">
+                <input type="checkbox" class="cbaee" id="cbAeeNb"> Use No Boom AEE
+            </label>
+        </div>
     </div>
 </div>
 
@@ -182,6 +194,10 @@ Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck.'
             <span class="form-label">Star Catch:</span><span id="c_sc">No</span><br>
         </div>
         <button id="btn" style="width:100%;">Enhance</button>
+        <div class="superior hidden">
+            <button id="btn_aee" style="width:49.5%;display:inline-block;">Apply AEE</button>
+            <button id="btn_nb" style="width:49.5%;display:inline-block;">Apply No Boom AEE</button>
+        </div>
     </div>
 </div>
 
@@ -216,6 +232,8 @@ $(function() {
 
 
     var enhanceBtn = $("#btn");
+    var enhanceBtn_aee = $("#btn_aee");
+    var enhanceBtn_nb = $("#btn_nb");
 
     Number.prototype.toNumber = function() {
         return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -265,18 +283,21 @@ $(function() {
         console.log(sffilter);
     });
 
-
+    var supLabels = $(".superior");
     itemLevel.on("change", function() {
+        $(".cbaee").prop("checked", false);
         level = +$(this).val();
 
         if (level === -150) {
         	numStart.val(1).attr("max", 15);
         	$(".sf,.ev").prop("disabled", true).prop("checked", false);
         	numBtn.val(12).attr("max", 15);
+            supLabels.removeClass("hidden");
         } else {
         	numStart.val(10).attr("max", 25);
         	$(".sf,.ev").prop("disabled", false);
         	numBtn.val(22).attr("max", 25);
+            supLabels.addClass("hidden");
         }
 
         var thisItem = {
@@ -451,7 +472,7 @@ $(function() {
         var star = o.currStar;
         var chanceTime = o.chancetime;
         star_cost.removeClass("hidden");
-        if (star === 25) {
+        if (star === 25 || (level == -150 && star === 15)) {
             star_cost.addClass("hidden");
             return false;
         }
@@ -524,6 +545,8 @@ $(function() {
         $("#l_c").html(o.totalCostFormatted);
         $("#l_c_sg12").html(o.totCostSg12.toNumber());
         $("#l_c_sg15").html(o.totCostSg15.toNumber());
+        $("#l_aee").html(o.totaee);
+        $("#l_nb").html(o.totnb);
     }
 
     var star = function(o, updStats = true) {
@@ -548,18 +571,57 @@ $(function() {
         this.totCostSg15 = 0;
         this.totSc = 0;
         this.totScF = 0;
+        this.totaee = 0;
+        this.totnb = 0;
+        this.timeline = "";
+        this.streaks = {
+            S: 0,
+            F: 0,
+            G: 0,
+            D: 0
+        };
 
         this._prev15 = true;
         this._prev20 = true;
 
         this._private = {
-            fail: function(_this) {
-                _this.totFail += 1;
+            fail: function(_this, aee = false) {
+                _this.totFail++;
                 if (_this.currStar !== 1) {
                     if (_this.currStar % 5 !== 0 || _this.level === -150) {
-                        _this.currStar -= 1;
-                        _this.chanceTime += 1;
+                        if (!aee) {
+                            _this.currStar -= 1;
+                            _this.chanceTime++;
+                        }
                     }
+                }
+            },
+            streaks: function() {
+                var internal_streaks = {
+                    S: 0,
+                    F: 0,
+                    G: 0,
+                    D: 0
+                };
+                for (let i = 0; i < this.timeline.length - 1; ++i) {
+                    let tchar = this.timeline[i];
+                    let tchar2 = this.timeline[i+1];
+
+                    if (tchar === tchar2) {
+                        if (internal_streaks[tchar] === 0) {
+                            internal_streaks[tchar] = 2;
+                        } else {
+                            internal_streaks[tchar]++;
+                        }
+                    }
+                    
+                    if (i === 1 || tchar !== tchar2) {
+                        if (internal_streaks[tchar] > this.streaks[tchar]) {
+                            this.streaks[tchar] = internal_streaks[tchar];
+                        }
+
+                        internal_streaks[tchar] = 0;
+                    }     
                 }
             }
         };
@@ -567,8 +629,11 @@ $(function() {
         this.sfData = [];
 
         this.starforce = function(_o) {
-            this.totRuns += 1;
-            _o = $.extend({}, _o);
+            this.totRuns++;
+            _o = $.extend({
+                aee: false,
+                noboom: false
+            }, _o);
 
             var _d = {
             	type: 0,
@@ -579,7 +644,7 @@ $(function() {
             	is_chance_time: false
             };
 
-            this.currRun += 1;
+            this.currRun++;
             _d.id = this.currRun;
 
             var ran = 0;
@@ -601,9 +666,28 @@ $(function() {
             	boomLevel = 1;
             }
 
-            var _sf = this.sf.filter(a => {
-                return a.level === this.currStar
-            })[0];
+            var _sf = {};
+
+            if (!_o.aee) {
+                _sf = this.sf.filter(a => {
+                    return a.level === this.currStar
+                })[0];
+            } else {
+                _sf = 
+                _sf = Object.assign({},sf["s-100"].filter(a => {
+                    return a.level === this.currStar
+                })[0]);
+
+                if (_o.noboom) {
+                    _sf.fail = _sf.destroy;
+                    _sf.destroy = 0;
+                    this.totnb += 1;
+
+                    console.log(_sf);
+                } else {
+                    this.totaee += 1;
+                }
+            }
 
             //TODO: make global variable and update them with event
             var sf12 = $("#cb_sf12").prop("checked");
@@ -632,9 +716,9 @@ $(function() {
             var isSafe20 = sf20 && this.currStar >= 20 && this.currStar < 22;
             var isSafe22 = sf22 && this.currStar >= 22 && this.currStar < 25;
 
-            var isSafe = isSafe12 || isSafe15 || isSafe17 || isSafe20 || isSafe22;
+            var isSafe = !_o.aee && (isSafe12 || isSafe15 || isSafe17 || isSafe20 || isSafe22);
 
-            var is100 = (mod5s && this.currStar % 5 === 0 && this.currStar < 20) || isChance;
+            var is100 = !_o.aee && ((mod5s && this.currStar % 5 === 0 && this.currStar < 20) || isChance);
 
             var currCost = _sf.cost;
 
@@ -663,62 +747,79 @@ $(function() {
                 ran = 0;
             }
 
+            var tl = "";
             if (ran !== 0 && ran <= _sf.destroy) {
                 if (isSafe12) {
-                    this._private.fail(this);
-                    this.totSg12 += 1;
+                    this._private.fail(this, _o.aee);
+                    this.totSg12++;
                     _d.type = 6; //destroyed, safeguard 12-15
+                    tl = "G";
                 } else if (isSafe15) {
-                    this._private.fail(this);
-                    this.totSg15 += 1;
+                    this._private.fail(this, _o.aee);
+                    this.totSg15++;
                     _d.type = 7;  //destroyed, safeguard 15-17
+                    tl = "G";
                 } else if (isSafe17) {
-                    this._private.fail(this);
-                    this.totSg17 += 1;
+                    this._private.fail(this, _o.aee);
+                    this.totSg17++;
                     _d.type = 8;  //destroyed, safeguard 17-20
+                    tl = "G";
                 } else if (isSafe20) {
-                    this._private.fail(this);
-                    this.totSg20 += 1;
+                    this._private.fail(this, _o.aee);
+                    this.totSg20++;
                     _d.type = 9;  //destroyed, safeguard 20-22
+                    tl = "G";
                 } else if (isSafe22) {
-                    this._private.fail(this);
-                    this.totSg22 += 1;
+                    this._private.fail(this, _o.aee);
+                    this.totSg22++;
                     _d.type = 10;  //destroyed, safeguard 22-25
+                    tl = "G";
                 } else {
                     this.currStar = boomLevel;
-                    this.totBoom += 1; 
+                    this.totBoom++; 
                     this.chanceTime = 0;
                     this._prev15 = true;
                     this._prev20 = true;
                     _d.type = 5; //destroyed
+                    tl = "D";
                 }
             } else if (ran <= _sf.destroy + _sf.success) {
-                this.currStar += 1;
+                this.currStar++;
                  _d.type = 1; //success
                 this.chanceTime = 0;
-            } else if (ran <= _sf.destroy + scSuccess) {
+                tl = "S";
+            } else if (!_o.aee && ran <= _sf.destroy + scSuccess) {
             	if (sc) {
-	                this.currStar += 1;
-	                this.totSc += 1;
+	                this.currStar++;
+	                this.totSc++;
 	                _d.type = 3; //star catch success
 	                this.chanceTime = 0;
+                    tl = "S";
             	} else {
-            		this.totScF += 1;
+            		this.totScF++;
             		_d.type = 4; //fail, but within star catch
-            		this._private.fail(this);
+            		this._private.fail(this, _o.aee);
+                    tl = "F";
             	}
             } else {
-                this._private.fail(this);
+                this._private.fail(this, _o.aee);
                  _d.type = 2; //fail
+                 tl = "F";
             }
 
+            this.timeline += tl;
+
+            /*
+
+            */
+
             if (this.currStar >= 15 && this._prev15) {
-                this.totp15 += 1;
+                this.totp15++;
                 this._prev15 = false;
             }
 
             if (this.currStar >= 20 && this._prev20) {
-                this.totp20 += 1;
+                this.totp20++;
                 this._prev20 = false;
             }
 
@@ -756,6 +857,20 @@ $(function() {
 
     enhanceBtn.on("click", function() {
         item.starforce();
+
+        generateTable(item, item.sfData.length - 1);
+        generateLineGraph(item);
+    });
+
+    enhanceBtn_aee.on("click", function() {
+        item.starforce({aee: true, noboom: false});
+
+        generateTable(item, item.sfData.length - 1);
+        generateLineGraph(item);
+    });
+
+    enhanceBtn_nb.on("click", function() {
+        item.starforce({aee: true, noboom: true});
 
         generateTable(item, item.sfData.length - 1);
         generateLineGraph(item);
@@ -862,7 +977,7 @@ $(function() {
     var max_rows = 500;
     var current_rows = 0;
     var recursive_starforce = function(v, done) {
-        current_rows += 1;
+        current_rows++;
         item.starforce({
             cb_end: function() {
                 if ((n <= max_n && item.currStar <= v) && !n_stop) {
@@ -874,7 +989,7 @@ $(function() {
                         recursive_starforce(v, done);
                     }, 1);
 
-                    n += 1;
+                    n++;
 
                     generateTable(item, item.sfData.length - 1);
                     generateLineGraph(item);
@@ -919,7 +1034,7 @@ $(function() {
             return false;
         }
 
-        runs += 1;
+        runs++;
 
         if (typeof heuristic["t" + st] === 'undefined') {
             heuristic["t" + st] = {
@@ -947,21 +1062,21 @@ $(function() {
         var estar = 0;
         //fail
         heuristic["t" + st].cost += cost;
-        heuristic["t" + st].runs += 1;
+        heuristic["t" + st].runs++;
         if (sf.type === 2 || sf.type === 4) {
             if (sf.type === 4) {
-                heuristic["t" + st].fail_starcatch += 1;
+                heuristic["t" + st].fail_starcatch++;
             }
-            heuristic["t" + st].fails += 1;
+            heuristic["t" + st].fails++;
             estar = currstar;
         //destroyed
         } else if (sf.type === 5) {
-            heuristic["t" + st].destroy += 1;
+            heuristic["t" + st].destroy++;
             estar = heuristic_boom_start;
         } else {
         //success
             if (sf.type === 3) {
-                heuristic["t" + st].success_starcatch += 1;
+                heuristic["t" + st].success_starcatch++;
             }
             estar = currstar;
         }
@@ -1103,12 +1218,32 @@ $(function() {
         }
     }
 
+    var cbaee = $("#cbAee");
+    var cbnb = $("#cbAeeNb");
     btnGoToStar.on("click", function() {
         var _this = $(this);
         _this.prop("disabled", true).html("Processing...");
         var value = +numBtn.val();
 
-        var isH = $("#cbHeuristic").prop("checked");
+        if (isNaN(value)) {
+            return false;
+        }
+
+        var _o = {
+            aee: false,
+            noboom: false
+        };
+
+        if (cbaee.prop("checked")) {
+            _o.aee = true;
+        } 
+
+        if (cbnb.prop("checked")) {
+            _o.aee = true;
+            _o.noboom = true;
+        }
+
+        var isH = cbHeuristic.prop("checked");
         if (isH) {
             if (level == "-150") {
                 heuristic_init_start = 1;
@@ -1124,7 +1259,7 @@ $(function() {
             //reset heuristic
             heuristic = {};
             heuristic_end_star = value;
-            recursiveHeuristic(value - 1);
+            recursiveHeuristic(heuristic_boom_start);
             return false;
         }
 
@@ -1132,15 +1267,11 @@ $(function() {
         n = 0;
         n_stop = false;
 
-        if (isNaN(value)) {
-            return false;
-        }
-
         var currVal = item.currStar;
 
         if (value < 24) {
             while (item.currStar < value) {
-                item.starforce();
+                item.starforce(_o);
                 currVal = item.currStar;
 
                 var t_tr = $("#t-output tr");
@@ -1167,9 +1298,7 @@ $(function() {
     $("#cheats").on("click", function() {
         $("#cheat_panel").toggleClass("hidden");
 
-        $(".ch").prop("checked", false);
-
-        $(".ch").trigger("change");
+        $(".ch").prop("checked", false).trigger("change");
     });
 
     $("#cb_ch_showq").on("change", function(e) {
@@ -1185,6 +1314,15 @@ $(function() {
         h_info_container.removeClass("hidden");
     }).on("mouseout", function() {
         h_info_container.addClass("hidden");
+    });
+
+    $(".cbaee").on("change", function(e) {
+        cbHeuristic.prop("checked", false);
+        numBtn.trigger("change");
+    });
+
+    cbHeuristic.on("change", function(e) {
+        $(".cbaee").prop("checked", false);
     });
 });
 
@@ -1547,6 +1685,91 @@ var sf = {
         fail: 0.495,
         destroy: 0.495,
         cost: 55832200
-    }]
+    }],
+    "s-100": [{
+        level: 1,
+        success: 0.9,
+        fail: 0,
+        destroy: 0.1,
+        cost: 0
+    }, {
+        level: 2,
+        success: 0.8,
+        fail: 0,
+        destroy: 0.2,
+        cost: 0
+    }, {
+        level: 3,
+        success: 0.7,
+        fail: 0,
+        destroy: 0.3,
+        cost: 0
+    }, {
+        level: 4,
+        success: 0.6,
+        fail: 0,
+        destroy: 0.4,
+        cost: 0
+    }, {
+        level: 5,
+        success: 0.5,
+        fail: 0,
+        destroy: 0.5,
+        cost: 0
+    }, {
+        level: 6,
+        success: 0.4,
+        fail: 0,
+        destroy: 0.6,
+        cost: 0
+    }, {
+        level: 7,
+        success: 0.3,
+        fail: 0,
+        destroy: 0.7,
+        cost: 0
+    }, {
+        level: 8,
+        success: 0.2,
+        fail: 0,
+        destroy: 0.8,
+        cost: 0
+    }, {
+        level: 9,
+        success: 0.1,
+        fail: 0,
+        destroy: 0.9,
+        cost: 0
+    }, {
+        level: 10,
+        success: 0.05,
+        fail: 0,
+        destroy: 0.95,
+        cost: 0
+    }, {
+        level: 11,
+        success: 0.04,
+        fail: 0,
+        destroy: 0.96,
+        cost: 0
+    }, {
+        level: 12,
+        success: 0.03,
+        fail: 0,
+        destroy: 0.97,
+        cost: 0
+    }, {
+        level: 13,
+        success: 0.02,
+        fail: 0,
+        destroy: 0.98,
+        cost: 0
+    }, {
+        level: 14,
+        success: 0.01,
+        fail: 0,
+        destroy: 0.98,
+        cost: 0
+    }],
 };
 </script>
