@@ -567,13 +567,11 @@ $(function() {
 
         var effectiveCost = parseFloat((_sf1.cost - (sf_options.o30 ? _sf1.cost * 0.3 : 0) - (sf_options.isMvp && star < 17 ? _sf1.cost * sf_options.mvp : 0)).toFixed(0)) + (isSafe && !is100 ? _sf1.cost : 0);
 
-        isSafe = (sf_options.sf12 && star >= 12 && star < 15) || sf_options.nb;
-
         var success = parseFloat(_sf1.success * 100).toFixed(1) + "%";
         var fail = parseFloat(_sf1.fail * 100).toFixed(1) + "%";
         var destroy = parseFloat(_sf1.destroy * 100).toFixed(1) + "%";
 
-        if (sf_options.nb) {
+        if (star >= 12 && star < 15 && sf_options.nb) {
             fail = parseFloat((_sf1.destroy + _sf1.fail) * 100).toFixed(1) + "%";
             destroy = "0.0%";
         }
