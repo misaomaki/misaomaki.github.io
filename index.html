@@ -93,7 +93,7 @@
 </style>
 
 <div class="flex-container">
-    <div class="flex-item" style="min-width:300px;">
+    <div class="flex-item" style="min-width:350px;">
         <span class="flex-header stats">Stats</span>
         <div id="stats">
             <span class="form-label" id="cheats">Stars:</span> <span id="l_s">0</span><br>
@@ -115,7 +115,7 @@
             </div>
         </div>
     </div>
-    <div class="flex-item" style="min-width:350px;">
+    <div class="flex-item" style="min-width:300px;">
         <span class="flex-header options">Options</span>
         <label for="cb_sf12"><input type="checkbox" id="cb_sf12" data-for="sf12" class="sf op"> Safeguard from 12 to 15</label> <br>
         <label for="cb_sf15"><input type="checkbox" id="cb_sf15" data-for="sf15" class="sf op"> Safeguard from 15 to 17</label> <br>
@@ -124,7 +124,7 @@
             <span style="font-size:0.8em">
                 Star catch only at these stars.<br>
                 Comma-delimited <span style="cursor:pointer;" title="If you want to star force only at 14, 20, and 21, input: &quot;14,20,21&quot;">[?]</span>.  
-                Leave blank to star catch at all stars.</span> <Br>
+                Leave blank to do all stars.</span> <Br>
             <textarea id="starForceFilter" style="resize:none;" placeholder="All stars"></textarea>
             <br>
         </label>
@@ -177,8 +177,12 @@
         <input type="number" min="1" max="25" id="num" value="22">
         <button id="btnGoToStar">Go To Star</button> <button id="btnStop" class="hidden">Stop</button>
         <br><br>
+        <label for="cbNbe" id="nonbl">
+            <input type="checkbox" id="cbNbe" data-for="nbe" class="op"> Use Non-Blocking Enhancement <span id="h_info_nbe" style="cursor:pointer;" title='Prevents the browser from locking up at the cost of being slower overall. Not particularly useful for stars below 23 unless you are on a slow computer or phone.'>[?]</span>
+        </label>
+        <br>
         <label for="cbHeuristic" id="heur" class="hidden">
-            <input type="checkbox" id="cbHeuristic"> Use Heuristic Enhancement <span id="h_info" style="cursor:pointer;" title='Uses an alternative starforcing method. The current method is to starforce as you would in game, just quickly.
+            <input type="checkbox" data-for="hsx" class="op" id="cbHeuristic"> Use Heuristic Enhancement <span id="h_info" style="cursor:pointer;" title='Uses an alternative starforcing method. The current method is to starforce as you would in game, just quickly.
 This method assumes you have an infinite number of 22-star items. Booming the item means you toss the trace and start again with a new 22-star item. 
 Once the desired star is reached, the code goes back and runs starforcing for each boom, going from 12->22. One run will go from {start}->22 to account for your first run at the desired start level. 
 While faster, it does not update the table or show the starforce data on a per-star basis.
@@ -245,6 +249,10 @@ $(function() {
     var enhanceBtn_aee = $("#btn_aee");
     var enhanceBtn_nb = $("#btn_nb");
     var sys_max_records = $("#sys_max_records");
+    var btnStop = $("#btnStop");
+    var cbHeuristicContainer = $("#heur");
+    var cbHeuristic = $("#cbHeuristic");
+    var cbNbe = $("#cbNbe");
 
     //global variables for starforce
     var sffilter = "";
@@ -262,7 +270,9 @@ $(function() {
         mod5s: false,
         nb: false,
         isMvp: false,
-        mvp: 0
+        mvp: 0,
+        nbe: false,
+        hsx: false
     };
 
     var cb_sf12 = $("#cb_sf12");
@@ -270,13 +280,23 @@ $(function() {
         var _this = $(this);
         var data_for = _this.attr("data-for");
         sf_options[data_for] = e.target.checked;
-        console.log(data_for + "," + e.target.checked);
 
         if (data_for == "nb") {
             if (e.target.checked) {
                 cb_sf12.prop({disabled: true, checked: false});
             } else {
                 cb_sf12.prop("disabled", false);
+            }
+        } else if (data_for === "nbe") {
+            if (e.target.checked) {
+                btnStop.removeClass("hidden");
+                cbHeuristic.prop("checked", false).trigger("change");
+            } else {
+                btnStop.addClass("hidden");
+            }
+        } else if (data_for === 'hsx') {
+            if (e.target.checked) {
+                cbNbe.prop("checked", false).trigger("change");
             }
         }
     });
@@ -943,15 +963,8 @@ $(function() {
         $("#t-output").html("");
     });
 
-    var btnStop = $("#btnStop");
-    var cbHeuristicContainer = $("#heur");
-    var cbHeuristic = $("#cbHeuristic");
     btnStop.on("click", function() {
         n_stop = true;
-        setTimeout(function() {
-            $("#output").prepend("Stopped.<br>");
-        }, 100);
-
         resetGoToButton();
     });
 
@@ -962,13 +975,11 @@ $(function() {
         var minVal = 11;
         var maxVal = 25;
         var minHeuristic = 23;
-        var minQuickLoop = 23;
 
         if (level == "-150") {
             minVal = 0;
             maxVal = 15;
             minHeuristic = 13;
-            minQuickLoop = 13;
         }
 
         if (val < minVal) {
@@ -985,7 +996,7 @@ $(function() {
         }
     
         if (!cbHeuristic.prop("checked")) {
-            if (val >= minQuickLoop) {
+            if (sf_options.nbe) {
                 btnStop.removeClass("hidden");
             } else {
                 btnStop.addClass("hidden");
@@ -1274,7 +1285,6 @@ $(function() {
         var _this = $(this);
         _this.prop("disabled", true).html("Processing...");
         var value = +numBtn.val();
-        var recursiveStart = 23;
 
         if (isNaN(value)) {
             return false;
@@ -1297,14 +1307,12 @@ $(function() {
         if (level == "-150") {
             heuristic_init_start = 0;
             heuristic_boom_start = 12;
-            recursiveStart = 13;
         } else {
             heuristic_init_start = 12;
             heuristic_boom_start = 22;
         }
 
-        var isH = cbHeuristic.prop("checked");
-        if (isH) {
+        if (sf_options.hsx) {
             runs = 0;
             $("#t-output").html("");
             _this.html("Running heuristic...");
@@ -1321,7 +1329,7 @@ $(function() {
 
         var currVal = item.currStar;
 
-        if (value < recursiveStart || _o.aee) {
+        if (!sf_options.nbe || _o.aee) {
             while (item.currStar < value) {
                 item.starforce(_o);
                 currVal = item.currStar;
