@@ -146,7 +146,7 @@
             <input type="number" min="-1" value="100" id="sys_max_records" class="sys" style="width:65px;"> Maximum Records
         </label> <br>
         <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" class="ch"> Show PRN</label> <br>
-        <label for="cb_ch_adv" title="Apply new star force values from the Adventures update."><input type="checkbox" id="cb_ch_adv" data-for="adv" class="ch ev op" checked> Apply Adventures SF</label> <br>
+        <label for="cb_ch_adv" title="Apply new star force values from the Adventures update."><input type="checkbox" id="cb_ch_adv" data-for="adv" class="ch sf2 op" checked> Apply Adventures SF</label> <br>
     </div> 
     <div class="flex-item hidden" id="cheat_panel">
         <span class="flex-header options2">Debug</span>
@@ -1366,7 +1366,7 @@ $(function() {
         }
     });
 
-    $(".sf,.sc,.ev").on("change", function() {
+    $(".sf,.sc,.ev,.sf2").on("change", function() {
         getNextStar(item);
     });
 
