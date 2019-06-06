@@ -186,7 +186,7 @@
 This method assumes you have an infinite number of 22-star items. Booming the item means you toss the trace and start again with a new 22-star item. 
 Once the desired star is reached, the code goes back and runs starforcing for each boom, going from 12->22. One run will go from {start}->22 to account for your first run at the desired start level. 
 While faster, it does not update the table or show the starforce data on a per-star basis.
-Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck.'>[?]</span>
+Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck and computer.'>[?]</span>
         </label>
         <div class="superior hidden">
             <label for="cbAee" class="hidden">
@@ -309,7 +309,8 @@ $(function() {
 
 
     Number.prototype.toNumber = function() {
-        return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return this.toLocaleString();
+        //return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     var level = 150;
