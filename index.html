@@ -117,6 +117,8 @@
     </div>
     <div class="flex-item" style="min-width:350px;">
         <span class="flex-header options">Options</span>
+        <label for="cb_sf12"><input type="checkbox" id="cb_sf12" data-for="sf12" class="sf op"> Safeguard from 12 to 15</label> <br>
+        <label for="cb_sf15"><input type="checkbox" id="cb_sf15" data-for="sf15" class="sf op"> Safeguard from 15 to 17</label> <br>
         <label for="cb_sc"><input type="checkbox" id="cb_sc" class="sc op" data-for="sc" title="Assumption: 5% increased multiplicatively"> Star Catch</label> <br>
         <label for="starForceFilter" id="sff_label" class="hidden">
             <span style="font-size:0.8em">
@@ -126,15 +128,13 @@
             <textarea id="starForceFilter" style="resize:none;" placeholder="All stars"></textarea>
             <br>
         </label>
-        <label for="cb_sf12"><input type="checkbox" id="cb_sf12" data-for="sf12" class="sf op"> Safeguard from 12 to 15</label> <br>
-        <label for="cb_sf15"><input type="checkbox" id="cb_sf15" data-for="sf15" class="sf op"> Safeguard from 15 to 17</label> <br>
         <hr>
         <label for="cb_e_0o"><input type="radio" id="cb_e_0o" name="mvp_dc" class="ev mvp-dc" value="0" checked> No Discount</label> <br>
         <label for="cb_e_3o"><input type="radio" id="cb_e_3o" name="mvp_dc" class="ev mvp-dc" value="0.03"> Silver MVP (3% off)</label> <br>
         <label for="cb_e_5o"><input type="radio" id="cb_e_5o" name="mvp_dc" class="ev mvp-dc" value="0.05"> Gold MVP (5% off)</label>  <br>
         <label for="cb_e_10o"><input type="radio" id="cb_e_10o" name="mvp_dc" class="ev mvp-dc" value="0.10"> Diamond MVP (10% off)</label>
         <hr>
-        <label for="cb_e_30o"><input type="checkbox" id="cb_e_30o" data-for="o30" class="ev op"> 30% off event</label>
+        <label for="cb_e_30o"><input type="checkbox" id="cb_e_30o" data-for="o30" class="ev op"> 30% Off</label>
         <br>
         <label for="cb_e_mod5s"><input type="checkbox" id="cb_e_mod5s" data-for="mod5s" class="ev op"> 100% 5/10/15</label>
         <br>
@@ -265,11 +265,20 @@ $(function() {
         mvp: 0
     };
 
+    var cb_sf12 = $("#cb_sf12");
     $(".op").on("change", function(e) {
         var _this = $(this);
         var data_for = _this.attr("data-for");
         sf_options[data_for] = e.target.checked;
         console.log(data_for + "," + e.target.checked);
+
+        if (data_for == "nb") {
+            if (e.target.checked) {
+                cb_sf12.prop({disabled: true, checked: false});
+            } else {
+                cb_sf12.prop("disabled", false);
+            }
+        }
     });
 
     $(".mvp-dc").on("change", function(e) {
