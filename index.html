@@ -86,6 +86,10 @@
     .hInfo {
         background-color: #d9ffaf;
     }
+
+    .system {
+        background-color: #b7824b;
+    }
 </style>
 
 <div class="flex-container">
@@ -113,7 +117,7 @@
     </div>
     <div class="flex-item" style="min-width:350px;">
         <span class="flex-header options">Options</span>
-        <label for="cb_sc"><input type="checkbox" id="cb_sc" class="sc" title="Assumption: 5% increased multiplicatively"> Star Catch</label> <br>
+        <label for="cb_sc"><input type="checkbox" id="cb_sc" class="sc op" data-for="sc" title="Assumption: 5% increased multiplicatively"> Star Catch</label> <br>
         <label for="starForceFilter" id="sff_label" class="hidden">
             <span style="font-size:0.8em">
                 Star catch only at these stars.<br>
@@ -122,24 +126,33 @@
             <textarea id="starForceFilter" style="resize:none;" placeholder="All stars"></textarea>
             <br>
         </label>
-        <label for="cb_sf12"><input type="checkbox" id="cb_sf12" class="sf"> Safeguard from 12 to 15</label> <br>
-        <label for="cb_sf15"><input type="checkbox" id="cb_sf15" class="sf"> Safeguard from 15 to 17</label> <br>
+        <label for="cb_sf12"><input type="checkbox" id="cb_sf12" data-for="sf12" class="sf op"> Safeguard from 12 to 15</label> <br>
+        <label for="cb_sf15"><input type="checkbox" id="cb_sf15" data-for="sf15" class="sf op"> Safeguard from 15 to 17</label> <br>
         <hr>
         <label for="cb_e_0o"><input type="radio" id="cb_e_0o" name="mvp_dc" class="ev mvp-dc" value="0" checked> No Discount</label> <br>
         <label for="cb_e_3o"><input type="radio" id="cb_e_3o" name="mvp_dc" class="ev mvp-dc" value="0.03"> Silver MVP (3% off)</label> <br>
         <label for="cb_e_5o"><input type="radio" id="cb_e_5o" name="mvp_dc" class="ev mvp-dc" value="0.05"> Gold MVP (5% off)</label>  <br>
         <label for="cb_e_10o"><input type="radio" id="cb_e_10o" name="mvp_dc" class="ev mvp-dc" value="0.10"> Diamond MVP (10% off)</label>
         <hr>
-        <label for="cb_e_30o"><input type="checkbox" id="cb_e_30o" class="ev"> 30% off event</label>
+        <label for="cb_e_30o"><input type="checkbox" id="cb_e_30o" data-for="o30" class="ev op"> 30% off event</label>
         <br>
-        <label for="cb_e_mod5s"><input type="checkbox" id="cb_e_mod5s" class="ev"> 100% 5/10/15</label>
+        <label for="cb_e_mod5s"><input type="checkbox" id="cb_e_mod5s" data-for="mod5s" class="ev op"> 100% 5/10/15</label>
+        <br>
+        <label for="cb_e_nb"><input type="checkbox" id="cb_e_nb" data-for="nb" class="ev op"> No Boom Pre-15</label>
     </div>
+    <div class="flex-item" style="width:250px;">
+        <span class="flex-header system">System</span>
+        <label for="sys_max_records" title="Max records in table/graph at any given time. Lots of concurrent records causes slowness. -1 for no max.">
+            <input type="number" min="-1" value="100" id="sys_max_records" class="sys" style="width:65px;"> Maximum Records
+        </label> <br>
+        <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" class="ch"> Show PRN</label> <br>
+    </div> 
     <div class="flex-item hidden" id="cheat_panel">
-        <span class="flex-header options2">Fluff</span>
-        <label for="cb_ch_sf17"><input type="checkbox" id="cb_ch_sf17" class="ev ch"> Safeguard from 17 to 20</label> <br>
-        <label for="cb_ch_sf20"><input type="checkbox" id="cb_ch_sf20" class="ev ch"> Safeguard from 20 to 22</label> <br>
-        <label for="cb_ch_sf22"><input type="checkbox" id="cb_ch_sf22" class="ev ch"> Safeguard from 22 to 25</label> <br>
-        <label for="cb_ch_showq"><input type="checkbox" id="cb_ch_showq" class="ch" title="Show the Pseudorandom Number generated to determine the starforce outcome."> Show PRN</label> <br>
+        <span class="flex-header options2">Debug</span>
+        <label for="cb_ch_sf17"><input type="checkbox" id="cb_ch_sf17" data-for="sf17" class="ev ch op"> Safeguard from 17 to 20</label> <br>
+        <label for="cb_ch_sf20"><input type="checkbox" id="cb_ch_sf20" data-for="sf20" class="ev ch op"> Safeguard from 20 to 22</label> <br>
+        <label for="cb_ch_sf22"><input type="checkbox" id="cb_ch_sf22" data-for="sf22" class="ev ch op"> Safeguard from 22 to 25</label> <br>
+        <label for="cb_ch_nd"><input type="checkbox" id="cb_ch_nd" data-for="nd" class="ev ch op"> No Drop on Fail</label> <br>
     </div> 
 </div>
 
@@ -227,13 +240,44 @@ Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck.'
 
 <script>
 $(function() {
-    //global variables for starforce
-    var sffilter = "";
-
-
+    //global dom
     var enhanceBtn = $("#btn");
     var enhanceBtn_aee = $("#btn_aee");
     var enhanceBtn_nb = $("#btn_nb");
+    var sys_max_records = $("#sys_max_records");
+
+    //global variables for starforce
+    var sffilter = "";
+    var maxRecords = sys_max_records.val();
+
+    var sf_options = {
+        sf12: false,
+        sf15: false,
+        sf17: false,
+        sf20: false,
+        sf22: false,
+        nd: false,
+        sc: false,
+        o30: false,
+        mod5s: false,
+        nb: false,
+        isMvp: false,
+        mvp: 0
+    };
+
+    $(".op").on("change", function(e) {
+        var _this = $(this);
+        var data_for = _this.attr("data-for");
+        sf_options[data_for] = e.target.checked;
+        console.log(data_for + "," + e.target.checked);
+    });
+
+    $(".mvp-dc").on("change", function(e) {
+        var val = $(this).val();
+        sf_options.mvp = +val;
+        sf_options.isMvp = e.target.checked;
+    });
+
 
     Number.prototype.toNumber = function() {
         return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -280,7 +324,10 @@ $(function() {
             return false;
         }
         sffilter = val.split(",");
-        console.log(sffilter);
+    });
+
+    sys_max_records.on("change", function() {
+        maxRecords = +$(this).val();
     });
 
     var supLabels = $(".superior");
@@ -289,7 +336,7 @@ $(function() {
         level = +$(this).val();
 
         if (level === -150) {
-        	numStart.val(1).attr("max", 15);
+        	numStart.val(0).attr("max", 15);
         	$(".sf,.ev").prop("disabled", true).prop("checked", false);
         	numBtn.val(12).attr("max", 15);
             supLabels.removeClass("hidden");
@@ -313,7 +360,14 @@ $(function() {
     var mc = "";
     var currMax = 0;
     var generateLineGraph = function(item) {
-        var graphData = item.sfData.slice(Math.max(item.sfData.length - 500, 1)).map((a) => {return {x: a.id, y: a.current_star}});
+        if (maxRecords === 0) return false;
+        var graphData = item.sfData;
+        
+        if (maxRecords !== -1) {
+            graphData = graphData.slice(Math.max(item.sfData.length - maxRecords, 1));
+        }
+
+        graphData = graphData.map((a) => {return {x: a.id, y: a.current_star}});
 
         var isSuperior = itemLevel.val() == -150;
 
@@ -321,7 +375,7 @@ $(function() {
         var max = 25;
 
         if (isSuperior) {
-            min = 1;
+            min = 0;
             max = 15;
         }
 
@@ -331,7 +385,7 @@ $(function() {
                 type: "scatter",
                 data: {
                     datasets: [{
-                        label: "Starforce (Last 500 Attempts)",
+                        label: "Starforce Attempts",
                         showLine: true,
                         data: graphData
                     }]
@@ -378,7 +432,9 @@ $(function() {
 
     generateLineGraph({sfData: []});
 
+    var toutput = $("#t-output");
     var generateTable = function(item, startAt = 0) {
+        if (maxRecords === 0) return false;
     	var data = item.sfData;
 
         var unhideRow = $("#cb_ch_showq").prop("checked");
@@ -460,17 +516,26 @@ $(function() {
     	}
 
     	if (startAt === 0) {
-    		$("#t-output").html(tbody);
+    		toutput.html(tbody);
     	} else {
-    		$("#t-output").prepend(tbody);
+    		toutput.prepend(tbody);
     	}
+
+        if (maxRecords !== -1) {
+            var rows = toutput.find("tr");
+            var curr_rows = rows.length;
+
+            if (curr_rows >= maxRecords) {
+                rows.slice(maxRecords).remove();
+            }
+        }
     };
 
     var star_cost = $("#star_cost");
     var getNextStar = function(o, updStats = false) {
         var level = o.level;
         var star = o.currStar;
-        var chanceTime = o.chancetime;
+        var chanceTime = o.chanceTime;
         star_cost.removeClass("hidden");
         if (star === 25 || (level == -150 && star === 15)) {
             star_cost.addClass("hidden");
@@ -482,34 +547,27 @@ $(function() {
             return a.level === star
         })[0];
 
-
-        var sf12 = $("#cb_sf12").prop("checked");
-        var sf15 = $("#cb_sf15").prop("checked");
-
-        var sf17 = $("#cb_ch_sf17").prop("checked");
-        var sf20 = $("#cb_ch_sf20").prop("checked");
-        var sf22 = $("#cb_ch_sf22").prop("checked");
-
-        var sc = $("#cb_sc").prop("checked");
-        var _mvp = $(".mvp-dc:checked");
-        var mvp = _mvp.length > 0;
-        var mvpVal = +_mvp.val();
-        var o30 = $("#cb_e_30o").prop("checked");
-        var mod5s = $("#cb_e_mod5s").prop("checked");
-
         var isSafe = false;
-        isSafe = isSafe || (sf12 && star >= 12 && star < 15);
-        isSafe = isSafe || (sf15 && star >= 15 && star < 17);
-        isSafe = isSafe || (sf17 && star >= 17 && star < 20);
-        isSafe = isSafe || (sf20 && star >= 20 && star < 22);
-        isSafe = isSafe || (sf22 && star >= 22 && star < 25);
+        isSafe = isSafe || (sf_options.sf12 && star >= 12 && star < 15);
+        isSafe = isSafe || (sf_options.sf15 && star >= 15 && star < 17);
+        isSafe = isSafe || (sf_options.sf17 && star >= 17 && star < 20);
+        isSafe = isSafe || (sf_options.sf20 && star >= 20 && star < 22);
+        isSafe = isSafe || (sf_options.sf22 && star >= 22 && star < 25);
 
-        var is100 = (mod5s && star % 5 === 0 && star < 20) || chanceTime >= 2;
-        var effectiveCost = parseFloat((_sf1.cost - (o30 ? _sf1.cost * 0.3 : 0) - (mvp && star < 17 ? _sf1.cost * mvpVal : 0)).toFixed(0)) + (isSafe && !is100 ? _sf1.cost : 0);
+        var is100 = (sf_options.mod5s && star % 5 === 0 && star < 20) || chanceTime >= 2;
+
+        var effectiveCost = parseFloat((_sf1.cost - (sf_options.o30 ? _sf1.cost * 0.3 : 0) - (sf_options.isMvp && star < 17 ? _sf1.cost * sf_options.mvp : 0)).toFixed(0)) + (isSafe && !is100 ? _sf1.cost : 0);
+
+        isSafe = (sf_options.sf12 && star >= 12 && star < 15) || sf_options.nb;
 
         var success = parseFloat(_sf1.success * 100).toFixed(1) + "%";
         var fail = parseFloat(_sf1.fail * 100).toFixed(1) + "%";
         var destroy = parseFloat(_sf1.destroy * 100).toFixed(1) + "%";
+
+        if (sf_options.nb) {
+            fail = parseFloat((_sf1.destroy + _sf1.fail) * 100).toFixed(1) + "%";
+            destroy = "0.0%";
+        }
 
         if (is100) {
             success = '<strike>' + success + '</strike> 100%';
@@ -523,7 +581,7 @@ $(function() {
         $("#c_f").html(fail);
         $("#c_d").html(destroy);
         $("#c_c").html(effectiveCost.toNumber());
-        $("#c_sc").html(sc ? "Yes" : "No");
+        $("#c_sc").html(sf_options.sc ? "Yes" : "No");
 
         //update stats
         if (updStats) {
@@ -550,7 +608,7 @@ $(function() {
     }
 
     var star = function(o, updStats = true) {
-        this.currStar = o.star || 1;
+        this.currStar = o.star || 0;
         this.chanceTime = 0;
         this.currRun = 0;
         this.level = o.level || "150";
@@ -587,10 +645,13 @@ $(function() {
         this._private = {
             fail: function(_this, aee = false) {
                 _this.totFail++;
-                if (_this.currStar !== 1) {
+                if (_this.currStar !== 0) {
                     if (_this.currStar % 5 !== 0 || _this.level === -150) {
                         if (!aee) {
-                            _this.currStar -= 1;
+                            if (!sf_options.nd) {
+                                _this.currStar -= 1;
+                            }
+
                             _this.chanceTime++;
                         }
                     }
@@ -629,6 +690,10 @@ $(function() {
         this.sfData = [];
 
         this.starforce = function(_o) {
+            if (this.currStar === 25 || (this.level == -150 && this.currStar === 15)) {
+                return false;
+            }
+
             this.totRuns++;
             _o = $.extend({
                 aee: false,
@@ -663,7 +728,7 @@ $(function() {
             var boomLevel = 12;
 
             if (this.level === -150) {
-            	boomLevel = 1;
+            	boomLevel = 0;
             }
 
             var _sf = {};
@@ -682,47 +747,30 @@ $(function() {
                     _sf.fail = _sf.destroy;
                     _sf.destroy = 0;
                     this.totnb += 1;
-
-                    console.log(_sf);
                 } else {
                     this.totaee += 1;
                 }
             }
 
-            //TODO: make global variable and update them with event
-            var sf12 = $("#cb_sf12").prop("checked");
-            var sf15 = $("#cb_sf15").prop("checked");
-
-            var sf17 = $("#cb_ch_sf17").prop("checked");
-            var sf20 = $("#cb_ch_sf20").prop("checked");
-            var sf22 = $("#cb_ch_sf22").prop("checked");
-
-            var sc = $("#cb_sc").prop("checked");
+            var sc = sf_options.sc;
 
             if (sc && sffilter !== "") {
                 sc = sffilter.indexOf(this.currStar.toString()) !== -1
             }
 
-
-            var _mvp = $(".mvp-dc:checked");
-            var mvp = _mvp.length > 0;
-            var mvpVal = +_mvp.val();
-            var o30 = $("#cb_e_30o").prop("checked");
-            var mod5s = $("#cb_e_mod5s").prop("checked");
-
-            var isSafe12 = sf12 && this.currStar >= 12 && this.currStar < 15;
-            var isSafe15 = sf15 && this.currStar >= 15 && this.currStar < 17;
-            var isSafe17 = sf17 && this.currStar >= 17 && this.currStar < 20;
-            var isSafe20 = sf20 && this.currStar >= 20 && this.currStar < 22;
-            var isSafe22 = sf22 && this.currStar >= 22 && this.currStar < 25;
+            var isSafe12 = sf_options.sf12 && this.currStar >= 12 && this.currStar < 15;
+            var isSafe15 = sf_options.sf15 && this.currStar >= 15 && this.currStar < 17;
+            var isSafe17 = sf_options.sf17 && this.currStar >= 17 && this.currStar < 20;
+            var isSafe20 = sf_options.sf20 && this.currStar >= 20 && this.currStar < 22;
+            var isSafe22 = sf_options.sf22 && this.currStar >= 22 && this.currStar < 25;
 
             var isSafe = !_o.aee && (isSafe12 || isSafe15 || isSafe17 || isSafe20 || isSafe22);
 
-            var is100 = !_o.aee && ((mod5s && this.currStar % 5 === 0 && this.currStar < 20) || isChance);
+            var is100 = !_o.aee && ((sf_options.mod5s && this.currStar % 5 === 0 && this.currStar < 20) || isChance);
 
             var currCost = _sf.cost;
 
-            var effectiveCost = parseFloat((currCost - (o30 ? currCost * 0.3 : 0) - (mvp && this.currStar < 17 ? currCost * mvpVal : 0)).toFixed(0)) + (isSafe && !is100 ? currCost : 0);
+            var effectiveCost = parseFloat((currCost - (sf_options.o30 ? currCost * 0.3 : 0) - (sf_options.isMvp && this.currStar < 17 ? currCost * sf_options.mvp : 0)).toFixed(0)) + (isSafe && !is100 ? currCost : 0);
 
             this.totalCost += effectiveCost;
             _d.current_cost = effectiveCost;
@@ -743,8 +791,12 @@ $(function() {
             var scSuccess = _sf.success * 1.05;
 
 
-            if (this.level !== -150 && mod5s && this.currStar % 5 === 0 && this.currStar < 20) {
+            if (this.level !== -150 && sf_options.mod5s && this.currStar % 5 === 0 && this.currStar < 20) {
                 ran = 0;
+            }
+
+            if (sf_options.nb && this.currStar >= 12 && this.currStar < 15) {
+                isSafe12 = true;
             }
 
             var tl = "";
@@ -809,10 +861,6 @@ $(function() {
 
             this.timeline += tl;
 
-            /*
-
-            */
-
             if (this.currStar >= 15 && this._prev15) {
                 this.totp15++;
                 this._prev15 = false;
@@ -821,10 +869,6 @@ $(function() {
             if (this.currStar >= 20 && this._prev20) {
                 this.totp20++;
                 this._prev20 = false;
-            }
-
-            if (this.currStar === 0) {
-            	this.currStar = 1;
             }
 
             if (updStats) {
@@ -911,10 +955,10 @@ $(function() {
         var minVal = 11;
         var maxVal = 25;
         var minHeuristic = 23;
-        var minQuickLoop = 24;
+        var minQuickLoop = 23;
 
         if (level == "-150") {
-            minVal = 1;
+            minVal = 0;
             maxVal = 15;
             minHeuristic = 13;
             minQuickLoop = 13;
@@ -953,8 +997,8 @@ $(function() {
         var val = +_this.val();
 
         if (level == -150) {
-            if (val < 1) {
-                _this.val(1);
+            if (val < 0) {
+                _this.val(0);
             } else if (val > 15) {
                 _this.val(15);
             }
@@ -974,17 +1018,16 @@ $(function() {
         }
     });
 
-    var max_rows = 500;
-    var current_rows = 0;
+
     var recursive_starforce = function(v, done) {
-        current_rows++;
+        if (item.currStar >= v || n_stop) {
+            done();
+            return false;
+        }
+
         item.starforce({
             cb_end: function() {
                 if ((n <= max_n && item.currStar <= v) && !n_stop) {
-                    if (current_rows >= max_rows) {
-                        $("#t-output tr:last").remove();
-                    }
-
                     setTimeout(function() {
                         recursive_starforce(v, done);
                     }, 1);
@@ -1224,6 +1267,7 @@ $(function() {
         var _this = $(this);
         _this.prop("disabled", true).html("Processing...");
         var value = +numBtn.val();
+        var recursiveStart = 23;
 
         if (isNaN(value)) {
             return false;
@@ -1243,16 +1287,17 @@ $(function() {
             _o.noboom = true;
         }
 
+        if (level == "-150") {
+            heuristic_init_start = 0;
+            heuristic_boom_start = 12;
+            recursiveStart = 13;
+        } else {
+            heuristic_init_start = 12;
+            heuristic_boom_start = 22;
+        }
+
         var isH = cbHeuristic.prop("checked");
         if (isH) {
-            if (level == "-150") {
-                heuristic_init_start = 1;
-                heuristic_boom_start = 12;
-            } else {
-                heuristic_init_start = 12;
-                heuristic_boom_start = 22;
-            }
-
             runs = 0;
             $("#t-output").html("");
             _this.html("Running heuristic...");
@@ -1269,16 +1314,10 @@ $(function() {
 
         var currVal = item.currStar;
 
-        if (value < 24) {
+        if (value < recursiveStart) {
             while (item.currStar < value) {
                 item.starforce(_o);
                 currVal = item.currStar;
-
-                var t_tr = $("#t-output tr");
-
-                if (t_tr >= 500) {
-
-                }
             }
 
             generateTable(item);
@@ -1291,7 +1330,7 @@ $(function() {
         }
     });
 
-    $(".sf,.sc,.ev").on("click", function() {
+    $(".sf,.sc,.ev").on("change", function() {
         getNextStar(item);
     });
 
@@ -1602,6 +1641,12 @@ var sf = {
         cost: 475914500
     }],
     "s-150": [{
+        level: 0,
+        success: 0.50,
+        fail: 0.50,
+        destroy: 0,
+        cost: 55832200
+    },{
         level: 1,
         success: 0.50,
         fail: 0.50,
@@ -1687,6 +1732,12 @@ var sf = {
         cost: 55832200
     }],
     "s-100": [{
+        level: 0,
+        success: 1,
+        fail: 0,
+        destroy: 0,
+        cost: 0
+    },{
         level: 1,
         success: 0.9,
         fail: 0,
