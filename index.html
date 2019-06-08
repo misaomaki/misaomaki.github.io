@@ -502,6 +502,8 @@ $(function() {
                 startAt = data.length - maxRecords;
                 if (startAt < 0) startAt = 0;
             }
+        } else {
+            startAt = 0;
         }
 
         let unhideRow = sf_options.prn;
