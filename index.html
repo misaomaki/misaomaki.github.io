@@ -138,7 +138,7 @@
         <br>
         <label for="cb_e_mod5s"><input type="checkbox" id="cb_e_mod5s" data-for="mod5s" class="ev op"> 100% 5/10/15</label>
         <br>
-        <label for="cb_e_nb"><input type="checkbox" id="cb_e_nb" data-for="nb" class="ev op"> No Boom Pre-15</label>
+        <label for="cb_e_nb"><input type="checkbox" id="cb_e_nb" data-for="nb15" class="ev op"> No Boom Pre-15</label>
     </div>
     <div class="flex-item" style="width:250px;">
         <span class="flex-header system">System</span>
@@ -195,7 +195,7 @@ Enabling this will provide a seed value to the range so that it is not always th
             <input type="checkbox" data-for="hsx" class="op" id="cbHeuristic"> Use Heuristic Enhancement <span id="h_info" style="cursor:pointer;" title='Uses an alternative starforcing method. The current method is to starforce as you would in game, just quickly.
 This method assumes you have an infinite number of 22-star items. Booming the item means you toss the trace and start again with a new 22-star item. 
 Once the desired star is reached, the code goes back and runs starforcing for each boom, going from 12->22. One run will go from {start}->22 to account for your first run at the desired start level. 
-While faster, it does not update the table or show the starforce data on a per-star basis.
+The records shown in the table will only show the successful run to the desired star and a random backfilled run to 22 stars (this represents the &quot;final&quot; run of that item).
 Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck and computer.'>[?]</span>
         </label>
         <div class="superior hidden">
@@ -281,6 +281,7 @@ $(function() {
         mod5s: false,
         aee: false,
         nb: false,
+        nb15: false,
         isMvp: false,
         mvp: 0,
         nbe: false,
@@ -297,9 +298,7 @@ $(function() {
         var data_for = _this.attr("data-for");
         sf_options[data_for] = e.target.checked;
 
-        console.log(data_for + ": " + sf_options[data_for]);
-
-        if (data_for == "nb" || data_for == "aee") {
+        if (data_for === "nb15" || data_for == "nb" || data_for == "aee") {
             if (e.target.checked) {
                 cb_sf12.prop({disabled: true, checked: false}).trigger("change");
                 cbHeuristic.prop("checked", false).trigger("change");
@@ -627,7 +626,7 @@ $(function() {
         var fail = parseFloat(_sf1.fail * 100).toFixed(1) + "%";
         var destroy = parseFloat(_sf1.destroy * 100).toFixed(1) + "%";
 
-        if (star >= 12 && star < 15 && sf_options.nb) {
+        if (star >= 12 && star < 15 && sf_options.nb15) {
             fail = parseFloat((_sf1.destroy + _sf1.fail) * 100).toFixed(1) + "%";
             destroy = "0.0%";
         }
@@ -881,14 +880,14 @@ $(function() {
                 ran = 0;
             }
 
-            if (sf_options.nb && this.currStar >= 12 && this.currStar < 15) {
+            if (sf_options.nb15 && this.currStar >= 12 && this.currStar < 15) {
                 isSafe12 = true;
             }
 
             let tl = "";
 
             let _procType = 0; // 1 - destroy, 2 -success, 3 success sc, 4 - fail
-            if (isChance) {
+            if (isChance || is100) {
                 _procType = 2
             } else {
                 let effective_success = _sf.destroy + _sf.success;
@@ -1198,10 +1197,13 @@ $(function() {
     var runs = 0;
     var heuristic_boom_start = 22;
     var heuristic_init_start = 12;
-    function recursiveHeuristic(st) {
+    var heuristic_25_item = {};
+    var heuristic_random_item_i = 0;
+    function recursiveHeuristic(st, prevItem) {
         var level = itemLevel.val();
 
         if (heuristic_end_star === st) {
+            heuristic_25_item = prevItem;
             heuristic_done(st);
             return false;
         }
@@ -1219,14 +1221,19 @@ $(function() {
             };
         }
 
-        var hItem = new star({
-            star: st,
-            level: level
-        }, false);
+        var hItem = {};
+        if (typeof prevItem === 'undefined') {
+            hItem = new star({
+                star: st,
+                level: level
+            }, false);
+        } else {
+            hItem = prevItem;
+        }
 
         hItem.starforce();
 
-        var sf = hItem.sfData[0];
+        var sf = hItem.sfData[hItem.sfData.length - 1];
         var type = sf.type;
         var currstar = sf.current_star;
         var cost = hItem.totalCost;
@@ -1245,6 +1252,7 @@ $(function() {
         } else if (sf.type === 5) {
             heuristic["t" + st].destroy++;
             estar = heuristic_boom_start;
+            hItem = void(0);
         } else {
         //success
             if (sf.type === 3) {
@@ -1255,10 +1263,10 @@ $(function() {
 
         //anti-call stack exceed
         if (runs > 2000) {
-            setTimeout(function() {recursiveHeuristic(estar);},0);
+            setTimeout(function() {recursiveHeuristic(estar, hItem);},0);
             runs = 0;
         } else {
-            recursiveHeuristic(estar);
+            recursiveHeuristic(estar, hItem);
         }
     }
 
@@ -1290,6 +1298,10 @@ $(function() {
             totalCost += heuristic[i].cost;
             totalDestroy += heuristic[i].destroy;
             totalFail += heuristic[i].fails;
+        }
+
+        if (totalDestroy > 0) {
+            heuristic_random_item_i = +(totalDestroy * Math.random()).toFixed();
         }
         
         var heuristicItem = {
@@ -1352,6 +1364,7 @@ $(function() {
                 }, 0, i);
             }
         } else {
+            heuristic_25_item.sfData = [...initItem.sfData, ...heuristic_25_item.sfData];
             heuristic_backfill_done(st, true);
         }
     }
@@ -1370,12 +1383,17 @@ $(function() {
             heuristic_item_backfilled[j] += hbfItem[j];
         }
 
+        if (i === heuristic_random_item_i) {
+            heuristic_25_item.sfData = [...hbfItem.sfData, ...heuristic_25_item.sfData];
+        }
+
         heuristic_backfill_done(st, i + 1 === booms);
     }
 
     function heuristic_backfill_done (st, done) {
+        let bankTotalCost = heuristic_item_backfilled.totalCost;
         heuristic_item_backfilled.currStar = st;
-        heuristic_item_backfilled.totalCostFormatted = heuristic_item_backfilled.totalCost.toNumber();
+        heuristic_item_backfilled.totalCostFormatted = bankTotalCost.toNumber();
         heuristic_item_backfilled.level = level;
        
         update_stats(heuristic_item_backfilled);
@@ -1386,14 +1404,41 @@ $(function() {
                 level: level
             });
             getNextStar(heuristic_item_backfilled);
+
+            //hacking the cost data
+            let h_sfData_len = heuristic_25_item.sfData.length - 1;
+            for (let i = h_sfData_len; i >= 0 ; i--) {
+                let h_currData = heuristic_25_item.sfData[i];
+                let h_currStar = h_currData.current_star;
+                let h_prevStar = h_currStar - 1;
+
+                let h_prevSf = heuristic_25_item.sf.filter(a => {
+                    return a.level === (h_prevStar < 10 ? 10 : h_prevStar)
+                })[0];
+
+                let h_prevCost = h_prevSf.cost;
+
+                heuristic_25_item.sfData[i].cost = i === h_sfData_len ? bankTotalCost : bankTotalCost - h_prevCost;
+                heuristic_25_item.sfData[i].current_total_cost = heuristic_25_item.sfData[i].cost.toNumber();
+                bankTotalCost -= h_prevCost;
+                heuristic_item_backfilled.totalCost;
+            }
+
+            generateTable(heuristic_25_item);
+            generateLineGraph(heuristic_25_item);
             resetGoToButton(); 
         }
     }
 
     btnGoToStar.on("click", function() {
         var _this = $(this);
-        _this.prop("disabled", true).html("Processing...");
         var value = +numBtn.val();
+
+        if (item.currStar >= value) {
+            return false;
+        }
+
+        _this.prop("disabled", true).html("Processing...");
 
         if (isNaN(value)) {
             return false;
