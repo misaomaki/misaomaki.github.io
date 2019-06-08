@@ -304,7 +304,7 @@ $(function() {
         var data_for = _this.attr("data-for");
         sf_options[data_for] = e.target.checked;
 
-        if (data_for === "nb15" || data_for == "nb" || data_for == "aee") {
+        if (data_for == "nb" || data_for == "aee") {
             if (e.target.checked) {
                 cb_sf12.prop({disabled: true, checked: false}).trigger("change");
                 cbHeuristic.prop("checked", false).trigger("change");
@@ -322,6 +322,12 @@ $(function() {
             if (e.target.checked) {
                 cbNbe.prop("checked", false).trigger("change");
                 cbaee.prop("checked", false).trigger("change");
+            }
+        } else if (data_for === "nb15") {
+            if (e.target.checked) {
+                cb_sf12.prop({disabled: true, checked: false}).trigger("change");
+            } else {
+                cb_sf12.prop("disabled", false);
             }
         }
     });
@@ -421,7 +427,7 @@ $(function() {
         var graphData = item.sfData;
         
         if (maxRecords !== -1) {
-            graphData = graphData.slice(Math.max(item.sfData.length - maxRecords, 1));
+            graphData = graphData.slice(Math.max(item.sfData.length - maxRecords, 0));
         }
 
         graphData = graphData.map((a) => {return {x: a.id, y: a.current_star}});
@@ -494,6 +500,14 @@ $(function() {
         if (maxRecords === 0) return false;
     	let data = item.sfData;
 
+        if (maxRecords !== -1) {
+            data = data.slice(Math.max(data.length - maxRecords - 1, 0));
+            if (startAt > 0) {
+                startAt = data.length - maxRecords;
+                if (startAt < 0) startAt = 0;
+            }
+        }
+
         let unhideRow = sf_options.prn;
 
     	let tbody = "";
@@ -564,7 +578,7 @@ $(function() {
 
     		tbody += `
     			<tr>
-    				<td>${numberAt === 0 ? i + 1 : numberAt - index}</td>
+    				<td>${numberAt === 0 ? _d.id : numberAt - index}</td>
     				<td style="background-color:${bgColor};color:${color}">${_d.current_star}</td>
     				<td ${_d.type >= 5 && _d.type <= 10 ? 'style="background-color:grey"' : ''}>${thisResult}</td>
                     <td>${_d.current_total_cost}</td>
@@ -575,20 +589,7 @@ $(function() {
             index += 1;
     	}
 
-    	if (startAt === 0) {
-    		toutput.html(tbody);
-    	} else {
-    		toutput.prepend(tbody);
-    	}
-
-        if (maxRecords !== -1) {
-            let rows = toutput.find("tr");
-            let curr_rows = rows.length;
-
-            if (curr_rows >= maxRecords) {
-                rows.slice(maxRecords).remove();
-            }
-        }
+    	toutput.html(tbody);
     };
 
     var star_cost = $("#star_cost");
@@ -1296,11 +1297,6 @@ $(function() {
         hItem.starforce();
 
         heuristic_passed[hItem.name] = {
-            /*
-            "p15": hItem.totp15,
-            "p20": hItem.totp20,
-            "p22": hItem.totp22,
-            */
             "p23": hItem.totp23,
             "p24": hItem.totp24,
             "p25": hItem.totp25,
