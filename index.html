@@ -492,7 +492,7 @@ $(function() {
     generateLineGraph({sfData: []});
 
     var toutput = $("#t-output");
-    var generateTable = function(item, startAt = 0, numberAt = 0) {
+    var generateTable = function(item, startAt = 0) {
         if (maxRecords === 0) return false;
     	let data = item.sfData;
 
@@ -574,7 +574,7 @@ $(function() {
 
     		tbody += `
     			<tr>
-    				<td>${numberAt === 0 ? _d.id : numberAt - index}</td>
+    				<td>${_d.id}</td>
     				<td style="background-color:${bgColor};color:${color}">${_d.current_star}</td>
     				<td ${_d.type >= 5 && _d.type <= 10 ? 'style="background-color:grey"' : ''}>${thisResult}</td>
                     <td>${_d.current_total_cost}</td>
@@ -1496,14 +1496,11 @@ $(function() {
         update_stats(heuristic_item_backfilled);
         
         if (done) {
-            item = new star({
-                star: st,
-                level: level
-            });
             getNextStar(heuristic_item_backfilled);
 
             //hacking the cost data
             let h_sfData_len = heuristic_25_item.sfData.length - 1;
+            heuristic_25_item.currRun = thisTotalRuns;
             for (let i = h_sfData_len; i >= 0 ; i--) {
                 let h_currData = heuristic_25_item.sfData[i];
                 let h_currStar = h_currData.current_star;
@@ -1517,11 +1514,15 @@ $(function() {
 
                 heuristic_25_item.sfData[i].cost = i === h_sfData_len ? bankTotalCost : bankTotalCost - h_prevCost;
                 heuristic_25_item.sfData[i].current_total_cost = heuristic_25_item.sfData[i].cost.toNumber();
+                heuristic_25_item.sfData[i].id = thisTotalRuns;
+                thisTotalRuns -= 1;
                 bankTotalCost -= h_prevCost;
                 heuristic_item_backfilled.totalCost;
             }
 
-            generateTable(heuristic_25_item, 0, thisTotalRuns);
+            item = heuristic_25_item;
+
+            generateTable(heuristic_25_item);
             generateLineGraph(heuristic_25_item);
             resetGoToButton(); 
             resetHeuristicVariables();
