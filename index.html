@@ -142,11 +142,20 @@
     </div>
     <div class="flex-item" style="width:250px;">
         <span class="flex-header system">System</span>
+        <label for="cb_ch_adv" title="Apply new star force values from the Adventure update."><input type="checkbox" id="cb_ch_adv" data-for="adv" class="ch sf2 op" checked> Apply Adventure SF</label> <br>
+        <hr>
         <label for="sys_max_records" title="Max records in table/graph at any given time. Lots of concurrent records causes slowness. -1 for no max.">
-            <input type="number" min="-1" value="100" id="sys_max_records" class="sys" style="width:65px;"> Maximum Records
+            <input type="number" min="-1" value="10" id="sys_max_records" class="sys" style="width:65px;"> Maximum Records
         </label> <br>
-        <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" class="ch"> Show PRN</label> <br>
-        <label for="cb_ch_adv" title="Apply new star force values from the Adventures update."><input type="checkbox" id="cb_ch_adv" data-for="adv" class="ch sf2 op" checked> Apply Adventures SF</label> <br>
+        <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" data-for="prn" class="ch op"> Show PRN</label> <br>
+        <label for="cb_ch_rshift" title="After generating a random value between 0 and 1, it is compared against a proc range. The range is:
+0 - {destroy chance}: item destroy 
+{destroy chance} - {success chance}: item success
+{success chance} - {sc success chance}: item star catch success
+{sc success chance} - 1: item fail
+Enabling this will provide a seed value to the range so that it is not always the same. Doesn&quot;t change anything other than make the starforcing more randomer-er.">
+        <input type="checkbox" id="cb_ch_rshift" data-for="rshift" class="ch op"> Randomize Proc Range
+    </label> <br>
     </div> 
     <div class="flex-item hidden" id="cheat_panel">
         <span class="flex-header options2">Debug</span>
@@ -191,10 +200,10 @@ Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck a
         </label>
         <div class="superior hidden">
             <label for="cbAee" class="hidden">
-                <input type="checkbox" class="cbaee" id="cbAee"> Use AEE
+                <input type="checkbox" class="cbaee op" id="cbAee" data-for="aee"> Use AEE
             </label>
             <label for="cbAeeNb">
-                <input type="checkbox" class="cbaee" id="cbAeeNb"> Use No Boom AEE
+                <input type="checkbox" class="cbaee op" id="cbAeeNb" data-for="nb"> Use No Boom AEE
             </label>
         </div>
     </div>
@@ -254,6 +263,7 @@ $(function() {
     var cbHeuristicContainer = $("#heur");
     var cbHeuristic = $("#cbHeuristic");
     var cbNbe = $("#cbNbe");
+    var cbaee = $(".cbaee");
 
     //global variables for starforce
     var sffilter = "";
@@ -269,23 +279,30 @@ $(function() {
         sc: false,
         o30: false,
         mod5s: false,
+        aee: false,
         nb: false,
         isMvp: false,
         mvp: 0,
         nbe: false,
         hsx: false,
-        adv: true
+        adv: true,
+        prn: false,
+        rshift: false
     };
 
     var cb_sf12 = $("#cb_sf12");
+
     $(".op").on("change", function(e) {
         var _this = $(this);
         var data_for = _this.attr("data-for");
         sf_options[data_for] = e.target.checked;
 
-        if (data_for == "nb") {
+        console.log(data_for + ": " + sf_options[data_for]);
+
+        if (data_for == "nb" || data_for == "aee") {
             if (e.target.checked) {
-                cb_sf12.prop({disabled: true, checked: false});
+                cb_sf12.prop({disabled: true, checked: false}).trigger("change");
+                cbHeuristic.prop("checked", false).trigger("change");
             } else {
                 cb_sf12.prop("disabled", false);
             }
@@ -299,6 +316,7 @@ $(function() {
         } else if (data_for === 'hsx') {
             if (e.target.checked) {
                 cbNbe.prop("checked", false).trigger("change");
+                cbaee.prop("checked", false).trigger("change");
             }
         }
     });
@@ -364,17 +382,17 @@ $(function() {
 
     var supLabels = $(".superior");
     itemLevel.on("change", function() {
-        $(".cbaee").prop("checked", false);
+        cbaee.prop("checked", false).trigger("change");;
         level = +$(this).val();
 
         if (level === -150) {
         	numStart.val(0).attr("max", 15);
-        	$(".sf,.ev").prop("disabled", true).prop("checked", false);
+        	$(".sf,.ev").prop("disabled", true).prop("checked", false).trigger("change");
         	numBtn.val(12).attr("max", 15);
             supLabels.removeClass("hidden");
         } else {
         	numStart.val(10).attr("max", 25);
-        	$(".sf,.ev").prop("disabled", false);
+        	$(".sf,.ev").prop("disabled", false).trigger("change");
         	numBtn.val(22).attr("max", 25);
             supLabels.addClass("hidden");
         }
@@ -469,7 +487,7 @@ $(function() {
         if (maxRecords === 0) return false;
     	var data = item.sfData;
 
-        var unhideRow = $("#cb_ch_showq").prop("checked");
+        var unhideRow = sf_options.prn;
 
     	var tbody = "";
     	for (let i = data.length - 1; i >= startAt; --i) {
@@ -564,6 +582,12 @@ $(function() {
     };
 
     var star_cost = $("#star_cost");
+    var c_ns = $("#c_ns");
+    var c_s = $("#c_s");
+    var c_f = $("#c_f");
+    var c_d = $("#c_d");
+    var c_c = $("#c_c");
+    var c_sc = $("#c_sc");
     var getNextStar = function(o, updStats = false) {
         var level = o.level;
         var star = o.currStar;
@@ -615,12 +639,12 @@ $(function() {
         }
 
         //update next star value
-        $("#c_ns").html(star + 1);
-        $("#c_s").html(success);
-        $("#c_f").html(fail);
-        $("#c_d").html(destroy);
-        $("#c_c").html(effectiveCost.toNumber());
-        $("#c_sc").html(sf_options.sc ? "Yes" : "No");
+        c_ns.html(star + 1);
+        c_s.html(success);
+        c_f.html(fail);
+        c_d.html(destroy);
+        c_c.html(effectiveCost.toNumber());
+        c_sc.html(sf_options.sc ? "Yes" : "No");
 
         //update stats
         if (updStats) {
@@ -628,22 +652,37 @@ $(function() {
         }
     };
 
+    var l_s = $("#l_s");
+    var l_r = $("#l_r");
+    var l_sc = $("#l_sc");
+    var l_sc_f = $("#l_sc_f");
+    var l_f = $("#l_f");
+    var l_b = $("#l_b");
+    var l_sg12 = $("#l_sg12");
+    var l_sg15 = $("#l_sg15");
+    var l_p15 = $("#l_p15");
+    var l_p20 = $("#l_p20");
+    var l_c = $("#l_c");
+    var l_c_sg12 = $("#l_c_sg12");
+    var l_c_sg15 = $("#l_c_sg15");
+    var l_aee = $("#l_aee");
+    var l_nb = $("#l_nb");
     var update_stats = function (o) {
-        $("#l_s").html(o.currStar);
-        $("#l_r").html(o.totRuns);
-        $("#l_sc").html(o.totSc);
-        $("#l_sc_f").html(o.totScF);
-        $("#l_f").html(o.totFail);
-        $("#l_b").html(o.totBoom);
-        $("#l_sg12").html(o.totSg12);
-        $("#l_sg15").html(o.totSg15);
-        $("#l_p15").html(o.totp15);
-        $("#l_p20").html(o.totp20);
-        $("#l_c").html(o.totalCostFormatted);
-        $("#l_c_sg12").html(o.totCostSg12.toNumber());
-        $("#l_c_sg15").html(o.totCostSg15.toNumber());
-        $("#l_aee").html(o.totaee);
-        $("#l_nb").html(o.totnb);
+        l_s.html(o.currStar);
+        l_r.html(o.totRuns);
+        l_sc.html(o.totSc);
+        l_sc_f.html(o.totScF);
+        l_f.html(o.totFail);
+        l_b.html(o.totBoom);
+        l_sg12.html(o.totSg12);
+        l_sg15.html(o.totSg15);
+        l_p15.html(o.totp15);
+        l_p20.html(o.totp20);
+        l_c.html(o.totalCostFormatted);
+        l_c_sg12.html(o.totCostSg12.toNumber());
+        l_c_sg15.html(o.totCostSg15.toNumber());
+        l_aee.html(o.totaee);
+        l_nb.html(o.totnb);
     }
 
     var star = function(o, updStats = true) {
@@ -739,7 +778,7 @@ $(function() {
                 noboom: false
             }, _o);
 
-            var _d = {
+            let _d = {
             	type: 0,
             	current_star: 0,
             	total_current_cost: 0,
@@ -751,8 +790,8 @@ $(function() {
             this.currRun++;
             _d.id = this.currRun;
 
-            var ran = 0;
-            var isChance = false;
+            let ran = 0;
+            let isChance = false;
 
             if (this.chanceTime >= 2) {
                 this.chanceTime = 0;
@@ -762,15 +801,14 @@ $(function() {
                 _d.q = ran;
             }
 
-            var message = "";
-
-            var boomLevel = 12;
+            let message = "";
+            let boomLevel = 12;
 
             if (this.level === -150) {
             	boomLevel = 0;
             }
 
-            var _sf = {};
+            let _sf = {};
 
             if (!_o.aee) {
                 _sf = this.sf.filter(a => {
@@ -800,33 +838,33 @@ $(function() {
                 }
             }
 
-            var sc = sf_options.sc;
+            let sc = sf_options.sc;
 
             if (sc && sffilter !== "") {
                 sc = sffilter.indexOf(this.currStar.toString()) !== -1
             }
 
-            var isSafe12 = sf_options.sf12 && this.currStar >= 12 && this.currStar < 15;
-            var isSafe15 = sf_options.sf15 && this.currStar >= 15 && this.currStar < 17;
-            var isSafe17 = sf_options.sf17 && this.currStar >= 17 && this.currStar < 20;
-            var isSafe20 = sf_options.sf20 && this.currStar >= 20 && this.currStar < 22;
-            var isSafe22 = sf_options.sf22 && this.currStar >= 22 && this.currStar < 25;
+            let isSafe12 = sf_options.sf12 && this.currStar >= 12 && this.currStar < 15;
+            let isSafe15 = sf_options.sf15 && this.currStar >= 15 && this.currStar < 17;
+            let isSafe17 = sf_options.sf17 && this.currStar >= 17 && this.currStar < 20;
+            let isSafe20 = sf_options.sf20 && this.currStar >= 20 && this.currStar < 22;
+            let isSafe22 = sf_options.sf22 && this.currStar >= 22 && this.currStar < 25;
 
-            var isSafe = !_o.aee && (isSafe12 || isSafe15 || isSafe17 || isSafe20 || isSafe22);
+            let isSafe = !_o.aee && (isSafe12 || isSafe15 || isSafe17 || isSafe20 || isSafe22);
 
-            var is100 = !_o.aee && ((sf_options.mod5s && this.currStar % 5 === 0 && this.currStar < 20) || isChance);
+            let is100 = !_o.aee && ((sf_options.mod5s && this.currStar % 5 === 0 && this.currStar < 20) || isChance);
 
-            var currCost = _sf.cost;
+            let currCost = _sf.cost;
 
-            var effectiveCost = parseFloat((currCost - (sf_options.o30 ? currCost * 0.3 : 0) - (sf_options.isMvp && this.currStar < 17 ? currCost * sf_options.mvp : 0)).toFixed(0)) + (isSafe && !is100 ? currCost : 0);
+            let effectiveCost = parseFloat((currCost - (sf_options.o30 ? currCost * 0.3 : 0) - (sf_options.isMvp && this.currStar < 17 ? currCost * sf_options.mvp : 0)).toFixed(0)) + (isSafe && !is100 ? currCost : 0);
 
             this.totalCost += effectiveCost;
             _d.current_cost = effectiveCost;
             
             _d.current_total_cost = this.totalCost.toNumber();;
             this.totalCostFormatted = _d.current_total_cost;
-            var sg12Cost = 0;
-            var sg15Cost = 0;
+            let sg12Cost = 0;
+            let sg15Cost = 0;
 
             if (isSafe12 && !is100) {
                 this.totCostSg12 += currCost;
@@ -836,7 +874,7 @@ $(function() {
                 this.totCostSg15 += currCost;
             }
 
-            var scSuccess = _sf.success * 1.05;
+            let scSuccess = _sf.success * 1.05;
 
 
             if (this.level !== -150 && sf_options.mod5s && this.currStar % 5 === 0 && this.currStar < 20) {
@@ -847,8 +885,58 @@ $(function() {
                 isSafe12 = true;
             }
 
-            var tl = "";
-            if (ran !== 0 && ran <= _sf.destroy) {
+            let tl = "";
+
+
+
+            let procType = 0; // 1 - destroy, 2 -success, 3 success sc, 4 - fail
+            let effective_success = _sf.destroy + _sf.success;
+            let effective_success_sc = _sf.destroy + scSuccess;
+
+            let procMap = {
+                destroy: [0, _sf.destroy],
+                success: [_sf.destroy, effective_success],
+                success_sc: [effective_success,effective_success_sc],
+                fail: [effective_success_sc, 1]
+            };
+
+            if (sf_options.rshift) {
+                randomShift = Math.random() * (Math.random() < 0.5 ? 1 : 1);
+
+                for (let i in procMap) {
+                    let _pm = procMap[i];
+
+                    for (let j = 0; j < _pm.length; ++j) {
+                        _pm[j] += randomShift;
+                    }
+
+                    if (_pm[0] < 1 && _pm[1] > 1) {
+                        procMap[i + "2"] = [_pm[0], 1];
+                        procMap[i] = [0, _pm[1] - 1];
+                    } else if (_pm[0] > 1 && _pm[1] > 1) {
+                        procMap[i] = [_pm[0] - 1, _pm[1] - 1];
+                    }
+                };
+            }
+
+
+            if (procMap.destroy[0] !== ran && procMap.destroy[0] < ran && ran <= procMap.destroy[1]) {
+                _procType = 1;
+            } else if (typeof procMap.destroy2 !== 'undefined' && procMap.destroy2[0] < ran && ran <= procMap.destroy2[1]) {
+                _procType = 1;
+            } else if (procMap.success[0] < ran && ran <= procMap.success[1]) {
+                _procType = 2;
+            } else if (typeof procMap.success2 !== 'undefined' && procMap.success2[0] < ran && ran <= procMap.success2[1]) {
+                _procType = 2;
+            } else if (procMap.success_sc[0] < ran && ran <= procMap.success_sc[1]) {
+                _procType = 3;
+            } else if (typeof procMap.success_sc2 !== 'undefined' && procMap.success_sc2[0] < ran && ran <= procMap.success_sc2[1]) {
+                _procType = 3;
+            } else {
+                _procType = 4;
+            }
+            
+            if (_procType === 1) {
                 if (isSafe12) {
                     this._private.fail(this, _o.aee);
                     this.totSg12++;
@@ -883,12 +971,12 @@ $(function() {
                     _d.type = 5; //destroyed
                     tl = "D";
                 }
-            } else if (ran <= _sf.destroy + _sf.success) {
+            } else if (_procType === 2) {
                 this.currStar++;
                  _d.type = 1; //success
                 this.chanceTime = 0;
                 tl = "S";
-            } else if (!_o.aee && ran <= _sf.destroy + scSuccess) {
+            } else if (!_o.aee && _procType === 3) {
             	if (sc) {
 	                this.currStar++;
 	                this.totSc++;
@@ -1013,7 +1101,7 @@ $(function() {
             cbHeuristicContainer.removeClass("hidden");
         } else {
             cbHeuristicContainer.addClass("hidden");
-            cbHeuristic.prop("checked", false);
+            cbHeuristic.prop("checked", false).trigger("change");
         }
     
         if (!cbHeuristic.prop("checked")) {
@@ -1300,8 +1388,6 @@ $(function() {
         }
     }
 
-    var cbaee = $("#cbAee");
-    var cbnb = $("#cbAeeNb");
     btnGoToStar.on("click", function() {
         var _this = $(this);
         _this.prop("disabled", true).html("Processing...");
@@ -1316,11 +1402,11 @@ $(function() {
             noboom: false
         };
 
-        if (cbaee.prop("checked")) {
+        if (sf_options.aee) {
             _o.aee = true;
         } 
 
-        if (cbnb.prop("checked")) {
+        if (sf_options.nb) {
             _o.aee = true;
             _o.noboom = true;
         }
@@ -1389,15 +1475,6 @@ $(function() {
         h_info_container.removeClass("hidden");
     }).on("mouseout", function() {
         h_info_container.addClass("hidden");
-    });
-
-    $(".cbaee").on("change", function(e) {
-        cbHeuristic.prop("checked", false);
-        numBtn.trigger("change");
-    });
-
-    cbHeuristic.on("change", function(e) {
-        $(".cbaee").prop("checked", false);
     });
 });
 
