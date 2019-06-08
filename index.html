@@ -335,7 +335,6 @@ $(function() {
 
     Number.prototype.toNumber = function() {
         return this.toLocaleString();
-        //return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     var level = 150;
@@ -1297,9 +1296,11 @@ $(function() {
         hItem.starforce();
 
         heuristic_passed[hItem.name] = {
+            /*
             "p15": hItem.totp15,
             "p20": hItem.totp20,
             "p22": hItem.totp22,
+            */
             "p23": hItem.totp23,
             "p24": hItem.totp24,
             "p25": hItem.totp25,
@@ -1354,9 +1355,6 @@ $(function() {
         totp15: 0,
         totp20: 0,
         totp22: 0,
-        totp23: 0,
-        totp24: 0,
-        totp25: 0,
         totalCost: 0,
         totCostSg12: 0,
         totCostSg15: 0
@@ -1384,6 +1382,22 @@ $(function() {
                 heuristic_random_item_i -= 1;
             }
         }
+
+        let curr23 = +l_p23.html();
+        let curr24 = +l_p24.html();
+        let curr25 = +l_p25.html();
+        let tot23 = 0;
+        let tot24 = 0;
+        let tot25 = 0;
+        for (let i in heuristic_passed) {
+            let hp = heuristic_passed[i];
+            tot23 += hp.p23;
+            tot24 += hp.p24;
+            tot25 += hp.p25;
+        }
+        l_p23.html(curr23 + tot23);
+        l_p24.html(curr24 + tot24);
+        l_p25.html(curr25 + tot25);
         
         var heuristicItem = {
             currStar: st,
@@ -1409,9 +1423,6 @@ $(function() {
             totp15: 0,
             totp20: 0,
             totp22: 0,
-            totp23: 0,
-            totp24: 0,
-            totp25: 0,
             totalCost: 0,
             totCostSg12: 0,
             totCostSg15: 0
@@ -1510,41 +1521,6 @@ $(function() {
                 bankTotalCost -= h_prevCost;
                 heuristic_item_backfilled.totalCost;
             }
-            /*
-            let curr15 = +l_p22.html();
-            let curr20 = +l_p22.html();
-            let curr22 = +l_p22.html();
-            */
-            let curr23 = +l_p23.html();
-            let curr24 = +l_p24.html();
-            let curr25 = +l_p25.html();
-            /*
-            let tot15 = 0;
-            let tot20 = 0;
-            let tot22 = 0;
-            */
-            let tot23 = 0;
-            let tot24 = 0;
-            let tot25 = 0;
-            for (let i in heuristic_passed) {
-                let hp = heuristic_passed[i];
-                /*
-                tot15 += hp.p15;
-                tot20 += hp.p20;
-                tot22 += hp.p22;
-                */
-                tot23 += hp.p23;
-                tot24 += hp.p24;
-                tot25 += hp.p25;
-            }
-            /*
-            l_p22.html(curr15 + tot15);
-            l_p22.html(curr20 + tot20);
-            l_p22.html(curr22 + tot22);
-            */
-            l_p23.html(curr23 + tot23);
-            l_p24.html(curr24 + tot24);
-            l_p25.html(curr25 + tot25);
 
             generateTable(heuristic_25_item, 0, thisTotalRuns);
             generateLineGraph(heuristic_25_item);
