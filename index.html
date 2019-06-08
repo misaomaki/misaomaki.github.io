@@ -1510,31 +1510,38 @@ $(function() {
                 bankTotalCost -= h_prevCost;
                 heuristic_item_backfilled.totalCost;
             }
-
+            /*
             let curr15 = +l_p22.html();
             let curr20 = +l_p22.html();
             let curr22 = +l_p22.html();
+            */
             let curr23 = +l_p23.html();
             let curr24 = +l_p24.html();
             let curr25 = +l_p25.html();
+            /*
             let tot15 = 0;
             let tot20 = 0;
             let tot22 = 0;
+            */
             let tot23 = 0;
             let tot24 = 0;
             let tot25 = 0;
             for (let i in heuristic_passed) {
                 let hp = heuristic_passed[i];
+                /*
                 tot15 += hp.p15;
                 tot20 += hp.p20;
                 tot22 += hp.p22;
+                */
                 tot23 += hp.p23;
                 tot24 += hp.p24;
                 tot25 += hp.p25;
             }
+            /*
             l_p22.html(curr15 + tot15);
             l_p22.html(curr20 + tot20);
             l_p22.html(curr22 + tot22);
+            */
             l_p23.html(curr23 + tot23);
             l_p24.html(curr24 + tot24);
             l_p25.html(curr25 + tot25);
