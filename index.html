@@ -386,10 +386,6 @@ $(function() {
         sffilter = val.split(",");
     });
 
-    sys_max_records.on("change", function() {
-        maxRecords = +$(this).val();
-    });
-
     var supLabels = $(".superior");
     var nsupLabels = $(".non-superior");
     itemLevel.on("change", function() {
@@ -1093,6 +1089,13 @@ $(function() {
         level: level
     });
     getNextStar(item);
+
+    sys_max_records.on("change", function() {
+        maxRecords = +$(this).val();
+
+        generateTable(item);
+        generateLineGraph(item);
+    });
 
     enhanceBtn.on("click", function() {
         item.starforce();
