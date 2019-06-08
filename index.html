@@ -482,16 +482,17 @@ $(function() {
     generateLineGraph({sfData: []});
 
     var toutput = $("#t-output");
-    var generateTable = function(item, startAt = 0) {
+    var generateTable = function(item, startAt = 0, numberAt = 0) {
         if (maxRecords === 0) return false;
-    	var data = item.sfData;
+    	let data = item.sfData;
 
-        var unhideRow = sf_options.prn;
+        let unhideRow = sf_options.prn;
 
-    	var tbody = "";
+    	let tbody = "";
+        let index = 0;
     	for (let i = data.length - 1; i >= startAt; --i) {
     		let _d = data[i];
-    		var thisResult = "";
+    		let thisResult = "";
 
     		switch (_d.type) {
     			case 1: 
@@ -536,8 +537,8 @@ $(function() {
     			`;
     		}
 
-    		var bgColor = "none";
-    		var color = "black";
+    		let bgColor = "none";
+    		let color = "black";
 
     		if (_d.current_star === 22) {
     			bgColor = "#0070dd";
@@ -555,13 +556,15 @@ $(function() {
 
     		tbody += `
     			<tr>
-    				<td>${i + 1}</td>
+    				<td>${numberAt === 0 ? i + 1 : numberAt - index}</td>
     				<td style="background-color:${bgColor};color:${color}">${_d.current_star}</td>
     				<td ${_d.type >= 5 && _d.type <= 10 ? 'style="background-color:grey"' : ''}>${thisResult}</td>
                     <td>${_d.current_total_cost}</td>
                     <td class="ch-row ${unhideRow ? "" : "hidden"}">${_d.q}</td>
     			</tr>
     		`;
+
+            index += 1;
     	}
 
     	if (startAt === 0) {
@@ -571,8 +574,8 @@ $(function() {
     	}
 
         if (maxRecords !== -1) {
-            var rows = toutput.find("tr");
-            var curr_rows = rows.length;
+            let rows = toutput.find("tr");
+            let curr_rows = rows.length;
 
             if (curr_rows >= maxRecords) {
                 rows.slice(maxRecords).remove();
@@ -1391,6 +1394,7 @@ $(function() {
     }
 
     function heuristic_backfill_done (st, done) {
+        let thisTotalRuns = heuristic_item_backfilled.totRuns;
         let bankTotalCost = heuristic_item_backfilled.totalCost;
         heuristic_item_backfilled.currStar = st;
         heuristic_item_backfilled.totalCostFormatted = bankTotalCost.toNumber();
@@ -1424,7 +1428,7 @@ $(function() {
                 heuristic_item_backfilled.totalCost;
             }
 
-            generateTable(heuristic_25_item);
+            generateTable(heuristic_25_item, 0, thisTotalRuns);
             generateLineGraph(heuristic_25_item);
             resetGoToButton(); 
         }
