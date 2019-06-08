@@ -153,7 +153,7 @@
 {destroy chance} - {success chance}: item success
 {success chance} - {sc success chance}: item star catch success
 {sc success chance} - 1: item fail
-Enabling this will provide a seed value to the range so that it is not always the same. Doesn&quot;t change anything other than make the starforcing more randomer-er.">
+Enabling this will provide a seed value to the range so that it is not always the same. Doesn't change anything other than make the starforcing more randomer-er.">
         <input type="checkbox" id="cb_ch_rshift" data-for="rshift" class="ch op"> Randomize Proc Range
     </label> <br>
     </div> 
@@ -887,53 +887,55 @@ $(function() {
 
             let tl = "";
 
-
-
-            let procType = 0; // 1 - destroy, 2 -success, 3 success sc, 4 - fail
-            let effective_success = _sf.destroy + _sf.success;
-            let effective_success_sc = _sf.destroy + scSuccess;
-
-            let procMap = {
-                destroy: [0, _sf.destroy],
-                success: [_sf.destroy, effective_success],
-                success_sc: [effective_success,effective_success_sc],
-                fail: [effective_success_sc, 1]
-            };
-
-            if (sf_options.rshift) {
-                randomShift = Math.random() * (Math.random() < 0.5 ? 1 : 1);
-
-                for (let i in procMap) {
-                    let _pm = procMap[i];
-
-                    for (let j = 0; j < _pm.length; ++j) {
-                        _pm[j] += randomShift;
-                    }
-
-                    if (_pm[0] < 1 && _pm[1] > 1) {
-                        procMap[i + "2"] = [_pm[0], 1];
-                        procMap[i] = [0, _pm[1] - 1];
-                    } else if (_pm[0] > 1 && _pm[1] > 1) {
-                        procMap[i] = [_pm[0] - 1, _pm[1] - 1];
-                    }
-                };
-            }
-
-
-            if (procMap.destroy[0] !== ran && procMap.destroy[0] < ran && ran <= procMap.destroy[1]) {
-                _procType = 1;
-            } else if (typeof procMap.destroy2 !== 'undefined' && procMap.destroy2[0] < ran && ran <= procMap.destroy2[1]) {
-                _procType = 1;
-            } else if (procMap.success[0] < ran && ran <= procMap.success[1]) {
-                _procType = 2;
-            } else if (typeof procMap.success2 !== 'undefined' && procMap.success2[0] < ran && ran <= procMap.success2[1]) {
-                _procType = 2;
-            } else if (procMap.success_sc[0] < ran && ran <= procMap.success_sc[1]) {
-                _procType = 3;
-            } else if (typeof procMap.success_sc2 !== 'undefined' && procMap.success_sc2[0] < ran && ran <= procMap.success_sc2[1]) {
-                _procType = 3;
+            let _procType = 0; // 1 - destroy, 2 -success, 3 success sc, 4 - fail
+            if (isChance) {
+                _procType = 2
             } else {
-                _procType = 4;
+                let effective_success = _sf.destroy + _sf.success;
+                let effective_success_sc = _sf.destroy + scSuccess;
+
+                let procMap = {
+                    destroy: [0, _sf.destroy],
+                    success: [_sf.destroy, effective_success],
+                    success_sc: [effective_success,effective_success_sc],
+                    fail: [effective_success_sc, 1]
+                };
+
+                if (sf_options.rshift) {
+                    randomShift = Math.random() * (Math.random() < 0.5 ? 1 : 1);
+
+                    for (let i in procMap) {
+                        let _pm = procMap[i];
+
+                        for (let j = 0; j < _pm.length; ++j) {
+                            _pm[j] += randomShift;
+                        }
+
+                        if (_pm[0] < 1 && _pm[1] > 1) {
+                            procMap[i + "2"] = [_pm[0], 1];
+                            procMap[i] = [0, _pm[1] - 1];
+                        } else if (_pm[0] > 1 && _pm[1] > 1) {
+                            procMap[i] = [_pm[0] - 1, _pm[1] - 1];
+                        }
+                    };
+                }
+
+
+                if (procMap.destroy[0] !== ran && procMap.destroy[0] < ran && ran <= procMap.destroy[1]) {
+                    _procType = 1;
+                } else if (typeof procMap.destroy2 !== 'undefined' && procMap.destroy2[0] < ran && ran <= procMap.destroy2[1]) {
+                    _procType = 1;
+                } else if (procMap.success[0] < ran && ran <= procMap.success[1]) {
+                    _procType = 2;
+                } else if (typeof procMap.success2 !== 'undefined' && procMap.success2[0] < ran && ran <= procMap.success2[1]) {
+                    _procType = 2;
+                } else if (procMap.success_sc[0] < ran && ran <= procMap.success_sc[1]) {
+                    _procType = 3;
+                } else if (typeof procMap.success_sc2 !== 'undefined' && procMap.success_sc2[0] < ran && ran <= procMap.success_sc2[1]) {
+                    _procType = 3;
+                } else {
+                    _procType = 4;
+                }
             }
             
             if (_procType === 1) {
