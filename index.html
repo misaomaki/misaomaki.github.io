@@ -96,22 +96,28 @@
     <div class="flex-item" style="min-width:350px;">
         <span class="flex-header stats">Stats</span>
         <div id="stats">
-            <span class="form-label" id="cheats">Stars:</span> <span id="l_s">0</span><br>
-            <span class="form-label">Total Runs:</span> <span id="l_r">0</span><br>
-            <span class="form-label">Total Success By Star Catch:</span> <span id="l_sc">0</span><br>
-            <span class="form-label">Total Fails Within Star Catch:</span> <span id="l_sc_f">0</span><br>
-            <span class="form-label">Total Fails:</span> <span id="l_f">0</span><br>
-            <span class="form-label">Total Booms:</span> <span id="l_b">0</span><br>
-            <span class="form-label">Total Safeguards 12-15:</span> <span id="l_sg12">0</span><br>
-            <span class="form-label">Total Safeguards 15-17:</span> <span id="l_sg15">0</span><br>
-            <span class="form-label">Total Passed 15:</span> <span id="l_p15">0</span><br>
-            <span class="form-label">Total Passed 20:</span> <span id="l_p20">0</span><br>
-            <span class="form-label">Total Cost:</span> <span id="l_c">0</span> <br>
-            <span class="form-label">Total Safeguard Cost 12-15:</span> <span id="l_c_sg12">0</span> <br>
-            <span class="form-label">Total Safeguard Cost 15-17:</span> <span id="l_c_sg15">0</span>
+            <span class="form-label" id="cheats">Stars:</span> <span class="stat-item" id="l_s">0</span><br>
+            <span class="form-label">Total Runs:</span> <span class="stat-item" id="l_r">0</span><br>
+            <span class="form-label">Total Success By Star Catch:</span> <span class="stat-item" id="l_sc">0</span><br>
+            <span class="form-label">Total Fails Within Star Catch:</span> <span class="stat-item" id="l_sc_f">0</span><br>
+            <span class="form-label">Total Fails:</span> <span class="stat-item" id="l_f">0</span><br>
+            <span class="form-label">Total Booms:</span> <span class="stat-item" id="l_b">0</span><br>
+            <div class="non-superior">
+                <span class="form-label">Total Safeguards 12-15:</span> <span class="stat-item" id="l_sg12">0</span><br>
+                <span class="form-label">Total Safeguards 15-17:</span> <span class="stat-item" id="l_sg15">0</span><br>
+                <span class="form-label">Total Passed 15:</span> <span class="stat-item" id="l_p15">0</span><br>
+                <span class="form-label">Total Passed 20:</span> <span class="stat-item" id="l_p20">0</span><br>
+                <span class="form-label">Total Passed 22:</span> <span class="stat-item" id="l_p22">0</span><br>
+                <span class="form-label">Total Passed 23:</span> <span class="stat-item" id="l_p23">0</span><br>
+                <span class="form-label">Total Passed 24:</span> <span class="stat-item" id="l_p24">0</span><br>
+                <span class="form-label">Total Passed 25:</span> <span class="stat-item" id="l_p25">0</span><br>
+            </div>
+            <span class="form-label">Total Cost:</span> <span class="stat-item" id="l_c">0</span> <br>
+            <span class="form-label">Total Safeguard Cost 12-15:</span> <span class="stat-item" id="l_c_sg12">0</span> <br>
+            <span class="form-label">Total Safeguard Cost 15-17:</span> <span class="stat-item" id="l_c_sg15">0</span>
             <div class="superior hidden">
-                <span class="form-label">Total AEE:</span> <span id="l_aee">0</span> <br>
-                <span class="form-label">Total No Boom AEE:</span> <span id="l_nb">0</span>
+                <span class="form-label">Total AEE:</span> <span class="stat-item"id="l_aee">0</span> <br>
+                <span class="form-label">Total No Boom AEE:</span> <span class="stat-item" id="l_nb">0</span>
             </div>
         </div>
     </div>
@@ -380,6 +386,7 @@ $(function() {
     });
 
     var supLabels = $(".superior");
+    var nsupLabels = $(".non-superior");
     itemLevel.on("change", function() {
         cbaee.prop("checked", false).trigger("change");;
         level = +$(this).val();
@@ -389,11 +396,13 @@ $(function() {
         	$(".sf,.ev").prop("disabled", true).prop("checked", false).trigger("change");
         	numBtn.val(12).attr("max", 15);
             supLabels.removeClass("hidden");
+            nsupLabels.addClass("hidden");
         } else {
         	numStart.val(10).attr("max", 25);
         	$(".sf,.ev").prop("disabled", false).trigger("change");
         	numBtn.val(22).attr("max", 25);
             supLabels.addClass("hidden");
+            nsupLabels.removeClass("hidden");
         }
 
         var thisItem = {
@@ -664,6 +673,10 @@ $(function() {
     var l_sg15 = $("#l_sg15");
     var l_p15 = $("#l_p15");
     var l_p20 = $("#l_p20");
+    var l_p22 = $("#l_p22");
+    var l_p23 = $("#l_p23");
+    var l_p24 = $("#l_p24");
+    var l_p25 = $("#l_p25");
     var l_c = $("#l_c");
     var l_c_sg12 = $("#l_c_sg12");
     var l_c_sg15 = $("#l_c_sg15");
@@ -680,6 +693,11 @@ $(function() {
         l_sg15.html(o.totSg15);
         l_p15.html(o.totp15);
         l_p20.html(o.totp20);
+        l_p20.html(o.totp20);
+        l_p22.html(o.totp22);
+        l_p23.html(o.totp23);
+        l_p24.html(o.totp24);
+        l_p25.html(o.totp25);
         l_c.html(o.totalCostFormatted);
         l_c_sg12.html(o.totCostSg12.toNumber());
         l_c_sg15.html(o.totCostSg15.toNumber());
@@ -687,7 +705,12 @@ $(function() {
         l_nb.html(o.totnb);
     }
 
+    var reset_stats = function() {
+        $(".stat-item").html(0);
+    }
+
     var star = function(o, updStats = true) {
+        this.name = uuid();
         this.currStar = o.star || 0;
         this.chanceTime = 0;
         this.currRun = 0;
@@ -700,6 +723,10 @@ $(function() {
         this.totRuns = 0;
         this.totp15 = 0;
         this.totp20 = 0;
+        this.totp22 = 0;
+        this.totp23 = 0;
+        this.totp24 = 0;
+        this.totp25 = 0;
         this.totSg12 = 0;
         this.totSg15 = 0;
         this.totSg17 = 0;
@@ -721,6 +748,10 @@ $(function() {
 
         this._prev15 = true;
         this._prev20 = true;
+        this._prev22 = true;
+        this._prev23 = true;
+        this._prev24 = true;
+        this._prev25 = true;
 
         this._private = {
             fail: function(_this, aee = false) {
@@ -972,6 +1003,10 @@ $(function() {
                     this.chanceTime = 0;
                     this._prev15 = true;
                     this._prev20 = true;
+                    this._prev22 = true;
+                    this._prev23 = true;
+                    this._prev24 = true;
+                    this._prev25 = true;
                     _d.type = 5; //destroyed
                     tl = "D";
                 }
@@ -999,7 +1034,7 @@ $(function() {
                  tl = "F";
             }
 
-            this.timeline += tl;
+            //this.timeline += tl;
 
             if (this.currStar >= 15 && this._prev15) {
                 this.totp15++;
@@ -1009,6 +1044,26 @@ $(function() {
             if (this.currStar >= 20 && this._prev20) {
                 this.totp20++;
                 this._prev20 = false;
+            }
+
+            if (this.currStar >= 22 && this._prev22) {
+                this.totp22++;
+                this._prev22 = false;
+            }
+
+            if (this.currStar >= 23 && this._prev23) {
+                this.totp23++;
+                this._prev23 = false;
+            }
+
+            if (this.currStar >= 24 && this._prev24) {
+                this.totp24++;
+                this._prev24 = false;
+            }
+
+            if (this.currStar >= 25 && this._prev25) {
+                this.totp25++;
+                this._prev25 = false;
             }
 
             if (updStats) {
@@ -1082,12 +1137,12 @@ $(function() {
     });
 
     numBtn.on("change", function() {
-        var _this = $(this);
-        var val = +_this.val();
+        let _this = $(this);
+        let val = +_this.val();
 
-        var minVal = 11;
-        var maxVal = 25;
-        var minHeuristic = 23;
+        let minVal = 11;
+        let maxVal = 25;
+        let minHeuristic = 23;
 
         if (level == "-150") {
             minVal = 0;
@@ -1102,6 +1157,10 @@ $(function() {
         }
 
         if (val >= minHeuristic) {
+            if (cbHeuristicContainer.hasClass("hidden")) {
+                cbHeuristic.prop("checked", true).trigger("change");
+            }
+
             cbHeuristicContainer.removeClass("hidden");
         } else {
             cbHeuristicContainer.addClass("hidden");
@@ -1202,6 +1261,7 @@ $(function() {
     var heuristic_init_start = 12;
     var heuristic_25_item = {};
     var heuristic_random_item_i = 0;
+    var heuristic_passed = {};
     function recursiveHeuristic(st, prevItem) {
         var level = itemLevel.val();
 
@@ -1236,6 +1296,15 @@ $(function() {
 
         hItem.starforce();
 
+        heuristic_passed[hItem.name] = {
+            "p15": hItem.totp15,
+            "p20": hItem.totp20,
+            "p22": hItem.totp22,
+            "p23": hItem.totp23,
+            "p24": hItem.totp24,
+            "p25": hItem.totp25,
+        };
+
         var sf = hItem.sfData[hItem.sfData.length - 1];
         var type = sf.type;
         var currstar = sf.current_star;
@@ -1261,6 +1330,7 @@ $(function() {
             if (sf.type === 3) {
                 heuristic["t" + st].success_starcatch++;
             }
+            
             estar = currstar;
         }
 
@@ -1305,6 +1375,10 @@ $(function() {
 
         if (totalDestroy > 0) {
             heuristic_random_item_i = +(totalDestroy * Math.random()).toFixed();
+
+            if (heuristic_random_item_i === totalDestroy) {
+                heuristic_random_item_i -= 1;
+            }
         }
         
         var heuristicItem = {
@@ -1360,6 +1434,7 @@ $(function() {
         }
 
         if (booms > 0) {
+            heuristic_backfill_done(st, false);
             for (var i = 0; i < booms; ++i) {
                 setTimeout(function(_i) {
                     btnGoToStar.html("Beginning backfill..." + parseFloat(((_i + 1)/ booms) * 100).toFixed(1) + "%");
@@ -1427,12 +1502,49 @@ $(function() {
                 bankTotalCost -= h_prevCost;
                 heuristic_item_backfilled.totalCost;
             }
+            let curr15 = +l_p22.html();
+            let curr20 = +l_p22.html();
+            let curr22 = +l_p22.html();
+            let curr23 = +l_p23.html();
+            let curr24 = +l_p24.html();
+            let curr25 = +l_p25.html();
+            let tot15 = 0;
+            let tot20 = 0;
+            let tot22 = 0;
+            let tot23 = 0;
+            let tot24 = 0;
+            let tot25 = 0;
+            for (let i in heuristic_passed) {
+                let hp = heuristic_passed[i];
+                tot15 += hp.p15;
+                tot20 += hp.p20;
+                tot22 += hp.p22;
+                tot23 += hp.p23;
+                tot24 += hp.p24;
+                tot25 += hp.p25;
+            }
+            l_p22.html(curr15 + tot15);
+            l_p22.html(curr20 + tot20);
+            l_p22.html(curr22 + tot22);
+            l_p23.html(curr23 + tot23);
+            l_p24.html(curr24 + tot24);
+            l_p25.html(curr25 + tot25);
 
             generateTable(heuristic_25_item, 0, thisTotalRuns);
             generateLineGraph(heuristic_25_item);
             resetGoToButton(); 
+            resetHeuristicVariables();
         }
     }
+
+    var resetHeuristicVariables = function() {
+        heuristic = {};
+        heuristic_end_star = 0;
+        runs = 0;
+        heuristic_25_item = {};
+        heuristic_random_item_i = 0;
+        heuristic_passed = {};
+    };
 
     btnGoToStar.on("click", function() {
         var _this = $(this);
@@ -1441,6 +1553,8 @@ $(function() {
         if (item.currStar >= value) {
             return false;
         }
+
+        reset_stats();
 
         _this.prop("disabled", true).html("Processing...");
 
@@ -1527,6 +1641,20 @@ $(function() {
     }).on("mouseout", function() {
         h_info_container.addClass("hidden");
     });
+
+    function uuid() {
+        function randomDigit() {
+            if (crypto && crypto.getRandomValues) {
+                var rands = new Uint8Array(1);
+                crypto.getRandomValues(rands);
+                return (rands[0] % 16).toString(16);
+            } else {
+                return ((Math.random() * 16) | 0).toString(16);
+            }
+        }
+        var crypto = window.crypto || window.msCrypto;
+        return 'xxxxxxxxxxxx4xxx8xxxxxxxxxxxxxxx'.replace(/x/g, randomDigit);
+    }
 });
 
 var sf = {
