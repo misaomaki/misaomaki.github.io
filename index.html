@@ -38,6 +38,11 @@
 	  background-color: #949494;
 	  color: white;
 	}
+
+    .prn-range {
+        width:200px;
+        display:inline-block;
+    }
 </style>
 
 <style>
@@ -113,8 +118,10 @@
                 <span class="form-label">Total Passed 25:</span> <span class="stat-item" id="l_p25">0</span><br>
             </div>
             <span class="form-label">Total Cost:</span> <span class="stat-item" id="l_c">0</span> <br>
-            <span class="form-label">Total Safeguard Cost 12-15:</span> <span class="stat-item" id="l_c_sg12">0</span> <br>
-            <span class="form-label">Total Safeguard Cost 15-17:</span> <span class="stat-item" id="l_c_sg15">0</span>
+            <div class="non-superior">
+                <span class="form-label">Total Safeguard Cost 12-15:</span> <span class="stat-item" id="l_c_sg12">0</span> <br>
+                <span class="form-label">Total Safeguard Cost 15-17:</span> <span class="stat-item" id="l_c_sg15">0</span>
+            </div>
             <div class="superior hidden">
                 <span class="form-label">Total AEE:</span> <span class="stat-item"id="l_aee">0</span> <br>
                 <span class="form-label">Total No Boom AEE:</span> <span class="stat-item" id="l_nb">0</span>
@@ -154,6 +161,7 @@
             <input type="number" min="-1" value="10" id="sys_max_records" class="sys" style="width:65px;"> Maximum Records
         </label> <br>
         <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" data-for="prn" class="ch op"> Show PRN</label> <br>
+        <label for="cb_ch_showqmap" class="hidden" title="Show the proc range that determines fail/success/destroy." id="map_con"><input type="checkbox" id="cb_ch_showqmap" data-for="prnmap" class="ch op"> Show PRN Map <br></label>
         <label for="cb_ch_rshift" title="After generating a random value between 0 and 1, it is compared against a proc range. The range is:
 0 - {destroy chance}: item destroy 
 {destroy chance} - {success chance}: item success
@@ -237,13 +245,14 @@ Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck a
 <hr>
 <button id="lineChartShowHide">Show Graph</button>
 <canvas id="lineChart" width="400px" height="100px" class="hidden"></canvas>
-<table id="starforce-output" style="width:45%;min-width:600px;">
+<table id="starforce-output" style="min-width:600px;width:100%;">
 	<thead>
 		<th style="width:5%">Attempt</th>
 		<th style="width:5%">Star</th>
-		<th style="width:35%">Result</th>
+		<th style="width:20%">Result</th>
         <th>Total Cost</th>
         <th style="width:10%" class="ch-row hidden">PRN</th>
+        <th class="ch-row2 hidden">Proc Range</th>
 	</thead>
 	<tbody id="t-output">
 		
@@ -256,7 +265,6 @@ Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck a
   crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
-
 
 <script>
 $(function() {
@@ -294,24 +302,25 @@ $(function() {
         hsx: false,
         adv: true,
         prn: false,
+        prnmap: false,
         rshift: false
     };
 
     var cb_sf12 = $("#cb_sf12");
+    var cb_ch_showqmap = $("#cb_ch_showqmap");
+    var cb_showmap_con = $("#map_con");
+    $(".op").on("change", function(e, bypass) {
+        if (bypass) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            return false;
+        }
 
-    $(".op").on("change", function(e) {
         var _this = $(this);
         var data_for = _this.attr("data-for");
         sf_options[data_for] = e.target.checked;
 
-        if (data_for == "nb" || data_for == "aee") {
-            if (e.target.checked) {
-                cb_sf12.prop({disabled: true, checked: false}).trigger("change");
-                cbHeuristic.prop("checked", false).trigger("change");
-            } else {
-                cb_sf12.prop("disabled", false);
-            }
-        } else if (data_for === "nbe") {
+        if (data_for === "nbe") {
             if (e.target.checked) {
                 btnStop.removeClass("hidden");
                 cbHeuristic.prop("checked", false).trigger("change");
@@ -328,6 +337,25 @@ $(function() {
                 cb_sf12.prop({disabled: true, checked: false}).trigger("change");
             } else {
                 cb_sf12.prop("disabled", false);
+            }
+        } else if (data_for === "aee" || data_for === "nb") {
+            if (e.target.checked) {
+                cbHeuristic.prop("checked", false).trigger("change");
+            }
+        } else if (data_for === "prn") {
+            if (e.target.checked) {
+                cb_showmap_con.removeClass("hidden");
+                $(".ch-row").removeClass("hidden");
+            } else {
+                cb_showmap_con.addClass("hidden");
+                cb_ch_showqmap.prop("checked",false).trigger("change");
+                $(".ch-row").addClass("hidden");
+            }
+        } else if (data_for === "prnmap") {
+            if (e.target.checked) {
+                $(".ch-row2").removeClass("hidden");
+            } else {
+                $(".ch-row2").addClass("hidden");
             }
         }
     });
@@ -352,8 +380,8 @@ $(function() {
 
     var graphShown = false;
     $("#lineChartShowHide").on("click", function() {
-        var graph = $("#lineChart");
-        var _this = $(this);
+        let graph = $("#lineChart");
+        let _this = $(this);
         if (graphShown) {
             graph.addClass("hidden");
             _this.html("Show Graph");
@@ -367,7 +395,7 @@ $(function() {
     
     var cbSc = $("#cb_sc");
     cbSc.on("click", function(e) {
-        var sff = $("#sff_label");
+        let sff = $("#sff_label");
 
         if (e.target.checked) {
             sff.removeClass("hidden");
@@ -377,7 +405,7 @@ $(function() {
     });
 
     $("#starForceFilter").on("change", function() {
-        var val = $(this).val().trim();
+        let val = $(this).val().trim();
 
         if (val === "") {
             sffilter = "";
@@ -388,39 +416,45 @@ $(function() {
 
     var supLabels = $(".superior");
     var nsupLabels = $(".non-superior");
+    var sfev = $(".sf,.ev");
     itemLevel.on("change", function() {
-        cbaee.prop("checked", false).trigger("change");;
+        cbaee.prop("checked", false).trigger("change");
         level = +$(this).val();
 
         if (level === -150) {
         	numStart.val(0).attr("max", 15);
-        	$(".sf,.ev").prop("disabled", true).prop("checked", false).trigger("change");
+        	sfev.prop("disabled", true).prop("checked", false);
         	numBtn.val(12).attr("max", 15);
             supLabels.removeClass("hidden");
             nsupLabels.addClass("hidden");
         } else {
         	numStart.val(10).attr("max", 25);
-        	$(".sf,.ev").prop("disabled", false).trigger("change");
+        	sfev.prop("disabled", false);
         	numBtn.val(22).attr("max", 25);
             supLabels.addClass("hidden");
             nsupLabels.removeClass("hidden");
         }
 
-        var thisItem = {
+        let thisItem = {
             level: level,
             currStar: 10
         };
 
         getNextStar(thisItem);
         $("#btnNew").trigger("click");
+        update_sfev(true);
         numBtn.trigger("change");
     });
+
+    var update_sfev = function(bypass = false) {
+        sfev.trigger("change", bypass);
+    }
 
     var mc = "";
     var currMax = 0;
     var generateLineGraph = function(item) {
         if (maxRecords === 0) return false;
-        var graphData = item.sfData;
+        let graphData = item.sfData;
         
         if (maxRecords !== -1) {
             graphData = graphData.slice(Math.max(item.sfData.length - maxRecords, 0));
@@ -428,10 +462,10 @@ $(function() {
 
         graphData = graphData.map((a) => {return {x: a.id, y: a.current_star}});
 
-        var isSuperior = itemLevel.val() == -150;
+        let isSuperior = itemLevel.val() == -150;
 
-        var min = 10;
-        var max = 25;
+        let min = 10;
+        let max = 25;
 
         if (isSuperior) {
             min = 0;
@@ -439,7 +473,7 @@ $(function() {
         }
 
         if (mc === "" || currMax !== max) {
-            var ctx = $("#lineChart");
+            let ctx = $("#lineChart");
             mc = new Chart(ctx, {
                 type: "scatter",
                 data: {
@@ -505,8 +539,6 @@ $(function() {
         } else {
             startAt = 0;
         }
-
-        let unhideRow = sf_options.prn;
 
     	let tbody = "";
         let index = 0;
@@ -580,7 +612,8 @@ $(function() {
     				<td style="background-color:${bgColor};color:${color}">${_d.current_star}</td>
     				<td ${_d.type >= 5 && _d.type <= 10 ? 'style="background-color:grey"' : ''}>${thisResult}</td>
                     <td>${_d.current_total_cost}</td>
-                    <td class="ch-row ${unhideRow ? "" : "hidden"}">${_d.q}</td>
+                    <td class="ch-row ${sf_options.prn ? "" : "hidden"}">${_d.q}</td>
+                    <td class="ch-row2 ${sf_options.prnmap ? "" : "hidden"}">${_d.prn_map}</td>
     			</tr>
     		`;
 
@@ -918,6 +951,8 @@ $(function() {
 
             let tl = "";
 
+            _d.prn_map = "";
+            let randomShift = 0;
             let _procType = 0; // 1 - destroy, 2 -success, 3 success sc, 4 - fail
             if (isChance || is100) {
                 _procType = 2
@@ -967,6 +1002,28 @@ $(function() {
                 } else {
                     _procType = 4;
                 }
+
+                if (!(procMap.destroy[0] === randomShift && procMap.destroy[1] === randomShift)) {
+                    _d.prn_map += `<span class="prn-range">${procMap.destroy[0].toFixed(4)} < PRN <= ${procMap.destroy[1].toFixed(4)}</span> destroy<br>`;
+                }
+
+                if (typeof procMap.destroy2 !== 'undefined') 
+                    _d.prn_map += `<span class="prn-range">${procMap.destroy2[0].toFixed(4)} < PRN <= ${procMap.destroy2[1].toFixed(4)}</span> destroy<br>`;
+
+                _d.prn_map += `<span class="prn-range">${procMap.success[0].toFixed(4)} < PRN <= ${procMap.success[1].toFixed(4)}</span> success<br>`;
+
+                if (typeof procMap.success2 !== 'undefined') 
+                    _d.prn_map += `<span class="prn-range">${procMap.success2[0].toFixed(4)} < PRN <= ${procMap.success2[1].toFixed(4)}</span> success<br>`;
+
+                _d.prn_map += `<span class="prn-range">${procMap.success_sc[0].toFixed(4)} < PRN <= ${procMap.success_sc[1].toFixed(4)}</span> sc success<br>`;
+
+                if (typeof procMap.success_sc2 !== 'undefined') 
+                    _d.prn_map += `<span class="prn-range">${procMap.success_sc2[0].toFixed(4)} < PRN <= ${procMap.success_sc2[1].toFixed(4)}</span> sc success<br>`;
+
+                _d.prn_map += `<span class="prn-range">${procMap.fail[0].toFixed(4)} < PRN <= ${procMap.fail[1].toFixed(4)}</span> fail<br>`;
+
+                if (typeof procMap.fail2 !== 'undefined') 
+                    _d.prn_map += `<span class="prn-range">${procMap.fail2[0].toFixed(4)} < PRN <= ${procMap.fail2[1].toFixed(4)}</span> fail`;
             }
             
             if (_procType === 1) {
@@ -1181,10 +1238,6 @@ $(function() {
         } else {
             btnStop.addClass("hidden");
         }
-    });
-
-    cbHeuristic.on("click", function() {
-        numBtn.trigger("change");
     });
 
     numStart.on("change", function() {
@@ -1619,14 +1672,6 @@ $(function() {
         $("#cheat_panel").toggleClass("hidden");
 
         $(".ch").prop("checked", false).trigger("change");
-    });
-
-    $("#cb_ch_showq").on("change", function(e) {
-        if (e.target.checked) {
-            $(".ch-row").removeClass("hidden");
-        } else {
-            $(".ch-row").addClass("hidden");
-        }
     });
 
     var h_info_container = $("#h_info_container");
@@ -2141,7 +2186,7 @@ var sf = {
         level: 14,
         success: 0.01,
         fail: 0,
-        destroy: 0.98,
+        destroy: 0.99,
         cost: 0
     }],
 };
