@@ -579,6 +579,7 @@ $(function() {
                 break;
             }
             
+            /*
     		if (_d.is_chance_time) {
     			tbody += `
     				<tr>
@@ -588,6 +589,7 @@ $(function() {
     				</tr>
     			`;
     		}
+            */
 
     		let bgColor = "none";
     		let color = "black";
@@ -610,7 +612,7 @@ $(function() {
     			<tr>
     				<td>${_d.id}</td>
     				<td style="background-color:${bgColor};color:${color}">${_d.current_star}</td>
-    				<td ${_d.type >= 5 && _d.type <= 10 ? 'style="background-color:grey"' : ''}>${thisResult}</td>
+    				<td ${_d.type >= 5 && _d.type <= 10 ? 'style="background-color:grey"' : ''}>${thisResult} ${_d.is_chance_time ? "(Chance Time!)":""}</td>
                     <td>${_d.current_total_cost}</td>
                     <td class="ch-row ${sf_options.prn ? "" : "hidden"}">${_d.q}</td>
                     <td class="ch-row2 ${sf_options.prnmap ? "" : "hidden"}">${_d.prn_map}</td>
