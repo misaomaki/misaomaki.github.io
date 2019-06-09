@@ -310,14 +310,15 @@ $(function() {
     var cb_ch_showqmap = $("#cb_ch_showqmap");
     var cb_showmap_con = $("#map_con");
     $(".op").on("change", function(e, bypass) {
+        let _this = $(this);
+        let data_for = _this.attr("data-for");
+        sf_options[data_for] = e.target.checked;
+
         if (bypass) {
             e.preventDefault();
             e.stopImmediatePropagation();
+            return false;
         }
-
-        var _this = $(this);
-        var data_for = _this.attr("data-for");
-        sf_options[data_for] = e.target.checked;
 
         if (data_for === "nbe") {
             if (e.target.checked) {
@@ -360,7 +361,7 @@ $(function() {
     });
 
     $(".mvp-dc").on("change", function(e) {
-        var val = $(this).val();
+        let val = $(this).val();
         sf_options.mvp = +val;
         sf_options.isMvp = e.target.checked;
     });
@@ -1197,6 +1198,7 @@ $(function() {
         resetGoToButton();
     });
 
+    var cbAeeNb = $("#cbAeeNb");
     numBtn.on("change", function() {
         let _this = $(this);
         let val = +_this.val();
@@ -1205,10 +1207,16 @@ $(function() {
         let maxVal = 25;
         let minHeuristic = 23;
 
+        let doHeuristic = true;
+
         if (level == "-150") {
             minVal = 0;
             maxVal = 15;
             minHeuristic = 13;
+
+            if (cbAeeNb.prop("checked")) {
+                doHeuristic = false;
+            }
         }
 
         if (val < minVal) {
@@ -1217,8 +1225,9 @@ $(function() {
             _this.val(maxVal);
         }
 
+        
         if (val >= minHeuristic) {
-            if (cbHeuristicContainer.hasClass("hidden")) {
+            if (doHeuristic && cbHeuristicContainer.hasClass("hidden")) {
                 cbHeuristic.prop("checked", true).trigger("change");
             }
 
@@ -1240,8 +1249,8 @@ $(function() {
     });
 
     numStart.on("change", function() {
-        var _this = $(this);
-        var val = +_this.val();
+        let _this = $(this);
+        let val = +_this.val();
 
         if (level == -150) {
             if (val < 0) {
@@ -1320,7 +1329,7 @@ $(function() {
     var heuristic_random_item_i = 0;
     var heuristic_passed = {};
     function recursiveHeuristic(st, prevItem) {
-        var level = itemLevel.val();
+        let level = itemLevel.val();
 
         if (heuristic_end_star === st) {
             heuristic_25_item = prevItem;
@@ -1341,7 +1350,7 @@ $(function() {
             };
         }
 
-        var hItem = {};
+        let hItem = {};
         if (typeof prevItem === 'undefined') {
             hItem = new star({
                 star: st,
@@ -1359,12 +1368,12 @@ $(function() {
             "p25": hItem.totp25,
         };
 
-        var sf = hItem.sfData[hItem.sfData.length - 1];
-        var type = sf.type;
-        var currstar = sf.current_star;
-        var cost = hItem.totalCost;
+        let sf = hItem.sfData[hItem.sfData.length - 1];
+        let type = sf.type;
+        let currstar = sf.current_star;
+        let cost = hItem.totalCost;
         
-        var estar = 0;
+        let estar = 0;
         //fail
         heuristic["t" + st].cost += cost;
         heuristic["t" + st].runs++;
@@ -1413,13 +1422,13 @@ $(function() {
         totCostSg15: 0
     };
     var heuristic_done = function(st) {
-        var totalRuns = 0;
-        var failStarcatch = 0;
-        var successStarcatch = 0;
-        var totalCost = 0;
-        var totalDestroy = 0;
-        var totalFail = 0;
-        for (var i in heuristic) {
+        let totalRuns = 0;
+        let failStarcatch = 0;
+        let successStarcatch = 0;
+        let totalCost = 0;
+        let totalDestroy = 0;
+        let totalFail = 0;
+        for (let i in heuristic) {
             totalRuns += heuristic[i].runs;
             failStarcatch += heuristic[i].fail_starcatch;
             successStarcatch += heuristic[i].success_starcatch;
@@ -1481,7 +1490,7 @@ $(function() {
             totCostSg15: 0
         };
 
-        for (var j in heuristic_item_backfilled) {
+        for (let j in heuristic_item_backfilled) {
             heuristic_item_backfilled[j] += heuristicItem[j] || 0;
         }
 
@@ -1492,7 +1501,7 @@ $(function() {
     }
 
     var heuristic_backfill_init = function(booms, st) {
-        var initItem = new star({
+        let initItem = new star({
             star: start,
             level: level
         }, false);
@@ -1501,13 +1510,13 @@ $(function() {
             initItem.starforce()
         }
 
-        for (var j in heuristic_item_backfilled) {
+        for (let j in heuristic_item_backfilled) {
             heuristic_item_backfilled[j] += initItem[j];
         }
 
         if (booms > 0) {
             heuristic_backfill_done(st, false);
-            for (var i = 0; i < booms; ++i) {
+            for (let i = 0; i < booms; ++i) {
                 setTimeout(function(_i) {
                     btnGoToStar.html("Beginning backfill..." + parseFloat(((_i + 1)/ booms) * 100).toFixed(1) + "%");
                     heuristic_backfill(booms, st, _i);
@@ -1520,7 +1529,7 @@ $(function() {
     }
 
     var heuristic_backfill = function(booms, st, i) {
-        var hbfItem = new star({
+        let hbfItem = new star({
             star: heuristic_init_start,
             level: level
         }, false);
@@ -1529,7 +1538,7 @@ $(function() {
             hbfItem.starforce()
         }
 
-        for (var j in heuristic_item_backfilled) {
+        for (let j in heuristic_item_backfilled) {
             heuristic_item_backfilled[j] += hbfItem[j];
         }
 
@@ -1595,8 +1604,8 @@ $(function() {
     };
 
     btnGoToStar.on("click", function() {
-        var _this = $(this);
-        var value = +numBtn.val();
+        let _this = $(this);
+        let value = +numBtn.val();
 
         if (item.currStar >= value) {
             return false;
@@ -1610,7 +1619,7 @@ $(function() {
             return false;
         }
 
-        var _o = {
+        let _o = {
             aee: false,
             noboom: false
         };
@@ -1647,7 +1656,7 @@ $(function() {
         n = 0;
         n_stop = false;
 
-        var currVal = item.currStar;
+        let currVal = item.currStar;
 
         if (!sf_options.nbe || _o.aee) {
             while (item.currStar < value) {
@@ -1685,14 +1694,14 @@ $(function() {
     function uuid() {
         function randomDigit() {
             if (crypto && crypto.getRandomValues) {
-                var rands = new Uint8Array(1);
+                let rands = new Uint8Array(1);
                 crypto.getRandomValues(rands);
                 return (rands[0] % 16).toString(16);
             } else {
                 return ((Math.random() * 16) | 0).toString(16);
             }
         }
-        var crypto = window.crypto || window.msCrypto;
+        let crypto = window.crypto || window.msCrypto;
         return 'xxxxxxxxxxxx4xxx8xxxxxxxxxxxxxxx'.replace(/x/g, randomDigit);
     }
 });
