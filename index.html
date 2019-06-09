@@ -313,7 +313,6 @@ $(function() {
         if (bypass) {
             e.preventDefault();
             e.stopImmediatePropagation();
-            return false;
         }
 
         var _this = $(this);
@@ -1556,6 +1555,9 @@ $(function() {
             //hacking the cost data
             let h_sfData_len = heuristic_25_item.sfData.length - 1;
             heuristic_25_item.currRun = thisTotalRuns;
+            heuristic_25_item.totalCost = bankTotalCost;
+            heuristic_25_item.totalCostFormatted = heuristic_item_backfilled.totalCostFormatted;
+
             for (let i = h_sfData_len; i >= 0 ; i--) {
                 let h_currData = heuristic_25_item.sfData[i];
                 let h_currStar = h_currData.current_star;
@@ -1566,7 +1568,6 @@ $(function() {
                 })[0];
 
                 let h_prevCost = h_prevSf.cost;
-
                 heuristic_25_item.sfData[i].cost = i === h_sfData_len ? bankTotalCost : bankTotalCost - h_prevCost;
                 heuristic_25_item.sfData[i].current_total_cost = heuristic_25_item.sfData[i].cost.toNumber();
                 heuristic_25_item.sfData[i].id = thisTotalRuns;
