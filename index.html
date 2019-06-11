@@ -94,6 +94,10 @@
         background-color: #b7824b;
     }
 
+    .lim {
+        background-color: #eb87ba;
+    }
+
     .prn-success {
         color: green;
     }
@@ -169,13 +173,13 @@
     </div>
     <div class="flex-item" style="width:250px;">
         <span class="flex-header system">System</span>
-        <label for="cb_ch_adv" title="Apply new star force values from the Adventure update."><input type="checkbox" id="cb_ch_adv" data-for="adv" class="ch sf2 op" checked> Apply Adventure SF</label> <br>
+        <label for="cb_ch_adv" title="Apply new star force values from the Adventure update."><input type="checkbox" id="cb_ch_adv" data-for="adv" class="ch sf2 op" checked> Apply Adventure SF [?]</label> <br>
         <hr>
         <label for="sys_max_records" title="Max records in table/graph at any given time. Lots of concurrent records causes slowness. -1 for no max.">
-            <input type="number" min="-1" value="10" id="sys_max_records" class="sys" style="width:65px;"> Maximum Records
+            <input type="number" min="-1" value="10" id="sys_max_records" class="sys" style="width:65px;"> Maximum Records [?]
         </label>
         <hr>
-        <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" data-for="prn" class="ch op"> Show PRN</label> <br>
+        <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" data-for="prn" class="ch op"> Show PRN [?]</label> <br>
         <label for="cb_ch_showqmap" class="hidden" title="Show the proc range that determines fail/success/destroy." id="map_con"><input type="checkbox" id="cb_ch_showqmap" data-for="prnmap" class="ch op"> Show PRN Map <br></label>
         <label for="cb_ch_rshift" title="After generating a random value between 0 and 1, it is compared against a proc range. The range is:
 0 - {destroy chance}: item destroy 
@@ -183,10 +187,10 @@
 {success chance} - {sc success chance}: item star catch success
 {sc success chance} - 1: item fail
 Enabling this will provide a seed value to the range so that it is not always the same. Doesn't change anything other than make the starforcing more randomer-er.">
-            <input type="checkbox" id="cb_ch_rshift" data-for="rshift" class="ch op"> Randomize Proc Range
+            <input type="checkbox" id="cb_ch_rshift" data-for="rshift" class="ch op"> Randomize Proc Range [?]
         </label>
         <hr>
-        <label for="cb_ch_rt" title="When clicking the &quot;Enhance&quot; button, adds a 2.25-second delay (3.5 seconds for star catching) to star forcing for the authentic Maplestory experience. Does not affect non-blocking or heuristic starforcing."><input type="checkbox" id="cb_ch_rt" data-for="rt" class="ch op"> Enable Real Time SF <br></label>
+        <label for="cb_ch_rt" title="When clicking the &quot;Enhance&quot; button, adds a 2.25-second delay (3.5 seconds for star catching) to star forcing for the authentic Maplestory experience. Does not affect non-blocking or heuristic starforcing."><input type="checkbox" id="cb_ch_rt" data-for="rt" class="ch op"> Enable Real Time SF [?] <br></label>
     </div> 
     <div class="flex-item hidden" id="cheat_panel">
         <span class="flex-header options2">Debug</span>
@@ -218,16 +222,16 @@ Enabling this will provide a seed value to the range so that it is not always th
         <input type="number" min="1" max="25" id="num" value="22">
         <button id="btnGoToStar">Go To Star</button> <button id="btnStop" class="hidden">Stop</button>
         <br><br>
-        <label for="cbNbe" id="nonbl">
-            <input type="checkbox" id="cbNbe" data-for="nbe" class="op"> Use Non-Blocking Enhancement <span id="h_info_nbe" style="cursor:pointer;" title="Prevents the browser from locking up at the cost of being much slower. Useful if you're on a phone or a slow computer.">[?]</span>
+        <label for="cbNbe" id="nonbl" title="Prevents the browser from locking up at the cost of being much slower. Useful if you're on a phone or a slow computer. It is recommended you set the Maximum Records to 10 or less while running this, as updating large tables will slow it down.">
+            <input type="checkbox" id="cbNbe" data-for="nbe" class="op"> Use Non-Blocking Enhancement [?]
         </label>
         <br>
-        <label for="cbHeuristic" id="heur" class="hidden">
-            <input type="checkbox" data-for="hsx" class="op" id="cbHeuristic"> Use Heuristic Enhancement <span id="h_info" style="cursor:pointer;" title='Uses an alternative starforcing method. The current method is to starforce as you would in game, just quickly.
+        <label for="cbHeuristic" id="heur" class="hidden" title='Uses an alternative starforcing method. The current method is to starforce as you would in game, just quickly.
 This method assumes you have an infinite number of 22-star items. Booming the item means you toss the trace and start again with a new 22-star item. 
 Once the desired star is reached, the code goes back and runs starforcing for each boom, going from 12->22. One run will go from {start}->22 to account for your first run at the desired start level. 
 The records shown in the table will only show the successful run to the desired star and a random backfilled run to 22 stars (this represents the &quot;final&quot; run of that item).
-Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck and computer.'>[?]</span>
+Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck and computer.'>
+            <input type="checkbox" data-for="hsx" class="op" id="cbHeuristic"> Use Heuristic Enhancement [?]
         </label>
         <div class="superior hidden">
             <label for="cbAee" class="hidden">
@@ -237,6 +241,24 @@ Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck a
                 <input type="checkbox" class="cbaee op" id="cbAeeNb" data-for="nb"> Use No Boom AEE
             </label>
         </div>
+    </div>
+    <div class="flex-item" style="min-width:400px;">
+        <span class="flex-header lim">Limited Resources</span>
+        
+        <label for="cbLim" title="Starforce with a limited budget and see how it goes. The starforcing will stop if you exceed your extra item amount or mesos. -1 for no limit.
+Does not affect heuristic starforcing.">
+            <input type="checkbox" id="cbLim" data-for="lim" class="op"> Use Limited Resources Mode [?]
+            <div class="hidden" id="limBudget">
+                <hr>
+                <label for="">
+                    I have <input type="number" min="0" value="-1" style="width:50px;" class="op-num" data-for="lim_i"> spare items
+                </label>
+                <label for="">
+                and <input type="number" min="0" value="-1" style="width:100px;" class="op-num" data-for="lim_m"> million mesos.
+                </label>
+            </div>
+        </label>
+
     </div>
 </div>
 
@@ -295,10 +317,13 @@ $(function() {
     var cbHeuristic = $("#cbHeuristic");
     var cbNbe = $("#cbNbe");
     var cbaee = $(".cbaee");
+    var limBudget = $("#limBudget");
+    var cbLim = $("#cbLim");
 
     //global variables for starforce
     var sffilter = "";
     var maxRecords = sys_max_records.val();
+    var toutput_msg_queue = [];
 
     var sf_options = {
         sf12: false,
@@ -323,7 +348,10 @@ $(function() {
         rshift: false,
         rt: false,
         rt_sf: 2250,
-        rt_sc: 3500
+        rt_sc: 3500,
+        lim: false,
+        lim_i: -1,
+        lim_m: -1
     };
 
     var check_starcatching = function(st) {
@@ -353,6 +381,7 @@ $(function() {
             }
         } else if (data_for === 'hsx') {
             if (e.target.checked) {
+                cbLim.prop("checked", false).trigger("change");
                 cbNbe.prop("checked", false).trigger("change");
                 cbaee.prop("checked", false).trigger("change");
             }
@@ -381,7 +410,21 @@ $(function() {
             } else {
                 $(".ch-row2").addClass("hidden");
             }
+        } else if (data_for === "lim") {
+            if (e.target.checked) {
+                limBudget.removeClass("hidden");
+                cbHeuristic.prop("checked", false).trigger("change");
+            } else {
+                limBudget.addClass("hidden");
+                toutput_msg_queue = [];
+            }
         }
+    });
+
+    $(".op-num").on("change", function() {
+        let _this = $(this);
+        let data_for = _this.attr("data-for");
+        sf_options[data_for] = +_this.val();
     });
 
     $(".mvp-dc").on("change", function(e) {
@@ -389,7 +432,6 @@ $(function() {
         sf_options.mvp = +val;
         sf_options.isMvp = e.target.checked;
     });
-
 
     Number.prototype.toNumber = function() {
         return this.toLocaleString();
@@ -640,6 +682,14 @@ $(function() {
     	}
 
     	toutput.html(tbody);
+
+        if (toutput_msg_queue.length > 0) {
+            for (let i = 0; i < toutput_msg_queue.length; ++i) {
+                toutput.prepend(toutput_msg_queue[i]);
+            }
+
+            toutput_msg_queue = [];
+        }
     };
 
     var star_cost = $("#star_cost");
@@ -853,7 +903,7 @@ $(function() {
 
         this.starforce = function(_o) {
             if (this.currStar === 25 || (this.level == -150 && this.currStar === 15)) {
-                return false;
+                return -1;
             }
 
             this.totRuns++;
@@ -942,7 +992,39 @@ $(function() {
 
             let effectiveCost = parseFloat((currCost - (sf_options.o30 ? currCost * 0.3 : 0) - (sf_options.isMvp && this.currStar < 17 ? currCost * sf_options.mvp : 0)).toFixed(0)) + (isSafe && !is100 ? currCost : 0);
 
+            if (sf_options.lim) {
+                if (sf_options.lim_m !== -1) {
+                    let lim_cost = sf_options.lim_m * 1000000;
+                    if (lim_cost < (this.totalCost + effectiveCost)) {
+                            toutput_msg_queue.push(
+                                `<tr class="message-row"><td colspan="6">You have reached your meso budget with ${(lim_cost - this.totalCost).toNumber()} mesos leftover.</td></tr>`
+                            );
+                        if (typeof _o.cb_end === 'function') {
+                            _o.cb_end(-15);
+                        }
+                        return -15;
+                    }
+                } 
+                if (sf_options.lim_i !== -1) {
+                    if (sf_options.lim_i < this.totBoom) {
+                        if (sf_options.lim_i === 0) {
+                            toutput_msg_queue.push(
+                            `<tr class="message-row"><td colspan="6">You have no additional spare items to star force.</td></tr>`
+                            );
+                        } else {
+                            toutput_msg_queue.push(
+                                `<tr class="message-row"><td colspan="6">You have boomed all ${sf_options.lim_i} spare item(s).</td></tr>`
+                            );
+                        }
+                        if (typeof _o.cb_end === 'function') {
+                            _o.cb_end(-15);
+                        }
+                        return -15;
+                    }
+                }
+            }
             this.totalCost += effectiveCost;
+            
             _d.current_cost = effectiveCost;
             
             _d.current_total_cost = this.totalCost.toNumber();;
@@ -1324,7 +1406,7 @@ $(function() {
             return false;
         }
             
-        item.starforce({
+        let res = item.starforce({
             cb_end: function() {
                 if ((n <= max_n && item.currStar <= v) && !n_stop) {
                     setTimeout(function() {
@@ -1338,7 +1420,7 @@ $(function() {
 
                     if (n > max_n) {
                         setTimeout(function() {
-                            $("#output").prepend("Unable to get to this star in " + max_n + " tries.<br>");
+                            toutput_msg_queue.push("<tr class='message-row'><td colspan='6'>Unable to get to this star in " + max_n + " tries.</td></tr>");
                         }, 100);
 
                         if (typeof done === 'function') {
@@ -1357,6 +1439,12 @@ $(function() {
                 }
             }
         });
+
+        if (res === -15) {
+            n_stop = true;
+            done();
+            return false;
+        }
     }
 
     function resetGoToButton() {
@@ -1682,7 +1770,7 @@ $(function() {
 
         if (sf_options.hsx) {
             runs = 0;
-            $("#t-output").html("");
+            toutput.html("");
             _this.html("Running heuristic...");
             //reset heuristic
             heuristic = {};
@@ -1699,7 +1787,8 @@ $(function() {
 
         if (!sf_options.nbe || _o.aee) {
             while (item.currStar < value) {
-                item.starforce(_o);
+                let res = item.starforce(_o);
+                if (res === -15) break;
                 currVal = item.currStar;
             }
 
