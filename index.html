@@ -43,9 +43,7 @@
         width:200px;
         display:inline-block;
     }
-</style>
 
-<style>
     .flex-container {
         display: flex;
         margin-bottom:10px;
@@ -94,6 +92,22 @@
 
     .system {
         background-color: #b7824b;
+    }
+
+    .prn-success {
+        color: green;
+    }
+
+    .prn-fail {
+        color: red;
+    }
+
+    .prn-destroy {
+        color: #464646;
+    }
+
+    .prn-sc-success {
+        color: #0072ec;
     }
 </style>
 
@@ -545,22 +559,26 @@ $(function() {
     	for (let i = data.length - 1; i >= startAt; --i) {
     		let _d = data[i];
     		let thisResult = "";
+            let prn_color = "prn-fail";
 
     		switch (_d.type) {
     			case 1: 
                     thisResult = '<span style="color:green">Success!</span>';
+                    prn_color = "prn-success";
     			break;
     			case 2:
     				thisResult = '<span style="color:red">Failed</span>';
     			break;
     			case 3:
     				thisResult = '<span style="color:green">Success (Star Catch)!</span>'; 
+                    prn_color = "prn-sc-success";
     			break;
     			case 4:
     				thisResult = '<span style="color:red">Failed (Star Catch)!</span>'; 
     			break;
     			case 5:
     				thisResult = '<span style="color:white">Destroyed!</span>'; 
+                    prn_color = "prn-destroy";
     			break;
     			case 6:
     				thisResult = '<span style="color:white">Safeguard!</span>'; 
@@ -602,7 +620,7 @@ $(function() {
     				<td style="background-color:${bgColor};color:${color}">${_d.current_star}</td>
     				<td ${_d.type >= 5 && _d.type <= 10 ? 'style="background-color:grey"' : ''}>${thisResult} ${_d.is_chance_time ? "(Chance Time!)":""}</td>
                     <td>${_d.current_total_cost}</td>
-                    <td class="ch-row ${sf_options.prn ? "" : "hidden"}">${_d.q}</td>
+                    <td class="ch-row ${prn_color} ${sf_options.prn ? "" : "hidden"}">${_d.q}</td>
                     <td class="ch-row2 ${sf_options.prnmap ? "" : "hidden"}">${_d.prn_map}</td>
     			</tr>
     		`;
@@ -947,6 +965,8 @@ $(function() {
             let _procType = 0; // 1 - destroy, 2 -success, 3 success sc, 4 - fail
             if (isChance || is100) {
                 _procType = 2
+                _d.q = 1;
+                _d.prn_map += `<span class="prn-range prn-success">0 < PRN <= 1</span> success`;
             } else {
                 let effective_success = _sf.destroy + _sf.success;
                 let effective_success_sc = _sf.destroy + scSuccess;
@@ -995,26 +1015,26 @@ $(function() {
                 }
 
                 if (!(procMap.destroy[0] === randomShift && procMap.destroy[1] === randomShift)) {
-                    _d.prn_map += `<span class="prn-range">${procMap.destroy[0].toFixed(4)} < PRN <= ${procMap.destroy[1].toFixed(4)}</span> destroy<br>`;
+                    _d.prn_map += `<span class="prn-range prn-destroy">${procMap.destroy[0].toFixed(4)} < PRN <= ${procMap.destroy[1].toFixed(4)}</span> destroy<br>`;
                 }
 
                 if (typeof procMap.destroy2 !== 'undefined') 
-                    _d.prn_map += `<span class="prn-range">${procMap.destroy2[0].toFixed(4)} < PRN <= ${procMap.destroy2[1].toFixed(4)}</span> destroy<br>`;
+                    _d.prn_map += `<span class="prn-range prn-destroy">${procMap.destroy2[0].toFixed(4)} < PRN <= ${procMap.destroy2[1].toFixed(4)}</span> destroy<br>`;
 
-                _d.prn_map += `<span class="prn-range">${procMap.success[0].toFixed(4)} < PRN <= ${procMap.success[1].toFixed(4)}</span> success<br>`;
+                _d.prn_map += `<span class="prn-range prn-success">${procMap.success[0].toFixed(4)} < PRN <= ${procMap.success[1].toFixed(4)}</span> success<br>`;
 
                 if (typeof procMap.success2 !== 'undefined') 
-                    _d.prn_map += `<span class="prn-range">${procMap.success2[0].toFixed(4)} < PRN <= ${procMap.success2[1].toFixed(4)}</span> success<br>`;
+                    _d.prn_map += `<span class="prn-range prn-success">${procMap.success2[0].toFixed(4)} < PRN <= ${procMap.success2[1].toFixed(4)}</span> success<br>`;
 
-                _d.prn_map += `<span class="prn-range">${procMap.success_sc[0].toFixed(4)} < PRN <= ${procMap.success_sc[1].toFixed(4)}</span> sc success<br>`;
+                _d.prn_map += `<span class="prn-range prn-sc-success">${procMap.success_sc[0].toFixed(4)} < PRN <= ${procMap.success_sc[1].toFixed(4)}</span> sc success<br>`;
 
                 if (typeof procMap.success_sc2 !== 'undefined') 
-                    _d.prn_map += `<span class="prn-range">${procMap.success_sc2[0].toFixed(4)} < PRN <= ${procMap.success_sc2[1].toFixed(4)}</span> sc success<br>`;
+                    _d.prn_map += `<span class="prn-range prn-sc-success">${procMap.success_sc2[0].toFixed(4)} < PRN <= ${procMap.success_sc2[1].toFixed(4)}</span> sc success<br>`;
 
-                _d.prn_map += `<span class="prn-range">${procMap.fail[0].toFixed(4)} < PRN <= ${procMap.fail[1].toFixed(4)}</span> fail<br>`;
+                _d.prn_map += `<span class="prn-range prn-fail">${procMap.fail[0].toFixed(4)} < PRN <= ${procMap.fail[1].toFixed(4)}</span> fail<br>`;
 
                 if (typeof procMap.fail2 !== 'undefined') 
-                    _d.prn_map += `<span class="prn-range">${procMap.fail2[0].toFixed(4)} < PRN <= ${procMap.fail2[1].toFixed(4)}</span> fail`;
+                    _d.prn_map += `<span class="prn-range prn-fail">${procMap.fail2[0].toFixed(4)} < PRN <= ${procMap.fail2[1].toFixed(4)}</span> fail`;
             }
             
             if (_procType === 1) {
