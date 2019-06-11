@@ -578,18 +578,6 @@ $(function() {
                     thisResult = '<span style="color:white">Safeguard!</span>'; 
                 break;
             }
-            
-            /*
-    		if (_d.is_chance_time) {
-    			tbody += `
-    				<tr>
-    					<td colspan="100%" style="text-align:center;background-color:white;">
-    						Chance Time!
-    					</td>
-    				</tr>
-    			`;
-    		}
-            */
 
     		let bgColor = "none";
     		let color = "black";
@@ -636,6 +624,12 @@ $(function() {
         var level = o.level;
         var star = o.currStar;
         var chanceTime = o.chanceTime;
+        
+        //update stats
+        if (updStats) {
+            update_stats(o);
+        }
+
         star_cost.removeClass("hidden");
         if (star === 25 || (level == -150 && star === 15)) {
             star_cost.addClass("hidden");
@@ -689,11 +683,6 @@ $(function() {
         c_d.html(destroy);
         c_c.html(effectiveCost.toNumber());
         c_sc.html(sf_options.sc ? "Yes" : "No");
-
-        //update stats
-        if (updStats) {
-            update_stats(o);
-        }
     };
 
     var l_s = $("#l_s");
@@ -1373,12 +1362,13 @@ $(function() {
         let sf = hItem.sfData[hItem.sfData.length - 1];
         let type = sf.type;
         let currstar = sf.current_star;
-        let cost = hItem.totalCost;
+        let cost = sf.current_cost;
         
         let estar = 0;
-        //fail
+        
         heuristic["t" + st].cost += cost;
         heuristic["t" + st].runs++;
+        //fail
         if (sf.type === 2 || sf.type === 4) {
             if (sf.type === 4) {
                 heuristic["t" + st].fail_starcatch++;
@@ -1569,28 +1559,23 @@ $(function() {
             heuristic_25_item.totalCost = bankTotalCost;
             heuristic_25_item.totalCostFormatted = heuristic_item_backfilled.totalCostFormatted;
 
-            for (let i = h_sfData_len; i >= 0 ; i--) {
+            for (let i = h_sfData_len; i >= 0; i--) {
                 let h_currData = heuristic_25_item.sfData[i];
+                let h_nextData = heuristic_25_item.sfData[i+1];
                 let h_currStar = h_currData.current_star;
-                let h_prevStar = h_currStar - 1;
 
-                let h_prevSf = heuristic_25_item.sf.filter(a => {
-                    return a.level === (h_prevStar < 10 ? 10 : h_prevStar)
-                })[0];
-
-                let h_prevCost = h_prevSf.cost;
-                heuristic_25_item.sfData[i].cost = i === h_sfData_len ? bankTotalCost : bankTotalCost - h_prevCost;
+                let h_prevCost = typeof h_nextData === 'undefined' ? 0 :h_currData.current_cost;
+                heuristic_25_item.sfData[i].cost = bankTotalCost - h_prevCost;
                 heuristic_25_item.sfData[i].current_total_cost = heuristic_25_item.sfData[i].cost.toNumber();
                 heuristic_25_item.sfData[i].id = thisTotalRuns;
                 thisTotalRuns -= 1;
                 bankTotalCost -= h_prevCost;
-                heuristic_item_backfilled.totalCost;
             }
 
             item = heuristic_25_item;
 
-            generateTable(heuristic_25_item);
-            generateLineGraph(heuristic_25_item);
+            generateTable(item);
+            generateLineGraph(item);
             resetGoToButton(); 
             resetHeuristicVariables();
         }
