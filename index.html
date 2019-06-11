@@ -685,10 +685,10 @@ $(function() {
 
         if (toutput_msg_queue.length > 0) {
             for (let i = 0; i < toutput_msg_queue.length; ++i) {
-                toutput.prepend(toutput_msg_queue[i]);
-
-                toutput_msg_queue = [];
+                toutput.prepend(toutput_msg_queue[i]); 
             }
+
+            toutput_msg_queue = [];
         }
     };
 
