@@ -686,9 +686,9 @@ $(function() {
         if (toutput_msg_queue.length > 0) {
             for (let i = 0; i < toutput_msg_queue.length; ++i) {
                 toutput.prepend(toutput_msg_queue[i]);
-            }
 
-            toutput_msg_queue = [];
+                toutput_msg_queue = [];
+            }
         }
     };
 
@@ -1306,6 +1306,7 @@ $(function() {
     var max_n = 1000000;
     var n_stop = false;
     $("#btnNew").on("click", function() {
+        toutput_msg_queue = [];
         n = 0;
         n_stop = true;
         var start = +numStart.val();
