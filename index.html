@@ -251,10 +251,10 @@ Does not affect heuristic starforcing.">
             <div class="hidden" id="limBudget">
                 <hr>
                 <label for="">
-                    I have <input type="number" min="-1" value="-1" style="width:50px;" class="op-num" data-for="lim_i"> spare items
+                    I have <input type="number" min="-1" value="-1" style="width:50px;" class="op-num" data-for="lim_i"> spare item(s)
                 </label>
                 <label for="">
-                and <input type="number" min="-1" value="-1" style="width:75px;" class="op-num" data-for="lim_m"> million mesos.
+                and <input type="number" min="-1" value="-1" style="width:75px;" class="op-num billion" data-for="lim_m"> billion mesos.
                 </label>
             </div>
         </label>
@@ -424,7 +424,11 @@ $(function() {
     $(".op-num").on("change", function() {
         let _this = $(this);
         let data_for = _this.attr("data-for");
-        sf_options[data_for] = +_this.val();
+        let multipler = 1;
+        if (_this.hasClass("billion")) {
+            multipler = 1000000000;
+        }
+        sf_options[data_for] = +_this.val() * multipler;
     });
 
     $(".mvp-dc").on("change", function(e) {
@@ -994,7 +998,7 @@ $(function() {
 
             if (sf_options.lim) {
                 if (sf_options.lim_m !== -1) {
-                    let lim_cost = sf_options.lim_m * 1000000;
+                    let lim_cost = sf_options.lim_m;
                     if (lim_cost < (this.totalCost + effectiveCost)) {
                             toutput_msg_queue.push(
                                 `<tr class="message-row"><td colspan="6">You have reached your meso budget with ${(lim_cost - this.totalCost).toNumber()} mesos leftover.</td></tr>`
