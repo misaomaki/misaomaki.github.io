@@ -1013,7 +1013,7 @@ $(function() {
                             );
                         } else {
                             toutput_msg_queue.push(
-                                `<tr class="message-row"><td colspan="6">You have boomed all ${sf_options.lim_i} spare item(s).</td></tr>`
+                                `<tr class="message-row"><td colspan="6">You have boomed your ${sf_options.lim_i} spare item(s).</td></tr>`
                             );
                         }
                         if (typeof _o.cb_end === 'function') {
@@ -1289,17 +1289,21 @@ $(function() {
     });
 
     enhanceBtn_aee.on("click", function() {
-        item.starforce({aee: true, noboom: false});
+        let res = item.starforce({aee: true, noboom: false});
 
-        generateTable(item, item.sfData.length - 1);
-        generateLineGraph(item);
+        if (res !== 15) {
+            generateTable(item, item.sfData.length - 1);
+            generateLineGraph(item);
+        }
     });
 
     enhanceBtn_nb.on("click", function() {
-        item.starforce({aee: true, noboom: true});
+        let res = item.starforce({aee: true, noboom: true});
 
-        generateTable(item, item.sfData.length - 1);
-        generateLineGraph(item);
+        if (res !== 15) {
+            generateTable(item, item.sfData.length - 1);
+            generateLineGraph(item);
+        }
     });
 
     var n = 0;
@@ -1408,7 +1412,7 @@ $(function() {
         }
             
         let res = item.starforce({
-            cb_end: function() {
+            cb_end: function(val) {
                 if ((n <= max_n && item.currStar <= v) && !n_stop) {
                     setTimeout(function() {
                         recursive_starforce(v, done);
@@ -1738,8 +1742,6 @@ $(function() {
         if (item.currStar >= value) {
             return false;
         }
-
-        reset_stats();
 
         _this.prop("disabled", true).html("Processing...");
 
