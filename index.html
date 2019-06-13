@@ -180,7 +180,7 @@
         </label>
         <hr>
         <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" data-for="prn" class="ch op"> Show PRN [?]</label> <br>
-        <label for="cb_ch_showqmap" class="hidden" title="Show the proc range that determines fail/success/destroy." id="map_con"><input type="checkbox" id="cb_ch_showqmap" data-for="prnmap" class="ch op"> Show PRN Map <br></label>
+        <label for="cb_ch_showqmap" class="hidden" title="Show the proc range that determines fail/success/destroy." id="map_con"><input type="checkbox" id="cb_ch_showqmap" data-for="prnmap" class="ch op"> Show PRN Map [?] <br></label>
         <label for="cb_ch_rshift" title="After generating a random value between 0 and 1, it is compared against a proc range. The range is:
 0 - {destroy chance}: item destroy 
 {destroy chance} - {success chance}: item success
@@ -615,7 +615,7 @@ $(function() {
     	for (let i = data.length - 1; i >= startAt; --i) {
     		let _d = data[i];
     		let thisResult = "";
-            let prn_color = "prn-fail";
+            let prn_color = "prn-destroy";
 
     		switch (_d.type) {
     			case 1: 
@@ -624,6 +624,7 @@ $(function() {
     			break;
     			case 2:
     				thisResult = '<span style="color:red">Failed</span>';
+                    prn_color = "prn-fail";
     			break;
     			case 3:
     				thisResult = '<span style="color:green">Success (Star Catch)!</span>'; 
@@ -635,7 +636,6 @@ $(function() {
     			break;
     			case 5:
     				thisResult = '<span style="color:white">Destroyed!</span>'; 
-                    prn_color = "prn-destroy";
     			break;
     			case 6:
     				thisResult = '<span style="color:white">Safeguard!</span>'; 
