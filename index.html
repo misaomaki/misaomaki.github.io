@@ -173,24 +173,34 @@
     </div>
     <div class="flex-item" style="width:250px;">
         <span class="flex-header system">System</span>
-        <label for="cb_ch_adv" title="Apply new star force values from the Adventure update."><input type="checkbox" id="cb_ch_adv" data-for="adv" class="ch sf2 op" checked> Apply Adventure SF [?]</label> <br>
+        <label for="cb_ch_adv" title="Apply new star force values from the Adventure update."><input type="checkbox" id="cb_ch_adv" data-for="adv" class="sf2 op" checked> Apply Adventure SF [?]</label> <br>
         <hr>
         <label for="sys_max_records" title="Max records in table/graph at any given time. Lots of concurrent records causes slowness. -1 for no max.">
             <input type="number" min="-1" value="10" id="sys_max_records" class="sys" style="width:65px;"> Maximum Records [?]
         </label>
         <hr>
-        <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" data-for="prn" class="ch op"> Show PRN [?]</label> <br>
-        <label for="cb_ch_showqmap" class="hidden" title="Show the proc range that determines fail/success/destroy." id="map_con"><input type="checkbox" id="cb_ch_showqmap" data-for="prnmap" class="ch op"> Show PRN Map [?] <br></label>
+        <label for="cb_ch_adv" title="Select the type of randomness. Doesn't affect anything.
+Math.random() - Standard javascript pseudorandom number generator.
+crypto.getRandomValue() - Generates a more &quot;random&quot; pseudorandom number at the cost of performance (probably negligble).">
+            <select id="s_sys_random" style="width:100px;" class="op-num" data-for="random_type">
+                <option value="1">Math.random()</option>
+                <option value="2">crypto.getRandomValue()</option>
+            </select> Randomness Method
+        </label> <br>
+        <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" data-for="prn" class="op"> Show PRN [?]</label> <br>
+        <label for="cb_ch_showqmap" class="hidden" title="Show the proc range that determines fail/success/destroy." id="map_con"><input type="checkbox" id="cb_ch_showqmap" data-for="prnmap" class="op"> Show PRN Map [?] <br></label>
         <label for="cb_ch_rshift" title="After generating a random value between 0 and 1, it is compared against a proc range. The range is:
 0 - {destroy chance}: item destroy 
 {destroy chance} - {success chance}: item success
 {success chance} - {sc success chance}: item star catch success
 {sc success chance} - 1: item fail
 Enabling this will provide a seed value to the range so that it is not always the same. Doesn't change anything other than make the starforcing more randomer-er.">
-            <input type="checkbox" id="cb_ch_rshift" data-for="rshift" class="ch op"> Randomize Proc Range [?]
+            <input type="checkbox" id="cb_ch_rshift" data-for="rshift" class="op"> Randomize Proc Range [?]
         </label>
         <hr>
-        <label for="cb_ch_rt" title="When clicking the &quot;Enhance&quot; button, adds a 2.25-second delay (3.5 seconds for star catching) to star forcing for the authentic Maplestory experience. Does not affect non-blocking or heuristic starforcing."><input type="checkbox" id="cb_ch_rt" data-for="rt" class="ch op"> Enable Real Time SF [?] <br></label>
+        <label for="cb_ch_rt" title="When clicking the &quot;Enhance&quot; button, adds a 2.25-second delay (3.5 seconds for star catching) to star forcing for the authentic Maplestory experience. Does not affect non-blocking or heuristic starforcing.">
+            <input type="checkbox" id="cb_ch_rt" data-for="rt" class="op"> Enable Real Time SF [?] <br>
+        </label>
     </div> 
     <div class="flex-item hidden" id="cheat_panel">
         <span class="flex-header options2">Debug</span>
@@ -326,6 +336,7 @@ $(function() {
     var toutput_msg_queue = [];
 
     var sf_options = {
+        random_type: 1,
         sf12: false,
         sf15: false,
         sf17: false,
@@ -429,6 +440,8 @@ $(function() {
             multipler = 1000000000;
         }
         sf_options[data_for] = +_this.val() * multipler;
+
+        console.log(sf_options[data_for]);
     });
 
     $(".mvp-dc").on("change", function(e) {
@@ -935,7 +948,7 @@ $(function() {
                 this.chanceTime = 0;
                 isChance = true;
             } else {
-                ran = Math.random();
+                ran = prng();
                 _d.q = ran;
             }
 
@@ -1076,7 +1089,7 @@ $(function() {
                 };
 
                 if (sf_options.rshift) {
-                    randomShift = Math.random();
+                    randomShift = prng();
 
                     for (let i in procMap) {
                         let _pm = procMap[i];
@@ -1579,7 +1592,7 @@ $(function() {
         }
 
         if (totalDestroy > 0) {
-            heuristic_random_item_i = +(totalDestroy * Math.random()).toFixed();
+            heuristic_random_item_i = +(totalDestroy * prng()).toFixed();
 
             if (heuristic_random_item_i === totalDestroy) {
                 heuristic_random_item_i -= 1;
@@ -1825,6 +1838,17 @@ $(function() {
     }).on("mouseout", function() {
         h_info_container.addClass("hidden");
     });
+
+    function prng(type) {
+        if (sf_options.random_type === 1) {
+            return Math.random();
+        } else if (sf_options.random_type === 2) {
+            let arr = new Uint32Array(2);
+            crypto.getRandomValues(arr);
+            let m = (arr[0] * Math.pow(2,20)) + (arr[1] >>> 12)
+            return m * Math.pow(2,-52);
+        }
+    }
 
     function uuid() {
         function randomDigit() {
