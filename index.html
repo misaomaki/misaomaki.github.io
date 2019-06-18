@@ -171,7 +171,7 @@
         <br>
         <label for="cb_e_nb"><input type="checkbox" id="cb_e_nb" data-for="nb15" class="ev op"> No Boom Pre-15</label>
     </div>
-    <div class="flex-item" style="width:250px;">
+    <div class="flex-item" style="width:300px;">
         <span class="flex-header system">System</span>
         <label for="cb_ch_adv" title="Apply new star force values from the Adventure update."><input type="checkbox" id="cb_ch_adv" data-for="adv" class="sf2 op" checked> Apply Adventure SF [?]</label> <br>
         <hr>
@@ -180,12 +180,12 @@
         </label>
         <hr>
         <label for="cb_ch_adv" title="Select the type of randomness. Doesn't affect anything.
-Math.random() - Standard javascript pseudorandom number generator.
-crypto.getRandomValue() - Generates a more &quot;random&quot; pseudorandom number at the cost of performance (probably negligble).">
+Math.random() - Standard javascript pseudorandom number generator. Fast and good enough.
+crypto.getRandomValues() - Generates a more &quot;random&quot; pseudorandom number at the cost of performance (probably negligble).">
             <select id="s_sys_random" style="width:100px;" class="op-num" data-for="random_type">
                 <option value="1">Math.random()</option>
-                <option value="2">crypto.getRandomValue()</option>
-            </select> Randomness Method
+                <option value="2">crypto.getRandomValues()</option>
+            </select> Randomness Method [?]
         </label> <br>
         <label for="cb_ch_showq" title="Show the Pseudorandom Number generated to determine the starforce outcome."><input type="checkbox" id="cb_ch_showq" data-for="prn" class="op"> Show PRN [?]</label> <br>
         <label for="cb_ch_showqmap" class="hidden" title="Show the proc range that determines fail/success/destroy." id="map_con"><input type="checkbox" id="cb_ch_showqmap" data-for="prnmap" class="op"> Show PRN Map [?] <br></label>
@@ -440,8 +440,6 @@ $(function() {
             multipler = 1000000000;
         }
         sf_options[data_for] = +_this.val() * multipler;
-
-        console.log(sf_options[data_for]);
     });
 
     $(".mvp-dc").on("change", function(e) {
@@ -1789,6 +1787,7 @@ $(function() {
         }
 
         if (sf_options.hsx) {
+            reset_stats();
             runs = 0;
             toutput.html("");
             _this.html("Running heuristic...");
