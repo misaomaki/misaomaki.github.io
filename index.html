@@ -1074,7 +1074,7 @@ $(function() {
             if (isChance || is100) {
                 _procType = 2
                 _d.q = 1;
-                _d.prn_map += `<span class="prn-range prn-success">0 < PRN <= 1</span> success`;
+                _d.prn_map += `<span class="prn-range prn-success">0 <= PRN <= 1</span> success`;
             } else {
                 let effective_success = _sf.destroy + _sf.success;
                 let effective_success_sc = _sf.destroy + scSuccess;
@@ -1106,43 +1106,43 @@ $(function() {
                 }
 
 
-                if (procMap.destroy[0] !== ran && procMap.destroy[0] < ran && ran <= procMap.destroy[1]) {
+                if (procMap.destroy[0] !== ran && procMap.destroy[0] <= ran && ran < procMap.destroy[1]) {
                     _procType = 1;
-                } else if (typeof procMap.destroy2 !== 'undefined' && procMap.destroy2[0] < ran && ran <= procMap.destroy2[1]) {
+                } else if (typeof procMap.destroy2 !== 'undefined' && procMap.destroy2[0] <= ran && ran < procMap.destroy2[1]) {
                     _procType = 1;
                 } else if (procMap.success[0] < ran && ran <= procMap.success[1]) {
                     _procType = 2;
-                } else if (typeof procMap.success2 !== 'undefined' && procMap.success2[0] < ran && ran <= procMap.success2[1]) {
+                } else if (typeof procMap.success2 !== 'undefined' && procMap.success2[0] <= ran && ran < procMap.success2[1]) {
                     _procType = 2;
                 } else if (procMap.success_sc[0] < ran && ran <= procMap.success_sc[1]) {
                     _procType = 3;
-                } else if (typeof procMap.success_sc2 !== 'undefined' && procMap.success_sc2[0] < ran && ran <= procMap.success_sc2[1]) {
+                } else if (typeof procMap.success_sc2 !== 'undefined' && procMap.success_sc2[0] <= ran && ran < procMap.success_sc2[1]) {
                     _procType = 3;
                 } else {
                     _procType = 4;
                 }
 
                 if (!(procMap.destroy[0] === randomShift && procMap.destroy[1] === randomShift)) {
-                    _d.prn_map += `<span class="prn-range prn-destroy">${procMap.destroy[0].toFixed(4)} < PRN <= ${procMap.destroy[1].toFixed(4)}</span> destroy<br>`;
+                    _d.prn_map += `<span class="prn-range prn-destroy">${procMap.destroy[0].toFixed(4)} <= PRN < ${procMap.destroy[1].toFixed(4)}</span> destroy<br>`;
                 }
 
                 if (typeof procMap.destroy2 !== 'undefined') 
-                    _d.prn_map += `<span class="prn-range prn-destroy">${procMap.destroy2[0].toFixed(4)} < PRN <= ${procMap.destroy2[1].toFixed(4)}</span> destroy<br>`;
+                    _d.prn_map += `<span class="prn-range prn-destroy">${procMap.destroy2[0].toFixed(4)} <= PRN < ${procMap.destroy2[1].toFixed(4)}</span> destroy<br>`;
 
-                _d.prn_map += `<span class="prn-range prn-success">${procMap.success[0].toFixed(4)} < PRN <= ${procMap.success[1].toFixed(4)}</span> success<br>`;
+                _d.prn_map += `<span class="prn-range prn-success">${procMap.success[0].toFixed(4)} <= PRN < ${procMap.success[1].toFixed(4)}</span> success<br>`;
 
                 if (typeof procMap.success2 !== 'undefined') 
-                    _d.prn_map += `<span class="prn-range prn-success">${procMap.success2[0].toFixed(4)} < PRN <= ${procMap.success2[1].toFixed(4)}</span> success<br>`;
+                    _d.prn_map += `<span class="prn-range prn-success">${procMap.success2[0].toFixed(4)} <= PRN < ${procMap.success2[1].toFixed(4)}</span> success<br>`;
 
-                _d.prn_map += `<span class="prn-range prn-sc-success">${procMap.success_sc[0].toFixed(4)} < PRN <= ${procMap.success_sc[1].toFixed(4)}</span> sc success<br>`;
+                _d.prn_map += `<span class="prn-range prn-sc-success">${procMap.success_sc[0].toFixed(4)} <= PRN < ${procMap.success_sc[1].toFixed(4)}</span> sc success<br>`;
 
                 if (typeof procMap.success_sc2 !== 'undefined') 
-                    _d.prn_map += `<span class="prn-range prn-sc-success">${procMap.success_sc2[0].toFixed(4)} < PRN <= ${procMap.success_sc2[1].toFixed(4)}</span> sc success<br>`;
+                    _d.prn_map += `<span class="prn-range prn-sc-success">${procMap.success_sc2[0].toFixed(4)} <= PRN < ${procMap.success_sc2[1].toFixed(4)}</span> sc success<br>`;
 
-                _d.prn_map += `<span class="prn-range prn-fail">${procMap.fail[0].toFixed(4)} < PRN <= ${procMap.fail[1].toFixed(4)}</span> fail<br>`;
+                _d.prn_map += `<span class="prn-range prn-fail">${procMap.fail[0].toFixed(4)} <= PRN < ${procMap.fail[1].toFixed(4)}</span> fail<br>`;
 
                 if (typeof procMap.fail2 !== 'undefined') 
-                    _d.prn_map += `<span class="prn-range prn-fail">${procMap.fail2[0].toFixed(4)} < PRN <= ${procMap.fail2[1].toFixed(4)}</span> fail`;
+                    _d.prn_map += `<span class="prn-range prn-fail">${procMap.fail2[0].toFixed(4)} <= PRN < ${procMap.fail2[1].toFixed(4)}</span> fail`;
             }
             
             if (_procType === 1) {
