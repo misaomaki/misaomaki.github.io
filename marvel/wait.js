@@ -77,6 +77,6 @@
         });
     }
     $(function () {
-        $('body').append('<link href="http://nxcache.nexon.net/global/js/jquery-plugin/wait/wait.css" rel="stylesheet" type="text/css" />');
+        $('body').append('<link href="https://nxcache.nexon.net/global/js/jquery-plugin/wait/wait.css" rel="stylesheet" type="text/css" />');
     });
 })(jQuery);
