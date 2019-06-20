@@ -2385,10 +2385,10 @@ Number.prototype.toNumber = function() {
             for (let i = _myItems.length - 1; i >= 0; --i) {
                 let _tp = _myItems[i];
                 thesePrizes += `<tr class="item-row">
-                    <td>6/19/2019</td>
+                    <td>${(new Date()).toLocaleDateString()}</td>
                     <td>${_tp.name}</td>
                     <td>${_tp.coupon_code}</td>
-                    <td>6/19/2022</td>
+                    <td>${(new Date()).toLocaleDateString()}</td>
                 </tr>`
             }
 
