@@ -2367,7 +2367,12 @@ var myItems = [];
             }
 
             let thesePrizes = "";
-            let _myItems = myItems.slice(Math.max(myItems.length - max_records, 0));
+            let _myItems = [];
+            if (max_records !== -1) {
+                _myItems = myItems.slice(Math.max(myItems.length - max_records, 0));
+            } else {
+                _myItems = myItems;
+            }
             for (let i = _myItems.length - 1; i >= 0; --i) {
                 let _tp = _myItems[i];
                 thesePrizes += `<tr class="item-row">
