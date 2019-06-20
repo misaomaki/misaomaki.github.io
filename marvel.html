@@ -637,22 +637,34 @@
             $("#rsim1").prop("checked", true);
         });
 
+        body.on("change", ".op", function(e) {
+            let _this = $(this);
+            let op = _this.attr("data-for");
+            gach_options[op] = e.target.checked;
+        });
+
         const simSettingTemplate = `
             <label for="txt_max_records">
                 <input type="number" min="-1" id="txt_max_records" style="width:75px;display:inline-block;" value="10"> Max Records In Table
                 <em class="info">Set the max records to show in the table. -1 for no max.</em>
+                <hr>
+            </label>
+            <label for="chk_mute">
+                <input type="checkbox" id="chk_mute" data-for="mute" class="op"> Mute Marvel Machine
             </label>
         `;
 
         simSettingsBtn.on("click", function() {
             dialog.html(simSettingTemplate);
             let txt_max_records = $("#txt_max_records");
+            let chk_mute = $("#chk_mute");
             txt_max_records.val(max_records);
+            chk_mute.prop("checked", gach_options.mute);
 
             dialog.dialog({
                 title: "Marvel Machine Table Settings",
                 width: 500,
-                height: 235,
+                height: 275,
                 modal: true,
                 autoOpen: false,
                 buttons: [{
@@ -660,12 +672,14 @@
                     click: function() {
                         let this_max_records = +txt_max_records.val();
 
-                        if (this_max_records === 0 || this_max_records === max_records) {
+                        if (this_max_records === 0) {
                             return false;
                         }
 
                         max_records = this_max_records;
-                        gachapon.pop_table();
+                        if (this_max_records !== max_records) {
+                            gachapon.pop_table();
+                        }
                         $(this).dialog("close");
                         return true;
                     }

@@ -1823,6 +1823,9 @@ function shuffle(a) {
 var table_body = $("#items");
 var max_records = 10;
 var myItems = [];
+var gach_options = {
+    mute: false
+};
 
 Number.prototype.toNumber = function() {
     return this.toLocaleString();
@@ -2235,7 +2238,9 @@ Number.prototype.toNumber = function() {
             this.spinning = true;
             var start = +new Date();
 
-            this.sounds['start'].play();
+            if (!gach_options.mute) {
+                this.sounds['start'].play();
+            }
 
             this.dom.congrats.hide();
             this.dom.multipliers.hide();
@@ -2416,7 +2421,9 @@ Number.prototype.toNumber = function() {
             var height = this.itemHeight;
             target.clearQueue().stop().css({ top: -(height * (index - 9)) }).animate({ top: -(height * (index)) }, 1000, 'easeOutQuad', function () {
                 //target.clearQueue().stop().css({ top: -(height * (index - 10)) }).animate({ top: -(height * (index)) }, 1000, 'easeOutQuad', function () {
-                window.gachapon.sounds['stop'].play();
+                if (!gach_options.mute) {
+                    window.gachapon.sounds['stop'].play();
+                }
                 $(window.gachapon.dom.prizes[n]).text(item.coupon_code);
                 //$(this).css({ top: -((height * oItems.eq(0).index()) + 97), opacity: 0 }).animate({ opacity: 1 });
                 $(this).css({ top: -((height * oItems.eq(0).index()) - 70), opacity: 0 }).animate({ opacity: 1 });
