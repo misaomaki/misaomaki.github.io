@@ -910,6 +910,10 @@ var gacha_db = {
         "name": "Sweetwater Maul",
         "chance": 0.065,
         "item_idx": "8590"
+    },{
+        "name": "Sweetwater Monocle",
+        "chance": 0.065,
+        "item_idx": "85901"
     }, {
         "name": "Sweetwater Pendant",
         "chance": 0.065,
