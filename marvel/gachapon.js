@@ -1823,6 +1823,11 @@ function shuffle(a) {
 var table_body = $("#items");
 var max_records = 10;
 var myItems = [];
+
+Number.prototype.toNumber = function() {
+    return this.toLocaleString();
+};
+
 (function ($) {
     $.fn.itemRotator = function (options) {
         var defaults = {
@@ -2388,6 +2393,14 @@ var myItems = [];
             }
 
             table_body.html(thesePrizes);
+            if (myItems.length > 0) {
+                let bundle = myItems.length / 3;
+                let indivNx =(bundle % 11) * 4900;
+                let bundleNx = Math.floor(bundle / 11) * 49000;
+                $("#nx-spent").html((bundleNx + indivNx).toNumber() + " NX Spent");
+            } else {
+                $("#nx-spent").html("0 NX Spent");
+            }
         },
         stopSpin1: function () {
             console.log("stopped");

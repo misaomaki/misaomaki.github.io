@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="marvel.css">
+<link rel="stylesheet" type="text/css" href="marvel/marvel.css">
 <div class="section section--ghosted-grey marvel-machine ">
 	<div class="row">
 		<div class="small-12 medium-10 small-centered columns">
@@ -520,7 +520,9 @@
 <div class="component component-marvelous-prizes">
     <div class="row inner-wrap">
         <div class="small-12 medium-10 small-centered columns">
-            <div class="button button--outline-white ajax-machine-purchare" id="sim-settings-btn">Settings</div>
+            <div class="button button--outline-white ajax-machine-purchare" id="sim-settings-btn" style="float:left">Settings</div>
+            <div class="button button--outline-white ajax-machine-purchare" id="nx-spent" style="float:right">0 NX Spent</div>
+            <div style="clear:both"></div>
             <table style="width:100%;text-align:center;">
                 <thead id="item-header">
                     <tr>
@@ -548,11 +550,11 @@
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
 
-<script src="balloon.js"></script>
-<script src="pageHelper.js"></script>
-<script src="wait.js"></script>
-<script src="soundManager.js"></script>
-<script src="gachapon.js"></script>
+<script src="marvel/balloon.js"></script>
+<script src="marvel/pageHelper.js"></script>
+<script src="marvel/wait.js"></script>
+<script src="marvel/soundManager.js"></script>
+<script src="marvel/gachapon.js"></script>
 <style>
     .ui-dialog { z-index: 2001 !important ;}
 
@@ -624,6 +626,16 @@
                     </select>
             </label>
         `;
+
+        let body = $("body");
+
+        body.on("change", "#s_item", function() {
+            $("#rsim2").prop("checked", true);
+        });
+
+        body.on("change", "#txt_total_runs", function() {
+            $("#rsim1").prop("checked", true);
+        });
 
         const simSettingTemplate = `
             <label for="txt_max_records">
