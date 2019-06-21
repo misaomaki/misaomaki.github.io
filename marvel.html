@@ -728,6 +728,7 @@
                             let spin_times = +$("#txt_total_runs").val();
                             if (spin_times === 0) return false;
                             cache_options.sim_runs = spin_times;
+                            cache_options.sim_item = "0";
                             gachapon.runSpin1_prog(spin_times, function(item, cb) {
                                 gachapon.runSpin1(item, function() {
                                     cb();
@@ -738,6 +739,7 @@
                             let thisItem = $("#s_item").val();
                             if (thisItem === "0") return false;
                             cache_options.sim_item = thisItem;
+                            cache_options.sim_runs = 0;
                             gachapon.runSpin1_prog2(thisItem, function(item, cb) {
                                 gachapon.runSpin1(item, function() {
                                     cb();
