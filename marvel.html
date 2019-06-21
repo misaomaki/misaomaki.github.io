@@ -506,6 +506,7 @@
 							<div class="spins-left">0</div>
 							<div class="button button--red ajax-machine-spin active" id="spin-btn">SPIN</div>
                             <div class="button button--outline-white ajax-machine-purchare" id="sim-options-btn">RUN SIMULATION</div>
+                            <div class="button button--outline-white ajax-machine-purchare" id="sim-reset" title="Reset count and items.">&#8635;</div>
 						</div>
 					</div>
 					<!-- end: machine -->
@@ -558,8 +559,13 @@
 <style>
     .ui-dialog { z-index: 2001 !important ;}
 
-    #items td, #item-header th  {
+    #items td, #item-header th, .stats  {
         text-align: center;
+    }
+
+    .stats {
+        display: inline-block;
+        vertical-align: top;
     }
 
     .item-row:nth-child(even) {
@@ -735,8 +741,120 @@
                 }]
             }).dialog("open");
         });
+
+        $("#sim-reset").on("click", function() {
+            myItems = [];
+            gachapon.pop_table(myItems);
+            gachapon.spin_cnt = 0;
+            $('.spins-left').html(0);
+        });
+
+        $("#nx-spent").on("click", function() {
+            let stats_category = {};
+            let stats_type = {};
+            let stats_percentage = {};
+            for (let i = 0; i < myItems.length; ++i) {
+                let item = myItems[i];
+                let name = item.name;
+                let category = item.category;
+                let type = item.type;
+                let chance = item.chance;
+
+                if (typeof stats_category[category] === 'undefined') {
+                    stats_category[category] = 1;
+                } else {
+                    ++stats_category[category];
+                }
+
+                if (typeof stats_type[type] === 'undefined') {
+                    stats_type[type] = 1;
+                } else {
+                    ++stats_type[type];
+                }
+
+                if (typeof stats_percentage[chance] === 'undefined') {
+                    stats_percentage[chance] = 1;
+                } else {
+                    ++stats_percentage[chance];
+                }
+            }
+
+            let stat_table = `
+                <table class="stats">
+                    <thead>
+                        <th>Category</th>
+                        <th>Total</th>
+                    </thead>
+                    <tbody>
+                        ${
+                            Object.keys(stats_category).sort().map((a)=>{
+                                return `
+                                    <tr class="item-row">
+                                        <td>${a}</td>
+                                        <td>${stats_category[a]}</td> 
+                                    </tr>
+                                `;
+                            }).join("")
+                        }
+                    </tbody>
+                </table>
+                <table class="stats">
+                    <thead>
+                        <th>Type</th>
+                        <th>Total</th>
+                    </thead>
+                    <tbody>
+                        ${
+                            Object.keys(stats_type).sort().map((a)=>{
+                                return `
+                                    <tr class="item-row">
+                                        <td>${a}</td>
+                                        <td>${stats_type[a]}</td> 
+                                    </tr>
+                                `;
+                            }).join("")
+                        }
+                    </tbody>
+                </table>
+                <table class="stats">
+                    <thead>
+                        <th>Percentage</th>
+                        <th>Total</th>
+                    </thead>
+                    <tbody>
+                        ${
+                            Object.keys(stats_percentage).sort().map((a)=>{
+                                return `
+                                    <tr class="item-row">
+                                        <td>${a}%</td>
+                                        <td>${stats_percentage[a]}</td> 
+                                    </tr>
+                                `;
+                            }).join("")
+                        }
+                    </tbody>
+                </table>
+            `;
+
+            dialog.html(stat_table);
+
+            dialog.dialog({
+                title: "Marvel Machine Statistics",
+                width: 'auto',
+                height: 'auto',
+                modal: true,
+                autoOpen: false,
+                buttons: [{
+                    text: "Cancel",
+                    click: function() {
+                        $(this).dialog("close");
+                    }
+                }]
+            }).dialog("open");
+        });
     });
 </script>
+
 
 <!--
     <div style="clear:both;margin-bottom:150px;"></div>
@@ -811,15 +929,12 @@
                 } else {
                     let item = {
                         name: _n[0].innerHTML,
+                        category: _n[1].innerHTML,
+                        type: _n[2].innerHTML,
                         chance: +_n[3].innerHTML.replace("%","")
                     };
 
                     if (item.name === "&nbsp;") continue;
-
-                    if (item.name === "Sweetwater Monocle") {
-                        item.item_idx = 85901; //doesn't exist in marvel, so make one up
-                        continue;
-                    }
 
                     item.item_idx = $(class_type + " .icon[title='" + item.name.replace(/\'/gi, "\\'") + "' i]").attr("data-idx");
 
@@ -864,7 +979,9 @@
                 }
             }
 
-            console.log(JSON.stringify(item_db));
+            if (item_db.a.length > 0 && item_db.b.length > 0 && item_db.c.length > 0) {
+                console.log(JSON.stringify(item_db));
+            }
         });
     });
 </script>
