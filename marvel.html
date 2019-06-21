@@ -563,11 +563,6 @@
         text-align: center;
     }
 
-    .stats {
-        display: inline-block;
-        vertical-align: top;
-    }
-
     .item-row:nth-child(even) {
         background-color: white !important;
     }
@@ -587,6 +582,11 @@
         let dialog = $("#dialog");
         let simOptionsBtn = $("#sim-options-btn");
         let simSettingsBtn = $("#sim-settings-btn");
+        let cache_options = {
+            sim_item: "0",
+            sim_runs: 0,
+            sim_last: 0
+        };
 
         const simOptionTemplate = `
             <label for="rsim1">
@@ -637,10 +637,12 @@
 
         body.on("change", "#s_item", function() {
             $("#rsim2").prop("checked", true);
+            cache_options.sim_last = 2;
         });
 
         body.on("change", "#txt_total_runs", function() {
             $("#rsim1").prop("checked", true);
+            cache_options.sim_last = 1;
         });
 
         body.on("change", ".op", function(e) {
@@ -683,6 +685,7 @@
                         }
 
                         max_records = this_max_records;
+
                         gachapon.pop_table();
                         $(this).dialog("close");
                         return true;
@@ -699,6 +702,16 @@
         simOptionsBtn.on("click", function() {
             dialog.html(simOptionTemplate);
 
+            if (cache_options.sim_runs !== 0) {
+                $("#txt_total_runs").val(cache_options.sim_runs);
+            }
+            if (cache_options.sim_item !== "0") {
+                $("#s_item").val(cache_options.sim_item);
+            }
+            if (cache_options.sim_last !== 0) {
+                $("#rsim" + cache_options.sim_last).prop("checked", true);
+            }
+
             dialog.dialog({
                 title: "Marvel Machine Simulation Options",
                 width: 500,
@@ -714,6 +727,7 @@
                         if (type == 1) {
                             let spin_times = +$("#txt_total_runs").val();
                             if (spin_times === 0) return false;
+                            cache_options.sim_runs = spin_times;
                             gachapon.runSpin1_prog(spin_times, function(item, cb) {
                                 gachapon.runSpin1(item, function() {
                                     cb();
@@ -723,6 +737,7 @@
                         } else if (type == 2) {
                             let thisItem = $("#s_item").val();
                             if (thisItem === "0") return false;
+                            cache_options.sim_item = thisItem;
                             gachapon.runSpin1_prog2(thisItem, function(item, cb) {
                                 gachapon.runSpin1(item, function() {
                                     cb();
@@ -780,7 +795,7 @@
             }
 
             let stat_table = `
-                <table class="stats">
+                <table class="stats" style="width:100%">
                     <thead>
                         <th>Category</th>
                         <th>Total</th>
@@ -798,7 +813,7 @@
                         }
                     </tbody>
                 </table>
-                <table class="stats">
+                <table class="stats" style="width:100%">
                     <thead>
                         <th>Type</th>
                         <th>Total</th>
@@ -816,7 +831,7 @@
                         }
                     </tbody>
                 </table>
-                <table class="stats">
+                <table class="stats" style="width:100%">
                     <thead>
                         <th>Percentage</th>
                         <th>Total</th>
@@ -840,7 +855,7 @@
 
             dialog.dialog({
                 title: "Marvel Machine Statistics",
-                width: 'auto',
+                width: 400,
                 height: 'auto',
                 modal: true,
                 autoOpen: false,
