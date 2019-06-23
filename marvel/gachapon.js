@@ -528,6 +528,7 @@ Number.prototype.toNumber = function() {
             let item_arr = [];
             for (var i = 0; i < count; ++i) {
                 item_arr.push(this.generate_item());
+                pop_db();
             }
 
             let _this = this;
@@ -547,6 +548,7 @@ Number.prototype.toNumber = function() {
                 ++numSpins;
                 let this_item = this.generate_item();
                 item_arr.push(this_item);
+                pop_db();
 
                 for (let i = 0; i < this_item.prizes.length; ++i) {
                     let this_prize = this_item.prizes[i];
