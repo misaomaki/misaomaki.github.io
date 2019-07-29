@@ -204,6 +204,14 @@ $(function() {
         }
     });
 
+    body.on("click", "#cb_hide_full", function(e) {
+        if (e.target.checked) {
+            $(".stats tr[data-count!=0]").remove();
+        } else {
+            dialog.html(generate_stat_table(false));
+        }
+    });
+
     let slot1_count = [];
     let slot2_count = [];
     let slot3_count = [];
@@ -252,7 +260,9 @@ $(function() {
         }
 
         let stat_table = `
-            <label for="cb_hide_empty"><input type="checkbox" id="cb_hide_empty">Hide items I didn't receive</label>
+            <label for="cb_hide_empty" style="float:left"><input type="checkbox" id="cb_hide_empty">Hide items I didn't receive</label>
+            <label for="cb_hide_full" style="float:right"><input type="checkbox" id="cb_hide_full">Hide items I have received</label>
+            <div style="clear:both">
             <div class="table-container">
                 <table class="stats">
                     <thead>
