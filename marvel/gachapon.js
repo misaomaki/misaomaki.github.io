@@ -102,7 +102,7 @@ $(function() {
         dialog.dialog({
             title: "Marvel Machine Table Settings",
             width: 500,
-            height: 275,
+            height: 300,
             modal: true,
             autoOpen: false,
             position: {my: "center", at: "center", of: window},
@@ -206,7 +206,7 @@ $(function() {
 
     body.on("click", "#cb_hide_full", function(e) {
         if (e.target.checked) {
-            $(".stats tr[data-count!=0]").remove();
+            $(".stats tbody tr[data-count!=0]").remove();
         } else {
             dialog.html(generate_stat_table(false));
         }
