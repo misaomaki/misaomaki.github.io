@@ -294,7 +294,7 @@ $(function() {
                     <th style="text-align:center">Chance Color Map</th>
                 </thead>
             ${
-                gacha_rarity.reverse().map(a=>{
+                gacha_rarity.map(a=>{
                     return `<tr>
                         <td style="text-align:center;color:${a.color}">
                             ${a.minc} - ${a.maxc}%
