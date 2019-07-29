@@ -1,3 +1,32 @@
+var gacha_rarity = [{
+    minc: 0,
+    maxc: 0.009,
+    color: "red"
+}, {
+    minc: 0.009,
+    maxc: 0.01,
+    color: "#ff8000"
+}, {
+    minc: 0.01,
+    maxc: 0.04,
+    color: "#a335ee"
+}, {
+    minc: 0.04,
+    maxc: 0.07,
+    color: "#0070dd"
+}, {
+    minc: 0.07,
+    maxc: 0.1,
+    color: "#15ae00",
+}, {
+    minc: 0.1,
+    maxc: 1,
+    color: "black"
+}, {
+    minc: 1,
+    maxc: 100,
+    color: "#9d9d9d"
+}];
 
 $(function() {
     let dialog = $("#dialog");
@@ -260,9 +289,24 @@ $(function() {
         }
 
         let stat_table = `
+            <table style="width:100%">
+                <thead>
+                    <th style="text-align:center">Chance Color Map</th>
+                </thead>
+            ${
+                gacha_rarity.reverse().map(a=>{
+                    return `<tr>
+                        <td style="text-align:center;color:${a.color}">
+                            ${a.minc} - ${a.maxc}%
+                        </td>
+                    </tr>`
+                }).join("")
+            }
+            </table>
+            <div style="clear:both"></div>
             <label for="cb_hide_empty" style="float:left"><input type="checkbox" id="cb_hide_empty">Hide items I didn't receive</label>
             <label for="cb_hide_full" style="float:right"><input type="checkbox" id="cb_hide_full">Hide items I have received</label>
-            <div style="clear:both">
+            <div style="clear:both"></div>
             <div class="table-container">
                 <table class="stats">
                     <thead>
@@ -272,9 +316,19 @@ $(function() {
                     <tbody>
                         ${
                             Object.keys(slot1_count).sort().map((a)=>{
+                                let item_chance = gacha_db.c.find(x => {return x.name === a}).chance;
+                                let rarity_color = "black";
+                                for (let i = 0; i < gacha_rarity.length; ++i) {
+                                    let this_rarity = gacha_rarity[i];
+                                    if (item_chance > this_rarity.minc && item_chance <= this_rarity.maxc) {
+                                        rarity_color = this_rarity.color;
+                                        break;
+                                    }
+                                }
+
                                 return `
                                     <tr class="item-row" data-count="${slot1_count[a]}">
-                                        <td>${a}</td>
+                                        <td><span style="color:${rarity_color}" title="${item_chance}% Chance">${a}</span></td>
                                         <td>${slot1_count[a]}</td> 
                                     </tr>
                                 `;
@@ -292,9 +346,19 @@ $(function() {
                     <tbody>
                         ${
                             Object.keys(slot2_count).sort().map((a)=>{
+                                let item_chance = gacha_db.a.find(x => {return x.name === a}).chance;
+                                let rarity_color = "black";
+                                for (let i = 0; i < gacha_rarity.length; ++i) {
+                                    let this_rarity = gacha_rarity[i];
+                                    if (item_chance > this_rarity.minc && item_chance <= this_rarity.maxc) {
+                                        rarity_color = this_rarity.color;
+                                        break;
+                                    }
+                                }
+
                                 return `
                                     <tr class="item-row" data-count="${slot2_count[a]}">
-                                        <td>${a}</td>
+                                        <td><span style="color:${rarity_color}" title="${item_chance}% Chance">${a}</span></td>
                                         <td>${slot2_count[a]}</td> 
                                     </tr>
                                 `;
@@ -312,9 +376,19 @@ $(function() {
                     <tbody>
                         ${
                             Object.keys(slot3_count).sort().map((a)=>{
+                                let item_chance = gacha_db.b.find(x => {return x.name === a}).chance;
+                                let rarity_color = "black";
+                                for (let i = 0; i < gacha_rarity.length; ++i) {
+                                    let this_rarity = gacha_rarity[i];
+                                    if (item_chance > this_rarity.minc && item_chance <= this_rarity.maxc) {
+                                        rarity_color = this_rarity.color;
+                                        break;
+                                    }
+                                }
+
                                 return `
                                     <tr class="item-row" data-count="${slot3_count[a]}">
-                                        <td>${a}</td>
+                                        <td><span style="color:${rarity_color}" title="${item_chance}% Chance">${a}</span></td>
                                         <td>${slot3_count[a]}</td> 
                                     </tr>
                                 `;
