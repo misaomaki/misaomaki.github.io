@@ -249,16 +249,27 @@ $(function() {
             slot1_count = [];
             slot2_count = [];
             slot3_count = [];
+
+            for (let j = 0; j < sorted_db.s1.length; ++j) {
+                let db = sorted_db.s1[j];
+                slot1_count[db.name] = 0;
+            }
+
+            for (let j = 0; j < sorted_db.s2.length; ++j) {
+                let db = sorted_db.s2[j];
+                slot2_count[db.name] = 0;
+            }
+
+            for (let j = 0; j < sorted_db.s3.length; ++j) {
+                let db = sorted_db.s3[j];
+                slot3_count[db.name] = 0;
+            }
             
 
             for (let i = 0; i < myItems.length; ++i) {
                 let thisItem = myItems[i];
                 for (let j = 0; j < sorted_db.s1.length; ++j) {
                     let db = sorted_db.s1[j];
-                    if (slot1_count[db.name] == null) {
-                        slot1_count[db.name] = 0;
-                    }
-
                     if (thisItem.item_idx === db.item_idx) {
                         ++slot1_count[db.name];
                     }
@@ -266,10 +277,6 @@ $(function() {
 
                 for (let j = 0; j < sorted_db.s2.length; ++j) {
                     let db = sorted_db.s2[j];
-                    if (slot2_count[db.name] == null) {
-                        slot2_count[db.name] = 0;
-                    }
-
                     if (thisItem.item_idx === db.item_idx) {
                         ++slot2_count[db.name];
                     }
@@ -277,10 +284,6 @@ $(function() {
 
                 for (let j = 0; j < sorted_db.s3.length; ++j) {
                     let db = sorted_db.s3[j];
-                    if (slot3_count[db.name] == null) {
-                        slot3_count[db.name] = 0;
-                    }
-
                     if (thisItem.item_idx === db.item_idx) {
                         ++slot3_count[db.name];
                     }
