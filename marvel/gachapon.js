@@ -20,6 +20,10 @@ var gacha_rarity = [{
     color: "#15ae00",
 }, {
     minc: 0.1,
+    maxc: 0.5,
+    color: "#e0c633"
+}, {
+    minc: 0.5,
     maxc: 1,
     color: "black"
 }, {
