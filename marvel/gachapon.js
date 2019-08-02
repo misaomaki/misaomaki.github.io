@@ -229,42 +229,90 @@ $(function() {
         $('.spins-left').html(0);
     });
 
-    body.on("click", "#cb_hide_empty", function(e) {
-        if (e.target.checked) {
-            $(".stats tr[data-count=0]").remove();
-        } else {
-            dialog.html(generate_stat_table(false));
-        }
-    });
-
-    body.on("click", "#cb_hide_full", function(e) {
-        if (e.target.checked) {
-            $(".stats tbody tr[data-count!=0]").remove();
-        } else {
-            dialog.html(generate_stat_table(false));
-        }
-    });
-
     let slot1_count = [];
     let slot2_count = [];
     let slot3_count = [];
-    let generate_stat_table = function(refresh = false) {
+    let maxLen = 0;
+
+    body.on("change", "#s_show", function() {
+        let _this = $(this);
+        let val = _this.val();
+        if (val == 0) {
+            dialog.html(generate_stat_table());
+        } else if (val == 1) {
+            let new_s1 = {}
+            for (let i in slot1_count) {
+                if (slot1_count[i] !== 0) {
+                    new_s1[i] = slot1_count[i];
+                }
+            }
+
+            let new_s2 = {}
+            for (let i in slot2_count) {
+                if (slot2_count[i] !== 0) {
+                    new_s2[i] = slot2_count[i];
+                }
+            }
+
+            let new_s3 = {}
+            for (let i in slot3_count) {
+                if (slot3_count[i] !== 0) {
+                    new_s3[i] = slot3_count[i];
+                }
+            }
+
+            dialog.html(generate_stat_table(false, new_s1, new_s2, new_s3, true));
+        } else if (val == 2) {
+            let new_s1 = {}
+            for (let i in slot1_count) {
+                if (slot1_count[i] === 0) {
+                    new_s1[i] = slot1_count[i];
+                }
+            }
+
+            let new_s2 = {}
+            for (let i in slot2_count) {
+                if (slot2_count[i] === 0) {
+                    new_s2[i] = slot2_count[i];
+                }
+            }
+
+            let new_s3 = {}
+            for (let i in slot3_count) {
+                if (slot3_count[i] === 0) {
+                    new_s3[i] = slot3_count[i];
+                }
+            }
+
+            dialog.html(generate_stat_table(false, new_s1, new_s2, new_s3, true));
+        }
+
+        setTimeout(function(){
+            $("#s_show").val(val);
+        },1);
+    });
+
+    let generate_stat_table = function(refresh = false, _s1 = {}, _s2 = {}, _s3 = {}, trigger = false) {
         if (refresh) {
             slot1_count = [];
             slot2_count = [];
             slot3_count = [];
 
-            for (let j = 0; j < sorted_db.s1.length; ++j) {
+            let s1Len = sorted_db.s1.length;
+            let s2Len = sorted_db.s2.length;
+            let s3Len = sorted_db.s3.length;
+
+            for (let j = 0; j < s1Len; ++j) {
                 let db = sorted_db.s1[j];
                 slot1_count[db.name] = 0;
             }
 
-            for (let j = 0; j < sorted_db.s2.length; ++j) {
+            for (let j = 0; j < s2Len; ++j) {
                 let db = sorted_db.s2[j];
                 slot2_count[db.name] = 0;
             }
 
-            for (let j = 0; j < sorted_db.s3.length; ++j) {
+            for (let j = 0; j < s3Len; ++j) {
                 let db = sorted_db.s3[j];
                 slot3_count[db.name] = 0;
             }
@@ -272,21 +320,21 @@ $(function() {
 
             for (let i = 0; i < myItems.length; ++i) {
                 let thisItem = myItems[i];
-                for (let j = 0; j < sorted_db.s1.length; ++j) {
+                for (let j = 0; j < s1Len; ++j) {
                     let db = sorted_db.s1[j];
                     if (thisItem.item_idx === db.item_idx) {
                         ++slot1_count[db.name];
                     }
                 }
 
-                for (let j = 0; j < sorted_db.s2.length; ++j) {
+                for (let j = 0; j < s2Len; ++j) {
                     let db = sorted_db.s2[j];
                     if (thisItem.item_idx === db.item_idx) {
                         ++slot2_count[db.name];
                     }
                 }
 
-                for (let j = 0; j < sorted_db.s3.length; ++j) {
+                for (let j = 0; j < s3Len; ++j) {
                     let db = sorted_db.s3[j];
                     if (thisItem.item_idx === db.item_idx) {
                         ++slot3_count[db.name];
@@ -295,6 +343,32 @@ $(function() {
             }
         }
 
+        let s1_count = [];
+        let s2_count = [];
+        let s3_count = [];
+
+        if (!trigger && Object.keys(_s1).length === 0) {
+            s1_count = slot1_count;
+        } else {
+            s1_count = _s1;
+        }
+        if (!trigger && Object.keys(_s2).length === 0) {
+            s2_count = slot2_count;
+        } else {
+            s2_count = _s2;
+        }
+        if (!trigger && Object.keys(_s3).length === 0) {
+            s3_count = slot3_count;
+        } else {
+            s3_count = _s3;
+        }
+
+        let i1 = Object.keys(s1_count);
+        let i2 = Object.keys(s2_count);
+        let i3 = Object.keys(s3_count);
+
+        maxLen = Math.max(i1.length,i2.length,i3.length);
+
         let stat_table = `
             <table style="width:100%">
                 <thead>
@@ -302,7 +376,7 @@ $(function() {
                 </thead>
             ${
                 gacha_rarity.map(a=>{
-                    return `<tr>
+                    return `<tr class="item-row">
                         <td style="text-align:center;color:${a.color}">
                             ${a.minc} - ${a.maxc}%
                         </td>
@@ -311,99 +385,83 @@ $(function() {
             }
             </table>
             <div style="clear:both"></div>
-            <label for="cb_hide_empty" style="float:left"><input type="checkbox" id="cb_hide_empty">Hide items I didn't receive</label>
-            <label for="cb_hide_full" style="float:right"><input type="checkbox" id="cb_hide_full">Hide items I have received</label>
+            <select id="s_show">
+                <option value="0">Show All</option>
+                <option value="1">Show Items I Received Only</option>
+                <option value="2">Show Items I Haven't Received Only</option>
+            </select>
             <div style="clear:both"></div>
-            <div class="table-container">
+            <div class="table-container" style="width:100%">
                 <table class="stats">
                     <thead>
+                        <th>Name</th>
+                        <th>Count</th>
+                        <th>Name</th>
+                        <th>Count</th>
                         <th>Name</th>
                         <th>Count</th>
                     </thead>
                     <tbody>
                         ${
-                            Object.keys(slot1_count).sort().map((a)=>{
-                                let item_chance = gacha_db.c.find(x => {return x.name === a}).chance;
-                                let rarity_color = "black";
+                            Array(maxLen).fill().map((a,b)=>{
+                                let thisHtml = '<tr class="item-row">';
+
+                                let item1 = i1[b];
+                                let item2 = i2[b];
+                                let item3 = i3[b];
+
+                                let i1_chance = (gacha_db.c.find(x => {return x.name === item1}) || {"chance": 0}).chance;
+                                let i1_rarity = "black";
+
+                                let i2_chance = (gacha_db.a.find(x => {return x.name === item2}) || {"chance": 0}).chance;
+                                let i2_rarity = "black";
+
+                                let i3_chance = (gacha_db.b.find(x => {return x.name === item3}) || {"chance": 0}).chance;
+                                let i3_rarity = "black";
+
                                 for (let i = 0; i < gacha_rarity.length; ++i) {
                                     let this_rarity = gacha_rarity[i];
-                                    if (item_chance > this_rarity.minc && item_chance <= this_rarity.maxc) {
-                                        rarity_color = this_rarity.color;
-                                        break;
+                                    if (i1_chance > this_rarity.minc && i1_chance <= this_rarity.maxc) {
+                                        i1_rarity = this_rarity.color;
+                                    }
+                                    if (i2_chance > this_rarity.minc && i2_chance <= this_rarity.maxc) {
+                                        i2_rarity = this_rarity.color;
+                                    }
+                                    if (i3_chance > this_rarity.minc && i3_chance <= this_rarity.maxc) {
+                                        i3_rarity = this_rarity.color;
                                     }
                                 }
 
-                                return `
-                                    <tr class="item-row" data-count="${slot1_count[a]}">
-                                        <td><span style="color:${rarity_color}" title="${item_chance}% Chance">${a}</span></td>
-                                        <td>${slot1_count[a]}</td> 
-                                    </tr>
-                                `;
-                            }).join("")
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="table-container">
-                <table class="stats">
-                    <thead>
-                        <th>Name</th>
-                        <th>Count</th>
-                    </thead>
-                    <tbody>
-                        ${
-                            Object.keys(slot2_count).sort().map((a)=>{
-                                let item_chance = gacha_db.a.find(x => {return x.name === a}).chance;
-                                let rarity_color = "black";
-                                for (let i = 0; i < gacha_rarity.length; ++i) {
-                                    let this_rarity = gacha_rarity[i];
-                                    if (item_chance > this_rarity.minc && item_chance <= this_rarity.maxc) {
-                                        rarity_color = this_rarity.color;
-                                        break;
-                                    }
+                                if (i1_chance !== 0) {
+                                    thisHtml += `
+                                        <td><span style="color:${i1_rarity}" title="${i1_chance}% Chance">${item1}</span></td>
+                                        <td>${s1_count[item1]}</td>
+                                    `;
+                                } else {
+                                    thisHtml += '<td colspan="2"></td>';
                                 }
-
-                                return `
-                                    <tr class="item-row" data-count="${slot2_count[a]}">
-                                        <td><span style="color:${rarity_color}" title="${item_chance}% Chance">${a}</span></td>
-                                        <td>${slot2_count[a]}</td> 
-                                    </tr>
-                                `;
-                            }).join("")
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="table-container">
-                <table class="stats">
-                    <thead>
-                        <th>Name</th>
-                        <th>Count</th>
-                    </thead>
-                    <tbody>
-                        ${
-                            Object.keys(slot3_count).sort().map((a)=>{
-                                let item_chance = gacha_db.b.find(x => {return x.name === a}).chance;
-                                let rarity_color = "black";
-                                for (let i = 0; i < gacha_rarity.length; ++i) {
-                                    let this_rarity = gacha_rarity[i];
-                                    if (item_chance > this_rarity.minc && item_chance <= this_rarity.maxc) {
-                                        rarity_color = this_rarity.color;
-                                        break;
-                                    }
+                                if (i2_chance !== 0) {
+                                    thisHtml += `
+                                        <td><span style="color:${i2_rarity}" title="${i2_chance}% Chance">${item2}</span></td>
+                                        <td>${s2_count[item2]}</td>
+                                    `;
+                                } else {
+                                    thisHtml += '<td colspan="2"></td>';
                                 }
+                                if (i3_chance !== 0) {
+                                    thisHtml += `
+                                        <td><span style="color:${i3_rarity}" title="${i3_chance}% Chance">${item3}</span></td>
+                                        <td>${s3_count[item3]}</td> 
+                                    `;
+                                } else {
+                                    thisHtml += '<td colspan="2"></td>';
+                                }
+                            
+                                thisHtml += '</tr>';
 
-                                return `
-                                    <tr class="item-row" data-count="${slot3_count[a]}">
-                                        <td><span style="color:${rarity_color}" title="${item_chance}% Chance">${a}</span></td>
-                                        <td>${slot3_count[a]}</td> 
-                                    </tr>
-                                `;
+                                return thisHtml;
                             }).join("")
                         }
-                    </tbody>
-                </table>
-            </div>
         `;
 
         return stat_table;
