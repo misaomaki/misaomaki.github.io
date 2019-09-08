@@ -156,7 +156,11 @@ $(function() {
             c: (lastRngs[2] || {prn: -100}).prn
         };
 
-        return `<table style="width:100%">
+        return `<div>
+            Shows the PRNG value used to determine the item that is received for each group. A proc map is also generated to show which items are received based on the PRNG value. 
+            <br>The proc map is randomized after each run.
+        </div>
+        <table style="width:100%">
             <thead>
                 <tr>
                     <th colspan="2" style="text-align:center">Slot 1</th>
@@ -254,7 +258,7 @@ $(function() {
             <hr>
         </label>
         <label for="chk_debug">
-            <button id="chk_debug">PRNG Settings</button>
+            <button id="chk_debug">Show PRNG Map</button>
         </label>
     `;
 
