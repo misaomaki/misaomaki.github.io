@@ -114,6 +114,135 @@ $(function() {
         gach_options[op] = e.target.checked;
     });
 
+    var resolve_rarity = function(c,b,a) {
+        let i1_chance = (c.chance != null ? c : c.find(x => {return x.name === item1}) || {"chance": 0}).chance;
+        let i1_rarity = "black";
+
+        let i2_chance = (b.chance != null ? a : a.find(x => {return x.name === item2}) || {"chance": 0}).chance;
+        let i2_rarity = "black";
+
+        let i3_chance = (a.chance != null ? b : b.find(x => {return x.name === item3}) || {"chance": 0}).chance;
+        let i3_rarity = "black";
+
+        for (let i = 0; i < gacha_rarity.length; ++i) {
+            let this_rarity = gacha_rarity[i];
+            if (i1_chance > this_rarity.minc && i1_chance <= this_rarity.maxc) {
+                i1_rarity = this_rarity.color;
+            }
+            if (i2_chance > this_rarity.minc && i2_chance <= this_rarity.maxc) {
+                i2_rarity = this_rarity.color;
+            }
+            if (i3_chance > this_rarity.minc && i3_chance <= this_rarity.maxc) {
+                i3_rarity = this_rarity.color;
+            }
+        }
+
+        return [i1_rarity, i2_rarity, i3_rarity];
+    };
+
+    //merge rarity color determination with other to avoid repeated code
+    var debug_template = function() {
+        let items_a = item_db_rangified_prev.a;
+        let items_b = item_db_rangified_prev.b;
+        let items_c = item_db_rangified_prev.c;
+
+        let maxLen = Math.max(items_c.length, items_b.length, items_a.length);
+        let fix_length = 5;
+
+        let lastRngs = myItems.slice(-3);
+        let curr_prng = {
+            a: (lastRngs[0] || {prn: -100}).prn,
+            b: (lastRngs[1] || {prn: -100}).prn,
+            c: (lastRngs[2] || {prn: -100}).prn
+        };
+
+        return `<table style="width:100%">
+            <thead>
+                <tr>
+                    <th colspan="2" style="text-align:center">Slot 1</th>
+                    <th colspan="2" style="text-align:center">Slot 2</th>
+                    <th colspan="2" style="text-align:center">Slot 3</th>
+                </tr>
+                <tr>
+                    <th colspan="2" class="rng-header" style="font-size:1.1em;font-weight:bold;text-align:center;cursor:pointer;" onclick="document.getElementById('c-item-received').scrollIntoView()">
+                        ${curr_prng.c/100}
+                    </th>
+                    <th colspan="2" class="rng-header" style="font-size:1.1em;font-weight:bold;text-align:center;cursor:pointer;" onclick="document.getElementById('a-item-received').scrollIntoView()">
+                        ${curr_prng.a/100}
+                    </th>
+                    <th colspan="2" class="rng-header" style="font-size:1.1em;font-weight:bold;text-align:center;cursor:pointer;" onclick="document.getElementById('b-item-received').scrollIntoView()">
+                        ${curr_prng.b/100}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            ${
+                Array(maxLen).fill().map((a,b)=>{
+                    let thisHtml = '<tr class="item-row">';
+
+                    let item1 = items_c[b] || {chance: 0};
+                    let item2 = items_a[b] || {chance: 0};
+                    let item3 = items_b[b] || {chance: 0};
+
+                    var rarity = resolve_rarity(item1,item3,item2);
+
+                    let isR1 = item1.from <= curr_prng.c && curr_prng.c < item1.to;
+                    let isR2 = item2.from <= curr_prng.a && curr_prng.a < item2.to;
+                    let isR3 = item3.from <= curr_prng.b && curr_prng.b < item3.to;
+
+                    if (item1.chance !== 0) {
+                        thisHtml += `
+                            <td style=${isR1 ? `"background-color:#f9caff" id="c-item-received"` : ""}><span style="color:${rarity[0]};" title="${item1.chance}% Chance">${item1.name}</span></td>
+                            <td style=${isR1 ? "background-color:#f9caff" : ""} title="${curr_prng.c/100}">${(item1.from/100).toFixed(fix_length)} - ${(item1.to/100).toFixed(fix_length)}</td>
+                        `;
+                    } else {
+                        thisHtml += '<td colspan="2"></td>';
+                    }
+                    if (item2.chance !== 0) {
+                        thisHtml += `
+                            <td style=${isR2 ? `"background-color:#f9caff" id="a-item-received"` : ""}><span style="color:${rarity[1]};" title="${item2.chance}% Chance">${item2.name}</span></td>
+                            <td style=${isR2 ? "background-color:#f9caff" : ""} title="${curr_prng.a/100}">${(item2.from/100).toFixed(fix_length)} - ${(item2.to/100).toFixed(fix_length)}</td>
+                        `;
+                    } else {
+                        thisHtml += '<td colspan="2"></td>';
+                    }
+                    if (item3.chance !== 0) {
+                        thisHtml += `
+                            <td style=${isR3 ? `"background-color:#f9caff" id="b-item-received"` : ""}><span style="color:${rarity[2]};" title="${item3.chance}% Chance">${item3.name}</span></td>
+                            <td style=${isR3 ? "background-color:#f9caff" : ""} title="${curr_prng.b/100}">${(item3.from/100).toFixed(fix_length)} - ${(item3.to/100).toFixed(fix_length)}</td>
+                        `;
+                    } else {
+                        thisHtml += '<td colspan="2"></td>';
+                    }
+                
+                    thisHtml += '</tr>';
+
+                    return thisHtml;
+                }).join("")
+            }
+            </tbody>
+        </table>`;
+    };
+
+    dialog.on("click", "#chk_debug", function() {
+        dialog.html(debug_template());
+
+        dialog.dialog({
+            title: "Marvel Machine PRNG",
+            width: "75%",
+            height: 'auto',
+            position: {my: "center", at: "center", of: document},
+            modal: true,
+            autoOpen: false,
+            buttons: [{
+                text: "Cancel",
+                click: function() {
+                    $(this).dialog("close");
+                }
+            }]
+        }).dialog("open");
+    });
+
     const simSettingTemplate = `
         <label for="txt_max_records">
             <input type="number" min="-1" id="txt_max_records" style="width:75px;display:inline-block;" value="10"> Max Records In Table
@@ -122,6 +251,10 @@ $(function() {
         </label>
         <label for="chk_mute">
             <input type="checkbox" id="chk_mute" data-for="mute" class="op"> Mute Marvel Machine
+            <hr>
+        </label>
+        <label for="chk_debug">
+            <button id="chk_debug">PRNG Settings</button>
         </label>
     `;
 
@@ -135,7 +268,7 @@ $(function() {
         dialog.dialog({
             title: "Marvel Machine Table Settings",
             width: 500,
-            height: 300,
+            height: 400,
             modal: true,
             autoOpen: false,
             position: {my: "center", at: "center", of: window},
@@ -372,7 +505,9 @@ $(function() {
         let stat_table = `
             <table style="width:100%">
                 <thead>
-                    <th style="text-align:center">Chance Color Map</th>
+                    <tr>
+                        <th style="text-align:center">Chance Color Map</th>
+                    </tr>
                 </thead>
             ${
                 gacha_rarity.map(a=>{
@@ -488,8 +623,16 @@ $(function() {
 });
 
 var item_db_rangified = {};
+var item_db_rangified_prev = {};
+var item_db_prev_upd = true;
 
 function pop_db() {
+    if (item_db_prev_upd) {
+        item_db_rangified_prev = item_db_rangified;
+    } else {
+        item_db_prev_upd = true;
+    }
+
     item_db_rangified = {};
     for (let slot in gacha_db) {
         item_db_rangified[slot] = [];
@@ -510,6 +653,10 @@ function pop_db() {
 
             startAt += this_item.chance;
         }
+    }
+
+    if (typeof item_db_rangified_prev.a === 'undefined') {
+        item_db_rangified_prev = item_db_rangified;
     }
 };
 
@@ -974,6 +1121,7 @@ Number.prototype.toNumber = function() {
                             _this.selectPrize(1, data.prizes[0], function () {
                                 _this.dom.congrats.show().removeClass('hidden');
                                 _this.spinning = false;
+                                item_db_prev_upd = false;
                                 pop_db();
                                 $('#spin-btn').prop("disabled", false);
                                 if (typeof callback === 'function') {
@@ -1001,6 +1149,7 @@ Number.prototype.toNumber = function() {
                                     _this.dom.congrats.show().removeClass('hidden');
                                     _this.updateSpinCnt(true);
                                     _this.spinning = false;
+                                    item_db_prev_upd = false;
                                     pop_db();
                                     $('#spin-btn').prop("disabled", false);
                                     _this.pop_table([data]);
@@ -1060,15 +1209,16 @@ Number.prototype.toNumber = function() {
             for (let i in item_db_rangified) {
                 let item = item_db_rangified[i];
                 let prn = this.cryptoRandom() * 100;
-
                 let thisItem = item.filter((a)=>{return a.from <= prn && prn < a.to})[0];
+
                 let prize = {
                     item_idx: thisItem.item_idx,
                     coupon_code: this.generateCouponCode(),
                     name: thisItem.name,
                     category: thisItem.category,
                     type: thisItem.type,
-                    chance: thisItem.chance
+                    chance: thisItem.chance,
+                    prn: prn
                 };
                 items[i] = prize;
             }
