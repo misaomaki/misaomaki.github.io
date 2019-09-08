@@ -1149,7 +1149,6 @@ Number.prototype.toNumber = function() {
                                     _this.dom.congrats.show().removeClass('hidden');
                                     _this.updateSpinCnt(true);
                                     _this.spinning = false;
-                                    item_db_prev_upd = false;
                                     pop_db();
                                     $('#spin-btn').prop("disabled", false);
                                     _this.pop_table([data]);
