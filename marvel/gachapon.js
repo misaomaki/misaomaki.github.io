@@ -1212,7 +1212,7 @@ Number.prototype.toNumber = function() {
             for (let i in item_db_rangified) {
                 let item = item_db_rangified[i];
                 let prn = this.cryptoRandom() * 100;
-                let thisItem = item.filter((a)=>{return a.from <= prn && prn < a.to})[0];
+                let thisItem = item.find((a)=>{return a.from <= prn && prn < a.to});
 
                 let prize = {
                     item_idx: thisItem.item_idx,
