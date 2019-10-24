@@ -114,6 +114,15 @@ $(function() {
         gach_options[op] = e.target.checked;
     });
 
+    body.on("input change", "#marvel_sound", function() {
+        let _this = $(this);
+        let val = +_this.val();
+
+        for (let i in window.gachapon.sounds) {
+            window.gachapon.sounds[i].setVolume(val);
+        }
+    });
+
     var resolve_rarity = function(c,b,a) {
         let i1_chance = (c.chance != null ? c : c.find(x => {return x.name === item1}) || {"chance": 0}).chance;
         let i1_rarity = "black";
@@ -254,20 +263,23 @@ $(function() {
             <hr>
         </label>
         <label for="chk_mute">
-            <input type="checkbox" id="chk_mute" data-for="mute" class="op"> Mute Marvel Machine
+            Volume Control
+            <br>
+            <input id="marvel_sound" type="range" min="0" max="100" step="1" value="40"></input>
             <hr>
         </label>
         <label for="chk_debug">
             <button id="chk_debug">Show PRNG Map</button>
         </label>
     `;
-
+    
     simSettingsBtn.on("click", function() {
         dialog.html(simSettingTemplate);
         let txt_max_records = $("#txt_max_records");
         let chk_mute = $("#chk_mute");
         txt_max_records.val(max_records);
-        chk_mute.prop("checked", gach_options.mute);
+        let curr_vol =  window.gachapon.sounds.start.volume;
+        $("#marvel_sound").val(curr_vol);
 
         dialog.dialog({
             title: "Marvel Machine Table Settings",
@@ -680,9 +692,7 @@ function shuffle(a) {
 var table_body = $("#items");
 var max_records = 10;
 var myItems = [];
-var gach_options = {
-    mute: false
-};
+var gach_options = {};
 
 Number.prototype.toNumber = function() {
     return this.toLocaleString();
@@ -1095,9 +1105,7 @@ Number.prototype.toNumber = function() {
             this.spinning = true;
             var start = +new Date();
 
-            if (!gach_options.mute) {
-                this.sounds['start'].play();
-            }
+            this.sounds['start'].play();
 
             this.dom.congrats.hide();
             this.dom.multipliers.hide();
@@ -1286,9 +1294,7 @@ Number.prototype.toNumber = function() {
             var height = this.itemHeight;
             target.clearQueue().stop().css({ top: -(height * (index - 9)) }).animate({ top: -(height * (index)) }, 1000, 'easeOutQuad', function () {
                 //target.clearQueue().stop().css({ top: -(height * (index - 10)) }).animate({ top: -(height * (index)) }, 1000, 'easeOutQuad', function () {
-                if (!gach_options.mute) {
-                    window.gachapon.sounds['stop'].play();
-                }
+                window.gachapon.sounds['stop'].play();
                 $(window.gachapon.dom.prizes[n]).text(item.coupon_code);
                 //$(this).css({ top: -((height * oItems.eq(0).index()) + 97), opacity: 0 }).animate({ opacity: 1 });
                 $(this).css({ top: -((height * oItems.eq(0).index()) - 70), opacity: 0 }).animate({ opacity: 1 });
