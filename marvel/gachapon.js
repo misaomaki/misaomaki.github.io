@@ -97,7 +97,20 @@ $(function() {
             <input type="radio" name="option" value="3" class="radio-sim" id="rsim3">
             Run until I get an item with name containing <em class="info" style="display:inline-block;" 
             title="If you want a particular class of items but don't care which. For example, if you just want the first Arcane item you find regardless of which one, you can search for 'Arcane'. 
-If the name doesn't exist, nothing will happen if you try to simulate.">[?]</em>
+If the name doesn't exist, nothing will happen if you try to simulate.
+
+You can start the filter off with special instructions to change the filter behavior:
+[filter:{type}]
+  By default, the search just sees if your search is contained within the name. You can pass type =
+  start - only if the name starts with the specified string. Example: If you want to search for X Scrolls, search &quot;[filter:start]X &quot;
+  end - only if the name ends with the specifed string. Example: &quot;[filter:end]Special Coupon&quot;
+
+[slot:{slot}]
+  By default, the search checks all 3 Marvel Slots for the matched name. You can limit it to a specific slot by passing 1, 2, or 3.
+
+All filters can be combined. Example: &quot;[filter:start][slot:3]Absolab&quot;
+
+">[?]</em>
             <input type="text" id="txt_con_item">
         </label>
     `;
@@ -379,20 +392,84 @@ If the name doesn't exist, nothing will happen if you try to simulate.">[?]</em>
                         let thisItem = $("#txt_con_item").val();
                         if (thisItem === "") return false;
                         cache_options.sim_name_contains = thisItem;
+
+                        let func = "includes";
+                        let slot = -1;
+
+                        if (thisItem.includes("[filter:")) {
+                            let func_match = thisItem.match(/\[filter\:(.*?)\]/i);
+
+                            if (func_match == null) {
+                                cache_options.sim_name_contains = "";
+                                return false;
+                            }
+
+                            let func_raw = func_match[0];
+                            let func_type = func_match[1];
+
+                            if (func_type == 'start') {
+                                func = 'startsWith';
+                            } else if (func_type == 'end') {
+                                func = 'endsWith';
+                            }
+
+                            thisItem = thisItem.replace(func_raw,"");
+                        };
+
+                        if (thisItem.includes("[slot:")) {
+                            let slot_match = thisItem.match(/\[slot\:(.*?)\]/i);
+
+                            if (slot_match == null) {
+                                cache_options.sim_name_contains = "";
+                                return false;
+                            }
+
+                            let slot_raw = slot_match[0];
+                            let slot_type = slot_match[1];
+
+                            //0 - 2, 1 - 3, 2 - 1
+                            if (slot_type == 1) {
+                                slot = 2;
+                            } else if (slot_type == 2) {
+                                slot = 0;
+                            } else if (slot_type == 3) {
+                                slot = 1;
+                            }
+
+                            thisItem = thisItem.replace(slot_raw,"");
+                        };
+
                         thisItem = thisItem.toUpperCase();
+
+                        let a_not_exists = true;
+                        let b_not_exists = true;
+                        let c_not_exists = true;
+
+                        if (slot === -1 || slot == 0) {
+                            a_not_exists = gacha_db.a.find((a,b)=>{return a.name.toUpperCase()[func](thisItem);}) == null;
+                        }
+                        if (slot === -1 || slot == 1) {
+                            b_not_exists = gacha_db.b.find((a,b)=>{return a.name.toUpperCase()[func](thisItem);}) == null;
+                        }
+                        if (slot === -1 || slot == 2) {
+                            c_not_exists = gacha_db.c.find((a,b)=>{return a.name.toUpperCase()[func](thisItem);}) == null;
+                        }
+                        
                         if (
-                            gacha_db.a.find((a,b)=>{return a.name.toUpperCase().includes(thisItem);}) == null &&
-                            gacha_db.b.find((a,b)=>{return a.name.toUpperCase().includes(thisItem);}) == null &&
-                            gacha_db.c.find((a,b)=>{return a.name.toUpperCase().includes(thisItem);}) == null
+                            a_not_exists && b_not_exists && c_not_exists
                         ) {
                             cache_options.sim_name_contains = "";
                             return false;
                         }
+
                         gachapon.runSpin1_prog2(2, thisItem, function(item, cb) {
                             gachapon.runSpin1(item, function() {
                                 cb();
                             });
                             _this.dialog("close");
+                        }, {
+                            func: func,
+                            slot: slot
                         });
                     }
 
@@ -1223,7 +1300,7 @@ Number.prototype.toNumber = function() {
                 });
             }
         },
-        runSpin1_prog2: function(type, item_idx, callback) {
+        runSpin1_prog2: function(type, item_idx, callback, options) {
             let item_arr = [];
             let is_item = false;
             let numSpins = 0;
@@ -1242,7 +1319,12 @@ Number.prototype.toNumber = function() {
                             break;
                         }
                     } else if (type == 2) {
-                        if (this_prize.name.toUpperCase().includes(item_idx)) {
+                        if (options.slot >= 0) {
+                            if (options.slot !== i) {
+                                continue;
+                            }
+                        }
+                        if (this_prize.name.toUpperCase()[options.func](item_idx)) {
                             is_item = true;
                             break;
                         }
