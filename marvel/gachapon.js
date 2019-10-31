@@ -39,7 +39,8 @@ $(function() {
     let cache_options = {
         sim_item: "0",
         sim_runs: 0,
-        sim_last: 0
+        sim_last: 0,
+        sim_name_contains: ""
     };
 
     let sorted_db = {
@@ -63,7 +64,7 @@ $(function() {
     const simOptionTemplate = `
         <label for="rsim1">
             <input type="radio" name="option" value="1" checked class="radio-sim" id="rsim1">
-            Run <input type="number" min="0" id="txt_total_runs" style="width:75px;display:inline-block;" value="10"> times.
+            Run <input type="number" min="0" id="txt_total_runs" style="width:75px;display:inline-block;" value="11"> times.
         </label>
         <hr>
         <label for="rsim2">
@@ -91,9 +92,21 @@ $(function() {
                     }
                 </select>
         </label>
+        <hr>
+        <label for="rsim3">
+            <input type="radio" name="option" value="3" class="radio-sim" id="rsim3">
+            Run until I get an item with name containing <em class="info" style="display:inline-block;" 
+            title="If you want a particular class of items but don't care which. For example, if you just want the first Arcane item you find regardless of which one, you can search for 'Arcane'. 
+If the name doesn't exist, nothing will happen if you try to simulate.">[?]</em>
+            <input type="text" id="txt_con_item">
+        </label>
     `;
 
     let body = $("body");
+
+    body.on("change", "#txt_con_item", function() {
+        $("#rsim3").prop("checked", true).trigger("change");
+    });
 
     body.on("change", "#s_item", function() {
         $("#rsim2").prop("checked", true).trigger("change");
@@ -325,10 +338,14 @@ $(function() {
             $("#rsim" + cache_options.sim_last).prop("checked", true);
         }
 
+        if (cache_options.sim_name_contains !== "") {
+            $("#txt_con_item").val(cache_options.sim_name_contains);
+        }
+
         dialog.dialog({
             title: "Marvel Machine Simulation Options",
             width: 500,
-            height: 275,
+            height: "auto",
             modal: true,
             autoOpen: false,
             position: {my: "center", at: "center", of: window},
@@ -352,7 +369,26 @@ $(function() {
                         let thisItem = $("#s_item").val();
                         if (thisItem === "0") return false;
                         cache_options.sim_item = thisItem;
-                        gachapon.runSpin1_prog2(thisItem, function(item, cb) {
+                        gachapon.runSpin1_prog2(1, thisItem, function(item, cb) {
+                            gachapon.runSpin1(item, function() {
+                                cb();
+                            });
+                            _this.dialog("close");
+                        });
+                    } else if (type == 3) {
+                        let thisItem = $("#txt_con_item").val();
+                        if (thisItem === "") return false;
+                        cache_options.sim_name_contains = thisItem;
+                        thisItem = thisItem.toUpperCase();
+                        if (
+                            gacha_db.a.find((a,b)=>{return a.name.toUpperCase().includes(thisItem);}) == null &&
+                            gacha_db.b.find((a,b)=>{return a.name.toUpperCase().includes(thisItem);}) == null &&
+                            gacha_db.c.find((a,b)=>{return a.name.toUpperCase().includes(thisItem);}) == null
+                        ) {
+                            cache_options.sim_name_contains = "";
+                            return false;
+                        }
+                        gachapon.runSpin1_prog2(2, thisItem, function(item, cb) {
                             gachapon.runSpin1(item, function() {
                                 cb();
                             });
@@ -1187,10 +1223,11 @@ Number.prototype.toNumber = function() {
                 });
             }
         },
-        runSpin1_prog2: function(item_idx, callback) {
+        runSpin1_prog2: function(type, item_idx, callback) {
             let item_arr = [];
             let is_item = false;
             let numSpins = 0;
+            
             while (!is_item) {
                 ++numSpins;
                 let this_item = this.generate_item();
@@ -1199,9 +1236,16 @@ Number.prototype.toNumber = function() {
 
                 for (let i = 0; i < this_item.prizes.length; ++i) {
                     let this_prize = this_item.prizes[i];
-                    if (this_prize.item_idx === item_idx) {
-                        is_item = true;
-                        break;
+                    if (type == 1) {
+                        if (this_prize.item_idx === item_idx) {
+                            is_item = true;
+                            break;
+                        }
+                    } else if (type == 2) {
+                        if (this_prize.name.toUpperCase().includes(item_idx)) {
+                            is_item = true;
+                            break;
+                        }
                     }
                 }
             }
