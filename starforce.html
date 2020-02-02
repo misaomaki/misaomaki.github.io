@@ -1884,7 +1884,7 @@ $(function() {
         if (curr_star >= threshold.boom_init) {
             hItem = new star({
                 star: heuristic_run ? start_at : threshold.init,
-                level: level,
+                level: +level,
                 heuristic: heuristic_run,
                 heuristic_start: start_at,
                 heuristic_clean_data: false
