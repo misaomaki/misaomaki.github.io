@@ -1914,7 +1914,9 @@ $(function() {
             }
         }
 
-        hv2.sfdata_backfill[curr_star].push(hItem.sfData);
+        if (hv2.sfdata_backfill[curr_star].length < 1000) {
+            hv2.sfdata_backfill[curr_star].push(hItem.sfData);
+        }
 
         run_amount_p = run_amount - 1;
         hv2.runs += 1;
