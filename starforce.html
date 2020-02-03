@@ -237,17 +237,16 @@ Enabling this will provide a seed value to the range so that it is not always th
         </label>
         <br>
         <label for="cbHeuristic" id="heur" class="hidden" title='Uses an alternative starforcing method. The current method is to starforce as you would in game, just quickly.
-This method assumes you have an infinite number of 22-star items. Booming the item means you toss the trace and start again with a new 22-star item. 
-Once the desired star is reached, the code goes back and runs starforcing for each boom, going from 12->22. One run will go from {start}->22 to account for your first run at the desired start level. 
+This method assumes you have an infinite number of (desired-star - 1)-star items. Booming the item means you toss the trace and start again with a new (desired-star - 1)-star item. 
+Once the desired star is reached, the code goes back and runs starforcing for each boom, going from 12->22. One run will go from {start}->22 to account for your first run at the desired start level. For superiors, it will use 12 instead of 22.
 The records shown in the table will only show the successful run to the desired star and a random backfilled run to 22 stars (this represents the &quot;final&quot; run of that item).
 Run 25 at your own peril. May take 5-30 minutes to complete, depending on luck and computer.'>
             <input type="checkbox" data-for="hsx" class="op" id="cbHeuristic"> Use Heuristic Enhancement [?]
         </label>
         <br>
-        <label for="cbHeuristic2" id="heur2" class="hidden" 
-        title='Operates under the same assumptions as heuristic starforcing. The only difference is that when tossing the trace, it does not start at 22, but 1 below the target star. 
-This will get rid of the initial long load for high-star starforcing present in the first version of heuristic starforcing.'>
-            <input type="checkbox" data-for="hsx2" class="op" id="cbHeuristic2"> Apply Heuristic Version 2 [?]
+        <label for="cbHeuristicAvg" id="heur2" class="hidden" 
+        title="For heuristic runs, the bottleneck is backfilling 12* (superior)/22 items. If you don't care about complete accuracy and just want a quick general idea, enabling this will not backfill 12*/22-star items for each boom but will instead take the average run for n=100 12*/22-star runs and then multiply that by the number of booms.">
+            <input type="checkbox" data-for="hsx_avg" class="op" id="cbHeuristicAvg"> Apply n-sampling 12*/22 [?]
         </label>
         <div class="superior hidden">
             <label for="cbAee" class="hidden">
@@ -331,7 +330,7 @@ $(function() {
     var btnStop = $("#btnStop");
     var cbHeuristicContainer = $("#heur,#heur2");
     var cbHeuristic = $("#cbHeuristic");
-    var cbHeuristic2 = $("#cbHeuristic2");
+    var cbHeuristic2 = $("#cbHeuristicAvg");
     var cbNbe = $("#cbNbe");
     var cbaee = $(".cbaee");
     var limBudget = $("#limBudget");
@@ -360,7 +359,7 @@ $(function() {
         mvp: 0,
         nbe: false,
         hsx: false,
-        hsx2: false,
+        hsx_avg: false,
         adv: true,
         prn: false,
         prnmap: false,
@@ -1508,285 +1507,6 @@ $(function() {
         btnGoToStar.prop("disabled", false).html("Go To Star");
     }
 
-    var heuristic = {};
-    var heuristic_end_star = 0;
-    var runs = 0;
-    var heuristic_boom_start = 22;
-    var heuristic_init_start = 12;
-    var heuristic_25_item = {};
-    var heuristic_random_item_i = 0;
-    var heuristic_passed = {};
-    function recursiveHeuristic(st, prevItem) {
-        let level = itemLevel.val();
-
-        if (heuristic_end_star === st) {
-            heuristic_25_item = prevItem;
-            heuristic_done(st);
-            return false;
-        }
-
-        runs++;
-
-        if (typeof heuristic["t" + st] === 'undefined') {
-            heuristic["t" + st] = {
-                runs: 0,
-                fails: 0,
-                fail_starcatch: 0,
-                success_starcatch: 0,
-                destroy: 0,
-                cost: 0
-            };
-        }
-
-        let hItem = {};
-        if (typeof prevItem === 'undefined') {
-            hItem = new star({
-                star: st,
-                level: level
-            }, false);
-        } else {
-            hItem = prevItem;
-        }
-
-        hItem.starforce();
-
-        heuristic_passed[hItem.name] = {
-            "p23": hItem.totp23,
-            "p24": hItem.totp24,
-            "p25": hItem.totp25,
-        };
-
-        let sf = hItem.sfData[hItem.sfData.length - 1];
-        let type = sf.type;
-        let currstar = sf.current_star;
-        let cost = sf.current_cost;
-        
-        let estar = 0;
-        
-        heuristic["t" + st].cost += cost;
-        heuristic["t" + st].runs++;
-        //fail
-        if (sf.type === 2 || sf.type === 4) {
-            if (sf.type === 4) {
-                heuristic["t" + st].fail_starcatch++;
-            }
-            heuristic["t" + st].fails++;
-            estar = currstar;
-        //destroyed
-        } else if (sf.type === 5) {
-            heuristic["t" + st].destroy++;
-            estar = heuristic_boom_start;
-            hItem = void(0);
-        } else {
-        //success
-            if (sf.type === 3) {
-                heuristic["t" + st].success_starcatch++;
-            }
-            
-            estar = currstar;
-        }
-
-        //anti-call stack exceed
-        if (runs > 2000) {
-            setTimeout(function() {recursiveHeuristic(estar, hItem);},0);
-            runs = 0;
-        } else {
-            recursiveHeuristic(estar, hItem);
-        }
-    }
-
-    var heuristic_item_backfilled = {
-        totRuns: 0,
-        totSc: 0,
-        totScF: 0,
-        totFail: 0,
-        totBoom: 0,
-        totSg12: 0,
-        totSg15: 0,
-        totp15: 0,
-        totp20: 0,
-        totp22: 0,
-        totalCost: 0,
-        totCostSg12: 0,
-        totCostSg15: 0
-    };
-    var heuristic_done = function(st) {
-        let totalRuns = 0;
-        let failStarcatch = 0;
-        let successStarcatch = 0;
-        let totalCost = 0;
-        let totalDestroy = 0;
-        let totalFail = 0;
-        for (let i in heuristic) {
-            totalRuns += heuristic[i].runs;
-            failStarcatch += heuristic[i].fail_starcatch;
-            successStarcatch += heuristic[i].success_starcatch;
-            totalCost += heuristic[i].cost;
-            totalDestroy += heuristic[i].destroy;
-            totalFail += heuristic[i].fails;
-        }
-
-        if (totalDestroy > 0) {
-            heuristic_random_item_i = +(totalDestroy * prng()).toFixed();
-
-            if (heuristic_random_item_i === totalDestroy) {
-                heuristic_random_item_i -= 1;
-            }
-        }
-
-        let curr23 = +l_p23.html();
-        let curr24 = +l_p24.html();
-        let curr25 = +l_p25.html();
-        let tot23 = 0;
-        let tot24 = 0;
-        let tot25 = 0;
-        for (let i in heuristic_passed) {
-            let hp = heuristic_passed[i];
-            tot23 += hp.p23;
-            tot24 += hp.p24;
-            tot25 += hp.p25;
-        }
-        l_p23.html(curr23 + tot23);
-        l_p24.html(curr24 + tot24);
-        l_p25.html(curr25 + tot25);
-        
-        var heuristicItem = {
-            currStar: st,
-            totRuns: totalRuns,
-            totSc: successStarcatch,
-            totScF: failStarcatch,
-            totBoom: totalDestroy,
-            totalCost: totalCost,
-            totFail: totalFail,
-            totCostSg12: 0,
-            totCostSg15: 0
-        };
-
-        //reset heuristic item
-        heuristic_item_backfilled = {
-            totRuns: 0,
-            totSc: 0,
-            totScF: 0,
-            totFail: 0,
-            totBoom: 0,
-            totSg12: 0,
-            totSg15: 0,
-            totp15: 0,
-            totp20: 0,
-            totp22: 0,
-            totalCost: 0,
-            totCostSg12: 0,
-            totCostSg15: 0
-        };
-
-        for (let j in heuristic_item_backfilled) {
-            heuristic_item_backfilled[j] += heuristicItem[j] || 0;
-        }
-
-        btnGoToStar.html("Beginning backfill...");
-        setTimeout(function() {
-            heuristic_backfill_init(totalDestroy, st);
-        }, 0);
-    }
-
-    var heuristic_backfill_init = function(booms, st) {
-        let initItem = new star({
-            star: start,
-            level: level
-        }, false);
-
-        while (initItem.currStar < heuristic_boom_start) {
-            initItem.starforce()
-        }
-
-        for (let j in heuristic_item_backfilled) {
-            heuristic_item_backfilled[j] += initItem[j];
-        }
-
-        if (booms > 0) {
-            heuristic_backfill_done(st, false);
-            for (let i = 0; i < booms; ++i) {
-                setTimeout(function(_i) {
-                    btnGoToStar.html("Beginning backfill..." + parseFloat(((_i + 1)/ booms) * 100).toFixed(1) + "%");
-                    heuristic_backfill(booms, st, _i);
-                }, 0, i);
-            }
-        } else {
-            heuristic_25_item.sfData = [...initItem.sfData, ...heuristic_25_item.sfData];
-            heuristic_backfill_done(st, true);
-        }
-    }
-
-    var heuristic_backfill = function(booms, st, i) {
-        let hbfItem = new star({
-            star: heuristic_init_start,
-            level: level
-        }, false);
-
-        while (hbfItem.currStar < heuristic_boom_start) {
-            hbfItem.starforce()
-        }
-
-        for (let j in heuristic_item_backfilled) {
-            heuristic_item_backfilled[j] += hbfItem[j];
-        }
-
-        if (i === heuristic_random_item_i) {
-            heuristic_25_item.sfData = [...hbfItem.sfData, ...heuristic_25_item.sfData];
-        }
-
-        heuristic_backfill_done(st, i + 1 === booms);
-    }
-
-    function heuristic_backfill_done (st, done) {
-        let thisTotalRuns = heuristic_item_backfilled.totRuns;
-        let bankTotalCost = heuristic_item_backfilled.totalCost;
-        heuristic_item_backfilled.currStar = st;
-        heuristic_item_backfilled.totalCostFormatted = bankTotalCost.toNumber();
-        heuristic_item_backfilled.level = level;
-       
-        update_stats(heuristic_item_backfilled);
-        
-        if (done) {
-            getNextStar(heuristic_item_backfilled);
-
-            //hacking the cost data
-            let h_sfData_len = heuristic_25_item.sfData.length - 1;
-            heuristic_25_item.currRun = thisTotalRuns;
-            heuristic_25_item.totalCost = bankTotalCost;
-            heuristic_25_item.totalCostFormatted = heuristic_item_backfilled.totalCostFormatted;
-
-            for (let i = h_sfData_len; i >= 0; i--) {
-                let h_currData = heuristic_25_item.sfData[i];
-                let h_nextData = heuristic_25_item.sfData[i+1];
-                let h_currStar = h_currData.current_star;
-
-                let h_prevCost = typeof h_nextData === 'undefined' ? 0 :h_currData.current_cost;
-                heuristic_25_item.sfData[i].cost = bankTotalCost - h_prevCost;
-                heuristic_25_item.sfData[i].current_total_cost = heuristic_25_item.sfData[i].cost.toNumber();
-                heuristic_25_item.sfData[i].id = thisTotalRuns;
-                thisTotalRuns -= 1;
-                bankTotalCost -= h_prevCost;
-            }
-
-            item = heuristic_25_item;
-
-            generateTable(item);
-            generateLineGraph(item);
-            resetGoToButton(); 
-            resetHeuristicVariables();
-        }
-    }
-
-    var resetHeuristicVariables = function() {
-        heuristic = {};
-        heuristic_end_star = 0;
-        runs = 0;
-        heuristic_25_item = {};
-        heuristic_random_item_i = 0;
-        heuristic_passed = {};
-    };
-
     var hv2 = {
         item: {},
         runs: 0,
@@ -1835,19 +1555,14 @@ $(function() {
             toutput.html("");
             _this.html("Running heuristic...");
             //reset heuristic
-            heuristic = {};
-            heuristic_end_star = value;
-            if (!sf_options.hsx2) {
-                recursiveHeuristic(heuristic_boom_start);
-            } else {
-                hv2 = {
-                    item: {},
-                    runs: 0,
-                    stars: {},
-                    sfdata_backfill: {}
-                };
-                recursiveHeuristic_v2(value, {init: heuristic_init_start, boom_init: heuristic_boom_start}, itemLevel.val(), 1);
-            }
+            hv2 = {
+                item: {},
+                runs: 0,
+                stars: {},
+                sfdata_backfill: {}
+            };
+            recursiveHeuristic_v2(value, {init: heuristic_init_start, boom_init: heuristic_boom_start}, itemLevel.val(), 1);
+
             return false;
         }
 
@@ -1880,46 +1595,79 @@ $(function() {
         let heuristic_run = curr_star > threshold.boom_init;
 
         let hItem = "";
+        let is_avg = false;
         
         if (curr_star >= threshold.boom_init) {
-            hItem = new star({
-                star: heuristic_run ? start_at : threshold.init,
-                level: +level,
-                heuristic: heuristic_run,
-                heuristic_start: start_at,
-                heuristic_clean_data: false
-            }, false);
+            if(!sf_options.hsx_avg) {
+                hItem = new star({
+                    star: heuristic_run ? start_at : threshold.init,
+                    level: +level,
+                    heuristic: heuristic_run,
+                    heuristic_start: start_at,
+                    heuristic_clean_data: false
+                }, false);
+            } else {
+                if (curr_star !== threshold.boom_init) {
+                    hItem = new star({
+                        star: heuristic_run ? start_at : threshold.init,
+                        level: +level,
+                        heuristic: heuristic_run,
+                        heuristic_start: start_at,
+                        heuristic_clean_data: false
+                    }, false);
+                } else {
+                    is_avg = true;
+                    run_amount_p = 0;
+                    hItem = average_22_run(threshold);
+                }
+            }
         } else { 
+            run_amount = 1;
             hItem = new star({
                 star: start,
                 level: level
             }, false);
         }
 
-        while (hItem.currStar < curr_star) {
-            hItem.starforce();
-        }
-
         if (!(curr_star in hv2.sfdata_backfill)) {
             hv2.sfdata_backfill[curr_star] = [];
         }
 
-        for (let i in hItem) {
-            if (!(i in hv2.item)) {
-                hv2.item[i] = hItem[i];
-            } else {
-                if (i.startsWith("tot") && !i.includes("Formatted")) {
-                    hv2.item[i] += hItem[i];
+        if (!is_avg) {
+            while (hItem.currStar < curr_star) {
+                hItem.starforce();
+            }
+
+            for (let i in hItem) {
+                if (!(i in hv2.item)) {
+                    hv2.item[i] = hItem[i];
+                } else {
+                    if (i.startsWith("tot") && !i.includes("Formatted")) {
+                        hv2.item[i] += hItem[i];
+                    }
                 }
             }
-        }
 
-        if (hv2.sfdata_backfill[curr_star].length < 1000) {
+            if (hv2.sfdata_backfill[curr_star].length < 1000) {
+                hv2.sfdata_backfill[curr_star].push(hItem.sfData);
+            }
+
+            run_amount_p = run_amount - 1;
+            hv2.runs += 1;
+        } else {
+            for (let i in hItem) {
+                if (!(i in hv2.item)) {
+                    hv2.item[i] = hItem[i];
+                } else {
+                    if (i.startsWith("tot") && !i.includes("Formatted")) {
+                        hv2.item[i] += hItem[i] * run_amount;
+                    }
+                }
+            }
+
+
             hv2.sfdata_backfill[curr_star].push(hItem.sfData);
         }
-
-        run_amount_p = run_amount - 1;
-        hv2.runs += 1;
 
         if (run_amount_p > 0) {      
             if (heuristic_run) {
@@ -1933,7 +1681,11 @@ $(function() {
             setTimeout(function(a,b,c,d,e,f) {
                 hv2.item.totalCostFormatted = hv2.item.totalCost.toNumber();
                 update_stats(hv2.item);
-                btnGoToStar.html(`Beginning backfill for star: ${a}  (${parseFloat((e/f) * 100).toFixed(1)}%)`);
+                if (!is_avg) {
+                    btnGoToStar.html(`Beginning backfill for star: ${a}  (${parseFloat((e/f) * 100).toFixed(1)}%)`);
+                } else {
+                    btnGoToStar.html(`Taking average run for ${curr_star} star.`);
+                }
                 recursiveHeuristic_v2(a,b,c,d);
             },0,start_at+1,threshold,level,run_amount_p,hv2.runs,hv2.stars[curr_star+1]);
         } else {
@@ -1974,6 +1726,50 @@ $(function() {
         item.heuristic_clean_data();
 
         generateTable(item);
+    }
+
+    function average_22_run(threshold) {
+        let hItemArr = [];
+        let n_sample = 100;
+
+        for (let i = 0; i < n_sample; ++i) {
+            let hItem = new star({
+                star: threshold.init,
+                level: level
+            }, false);
+        
+
+            while (hItem.currStar < threshold.boom_init) {
+                hItem.starforce();
+            }
+
+            hItemArr.push(hItem);
+        }
+
+        let avgItem = {};
+
+        for (let i = 0; i < hItemArr.length; ++i) {
+            let a_item = hItemArr[i];
+            for (let j in a_item) {
+                if (!(j in avgItem)) {
+                    avgItem[j] = a_item[j]
+                } else {
+                    if (j.startsWith("tot") && !j.includes("Formatted")) {
+                        avgItem[j] += a_item[j];
+                    }
+                }
+            }
+        }
+
+        for (let i in avgItem) {
+            if (i.startsWith("tot") && !i.includes("Formatted")) {
+                avgItem[i] = Math.round(avgItem[i] / n_sample);
+            }
+        }
+
+        avgItem.totalCostFormatted = avgItem.totalCost.toNumber();
+
+        return avgItem;
     }
 
 
