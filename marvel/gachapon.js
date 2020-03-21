@@ -38,6 +38,7 @@ $(function() {
     let simSettingsBtn = $("#sim-settings-btn");
     let cache_options = {
         sim_item: "0",
+        sim_nx: 0,
         sim_runs: 0,
         sim_last: 0,
         sim_name_contains: ""
@@ -65,6 +66,11 @@ $(function() {
         <label for="rsim1">
             <input type="radio" name="option" value="1" checked class="radio-sim" id="rsim1">
             Run <input type="number" min="0" id="txt_total_runs" style="width:75px;display:inline-block;" value="11"> times.
+        </label>
+        <hr>
+        <label for="rsim4">
+            <input type="radio" name="option" value="4" class="radio-sim" id="rsim4">
+            Run using <input type="number" min="0" id="txt_nx_cash" style="width:150px;display:inline-block;" value="49000"> NX.
         </label>
         <hr>
         <label for="rsim2">
@@ -116,6 +122,10 @@ All filters can be combined. Example: &quot;[filter:start][slot:3]Absolab&quot;
     `;
 
     let body = $("body");
+
+    body.on("change", "#txt_nx_cash", function() {
+        $("#rsim4").prop("checked", true).trigger("change");
+    });
 
     body.on("change", "#txt_con_item", function() {
         $("#rsim3").prop("checked", true).trigger("change");
@@ -344,6 +354,9 @@ All filters can be combined. Example: &quot;[filter:start][slot:3]Absolab&quot;
         if (cache_options.sim_runs !== 0) {
             $("#txt_total_runs").val(cache_options.sim_runs);
         }
+        if (cache_options.sim_nx !== 0) {
+            $("#txt_nx_cash").val(cache_options.sim_nx);
+        }
         if (cache_options.sim_item !== "0") {
             $("#s_item").val(cache_options.sim_item);
         }
@@ -354,6 +367,8 @@ All filters can be combined. Example: &quot;[filter:start][slot:3]Absolab&quot;
         if (cache_options.sim_name_contains !== "") {
             $("#txt_con_item").val(cache_options.sim_name_contains);
         }
+
+        
 
         dialog.dialog({
             title: "Marvel Machine Simulation Options",
@@ -470,6 +485,17 @@ All filters can be combined. Example: &quot;[filter:start][slot:3]Absolab&quot;
                         }, {
                             func: func,
                             slot: slot
+                        });
+                    } else if (type == 4) {
+                        let totNx = +$("#txt_nx_cash").val();
+                        let spin_times = calc_func.getSpinsFromNx(totNx);
+                        if (spin_times === 0) return false;
+                        cache_options.sim_nx = totNx;
+                        gachapon.runSpin1_prog(spin_times, function(item, cb) {
+                            gachapon.runSpin1(item, function() {
+                                cb();
+                            });
+                            _this.dialog("close");
                         });
                     }
 
@@ -809,6 +835,22 @@ var gach_options = {};
 
 Number.prototype.toNumber = function() {
     return this.toLocaleString();
+};
+
+var calc_func = {
+    calculateNx: function(value) {
+        let indivNx = (value % 11) * 4900;
+        let bundleNx = Math.floor(value/11) * 49000;
+
+        return bundleNx + indivNx;
+    },
+    getSpinsFromNx: function(value) {
+        let bundle = Math.floor(value / 49000);
+        let bundleCost = bundle * 49000;
+        let indiv = Math.floor((value - bundleCost) / 4900);
+
+        return (bundle * 11) + indiv;
+    }
 };
 
 (function ($) {
@@ -1399,9 +1441,10 @@ Number.prototype.toNumber = function() {
             table_body.html(thesePrizes);
             if (myItems.length > 0) {
                 let bundle = myItems.length / 3;
-                let indivNx =(bundle % 11) * 4900;
-                let bundleNx = Math.floor(bundle / 11) * 49000;
-                $("#nx-spent").html((bundleNx + indivNx).toNumber() + " NX Spent");
+
+                let nxSpent = calc_func.calculateNx(bundle);
+
+                $("#nx-spent").html(nxSpent.toNumber() + " NX Spent");
             } else {
                 $("#nx-spent").html("0 NX Spent");
             }
