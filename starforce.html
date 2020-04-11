@@ -136,6 +136,9 @@
                 <span class="form-label">Total Passed 25:</span> <span class="stat-item" id="l_p25">0</span><br>
             </div>
             <span class="form-label">Total Cost:</span> <span class="stat-item" id="l_c">0</span> <br>
+            <div class="shadowknight hidden">
+                <span class="form-label">Total SK Coin Cost:</span> <span class="stat-item" id="l_skc">0</span> <br>
+            </div>
             <div class="non-superior">
                 <span class="form-label">Total Safeguard Cost 12-15:</span> <span class="stat-item" id="l_c_sg12">0</span> <br>
                 <span class="form-label">Total Safeguard Cost 15-17:</span> <span class="stat-item" id="l_c_sg15">0</span>
@@ -217,6 +220,7 @@ Enabling this will provide a seed value to the range so that it is not always th
         Item Level: <select id="itemLevel">
             <option value="150">150</option>
             <option value="160">160</option>
+            <option value="180">180</option>
             <option value="200">200</option>
             <option value="-150">Superior</option>
         </select>
@@ -286,6 +290,9 @@ Does not affect heuristic starforcing.">
             <span class="form-label">Fail:</span><span id="c_f">0</span><br>
             <span class="form-label">Destroy:</span><span id="c_d">0</span><br>
             <span class="form-label">Cost:</span><span id="c_c">0</span><br>
+            <div class="shadowknight hidden">
+                <span class="form-label">SK Coin Cost:</span><span id="c_skc">0</span><br>
+            </div>
             <span class="form-label">Star Catch:</span><span id="c_sc">No</span><br>
         </div>
         <button id="btn" style="width:100%;">Enhance</button>
@@ -305,6 +312,7 @@ Does not affect heuristic starforcing.">
 		<th style="width:5%">Star</th>
 		<th style="width:20%">Result</th>
         <th>Total Cost</th>
+        <th class="shadowknight hidden">Total SK Cost</th>
         <th style="width:10%" class="ch-row hidden">PRN</th>
         <th class="ch-row2 hidden">Proc Range</th>
 	</thead>
@@ -510,6 +518,7 @@ $(function() {
     var supLabels = $(".superior");
     var nsupLabels = $(".non-superior");
     var sfev = $(".sf,.ev");
+    var sk = $(".shadowknight");
     itemLevel.on("change", function() {
         cbaee.prop("checked", false).trigger("change");
         level = +$(this).val();
@@ -526,6 +535,12 @@ $(function() {
         	numBtn.val(22).attr("max", 25);
             supLabels.addClass("hidden");
             nsupLabels.removeClass("hidden");
+        }
+
+        if (level === 180) {
+            sk.removeClass("hidden");
+        } else {
+            sk.addClass("hidden");
         }
 
         let thisItem = {
@@ -700,6 +715,7 @@ $(function() {
     				<td style="background-color:${bgColor};color:${color}">${_d.current_star}</td>
     				<td ${_d.type >= 5 && _d.type <= 10 ? 'style="background-color:grey"' : ''}>${thisResult} ${_d.is_chance_time ? "(Chance Time!)":""}</td>
                     <td>${_d.current_total_cost}</td>
+                    <td class="shadowknight ${item.level === 180 ? "" : "hidden"}">${_d.current_skc_cost}</td>
                     <td class="ch-row ${prn_color} ${sf_options.prn ? "" : "hidden"}">${_d.q}</td>
                     <td class="ch-row2 ${sf_options.prnmap ? "" : "hidden"}">${_d.prn_map}</td>
     			</tr>
@@ -725,11 +741,12 @@ $(function() {
     var c_f = $("#c_f");
     var c_d = $("#c_d");
     var c_c = $("#c_c");
+    var c_skc = $("#c_skc");
     var c_sc = $("#c_sc");
     var getNextStar = function(o, updStats = false) {
-        var level = o.level;
-        var star = o.currStar;
-        var chanceTime = o.chanceTime;
+        let level = o.level;
+        let star = o.currStar;
+        let chanceTime = o.chanceTime;
         
         //update stats
         if (updStats) {
@@ -742,8 +759,8 @@ $(function() {
             return false;
         }
 
-        var thisSf = sf["s" + level];
-        var _sf1 = thisSf.filter(a => {
+        let thisSf = sf["s" + level];
+        let _sf1 = thisSf.filter(a => {
             return a.level === star
         })[0];
 
@@ -752,24 +769,26 @@ $(function() {
                 success: _sf1.success_adventures || _sf1.success,
                 destroy: _sf1.destroy_adventures || _sf1.destroy,
                 fail: _sf1.fail_adventures || _sf1.fail,
-                cost: _sf1.cost
+                cost: _sf1.cost,
+                sk_cost: _sf1.sk_cost || 0
             };
         }
 
-        var isSafe = false;
+        let isSafe = false;
         isSafe = isSafe || (sf_options.sf12 && star >= 12 && star < 15);
         isSafe = isSafe || (sf_options.sf15 && star >= 15 && star < 17);
         isSafe = isSafe || (sf_options.sf17 && star >= 17 && star < 20);
         isSafe = isSafe || (sf_options.sf20 && star >= 20 && star < 22);
         isSafe = isSafe || (sf_options.sf22 && star >= 22 && star < 25);
 
-        var is100 = (sf_options.mod5s && star % 5 === 0 && star < 20) || chanceTime >= 2;
+        let is100 = (sf_options.mod5s && star % 5 === 0 && star < 20) || chanceTime >= 2;
 
-        var effectiveCost = parseFloat((_sf1.cost - (sf_options.o30 ? _sf1.cost * 0.3 : 0) - (sf_options.isMvp && star < 17 ? _sf1.cost * sf_options.mvp : 0)).toFixed(0)) + (isSafe && !is100 ? _sf1.cost : 0);
+        let effectiveCost = parseFloat((_sf1.cost - (sf_options.o30 ? _sf1.cost * 0.3 : 0) - (sf_options.isMvp && star < 17 ? _sf1.cost * sf_options.mvp : 0)).toFixed(0)) + (isSafe && !is100 ? _sf1.cost : 0);
 
-        var success = parseFloat(_sf1.success * 100).toFixed(1) + "%";
-        var fail = parseFloat(_sf1.fail * 100).toFixed(1) + "%";
-        var destroy = parseFloat(_sf1.destroy * 100).toFixed(1) + "%";
+        let success = parseFloat(_sf1.success * 100).toFixed(1) + "%";
+        let fail = parseFloat(_sf1.fail * 100).toFixed(1) + "%";
+        let destroy = parseFloat(_sf1.destroy * 100).toFixed(1) + "%";
+        let skc = _sf1.sk_cost;
 
         if (star >= 12 && star < 15 && sf_options.nb15) {
             fail = parseFloat((_sf1.destroy + _sf1.fail) * 100).toFixed(1) + "%";
@@ -788,6 +807,7 @@ $(function() {
         c_f.html(fail);
         c_d.html(destroy);
         c_c.html(effectiveCost.toNumber());
+        c_skc.html(skc);
         c_sc.html(sf_options.sc ? "Yes" : "No");
     };
 
@@ -806,6 +826,7 @@ $(function() {
     var l_p24 = $("#l_p24");
     var l_p25 = $("#l_p25");
     var l_c = $("#l_c");
+    var l_skc = $("#l_skc");
     var l_c_sg12 = $("#l_c_sg12");
     var l_c_sg15 = $("#l_c_sg15");
     var l_aee = $("#l_aee");
@@ -827,6 +848,7 @@ $(function() {
         l_p24.html(o.totp24);
         l_p25.html(o.totp25);
         l_c.html(o.totalCostFormatted);
+        l_skc.html(o.totalSKCost.toNumber());
         l_c_sg12.html(o.totCostSg12.toNumber());
         l_c_sg15.html(o.totCostSg15.toNumber());
         l_aee.html(o.totaee);
@@ -845,6 +867,7 @@ $(function() {
         this.level = o.level || "150";
         this.sf = sf["s" + this.level];
         this.totalCost = 0;
+        this.totalSKCost = 0;
         this.totalCostFormatted = 0;
         this.totBoom = 0;
         this.totFail = 0;
@@ -959,7 +982,8 @@ $(function() {
             	type: 0,
             	current_star: 0,
             	total_current_cost: 0,
-            	current_cost: 0,
+                current_cost: 0,
+                current_skc_cost: 0,
             	q: 0,
             	is_chance_time: false
             };
@@ -997,7 +1021,8 @@ $(function() {
                         success: _sf.success_adventures || _sf.success,
                         destroy: _sf.destroy_adventures || _sf.destroy,
                         fail: _sf.fail_adventures || _sf.fail,
-                        cost: _sf.cost
+                        cost: _sf.cost,
+                        sk_cost: _sf.sk_cost || 0
                     };
                 }
             } else {
@@ -1067,8 +1092,10 @@ $(function() {
                 }
             }
             this.totalCost += effectiveCost;
+            this.totalSKCost += _sf.sk_cost;
             
             _d.current_cost = effectiveCost;
+            _d.current_skc_cost = this.totalSKCost.toNumber();
             
             _d.current_total_cost = this.totalCost.toNumber();;
             this.totalCostFormatted = _d.current_total_cost;
@@ -2022,6 +2049,124 @@ var sf = {
         fail: 0.594,
         destroy: 0.396,
         cost: 243668700
+    }],
+    s180: [{
+        level: 10,
+        success: 0.5,
+        fail: 0.5,
+        destroy: 0,
+        success_adventures: 0.5,
+        fail_adventures: 0.5,
+        destroy_adventures: 0,
+        cost: 9452900,
+        sk_cost: 55
+    }, {
+        level: 11,
+        success: 0.45,
+        fail: 0.55,
+        destroy: 0,
+        success_adventures: 0.45,
+        fail_adventures: 0.55,
+        destroy_adventures: 0,
+        cost: 11955900,
+        sk_cost: 60
+    }, {
+        level: 12,
+        success: 0.4,
+        fail: 0.594,
+        destroy: 0.006,
+        success_adventures: 0.4,
+        fail_adventures: 0.594,
+        destroy_adventures: 0.006,
+        cost: 14840000,
+        sk_cost: 65
+    }, {
+        level: 13,
+        success: 0.35,
+        fail: 0.637,
+        destroy: 0.013,
+        success_adventures: 0.35,
+        fail_adventures: 0.637,
+        destroy_adventures: 0.013,
+        cost: 18127100,
+        sk_cost: 70
+    }, {
+        level: 14,
+        success: 0.30,
+        fail: 0.686,
+        destroy: 0.014,
+        cost: 21838600,
+        sk_cost: 75
+    }, {
+        level: 15,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 86649300,
+        sk_cost: 80
+    }, {
+        level: 16,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 102059300,
+        sk_cost: 85
+    }, {
+        level: 17,
+        success: 0.30,
+        fail: 0.679,
+        destroy: 0.021,
+        cost: 119090100,
+        sk_cost: 90
+    }, {
+        level: 18,
+        success: 0.30,
+        fail: 0.672,
+        destroy: 0.028,
+        cost: 150335800,
+        sk_cost: 95
+    }, {
+        level: 19,
+        success: 0.30,
+        fail: 0.672,
+        destroy: 0.028,
+        cost: 172666600,
+        sk_cost: 100
+    }, {
+        level: 20,
+        success: 0.30,
+        fail: 0.63,
+        destroy: 0.07,
+        cost: 216676400,
+        sk_cost: 105
+    }, {
+        level: 21,
+        success: 0.30,
+        fail: 0.63,
+        destroy: 0.07,
+        cost: 245674700,
+        sk_cost: 110
+    }, {
+        level: 22,
+        success: 0.03,
+        fail: 0.776,
+        destroy: 0.194,
+        cost: 277002900,
+        sk_cost: 115
+    }, {
+        level: 23,
+        success: 0.02,
+        fail: 0.686,
+        destroy: 0.294,
+        cost: 310734400,
+        sk_cost: 120
+    }, {
+        level: 24,
+        success: 0.01,
+        fail: 0.594,
+        destroy: 0.396,
+        cost: 346941900,
+        sk_cost: 125
     }],
     s200: [{
         level: 10,
