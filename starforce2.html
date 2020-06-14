@@ -2881,10 +2881,10 @@ crossorigin="anonymous"></script>
         let scroll_type_att = $("#scroll_type_att");
         let scroll_type_box = $("#scroll_type_box");
         let scroll_type_box_att = $("#scroll_type_box_att"); //heart scrolls
+        let flame_max_4 = $("#flame_max_4");
 
         var init_item = function() {
             scroll_options = [];
-            let max_4_flame = true;
             item_create.dialog({
                 closeOnEscape: false,
                 open: function(event, ui) {
@@ -2907,7 +2907,7 @@ crossorigin="anonymous"></script>
 
                         //more than 4 flames when the restriction to 4 flames is in place
                         if (
-                            max_4_flame 
+                            flame_max_4.prop("checked") 
                             && 
                             flame_textbox.map(function() {
                                 return $(this).val() > 0
@@ -2980,7 +2980,7 @@ crossorigin="anonymous"></script>
                             nebulite_compensation: $("#item_neb_comp").prop("checked")
                         });
 
-                        if ($("#flame_as_tier").prop("checked")) {
+                        if (flame_tier.prop("checked")) {
                             Item.set_item_flame_tier(flame_options);
                         } else {
                             Item.set_item_flame(flame_options);
@@ -3059,7 +3059,6 @@ crossorigin="anonymous"></script>
 
                 let flame_box = $(".flame-box");
                 let scroll_box = $(".scroll-box");
-                let flame_max_4 = $("#flame_max_4");
                 let all_box =  $([...flame_box, ...scroll_box]);
                 let all_textbox = $([...flame_textbox, ...scroll_textbox]);
 
@@ -3074,10 +3073,6 @@ crossorigin="anonymous"></script>
                     } else if (min !== -1 && val < min) {
                         _this.val(min);
                     }
-                });
-
-                flame_max_4.on("change", function(e) {
-                    max_4_flame = e.target.checked;
                 });
 
                 ddl_item.on("change", function(e) {
@@ -3155,14 +3150,14 @@ crossorigin="anonymous"></script>
                         flame_textbox.attr("max", 7);
                         flame_percent.addClass("hidden");
 
-                        flame_max_4.prop("checked", false).trigger("click");
+                        flame_max_4.trigger("click");
 
                         flame_box.filter(":not(.item-custom-flame)").removeClass("hidden");
                     } else {
                         flame_textbox.removeAttr("max");
                         flame_percent.removeClass("hidden");
 
-                        flame_max_4.prop("checked", true).trigger("click");
+                        flame_max_4.trigger("click");
 
                         flame_box.filter(":not(.item-custom-flame)").addClass("hidden");
                     }

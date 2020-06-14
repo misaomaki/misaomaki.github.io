@@ -416,7 +416,7 @@ item.prototype.reverse_flame_lookup = function() {
             for (let i = 0; i < lookup_att.length; ++i) {
                 let t_att = lookup_att[i];
 
-                let this_att = 1 + Math.floor(this.idata.bstat.watt * t_att);
+                let this_att = Math.floor(this.idata.bstat.watt * t_att);
 
                 if (this_att === flames.watt || this_att === flames.matt) {
                     let wtier = i;
