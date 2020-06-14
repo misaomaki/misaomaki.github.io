@@ -65,6 +65,16 @@ item.prototype.cache = {
         _30g: {
             att: 3
         },
+        //other trace
+        _100m: {
+            main: 2
+        },
+        _70m: {
+            main: 3
+        },
+        _30m: {
+            main: 5
+        },
         prime_weapon: {
             str: 3,
             dex: 3,
@@ -776,6 +786,8 @@ item.prototype.set_item_scroll = function(s) {
 
         let _s = s[i];
 
+        let stat_gain = this.idata.mstat;
+
         if (_s.type.startsWith("_")) {
             if (this.idata.class === "weapon") {
                 _s.type = _s.type + "w";
@@ -783,6 +795,12 @@ item.prototype.set_item_scroll = function(s) {
                 _s.type = _s.type + "a";
             } else if (this.idata.type === "gloves") {
                 _s.type = _s.type + "g";
+            } else {
+                _s.type = _s.type + "m";
+            }
+
+            if (_s.stat !== null) {
+                stat_gain = _s.stat;
             }
         } else if (_s.type === "prime") {
             if (this.idata.class === "weapon" || this.idata.type === "mechanical heart") {
@@ -809,7 +827,7 @@ item.prototype.set_item_scroll = function(s) {
             let _j = j;
 
             if (j === 'main') {
-                _j = this.idata.mstat;
+                _j = stat_gain;
             } else if (j === 'att') { 
                 _j = this.idata.att_type;
             } 
@@ -818,7 +836,7 @@ item.prototype.set_item_scroll = function(s) {
                 spell_trace_used += 1;
             }
 
-            this_stat[_j] = scr_type[j];
+            this_stat[_j] += scr_type[j] * (stat_gain === "hp" ? 50 : 1);
         }
 
         for (let k = 0; k < scr_amount; ++k) {

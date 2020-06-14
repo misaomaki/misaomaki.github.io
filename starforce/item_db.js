@@ -2026,7 +2026,7 @@ var items_store = {
             img: "item-berserked",
             upgrades: 5,
             hammers_added: 2
-        },
+        },/*
         source_of_suffering: {
             name: "Source of Suffering",
             level: 160,
@@ -2057,7 +2057,7 @@ var items_store = {
             img: "item-sourceofsuffering",
             upgrades: 5,
             hammers_added: 2
-        },
+        },*/
         dreamy_belt: {
             name: "Dreamy Belt",
             level: 200,

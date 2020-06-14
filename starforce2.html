@@ -2867,6 +2867,8 @@ crossorigin="anonymous"></script>
         let flame_percent = $(".flame-percent");
         let flame_tier = $("#flame_as_tier");
         let scroll_textbox = $(".scroll-form");
+        let scroll_type = $("#scroll_type");
+        let scroll_type_box = $("#scroll_type_box");
 
         var init_item = function() {
             scroll_options = [];
@@ -2945,6 +2947,10 @@ crossorigin="anonymous"></script>
                                 type: this_attr,
                                 amount: val
                             };
+
+                            if (!scroll_type_box.hasClass("hidden")) {
+                                scr.stat = scroll_type.val();
+                            }
 
                             if (val !== 0) {
                                 scroll_options.push(scr);
@@ -3081,6 +3087,14 @@ crossorigin="anonymous"></script>
                         <span class="sf-item ${this_item.img}" style="width:30px;height:30px;"></span>
                     `);
 
+                    //if the item does not have a primary stat, then show the dropdown to choose the stat
+                    if (this_item.mstat === "") {
+                        scroll_type_box.removeClass("hidden");
+                    } else {
+                        scroll_type_box.addClass("hidden");
+                    }
+
+                    //set total scroll data for scroll textbox
                     let tot_scroll = this_item.upgrades + this_item.hammers_added;
                     scr_amount.html(tot_scroll);
 
@@ -3197,6 +3211,20 @@ crossorigin="anonymous"></script>
                     </span>
                     <hr>
                     <div class="item-scroll-form">
+                        <div class="item-scroll-form" id="scroll_type_box">
+                            <span class="scroll-type-box">
+                                <span class="item-scroll-label">
+                                    Scroll Type:
+                                </span>
+                                <select id="scroll_type" style="width:75px">
+                                    <option value="str" selected>STR</option>
+                                    <option value="dex">DEX</option>
+                                    <option value="int">INT</option>
+                                    <option value="luk">LUK</option>
+                                    <option value="hp">HP</option>
+                                </select>
+                            </span>
+                        </div>
                         <div class="item-scroll-form">
                             <span class="scroll-box item-weapon item-armor">
                                 <span class="item-scroll-label">
