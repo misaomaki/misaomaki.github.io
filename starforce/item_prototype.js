@@ -158,6 +158,9 @@ item.prototype.set_item_level = function(star = 0) {
         this.idata.meta.stars += 1;
     }
 
+    this.idata.meta.chance_time = false;
+    this.idata.meta.chance_count = 0;
+
     this.idata.boosts.sf_data = sf_data;
 };
 
