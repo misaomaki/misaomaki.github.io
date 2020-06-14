@@ -1145,7 +1145,10 @@ item.prototype.redraw_item_tooltip = function() {
         }
 
         //blue stats in the parenthesis
-        e_stats[i.replace("_p", "") + "_upgrade"] = sf_total_gain[i] !== 0 || scr_total_gain[i] !== 0 || flame_stats[i] !== 0;
+        let curr_i = i.replace("_p", "") + "_upgrade";
+        if (e_stats[curr_i] == null || !e_stats[curr_i]) {
+            e_stats[curr_i] = sf_total_gain[i] !== 0 || scr_total_gain[i] !== 0 || flame_stats[i] !== 0;
+        }
     }
 
     for (let i = 0; i < this.idata.boosts.sf_data.length; ++i) {

@@ -6023,6 +6023,7 @@ $(function() {
 
                 shared_img.push(istore.img);
             } else {
+                //github is case sensitive for url
                 style_items += `
                     .${istore.img} {
                         background: url(./assets/maple_items/${istore.name.replace("AbsoLab","Absolab").replace(/[\s-]/gi,"")}.png);
