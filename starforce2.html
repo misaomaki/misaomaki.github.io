@@ -1401,12 +1401,12 @@
     }
     .req-num-op {
         background-repeat: no-repeat;
-        background-image: url(./assets/item/ui.items.base.text.grey.openingparenthesis.png);
+        background-image: url(./assets/item/ui.items.base.text.grey.openingParenthesis.png);
         width: 2px !important;
     }
     .req-num-cp {
         background-repeat: no-repeat;
-        background-image: url(./assets/item/ui.items.base.text.grey.closingparanthesis.png);
+        background-image: url(./assets/item/ui.items.base.text.grey.closingParenthesis.png);
         width: 2px !important;
     }
     .req-num-minus {
@@ -1466,11 +1466,11 @@
     }
     .item-requirements.required .req-num-op, .white.req-num-op {
         background-repeat: no-repeat;
-        background-image: url(./assets/item/ui.items.base.text.white.openingparenthesis.png) !important;
+        background-image: url(./assets/item/ui.items.base.text.white.openingParenthesis.png) !important;
     }
     .item-requirements.required .req-num-cp, .white.req-num-cp {
         background-repeat: no-repeat;
-        background-image: url(./assets/item/ui.items.base.text.white.closingparenthesis.png) !important;
+        background-image: url(./assets/item/ui.items.base.text.white.closingParenthesis.png) !important;
     }
     .item-requirements.required .req-num-minus, .white.req-num-minus {
         background-repeat: no-repeat;
@@ -1519,11 +1519,11 @@
     }
     .item-requirements.yellow .req-num-op {
         background-repeat: no-repeat;
-        background-image: url(./assets/item/ui.items.base.text.yellow.openingparenthesis.png)
+        background-image: url(./assets/item/ui.items.base.text.yellow.openingParenthesis.png)
     }
     .item-requirements.yellow .req-num-cp {
         background-repeat: no-repeat;
-        background-image: url(./assets/item/ui.items.base.text.yellow.closingparenthesis.png)
+        background-image: url(./assets/item/ui.items.base.text.yellow.closingParenthesis.png)
     }
     .item-requirements.yellow .req-num-minus {
         background-repeat: no-repeat;
@@ -2284,104 +2284,114 @@ crossorigin="anonymous"></script>
             let this_log = Item.idata.meta.sf_meta_data;
 
             let t_body = "";
-            for (let i = this_log.length - 1; i >= 0; --i) {
-                let _tl = this_log[i];
+            if (this_log.length > 0) {
+                for (let i = this_log.length - 1; i >= 0; --i) {
+                    let _tl = this_log[i];
 
-                let sf_data= _tl.sf_data;
-                let prn_map = _tl.prn_map;
+                    let sf_data= _tl.sf_data;
+                    let prn_map = _tl.prn_map;
 
-                let prn_map_html = "";
+                    let prn_map_html = "";
 
-                for (let j in prn_map) {
-                    let j_map = prn_map[j];
+                    for (let j in prn_map) {
+                        let j_map = prn_map[j];
 
-                    for (let k = 0; k < j_map.length; ++k) {
-                        let k_map = j_map[k];
-                        let j2 = j;
+                        for (let k = 0; k < j_map.length; ++k) {
+                            let k_map = j_map[k];
+                            let j2 = j;
 
-                        if (j2 === "sc_success") {
-                            j2 = "success";
-                        }
-                        prn_map_html += `
-                            <span class="result-${j2}${j2 === "destroy" ? "2" : ""}" style="display:inline-block;width:100px;">
-                                ${j}:
-                            </span> 
-                            ${k_map[0].toFixed(5)} - ${k_map[1].toFixed(5)} <br>
-                        `;
-                    }
-                }
-
-                let result = "";
-                let this_result = _tl.result;
-                let result_type = "";
-                if (this_result === "success") {
-                    result = "Success!";
-                    result_type = "result-success";
-                } else if (this_result === "fail") {
-                    result = "Failed";
-                    result_type = "result-fail";
-                } else if (this_result === "chance_time_success") {
-                    result = "Success! (Chance Time)";
-                    result_type = "result-success";
-                } else if (this_result === "sc_fail") {
-                    result = "Failed (Star Catch)";
-                    result_type = "result-fail";
-                } else if (this_result === "sc_success") {
-                    result = "Success! (Star Catch)";
-                    result_type = "result-success";
-                } else if (this_result === "destroy") {
-                    result = "Destroyed!";
-                    result_type = "result-destroy-text";
-                } else if (this_result === "safeguard") {
-                    result = "Safeguard!";
-                    result_type = "result-destroy-text";
-                }
-
-                let is_destroyed = ["destroy", "safeguard"].includes(this_result);
-
-                let bgColor = "none";
-                let color = "black";
-                if (_tl.star === 22) {
-                    bgColor = "#0070dd";
-                    color = "white";
-                } else if (_tl.star === 23) {
-                    bgColor = "#a335ee";
-                    color = "white";
-                } else if (_tl.star === 24) {
-                    bgColor = "#ff8000";
-                    color = "white";
-                } else if (_tl.star === 25) {
-                    bgColor = "#00f70a";
-                    color: "white";
-                }
-
-                t_body += `
-                    <tr>
-                        <td>${_tl.id}</td>
-                        <td style="background-color:${bgColor};color:${color}">${_tl.star}</td>
-                        <td ${is_destroyed ? 'class="result-destroy"' : ""}>
-                            <span class="${result_type}">${result}</span>
-                        </td>
-                        <td>
-                            ${_tl.star >= 11 && _tl.star < 18 ?
-                                _tl.is_safeguard ? "Yes" : "No"
-                                :
-                                ""
+                            if (j2 === "sc_success") {
+                                j2 = "success";
                             }
-                        </td>
-                        <td>${_tl.sf_cost.toNumber()}</td>
-                        <td>${_tl.sf_cost_discount["0.03"].toNumber()}</td>
-                        <td>${_tl.sf_cost_discount["0.05"].toNumber()}</td>
-                        <td>${_tl.sf_cost_discount["0.1"].toNumber()}</td>
-                        <td>${_tl.sf_cost_discount["0.3"].toNumber()}</td>
-                        <td>${_tl.sf_cost_discount["0.03,0.3"].toNumber()}</td>
-                        <td>${_tl.sf_cost_discount["0.05,0.3"].toNumber()}</td>
-                        <td>${_tl.sf_cost_discount["0.1,0.3"].toNumber()}</td>
-                        <td class="prn_number hidden ${is_destroyed ? "result-destroy" : ""}" style="white-space:nowrap">
-                            <span class="${result_type}">${_tl.prn}</span>
-                        </td>
-                        <td class="prn_map hidden" style="text-align:left">
-                            ${prn_map_html}
+                            prn_map_html += `
+                                <span class="result-${j2}${j2 === "destroy" ? "2" : ""}" style="display:inline-block;width:100px;">
+                                    ${j}:
+                                </span> 
+                                ${k_map[0].toFixed(5)} - ${k_map[1].toFixed(5)} <br>
+                            `;
+                        }
+                    }
+
+                    let result = "";
+                    let this_result = _tl.result;
+                    let result_type = "";
+                    if (this_result === "success") {
+                        result = "Success!";
+                        result_type = "result-success";
+                    } else if (this_result === "fail") {
+                        result = "Failed";
+                        result_type = "result-fail";
+                    } else if (this_result === "chance_time_success") {
+                        result = "Success! (Chance Time)";
+                        result_type = "result-success";
+                    } else if (this_result === "sc_fail") {
+                        result = "Failed (Star Catch)";
+                        result_type = "result-fail";
+                    } else if (this_result === "sc_success") {
+                        result = "Success! (Star Catch)";
+                        result_type = "result-success";
+                    } else if (this_result === "destroy") {
+                        result = "Destroyed!";
+                        result_type = "result-destroy-text";
+                    } else if (this_result === "safeguard") {
+                        result = "Safeguard!";
+                        result_type = "result-destroy-text";
+                    }
+
+                    let is_destroyed = ["destroy", "safeguard"].includes(this_result);
+
+                    let bgColor = "none";
+                    let color = "black";
+                    if (_tl.star === 22) {
+                        bgColor = "#0070dd";
+                        color = "white";
+                    } else if (_tl.star === 23) {
+                        bgColor = "#a335ee";
+                        color = "white";
+                    } else if (_tl.star === 24) {
+                        bgColor = "#ff8000";
+                        color = "white";
+                    } else if (_tl.star === 25) {
+                        bgColor = "#00f70a";
+                        color: "white";
+                    }
+
+                    t_body += `
+                        <tr>
+                            <td>${_tl.id}</td>
+                            <td style="background-color:${bgColor};color:${color}">${_tl.star}</td>
+                            <td ${is_destroyed ? 'class="result-destroy"' : ""}>
+                                <span class="${result_type}">${result}</span>
+                            </td>
+                            <td>
+                                ${_tl.star >= 11 && _tl.star < 18 ?
+                                    _tl.is_safeguard ? "Yes" : "No"
+                                    :
+                                    ""
+                                }
+                            </td>
+                            <td>${_tl.sf_cost.toNumber()}</td>
+                            <td>${_tl.sf_cost_discount["0.03"].toNumber()}</td>
+                            <td>${_tl.sf_cost_discount["0.05"].toNumber()}</td>
+                            <td>${_tl.sf_cost_discount["0.1"].toNumber()}</td>
+                            <td>${_tl.sf_cost_discount["0.3"].toNumber()}</td>
+                            <td>${_tl.sf_cost_discount["0.03,0.3"].toNumber()}</td>
+                            <td>${_tl.sf_cost_discount["0.05,0.3"].toNumber()}</td>
+                            <td>${_tl.sf_cost_discount["0.1,0.3"].toNumber()}</td>
+                            <td class="prn_number hidden ${is_destroyed ? "result-destroy" : ""}" style="white-space:nowrap">
+                                <span class="${result_type}">${_tl.prn}</span>
+                            </td>
+                            <td class="prn_map hidden" style="text-align:left">
+                                ${prn_map_html}
+                            </td>
+                        </tr>
+                    `;
+                }
+            } else {
+                t_body = `
+                    <tr>
+                        <td colspan="15" style="text-align:center;">
+                            No starforce data found.    
                         </td>
                     </tr>
                 `;
