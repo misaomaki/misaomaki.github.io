@@ -6025,7 +6025,7 @@ $(function() {
             } else {
                 style_items += `
                     .${istore.img} {
-                        background: url(./assets/maple_items/${istore.name.replace("Absolab","AbsoLab").replace(/[\s-]/gi,"")}.png);
+                        background: url(./assets/maple_items/${istore.name.replace("AbsoLab","Absolab").replace(/[\s-]/gi,"")}.png);
                         background-repeat: no-repeat;
                         background-size: contain;
                     }
