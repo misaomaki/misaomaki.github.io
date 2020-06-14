@@ -6004,12 +6004,9 @@ $(function() {
                 let os_s = istore.override_stat.split("|");
                 istore_override = items_store[os_s[0]][os_s[1]];
             }
-
-            let iod = Object.assign({}, items_other_data, {
-                meta: {
-                    max_stars: star_max(istore.level, istore.superior)
-                }
-            });
+            
+            let iod = $.extend(true, {}, items_other_data);
+            iod.meta.max_stars = star_max(istore.level, istore.superior);
 
             items_store[i][j] = {...iod, ...istore_override, ...items_store[i][j]};
             
