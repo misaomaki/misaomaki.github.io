@@ -419,9 +419,16 @@ item.prototype.reverse_flame_lookup = function() {
             for (let i = 0; i < lookup_att.length; ++i) {
                 let t_att = lookup_att[i];
 
-                let this_att = Math.floor(this.idata.bstat.watt * t_att);
+                let this_att = 1 + Math.floor(this.idata.bstat.watt * t_att);
 
-                if (this_att === flames.watt || this_att === flames.matt) {
+                //some values are wonky, so if they are within 3, it is okay
+                let threshold_watt = Math.abs(this_att - flames.watt);
+                let threshold_matt = Math.abs(this_att - flames.matt);
+
+                if (
+                    //this_att === flames.watt || this_att === flames.matt
+                    threshold_watt <= 3 || threshold_matt <= 3
+                ) {
                     let wtier = i;
 
                     if (this.idata.flame_type === 1) {
