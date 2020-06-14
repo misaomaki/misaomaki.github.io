@@ -2627,7 +2627,7 @@ crossorigin="anonymous"></script>
         });
 
         sfmain.on("click", ".sf-button-enhance", e=>{
-            if (Item.idata.meta.stars === (Item.idata.superior ? 15 :25)) {
+            if (Item.idata.meta.stars === Item.idata.meta.max_stars) {
                 return false;
             }
 

@@ -1140,8 +1140,6 @@ item.prototype.redraw_item_tooltip = function() {
         return i_con.find(".item-container-item");
     }, "dom", "ipic");   
 
-    let this_max_stars = star_max(this.idata.level, this.idata.superior);
-
     //total stats from all sources: flames, stars, and scrolls
     let e_stats = Object.assign({}, stats);
 
@@ -1573,7 +1571,7 @@ item.prototype.redraw_item_tooltip = function() {
 
     istar.removeClass("hidden");
     //remove stars based on max stars allowed
-    for (let i = 25; i > this_max_stars; --i) {
+    for (let i = 25; i > this.idata.meta.max_stars; --i) {
         istar.filter(".item-star-" + i).addClass("hidden");
     } 
 
@@ -1697,7 +1695,7 @@ item.prototype.redraw_sf = function() {
 
     let this_star = this.idata.meta.stars;
 
-    if (this_star === (this.idata.superior ? 15 : 25)) {
+    if (this_star === this.idata.meta.max_stars) {
         this_star = 1;
     }
 
