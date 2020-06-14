@@ -1,0 +1,3306 @@
+<!--- asset preload-->
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/jquery-ui-git.css">
+
+<!-- stolen from w3schools -->
+<style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+    
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      opacity: 0.9;
+    }
+    
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+      white-space: nowrap;
+    }
+    
+    .sidebar a:hover {
+      color: #f1f1f1;
+    }
+    
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      background-color: rgba(0,0,0,0.7);;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      white-space: nowrap;
+    }
+    
+    .openbtn:hover {
+      background-color: rgba(25,25,25,0.7);
+    }
+    
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+      float: right;
+    }
+    
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidebar {padding-top: 15px;}
+      .sidebar a {font-size: 18px;}
+    }
+
+    table {
+        border-collapse: collapse; 
+    }
+
+    table, td, th  {
+        border: 1px solid black;
+        text-align: center;
+    }
+
+    .result-success {
+        color: green;
+    }
+
+    .result-fail {
+        color: red;
+    }
+
+    .result-destroy {
+        background-color: grey;
+    }
+
+    .result-destroy2 {
+        color: grey;
+    }
+
+    .result-destroy-text {
+        color: white;
+    }
+</style>
+
+<script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+      document.getElementById("main").style.display = "none";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.display= "initial";
+    }
+</script>
+
+<noscript>
+    <style>
+      /**
+      * Reinstate scrolling for non-JS clients
+      */
+      .simplebar-content-wrapper {
+        overflow: auto;
+      }
+    </style>
+</noscript>
+
+<style id="maple_items">      
+    /*
+        populated dynamically by item_db.js
+    */
+</style>
+
+<style>
+    .ui-widget-overlay
+    {
+        opacity: .70 !important;
+        background: rgb(50, 50, 50) !important;
+    }
+
+    * { margin: 0; padding: 0;}
+
+    body, html { 
+        height:100%; 
+    }
+
+    #sfcon {
+        position:absolute;
+        width:100%;
+        height:100%;
+        background: url("./assets/b1.png");
+        background-size: cover;
+        overflow:hidden;
+    }
+
+    .sf-main-header {
+        position: absolute;
+        display: inline-block;
+        width: 519px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    .sf-main-border {
+        position: absolute;
+        background: url("./assets/starforce/enchantUI.main.backgrnd.png");
+        background-repeat: no-repeat;
+        display: inline-block;
+        width: 345px;
+        height: 295px;
+    }
+
+    .sf-header-scroll {
+        background: url(./assets/starforce/ui.button.scroll.png); 
+    }
+
+    .sf-header-starforce.active {
+        background: url(./assets/starforce/ui.button.starforce.active.png); 
+    }
+
+    .sf-header-transfer {
+        background: url(./assets/starforce/ui.button.transfer.png); 
+    }
+
+    .sf-no-item {
+        background: url(./assets/starforce/enchantUI.main.backgrnd2.png);
+    }
+
+    .sf-item-guide {
+        background: url(./assets/starforce/enchantUI.item.guidepng);
+    }
+
+    .sf-enchant {
+        background: url(./assets/starforce/tab_hyper.backgrnd2.png);
+    }
+
+    .sf-star10 {
+        background: url(./assets/starforce/star10.png);
+    }
+
+    .sf-star15 {
+        background: url(./assets/starforce/star15.png);
+    }
+    .sf-star20 {
+        background: url(./assets/starforce/star20.png);
+    }
+
+    .sf-button-enhance {
+        background: url(./assets/starforce/button.enchant.start.png);
+    }
+
+    .sf-button-enhance:hover {
+        background: url(./assets/starforce/button.enchant.mouseover.png);
+    }
+
+    .sf-button-enhance:active {
+        background: url(./assets/starforce/button.enchant.press.png);
+    }
+
+    .sf-button-cancel {
+        background: url(./assets/starforce/button.cancel.start.png);
+    }
+
+    .sf-button-cancel:hover {
+        background: url(./assets/starforce/button.cancel.mouseover.png);
+    }
+
+    .sf-button-cancel:active {
+        background: url(./assets/starforce/button.cancel.press.png);
+    }
+
+    .sf-text-start {
+        background: url(./assets/starforce/text.starforce.start.png);
+    }
+
+    .sf-text-bothways {
+        background: url(./assets/starforce/text.starforce.bothways.png);
+        left: -16px;
+        width: 300px !important;
+    }
+
+    .sf-text-destroyable {
+        background: url(./assets/starforce/text.starforce.destroyable.png);
+        left: -51px;
+    }
+
+    .sf-text-downgradeable {
+        background: url(./assets/starforce/text.starforce.downgradeable.png);
+        left: -16px;
+        width: 300px !important;
+    }
+
+    .sf-text-moremesos {
+        background: url(./assets/starforce/text.starforce.moremesos.png);
+    }
+
+    .sf-button-x {
+       background: url(./assets/starforce/ui.button.close.x.png);
+    }
+
+    .sf-button-x:hover {
+        background: url(./assets/starforce/ui.button.close.x.mouseover.png);
+    }
+
+    .sf-main-header {
+        z-index: 50;
+    }
+
+    .sf-checkbox {
+        background: url(./assets/starforce/ui.checkbox.unchecked.png);
+    }
+
+    .sf-checkbox.disabled {
+        background: url(./assets/starforce/ui.checkbox.unchecked.disabled.png);
+    }
+
+    .sf-checkbox.checked {
+        background: url(./assets/starforce/ui.checkbox.checked.png);
+    }
+
+    .sf-checkbox.checked.disabled {
+        background: url(./assets/starforce/ui.checkbox.checked.disabled.png);
+    }
+
+    .sf-main {
+        background-repeat: no-repeat !important;
+        position: relative;
+        display: inline-block;
+        width: 325px;
+        height: 267px;
+        left: 11px;
+        top: 22px;
+    }
+
+    .sf-header-icon {
+        background-repeat: no-repeat !important;
+        position: relative;
+        width: 14px;
+        height: 14px;
+        left: 33px;
+        top: 3px;
+        float: right;
+    }
+
+    .sf-main-button-header {
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        height: 34px;
+        left: 6px;
+        top: 6px;
+    }
+
+    .sf-star-chance {
+        background-repeat: no-repeat !important;
+        position: absolute;
+        height: 146px;
+        width: 386px;
+        top: 30px;
+        left: -2px;
+        animation: sf-key-chance-time 0.6s steps(6) forwards infinite;
+    }
+
+    .sf-star-chance-time {
+        background: url(./assets/starforce/ui.animations.spritesheet.starforce.chance_time.png);
+    }
+
+    @keyframes sf-key-chance-time {
+        from {
+            background-position-y: 0px;
+        }
+        to {
+            background-position-y: -852px;
+        }
+    }
+
+    .sf-star-item {
+        background-repeat: no-repeat !important;
+        position: absolute;
+        display: inline-block;
+        width: 51px;
+        height: 32px;
+        left: 9px;
+        top: 57px;
+    }
+
+    .sf-header-text {
+        position: absolute;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        left: 18px;
+        top: 37px;
+    }
+
+    .sf-text {
+        position: relative;
+        background-repeat: no-repeat !important;
+        display: inline-block;
+        width: 230px;
+        height: 25px;
+    }
+
+    .sf-main-header-buttons {
+        position: absolute;
+        display: inline-block;
+        width: 304px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    .sf-button-header {
+        background-repeat: no-repeat !important;
+        position: relative;
+        display: inline-block;
+        width: 102px;
+        height: 22px;
+        cursor: pointer;
+    }
+
+    .sf-starforce-data {
+        position: absolute !important;
+        display: inline-block;
+        width: 186px;
+        height: 106px;
+        left: 126px;
+        top: 59px;
+        overflow-x: hidden;
+        color: white;
+        font-family: Arial;
+    }
+
+    .sf-starforce-margin {
+        display: block;
+        padding: 5px;
+        width: 100%;
+        clear: both;
+    }
+
+    /*
+    .sf-starforce-data::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    .sf-starforce-data::-webkit-scrollbar-track {
+        border-radius: 10px;
+        border: 2px solid rgba(0,0,0,0.3);
+    }
+
+    .sf-starforce-data::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: rgba(255,170,0); 
+        background-clip: padding-box;
+        height: 5px;
+    }
+    */
+
+    .sf-button {
+        background-repeat: no-repeat !important;
+        position: relative;
+        display: inline-block;
+        width: 89px;
+        height: 28px;
+        left: 9px;
+        top: 15px;
+        cursor: pointer;
+    }
+
+    .sf-button-container {
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        height: 61px;
+        top: 215px;
+        text-align: center;
+        left: -6px;
+    }
+
+    .sf-starcatch {
+        background-repeat: no-repeat !important;
+        position: relative;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        left: 138px;
+        top: 178px;
+        cursor: pointer;
+    }
+
+    .sf-safeguard {
+        background-repeat: no-repeat !important;
+        position: relative;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        left: 274px;
+        top: 178px;
+        cursor: pointer;
+    }
+
+    .sf-main-mesos {
+        position: absolute;
+        top: 207px;
+        font-size: 12px;
+        font-family: Arial;
+        color: white;
+        left: 174px;
+    }
+
+    .sf-enchant-hyper-start {
+        position: absolute;
+        width: 113px;
+        height: 113px;
+        background-size: contain;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        animation: sf-key-enchant-start 1.75s linear 1;
+        animation-timing-function: steps(1, end);
+        top: 57px;
+        left: 4px;
+    }
+
+    @keyframes sf-key-enchant-start {
+        0% {
+            background-image: url(./assets/starforce/hyperEffect1.0.png);
+        }
+        5%{
+            background-image: url(./assets/starforce/hyperEffect1.1.png);
+        }
+        10%{
+            background-image: url(./assets/starforce/hyperEffect1.2.png);
+        }
+        15%{
+            background-image: url(./assets/starforce/hyperEffect1.3.png);
+        }
+        20%{
+            background-image: url(./assets/starforce/hyperEffect1.4.png);
+        }
+        40% {
+            background-image: url(./assets/starforce/hyperEffect1.0.png);
+        }
+        45%{
+            background-image: url(./assets/starforce/hyperEffect1.1.png);
+        }
+        50%{
+            background-image: url(./assets/starforce/hyperEffect1.2.png);
+        }
+        55%{
+            background-image: url(./assets/starforce/hyperEffect1.3.png);
+        }
+        60%{
+            background-image: url(./assets/starforce/hyperEffect1.4.png);
+        }
+        70% {
+            background-image: url(./assets/starforce/hyperEffect2.0.png);
+        }
+        72%{
+            background-image: url(./assets/starforce/hyperEffect2.1.png);
+        }
+        74%{
+            background-image: url(./assets/starforce/hyperEffect2.2.png);
+        }
+        86%{
+            background-image: url(./assets/starforce/hyperEffect2.3.png);
+        }
+        88%{
+            background-image: url(./assets/starforce/hyperEffect2.4.png);
+        }
+        90%{
+            background-image: url(./assets/starforce/hyperEffect2.5.png);
+        }
+        92%{
+            background-image: url(./assets/starforce/hyperEffect2.6.png);
+        }
+        96%{
+            background-image: url(./assets/starforce/hyperEffect2.7.png);
+        }
+        100%{
+            background-image: url(./assets/starforce/hyperEffect2.7.png);
+        }
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .hide {
+        visibility: hidden !important;
+    }
+
+    .sf-main-border, .sfp-main-border {
+            user-select: none;
+    }
+</style>
+
+<style>
+    .sfp-main-border {
+        position: absolute;
+        background: url(./assets/starforce/ui.popup.png);
+        background-repeat: no-repeat;
+        display: inline-block;
+        width: 291px;
+        height: 162px;
+        z-index: 55;
+    }
+
+    .sfp-main-header {
+        position: absolute;
+        display: inline-block;
+        width: 274px;
+        height: 25px;
+        cursor: pointer;
+        top: 14px;
+        left: 15px;
+    }
+
+    .sfp-button-container, .sfi-button-container, .sfsc-button-container {
+        position: absolute;
+        display: inline-block;
+        width: 279px;
+        height: 60px;
+        top: 115px;
+        text-align: center;
+        left: 10px;
+    }
+
+    .sfsc-button-container {
+        top: 203px;
+        left: 17px;
+        height: 73px;
+    }
+
+    .sfp-button, .sfi-button, .sfsc-button {
+        background-repeat: no-repeat !important;
+        position: relative;
+        display: inline-block;
+        width: 84px;
+        height: 26px;
+        left: 4px;
+        top: 15px;
+        cursor: pointer;
+    }
+
+    .sfi-button {
+        left: 1px;
+    }
+
+    .sfsc-button {
+        width: 156px;
+        height: 62px;
+        top: 0px;
+    }
+
+    .sfp-button-ok, .sfi-button-ok {
+        background: url(./assets/starforce/ui.popup.button.ok.png);
+    }
+
+    .sfp-button-ok:hover, .sfi-button-ok:hover {
+        background: url(./assets/starforce/ui.popup.button.ok.mouseover.png);
+    }
+
+    .sfp-button-ok:active, .sfi-button-ok:active {
+        background: url(./assets/starforce/ui.popup.button.ok.click.png);
+    }
+
+    .sfp-button-cancel, .sfi-button-cancel {
+        background: url(./assets/starforce/ui.popup.button.cancel.png);
+    }
+
+    .sfp-button-cancel:hover, .sfi-button-cancel:hover {
+        background: url(./assets/starforce/ui.popup.button.cancel.mouseover.png);
+    }
+
+    .sfp-button-cancel:active, .sfi-button-cancel:active {
+        background: url(./assets/starforce/ui.popup.button.cancel.click.png);
+    }
+
+    .sfp-data-margin {
+        display: block;
+        width: 100%;
+        clear: both;
+        padding: 12px;
+    }
+
+    .sfp-data {
+        position: absolute;
+        display: inline-block;
+        width: 279px;
+        height: 146px;
+        top: 10px;
+        left: 10px;
+        font-family: Arial;
+        text-align: center;
+        color: white;
+        font-size: 12px;
+    }
+</style>
+
+<style>
+    .sfi-main-border {
+        position: absolute;
+        background: url(./assets/starforce/ui.popup.item.png);
+        background-repeat: no-repeat;
+        display: inline-block;
+        width: 297px;
+        height: 170px;
+        z-index: 55;
+    }
+
+    .sfi-main-header {
+        position: absolute;
+        display: inline-block;
+        width: 416px;
+        height: 25px;
+        cursor: pointer;
+        top: 14px;
+        left: 15px;
+    }
+
+    .sfi-result-container {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+    }
+
+    .sfi-info-left {
+        left: 88px;
+        top: 34px;
+        position: absolute;
+    }
+
+    .sfi-info-right {
+        left: 175px;
+        top: 34px;
+        position: absolute;
+    }
+
+    .sfi-description {
+        position: absolute;
+        top: 79px;
+        left: 16px;
+        width: 273px;
+        height: 46px;
+        color: white;
+        font-size: 12px;
+    }
+
+    .sfi-text-container {
+        font-family: Arial;
+        margin-left: 42px;
+        margin-top: 13px;
+    }
+
+    .sfi-text-success, .sfi-text-fail-no-drop {
+        margin-left: 25px;
+        margin-top: 21px;
+    }
+
+    .sfi-success {
+        position: absolute;
+        width: 757px;
+        height: 300px;
+        background-image: url(./assets/starforce/ui.animations.spritesheet.success.png);
+        background-repeat: no-repeat;
+        animation: sf-key-result-s 1.25s steps(18) forwards 1;
+        top: -74px;
+        left: -229px;
+        z-index: 200;
+    }
+
+    .sfi-fail {
+        position: absolute;
+        width: 757px;
+        height: 249px;
+        background-image: url(./assets/starforce/ui.animations.spritesheet.fail.png);
+        background-repeat: no-repeat;
+        animation: sf-key-result-f 1.25s steps(18) forwards 1;
+        top: -45px;
+        left: -229px;
+        z-index: 200;
+    }
+
+    .sfi-destroy {
+        position: absolute;
+        width: 757px;
+        height: 249px;
+        background-image: url(./assets/starforce/ui.animations.spritesheet.destroy.png);
+        background-repeat: no-repeat;
+        animation: sf-key-result-f 1.25s steps(18) forwards 1;
+        top: -45px;
+        left: -229px;
+        z-index: 200;
+    }
+
+    @keyframes sf-key-result-s {
+        from {
+            background-position-y: 0px;
+        }
+        to {
+            background-position-y: -5437px;
+        }
+    }
+
+    @keyframes sf-key-result-f {
+        from {
+            background-position-y: 0px;
+        }
+        to {
+            background-position-y: -4518px;
+        }
+    }
+</style>
+
+<style>
+    .sfsc-main-border {
+        position: absolute;
+        background: url(./assets/starforce/ui.starcatch.border.png);
+        background-repeat: no-repeat;
+        display: inline-block;
+        width: 266px;
+        height: 270px;
+        z-index: 56;
+    }
+
+    .sfsc-main-header {
+        position: absolute;
+        display: inline-block;
+        width: 416px;
+        height: 25px;
+        cursor: pointer;
+        top: 5px;
+        left: 5px;
+    }
+
+    .sfsc-main {
+        position: absolute;
+        background: url(./assets/starforce/ui.starcatch.layer.png);
+        background-repeat: no-repeat;
+        display: inline-block;
+        width: 259px;
+        height: 252px;
+        z-index: 55;
+        top: 11px;
+        left: 3px;
+    }
+
+    .sf-button-stop {
+        background: url(./assets/starforce/ui.popup.button.stop.png);
+    }
+
+    .sf-button-stop:hover {
+        background: url(./assets/starforce/ui.popup.button.stop.mouseover.png);
+    }
+
+    .sf-button-stop:active {
+        background: url(./assets/starforce/ui.popup.button.stop.click.png);
+    }
+
+    .sf-button-stop.disabled {
+        background: url(./assets/starforce/ui.popup.button.stop.disabled.png);
+    }
+
+    .sfsc-description {
+        background: url(./assets/starforce/ui.starcatch.description.png);
+        width: 190px;
+        height: 38px;
+        background-repeat: inherit;
+        top: 9px;
+        position: absolute;
+        left: 39px;
+    }
+
+    .sfsc-star {
+        position: absolute;
+        background: url(./assets/starforce/ui.starcatch.star.png);
+        background-repeat: no-repeat;
+        width: 33px;
+        height: 33px;
+    }
+
+    .sfsc-star-hitbox {
+        position: absolute;
+        width: 2px;
+        height: 54px;
+        left: 22px;
+    }
+
+    .sfsc-star-trail {
+        position: absolute;
+        background: url(./assets/starforce/ui.animations.spritesheet.starcatch.startrail.png);
+        background-repeat: no-repeat;
+        animation: sf-key-result-startrail 1s steps(6) infinite;
+        width: 50px;
+        height: 50px;
+        top: -10px;
+    }
+
+    .sfsc-star-trail-left {
+        left: -41px;
+    }
+
+    .sfsc-star-trail-right {
+        left: 24px;
+        transform: scaleX(-1);
+    }
+
+    @keyframes sf-key-result-startrail {
+        from {
+            background-position-y: 0px;
+        }
+        to {
+            background-position-y: -307px;
+        }
+    }
+
+    /*
+        when star road gets smaller, offset left for container by same amount
+    */
+    .sfc-star-road-container {
+        position: absolute;
+        height: 24px;
+        width: 230px;
+        top: 5px;
+        text-align: center;
+    }
+    
+    .sfsc-star-road {
+        background: url(./assets/starforce/ui.starcatch.gauge.inside.png);
+        width: 73px;
+        height: 18px;
+        position: absolute;
+        border: 2px solid;
+        border-image: url(./assets/starforce/ui.starcatch.gauge.border.png) 3;
+        left: 77px;
+    }
+
+    .sf-sc-star-road-lvl-2 {
+        width: 63px;
+        left: 83px;
+    }
+
+    .sf-sc-star-road-lvl-3 {
+        width: 53px;
+        left: 89px;
+    }
+
+    .sf-sc-star-road-lvl-3 {
+        width: 47px;
+        left: 91px;
+    }
+
+    .sf-sc-star-road-lvl-4 {
+        width: 42px;
+        left: 94px;
+    }
+
+    .sf-sc-star-road-lvl-5 {
+        width: 35px;
+        left: 96px;
+    }
+
+    .sf-sc-star-road-lvl-6 {
+        width: 28px;
+        left: 100px;
+    }
+
+    .sfsc-star-game-container {
+        position: absolute;
+        width: 232px;
+        height: 30px;
+        top: 168px;
+        left: 13px;
+    }
+
+    .sfsc-star-container {
+        position: absolute;
+        z-index: 56;
+    }
+
+    .sfsc-star-item-container {
+        position: absolute;
+        height: 110px;
+        width: 110px;
+        left: 76px;
+        top: 52px;
+    }
+
+    .sfsc-star-countdown {
+        position: absolute;
+        background: url(./assets/starforce/ui.animations.spritesheet.starcatch.countdown.png);
+        background-repeat: no-repeat;
+        animation: sf-key-result-countdown 6s steps(6) forwards infinite;
+        width: 70px;
+        height: 70px;
+        top: 19px;
+        left: 17px;
+        z-index: 65;
+    }
+
+    @keyframes sf-key-result-countdown {
+        from {
+            background-position-x: 0px;
+        }
+        to {
+            background-position-x: -428px;
+        }
+    }
+
+    .sfsc-star-begin {
+        position: absolute;
+        background: url(./assets/starforce/ui.animations.spritesheet.starcatch.start.png);
+        background-repeat: no-repeat;
+        animation: sf-key-result-begin 1s steps(6) forwards infinite;
+        width: 267px;
+        height: 60px;
+        top: 19px;
+        left: -98px;
+        z-index: 65;
+    }
+
+    @keyframes sf-key-result-begin {
+        from {
+            background-position-y: 0px;
+        }
+        to {
+            background-position-y: -371px;
+        }
+    }
+
+    .sfsc-star-stop {
+        position: absolute;
+        background: url(./assets/starforce/ui.animations.spritesheet.starcatch.stop.png);
+        background-repeat: no-repeat;
+        animation: sf-key-result-stop 1s steps(6) forwards 1;
+        width: 200px;
+        height: 200px;
+        top: -81px;
+        left: -84px;
+        z-index: 65;
+    }
+
+    @keyframes sf-key-result-stop {
+        from {
+            background-position-x: 0px;
+        }
+        to {
+            background-position-x: -1212px;
+        }
+    }
+
+    .sfsc-star-success {
+        position: absolute;
+        background: url(./assets/starforce/ui.animations.spritesheet.starcatch.success.png);
+        background-repeat: no-repeat;
+        animation: sf-key-result-success 1s steps(7) forwards 1;
+        width: 250px;
+        height: 40px;
+        top: 43px;
+        left: 1px;
+        z-index: 65;
+    }
+
+    @keyframes sf-key-result-success {
+        from {
+            background-position-y: 0px;
+        }
+        to {
+            background-position-y: -294px;
+            top: 1px;
+        }
+    }
+</style>
+
+<style>
+    .sf-crossed-out {
+        position: relative;
+    }
+
+    .sf-crossed-out::after {
+        border-bottom: 0.2em solid red;
+        content: "";
+        left: 0;
+        margin-top: calc(0.125em / 2 * -1);
+        position: absolute;
+        right: 0;
+        top: 32%;
+    }
+
+    .sf-item-arrow {
+        background: url(./assets/starforce/ui.popup.arrow.png);
+    }
+
+    .sf-arrow-description {
+        background-repeat: no-repeat;
+        height: 17px;
+        width: 13px;
+        position: absolute;
+        top: 9px;
+        left: 42px;
+    }
+
+    .sf-item-container {
+        position: absolute;
+    }
+
+    .sf-starforce-data-description {
+        font-family: Arial;
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .sf-item-desc-attr {
+        display: inline-block;
+        width: 29px;
+    }
+
+    .sf-item-main {
+        position: relative;
+        top: 87px;
+        left: 32px;
+    }
+
+    .sf-item-starforce {
+        position: relative;
+        top: 71px;
+        left: 97px;
+    }
+
+    .sf-item-big {
+        width: 70px !important;
+        height: 70px !important;
+    }
+
+    .sf-item-boomed {
+        filter: grayscale(90%);
+        opacity: 0.45;
+    }
+
+    .sf-item {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+    }
+
+    .sf-item-small {
+        width: 38px;
+        height: 38px;
+    }
+</style>
+
+<style>
+    .item-main-border {
+        user-select: none;
+        position: absolute;
+        width: 262px;
+    }
+
+    .item-main-gloss {
+        background-image: url(./assets/item/ui.items.frame.cover.png);
+        background-repeat: no-repeat;
+        width: 262px;
+        height: 52px;
+        cursor: pointer;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+
+    .item-main-header {
+        background-image: url(./assets/item/ui.items.frame.top.png);
+        background-repeat: no-repeat;
+        width: 262px;
+        height: 12px;
+    }
+
+    .item-drag-header {
+        position: absolute;
+        width: 262px;
+        height: 12px;
+        cursor: pointer;
+        z-index: 100;
+    }
+
+    .item-dash-border {
+        background-image: url(./assets/item/ui.items.frame.dotline.png);
+        background-repeat: no-repeat;
+        width: 262px;
+        height: 12px;
+        display: block;
+        position: relative;
+        margin: 12px 0 6px 0;
+    }
+
+    .item-name {
+        position: relative;
+        left: 10px;
+        color: rgb(255,0,102);
+        font-family: Arial;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .item-main-body {
+        background-image: url(./assets/item/ui.items.frame.line.png);
+        width: 262px;
+        /*height: 500px;*/
+        font-family: Arial;
+    }
+
+    .item-main-bottom {
+        background-image: url(./assets/item/ui.items.frame.bottom.png);
+        width: 262px;
+        height: 12px
+    }
+
+    .item-container {
+        background-image: url(./assets/item/ui.items.base.frame.base.png);
+        background-repeat: no-repeat;
+        width: 82px;
+        height: 82px;
+        position: relative;
+        left: 10px;
+    }
+
+    .item-pic-container {
+        position: relative;
+        height: 85px;
+    }
+
+    .item-title-description, .item-sub-description {
+        position: relative;
+        font-family: Arial;
+        font-size: 12px;
+        color: white;
+    }
+
+    .item-sub-description {
+        text-align: center;
+        display: block;
+        left: -10px;
+        font-weight: normal;
+        margin-top: 10px;
+    }
+
+    .item-container-gloss {
+        background-image: url(./assets/item/ui.items.base.frame.gloss.png);
+        background-repeat: no-repeat;
+        width: 82px;
+        height: 82px;
+        position: absolute;
+        display: block;
+        top: 3px;
+        left: 5px;
+    }
+
+    .item-container-flag {
+        position: absolute;
+        display: block;
+        left: 2px;
+        top: -1px;
+        width: 90px;
+        height: 82px;
+    }
+
+    .item-flag-green {
+        background-image: url(./assets/item/ui.items.base.frame.color_frame.green.png);
+        background-repeat: no-repeat;
+    }
+
+    .item-container-item {
+        position: relative;
+        display: block;
+        left: 10px;
+        top: 12px;
+    }
+
+    .item-new-item {
+        background-image: url(./assets/item/ui.items.base.frame.item_new.png);
+        background-repeat: no-repeat;
+        width: 5px;
+        height: 5px;
+        display: inline-block;
+        position: relative;
+        top: -3px;
+        margin-right: 1px;
+    }
+
+    .item-star-container {        
+        width: 262px;
+        height: 40px;
+        text-align: center;
+    }
+
+    .item-star {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.star.yellow.png);
+        height: 9px;
+        width: 9px;
+        display: inline-block;
+        margin-left:-2px;
+    }
+
+    .item-star.disabled {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.star.grey.png);
+    }
+
+    .item-star-space {
+        margin: 3px;
+    }
+
+    .item-star-break {
+        display: block;
+        padding: 3px;
+    }
+
+    .item-sub-description {
+        text-align: center;
+    }
+
+    .item-requirements-container {
+        position: relative;
+        display: inline-block;
+        top: -36px;
+        right: -97px;
+        width: 157px;
+        height: 41px;
+    }   
+
+    .item-requirements {
+        width: 165px;
+        height: 10px;
+        display: block;
+        position: relative;
+    }
+    
+    .item-requirements-col-1 {
+        top: 6px;
+        position: relative;
+    }
+    
+    .item-requirements-col-2 {
+        top: -14px;
+        left: 81px;
+        position: relative;
+    }
+
+    .item-requirements-str {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.reqSTR.png);
+    }
+
+    .item-requirements-dex {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.reqDEX.png);
+    }
+
+    .item-requirements-int {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.reqINT.png);
+    }
+
+    .item-requirements-luk {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.reqLUK.png);
+    }
+
+    .item-requirements-level {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.reqLev.png);
+    }
+
+    .item-requirements-str.required {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.reqSTR.png);
+    }
+
+    .item-requirements-dex.required {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.reqDEX.png);
+    }
+
+    .item-requirements-int.required {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.reqINT.png);
+    }
+
+    .item-requirements-luk.required {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.reqLUK.png);
+    }
+
+    .item-requirements-level.required {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.reqLev.png);
+    }
+
+    .item-requirements-level.yellow {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.reqLev.png);
+    }
+
+    .req-num-0 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.0.png)
+    }
+    .req-num-1 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.1.png);
+        width: 3px !important;
+    }
+    .req-num-2 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.2.png)
+    }
+    .req-num-3 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.3.png)
+    }
+    .req-num-4 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.4.png)
+    }
+    .req-num-5 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.5.png)
+    }
+    .req-num-6 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.6.png)
+    }
+    .req-num-7 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.7.png)
+    }
+    .req-num-8 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.8.png)
+    }
+    .req-num-9 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.9.png)
+    }
+    .req-num-op {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.openingparenthesis.png);
+        width: 2px !important;
+    }
+    .req-num-cp {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.closingparanthesis.png);
+        width: 2px !important;
+    }
+    .req-num-minus {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.minus.png);
+        top: -7px !important;
+    }
+
+    .req-num-0.light-grey {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.light-grey.0.png)
+    }
+    .req-num-percent.light-grey {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.light-grey.percent.png)
+    }
+
+    .item-requirements.required .req-num-0, .white.req-num-0 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.0.png) !important;
+    }
+    .item-requirements.required .req-num-1, .white.req-num-1 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.1.png) !important;
+    }
+    .item-requirements.required .req-num-2, .white.req-num-2 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.2.png) !important;
+    }
+    .item-requirements.required .req-num-3, .white.req-num-3 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.3.png) !important;
+    }
+    .item-requirements.required .req-num-4, .white.req-num-4 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.4.png) !important;
+    }
+    .item-requirements.required .req-num-5, .white.req-num-5 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.5.png) !important;
+    }
+    .item-requirements.required .req-num-6, .white.req-num-6 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.6.png) !important;
+    }
+    .item-requirements.required .req-num-7, .white.req-num-7 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.7.png) !important;
+    }
+    .item-requirements.required .req-num-8, .white.req-num-8 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.8.png) !important;
+    }
+    .item-requirements.required .req-num-9, .white.req-num-9 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.9.png) !important;
+    }
+    .item-requirements.required .req-num-op, .white.req-num-op {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.openingparenthesis.png) !important;
+    }
+    .item-requirements.required .req-num-cp, .white.req-num-cp {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.closingparenthesis.png) !important;
+    }
+    .item-requirements.required .req-num-minus, .white.req-num-minus {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.white.minus.png) !important;
+    }
+
+    .item-requirements.yellow .req-num-0 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.0.png)
+    }
+    .item-requirements.yellow .req-num-1 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.1.png)
+    }
+    .item-requirements.yellow .req-num-2 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.2.png)
+    }
+    .item-requirements.yellow .req-num-3 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.3.png)
+    }
+    .item-requirements.yellow .req-num-4 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.4.png)
+    }
+    .item-requirements.yellow .req-num-5 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.5.png)
+    }
+    .item-requirements.yellow .req-num-6 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.6.png)
+    }
+    .item-requirements.yellow .req-num-7 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.7.png)
+    }
+    .item-requirements.yellow .req-num-8 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.8.png)
+    }
+    .item-requirements.yellow .req-num-9 {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.9.png)
+    }
+    .item-requirements.yellow .req-num-op {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.openingparenthesis.png)
+    }
+    .item-requirements.yellow .req-num-cp {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.closingparenthesis.png)
+    }
+    .item-requirements.yellow .req-num-minus {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.yellow.minus.png)
+    }
+
+    .item-requirements-str.not-required {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.reqSTR.png);
+    }
+
+    .item-str-num {
+        position: relative;
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        left: 58px;
+        top: -9px;
+        margin-left: -3px;
+    }
+
+    .item-dex-num {
+        position: relative;
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        left: 58px;
+        top: -9px;
+        margin-left: -3px;
+    }
+
+    .item-int-num {
+        position: relative;
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        left: 58px;
+        top: -9px;
+        margin-left: -3px;
+    }
+
+    .item-luk-num {
+        position: relative;
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        left: 58px;
+        top: -9px;
+        margin-left: -3px;
+    }
+
+    .item-lev-num {
+        position: relative;
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        left: 58px;
+        top: -9px;
+        margin-left: -3px;
+    }
+
+    .item-requirements-dex.not-required {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.reqDEX.png);
+    }
+
+    .item-requirements-int.not-required {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.reqINT.png);
+    }
+
+    .item-requirements-luk.not-required {
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.reqLUK.png);
+    }
+
+    .item-jobs-container {
+        position: relative;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.text.grey.reqLUK.png);
+        width: 262px;
+        height: 26px;
+        display: block;
+        left: 10px;
+    }
+
+    .item-icons {
+        display:block;
+    }
+
+    .item-jobs {
+        display: block;
+        width: 238px;
+        height: 27px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.jobs.png);
+    }
+
+    .item-jobs-beginner {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.jobs.beginner.active.png);
+        display: inline-block;
+        left: 14px;
+        position: relative;
+        top: 7px;
+    }
+
+    .item-jobs-warrior {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.jobs.warrior.active.png);
+        display: inline-block;
+        left: 32px;
+        position: relative;
+        top: 7px;
+    }
+
+    .item-jobs-magician {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.jobs.magician.active.png);
+        display: inline-block;
+        left: 46px;
+        position: relative;
+        top: 7px;
+    }
+
+    .item-jobs-bowman {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.jobs.bowman.active.png);
+        display: inline-block;
+        left: 62px;
+        position: relative;
+        top: 7px;
+    }
+
+    .item-jobs-thief {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.jobs.thief.active.png);
+        display: inline-block;
+        left: 68px;
+        position: relative;
+        top: 10px;
+    }
+
+    .item-jobs-pirate {
+        width: 27px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.jobs.pirate.active.png);
+        display: inline-block;
+        left: 76px;
+        position: relative;
+        top: 10px;
+    }
+
+    .item-icon-con {
+        left: 10px;
+        position: relative;
+        top: 2px;
+        width: 60px;
+        display: inline-block;
+    }
+
+    .item-icon-pdd {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.frame.icons.pdd.png);
+        display: inline-block;
+    }
+
+    .item-icon-pdd {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.frame.icons.pdd.png);
+        display: inline-block;
+    }
+
+    .item-icon-bdr {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.frame.icons.bdr.png);
+        display: inline-block;
+    }
+
+    .item-icon-igpddr {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-image: url(./assets/item/ui.items.base.frame.icons.igpddr.png);
+        display: inline-block;
+    }
+
+    .item-icon-zero {
+        position: relative;
+        display: inline-block;
+        top: -9px;
+        height: 10px;
+        width: 35px;
+        text-align: right;
+    }
+
+    .item-icon-zero div {
+        width: 5px;
+        height: 5px;
+        display: inline-block;
+        position: relative;
+    }
+
+    .item-stats, .item-extra {
+        display: inline-block;
+        font-family: Arial;
+        font-size: 12px;
+        color: white;
+        left: 10px;
+        width: 262px;
+        position: relative;
+        line-height: 18px;
+    }
+
+    .item-extra {
+        width: 227px;
+    }
+
+    .item-skill {
+        display: inline-block;
+        font-size: 11.5px;
+    }
+
+    .item-color-base {
+        color: white;
+    }
+
+    .item-color-recovery {
+        color: rgb(255,204,0);
+    }
+
+    .item-color-stat-upgrade {
+        color: rgb(102,255,255);
+    }
+
+    .item-color-flame, .item-color-soul {
+        color: rgb(204,255,0);
+    }
+
+    .item-color-trade-status, .item-color-skill {
+        color: rgb(255,170,0);
+    }
+</style>
+
+<style>
+    #mysidebar .events {
+        color: white;
+        padding: 5px;
+        display: block;
+        white-space: nowrap;
+    }
+
+    #mysidebar margin {
+        display: block;
+        width: 100%;
+        padding: 5px;
+    }
+
+    #mysidebar .side-bar-item {
+        padding: 3px;
+        display: block;
+    }
+</style>
+
+<div id="sfcon">
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="#" id="starforce_log">Starforce Log</a>
+        <a href="#" id="reverse_flame_check" title="Based on the flame stats on the item, check to see what flame types and what tiers there are.
+Custom flame stats may not yield any tiers if the values are inputted arbitrarily.
+
+This is a reverse lookup and the stat flames are the most complicated to resolve, so the more stat flames you have, the longer it takes to determine.
+Some combination of stat flame tiers may overlap with other stat flame tier combinations. It will simply return the first one it finds.
+It will also only try to determine the stat flame tiers up to a maximum of 4 flame stat types. Any more flame stat types will return no tiers.">Check Flame Tier</a> 
+        <span class="margin">&nbsp;</span>
+        <hr>
+        <div class="events">
+            <b>Events</b>
+            <br>
+            <label class="side-bar-item" for="event_51015">
+                <input type="checkbox" class="event_cb" id="event_51015" data-bind="_51015"> 5/10/15 100% Success
+            </label>
+            <label class="side-bar-item" for="event_nb15">
+                <input type="checkbox" class="event_cb" id="event_nb15" data-bind="nb15"> No-Boom Pre 15
+            </label>
+        </div>
+    </div>
+    
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">☰ Options</button>  
+    </div>
+    <div class="sfsc-main-border hidden">
+        <div class="sfsc-main-header"></div>
+        <div class="sfsc-main">
+            <div class="sfsc-description"></div>
+            <div class="sfsc-star-item-container">
+                <span class="sfsc-star-item-status"></span>
+            </div>
+            <div class="sf-item-container sf-item-starforce">
+                <span class="sf-item sf-item-big item-arcaneumbradagger"></span>
+            </div>
+            <div class="sfsc-star-game-container">
+                <div class="sfsc-star-container">
+                    <div class="sfsc-star-item sfsc-star-trail sfsc-star-trail-left"></div>
+                    <div class="sfsc-star-item sfsc-star"></div>
+                    <div class="sfsc-star-hitbox"></div>
+                    <div class="sfsc-star-item sfsc-star-trail sfsc-star-trail-right hidden"></div>
+                </div>
+                <div class="sfc-star-road-container">
+                    <span class="sfsc-star-road"></span>
+                </div>
+            </div>
+            <div class="sfsc-button-container">
+                <span class="sfsc-button sf-button-stop disabled"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sfi-main-border hidden">
+        <div class="sfi-main-header"></div>
+        <div class="sf-item-container sfi-info-left">
+            <span class="sf-item item-arcaneumbradagger sf-item-small"></span>
+        </div>
+        <div class="sf-item-container sfi-info-right">
+            <span class="sf-item item-arcaneumbradagger sf-item-small"></span>
+        </div>
+        <div class="sfi-description">
+            <div class="sfi-text-container">
+                <div class="sfi-text sfi-text-fail-no-drop hidden">
+                    Enhancement failed. <br>
+                </div>
+                <div class="sfi-text sfi-text-fail hidden">
+                    Enhancement failed! <br>
+                    The enhancement level has dropped.
+                </div>
+                <div class="sfi-text sfi-text-destroyed hidden">
+                    Enhancement failed, <br>
+                    so the equipment was destroyed.
+                </div>
+                <div class="sfi-text sfi-text-success">
+                    Successfully enhanced.
+                </div>
+            </div>
+        </div>
+        <div class="sfi-result-container hidden">
+            <div class="sfi-result"></div>
+        </div>
+        <div class="sfi-button-container">
+            <span class="sfi-button sfi-button-ok"></span>
+        </div>
+    </div>
+
+    <div class="sf-main-container sf-main-border hidden">
+        <div class="sf-main-header"></div>
+        <div class="sf-main-header-buttons">
+            <div class="sf-header-icon sf-button-x"></div>
+        </div>
+        <div class="sf-main sf-enchant">
+            <div class="sf-main-button-header">
+                <span class="sf-button-header sf-header-scroll"></span>
+                <span class="sf-button-header sf-header-starforce active"></span>
+                <span class="sf-button-header sf-header-transfer"></span>
+            </div>
+            <div class="sf-header-text">
+                <div class="sf-text sf-text-start"></div>
+            </div>
+            <div class="sf-star-chance sf-star-chance-time hidden"></div>
+            <div class="sf-item-container sf-item-main">
+                <span class="sf-item item-arcaneumbradagger"></span>
+            </div>
+            <div class="sf-starforce-data" data-simplebar>
+                <span class="sf-starforce-margin"></span>
+                <span class="sf-starforce-data-description">
+                    Loading...
+                </span>
+            </div>
+            <div class="sf-star-item"></div>
+            <div class="sf-enchant-effects"></div>
+            <div class="sf-starcatch sf-checkbox checked"></div>
+            <div class="sf-safeguard sf-checkbox disabled"></div>
+            <div class="sf-main-mesos ">
+                <span class="sf-main-mesos-amount sf-data-meso number-locale"></span>
+            </div>
+            <div class="sf-button-container">
+                <span class="sf-button sf-button-enhance"></span>
+                <span class="sf-button sf-button-cancel"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sfp-main-border hidden">
+        <div class="sfp-main-header"></div>
+        <div class="sfp-data">
+            <span class="sfp-data-margin"></span>
+            <span class="sf-data-meso">0</span> Meso
+
+            <br><br>
+            
+            <span class="sfp-data-description sfp-data-destroyable hidden">
+                Equipment may be destroyed<br>
+                if the enhancement fails.<br>
+            </span>
+
+            <span class="sfp-data-description sfp-data-downgradeable hidden">
+                Enhancement level will drop<br>
+                if the enhancement fails.<br>
+            </span>
+
+            <span class="sfp-data-description sfp-data-bothways hidden">
+                If enhancement fails, the equipment may be<br>
+                destroyed or the enhancement level may drop.<br>
+            </span>
+            Attempt the enhancement?
+        </div>
+        <div class="sfp-button-container">
+            <span class="sfp-button sfp-button-ok"></span>
+            <span class="sfp-button sfp-button-cancel"></span>
+        </div>
+    </div>
+
+    <div class="item-main-border hidden">
+        <div class="item-drag-header"></div>
+        <div class="item-main-header"></div>
+        <div class="item-main-gloss"></div>
+        <div class="item-main-body">
+            <div class="item-title-description">
+                <div class="item-star-container">
+                    <span class="item-star item-star-1" data-star-id="1"></span>
+                    <span class="item-star item-star-2" data-star-id="2"></span>
+                    <span class="item-star item-star-3" data-star-id="3"></span>
+                    <span class="item-star item-star-4" data-star-id="4"></span>
+                    <span class="item-star item-star-5" data-star-id="5"></span>
+                    <span class="item-star-space item-spacer-1"></span>
+                    <span class="item-star item-star-6" data-star-id="6"></span>
+                    <span class="item-star item-star-7" data-star-id="7"></span>
+                    <span class="item-star item-star-8" data-star-id="8"></span>
+                    <span class="item-star item-star-9" data-star-id="9"></span>
+                    <span class="item-star item-star-10" data-star-id="10"></span>
+                    <span class="item-star-space item-spacer-2"></span>
+                    <span class="item-star item-star-11" data-star-id="11"></span>
+                    <span class="item-star item-star-12" data-star-id="12"></span>
+                    <span class="item-star item-star-13" data-star-id="13"></span>
+                    <span class="item-star item-star-14" data-star-id="14"></span>
+                    <span class="item-star item-star-15" data-star-id="15"></span>
+                    <span class="item-star-break"></span>
+                    <span class="item-star item-star-16 disabled" data-star-id="16"></span>
+                    <span class="item-star item-star-17 disabled" data-star-id="17"></span>
+                    <span class="item-star item-star-18 disabled" data-star-id="18"></span>
+                    <span class="item-star item-star-19 disabled" data-star-id="19"></span>
+                    <span class="item-star item-star-20 disabled" data-star-id="20"></span>
+                    <span class="item-star-space item-spacer-3"></span>
+                    <span class="item-star item-star-21 disabled" data-star-id="21"></span>
+                    <span class="item-star item-star-22 disabled" data-star-id="22"></span>
+                    <span class="item-star item-star-23 disabled" data-star-id="23"></span>
+                    <span class="item-star item-star-24 disabled" data-star-id="24"></span>
+                    <span class="item-star item-star-25 disabled" data-star-id="25"></span>
+                </div>
+                <div class="item-name">
+                    <span class="item-new-item"></span>
+                    <span class="item-current-name">Arcane Umbra Dagger (+10)</span>
+                    <br>
+                    <span class="item-sub-description">
+                        (Legendary Item)
+                    </span>
+                </div>
+            </div>
+            <div class="item-dash-border"></div>
+            <div class="item-pic-container">
+                <div class="item-container">
+                <span class="item-container-gloss"></span>
+                    <span class="item-container-flag item-flag-green"></span>
+                    <span class="item-container-item sf-item item-arcaneumbradagger"></span>
+                </div>
+                <div class="item-requirements-container">
+                    <span class="item-requirements item-requirements-level yellow">
+                        <span class="item-lev-num item-lev-lev-1 req-num-0"></span>
+                        <span class="item-lev-num item-lev-lev-2 req-num-0"></span>
+                        <span class="item-lev-num item-lev-lev-3 req-num-0"></span>
+                        <span class="item-level-num reduced-lvl-requirements" style="margin-left:3px;">
+                            <span class="item-lev-num item-lev-lev-4 req-num-op"></span>
+                            <span class="item-lev-num item-lev-lev-5 req-num-2"></span>
+                            <span class="item-lev-num item-lev-lev-6 req-num-0"></span>
+                            <span class="item-lev-num item-lev-lev-7 req-num-0"></span>
+                            <span class="item-lev-num item-lev-lev-8 req-num-minus"></span>
+                            <span class="item-lev-num item-lev-lev-9 req-num-2"></span>
+                            <span class="item-lev-num item-lev-lev-10 req-num-0"></span>
+                            <span class="item-lev-num item-lev-lev-11 req-num-0"></span>
+                            <span class="item-lev-num item-lev-lev-12 req-num-cp"></span>
+                        </span>
+                    </span>
+                    <span class="item-requirements-col-1">
+                        <span class="item-requirements item-requirements-str">
+                            <span class="item-str-num item-str-num-1 req-num-0"></span>
+                            <span class="item-str-num item-str-num-2 req-num-0"></span>
+                            <span class="item-str-num item-str-num-3 req-num-0"></span>
+                        </span>
+                        <span class="item-requirements item-requirements-dex">
+                            <span class="item-dex-num item-dex-num-1 req-num-0"></span>
+                            <span class="item-dex-num item-dex-num-2 req-num-0"></span>
+                            <span class="item-dex-num item-dex-num-3 req-num-0"></span>
+                        </span>
+                    </span>
+                    <span class="item-requirements-col-2">
+                        <span class="item-requirements item-requirements-luk">
+                            <span class="item-luk-num item-luk-num-1 req-num-0"></span>
+                            <span class="item-luk-num item-luk-num-2 req-num-0"></span>
+                            <span class="item-luk-num item-luk-num-3 req-num-0"></span>
+                        </span>
+                        <span class="item-requirements item-requirements-int">
+                            <span class="item-int-num item-int-num-1 req-num-0"></span>
+                            <span class="item-int-num item-int-num-2 req-num-0"></span>
+                            <span class="item-int-num item-int-num-3 req-num-0"></span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="item-icons">
+                <span class="item-icon-con">
+                    <span class="item-icon-pdd"></span>
+                    <span class="item-icon-zero">
+                        <div class="req-num-0 light-grey"></div>
+                    </span>
+                </span>
+                <span class="item-icon-con">
+                    <span class="item-icon-bdr"></span>
+                    <span class="item-icon-zero">
+                        <div class="req-num-0 light-grey"></div>
+                        <div class="req-num-percent light-grey"></div>
+                    </span>
+                </span>
+                <span class="item-icon-con">
+                    <span class="item-icon-igpddr"></span>
+                    <span class="item-icon-zero">
+                        <div class="req-num-0 light-grey"></div>
+                        <div class="req-num-percent light-grey"></div>
+                    </span>
+                </span>
+            </div>
+            <div class="item-jobs-container">
+                <div class="item-jobs">
+                    <span class="item-job-items item-jobs-beginner hide"></span>
+                    <span class="item-job-items item-jobs-warrior hide"></span>
+                    <span class="item-job-items item-jobs-magician hide"></span>
+                    <span class="item-job-items item-jobs-bowman hide"></span>
+                    <span class="item-job-items item-jobs-thief hide"></span>
+                    <span class="item-job-items item-jobs-pirate hide"></span>
+                </div>
+            </div>
+            <div class="item-dash-border"></div>
+            <div class="item-stats">
+                Type: DAGGER <br>
+                Attack Speed: FAST <br>
+                STR : +0 <br>
+                DEX : +0 <br>
+                INT : +0 <br>
+                LUK : +0 <br>
+                MaxHP: +0 <br>
+                MaxMP: +0 <br>
+                Attack Power: +0 <br>
+                Magic Attack: +0 <br>
+                Boss Damage: +0% <br>
+                Ignore Enemy DEF: +0% <br>
+                Damage: 0% <br>
+                All Stats: 0% <br>
+                Remaining Enhancements: 0% <br>
+                <span class="item-color-recovery">(Available Recoveries: 0)</span> <br>
+                Hammers Applied: 2 (MAX)
+            </div>
+            <div class="item-misc">
+
+            </div>
+        </div>
+        <div class="item-main-bottom"></div>
+    </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script
+src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+crossorigin="anonymous"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"
+/>
+
+<style>
+    .simplebar-track {
+        border: 1px solid rgba(0,0,0,0.4);
+        border-radius: 10px;
+        width: 4px !important;
+        z-index: 30 !important;
+        margin-top: 4px;
+    }
+
+    .simplebar-scrollbar:before {
+        opacity: 1 !important;
+        background-color: rgba(255,170,0); 
+        border-radius: 8px;
+        left: 0px;
+        width: 4px;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
+
+<script>
+    var event_options = {
+        _51015: false,
+        nb15: false
+    };
+</script>
+
+<!-- maplestory item db -->
+<script src="./starforce/item_db.js"></script>
+<!-- item object and support functions -->
+<script src="./starforce/item_prototype.js"></script>
+<!-- star force data set up -->
+<script src="./starforce/starforce.js"></script>
+
+<!-- ui/dom controls -->
+<script>
+    $(function() {
+        var Item = {};
+
+        $(".event_cb").on("click", function(e) {
+            let _this = $(this);
+            let bind_val = _this.attr("data-bind");
+
+            event_options[bind_val] = e.target.checked;
+            Item.redraw_sf(); 
+        });
+
+
+        var init_item = function(lvl, item_type = null) { 
+            if (item_type != null) {
+                Item = new item(item_type);
+            }
+            Item.set_item_level(lvl);
+            Item.set_item_scroll([{
+                type: "prime",
+                amount: "max"
+            }]);
+            Item.set_meta_options({
+                nebulite_compensation: true
+            });
+            /*
+            Item.set_item_flame_tier({
+                "stats:luk,dex": 5,
+                "stats:luk":6,
+                "stats:luk,str": 6,
+                all_stat: 5
+            });
+           */
+            Item.set_item_flame({
+                watt: 133,
+                boss_damage: 0.1,
+                damage: 0.05,
+                all_stat: 0.06
+            });
+            
+            Item.redraw();
+        };
+
+        //MENU STUFF
+        let optionbox = $("#option_box").dialog({
+            autoOpen: false,
+            modal: false
+        });
+        $("#reverse_flame_check").on("click", function() {
+            let b = Item.reverse_flame_lookup();
+            
+            let html = '';
+            for (let a in b) {
+                let val = b[a];
+
+                if (val == 0) continue;
+
+                html += `
+                    <tr>
+                        <td>${a}</td>
+                        <td>${val}</td>
+                    <tr>
+                `;
+            }
+
+            let no_flame = false;
+            let table = "";
+
+            if (html === "") {
+                no_flame = true;
+                table = "Item has no flames or the flames applied do not correspond to any tiers.";
+            } else {
+                table = `
+                    <table id="flame_stat_table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Flame Stat</th>
+                                <th>Tier</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${html}
+                        </tbody>
+                    </table>
+                `;
+            }
+
+            optionbox.html(table).dialog({
+                title: "Tiers",
+                width: no_flame ? 600 : 200,
+                height: "auto",
+                buttons: [{
+                    text: "Close",
+                    click: function() {
+                        $(this).dialog("close");
+                    }
+                }]
+            }).dialog("open");
+
+            return false;
+        });
+
+        $("#starforce_log").on("click", function(){
+            /*
+            for (let i = 0; i <= 100; ++i) {
+                let result = Item.starforce(0);
+                if (result === 'success' || result === 'sc_success' || result === "chance_time_success") {
+                    Item.xgrade_item(0);
+                } else if (result === 'fail' || result === "sc_fail") {
+                    Item.xgrade_item(1);
+                } else {
+                    Item.xgrade_item(2);
+                }
+            }
+            */
+            
+            let this_log = Item.idata.meta.sf_meta_data;
+
+            let t_body = "";
+            for (let i = this_log.length - 1; i >= 0; --i) {
+                let _tl = this_log[i];
+
+                let sf_data= _tl.sf_data;
+                let prn_map = _tl.prn_map;
+
+                let prn_map_html = "";
+
+                for (let j in prn_map) {
+                    let j_map = prn_map[j];
+
+                    for (let k = 0; k < j_map.length; ++k) {
+                        let k_map = j_map[k];
+                        let j2 = j;
+
+                        if (j2 === "sc_success") {
+                            j2 = "success";
+                        }
+                        prn_map_html += `
+                            <span class="result-${j2}${j2 === "destroy" ? "2" : ""}" style="display:inline-block;width:100px;">
+                                ${j}:
+                            </span> 
+                            ${k_map[0].toFixed(5)} - ${k_map[1].toFixed(5)} <br>
+                        `;
+                    }
+                }
+
+                let result = "";
+                let this_result = _tl.result;
+                let result_type = "";
+                if (this_result === "success") {
+                    result = "Success!";
+                    result_type = "result-success";
+                } else if (this_result === "fail") {
+                    result = "Failed";
+                    result_type = "result-fail";
+                } else if (this_result === "chance_time_success") {
+                    result = "Success! (Chance Time)";
+                    result_type = "result-success";
+                } else if (this_result === "sc_fail") {
+                    result = "Failed (Star Catch)";
+                    result_type = "result-fail";
+                } else if (this_result === "sc_success") {
+                    result = "Success! (Star Catch)";
+                    result_type = "result-success";
+                } else if (this_result === "destroy") {
+                    result = "Destroyed!";
+                    result_type = "result-destroy-text";
+                } else if (this_result === "safeguard") {
+                    result = "Safeguard!";
+                    result_type = "result-destroy-text";
+                }
+
+                let is_destroyed = ["destroy", "safeguard"].includes(this_result);
+
+                let bgColor = "none";
+                let color = "black";
+                if (_tl.star === 22) {
+                    bgColor = "#0070dd";
+                    color = "white";
+                } else if (_tl.star === 23) {
+                    bgColor = "#a335ee";
+                    color = "white";
+                } else if (_tl.star === 24) {
+                    bgColor = "#ff8000";
+                    color = "white";
+                } else if (_tl.star === 25) {
+                    bgColor = "#00f70a";
+                    color: "white";
+                }
+
+                t_body += `
+                    <tr>
+                        <td>${_tl.id}</td>
+                        <td style="background-color:${bgColor};color:${color}">${_tl.star}</td>
+                        <td ${is_destroyed ? 'class="result-destroy"' : ""}>
+                            <span class="${result_type}">${result}</span>
+                        </td>
+                        <td>
+                            ${_tl.star >= 11 && _tl.star < 18 ?
+                                _tl.is_safeguard ? "Yes" : "No"
+                                :
+                                ""
+                            }
+                        </td>
+                        <td>${_tl.sf_cost.toNumber()}</td>
+                        <td>${_tl.sf_cost_discount["0.03"].toNumber()}</td>
+                        <td>${_tl.sf_cost_discount["0.05"].toNumber()}</td>
+                        <td>${_tl.sf_cost_discount["0.1"].toNumber()}</td>
+                        <td>${_tl.sf_cost_discount["0.3"].toNumber()}</td>
+                        <td>${_tl.sf_cost_discount["0.03,0.3"].toNumber()}</td>
+                        <td>${_tl.sf_cost_discount["0.05,0.3"].toNumber()}</td>
+                        <td>${_tl.sf_cost_discount["0.1,0.3"].toNumber()}</td>
+                        <td class="prn_number hidden ${is_destroyed ? "result-destroy" : ""}" style="white-space:nowrap">
+                            <span class="${result_type}">${_tl.prn}</span>
+                        </td>
+                        <td class="prn_map hidden" style="text-align:left">
+                            ${prn_map_html}
+                        </td>
+                    </tr>
+                `;
+            }
+
+            let html = `
+                <label for="cb_show_prn">
+                    <input type="checkbox" id="cb_show_prn"> Show PRNG info.    
+                </label>
+                <hr>
+                <table style="width:100%;font-size:11px;" id="star_force_log">
+                    <thead>
+                        <tr>
+                            <th>Run</th>
+                            <th>Star</th>
+                            <th>Result</th>
+                            <th>Safeguard</th>
+                            <th>Cost</th>
+                            <th>Cost, Silver MVP</th>
+                            <th>Cost, Gold MVP</th>
+                            <th>Cost, Diamond MVP</th>
+                            <th>Cost, 30% Off Event</th>
+                            <th>Cost, 30% + Silver MVP</th>
+                            <th>Cost, 30% + Gold MVP</th>
+                            <th>Cost, 30% + Diamond MVP</th>
+                            <th class="prn_number hidden">PRN</th>
+                            <th class="prn_map hidden">PRN Map</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${t_body}
+                    </tbody>
+                </table>
+            `;
+
+            optionbox.html(html).dialog({
+                title: "Starforce Log",
+                width: "100%",
+                height: "auto",
+                buttons: [{
+                    text: "Close",
+                    click: function() {
+                        $(this).dialog("close");
+                    }
+                }]
+            }).dialog("open");
+
+
+            return false;
+        });
+
+        var body=  $("body");
+
+        body.on("change", "#cb_show_prn", function(e) {
+            let prn_row = $("#star_force_log .prn_number, #star_force_log .prn_map");
+            if (e.target.checked) {
+                prn_row.removeClass("hidden");
+            } else {
+                prn_row.addClass("hidden");
+            }
+        });
+
+        //END MENU STUFF
+
+        var collision = function($div1, $div2) {
+            let x1 = $div1.offset().left;
+            let y1 = $div1.offset().top;
+            let h1 = $div1.outerHeight(true);
+            let w1 = $div1.outerWidth(true);
+            let b1 = y1 + h1;
+            let r1 = x1 + w1;
+            let x2 = $div2.offset().left;
+            let y2 = $div2.offset().top;
+            let h2 = $div2.outerHeight(true);
+            let w2 = $div2.outerWidth(true);
+            let b2 = y2 + h2;
+            let r2 = x2 + w2;
+
+            if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+            return true;
+        };
+
+        var item_create = $("#item_create");
+
+        var sfmain =  $(".sf-main-border");
+        var sfpop = $(".sfp-main-border");
+        var sfitem = $(".sfi-main-border");
+        var sfr = $(".sfi-result");
+        var sfsc = $(".sfsc-main-border");
+        var sfsc_clone = sfsc.html();
+
+        var sf_enchant_effects = $(".sf-enchant-effects");
+        var sf_header_text = $(".sf-header-text");
+        var sf_chance_time_text = $(".sf-star-chance");
+
+        var sfi_result_con = $(".sfi-result-container");
+        var sfi_result = $(".sfi-result");
+        var sfi_info_right = $(".sfi-info-right");
+        var sfi_text = $(".sfi-text");
+
+        var sf_starcatch = $(".sf-starcatch.sf-checkbox");
+        var sf_safeguard = $(".sf-safeguard.sf-checkbox");
+        var enable_starcatch = !$(".sf-starcatch.sf-checkbox").hasClass("checked");
+        var enable_safeguard = !$(".sf-starcatch.sf-safeguard").hasClass("checked");
+
+        var sfsc_star_container = {};
+        var sfsc_star_trail_left = {};
+        var sfsc_star_trail_right = {};
+        var sfsc_star_item_status = {};
+        var sfsc_star_items = {};
+        var sfsc_star_hitbox = {};
+        var sfsc_star_road = {};
+        var sfsc_star_start = {};
+
+        var i_con = $(".item-main-border");
+
+        var init_starcatch = function() {
+            sfsc_star_container = $(".sfsc-star-container");
+            sfsc_star_trail_left = $(".sfsc-star-trail-left");
+            sfsc_star_trail_right = $(".sfsc-star-trail-right");
+            sfsc_star_item_status = $(".sfsc-star-item-status");
+            sfsc_star_items = $(".sfsc-star-item");
+            sfsc_star_hitbox = $(".sfsc-star-hitbox");
+            sfsc_star_road = $(".sfsc-star-road");
+            sfsc_star_start = sfsc.find(".sf-button-stop");  
+        };
+
+        var initialize = function() {
+            sfmain.draggable({
+                handle: ".sf-main-header",
+                containment: "window"
+            }).position({
+                my: "center",
+                at: "center",
+                of: document
+            });
+
+            sfpop.draggable({
+                handle: ".sfp-main-header",
+                containment: "window"
+            }).position({
+                my: "center",
+                at: "center",
+                of: document
+            });
+
+            sfitem.draggable({
+                handle: ".sfi-main-header",
+                containment: "window"
+            }).position({
+                my: "center",
+                at: "center",
+                of: document
+            });
+
+            sfsc.draggable({
+                handle: ".sfsc-main-header",
+                containment: "window"
+            }).position({
+                my: "center",
+                at: "center",
+                of: document
+            });
+
+            i_con.draggable({
+                handle: ".item-drag-header",
+                containment: "window"
+            });
+        };
+
+        initialize();
+
+        window.onresize = function() {
+            let sfmain_was_hidden = sfmain.hasClass("hidden");
+            let sfpop_was_hidden = sfpop.hasClass("hidden");
+            let sfitem_was_hidden = sfitem.hasClass("hidden");
+            let sfsc_was_hidden = sfsc.hasClass("hidden");
+            let item_create_was_hidden = item_create.hasClass("hidden");
+
+            sfmain.removeClass("hidden").position({
+                my: "center",
+                at: "center",
+                of: sfcon
+            });
+
+            if (sfmain_was_hidden) {
+                sfmain.addClass("hidden");
+            }
+
+            sfpop.removeClass("hidden").position({
+                my: "center",
+                at: "center",
+                of: sfcon
+            });
+
+            if (sfpop_was_hidden) {
+                sfpop.addClass("hidden");
+            }
+
+            sfitem.removeClass("hidden").position({
+                my: "center",
+                at: "center",
+                of: sfcon
+            });
+
+            if (sfitem_was_hidden) {
+                sfitem.addClass("hidden");
+            }
+
+            sfsc.removeClass("hidden").position({
+                my: "center",
+                at: "center",
+                of: sfcon
+            });
+
+            if (sfsc_was_hidden) {
+                sfsc.addClass("hidden");
+            }
+
+            item_create.dialog("option", "position", {my: "center", at: "center", of: window});
+
+            if (item_create_was_hidden) {
+                item_create.addClass("hidden");
+            }
+        };
+
+        var isLoading = false;
+
+        sfmain.on("click", ".sf-main.sf-no-item", e=>{
+            let _this = $(e.target);
+            _this.removeClass("sf-no-item");
+            _this.addClass("sf-enchant");
+        });
+
+        sfmain.on("click", ".sf-button-enhance", e=>{
+            if (Item.idata.meta.stars === (Item.idata.superior ? 15 :25)) {
+                return false;
+            }
+
+            if (!sfitem.hasClass("hidden") || isLoading) {
+                return false;
+            }
+
+            sfpop.removeClass("hidden");
+        });
+
+        sfpop.on("click", ".sfp-button-ok", e=>{
+            if (enable_starcatch) {
+                begin_star_catch();
+                sfpop.addClass("hidden");
+            } else {
+                begin_starforce(false);
+            }
+        });
+
+        sfpop.on("click", ".sfp-button-cancel", e=>{
+            sfpop.addClass("hidden");
+        });
+
+        sfitem.on("click", ".sfi-button-ok", e=>{
+            sfitem.addClass("hidden");
+            isLoading = false;
+        });
+
+        sfmain.on("click", ".sf-starcatch", e=>{
+            if (sf_starcatch.hasClass("checked")) {
+                sf_starcatch.removeClass("checked");
+                enable_starcatch = true;
+            } else {
+                sf_starcatch.addClass("checked");
+                enable_starcatch = false;
+            }
+        }); 
+
+        sfmain.on("click", ".sf-safeguard", (e, b = false)=>{
+            if (sf_safeguard.hasClass("disabled")) {
+                return false;
+            }
+
+            if (sf_safeguard.hasClass("checked")) {
+                if (!b) {
+                    sf_safeguard.removeClass("checked");
+                }
+                enable_safeguard = true;
+            } else {
+                if (!b) {
+                    sf_safeguard.addClass("checked");
+                }
+                enable_safeguard = false;
+            }
+
+            if (!b) {
+                Item.redraw_sf();
+            }
+        });
+
+        var starcatch_auto_timeout = 0;
+        sfsc.on("click", ".sf-button-stop", e=>{
+
+            if (sfsc_star_start.hasClass("disabled")) {
+                return false;
+            }
+
+            let isSuccess = collision(sfsc_star_hitbox, sfsc_star_road);
+
+            sfsc_star_item_status.addClass("hidden");
+            sfsc_star_items.addClass("hidden");
+            sfsc_star_start.addClass("disabled");
+            sfsc_star_container.stop(true);
+            sfsc_star_hitbox.addClass("sfsc-star-stop");
+
+            if (isSuccess) {
+                sfsc_star_hitbox.append(
+                    `
+                        <div class="sfsc-star-success"></div>
+                    `
+                );
+            }
+
+            setTimeout(()=>{
+                //reset star catch
+                sfsc.html(sfsc_clone).addClass("hidden");
+                begin_starforce(isSuccess);
+            }, 1050);
+
+            clearInterval(starcatch_auto_timeout);
+        });
+
+        var begin_starforce = function(starcatch = false) {
+            isLoading = true;
+
+            sf_enchant_effects.addClass("sf-enchant-hyper-start");
+            sfpop.addClass("hidden");
+            setTimeout(()=>{
+                sf_enchant_effects.removeClass("sf-enchant-hyper-start");
+            
+                sfitem.removeClass("hidden");
+                sfi_text.addClass("hidden");
+                sfi_result_con.removeClass("hidden");
+
+                sf_header_text.removeClass("hidden");
+                sf_chance_time_text.addClass("hidden");
+
+                let r_type = "";
+                let result = Item.starforce(starcatch);
+
+                if (Item.idata.meta.chance_count > 1) {
+                    sf_header_text.addClass("hidden");
+                    sf_chance_time_text.removeClass("hidden");
+                }
+
+                sfi_info_right.removeClass("sf-item-boomed");
+
+                if (result === 'success' || result === 'sc_success' || result === "chance_time_success") {
+                    r_type = "sfi-success";
+                    sfi_text.filter(".sfi-text-success").removeClass("hidden");
+                    Item.xgrade_item(0);
+
+                    Item.idata.meta.starcatch.count += 1;
+                } else if (result === 'fail' || result === "sc_fail") {
+                    r_type = "sfi-fail";
+                    sfi_text.filter(".sfi-text-fail").removeClass("hidden");
+                    Item.xgrade_item(1);
+                } else {
+                    r_type = "sfi-destroy";
+                    sfi_info_right.addClass("sf-item-boomed");
+                    sfi_text.filter(".sfi-text-destroyed").removeClass("hidden");
+
+                    Item.xgrade_item(2);
+                }
+
+                sfi_result.addClass(r_type);
+
+                setTimeout(()=>{
+                    sfi_result_con.addClass("hidden");
+                    sfi_result.removeClass(r_type);
+                    isLoading = false;
+                }, 1020);
+            },2000);
+        };
+
+        var starcatch_active = true;
+        
+        var begin_star_catch = function() {
+            init_starcatch();
+            sfsc.removeClass("hidden");
+            sfsc_star_container.addClass("hidden");
+            sfsc_star_item_status.addClass("sfsc-star-begin");
+
+            //determine the star catch difficulty based on how many tries
+            //20 successes increases difficulty by 1
+            //max 6 difficulties
+            let sc_tries = 1 + Math.floor(Item.idata.meta.starcatch.count / 20);
+            let sfsc_road = $(".sfsc-star-road");
+
+            let star_catch_speed = 850;
+
+            sfsc_road.attr("class", "sfsc-star-road");
+            if (sc_tries === 1) {
+                Item.idata.meta.starcatch.speed = 1;
+            } else {
+                Item.idata.meta.starcatch.speed = 1 - +(sc_tries * 0.08).toFixed(2);
+                sfsc_road.addClass("sf-sc-star-road-lvl-" + sc_tries);
+            }
+
+            //reset itself after 200+ successes instead of ingame cooldown stuff
+            if (Item.idata.meta.starcatch.count > 200) {
+                Item.idata.meta.starcatch.count = 0;
+            }
+            
+            //bounce bounce bounce
+            setTimeout(()=>{
+                sfsc_star_start.removeClass("disabled");
+
+                starcatch_auto_timeout = setTimeout(()=>{
+                    sfsc_star_container.stop(true);
+                    sfsc.html(sfsc_clone).addClass("hidden");
+                    begin_starforce(false);
+                },6000);
+
+                sfsc_star_item_status
+                .removeClass("sfsc-star-begin")
+                .addClass("sfsc-star-countdown");
+
+                sfsc_star_container.removeClass("hidden");
+
+                star_catch_speed = star_catch_speed * Item.idata.meta.starcatch.speed;
+
+                var bounce_star = function() {
+                    sfsc_star_container.stop(true)
+                    .animate({left: "+=200px"}, {
+                        duration: star_catch_speed,
+                        easing: "linear",
+                        queue: false,
+                        complete: () => {
+                            sfsc_star_trail_left.addClass("hidden");
+                            sfsc_star_trail_right.removeClass("hidden");
+                            sfsc_star_container.stop(true)
+                            .animate({left: "-=200px"}, {
+                                duration: star_catch_speed,
+                                easing: "linear",
+                                queue: false,
+                                complete: () => {
+                                    sfsc_star_trail_left.removeClass("hidden");
+                                    sfsc_star_trail_right.addClass("hidden");
+                                    if (starcatch_active) {
+                                        bounce_star();
+                                    }
+                                }
+                            });
+                        }
+                    });
+                };
+
+                bounce_star();
+            }, 1000);
+        };
+
+        //ITEM CREATION DIALOG BOX
+        $(".item-star").on("click", function(e){
+            let _this = $(this);
+            let star = +_this.attr("data-star-id");
+
+            if (star === 1 && !_this.hasClass("disabled")) {
+                star = 0;
+            }
+
+            Item.set_item_level(star);
+            Item.redraw();
+            Item.clear_sf_history();
+        });
+
+        $.ui.dialog.prototype._focusTabbable = function(){}; //prevent autofocus
+
+        let item_is_init = false;
+        $(".sf-button.sf-button-cancel").on("click", function() {
+            init_item();
+        });
+
+        let weapon_init = $("#weapon_init");
+        let ddl_item = $("#ddl_item_select");
+        let flame_textbox = $(".flame-form");
+        let flame_percent = $(".flame-percent");
+        let flame_tier = $("#flame_as_tier");
+        let scroll_textbox = $(".scroll-form");
+
+        var init_item = function() {
+            scroll_options = [];
+            let max_4_flame = true;
+            item_create.dialog({
+                closeOnEscape: false,
+                open: function(event, ui) {
+                    $(this).parent().children().children('.ui-dialog-titlebar-close').hide();
+                },
+                modal: true,
+                height: $(window).height() * 0.6,
+                width: 700,
+                title: "Maplestory Item Simulator",
+                buttons: [{
+                    text: "Create",
+                    click: function() {
+                        let this_star = $("#item_starforce").val();
+                        let item_val = $("#ddl_item_select").val();
+
+                        //no item
+                        if (item_val == 0) {
+                            return false;
+                        }
+
+                        //more than 4 flames when the restriction to 4 flames is in place
+                        if (
+                            max_4_flame 
+                            && 
+                            flame_textbox.map(function() {
+                                return $(this).val() > 0
+                            }).get().filter((a)=>{return a;}).length > 4) 
+                         {
+                            alert("Only up to 4 flame types are allowed.");
+                            return false;
+                        }
+
+                        i_con.removeClass("hidden");
+                        sfmain.removeClass("hidden");
+
+                        let item_type = item_val.split(";");
+
+                        let flame_options = {};
+                        let scroll_options = [];
+
+                        //set up flame data to send to flame function
+                        flame_textbox.each(function() {
+                            let _this = $(this);
+                            let this_attr = _this.attr("data-id");
+                            let type = _this.attr("data-type") || "";
+                            let val = +_this.val() || 0;
+
+                            if (flame_tier.prop("checked") && (["str", "dex", "int", "luk"].includes(this_attr) || this_attr.includes(","))) {
+                                this_attr = "stats:" + this_attr;
+                            } else if (!flame_tier.prop("checked")) {
+                                if (type === "%") {
+                                    val = val / 100;
+                                } else if (type === "-") {
+                                    val = Math.abs(val) * -1;
+                                }
+                            }
+
+                            flame_options[this_attr] = val;
+
+                            if (flame_options[this_attr] == 0) {
+                                delete flame_options[this_attr];
+                            }
+                        });
+
+                        //set up scroll data to send to scroll function
+                        scroll_textbox.each(function(){
+                            let _this = $(this);
+                            let this_attr = _this.attr("data-id");
+                            let val = +_this.val();
+
+                            let scr = {
+                                type: this_attr,
+                                amount: val
+                            };
+
+                            if (val !== 0) {
+                                scroll_options.push(scr);
+                            }
+                        });
+
+                        Item = new item(items_store[item_type[0]][item_type[1]]);
+                        Item.set_item_level(this_star);
+
+                        Item.set_item_scroll(scroll_options);
+
+                        Item.set_meta_options({
+                            nebulite_compensation: $("#item_neb_comp").prop("checked")
+                        });
+
+                        if ($("#flame_as_tier").prop("checked")) {
+                            Item.set_item_flame_tier(flame_options);
+                        } else {
+                            Item.set_item_flame(flame_options);
+                        }
+                        
+                        Item.redraw();
+
+                        item_is_init = true;
+
+                        $(this).dialog("close");
+
+                        return false;
+                    }
+                }, {
+                    text: "Cancel",
+                    click: function() {
+                        if (!item_is_init) return false;
+                        $(this).dialog("close");
+                    }
+                }]
+            });
+
+            if (!item_is_init) {
+                let item_class = Object.keys(items_store);
+
+                //set up drop down with item data. should be alphabetical by item class then by item name
+                let items_db = {};
+                for (let i in items_store) {
+                    items_db[i] = [];
+                    for (let j in items_store[i]) {
+                        let this_item = items_store[i][j];
+
+                        this_item.value_name = i + ";" + j;
+
+                        items_db[i].push(this_item);
+                    }
+
+                    items_db[i].sort((a,b)=>{
+                        if (a.name < b.name) {
+                            return -1;
+                        } else if (a.name > b.name) {
+                            return 1;
+                        }
+
+                        return 0;
+                    });
+                }
+
+                let itemsHtml = "";
+
+                let item_keys = Object.keys(items_db).sort();
+
+                for (let i = 0; i < item_keys.length; ++i) {
+                    let i_key = item_keys[i];
+                    let _di = items_db[i_key];
+
+                    itemsHtml += `<option disabled>${i_key.replace(/_/gi," ").toUpperCase()}</option>`;
+                    for (let j = 0; j < _di.length; ++j) {
+                        let j_item = _di[j];
+                        itemsHtml += `
+                            <option value="${j_item.value_name}">${j_item.alt_name || j_item.name}</option>
+                        `;
+                    }
+                }
+
+                ddl_item.html(
+                    `
+                        <option value="0">Select an Item</option>
+                        ${itemsHtml}
+                    `
+                );
+
+                let item_sel = $("#item_select");
+                let scr_amount = $("#item_scroll_amount");
+                let item_flame_container = $("#item_flame_container");
+
+                let flame_box = $(".flame-box");
+                let scroll_box = $(".scroll-box");
+                let flame_max_4 = $("#flame_max_4");
+                let all_box =  $([...flame_box, ...scroll_box]);
+                let all_textbox = $([...flame_textbox, ...scroll_textbox]);
+
+                all_textbox.on("change", function(e) {
+                    let _this = $(this);
+                    let min = +_this.attr("min") || -1;
+                    let max = +_this.attr("max") || -1;
+                    let val = +_this.val();
+
+                    if (max !== -1 && val > max) {
+                        _this.val(max);
+                    } else if (min !== -1 && val < min) {
+                        _this.val(min);
+                    }
+                });
+
+                flame_max_4.on("change", function(e) {
+                    max_4_flame = e.target.checked;
+                });
+
+                ddl_item.on("change", function(e) {
+                    let _this = $(this);
+                    let val = _this.val();
+
+                    flame_textbox.val(0);
+                    scroll_textbox.val(0);
+
+                    if (val == 0) {
+                        weapon_init.addClass("hidden");
+                        scr_amount.html("0");
+                        item_sel.html("");
+                        return false;
+                    }
+
+                    let item_type = val.split(";");
+                    let this_item = items_store[item_type[0]][item_type[1]];
+
+                    item_sel.html(`
+                        <span class="sf-item ${this_item.img}" style="width:30px;height:30px;"></span>
+                    `);
+
+                    let tot_scroll = this_item.upgrades + this_item.hammers_added;
+                    scr_amount.html(tot_scroll);
+
+                    scroll_textbox.attr("max", tot_scroll);
+
+                    weapon_init.removeClass("hidden");
+
+                    //if the item can even have flames
+                    if (this_item.flame_type == 0) {
+                        item_flame_container.addClass("hidden");
+                    } else {
+                        item_flame_container.removeClass("hidden");
+                    }
+
+                    flame_box.addClass("hidden");
+                    scroll_box.addClass("hidden");
+
+                    //show weapon/armor-related flames
+                    if (this_item.class === "weapon") {
+                        all_box.filter(function() {
+                            return $(this).hasClass("item-weapon");
+                        }).removeClass("hidden");
+                    } else if (this_item.class === "armor") {
+                        all_box.filter(function() {
+                            return $(this).hasClass("item-armor");
+                        }).removeClass("hidden");
+                    }
+
+                    if (item_type[0] === "gollux") {
+                        scroll_box.filter(function() {
+                            return $(this).hasClass("item-gollux");
+                        }).removeClass("hidden");
+                    }
+                });
+
+                flame_tier.on("change", function(e) {
+                    if (e.target.checked) {
+                        flame_textbox.attr("max", 7);
+                        flame_percent.addClass("hidden");
+
+                        flame_max_4.prop("checked", false).trigger("click");
+
+                        flame_box.filter(":not(.item-custom-flame)").removeClass("hidden");
+                    } else {
+                        flame_textbox.removeAttr("max");
+                        flame_percent.removeClass("hidden");
+
+                        flame_max_4.prop("checked", true).trigger("click");
+
+                        flame_box.filter(":not(.item-custom-flame)").addClass("hidden");
+                    }
+
+                    flame_textbox.val(0);
+                });
+            }
+        };
+
+        init_item(); //start here
+    });
+</script>
+
+<style>
+    .item-form {
+        display: block;
+        padding: 10px;
+    }
+
+    .item-label {
+        display: inline-block;
+        width: 125px;
+    }
+
+    .flame-form, .scroll-form {
+        width: 50px;
+    }
+
+    .item-flame-label, .item-scroll-label {
+        padding: 5px;
+        display: inline-block;
+        width: 125px;
+    }
+
+    .item-flame-form, .item-scroll-form {
+        display: inline-block;
+        width: 275px;
+        padding: 5px;
+        vertical-align:top;
+    }
+</style>
+
+<div id="option_box" style="display:none"></div>
+
+
+<div id="item_create" style="display:none">
+    <div id="item_body">
+        <div class="item-form">
+            <span class="item-label">Item:</span> <select id="ddl_item_select"></select> <span id="item_select"></span>
+        </div>
+        <span id="weapon_init" class="hidden"> 
+            <div class="item-form">
+                <span class="item-label">Stars:</span> <input type="number" min="0" max="25" id="item_starforce" value="0">
+            </div>
+            <div class="item-form scroll-box item-weapon" title="For weapons, assumes a 25% boss damage nebulite was placed on it. Compensates with 1.04% more base damage.">
+                <span class="item-label">Nebulite Compensation:</span> <input type="checkbox" id="item_neb_comp"> [?]
+            </div>
+
+            <div class="item-form" id="item_scroll_container">
+                <div class="item-form">
+                    <span class="item-label">
+                        <b>Scrolls</b>
+                    </span>Max Scrolls:
+                    <span id="item_scroll_amount">
+                        0
+                    </span>
+                    <hr>
+                    <div class="item-scroll-form">
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-armor">
+                                <span class="item-scroll-label">
+                                    100%
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="_100"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-armor">
+                                <span class="item-scroll-label">
+                                    70%
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="_70"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-armor">
+                                <span class="item-scroll-label">
+                                    30%
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="_30"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon">
+                                <span class="item-scroll-label">
+                                    15%
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="_15"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-armor">
+                                <span class="item-scroll-label">
+                                    Prime
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="prime"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-scroll-form">
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-gollux">
+                                <span class="item-scroll-label">
+                                    Basic Gollux
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="basic_gollux"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-gollux">
+                                <span class="item-scroll-label">
+                                    Advanced Gollux
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="advanced_gollux"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-form" id="item_flame_container" style="min-height:375px;">
+                <div class="item-form">
+                    <span class="item-label">
+                        <b>Flames</b>
+                    </span>
+                    <label for="flame_as_tier" style="margin-right:10px" title="
+If checked, then the values for each textbox will correspond to a flame tier value. Flame tiers go from 0-7.
+If unchecked, then you can write whatever flame value you want."
+                    >
+                        <input type="checkbox" id="flame_as_tier" checked> Value is Flame Tiers [?]
+                    </label>
+                    <label for="flame_max_4" title="Limits selection to the maximum allowed in-game. This is only for flame tiers.">
+                        <input type="checkbox" id="flame_max_4" checked> Restrict to 4 Flame Types [?]
+                    </label>
+                    <hr>
+                    <div class="item-flame-form">
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">STR</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="str"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">DEX</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="dex"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">INT</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="int"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">LUK</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="luk"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">STR,DEX</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="str,dex"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">STR,INT</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="str,int"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">STR,LUK</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="str,luk"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">DEX,INT</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="dex,int"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">DEX,LUK</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="dex,luk"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">INT,LUK</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="int,luk"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">All Stats</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="all_stat" data-type="%"/><span class="flame-percent hidden">%</span></span>
+                    </div>
+                    <div class="item-flame-form">
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Attack Power</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="watt"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Magic Atack</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="matt"/></span>
+                        <span class="flame-box item-weapon item-custom-flame"><span class="item-flame-label">Damage</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="damage" data-type="%"/><span class="flame-percent hidden">%</span></span>
+                        <span class="flame-box item-weapon item-custom-flame"><span class="item-flame-label">Boss Damage</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="boss_damage" data-type="%"/><span class="flame-percent hidden">%</span></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Req Level</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="reqlvl" data-type="-"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Max HP</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="hp"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Max MP</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="mp"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Defense</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="def"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Jump</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="jump"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Speed</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="speed"/></span>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
