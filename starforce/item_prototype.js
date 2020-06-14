@@ -65,6 +65,16 @@ item.prototype.cache = {
         _30g: {
             att: 3
         },
+        //heart trace
+        _100h: {
+            att: 2
+        },
+        _70h: {
+            att: 3
+        },
+        _30h: {
+            att: 5
+        },
         //other trace
         _100m: {
             main: 2
@@ -787,6 +797,7 @@ item.prototype.set_item_scroll = function(s) {
         let _s = s[i];
 
         let stat_gain = this.idata.mstat;
+        let has_lower_val = false;
 
         if (_s.type.startsWith("_")) {
             if (this.idata.class === "weapon") {
@@ -795,11 +806,15 @@ item.prototype.set_item_scroll = function(s) {
                 _s.type = _s.type + "a";
             } else if (this.idata.type === "gloves") {
                 _s.type = _s.type + "g";
+            } else if (this.idata.type === "mechanical heart") {
+                _s.type = _s.type + "h";
+                has_lower_val = true;
             } else {
                 _s.type = _s.type + "m";
+                has_lower_val = true;
             }
 
-            if (_s.stat !== null) {
+            if (_s.stat != null) {
                 stat_gain = _s.stat;
             }
         } else if (_s.type === "prime") {
@@ -829,14 +844,20 @@ item.prototype.set_item_scroll = function(s) {
             if (j === 'main') {
                 _j = stat_gain;
             } else if (j === 'att') { 
-                _j = this.idata.att_type;
+                if (this.idata.att_type === "att") {
+                    _j = stat_gain;
+                } else {
+                    _j = this.idata.att_type;
+                }
             } 
 
             if (j.startsWith("_")) {
                 spell_trace_used += 1;
             }
 
-            this_stat[_j] += scr_type[j] * (stat_gain === "hp" ? 50 : 1);
+            let stat_val = (scr_type[j] - (has_lower_val && this.idata.level < 130 ? 1 : 0)) * (stat_gain === "hp" ? 50 : 1);
+
+            this_stat[_j] += stat_val;
         }
 
         for (let k = 0; k < scr_amount; ++k) {

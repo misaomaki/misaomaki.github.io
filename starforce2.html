@@ -2878,7 +2878,9 @@ crossorigin="anonymous"></script>
         let flame_tier = $("#flame_as_tier");
         let scroll_textbox = $(".scroll-form");
         let scroll_type = $("#scroll_type");
+        let scroll_type_att = $("#scroll_type_att");
         let scroll_type_box = $("#scroll_type_box");
+        let scroll_type_box_att = $("#scroll_type_box_att"); //heart scrolls
 
         var init_item = function() {
             scroll_options = [];
@@ -2960,6 +2962,8 @@ crossorigin="anonymous"></script>
 
                             if (!scroll_type_box.hasClass("hidden")) {
                                 scr.stat = scroll_type.val();
+                            } else if (!scroll_type_box_att.hasClass("hidden")) {
+                                scr.stat = scroll_type_att.val();
                             }
 
                             if (val !== 0) {
@@ -3098,10 +3102,16 @@ crossorigin="anonymous"></script>
                     `);
 
                     //if the item does not have a primary stat, then show the dropdown to choose the stat
-                    if (this_item.mstat === "") {
+                    if (this_item.mstat === "" && this_item.type !== "mechanical heart") {
                         scroll_type_box.removeClass("hidden");
                     } else {
                         scroll_type_box.addClass("hidden");
+                    }
+
+                    if (this_item.type === "mechanical heart") {
+                        scroll_type_box_att.removeClass("hidden");
+                    } else {
+                        scroll_type_box_att.addClass("hidden");
                     }
 
                     //set total scroll data for scroll textbox
@@ -3232,6 +3242,17 @@ crossorigin="anonymous"></script>
                                     <option value="int">INT</option>
                                     <option value="luk">LUK</option>
                                     <option value="hp">HP</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form" id="scroll_type_box_att">
+                            <span class="scroll-type-box">
+                                <span class="item-scroll-label">
+                                    Scroll Type:
+                                </span>
+                                <select id="scroll_type_att" style="width:120px">
+                                    <option value="watt" selected>Attack Power</option>
+                                    <option value="matt">Magic Attack</option>
                                 </select>
                             </span>
                         </div>
