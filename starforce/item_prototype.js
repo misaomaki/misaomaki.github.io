@@ -409,26 +409,35 @@ item.prototype.reverse_flame_lookup = function() {
     let lookup1_lvl2 = this.flame_lookup.linear_lookup2(level);
 
     //att tier
-    if (flames.watt > 0 || flames.matt > 0) {
-        let lookup_att = item.prototype.flame_lookup.att_tier_looukup(this.idata.flame_type, level);
+    if (this.idata.class === "weapon") {
+        if (flames.watt > 0 || flames.matt > 0) {
+            let lookup_att = item.prototype.flame_lookup.att_tier_looukup(this.idata.flame_type, level);
 
-        for (let i = 0; i < lookup_att.length; ++i) {
-            let t_att = lookup_att[i];
+            for (let i = 0; i < lookup_att.length; ++i) {
+                let t_att = lookup_att[i];
 
-            let this_att = 1 + Math.floor(this.idata.bstat.watt * t_att);
+                let this_att = 1 + Math.floor(this.idata.bstat.watt * t_att);
 
-            if (this_att === flames.watt || this_att === flames.matt) {
-                let wtier = i;
+                if (this_att === flames.watt || this_att === flames.matt) {
+                    let wtier = i;
 
-                if (this.idata.flame_type === 1) {
-                    wtier += 1;
-                } else {
-                    wtier += 3;
+                    if (this.idata.flame_type === 1) {
+                        wtier += 1;
+                    } else {
+                        wtier += 3;
+                    }
+
+                    rf[this.idata.att_type] = wtier;
+                    break;
                 }
-
-                rf[this.idata.att_type] = wtier;
-                break;
             }
+        }
+    } else {
+        if (flames.watt > 0 && flames.watt <= 7) {
+            rf.watt = flames.watt;
+        }
+        if (flames.matt > 0 && flames.matt <= 7) {
+            rf.matt = flames.matt;
         }
     }
 
@@ -485,6 +494,12 @@ item.prototype.reverse_flame_lookup = function() {
                 break;
             }
         }
+    }
+    
+    //reqlvl
+    let rlvl = Math.abs(flames.reqlvl);
+    if (rlvl > 0 && rlvl <= 35) {
+        rf.reqlvl = Math.floor(rlvl / 5);
     }
 
     /*
