@@ -1142,10 +1142,10 @@ item.prototype.redraw_item_tooltip = function() {
             }
             e_stats[i] += flame_stats[i];
             e_stats[i] += other_stats[i];
-        
-            //blue stats in the parenthesis
-            e_stats[i + "_upgrade"] = sf_total_gain[i] !== 0 || scr_total_gain[i] !== 0 || flame_stats[i] !== 0;
         }
+
+        //blue stats in the parenthesis
+        e_stats[i.replace("_p", "") + "_upgrade"] = sf_total_gain[i] !== 0 || scr_total_gain[i] !== 0 || flame_stats[i] !== 0;
     }
 
     for (let i = 0; i < this.idata.boosts.sf_data.length; ++i) {
