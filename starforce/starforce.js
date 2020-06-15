@@ -3,8 +3,8 @@ var star_success_rate = function(star, superior = false) {
     //debugging
     return {
         success: 0,
-        fail: 1,
-        destroy: 0
+        fail: 0,
+        destroy: 1
     };
     */
     

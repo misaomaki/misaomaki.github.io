@@ -1093,9 +1093,15 @@ item.prototype.starforce = function(starcatch = false) {
         }
     }
 
+    let cb_safeguard = this.check_cache(()=>{
+        return mcon.find(".sf-safeguard");
+    }, "dom", "sf_safeguard"); 
+    
+    let safeguard = cb_safeguard.hasClass("checked") && !cb_safeguard.hasClass("disabled");
+
     //no boom pre-15 event
     if (r_type === "destroy" && !this.idata.superior && event_options.nb15 && current_star < 15) {
-        r_type = "fail";
+        r_type = "fail-safeguard";
     }
 
     if (this.idata.meta.chance_time) {
@@ -1121,6 +1127,8 @@ item.prototype.starforce = function(starcatch = false) {
         } else if (r_type === "success" || r_type === "sc_success") {
             this.idata.meta.chance_count = 0;
             this.idata.meta.chance_time = false;
+        } else if (r_type === "destroy" && safeguard) {
+            r_type = "fail-safeguard";
         }
     }
 
@@ -1660,16 +1668,13 @@ item.prototype.redraw_sf = function() {
     }, "dom", "lvl_flag");        
     let safeguard = this.check_cache(()=>{
         return mcon.find(".sf-safeguard");
-    }, "dom", "safeguard");        
+    }, "dom", "sf_safeguard");        
     let current_meso = this.check_cache(()=>{
         return sfcon.find(".sf-data-meso");
     }, "dom", "current_meso");
     let sf_text = this.check_cache(()=>{
         return sfcon.find(".sf-text");
     }, "dom", "sf_text");
-    let cb_safeguard = this.check_cache(()=>{
-        return sfcon.find(".sf-safeguard");
-    }, "dom", "sf_safeguard");
     let sf_img = this.check_cache(()=>{
         return $.merge(mcon.find(".sf-item"), sficon.find(".sf-item"));
     }, "dom", "sf_img");
@@ -1858,7 +1863,7 @@ item.prototype.redraw_sf = function() {
         safeguard.trigger("click", true);
     }
 
-    let is_safeguard = !cb_safeguard.hasClass("disabled") && cb_safeguard.hasClass("checked");
+    let is_safeguard = !safeguard.hasClass("disabled") && safeguard.hasClass("checked");
 
     //text description in starforce screen
     //this part is wonky. fix later

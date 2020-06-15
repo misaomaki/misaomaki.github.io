@@ -2155,6 +2155,10 @@ crossorigin="anonymous"></script>
         _51015: false,
         nb15: false
     };
+
+    var system = {
+        animation_speed: 1
+    };
 </script>
 
 <!-- maplestory item db -->
@@ -2333,12 +2337,12 @@ crossorigin="anonymous"></script>
                     } else if (this_result === "destroy") {
                         result = "Destroyed!";
                         result_type = "result-destroy-text";
-                    } else if (this_result === "safeguard") {
+                    } else if (this_result === "fail-safeguard") {
                         result = "Safeguard!";
                         result_type = "result-destroy-text";
                     }
 
-                    let is_destroyed = ["destroy", "safeguard"].includes(this_result);
+                    let is_destroyed = ["destroy", "fail-safeguard"].includes(this_result);
 
                     let bgColor = "none";
                     let color = "black";
@@ -2353,7 +2357,7 @@ crossorigin="anonymous"></script>
                         color = "white";
                     } else if (_tl.star === 25) {
                         bgColor = "#00f70a";
-                        color: "white";
+                        color = "white";
                     }
 
                     t_body += `
@@ -2745,13 +2749,13 @@ crossorigin="anonymous"></script>
 
                 sfi_info_right.removeClass("sf-item-boomed");
 
-                if (result === 'success' || result === 'sc_success' || result === "chance_time_success") {
+                if (result.includes("success")) {
                     r_type = "sfi-success";
                     sfi_text.filter(".sfi-text-success").removeClass("hidden");
                     Item.xgrade_item(0);
 
                     Item.idata.meta.starcatch.count += 1;
-                } else if (result === 'fail' || result === "sc_fail") {
+                } else if (result.includes("fail")) {
                     r_type = "sfi-fail";
                     sfi_text.filter(".sfi-text-fail").removeClass("hidden");
                     Item.xgrade_item(1);
