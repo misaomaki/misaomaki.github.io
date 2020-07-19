@@ -914,7 +914,7 @@ item.prototype.xgrade_item = function(type = 0) {
             return sfcon.find(".sf-safeguard");
         }, "dom", "sf_safeguard");
 
-        let is_safeguardable = !this.idata.superior && current_star >= 12 && current_star < 18;
+        let is_safeguardable = !this.idata.superior && current_star >= 12 && current_star < 17;
         let is_safeguard = !cb_safeguard.hasClass("disabled") && cb_safeguard.hasClass("checked");
 
         let safeguard_multiplier = is_safeguardable && is_safeguard ? 2 : 1;
@@ -1860,7 +1860,7 @@ item.prototype.redraw_sf = function() {
     }
 
     let safeguard_multiplier = 1;
-    let is_safeguardable = !this.idata.superior && this_star >= 12 && this_star < 18;
+    let is_safeguardable = !this.idata.superior && this_star >= 12 && this_star < 17;
     if (is_safeguardable) {
         safeguard.removeClass("disabled");
         safeguard.trigger("click", true);
