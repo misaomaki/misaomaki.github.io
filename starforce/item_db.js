@@ -3023,7 +3023,7 @@ var items_store = {
             hammers_added: 2
         },
         warrior_top: {
-            name: "Eagle Eye Warrior armor",
+            name: "Eagle Eye Warrior Armor",
             level: 150,
             class: "armor",
             type: "top",
@@ -6019,7 +6019,7 @@ $(function() {
 
                 style_items += `
                     .${istore.img} {
-                        background: url(./assets/maple_items/${istore.override_image.replace(/[\s-]/gi,"")}.png);
+                        background: url(./assets/maple_items/${istore.override_image.replace("AbsoLab","Absolab").replace(/[\s-]/gi,"")}.png);
                         background-repeat: no-repeat;
                         background-size: contain;
                     }
