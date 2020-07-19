@@ -3795,7 +3795,7 @@ var items_store = {
             hammers_added: 2
         },
         desperado: {
-            name: "Fafnir Desperado",
+            name: "Fafnir Death Bringer",
             level: 150,
             class: "weapon",
             type: "desperado",
