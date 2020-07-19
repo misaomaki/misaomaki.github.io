@@ -1553,13 +1553,21 @@ item.prototype.redraw_item_tooltip = function() {
     //required stats for item
     for (let i in item_attr) {
         let ia = item_attr[i];
-        if (ia === 0) continue;
+
+        let is_required = false;
+        if (ia !== 0) {
+            is_required = true;
+        } else {
+            ia = "000";
+        };
 
         let i_attr = this.check_cache(()=>{
             return i_con.find(".item-requirements.item-requirements-" + i);
         }, "dom", "i_attr_" + i);  
 
-        i_attr.addClass("required");
+        if (is_required) {
+            i_attr.addClass("required");
+        }
 
         let i_attr_num = this.check_cache(()=>{
             return i_con.find(".item-" + i + "-num");
