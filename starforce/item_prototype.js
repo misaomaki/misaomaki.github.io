@@ -960,8 +960,14 @@ item.prototype.xgrade_item = function(type = 0) {
             this.idata.meta.stars -= 1;
         }
     } else {
-        this.set_item_level(12);
-        this.idata.meta.stars = 12;
+        if (!this.idata.superior) {
+            d_star = 12;
+        } else {
+            d_star = 0;
+        }
+
+        this.set_item_level(d_star);
+        this.idata.meta.stars = d_star;
     }
 
     this.idata.meta.sf_log_item.star = this.idata.meta.stars;
