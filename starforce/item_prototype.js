@@ -315,7 +315,7 @@ item.prototype.flame_tier_list = function(t, type) {
             let att_table = lookup_table[i];
 
             if (this.idata.level >= att_table.from  && this.idata.level < att_table.to) {
-                stat_increase = Math.ceil(att_table.tier[t] * this.idata.bstat.watt);
+                stat_increase = Math.ceil(att_table.tier[t] * this.idata.bstat[this.idata.att_type]);
                 break;
             }
         }
