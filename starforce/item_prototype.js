@@ -917,7 +917,7 @@ item.prototype.xgrade_item = function(type = 0) {
         let is_safeguardable = !this.idata.superior && current_star >= 12 && current_star < 17;
         let is_safeguard = !cb_safeguard.hasClass("disabled") && cb_safeguard.hasClass("checked");
 
-        let safeguard_multiplier = is_safeguardable && is_safeguard ? 2 : 1;
+        let safeguard_multiplier = is_safeguardable && is_safeguard && !this.idata.meta.chance_time ? 2 : 1;
 
         //get the log data for the previous run, as we start off with showing the next star cost
         let cache_name_lvl_star = "_" + level + current_star + "_" + this.idata.superior;
@@ -1907,7 +1907,7 @@ item.prototype.redraw_sf = function() {
         sf_description.filter(".sfp-data-downgradeable").removeClass("hidden");
     }
 
-    if (is_safeguardable && is_safeguard) {
+    if (is_safeguardable && is_safeguard && !this.idata.meta.chance_time) {
         this.idata.meta.sf_log_item.is_safeguard = true;
         safeguard_multiplier = 2;
     }
