@@ -39,7 +39,7 @@ item.prototype.cache = {
             main: 4,
             att: 9
         },
-        //armor, shoulder trace
+        //armor, shield, shoulder trace
         _100a: {
             main: 3,
             hp: 30,
@@ -152,7 +152,7 @@ item.prototype.set_item_level = function(star = 0) {
     for (let i = 0; i < star; ++i) {
         let sf = this.check_cache(()=>{
             return equip_gain(this.idata);
-        }, "eg", "_" + this.idata.level + i);
+        }, "eg", "_" + this.idata.level + i + this.idata.superior);
 
         sf_data.push(sf);
         this.idata.meta.stars += 1;
@@ -827,7 +827,7 @@ item.prototype.set_item_scroll = function(s) {
         if (_s.type.startsWith("_")) {
             if (this.idata.class === "weapon") {
                 _s.type = _s.type + "w";
-            } else if (["hat", "top", "bottom", "shoes", "cape", "shoulder"].includes(this.idata.type)) {
+            } else if (["hat", "top", "bottom", "shoes", "cape", "shoulder", "shield"].includes(this.idata.type)) {
                 _s.type = _s.type + "a";
             } else if (this.idata.type === "gloves") {
                 _s.type = _s.type + "g";

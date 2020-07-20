@@ -1308,6 +1308,31 @@ var items_store = {
             upgrades: 8,
             hammers_added: 2
         },
+        katara: {
+            name: "AbsoLab Katara",
+            level: 160,
+            class: "weapon",
+            type: "katara",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["dex", "luk"], 
+            att_type: "watt", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, { 
+                watt: 97,
+                luk: 40            
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 480
+            },
+            img: "item-absolabkatara",
+            upgrades: 7,
+            hammers_added: 2 
+        },
         cane: {
             name: "AbsoLab Forked Cane",
             level: 160,
@@ -1905,6 +1930,1186 @@ var items_store = {
         }
     },
     sweetwater: {
+        dagger: {
+            name: "Sweetwater Knife",
+            level: 160,
+            class: "weapon",
+            type: "dagger",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["dex", "luk"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, { 
+                watt: 172,
+                boss_damage: 0.3,
+                ied: 0.1,
+                luk: 45,
+                dex: 45
+            }),
+            req: { //item requirements
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 370
+            },
+            img: "item-sweetwaterdagger",
+            upgrades: 8, //max upgrades no hammers
+            hammers_added: 2 //current hammers added to the weapon
+        },
+        katara: {
+            name: "Sweetwater Katara",
+            level: 160,
+            class: "weapon",
+            type: "katara",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["dex", "luk"], 
+            att_type: "watt", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, { 
+                watt: 86,
+                boss_damage: 0.3,
+                ied: 0.1,
+                hp: 500
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 370
+            },
+            img: "item-sweetwaterkatara",
+            upgrades: 7,
+            hammers_added: 2 
+        },
+        energy_chain_luk: {
+            name: "Sweetwater Chain Sword",
+            alt_name: "Sweetwater Chain Sword (LUK)",
+            override_image: "SweetwaterEnergyChain",
+            level: 160,
+            class: "weapon",
+            type: "whip blade",
+            speed: "fast",
+            job: ["thief", "pirate"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 137,
+                boss_damage: 0.3,
+                ied: 0.1,
+                luk: 45,
+                dex: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterenergychain",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        energy_chain_str: {
+            name: "Sweetwater Chain Sword",
+            alt_name: "Sweetwater Chain Sword (STR)",
+            override_image: "SweetwaterEnergyChain",
+            level: 160,
+            class: "weapon",
+            type: "whip blade",
+            speed: "fast",
+            job: ["thief", "pirate"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 137,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterenergychain",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        chain: {
+            name: "Sweetwater Chain",
+            level: 160,
+            class: "weapon",
+            type: "chain",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 171,
+                boss_damage: 0.3,
+                ied: 0.1,
+                luk: 45,
+                dex: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 480
+            },
+            img: "item-sweetwaterchain",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        cane: {
+            name: "Sweetwater Cane",
+            level: 160,
+            class: "weapon",
+            type: "cane",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 178,
+                boss_damage: 0.3,
+                ied: 0.1,
+                luk: 45,
+                dex: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 480
+            },
+            img: "item-sweetwatercane",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        guards: {
+            name: "Sweetwater Steer",
+            level: 160,
+            class: "weapon",
+            type: "claw",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 94,
+                boss_damage: 0.3,
+                ied: 0.1,
+                luk: 45,
+                dex: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 470
+            },
+            img: "item-sweetwaterguards",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        ritual_fan: {
+            name: "Sweetwater Ritual Fan",
+            level: 160,
+            class: "weapon",
+            type: "ritual fan",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 172,
+                boss_damage: 0.3,
+                ied: 0.1,
+                luk: 45,
+                dex: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 370
+            },
+            img: "item-sweetwaterritualfan",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        shining_rod: {
+            name: "Sweetwater Shining Rod",
+            level: 160,
+            class: "weapon",
+            type: "shining rod",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 126,
+                matt: 208,
+                boss_damage: 0.3,
+                ied: 0.1,
+                int: 45,
+                luk: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 475,
+                luk: 0
+            },
+            img: "item-sweetwatershiningrod",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        scepter: {
+            name: "Sweetwater Tigress Scepter",
+            level: 160,
+            class: "weapon",
+            type: "scepter",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 126,
+                matt: 208,
+                boss_damage: 0.3,
+                ied: 0.1,
+                int: 45,
+                luk: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 475,
+                luk: 0
+            },
+            img: "item-sweetwaterscepter",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        psy_limiter: {
+            name: "Sweetwater Psy-limiter",
+            level: 160,
+            class: "weapon",
+            type: "psy-limiter",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 126,
+                matt: 208,
+                boss_damage: 0.3,
+                ied: 0.1,
+                int: 45,
+                luk: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 475,
+                luk: 0
+            },
+            img: "item-sweetwaterpsylimiter",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        lucent_gauntlet: {
+            name: "Sweetwater Lucent Gauntlet",
+            level: 160,
+            class: "weapon",
+            type: "lucent gauntlet",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 126,
+                matt: 208,
+                boss_damage: 0.3,
+                ied: 0.1,
+                int: 45,
+                luk: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 475,
+                luk: 0
+            },
+            img: "item-sweetwaterlucentgauntlet",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        wand: {
+            name: "Sweetwater Wand",
+            level: 160,
+            class: "weapon",
+            type: "wand",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 126,
+                matt: 208,
+                boss_damage: 0.3,
+                ied: 0.1,
+                int: 45,
+                luk: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 475,
+                luk: 0
+            },
+            img: "item-sweetwaterwand",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        staff: {
+            name: "Sweetwater Staff",
+            level: 160,
+            class: "weapon",
+            type: "staff",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 132,
+                matt: 210,
+                boss_damage: 0.3,
+                ied: 0.1,
+                int: 45,
+                luk: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 483,
+                luk: 0
+            },
+            img: "item-sweetwaterstaff",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        fan: {
+            name: "Sweetwater Wind",
+            level: 160,
+            class: "weapon",
+            type: "fan",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 132,
+                matt: 210,
+                boss_damage: 0.3,
+                ied: 0.1,
+                int: 45,
+                luk: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 483,
+                luk: 0
+            },
+            img: "item-sweetwaterfan",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        hand_cannon: {
+            name: "Sweetwater Hand Cannon",
+            level: 160,
+            class: "weapon",
+            type: "hand cannon",
+            speed: "slow",
+            job: ["pirate"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 182,
+                boss_damage: 0.3,
+                ied: 0.1,
+                dex: 45,
+                str: 45,
+                def: 160
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatersiegegun",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        gun: {
+            name: "Sweetwater Shooter",
+            level: 160,
+            class: "weapon",
+            type: "gun",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 137,
+                boss_damage: 0.3,
+                ied: 0.1,
+                dex: 45,
+                str: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterpistol",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        knuckle: {
+            name: "Sweetwater Grip",
+            level: 160,
+            class: "weapon",
+            type: "knuckle",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 137,
+                boss_damage: 0.3,
+                ied: 0.1,
+                dex: 45,
+                str: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterknuckle",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        soul_shooter: {
+            name: "Sweetwater Soul Shooter",
+            level: 160,
+            class: "weapon",
+            type: "soul shooter",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 137,
+                boss_damage: 0.3,
+                ied: 0.1,
+                dex: 45,
+                str: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterknuckle",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        bow: {
+            name: "Sweetwater Bow",
+            level: 160,
+            class: "weapon",
+            type: "bow",
+            speed: "normal",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 160,
+                boss_damage: 0.3,
+                speed: 12,
+                ied: 0.1,
+                dex: 45,
+                str: 45,
+                knockback: 0.77
+            }),
+            req: {
+                str: 0,
+                dex: 490,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterbow",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        crossbow: {
+            name: "Sweetwater Crossbow",
+            level: 160,
+            class: "weapon",
+            type: "bow",
+            speed: "normal",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 168,
+                boss_damage: 0.3,
+                speed: 19,
+                ied: 0.1,
+                dex: 45,
+                str: 45,
+                knockback: 0.77
+            }),
+            req: {
+                str: 0,
+                dex: 450,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatercrossbow",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        dual_bowguns: {
+            name: "Sweetwater Twin Angels",
+            level: 160,
+            class: "weapon",
+            type: "dual bowguns",
+            speed: "normal",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 164,
+                boss_damage: 0.3,
+                ied: 0.1,
+                dex: 45,
+                str: 45
+            }),
+            req: {
+                str: 0,
+                dex: 385,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterdualbowguns",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        ancient_bow: {
+            name: "Sweetwater Ancient Bow",
+            level: 160,
+            class: "weapon",
+            type: "dual bowguns",
+            speed: "normal",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 160,
+                boss_damage: 0.3,
+                speed: 12,
+                ied: 0.1,
+                dex: 45,
+                str: 45,
+                knockback: 0.77
+            }),
+            req: {
+                str: 0,
+                dex: 385,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterancientbow",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        bladecaster: {
+            name: "Sweetwater Bladecaster",
+            level: 160,
+            class: "weapon",
+            type: "bladecaster",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 180,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 460,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterbladecaster",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        desperado: {
+            name: "Sweetwater Demon Sword",
+            level: 160,
+            class: "weapon",
+            type: "desperado",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 180,
+                boss_damage: 0.3,
+                hp: 2500,
+                ied: 0.1,
+                str: 45
+            }),
+            req: {
+                str: 490,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterdesperado",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        sword: {
+            name: "Sweetwater Sword",
+            level: 160,
+            class: "weapon",
+            type: "one-handed sword",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 178,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 460,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatersaber",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        axe: {
+            name: "Sweetwater Axe",
+            level: 160,
+            class: "weapon",
+            type: "one-handed axe",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 178,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 470,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwateraxe",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        hammer: {
+            name: "Sweetwater Mace",
+            level: 160,
+            class: "weapon",
+            type: "one-handed blunt weapon",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 178,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 350,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterhammer",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        two_handed_sword: {
+            name: "Sweetwater Two-handed Sword",
+            level: 160,
+            class: "weapon",
+            type: "two-handed sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 180,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 480,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatertwohandedsword",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        two_handed_axe: {
+            name: "Sweetwater Two-handed Axe",
+            level: 160,
+            class: "weapon",
+            type: "two-handed axe",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 182,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 490,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatertwohandedaxe",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        two_handed_hammer: {
+            name: "Sweetwater Maul",
+            level: 160,
+            class: "weapon",
+            type: "two-handed blunt weapon",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 182,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 490,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatertwohandedhammer",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        spear: {
+            name: "Sweetwater Spear",
+            level: 160,
+            class: "weapon",
+            type: "spear",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 182,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 490,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterspear",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        polearm: {
+            name: "Sweetwater Polearm",
+            level: 160,
+            class: "weapon",
+            type: "polearm",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 182,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 490,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterpolearm",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        katana: {
+            name: "Sweetwater Katana",
+            level: 160,
+            class: "weapon",
+            type: "katana",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 180,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 490,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterkatana",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        arm_cannon: {
+            name: "Sweetwater Gauntlet Buster",
+            level: 160,
+            class: "weapon",
+            type: "arm cannon",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 137,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterarmcannon",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        gloves: {
+            name: "Sweetwater Gloves",
+            override_image: "SweetwaterGloves",
+            level: 160,
+            class: "armor",
+            type: "gloves",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                str: 13,
+                dex: 13,
+                luk: 13,
+                int: 13,
+                watt: 22,
+                matt: 22,
+                def: 158
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatergloves",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        shoes: {
+            name: "Sweetwater Shoes",
+            override_image: "SweetwaterShoes",
+            level: 160,
+            class: "armor",
+            type: "shoes",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                str: 12,
+                dex: 12,
+                luk: 12,
+                int: 12,
+                hp: 300,
+                mp: 300,
+                def: 158
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatershoes",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        cape: {
+            name: "Sweetwater Cape",
+            override_image: "SweetwaterCape",
+            level: 160,
+            class: "armor",
+            type: "cape",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                str: 13,
+                dex: 13,
+                luk: 13,
+                int: 13,
+                hp: 330,
+                mp: 330,
+                def: 154
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatercape",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        shoulder: {
+            name: "Sweetwater Shoulder",
+            override_image: "SweetwaterShoulder",
+            level: 160,
+            class: "armor",
+            type: "shoulder",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "watt", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                def: 61,
+                str: 16,
+                dex: 16,
+                int: 16,
+                luk: 16,
+                hp: 390
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatershoulder",
+            upgrades: 1,
+            hammers_added: 2
+        },
+        hat: {
+            name: "Sweetwater Hat",
+            level: 160,
+            class: "armor",
+            type: "hat",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                str: 36,
+                dex: 36,
+                luk: 36,
+                int: 36,
+                hp: 45,
+                mp: 45,
+                def: 288
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterthiefhat",
+            upgrades: 11,
+            hammers_added: 2
+        },
+        suit: {
+            name: "Sweetwater Suit",
+            level: 160,
+            class: "armor",
+            type: "overall",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                str: 36,
+                dex: 36,
+                luk: 36,
+                int: 36,
+                hp: 900,
+                mp: 900,
+                def: 396
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterthiefsuit",
+            upgrades: 12,
+            hammers_added: 2
+        },
         monocle: {
             name: "Sweetwater Monocle",
             level: 160,
@@ -2189,7 +3394,113 @@ var items_store = {
             img: "item-aquariuscrown",
             upgrades: 22,
             hammers_added: 2
+        }
+    },
+    shield: {
+        deimos_sage_shield: {
+            name: "Deimos Sage Shield",
+            level: 130,
+            class: "armor",
+            type: "shield",
+            speed: "",
+            job: ["magician"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                int: 10,
+                def: 71
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 420,
+                luk: 0
+            },
+            img: "item-deimossageshield",
+            upgrades: 7,
+            hammers_added: 2
         },
+        deimos_warrior_shield: {
+            name: "Deimos Warrior Shield",
+            level: 130,
+            class: "armor",
+            type: "shield",
+            speed: "",
+            job: ["warrior"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                str: 10,
+                dex: 10,
+                def: 118
+            }),
+            req: {
+                str: 420,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-deimoswarriorshield",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        deimos_shadow_shield: {
+            name: "Deimos Shadow Shield",
+            level: 130,
+            class: "armor",
+            type: "shield",
+            speed: "",
+            job: ["thief"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                luk: 10,
+                def: 99
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 420
+            },
+            img: "item-deimosshadowshield",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        dragon_khanjar: {
+            name: "Dragon Khanjar",
+            level: 130,
+            class: "armor",
+            type: "shield",
+            speed: "",
+            job: ["thief"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                luk: 2,
+                watt: 15,
+                def: 5
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 150
+            },
+            img: "item-dragonkhanjar",
+            upgrades: 7,
+            hammers_added: 2
+        }
+    },
+    heart: {
         lidium_heart: {
             name: "Lidium Heart",
             override_image: "LidiumHeart",
@@ -3507,6 +4818,31 @@ var items_store = {
             upgrades: 8,
             hammers_added: 2
         },
+        katara: {
+            name: "Fafnir Rapid Edge",
+            level: 160,
+            class: "weapon",
+            type: "katara",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["dex", "luk"], 
+            att_type: "watt", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, { 
+                watt: 81,
+                luk: 30
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 450
+            },
+            img: "item-fafnirrapidedge",
+            upgrades: 7,
+            hammers_added: 2 
+        },
         cane: {
             name: "Fafnir Ciel Claire",
             level: 150,
@@ -4131,6 +5467,31 @@ var items_store = {
             img: "item-arcanedagger",
             upgrades: 8, //max upgrades no hammers
             hammers_added: 2 //current hammers added to the weapon
+        },
+        katara: {
+            name: "Arcane Umbra Katara",
+            level: 160,
+            class: "weapon",
+            type: "katara",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["dex", "luk"], 
+            att_type: "watt", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, { 
+                watt: 140,
+                luk: 65            
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 600
+            },
+            img: "item-arcanekatara",
+            upgrades: 7,
+            hammers_added: 2 
         },
         energy_chain_luk: {
             name: "Arcane Umbra Energy Chain",
