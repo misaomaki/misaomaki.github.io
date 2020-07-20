@@ -1988,7 +1988,7 @@ var items_store = {
         energy_chain_luk: {
             name: "Sweetwater Chain Sword",
             alt_name: "Sweetwater Chain Sword (LUK)",
-            override_image: "SweetwaterEnergyChain",
+            override_image: "SweetwaterChainSword",
             level: 160,
             class: "weapon",
             type: "whip blade",
@@ -2018,7 +2018,7 @@ var items_store = {
         energy_chain_str: {
             name: "Sweetwater Chain Sword",
             alt_name: "Sweetwater Chain Sword (STR)",
-            override_image: "SweetwaterEnergyChain",
+            override_image: "SweetwaterChainSword",
             level: 160,
             class: "weapon",
             type: "whip blade",
