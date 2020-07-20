@@ -1388,7 +1388,7 @@ item.prototype.redraw_item_tooltip = function() {
                 }
 
                 if (a.value === "matt") {
-                    if (this.idata.class === "weapon" && percent_stats.matt + flame_stats.matt === 0) {
+                    if (this.idata.class === "weapon" && percent_stats.matt + flame_stats.matt + base_stats.matt === 0) {
                         return '';
                     } 
                 }

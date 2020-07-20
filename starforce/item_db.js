@@ -7329,7 +7329,7 @@ let items_other_data = {
     shadowknight: false, //use shadowknight coins
     meta: {
         starforce_type: "GMS", //GMS or KMS. costs are different
-        nebulite_compensation: false, //if the weapon had a 25% boss nebulite on it before and is compensated with 1.04% more base damage. bonuses from other nebulite types are not supported.
+        nebulite_compensation: false, //if the weapon had a 25% boss nebulite on it before and is compensated with 4% more base damage. bonuses from other nebulite types are not supported.
         stars: 0,
         max_stars: 0, //depending on the item level. tells the starforce window to stop allowing starforcing
         chance_time: false, //whether the item will 100% upgrade in starforce
