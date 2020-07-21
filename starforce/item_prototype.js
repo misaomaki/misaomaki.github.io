@@ -1515,7 +1515,7 @@ item.prototype.redraw_item_tooltip = function() {
         let i_level = this.idata.level + "";
         let this_e_reqlvl = e_stats.reqlvl;
 
-        if (this_e_reqlvl > 1000) {
+        if (Math.abs(this_e_reqlvl) > 1000) {
             this_e_reqlvl = 999;
         }
 
