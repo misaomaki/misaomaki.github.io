@@ -3191,17 +3191,15 @@ crossorigin="anonymous"></script>
                         flame_textbox.attr("max", 7);
                         flame_percent.addClass("hidden");
 
-                        flame_max_4.trigger("click");
-
                         flame_box.filter(":not(.item-custom-flame)").removeClass("hidden");
                     } else {
                         flame_textbox.removeAttr("max");
                         flame_percent.removeClass("hidden");
 
-                        flame_max_4.trigger("click");
-
                         flame_box.filter(":not(.item-custom-flame)").addClass("hidden");
                     }
+
+                    flame_max_4.prop("checked", e.target.checked);
 
                     flame_textbox.val(0);
                 });

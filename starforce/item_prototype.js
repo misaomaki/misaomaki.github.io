@@ -880,7 +880,13 @@ item.prototype.set_item_scroll = function(s) {
                 spell_trace_used += 1;
             }
 
-            let stat_val = (scr_type[j] - (has_lower_val && this.idata.level < 100 ? 1 : 0)) * (stat_gain === "hp" ? 50 : 1);
+            let stat_val = (scr_type[j] - (has_lower_val && this.idata.level < 100 ? 1 : 0))
+
+            if (j === "main") {
+                stat_val = stat_val * (stat_gain === "hp" ? 50 : 1);
+            } else if (j === "hp" && stat_gain === "hp") {
+                stat_val = 0;
+            }
 
             this_stat[_j] += stat_val;
         }
