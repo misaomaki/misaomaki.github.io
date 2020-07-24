@@ -979,7 +979,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             bstat: Object.assign({}, stats, {
-                watt: 128,
+                watt: 154,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,

@@ -966,10 +966,10 @@ item.prototype.xgrade_item = function(type = 0) {
             this.idata.meta.stars -= 1;
         }
     } else {
+        let d_star = 0;
+        
         if (!this.idata.superior) {
             d_star = 12;
-        } else {
-            d_star = 0;
         }
 
         this.set_item_level(d_star);
