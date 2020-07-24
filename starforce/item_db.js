@@ -968,7 +968,7 @@ var items_store = {
         energy_chain_luk: {
             name: "AbsoLab Whip Blade",
             alt_name: "AbsoLab Whip Blade (LUK)",
-            override_image: "FafnirSplitEdge",
+            override_image: "AbsoLabWhipBlade",
             level: 160,
             class: "weapon",
             type: "whip blade",
