@@ -7399,7 +7399,7 @@ $(function() {
             
             let iod = $.extend(true, {}, items_other_data);
             
-            iod.meta.max_stars = istore.stars !== -1 ? istore.stars : star_max(istore.level, istore.superior);
+            iod.meta.max_stars = iod.stars !== -1 ? iod.stars : star_max(istore.level, istore.superior);
 
             items_store[i][j] = {...iod, ...istore_override, ...items_store[i][j]};
             
