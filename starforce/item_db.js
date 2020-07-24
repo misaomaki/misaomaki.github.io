@@ -982,8 +982,8 @@ var items_store = {
                 watt: 154,
                 boss_damage: 0.3,
                 ied: 0.1,
-                str: 60,
-                dex: 60
+                dex: 60,
+                luk: 60
             }),
             req: {
                 str: 0,
