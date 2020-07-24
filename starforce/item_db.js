@@ -2927,6 +2927,36 @@ var items_store = {
             upgrades: 8,
             hammers_added: 2
         },
+        belt: {
+            name: "Sweetwater Belt",
+            level: 160,
+            class: "armor",
+            type: "gloves",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "att", 
+            flame_type: 1,
+            stars: 15,
+            bstat: Object.assign({}, stats, {
+                str: 16,
+                dex: 16,
+                luk: 16,
+                int: 16,
+                hp: 156,
+                def: 156
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterbelt",
+            upgrades: 1,
+            hammers_added: 2
+        },
         gloves: {
             name: "Sweetwater Gloves",
             override_image: "SweetwaterGloves",
@@ -2937,8 +2967,9 @@ var items_store = {
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
             pstat: ["str", "dex", "int", "luk"],
-            att_type: "watt", 
+            att_type: "att", 
             flame_type: 1,
+            stars: 15,
             bstat: Object.assign({}, stats, {
                 str: 13,
                 dex: 13,
@@ -2960,7 +2991,6 @@ var items_store = {
         },
         shoes: {
             name: "Sweetwater Shoes",
-            override_image: "SweetwaterShoes",
             level: 160,
             class: "armor",
             type: "shoes",
@@ -2968,8 +2998,9 @@ var items_store = {
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
             pstat: ["str", "dex", "int", "luk"],
-            att_type: "watt", 
+            att_type: "att", 
             flame_type: 1,
+            stars: 15,
             bstat: Object.assign({}, stats, {
                 str: 12,
                 dex: 12,
@@ -2991,7 +3022,6 @@ var items_store = {
         },
         cape: {
             name: "Sweetwater Cape",
-            override_image: "SweetwaterCape",
             level: 160,
             class: "armor",
             type: "cape",
@@ -2999,8 +3029,9 @@ var items_store = {
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
             pstat: ["str", "dex", "int", "luk"],
-            att_type: "watt", 
+            att_type: "att", 
             flame_type: 1,
+            stars: 15,
             bstat: Object.assign({}, stats, {
                 str: 13,
                 dex: 13,
@@ -3022,7 +3053,6 @@ var items_store = {
         },
         shoulder: {
             name: "Sweetwater Shoulder",
-            override_image: "SweetwaterShoulder",
             level: 160,
             class: "armor",
             type: "shoulder",
@@ -3030,7 +3060,7 @@ var items_store = {
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
             pstat: ["str", "dex", "int", "luk"],
-            att_type: "watt", 
+            att_type: "att", 
             flame_type: 0,
             bstat: Object.assign({}, stats, {
                 def: 61,
@@ -3059,7 +3089,7 @@ var items_store = {
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
             pstat: ["str", "dex", "int", "luk"],
-            att_type: "watt", 
+            att_type: "att", 
             flame_type: 1,
             bstat: Object.assign({}, stats, {
                 str: 36,
@@ -3089,7 +3119,7 @@ var items_store = {
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
             pstat: ["str", "dex", "int", "luk"],
-            att_type: "watt", 
+            att_type: "att", 
             flame_type: 1,
             bstat: Object.assign({}, stats, {
                 str: 36,
@@ -7320,6 +7350,7 @@ var items_store = {
 
 //metadata that is tacked onto every item in items_store
 let items_other_data = {
+    stars: -1, //some items are hardcapped at a certain max star despite their item tier
     sub_class: "", //differentiate between armor classes for scrolling purposes
     max_hammers: 2, //number of hammers appliable,
     superior: false, //tyrant-related stuff
@@ -7367,7 +7398,8 @@ $(function() {
             }
             
             let iod = $.extend(true, {}, items_other_data);
-            iod.meta.max_stars = star_max(istore.level, istore.superior);
+            
+            iod.meta.max_stars = istore.stars !== -1 ? istore.stars : star_max(istore.level, istore.superior);
 
             items_store[i][j] = {...iod, ...istore_override, ...items_store[i][j]};
             

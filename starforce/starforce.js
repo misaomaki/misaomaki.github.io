@@ -9,7 +9,6 @@ var star_success_rate = function(star, superior = false) {
     };
     */
     
-    
     let base_success_rate = 1;
     let success_rate = 0;
     let destroy_rate = 0;

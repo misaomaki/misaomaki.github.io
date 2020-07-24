@@ -143,7 +143,13 @@ item.prototype.set_item_level = function(star = 0) {
     this.idata.meta.stars = 0;
     this.idata.boosts.sf_data = [];
 
-    let max_star = star_max(this.idata.level, this.idata.superior);
+    let max_star = 0;
+
+    if (this.idata.stars !== -1) {
+        max_star = this.idata.stars;
+    } else {
+        max_star = star_max(this.idata.level, this.idata.superior);
+    }
 
     if (max_star < star) {
         star = max_star;
