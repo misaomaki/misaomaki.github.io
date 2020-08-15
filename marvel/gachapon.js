@@ -208,7 +208,7 @@ All filters can be combined. Example: &quot;[filter:start][slot:3]Absolab&quot;
             <br>
 
             <span style="color:red">
-                Note: The marvel rates posted by Nexon are imprecisely-rounded values, and some groups add up to greater than 100%. Therefore, certain rates 
+                Note for latest version: The marvel rates posted by Nexon are imprecisely-rounded values, and some groups add up to greater than 100%. Therefore, certain rates 
                 are adjusted slightly doward (values are used from previous marvel rates, which posted slightly more accurate numbers) to "fit" it into a 0 to 1 range.
             </span>
         </div>
