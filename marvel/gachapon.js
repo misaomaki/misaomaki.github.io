@@ -204,6 +204,13 @@ All filters can be combined. Example: &quot;[filter:start][slot:3]Absolab&quot;
         return `<div>
             Shows the PRNG value used to determine the item that is received for each group. A proc map is also generated to show which items are received based on the PRNG value. 
             <br>The proc map is randomized after each run.
+
+            <br>
+
+            <span style="color:red">
+                Note: The marvel rates posted by Nexon are imprecisely-rounded values, and some groups add up to greater than 100%. Therefore, certain rates 
+                are adjusted slightly doward to "fit" it into a 0 to 1 range.
+            </span>
         </div>
         <table style="width:100%">
             <thead>
