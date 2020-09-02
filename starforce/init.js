@@ -1,4 +1,5 @@
 //scour the stylesheets and preload any images into a pseudocontainer, then delete the container
+//this is to force the preloading of images so that the images don't just jitter on the screen when they're first shown because they didn't load until they were called
 $(function() {
     let s = $("style");
     let ip = $("#img_preloader");

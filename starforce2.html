@@ -769,6 +769,10 @@
     }
 </style>
 
+<style id="variableAnimation">
+  /* populated dynamically from starforce_sound.js */
+</style>
+
 <style>
     .sfsc-main-border {
         position: absolute;
@@ -1827,7 +1831,17 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
             <b>Audio</b>
             <br>
             <label class="side-bar-item" for="sf_sound">
-                <input id="sf_sound" type="range" min="0" max="100" step="1" value="40"></input>
+                <input id="sf_sound" type="range" min="0" max="100" step="1" value="40"></input> <span id="sf_sound_display">40</span>
+            </label>
+        </div>
+        <div class="menu-group">
+            <b>Settings</b>
+            <label class="side-bar-item" for="sf_conf_popup">
+                <input type="checkbox" class="system_cb" id="sf_conf_popup" data-bind="confirmation_popup" title="Don't show the popup that confirms if you want to starforce." checked> Show Confirmation Popup
+            </label>
+            <b>Animation Speed</b>
+            <label class="side-bar-item" for="sf_playback">
+                <input id="sf_playback" type="range" min="1" max="10" step="0.1" value="1"></input> <span id="sf_playback_display">1</span>
             </label>
         </div>
     </div>
@@ -1840,7 +1854,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
         <div class="sfsc-main">
             <div class="sfsc-description"></div>
             <div class="sfsc-star-item-container">
-                <span class="sfsc-star-item-status"></span>
+                <span class="sfsc-star-item-status sf-variable-animation"></span>
             </div>
             <div class="sf-item-container sf-item-starforce">
                 <span class="sf-item sf-item-big item-arcaneumbradagger"></span>
@@ -1889,7 +1903,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
             </div>
         </div>
         <div class="sfi-result-container hidden">
-            <div class="sfi-result"></div>
+            <div class="sfi-result sf-variable-animation"></div>
         </div>
         <div class="sfi-button-container">
             <span class="maple-button sfi-button sfi-button-ok"></span>
@@ -1921,7 +1935,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                 </span>
             </div>
             <div class="sf-star-item"></div>
-            <div class="sf-enchant-effects"></div>
+            <div class="sf-enchant-effects sf-variable-animation"></div>
             <div class="sf-starcatch sf-checkbox checked"></div>
             <div class="sf-safeguard sf-checkbox disabled"></div>
             <div class="sf-main-mesos ">
@@ -2160,7 +2174,19 @@ crossorigin="anonymous"></script>
     };
 
     var system = {
-        animation_speed: 1
+        confirmation_popup: true,
+        animation_speed: 1,
+        animation_speed_actual: 1
+    };
+
+    var css_animation_speed = {
+        "sf-enchant-hyper-start": 1.75,
+        "sfi-success": 1.25,
+        "sfi-fail": 1.25,
+        "sfi-destroy": 1.25,
+        "sfsc-star-begin": 1,
+        "sfsc-star-stop": 1,
+        "sfsc-star-success": 1
     };
 </script>
 
@@ -2196,6 +2222,13 @@ crossorigin="anonymous"></script>
             Item.redraw_sf(); 
         });
 
+        $(".system_cb").on("click", function(e) {
+            let _this = $(this);
+            let bind_val = _this.attr("data-bind");
+
+            system[bind_val] = e.target.checked;
+            Item.redraw_sf(); 
+        });
 
         var init_item = function(lvl, item_type = null) { 
             if (item_type != null) {
@@ -2645,6 +2678,15 @@ crossorigin="anonymous"></script>
             _this.addClass("sf-enchant");
         });
 
+        let begin_starforce_pre = function() {
+            if (enable_starcatch) {
+                begin_star_catch();
+                sfpop.addClass("hidden");
+            } else {
+                begin_starforce(false);
+            }
+        };
+
         sfmain.on("click", ".sf-button-enhance", e=>{
             if (Item.idata.meta.stars === Item.idata.meta.max_stars) {
                 return false;
@@ -2654,16 +2696,15 @@ crossorigin="anonymous"></script>
                 return false;
             }
 
-            sfpop.removeClass("hidden");
+            if (system.confirmation_popup) {
+                sfpop.removeClass("hidden");
+            } else {
+                begin_starforce_pre();
+            }
         });
 
         sfpop.on("click", ".sfp-button-ok", e=>{
-            if (enable_starcatch) {
-                begin_star_catch();
-                sfpop.addClass("hidden");
-            } else {
-                begin_starforce(false);
-            }
+            begin_starforce_pre();
         });
 
         sfpop.on("click", ".sfp-button-cancel", e=>{
@@ -2720,24 +2761,24 @@ crossorigin="anonymous"></script>
             sfsc_star_items.addClass("hidden");
             sfsc_star_start.addClass("disabled");
             sfsc_star_container.stop(true);
-            sfsc_star_hitbox.addClass("sfsc-star-stop");
+            sfsc_star_hitbox.addClass("sfsc-star-stop sf-variable-animation");
 
             if (isSuccess) {
-                sfa.play("EnchantStarSuccess");
+                sfa.play("EnchantStarSuccess", {playbackRate: system.animation_speed});
                 sfsc_star_hitbox.append(
                     `
-                        <div class="sfsc-star-success"></div>
+                        <div class="sfsc-star-success sf-variable-animation"></div>
                     `
                 );
             } else {
-                sfa.play("EnchantStarStop");
+                sfa.play("EnchantStarStop", {playbackRate: system.animation_speed});
             }
 
             setTimeout(()=>{
                 //reset star catch
                 sfsc.html(sfsc_clone).addClass("hidden");
                 begin_starforce(isSuccess);
-            }, 1050);
+            }, 1050 * system.animation_speed_actual);
 
             clearInterval(starcatch_auto_timeout);
         });
@@ -2751,7 +2792,7 @@ crossorigin="anonymous"></script>
             }
             
             sf_enchant_effects.addClass("sf-enchant-hyper-start");
-            sfa.play("EnchantHyper");
+            sfa.play("EnchantHyper", {playbackRate: system.animation_speed});
 
             sfpop.addClass("hidden");
             setTimeout(()=>{
@@ -2776,19 +2817,19 @@ crossorigin="anonymous"></script>
                 sfi_info_right.removeClass("sf-item-boomed");
 
                 if (result.includes("success")) {
-                    sfa.play("EnchantSuccess");
+                    sfa.play("EnchantSuccess", {playbackRate: system.animation_speed});
                     r_type = "sfi-success";
                     sfi_text.filter(".sfi-text-success").removeClass("hidden");
                     Item.xgrade_item(0);
 
                     Item.idata.meta.starcatch.count += 1;
                 } else if (result.includes("fail")) {
-                    sfa.play("EnchantFail");
+                    sfa.play("EnchantFail", {playbackRate: system.animation_speed});
                     r_type = "sfi-fail";
                     sfi_text.filter(".sfi-text-fail").removeClass("hidden");
                     Item.xgrade_item(1);
                 } else {
-                    sfa.play("EnchantDestroyed");
+                    sfa.play("EnchantDestroyed", {playbackRate: system.animation_speed});
                     r_type = "sfi-destroy";
                     sfi_info_right.addClass("sf-item-boomed");
                     sfi_text.filter(".sfi-text-destroyed").removeClass("hidden");
@@ -2802,8 +2843,8 @@ crossorigin="anonymous"></script>
                     sfi_result_con.addClass("hidden");
                     sfi_result.removeClass(r_type);
                     isLoading = false;
-                }, 1020);
-            },2500);
+                }, 1020 * system.animation_speed_actual);
+            },2500 * system.animation_speed_actual);
         };
 
         var starcatch_active = true;
@@ -2883,7 +2924,7 @@ crossorigin="anonymous"></script>
                 };
 
                 bounce_star();
-            }, 1000);
+            }, 1000 * system.animation_speed_actual);
         };
 
         //ITEM CREATION DIALOG BOX

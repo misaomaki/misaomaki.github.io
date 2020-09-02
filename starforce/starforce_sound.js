@@ -21,11 +21,20 @@ let sf_audio_files = {
 let sfa = {
     audio: {},
     volume: 0.4,
+    playback: 1,
     setVolume: function(val) {
         sfa.volume = val;
         for (i in sfa.audio) {
             sfa.audio[i].volume = sfa.volume;
         }
+    },
+    setSpeed: function(val) {
+        sfa.playback = val;
+        /*
+        for (i in sfa.audio) {
+            sfa.audio[i].playbackRate = sfa.playback;
+        }
+        */
     },
     play: function(s, o) {
         let this_audio = {};
@@ -68,11 +77,37 @@ for (let i in sf_audio_files) {
 
 $(function() {
     let body = $("body");
+    let sound_display = $("#sf_sound_display");
+    let playback_display = $("#sf_playback_display");
+    let vAnimation = $("#variableAnimation");
     body.on("input change", "#sf_sound", function() {
         let _this = $(this);
         let val = +_this.val();
 
         sfa.setVolume(val/100);
+        sound_display.html(val);
+    });
+
+    body.on("input change", "#sf_playback", function() {
+        let _this = $(this);
+        let val = +_this.val();
+
+        sfa.setSpeed(val);
+        playback_display.html(val === 10 ? "None" : val.toFixed(1));
+        system.animation_speed = val;
+
+        system.animation_speed_actual = system.animation_speed == 10 ? 0 : 1/system.animation_speed;
+
+        vAnimation.html("");
+        for (let i in css_animation_speed) {
+            let alength = css_animation_speed[i];
+
+            vAnimation.append(`
+                .${i}.sf-variable-animation {
+                    animation-duration: ${alength/val}s;
+                }
+            `);
+        };
     });
 });
 
