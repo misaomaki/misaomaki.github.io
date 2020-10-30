@@ -935,6 +935,63 @@ var items_store = {
             upgrades: 12,
             hammers_added: 2
         },
+        lazuli8: {
+            name: "Lazuli Type 8",
+            level: 180,
+            class: "weapon",
+            type: "Long Sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 203,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 60,
+                dex: 60
+            }),
+            req: {
+                str: 480,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-lazuli7",
+            upgrades: 8,
+            hammers_added: 2 
+        },
+        lapis8: {
+            name: "Lapis Type 8",
+            level: 180,
+            class: "weapon",
+            type: "Heavy Sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 207,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 60,
+                dex: 60,
+                def: 160
+            }),
+            req: {
+                str: 480,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-lapis8",
+            upgrades: 8,
+            hammers_added: 2 
+        },
         energy_chain_str: {
             name: "AbsoLab Whip Blade",
             alt_name: "AbsoLab Whip Blade (STR)",
@@ -4475,6 +4532,116 @@ var items_store = {
             upgrades: 7,
             hammers_added: 2
         },
+        lazuli6: {
+            name: "Lazuli Type 6",
+            level: 150,
+            class: "weapon",
+            type: "Long Sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 135,
+                str: 8,
+                dex: 4
+            }),
+            req: {
+                str: 420,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-lazuli6",
+            upgrades: 8,
+            hammers_added: 2 
+        },
+        lazuli7: {
+            name: "Lazuli Type 7",
+            level: 170,
+            class: "weapon",
+            type: "Long Sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 169,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 40,
+                dex: 40
+            }),
+            req: {
+                str: 450,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-lazuli7",
+            upgrades: 8,
+            hammers_added: 2 
+        },
+        lapis6: {
+            name: "Lapis Type 6",
+            level: 150,
+            class: "weapon",
+            type: "Heavy Sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 139,
+                str: 35,
+                dex: 20,
+                def: 130
+            }),
+            req: {
+                str: 420,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-lapis6",
+            upgrades: 8,
+            hammers_added: 2 
+        },
+        lapis7: {
+            name: "Lapis Type 7",
+            level: 170,
+            class: "weapon",
+            type: "Heavy Sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 173,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 40,
+                dex: 40,
+                def: 150
+            }),
+            req: {
+                str: 450,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-lapis7",
+            upgrades: 8,
+            hammers_added: 2 
+        },
         energy_chain_str: {
             name: "Fafnir Split Edge",
             alt_name: "Fafnir Split Edge (STR)",
@@ -5497,6 +5664,63 @@ var items_store = {
             img: "item-arcanedagger",
             upgrades: 8, //max upgrades no hammers
             hammers_added: 2 //current hammers added to the weapon
+        },
+        lazuli9: {
+            name: "Lazuli Type 9",
+            level: 200,
+            class: "weapon",
+            type: "Long Sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 293,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 100,
+                dex: 100
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-lazuli7",
+            upgrades: 8,
+            hammers_added: 2 
+        },
+        lapis9: {
+            name: "Lapis Type 9",
+            level: 200,
+            class: "weapon",
+            type: "Heavy Sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 297,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 100,
+                dex: 100,
+                def: 200
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-lapis9",
+            upgrades: 8,
+            hammers_added: 2 
         },
         katara: {
             name: "Arcane Umbra Katara",
