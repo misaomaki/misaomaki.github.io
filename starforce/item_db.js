@@ -959,7 +959,7 @@ var items_store = {
                 int: 0,
                 luk: 0
             },
-            img: "item-lazuli7",
+            img: "item-lazuli8",
             upgrades: 8,
             hammers_added: 2 
         },
