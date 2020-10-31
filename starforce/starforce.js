@@ -93,10 +93,17 @@ var star_success_rate = function(star, superior = false) {
     };
 };
 
-var star_cost = function(level, star, type = "GMS", superior = false) {
+var star_cost = function(level, star, type = "GMS", superior = false, item_type) {
     //superior equipment have a fixed cost
     if (superior) {
         return Math.round(Math.pow(level,3.56)/100)*100;
+    }
+
+    //zero weapons cost caps at level 150
+    if (item_type === "Long Sword" || item_type === "Heavy Sword") {
+        if (level > 150) {
+            level = 150;
+        }
     }
 
     let divisor = 0;

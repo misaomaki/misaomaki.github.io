@@ -934,8 +934,8 @@ item.prototype.xgrade_item = function(type = 0) {
         //get the log data for the previous run, as we start off with showing the next star cost
         let cache_name_lvl_star = "_" + level + current_star + "_" + this.idata.superior;
         let this_star_cost_prev = this.check_cache(()=>{
-            return star_cost(level, this_star, this.idata.meta.starforce_type, this.idata.superior);
-        }, "sc", cache_name_lvl_star + "_" + this.idata.meta.starforce_type);
+            return star_cost(level, this_star, this.idata.meta.starforce_type, this.idata.superior, this.idata.type);
+        }, "sc", cache_name_lvl_star + "_" + this.idata.meta.starforce_type + "_" + this.idata.type);
 
         let this_star_cost_prev_effective = this_star_cost_prev * safeguard_multiplier;
 
@@ -1753,8 +1753,8 @@ item.prototype.redraw_sf = function() {
     }, "sr", cache_name_lvl_star);
 
     let this_star_cost = this.check_cache(()=>{
-        return star_cost(level, this_star, this.idata.meta.starforce_type, this.idata.superior);
-    }, "sc", cache_name_lvl_star + "_" + this.idata.meta.starforce_type);
+        return star_cost(level, this_star, this.idata.meta.starforce_type, this.idata.superior, this.idata.type);
+    }, "sc", cache_name_lvl_star + "_" + this.idata.meta.starforce_type + "_" + this.idata.type);
 
     if (nstats.watt_p !== 0 || nstats.matt_p !== 0 || nstats !== 0) {
         let flame_gain = this.idata.boosts.flames;
