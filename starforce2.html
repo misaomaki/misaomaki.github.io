@@ -512,22 +512,22 @@
         70% {
             background-image: url(./assets/starforce/hyperEffect2.0.png);
         }
-        72%{
+        75%{
             background-image: url(./assets/starforce/hyperEffect2.1.png);
         }
-        74%{
+        80%{
             background-image: url(./assets/starforce/hyperEffect2.2.png);
         }
-        86%{
+        85%{
             background-image: url(./assets/starforce/hyperEffect2.3.png);
         }
-        88%{
+        90%{
             background-image: url(./assets/starforce/hyperEffect2.4.png);
         }
-        90%{
+        92%{
             background-image: url(./assets/starforce/hyperEffect2.5.png);
         }
-        92%{
+        94%{
             background-image: url(./assets/starforce/hyperEffect2.6.png);
         }
         96%{
@@ -2959,6 +2959,7 @@ crossorigin="anonymous"></script>
         let scroll_type_box = $("#scroll_type_box");
         let scroll_type_box_att = $("#scroll_type_box_att"); //heart scrolls
         let flame_max_4 = $("#flame_max_4");
+        let flame_tier_rec = $("#flame_tier_rec");
 
         var init_item = function() {
             scroll_options = [];
@@ -3132,12 +3133,13 @@ crossorigin="anonymous"></script>
 
                 let item_sel = $("#item_select");
                 let scr_amount = $("#item_scroll_amount");
-                let item_flame_container = $("#item_flame_container");
+                let item_flame_container = $(".item_flame_container");
 
                 let flame_box = $(".flame-box");
                 let scroll_box = $(".scroll-box");
                 let all_box =  $([...flame_box, ...scroll_box]);
                 let all_textbox = $([...flame_textbox, ...scroll_textbox]);
+                let flame_adv = $("#item_has_flame_adv");
 
                 all_textbox.on("change", function(e) {
                     let _this = $(this);
@@ -3220,6 +3222,17 @@ crossorigin="anonymous"></script>
                             return $(this).hasClass("item-gollux");
                         }).removeClass("hidden");
                     }
+
+                    //has flame advantage
+                    if (this_item.flame_type == 2) {
+                        flame_adv.html("Yes");
+                        flame_adv.attr("data-flame-type", 2);
+                        flame_tier_rec.html("Gear is flame advantaged. You should set flames between 3 and 7 and have the maximum of 4 flame types.");
+                    } else {
+                        flame_adv.html("No");
+                        flame_adv.attr("data-flame-type", 1);
+                        flame_tier_rec.html("Gear is not flame advantaged. You should set flames between 1 and 5.");
+                    }
                 });
 
                 flame_tier.on("change", function(e) {
@@ -3289,6 +3302,9 @@ crossorigin="anonymous"></script>
             </div>
             <div class="item-form scroll-box item-weapon" title="For weapons, assumes a 25% boss damage nebulite was placed on it. Compensates with 4% more base damage.">
                 <span class="item-label">Nebulite Compensation:</span> <input type="checkbox" id="item_neb_comp"> [?]
+            </div>
+            <div class="item-form item_flame_container" title="Flame advantaged gear have flames go from 3-7 and always have the max of 4 lines (although this is up to you if you want to add 4 flame types). Non-'flame advantaged' gear goes from 1-5 and can have anywhere between 1 and 4 flame types.">
+                <span class="item-label">Flame Advantage?:</span> <span id="item_has_flame_adv"></span> [?]
             </div>
 
             <div class="item-form" id="item_scroll_container">
@@ -3402,6 +3418,10 @@ If unchecked, then you can write whatever flame value you want."
                     <label for="flame_max_4" title="Limits selection to the maximum allowed in-game. This is only for flame tiers.">
                         <input type="checkbox" id="flame_max_4" checked> Restrict to 4 Flame Types [?]
                     </label>
+                    <hr>
+                    <span style="display:block;padding:5px;font-size:0.9em;">
+                        <b>Recommended Flame Tiers:</b> <span id="flame_tier_rec"></span>
+                    </span>
                     <hr>
                     <div class="item-flame-form">
                         <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">STR</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="str"/></span>

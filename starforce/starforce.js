@@ -93,14 +93,22 @@ var star_success_rate = function(star, superior = false) {
     };
 };
 
-var star_cost = function(level, star, type = "GMS", superior = false, item_type) {
+//zero weapons cost caps at level 150
+var star_cost_type = function(item_type) {
+    if (item_type === "Long Sword" || item_type === "Heavy Sword") {
+        return 2;
+    }
+
+    return 1;
+};
+
+var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
     //superior equipment have a fixed cost
     if (superior) {
         return Math.round(Math.pow(level,3.56)/100)*100;
     }
 
-    //zero weapons cost caps at level 150
-    if (item_type === "Long Sword" || item_type === "Heavy Sword") {
+    if (sc_type === 2) {
         if (level > 150) {
             level = 150;
         }
