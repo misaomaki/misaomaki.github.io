@@ -422,6 +422,11 @@ item.prototype.reverse_flame_lookup = function() {
         if (flames.watt > 0 || flames.matt > 0) {
             let lookup_att = item.prototype.flame_lookup.att_tier_looukup(this.idata.flame_type, level);
 
+            let att_done = {
+                watt: flames.watt === 0,
+                matt: flames.matt === 0
+            };
+
             let wmatt = ["watt", "matt"];
             for (let i = 0; i < lookup_att.length; ++i) {
                 let t_att = lookup_att[i];
@@ -454,10 +459,14 @@ item.prototype.reverse_flame_lookup = function() {
                             wtier += 3;
                         }
 
-                        wmatt.splice(wmatt.indexOf(j_type), 1);
+                        att_done[j_type] = true;
 
                         rf[j_type] = wtier;
                     }
+                }
+
+                if (att_done.watt && att_done.matt) {
+                    break;
                 }
             }
         }
@@ -774,6 +783,7 @@ item.prototype.set_item_flame_tier = function(s) {
 
     this.idata.boosts.flames = {};
 
+    let wmatt_done = false;
     for (let i in s) {
         if (i === "all_stat" || i === "damage") {
             s[i] = 0.01 * s[i];
@@ -783,7 +793,7 @@ item.prototype.set_item_flame_tier = function(s) {
             } else {
                 s[i] = 0;
             }
-        } else if (i === "watt") { //this takes care of both matt and watt
+        } else if (!wmatt_done && (i === "watt" || i === "matt")) { 
             //non-weapons get atk based on its tier, but only for level 70+
             if (this.idata.class !== "weapon") {
                 if (this.idata.level >= 70) {
@@ -792,13 +802,19 @@ item.prototype.set_item_flame_tier = function(s) {
                     s[i] = 0;
                 }
             } else {
-                s.watt = this.flame_tier_list(s.watt, "watt");
+                wmatt_done = true;
+
+                if (s.watt > 0) {
+                    s.watt = this.flame_tier_list(s.watt, "watt");
+                }
 
                 //non-mage weapons use watt for matt flames. mage weapons use their respective att for flames
-                if (this.idata.bstat.watt > 0 && this.idata.bstat.matt === 0) {
-                    s.matt = this.flame_tier_list(s.matt, "watt");
-                } else {
-                    s.matt = this.flame_tier_list(s.matt, "matt");
+                if (s.matt > 0) {
+                    if (this.idata.bstat.watt > 0 && this.idata.bstat.matt === 0) {
+                        s.matt = this.flame_tier_list(s.matt, "watt");
+                    } else {
+                        s.matt = this.flame_tier_list(s.matt, "matt");
+                    }
                 }
             }
         } else if (i === "def" || i === "hp" || i === "mp") {
