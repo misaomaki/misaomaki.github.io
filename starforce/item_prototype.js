@@ -422,17 +422,22 @@ item.prototype.reverse_flame_lookup = function() {
         if (flames.watt > 0 || flames.matt > 0) {
             let lookup_att = item.prototype.flame_lookup.att_tier_looukup(this.idata.flame_type, level);
 
+            let wmatt = ["watt", "matt"];
             for (let i = 0; i < lookup_att.length; ++i) {
                 let t_att = lookup_att[i];
 
-                let this_att = 1 + Math.floor(this.idata.bstat.watt * t_att);
+                let this_watt = 1 + Math.floor(this.idata.bstat.watt * t_att);
+
+                let this_matt = this_watt;
+
+                if (this.idata.bstat.watt > 0 && this.idata.bstat.matt > 0) {
+                    this_matt = 1 + Math.floor(this.idata.bstat.matt * t_att);
+                }
 
                 let threshold = {
-                    watt: Math.abs(this_att - flames.watt),
-                    matt: Math.abs(this_att - flames.matt)
+                    watt: Math.abs(this_watt - flames.watt),
+                    matt: Math.abs(this_matt - flames.matt)
                 };
-
-                let wmatt = ["watt", "matt"];
 
                 for (let j = 0; j < wmatt.length; ++j) {
                     let j_type = wmatt[j];
@@ -448,6 +453,8 @@ item.prototype.reverse_flame_lookup = function() {
                         } else {
                             wtier += 3;
                         }
+
+                        wmatt.splice(wmatt.indexOf(j_type), 1);
 
                         rf[j_type] = wtier;
                     }
