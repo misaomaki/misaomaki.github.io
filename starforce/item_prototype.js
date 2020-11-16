@@ -789,7 +789,7 @@ item.prototype.set_item_flame_tier = function(s) {
 
                 //non-mage weapons use watt for matt flames. mage weapons use their respective att for flames
                 if (this.idata.bstat.watt > 0 && this.idata.bstat.matt === 0) {
-                    s.matt = this.flame_tier_list(s.watt, "watt");
+                    s.matt = this.flame_tier_list(s.matt, "watt");
                 } else {
                     s.matt = this.flame_tier_list(s.matt, "matt");
                 }
