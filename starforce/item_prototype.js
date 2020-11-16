@@ -297,7 +297,7 @@ item.prototype.flame_tier_list = function(t, type) {
 
     let is_linear_lookup = false;
 
-    if (type === "att") {
+    if (type === "watt" || type === "matt") {
         //normal flames
         if (this.idata.flame_type === 1) {
             t = t - 1;
@@ -321,7 +321,7 @@ item.prototype.flame_tier_list = function(t, type) {
             let att_table = lookup_table[i];
 
             if (this.idata.level >= att_table.from  && this.idata.level < att_table.to) {
-                stat_increase = Math.ceil(att_table.tier[t] * this.idata.bstat[this.idata.att_type]);
+                stat_increase = Math.ceil(att_table.tier[t] * this.idata.bstat[type]);
                 break;
             }
         }
@@ -427,24 +427,30 @@ item.prototype.reverse_flame_lookup = function() {
 
                 let this_att = 1 + Math.floor(this.idata.bstat.watt * t_att);
 
-                //some values are wonky, so if they are within 3, it is okay
-                let threshold_watt = Math.abs(this_att - flames.watt);
-                let threshold_matt = Math.abs(this_att - flames.matt);
+                let threshold = {
+                    watt: Math.abs(this_att - flames.watt),
+                    matt: Math.abs(this_att - flames.matt)
+                };
 
-                if (
-                    //this_att === flames.watt || this_att === flames.matt
-                    threshold_watt <= 3 || threshold_matt <= 3
-                ) {
-                    let wtier = i;
+                let wmatt = ["watt", "matt"];
 
-                    if (this.idata.flame_type === 1) {
-                        wtier += 1;
-                    } else {
-                        wtier += 3;
+                for (let j = 0; j < wmatt.length; ++j) {
+                    let j_type = wmatt[j];
+
+                    //some values are wonky, so if they are within 3, it is okay
+                    if (
+                        threshold[j_type] <= 3
+                    ) {
+                        let wtier = i;
+
+                        if (this.idata.flame_type === 1) {
+                            wtier += 1;
+                        } else {
+                            wtier += 3;
+                        }
+
+                        rf[j_type] = wtier;
                     }
-
-                    rf[this.idata.att_type] = wtier;
-                    break;
                 }
             }
         }
@@ -770,7 +776,7 @@ item.prototype.set_item_flame_tier = function(s) {
             } else {
                 s[i] = 0;
             }
-        } else if (i === "watt" || i === "matt") {
+        } else if (i === "watt") { //this takes care of both matt and watt
             //non-weapons get atk based on its tier, but only for level 70+
             if (this.idata.class !== "weapon") {
                 if (this.idata.level >= 70) {
@@ -779,7 +785,14 @@ item.prototype.set_item_flame_tier = function(s) {
                     s[i] = 0;
                 }
             } else {
-                s[i] = this.flame_tier_list(s[i], "att");
+                s.watt = this.flame_tier_list(s.watt, "watt");
+
+                //non-mage weapons use watt for matt flames. mage weapons use their respective att for flames
+                if (this.idata.bstat.watt > 0 && this.idata.bstat.matt === 0) {
+                    s.matt = this.flame_tier_list(s.watt, "watt");
+                } else {
+                    s.matt = this.flame_tier_list(s.matt, "matt");
+                }
             }
         } else if (i === "def" || i === "hp" || i === "mp") {
             s[i] = this.flame_tier_list(s[i], i);

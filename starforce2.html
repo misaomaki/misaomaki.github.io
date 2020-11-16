@@ -2679,7 +2679,8 @@ crossorigin="anonymous"></script>
         });
 
         let begin_starforce_pre = function() {
-            if (enable_starcatch) {
+            //don't do starcatch if it's on chance time
+            if (enable_starcatch && !Item.idata.meta.chance_time) {
                 begin_star_catch();
                 sfpop.addClass("hidden");
             } else {
@@ -2750,7 +2751,6 @@ crossorigin="anonymous"></script>
 
         var starcatch_auto_timeout = 0;
         sfsc.on("click", ".sf-button-stop", e=>{
-
             if (sfsc_star_start.hasClass("disabled")) {
                 return false;
             }
@@ -2804,7 +2804,7 @@ crossorigin="anonymous"></script>
 
                 sf_header_text.removeClass("hidden");
                 sf_chance_time_text.addClass("hidden");
-
+                
                 let r_type = "";
                 let result = Item.starforce(starcatch);
 
@@ -2850,6 +2850,11 @@ crossorigin="anonymous"></script>
         var starcatch_active = true;
         
         var begin_star_catch = function() {
+            //reset itself after 140+ successes instead of ingame cooldown stuff
+            if (Item.idata.meta.starcatch.count > 140) {
+                Item.idata.meta.starcatch.count = 0;
+            }
+
             init_starcatch();
             sfsc.removeClass("hidden");
             sfsc_star_container.addClass("hidden");
@@ -2872,12 +2877,7 @@ crossorigin="anonymous"></script>
             }
 
             sc_start_sound = "EnchantStar" + (sc_tries > 5 ? 5 : sc_tries);
-            
-            //reset itself after 200+ successes instead of ingame cooldown stuff
-            if (Item.idata.meta.starcatch.count > 200) {
-                Item.idata.meta.starcatch.count = 0;
-            }
-            
+                        
             //bounce bounce bounce
             setTimeout(()=>{
                 sfa.play(sc_start_sound, {loop: true});
