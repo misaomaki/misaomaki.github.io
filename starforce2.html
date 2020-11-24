@@ -2276,7 +2276,8 @@ crossorigin="anonymous"></script>
             modal: false
         });
 
-        $("#system_sfrates").on("click", function() {
+        let sys_sfrates = $("#system_sfrates");
+        sys_sfrates.on("click", function() {
             let _this = $(this);
 
             Item.set_meta_options({
@@ -3085,7 +3086,12 @@ crossorigin="anonymous"></script>
                         } else {
                             Item.set_item_flame(flame_options);
                         }
-                        
+                        let sys_sfrates = $("#system_sfrates");
+
+                        Item.set_meta_options({
+                            starforce_type: sys_sfrates.val()
+                        });
+
                         Item.redraw();
 
                         item_is_init = true;
