@@ -1817,6 +1817,16 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
         <span class="margin">&nbsp;</span>
         <hr>
         <div class="menu-group">
+            <b>System</b>
+            <br>
+            <label class="side-bar-item" for="event_51015">
+                <select id="system_sfrates">
+                    <option value="GMS">GMS</option>
+                    <option value="KMS">KMS</option>
+                </select> Starforce Cost Type
+            </label>
+        </div>
+        <div class="menu-group">
             <b>Events</b>
             <br>
             <label class="side-bar-item" for="event_51015">
@@ -2265,6 +2275,17 @@ crossorigin="anonymous"></script>
             autoOpen: false,
             modal: false
         });
+
+        $("#system_sfrates").on("click", function() {
+            let _this = $(this);
+
+            Item.set_meta_options({
+                starforce_type: _this.val()
+            });
+
+            Item.redraw();
+        });
+
         $("#reverse_flame_check").on("click", function() {
             let b = Item.reverse_flame_lookup();
             
@@ -3050,6 +3071,7 @@ crossorigin="anonymous"></script>
                         });
 
                         Item = new item(items_store[item_type[0]][item_type[1]]);
+
                         Item.set_item_level(this_star);
 
                         Item.set_item_scroll(scroll_options);

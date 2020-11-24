@@ -3,7 +3,7 @@ Number.prototype.toNumber = function() {
 }
 
 var item = function(it) {
-    this.idata = it;
+    this.idata = $.extend(true, {}, it);
 };
 
 item.prototype.cache = {
@@ -1743,6 +1743,12 @@ item.prototype.redraw_sf = function() {
     let sf_img = this.check_cache(()=>{
         return $.merge(mcon.find(".sf-item"), sficon.find(".sf-item"));
     }, "dom", "sf_img");
+    let sf_header_text = this.check_cache(()=>{
+        return $(".sf-header-text");
+    }, "dom", "sf_header_text");
+    let sf_chance_time_text = this.check_cache(()=>{
+        return $(".sf-star-chance");
+    }, "dom", "sf_chance_time_text");
 
     //starcatch ui is reset using an initialized clone
     sf_img = $.merge(sf_img, $(".sfsc-main-border .sf-item"));
@@ -1909,6 +1915,13 @@ item.prototype.redraw_sf = function() {
     `;
 
     dcon.html(html);
+
+    //reset chance time
+    if (!sf_chance_time_text.hasClass("hidden") && this.idata.meta.chance_count < 2) {
+        sf_header_text.removeClass("hidden");
+        sf_chance_time_text.addClass("hidden");
+        sfa.stop("EnchantChanceTime");
+    }
 
     if (next_star <= 10) {
         //nothing
