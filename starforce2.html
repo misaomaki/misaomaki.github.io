@@ -2849,6 +2849,10 @@ crossorigin="anonymous"></script>
                     sfi_text.filter(".sfi-text-success").removeClass("hidden");
                     Item.xgrade_item(0);
 
+                    if (event_options.pre10x2 && !Item.idata.superior && Item.idata.meta.stars <= 10) {
+                        Item.xgrade_item(0);
+                    }
+
                     Item.idata.meta.starcatch.count += 1;
                 } else if (result.includes("fail")) {
                     sfa.play("EnchantFail", {playbackRate: system.animation_speed});

@@ -948,7 +948,7 @@ item.prototype.set_item_scroll = function(s) {
 };
 
 //add or remove star
-//type: 1 - increase star, 2 - drop star, 3 - destroy
+//type: 0 - increase star, 1 - drop star, 2 - destroy
 item.prototype.xgrade_item = function(type = 0) {
     let level = this.idata.level;
     let current_star = this.idata.meta.stars;
@@ -973,7 +973,7 @@ item.prototype.xgrade_item = function(type = 0) {
         let sc_type = star_cost_type(this.idata.type);
 
         let this_star_cost_prev = this.check_cache(()=>{
-            return star_cost(level, this_star, this.idata.meta.starforce_type, this.idata.superior, sc_type);
+            return star_cost(level, current_star, this.idata.meta.starforce_type, this.idata.superior, sc_type);
         }, "sc", cache_name_lvl_star + "_" + this.idata.meta.starforce_type + "_" + sc_type);
 
         let this_star_cost_prev_effective = this_star_cost_prev * safeguard_multiplier;
@@ -1001,14 +1001,9 @@ item.prototype.xgrade_item = function(type = 0) {
 
     if (type === 0) {
         let stat_add = this.cache.eg["_" + level + current_star + "_" + this.idata.superior];
-
         this.idata.boosts.sf_data.push(stat_add);
 
         this.idata.meta.stars += 1;
-
-        if (!this.idata.superior && event_options.pre10x2 && current_star <= 10) {
-            this.idata.meta.stars += 1;
-        }
     } else if (type === 1) {
         if (is_droppable) {
             this.idata.boosts.sf_data.pop();
@@ -1795,7 +1790,7 @@ item.prototype.redraw_sf = function() {
 
     let next_star = this_star + 1;
     let cache_name_lvl_star = "_" + level + this_star + "_" + this.idata.superior;
-
+    
     //total stats from all sources: flames, scrolls, and stars
     let nstats = this.check_cache(()=>{
         return equip_gain(this.idata);
