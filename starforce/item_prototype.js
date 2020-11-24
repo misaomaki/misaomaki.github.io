@@ -1005,6 +1005,10 @@ item.prototype.xgrade_item = function(type = 0) {
         this.idata.boosts.sf_data.push(stat_add);
 
         this.idata.meta.stars += 1;
+
+        if (event_options.pre10x2 && current_star <= 10) {
+            this.idata.meta.stars += 1;
+        }
     } else if (type === 1) {
         if (is_droppable) {
             this.idata.boosts.sf_data.pop();
@@ -1157,9 +1161,13 @@ item.prototype.starforce = function(starcatch = false) {
     let safeguard = cb_safeguard.hasClass("checked") && !cb_safeguard.hasClass("disabled");
 
     //no boom pre-15 event
-    if (r_type === "destroy" && !this.idata.superior && event_options.nb15 && current_star < 15) {
-        r_type = "fail-safeguard";
-    }
+    if (r_type === "destroy" && event_options.nb15) {
+        if (!this.idata.superior && current_star < 15) {
+            r_type = "fail-safeguard";
+        } else if (this.idata.superior && current_star < 8) {
+            r_type = "fail-safeguard";
+        }
+    } 
 
     if (this.idata.meta.chance_time) {
         r_type = "chance_time_success";
@@ -1837,11 +1845,29 @@ item.prototype.redraw_sf = function() {
 
     let is_droppable = this.is_droppable(this_star);
 
+    let is_event_droppable = false;
+    
+    if (event_options.nb15) {
+        if (!this.idata.superior && this_star < 15) {
+            is_event_droppable = true;
+        } else if (this.idata.superior && this_star < 8) {
+            is_event_droppable = true;
+        }
+    }
+
+    let is_2x = false;
+
+    if (event_options.pre10x2 && this_star <= 10) {
+        is_2x = true;
+    }
+
     let html = `
         <span class="sf-item-desc-current-stars">
             <span style="display: inline-block;width: 48px;">${this_star} Star</span>
             <span class="sf-arrow-description sf-item-arrow"></span> 
-            <span style="margin-left:20px;">${next_star} Star</span>
+            <span style="margin-left:20px;" ${is_2x ? `class="sf-crossed-out` : ``}">${next_star} Star</span>
+            ${is_2x ? `
+            <span style="margin-left:5px;">${next_star + 1} Star</span>` : ``}
             <br>
             ${this.idata.meta.chance_time ? `
                 Success Chance: 100% <br>
@@ -1860,10 +1886,10 @@ item.prototype.redraw_sf = function() {
                     Success Chance: ${(srate.success * 100).toFixed(1)}% <br>
                     <span style="transform: scale(0.95,1);display: inline-block;margin-left: -3px;">Failure (${is_droppable ? "Drop" : "Keep"}) Chance:</span> 
                     <span style="display:inline-block;margin-left: -5px;">
-                        ${((srate.fail + (!this.idata.superior && event_options.nb15 && this_star < 15 ? srate.destroy : 0)) * 100).toFixed(1)}%
+                        ${((srate.fail + (is_event_droppable ? srate.destroy : 0)) * 100).toFixed(1)}%
                     </span> <br>
                     ${
-                        !(!this.idata.superior && event_options.nb15 && this_star < 15) && srate.destroy !== 0 ?
+                        !is_event_droppable && srate.destroy !== 0 ?
                         `
                             Chance of item destruction: 
                             ${

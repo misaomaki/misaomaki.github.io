@@ -1819,7 +1819,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
         <div class="menu-group">
             <b>System</b>
             <br>
-            <label class="side-bar-item" for="event_51015">
+            <label class="side-bar-item" for="system_sfrates">
                 <select id="system_sfrates">
                     <option value="GMS">GMS</option>
                     <option value="KMS">KMS</option>
@@ -1833,7 +1833,10 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                 <input type="checkbox" class="event_cb" id="event_51015" data-bind="_51015"> 5/10/15 100% Success
             </label>
             <label class="side-bar-item" for="event_nb15">
-                <input type="checkbox" class="event_cb" id="event_nb15" data-bind="nb15"> No-Boom Pre 15
+                <input type="checkbox" class="event_cb" id="event_nb15" data-bind="nb15"> No-Boom Pre 15/8*
+            </label>
+            <label class="side-bar-item" for="event_pre10x2">
+                <input type="checkbox" class="event_cb" id="event_pre10x2" data-bind="pre10x2"> 2x Stars Pre 10
             </label>
         </div>
         <span class="margin">&nbsp;</span>
@@ -2180,7 +2183,8 @@ crossorigin="anonymous"></script>
 <script>
     var event_options = {
         _51015: false,
-        nb15: false
+        nb15: false,
+        pre10x2: false
     };
 
     var system = {
@@ -2189,6 +2193,7 @@ crossorigin="anonymous"></script>
         animation_speed_actual: 1
     };
 
+    //default animation speeds. can be speed up via the animation controls
     var css_animation_speed = {
         "sf-enchant-hyper-start": 1.75,
         "sfi-success": 1.25,
