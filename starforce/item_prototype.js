@@ -1006,7 +1006,7 @@ item.prototype.xgrade_item = function(type = 0) {
 
         this.idata.meta.stars += 1;
 
-        if (event_options.pre10x2 && current_star <= 10) {
+        if (!this.idata.superior && event_options.pre10x2 && current_star <= 10) {
             this.idata.meta.stars += 1;
         }
     } else if (type === 1) {
@@ -1857,7 +1857,7 @@ item.prototype.redraw_sf = function() {
 
     let is_2x = false;
 
-    if (event_options.pre10x2 && this_star <= 10) {
+    if (!this.idata.superior && event_options.pre10x2 && this_star <= 10) {
         is_2x = true;
     }
 
