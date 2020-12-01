@@ -83,6 +83,10 @@
         color: green;
     }
 
+    .r-sc_success {
+        color: #0072ec !important;
+    }
+
     .result-fail {
         color: red;
     }
@@ -2383,7 +2387,7 @@ crossorigin="anonymous"></script>
                         }
                     }
 
-                    sortable_prn.sort(function(a,b) {console.log(a.data[0]); return a.data[0] > b.data[0] ? 1 : -1;});
+                    sortable_prn.sort(function(a,b) {return a.data[0] > b.data[0] ? 1 : -1;});
 
                     for (let i = 0; i < sortable_prn.length; ++i) {
                         let sp = sortable_prn[i];
@@ -2397,14 +2401,12 @@ crossorigin="anonymous"></script>
                         }
 
                         prn_map_html += `
-                            <span class="result-${j2}${j2 === "destroy" ? "2" : ""}" style="display:inline-block;width:100px;">
+                            <span class="result-${j2}${j2 === "destroy" ? "2" : ""} r-${j}" style="display:inline-block;width:100px;">
                                 ${j}:
                             </span> 
                             ${map[0].toFixed(5)} - ${map[1].toFixed(5)} <br>
                         `;
                     }
-
-                    debugger;
 
                     let result = "";
                     let this_result = _tl.result;
@@ -2423,7 +2425,7 @@ crossorigin="anonymous"></script>
                         result_type = "result-fail";
                     } else if (this_result === "sc_success") {
                         result = "Success! (Star Catch)";
-                        result_type = "result-success";
+                        result_type = "result-success r-sc_success";
                     } else if (this_result === "destroy") {
                         result = "Destroyed!";
                         result_type = "result-destroy-text";
