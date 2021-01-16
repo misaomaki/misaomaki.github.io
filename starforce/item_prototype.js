@@ -1237,7 +1237,7 @@ item.prototype.redraw_item_tooltip = function() {
     for (let i in e_stats) {
         if (["primary", "star"].includes(i)) continue;
 
-        if (!i.endsWith("_p")) {
+        if (!i.endsWith("_p") && i) {
             e_stats[i] += base_stats[i];
             //for items that don't have matt, if it has absolutely no base matt, then dont display 
             //and dont apply star force on top of it
@@ -1281,22 +1281,22 @@ item.prototype.redraw_item_tooltip = function() {
         if (this.idata.pstat.includes("str")) {
             e_stats.str += sf_total_gain.job_stats;
             sf_total_gain.str += sf_total_gain.job_stats;
-            e_stats.str_upgrade = true
+            e_stats.str_upgrade = true;
         }
         if (this.idata.pstat.includes("dex")) {
             e_stats.dex += sf_total_gain.job_stats;
             sf_total_gain.dex += sf_total_gain.job_stats;
-            e_stats.dex_upgrade = true
+            e_stats.dex_upgrade = true;
         }
         if (this.idata.pstat.includes("int")) {
             e_stats.int += sf_total_gain.job_stats;
             sf_total_gain.int += sf_total_gain.job_stats;
-            e_stats.int_upgrade = true
+            e_stats.int_upgrade = true;
         }
         if (this.idata.pstat.includes("luk")) {
             e_stats.luk += sf_total_gain.job_stats;
             sf_total_gain.luk += sf_total_gain.job_stats;
-            e_stats.luk_upgrade = true
+            e_stats.luk_upgrade = true;
         }
     }
 
@@ -1305,22 +1305,22 @@ item.prototype.redraw_item_tooltip = function() {
         if (base_stats.str + scr_total_gain.str > 0) {
             e_stats.str += sf_total_gain.visible_stats;
             sf_total_gain.str += sf_total_gain.visible_stats;
-            e_stats.str_upgrade = true
+            e_stats.str_upgrade = true;
         }
         if (base_stats.dex + scr_total_gain.dex > 0) {
             e_stats.dex += sf_total_gain.visible_stats;
             sf_total_gain.dex += sf_total_gain.visible_stats;
-            e_stats.dex_upgrade = true
+            e_stats.dex_upgrade = true;
         }
         if (base_stats.int + scr_total_gain.int > 0) {
             e_stats.int += sf_total_gain.visible_stats;
             sf_total_gain.int += sf_total_gain.visible_stats;
-            e_stats.int_upgrade = true
+            e_stats.int_upgrade = true;
         }
         if (base_stats.luk + scr_total_gain.luk > 0) {
             e_stats.luk += sf_total_gain.visible_stats;
             sf_total_gain.luk += sf_total_gain.visible_stats;
-            e_stats.luk_upgrade = true
+            e_stats.luk_upgrade = true;
         }
     }
 
@@ -1349,8 +1349,18 @@ item.prototype.redraw_item_tooltip = function() {
         name: "MaxHP",
         value: "hp"
     },{
+        name: "MaxHP",
+        value: "p_hp",
+        type: "%",
+        symbol: "%"
+    },{
         name: "MaxMP",
         value: "mp"
+    },{
+        name: "MaxMP",
+        value: "p_mp",
+        type: "%",
+        symbol: "%"
     },{
         name: "Required Level",
         value: "reqlvl"
@@ -1441,6 +1451,7 @@ item.prototype.redraw_item_tooltip = function() {
                     tot_gain += percent_stats[a.value];
                 }
 
+                //for matt, if all sources have no matt, then don't display matt on the tooltip
                 if (a.value === "matt") {
                     if (this.idata.class === "weapon" && percent_stats.matt + flame_stats.matt + base_stats.matt === 0) {
                         return '';
@@ -1504,7 +1515,7 @@ item.prototype.redraw_item_tooltip = function() {
                             ${this.idata.flavor}
                         </span>
                     </div>
-                </div class="item-extra">
+                </div>
                 `
             }
         `);

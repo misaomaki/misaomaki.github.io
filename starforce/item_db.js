@@ -11,6 +11,8 @@ var stats = {
     def_p: 0,
     hp: 0,
     mp: 0,
+    p_hp: 0, //hp stats that provide a percentage increase. starts with p_ rather than ends with _p as they should be static increases rather than cumulative increases
+    p_mp: 0,
     speed: 0,
     jump: 0,
     star: 0,
@@ -3318,7 +3320,7 @@ var items_store = {
             img: "item-berserked",
             upgrades: 5,
             hammers_added: 2
-        },/*
+        },
         source_of_suffering: {
             name: "Source of Suffering",
             level: 160,
@@ -3337,7 +3339,7 @@ var items_store = {
                 dex: 10,
                 int: 10,
                 luk: 10,
-                hp_p: 0.05,
+                p_hp: 0.05,
                 def: 200
             }),
             req: {
@@ -3349,7 +3351,7 @@ var items_store = {
             img: "item-sourceofsuffering",
             upgrades: 5,
             hammers_added: 2
-        },*/
+        },
         dreamy_belt: {
             name: "Dreamy Belt",
             level: 200,
