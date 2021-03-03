@@ -1054,21 +1054,58 @@ item.prototype.starforce_att_percent = function(att = 0, bwatt = 0, p_arr = []) 
     return curr_att - att;
 };
 
+//Durstenfeld shuffle
+var shuffle = function(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
 //generate a star force success map to test the prn against. map goes from 0 to 1.
 item.prototype.generate_sresult_map = function(sr, starcatch = false) {
     let poffset = this.prng();
 
     let sc_success = sr.success * 0.045; //starcatch increase assumption
 
-    let e_success_end = sr.destroy + sr.success;
-    let e_fail_start = e_success_end + sc_success;
-    
-    let catch_map = {
-        destroy: [0, sr.destroy],
-        success: [sr.destroy, e_success_end],
-        sc_success: [e_success_end, e_fail_start],
-        fail: [e_fail_start, 1]
+    //slot in the star catch success rate and reduce fail by the same amount
+    sr = {
+        success: sr.success,
+        fail: sr.fail - sc_success,
+        destroy: sr.destroy,
+        sc_success: sc_success
     };
+    
+    //randomize the catch map so that the result types are not always in the same order
+    let catch_map = {};
+
+    let catch_type = ["destroy", "success", "sc_success", "fail"];
+    
+    shuffle(catch_type);
+
+    let i_start = 0;
+    let i_current = 0;
+    for (let i = 0; i < catch_type.length; ++i) {
+        let _i = catch_type[i];
+        let i_this = 0;
+
+        if (_i === "sc_success") {
+            i_this = sc_success;
+        } else {
+            i_this = sr[_i];
+        }
+
+        i_current += i_this;
+        
+        catch_map[_i] = [
+            i_start,
+            i_current
+        ];
+
+        i_start = i_current;
+    }
 
     let catch_map_offset = {};
 
@@ -1237,7 +1274,7 @@ item.prototype.redraw_item_tooltip = function() {
     for (let i in e_stats) {
         if (["primary", "star"].includes(i)) continue;
 
-        if (!i.endsWith("_p") && i) {
+        if (!i.endsWith("_p")) {
             e_stats[i] += base_stats[i];
             //for items that don't have matt, if it has absolutely no base matt, then dont display 
             //and dont apply star force on top of it

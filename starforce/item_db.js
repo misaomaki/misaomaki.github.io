@@ -6233,7 +6233,7 @@ var items_store = {
                 int: 0,
                 luk: 0
             },
-            img: "item-arcaneknuckle",
+            img: "item-arcanesoulshooter",
             upgrades: 8,
             hammers_added: 2
         },
