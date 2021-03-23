@@ -81,6 +81,7 @@ $(function() {
 
     let cube_red_go = $(".cube-red");
     let cube_black_go = $(".cube-black");
+    let cube_bonus_go = $(".cube-bonus");
 
     //while cube aniamtion plays, disallow cube actions
     let cube_loading = false;
@@ -158,7 +159,13 @@ $(function() {
         if (_this.hasClass("btn-cube-black")) {
             cube_black_go.trigger("click");
         } else {
-            cube_red_go.trigger("click");
+            let is_bonus = cube_main.find(".cube-main").hasClass("cube-main-bonus");
+
+            if (is_bonus) {
+                cube_bonus_go.trigger("click");
+            } else {
+                cube_red_go.trigger("click");
+            }
         }
     });
 
