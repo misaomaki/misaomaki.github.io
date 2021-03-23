@@ -14,8 +14,12 @@ let sf_audio_files = {
     EnchantStarStop: "EnchantStarStop.mp3",
     EnchantStarSuccess: "EnchantStarSuccess.mp3",
     EnchantSuccess: "EnchantSuccess.mp3",
+    // _ creates new instances instead of reusing the same one
+    _CubeEnchantSuccess: "CubeEnchantSuccess.mp3",
     _BtMouseClick: "BtMouseClick.mp3",
-    _BtMouseOver: "BtMouseOver.mp3"
+    _BtMouseOver: "BtMouseOver.mp3",
+    _DragStart: "DragStart.mp3",
+    _DragEnd: "DragEnd.mp3"
 };
 
 let sfa = {

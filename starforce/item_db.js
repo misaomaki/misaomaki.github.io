@@ -3204,6 +3204,7 @@ var items_store = {
             level: 160,
             class: "armor",
             type: "eye accessory",
+            sub_class: "accessory",
             speed: "",
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
@@ -3233,7 +3234,8 @@ var items_store = {
             name: "Sweetwater Tattoo",
             level: 160,
             class: "armor",
-            type: "eye accessory",
+            type: "face accessory",
+            sub_class: "accessory",
             speed: "",
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
@@ -3266,6 +3268,7 @@ var items_store = {
             level: 160,
             class: "armor",
             type: "eye accessory",
+            sub_class: "accessory",
             speed: "",
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
@@ -3296,6 +3299,7 @@ var items_store = {
             level: 160,
             class: "armor",
             type: "face accessory",
+            sub_class: "accessory",
             speed: "",
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
@@ -7585,6 +7589,8 @@ let items_other_data = {
     flavor: "", //flavor text in white at the bottom
     shadowknight: false, //use shadowknight coins
     meta: {
+        cube_potential: "", //potential type: rare, epic, unique, legendary
+        cube_potential_bonus: "", //bonus pot
         starforce_type: "GMS", //GMS or KMS. costs are different
         nebulite_compensation: false, //if the weapon had a 25% boss nebulite on it before and is compensated with 4% more base damage. bonuses from other nebulite types are not supported.
         stars: 0,
@@ -7595,14 +7601,21 @@ let items_other_data = {
             speed: 1,
             count: 0 //total success starforce
         },
-        sf_log_item: {}, //current data to be worked on. it will be pushed to the sf_meta_data array
+        sf_log_item: {}, //current data to be worked on for star force stats. it will be pushed to the sf_meta_data array
         sf_meta_data: [], //starforce cost and other related data
+
+        cube_log_item: {}, //current data to be worked on for cube stats. it will be pushed to the cube_meta_data
+        cube_meta_data: [] //cube data
     },
     boosts: {
         sf_data: [], //starforce data
         scroll_data: [],
         other_stats: Object.assign({}, stats), //for random stats like +1 from 4 or more spell traces
-        flames: Object.assign({}, stats)
+        flames: Object.assign({}, stats),
+        cubes: {
+            main: {},
+            bonus: {}
+        }
     }
 };
 

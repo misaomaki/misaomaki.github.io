@@ -1,7 +1,3 @@
-Number.prototype.toNumber = function() {
-    return this.toLocaleString();
-}
-
 var item = function(it) {
     this.idata = $.extend(true, {}, it);
 };
@@ -20,7 +16,7 @@ item.prototype.cache = {
         prn_map: [],
         star: 0,
         result: ""
-    }, //object for meta_data
+    }, //object for meta_data for starforce logging
     scrl: { //item scrolls, start with _  is spell trace
         //weapon trace
         _100w: {
@@ -1024,13 +1020,6 @@ item.prototype.xgrade_item = function(type = 0) {
     this.redraw();
 };
 
-//generate pseudorandom number
-item.prototype.prng = function() {
-    let arr = new Uint32Array(2);
-    crypto.getRandomValues(arr);
-    let m = (arr[0] * Math.pow(2,20)) + (arr[1] >>> 12)
-    return m * Math.pow(2,-52);
-};
 
 //base att + att from scrolls
 //def works, too
@@ -1046,27 +1035,12 @@ item.prototype.starforce_att_percent = function(att = 0, bwatt = 0, p_arr = []) 
         curr_att += att_gain;
     }
 
-    //neb compensation assumes 25% boss dmg neb was applied
-    if (this.idata.meta.nebulite_compensation && this.idata.class === "weapon") {
-        curr_att += 1 + Math.floor(bwatt * 0.04);
-    }
-
     return curr_att - att;
 };
 
-//Durstenfeld shuffle
-var shuffle = function(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        let temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-}
-
 //generate a star force success map to test the prn against. map goes from 0 to 1.
 item.prototype.generate_sresult_map = function(sr, starcatch = false) {
-    let poffset = this.prng();
+    let poffset = prng();
 
     let sc_success = sr.success * 0.045; //starcatch increase assumption
 
@@ -1089,15 +1063,8 @@ item.prototype.generate_sresult_map = function(sr, starcatch = false) {
     let i_current = 0;
     for (let i = 0; i < catch_type.length; ++i) {
         let _i = catch_type[i];
-        let i_this = 0;
 
-        if (_i === "sc_success") {
-            i_this = sc_success;
-        } else {
-            i_this = sr[_i];
-        }
-
-        i_current += i_this;
+        i_current += sr[_i];
         
         catch_map[_i] = [
             i_start,
@@ -1149,7 +1116,7 @@ item.prototype.starforce = function(starcatch = false) {
     this.idata.meta.sf_log_item.id = this.idata.meta.sf_meta_data.length + 1; 
 
     //generate random number to compare against
-    let pval = this.prng();
+    let pval = prng();
 
     this.idata.meta.sf_log_item.prn = pval;
     
@@ -1242,6 +1209,9 @@ item.prototype.redraw_item_tooltip = function() {
     let istats = this.check_cache(()=>{
         return i_con.find(".item-stats");
     }, "dom", "istats");   
+    let icube = this.check_cache(()=>{
+        return i_con.find(".item-cube");
+    }, "dom", "icube");   
     let imisc = this.check_cache(()=>{
         return i_con.find(".item-misc");
     }, "dom", "imisc");   
@@ -1461,6 +1431,16 @@ item.prototype.redraw_item_tooltip = function() {
         e_stats.matt += percent_stats.matt;
     }
 
+    //neb compensation assumes 25% boss dmg neb was applied
+    //does it use weapon att for magic-att item?
+    if (this.idata.meta.nebulite_compensation && this.idata.class === "weapon") {
+        let neb_stats = 1 + Math.floor(b_watt * 0.04);
+
+        other_stats[this.idata.att_type] += neb_stats;
+        e_stats[this.idata.att_type] += neb_stats;
+        e_stats[this.idata.att_type + "_upgrade"] = true; //display the neb bonus in blue
+    }
+
     if (def_p.length > 0) {
         percent_stats.def = this.starforce_att_percent(base_stats.def + scr_total_gain.def, 0, def_p);
         e_stats.def += percent_stats.def;
@@ -1480,6 +1460,7 @@ item.prototype.redraw_item_tooltip = function() {
                     base_stats[a.value] = Math.round(base_stats[a.value] * 100);
                     e_stats[a.value] = Math.round(e_stats[a.value] * 100);
                     flame_stats[a.value] = Math.round(flame_stats[a.value] * 100);
+                    other_stats[a.value] = Math.round(other_stats[a.value] * 100);
                 }
 
                 let tot_gain = sf_total_gain[a.value] + scr_total_gain[a.value] + other_stats[a.value];
@@ -1490,7 +1471,7 @@ item.prototype.redraw_item_tooltip = function() {
 
                 //for matt, if all sources have no matt, then don't display matt on the tooltip
                 if (a.value === "matt") {
-                    if (this.idata.class === "weapon" && percent_stats.matt + flame_stats.matt + base_stats.matt === 0) {
+                    if (this.idata.class === "weapon" && percent_stats.matt + flame_stats.matt + base_stats.matt + other_stats[a.value] === 0) {
                         return '';
                     } 
                 }
@@ -1536,25 +1517,76 @@ item.prototype.redraw_item_tooltip = function() {
     `;
 
     istats.html(html);
-    
+
+    let this_pot = this.idata.meta.cube_potential;
+    let this_b_pot = this.idata.meta.cube_potential_bonus;
+    let cube_html = "";
+    //main and bonus potential stuff
+    if (this_pot !== "") {
+        let main_pot = this.idata.boosts.cubes.main;
+        let main_pot_keys = Object.keys(this.idata.boosts.cubes.main);
+
+        //has main pot
+        if (main_pot_keys.length > 0) {
+            cube_html += `
+            <div class="item-dash-border" style="margin-bottom:0px"></div>
+            <div class="item-potential item-main-potential">
+                <div class="tooltip-${this_pot}"></div> <div class="tooltip-label tooltip-label-${this_pot}">Potential</div>
+                ${
+                    main_pot_keys.map(function(a) {
+                        let b = main_pot[a];
+                        return `
+                            <span class="potential-line potential-line-main">
+                                ${b.display}
+                            </span>
+                        `;
+                    }).join("")
+                }
+            </div>
+            `;
+        }
+    }
+
+    if (this_b_pot !== "") {
+        let b_pot = this.idata.boosts.cubes.bonus;
+        let b_pot_keys = Object.keys(this.idata.boosts.cubes.bonus);
+
+        //has bpot
+        if (b_pot_keys.length > 0) {
+            cube_html += `
+            <div class="item-dash-border" style="margin: 1px 0 5px 0;"></div>
+            <div class="item-potential item-bonus-potential">
+                <div class="tooltip-${this_b_pot}"></div> <div class="tooltip-label tooltip-label-${this_b_pot}">Bonus Potential</div>
+                ${
+                    b_pot_keys.map(function(a) {
+                        let b = b_pot[a];
+                        return `
+                            <span class="potential-line potential-line-main">
+                                + ${b.display}
+                            </span>
+                        `;
+                    }).join("")
+                }
+            </div>
+            `;
+        }
+    }
+
+    icube.html(cube_html);
+
     if (this.idata.flavor !== "" || this.idata.skill !== ""){
         imisc.html(`
-            ${
-                
-                `
-                <div class="item-dash-border" style="margin-bottom:0px"></div>
-                <div class="item-extra">
-                    <div class="item-skill">
-                        <span class="item-color-skill" style="margin:right:10px">
-                            ${this.idata.skill}
-                        </span>
-                        <span class="item-color-flavor">
-                            ${this.idata.flavor}
-                        </span>
-                    </div>
+            <div class="item-dash-border" style="margin-bottom:0px"></div>
+            <div class="item-extra">
+                <div class="item-skill">
+                    <span class="item-color-skill" style="margin:right:10px">
+                        ${this.idata.skill}
+                    </span>
+                    <span class="item-color-flavor">
+                        ${this.idata.flavor}
+                    </span>
                 </div>
-                `
-            }
+            </div>
         `);
     } else {
         imisc.html("");
@@ -1709,7 +1741,8 @@ item.prototype.redraw_item_tooltip = function() {
         istar.filter(".item-star-" + i).addClass("hidden");
     } 
 
-    return true
+
+    return true;
 }
 
 //cache function
