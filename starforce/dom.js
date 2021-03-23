@@ -432,6 +432,11 @@ $(function() {
                 <table style="width:100%;font-size:11px;float:left;" id="cube_log_table">
                     <thead>
                         <tr>
+                            <th colspan="12">
+                                Click on the cells in the "Main" or "Bonus" columns to view the PRNG info for that cube result.
+                            </th>
+                        </tr>
+                        <tr>
                             <th colspan="4"></th>
                             <th colspan="4">Main</th>
                             <th colspan="4">Bonus</th>
@@ -1485,6 +1490,8 @@ $(function() {
             buttons: [{
                 text: "Create",
                 click: function() {
+                    cubes_used = 0; //reset cube log counter
+
                     let this_star = $("#item_starforce").val();
                     let item_val = ddl_item.val();
 
