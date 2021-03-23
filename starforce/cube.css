@@ -330,7 +330,7 @@
 
 .btn-one-more-try {
     position: relative;
-    background: url(../assets/cube/Red/Cube_Red.BtOnemore.normal.0.png);
+    background: url(../assets/cube/red/Cube_Red.BtOnemore.normal.0.png);
     background-repeat: no-repeat !important;
     display: inline-block;
     width: 135px;
@@ -340,15 +340,15 @@
 }
 
 .btn-one-more-try:hover {
-    background: url(../assets/cube/Red/Cube_Red.BtOnemore.mouseOver.0.png);
+    background: url(../assets/cube/red/Cube_Red.BtOnemore.mouseOver.0.png);
 }
 
 .btn-one-more-try:active {
-    background: url(../assets/cube/Red/Cube_Red.BtOnemore.pressed.0.png);
+    background: url(../assets/cube/red/Cube_Red.BtOnemore.pressed.0.png);
 }
 
 .btn-one-more-try.disabled {
-    background: url(../assets/cube/Red/Cube_Red.BtOnemore.disabled.0.png);
+    background: url(../assets/cube/red/Cube_Red.BtOnemore.disabled.0.png);
 }
 
 .btn-cube-black {
@@ -358,7 +358,7 @@
 
 .btn-cube-ok {
     position: relative;
-    background: url(../assets/cube/Red/Cube_Red.BtOk.normal.0.png);
+    background: url(../assets/cube/red/Cube_Red.BtOk.normal.0.png);
     background-repeat: no-repeat !important;
     display: inline-block;
     width: 48px;
@@ -368,20 +368,20 @@
 }
 
 .btn-cube-ok:hover {
-    background: url(../assets/cube/Red/Cube_Red.BtOk.mouseOver.0.png);
+    background: url(../assets/cube/red/Cube_Red.BtOk.mouseOver.0.png);
 }
 
 .btn-cube-ok:active {
-    background: url(../assets/cube/Red/Cube_Red.BtOk.pressed.0.png);
+    background: url(../assets/cube/red/Cube_Red.BtOk.pressed.0.png);
 }
 
 .btn-cube-ok.disabled {
-    background: url(../assets/cube/Red/Cube_Red.BtOk.disabled.0.png);
+    background: url(../assets/cube/red/Cube_Red.BtOk.disabled.0.png);
 }
 
 .cube-black-upgrade.cube-use-tier {
     position: absolute;
-    background: url(../assets/cube/Spritesheet_CubeBlackTierUp.png);
+    background: url(../assets/cube/SpriteSheet_CubeBlackTierUp.png);
     background-repeat: no-repeat;
     animation: tier-up-black-animation 1.5s steps(12) forwards 1;
     width: 188px;
@@ -400,7 +400,7 @@
 
 .cube-black-upgrade.cube-use-normal {
     position: absolute;
-    background: url(../assets/cube/Spritesheet_CubeBlackUse.png);
+    background: url(../assets/cube/SpriteSheet_CubeBlackUse.png);
     background-repeat: no-repeat;
     animation: cube-black-use-animation 1.5s steps(12) forwards 1;
     width: 179px;
