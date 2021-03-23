@@ -1828,6 +1828,8 @@ $(function() {
             item_type = this_item.type;
         } 
 
+        item_type = item_type.replace(/\s/gi, "_");
+
         //get the stats available for the main/bonus pot by its tier and item type
         let stats = cube.pot_stats[type][item_type][pot_tier];
 
