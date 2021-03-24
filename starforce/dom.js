@@ -1729,6 +1729,10 @@ $(function() {
                 flame_textbox.val(0);
                 scroll_textbox.val(0);
 
+                //reset potential options because changing to different equipment changes the stat options
+                $("#cube_select_main").val("").trigger("change");
+                $("#cube_select_bonus").val("").trigger("change");
+
                 if (val == 0) {
                     weapon_init.addClass("hidden");
                     scr_amount.html("0");

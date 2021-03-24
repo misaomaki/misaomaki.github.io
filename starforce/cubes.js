@@ -616,6 +616,7 @@ cube.rates.main = {
             }
         }
     },
+    overall: {}, //same as top
     shoes: {
         rare: {
             o1: {
@@ -1161,9 +1162,9 @@ cube.rates.main = {
                 t2: [0.043478,0.043478]
             },
             o2: {
-                t1: [0.055102,0.0489],
+                t1: [0.055102,0.048980],
                 t2: [0.036735,0.032653],
-                t3: [0.018367,0.032653],
+                t3: [0.018367,0.021739],
                 t4: [0.01087,0.016327],
                 t5: [0.004348,0.008696]
             },
@@ -1195,7 +1196,7 @@ cube.rates.main = {
                 t2: [0.043043,0.041304],
                 t3: [0.000943,0.004717],
                 t4: [0.000755,0.003774],
-                t5: [0.000566,0.00283],
+                t5: [0.000566,0.002830],
                 t6: [0.000377,0.001887]
             }
         },
@@ -1627,6 +1628,7 @@ cube.rates.bonus = {
         }
     },
     bottom: {}, //same as top
+    overall: {}, //same as top
     shoes: {}, //same as top
     gloves: {
         rare: {
@@ -2596,6 +2598,7 @@ cube.pot_stats.main = {
             ]
         }
     },
+    overall: {}, //same as top
     shoes: {
         rare: {
             o1: [
@@ -3947,8 +3950,8 @@ cube.pot_stats.main = {
                 ["dex12", "t1"],
                 ["int12", "t1"],
                 ["luk12", "t1"],
-                ["maxHp100", "t1"],
-                ["maxMp100", "t1"],
+                ["maxHp120", "t1"],
+                ["maxMp120", "t1"],
                 ["watt12", "t2"],
                 ["matt12", "t2"],
                 ["strp3", "t1"],
@@ -3959,6 +3962,48 @@ cube.pot_stats.main = {
                 ["mattp3", "t4"],
                 ["critp4", "t4"],
                 ["dmgp3", "t4"],
+                ["all5", "t2"],
+                ["recover_hp3", "t4"],
+                ["recover_mp5", "t4"],
+                ["attack_poison2", "t4"],
+                ["attack_stun1", "t4"],
+                ["attack_slow1", "t4"],
+                ["attack_dark2", "t4"],
+                ["attack_freeze1", "t4"],
+                ["attack_seal1", "t4"],
+                ["ied15", "t4"],
+                ["strp6", "t3"],
+                ["dexp6", "t3"],
+                ["intp6", "t3"],
+                ["lukp6", "t3"],
+                ["maxHp_p3", "t3"],
+                ["maxMp_p3", "t3"],
+                ["wattp6", "t5"],
+                ["mattp6", "t5"],
+                ["critp8", "t5"],
+                ["dmgp6", "t5"],
+                ["allp3", "t5"],
+                ["recover_hp4", "t5"],
+                ["recover_mp4", "t5"],
+                ["ied15", "t5"]
+            ],
+            o3: [
+                ["str12", "t1"],
+                ["dex12", "t1"],
+                ["int12", "t1"],
+                ["luk12", "t1"],
+                ["maxHp120", "t1"],
+                ["maxMp120", "t1"],
+                ["watt12", "t2"],
+                ["matt12", "t2"],
+                ["strp3", "t1"],
+                ["dexp3", "t1"],
+                ["intp3", "t1"],
+                ["lukp3", "t1"],
+                ["wattp3", "t3"],
+                ["mattp3", "t3"],
+                ["critp4", "t3"],
+                ["dmgp3", "t3"],
                 ["all5", "t2"],
                 ["recover_hp3", "t3"],
                 ["recover_mp5", "t3"],
@@ -4007,8 +4052,8 @@ cube.pot_stats.main = {
                ["dexp6", "t1"],
                ["intp6", "t1"],
                ["lukp6", "t1"],
-               ["maxHp_p3", "t1"],
-               ["maxMp_p3", "t1"],
+               ["maxHp_p6", "t1"],
+               ["maxMp_p6", "t1"],
                ["wattp6", "t2"],
                ["mattp6", "t2"],
                ["critp8", "t2"],
@@ -4027,9 +4072,9 @@ cube.pot_stats.main = {
                ["dmgp9", "t5"],
                ["allp6", "t4"],
                ["ied30", "t5"],
-               ["ignore_dmg1", "t2"],
-               ["ignore_dmg2", "t2"],
-               ["boss20", "t4"],
+               ["ignore_dmg1", "t4"],
+               ["ignore_dmg2", "t4"],
+               ["boss20", "t5"],
                ["boss30", "t6"]
             ]
         },
@@ -5009,6 +5054,7 @@ cube.pot_stats.bonus = {
     },
     bottom: {}, //same as top
     shoes: {}, //same as top
+    overall: {}, //same as top
     gloves: { //before legendary same as top
         legendary: {
             o1: [
@@ -5757,7 +5803,7 @@ cube.pot_stats.bonus = {
     }
 };
 
-//add o3, which is the same as o2
+//add o3, which is the same as o2 (except for some equipment)
 //for both main and bpot
 for (let i in cube.pot_stats.main) {
     let _i = cube.pot_stats.main[i];
@@ -5765,7 +5811,9 @@ for (let i in cube.pot_stats.main) {
     for (let j in _i) {
         let _j = _i[j];
 
-        _j.o3 = _j.o2;
+        if (_j.o3 === undefined) {
+            _j.o3 = _j.o2;
+        }
     }
 }
 
@@ -5775,7 +5823,9 @@ for (let i in cube.pot_stats.bonus) {
     for (let j in _i) {
         let _j = _i[j];
 
-        _j.o3 = _j.o2;
+        if (_j.o3 === undefined) {
+            _j.o3 = _j.o2;
+        }
     }
 }
 
@@ -5786,14 +5836,16 @@ for (let i in cube.rates.bonus) {
     for (let j in _i) {
         let _j = _i[j];
 
-        _j.o3 = _j.o2;
+        if (_j.o3 === undefined) {
+            _j.o3 = _j.o2;
+        }
     }
 }
 
 //below equipment type share same rates or stats as a different equipment type
 //main stats
-let stats_cape = $.extend(true, {}, cube.pot_stats.main.cape);
-let rates_cape = $.extend(true, {}, cube.rates.main.cape);
+let stats_cape = cube.pot_stats.main.cape;
+let rates_cape = cube.rates.main.cape;
 
 cube.pot_stats.main.belt = stats_cape;
 cube.rates.main.belt = rates_cape;
@@ -5801,8 +5853,14 @@ cube.rates.main.belt = rates_cape;
 cube.pot_stats.main.shoulder = stats_cape;
 cube.rates.main.shoulder = rates_cape;
 
-let stats_accessory = $.extend(true, {}, cube.pot_stats.main.accessory);
-let rates_accessory = $.extend(true, {}, cube.rates.main.accessory);
+let stats_top = cube.pot_stats.main.cape;
+let rates_top = cube.rates.main.cape;
+
+cube.pot_stats.main.overall = stats_top;
+cube.rates.main.overall = rates_top;
+
+let stats_accessory = cube.pot_stats.main.accessory;
+let rates_accessory = cube.rates.main.accessory;
 
 cube.pot_stats.main.earrings = stats_accessory;
 cube.rates.main.earrings = rates_accessory;
@@ -5833,7 +5891,7 @@ cube.pot_stats.bonus.mechanical_heart.unique = cube.pot_stats.bonus.hat.unique;
 let b_stats_top = cube.pot_stats.bonus.top;
 let b_stats_accessory = cube.pot_stats.bonus.accessory;
 
-let b_rates_top = $.extend(true, {}, cube.rates.bonus.top);
+let b_rates_top = cube.rates.bonus.top;
 
 cube.pot_stats.bonus.top = b_stats_top;
 
@@ -5849,10 +5907,13 @@ cube.rates.bonus.belt = b_rates_top;
 cube.pot_stats.bonus.shoulder = b_stats_top;
 cube.rates.bonus.shoulder = b_rates_top;
 
+cube.pot_stats.bonus.overall = b_stats_top;
+cube.rates.bonus.overall = b_rates_top;
+
 cube.pot_stats.bonus.bottom = b_stats_top;
 cube.rates.bonus.bottom = b_rates_top;
 
-let b_rates_accessory = $.extend(true, {}, cube.rates.bonus.accessory);
+let b_rates_accessory = cube.rates.bonus.accessory;
 
 cube.pot_stats.bonus.earrings = b_stats_accessory;
 cube.rates.bonus.earrings = b_rates_accessory;
@@ -5863,8 +5924,8 @@ cube.rates.bonus.ring = b_rates_accessory;
 cube.pot_stats.bonus.pendant = b_stats_accessory;
 cube.rates.bonus.pendant = b_rates_accessory;
 
-let b_stats_emblem = $.extend(true, {}, cube.pot_stats.bonus.emblem);
-let b_rates_fshield = $.extend(true, {}, cube.rates.bonus.force_shield);
+let b_stats_emblem = cube.pot_stats.bonus.emblem;
+let b_rates_fshield = cube.rates.bonus.force_shield;
 
 cube.pot_stats.bonus.force_shield = b_stats_emblem;
 
