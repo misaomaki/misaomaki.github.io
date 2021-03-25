@@ -53,7 +53,7 @@ $(function() {
             if (cssText === undefined) continue;
             
             if (
-                !cssText.includes("background-image") ||
+                !cssText.includes("background-image") &&
                 !cssText.includes("background")
             ) continue;
 
