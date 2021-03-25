@@ -129,7 +129,7 @@ cube.stat_type = {
     all3: "All Stats: +3",
     all5: "All Stats: +5",
     watt_per_lvl1: "ATT per 10 Character Levels: +1",
-    matt_per_lvl1: "Magic ATT per 10 Character Levels: +1",
+    matt_per_lvl1: "M. ATT per 10 Character Levels: +1",
     str_per_lvl1: "STR per 10 Character Levels: +1",
     dex_per_lvl1: "DEX per 10 Character Levels: +1",
     int_per_lvl1: "INT per 10 Character Levels: +1",

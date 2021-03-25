@@ -1,6 +1,7 @@
 //scour the stylesheets and preload any images into a pseudocontainer, then delete the container
 //this is to force the preloading of images so that the images don't just jitter on the screen when they're first shown because they didn't load until they were called
 $(function() {
+    //inline css
     let s = $("style");
     let ip = $("#img_preloader");
 
@@ -25,6 +26,50 @@ $(function() {
             `);
         }
     }
+
+    /*
+        scour stylesheets from misaomaki github (link tags) and get images to preload. 
+        (
+            does not work locally and will result in CORS errors. only works while on the git site.
+            if local detected, then exit and don't do it
+        )
+    */
+    let ss = document.styleSheets;
+    let ss_html = "";
+
+    for (let i in ss) {
+        let s = ss[i];
+    
+        if (s.href === undefined || s.href === null || !s.href.includes("misaomaki")) continue;
+
+        //local host detected, so don't even bother trying
+        if (s.href.startsWith("file://")) break;
+    
+        let css = s.cssRules;
+    
+        for (let j in css) {
+            let rule = css[j];
+            let cssText = rule.cssText;
+
+            if (cssText === undefined) continue;
+            
+            if (!cssText.includes("background-image")) continue;
+
+            let bimg = cssText.match(/url\("(.*)"\)/gi);
+
+            if (bimg == null || bimg === undefined) continue;
+            
+            for (let k = 0; k < bimg.length; ++k) {
+                let img = bimg[k].replace('url("', "").replace('")', "");
+
+                ss_html += `
+                    <img src="${img}">
+                `;
+            }
+        }
+    }
+
+    ip.html(ss_html);
 
     ip.remove();
 });
