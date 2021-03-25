@@ -33,7 +33,10 @@ $(function() {
             does not work locally and will result in CORS errors. only works while on the git site.
             if local detected, then exit and don't do it
         )
+
+        //doesn't work quite correctly in preloading images
     */
+   /*
     let ss = document.styleSheets;
     let ss_html = "";
 
@@ -70,7 +73,7 @@ $(function() {
     }
 
     ip.html(ss_html);
-
+    */
     ip.remove();
 });
 
