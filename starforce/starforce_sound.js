@@ -40,13 +40,16 @@ let sfa = {
         }
         */
     },
+    //todo - overlapping sound causes http request for that sound each time. 
     play: function(s, o) {
         let this_audio = {};
 
-        if (!s.startsWith("_")) {
-            this_audio = sfa.audio[s];
+        
+
+        if (s.startsWith("_")) {
+            this_audio = sfa.audio[s].cloneNode(false);
         } else {
-            this_audio = new Audio("./assets/starforce/sounds/" + sf_audio_files[s]);
+            this_audio = sfa.audio[s];
         }
 
         this_audio.volume = sfa.volume;
@@ -75,8 +78,9 @@ let sfa = {
 };
 
 for (let i in sf_audio_files) {
-    if (i.startsWith("_")) continue;
-    sfa.audio[i] = new Audio("./assets/starforce/sounds/" + sf_audio_files[i]);
+    let this_audio = new Audio("./assets/starforce/sounds/" + sf_audio_files[i]);
+    this_audio.preload = "auto";
+    sfa.audio[i] = this_audio;
 }
 
 $(function() {

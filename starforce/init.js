@@ -39,7 +39,7 @@ $(function() {
     for (let i in ss) {
         let s = ss[i];
     
-        if (s.href === undefined || s.href === null || !s.href.includes("misaomaki")) continue;
+        if (s.href === undefined || s.href === null || !s.href.includes("misaomaki")) continue; //inline or not from git domain (css from cdns and whatnot)
 
         //local host detected, so don't even bother trying
         if (s.href.startsWith("file://")) break;
@@ -57,7 +57,7 @@ $(function() {
                 !cssText.includes("background")
             ) continue;
 
-            let bimg = cssText.match(/url\("(.*)"\)/gi);
+            let bimg = cssText.match(/url\("(.*)"\);/gi);
 
             if (bimg == null || bimg === undefined) continue;
             
