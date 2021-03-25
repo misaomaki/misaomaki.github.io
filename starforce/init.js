@@ -33,11 +33,8 @@ $(function() {
             does not work locally and will result in CORS errors. only works while on the git site.
             if local detected, then exit and don't do it
         )
-
-        //doesn't work quite correctly in preloading images yet
     */
     let ss = document.styleSheets;
-    let ss_html = "";
 
     for (let i in ss) {
         let s = ss[i];
@@ -55,7 +52,10 @@ $(function() {
 
             if (cssText === undefined) continue;
             
-            if (!cssText.includes("background-image")) continue;
+            if (
+                !cssText.includes("background-image") ||
+                !cssText.includes("background")
+            ) continue;
 
             let bimg = cssText.match(/url\("(.*)"\)/gi);
 
