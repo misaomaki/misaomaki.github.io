@@ -62,7 +62,7 @@ $(function() {
             if (bimg == null || bimg === undefined) continue;
             
             for (let k = 0; k < bimg.length; ++k) {
-                let img = bimg[k].replace('url("', "").replace('")', "");
+                let img = bimg[k].replace('url("', "").replace('");', "");
 
                 ip.html(`
                     <img src="${img}">
