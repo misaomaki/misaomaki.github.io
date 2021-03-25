@@ -34,9 +34,8 @@ $(function() {
             if local detected, then exit and don't do it
         )
 
-        //doesn't work quite correctly in preloading images
+        //doesn't work quite correctly in preloading images yet
     */
-   /*
     let ss = document.styleSheets;
     let ss_html = "";
 
@@ -47,7 +46,7 @@ $(function() {
 
         //local host detected, so don't even bother trying
         if (s.href.startsWith("file://")) break;
-    
+
         let css = s.cssRules;
     
         for (let j in css) {
@@ -65,15 +64,13 @@ $(function() {
             for (let k = 0; k < bimg.length; ++k) {
                 let img = bimg[k].replace('url("', "").replace('")', "");
 
-                ss_html += `
+                ip.html(`
                     <img src="${img}">
-                `;
+                `);
             }
         }
     }
 
-    ip.html(ss_html);
-    */
     ip.remove();
 });
 

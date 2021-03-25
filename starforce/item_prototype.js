@@ -1233,7 +1233,7 @@ item.prototype.redraw_item_tooltip = function() {
 
     let sf_total_gain = equip_gain_total(this.idata.boosts.sf_data);
     let scr_total_gain = equip_gain_total(this.idata.boosts.scroll_data);
-    let other_stats = this.idata.boosts.other_stats;
+    let other_stats = $.extend(true, {}, this.idata.boosts.other_stats);
 
     let scroll_count = this.idata.boosts.scroll_data.length;
     let item_name = this.idata.name;
