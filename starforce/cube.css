@@ -432,9 +432,9 @@
 
 /* line-height too big for firefox */
 @-moz-document url-prefix() {
-.cube-result {
-    line-height: 1.1em;
-}
+    .cube-result {
+        line-height: 1.1em;
+    }
 }
 
 .cube-att-result {
