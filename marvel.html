@@ -2412,7 +2412,7 @@ var gacha_db = {
 					please visit us on your desktop browser.</p>
 
 				<div class="hidden-for-large-down">
-					<p class="intro">Spin the simulated Marvel Machine once to reveal three crappy in-game and cash items for you to keep. Honesty and transparency addition.
+					<p class="intro">Spin the simulated Marvel Machine once to reveal three crappy in-game and cash items for you to keep. Honesty and transparency edition.
 
                     <span style="color:red">
                         THIS IS A SIMULATOR. PLEASE DON'T BAN ME, NEXON.
@@ -3074,10 +3074,17 @@ var gacha_db = {
                         this_name_diff = item.name;
                     }
 
-                    item.item_idx = $(class_type + " .icon[title='" + this_name_diff.replace(/\'/gi, "\\'") + "' i]").attr("data-idx");
+                    this_name_diff = this_name_diff.replace(/\'/gi, "\\'");
+
+                    item.item_idx = $(class_type + " .icon[title='" + this_name_diff + "' i]").attr("data-idx");
 
                     if (typeof item.item_idx === 'undefined') {
-                        item.item_idx = $(class_type + " .icon[title='" + this_name_diff.replace(/\'/gi, "\\'") + " ']").attr("data-idx");
+                        item.item_idx = $(class_type + " .icon").filter(function() {
+                            let _this = $(this);
+                            let _title = _this.attr("title").trim().replace(/\s+/gi, " ");
+
+                            return _title === this_name_diff;
+                        });
                     }
 
                     if (typeof item.item_idx == 'undefined')  {
