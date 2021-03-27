@@ -1,5 +1,2391 @@
 <script>
-   var gacha_db = {"a":[{"name":"All-Star Hair Coupon","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10479"},{"name":"All-Star Face Coupon","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10480"},{"name":"Gachapon Ticket (5)","category":"Functional","type":"Use","chance":4,"item_idx":"10481"},{"name":"Hyper Teleport Rock (7 Days)","category":"Functional","type":"Use","chance":4,"item_idx":"10482"},{"name":"Premium Surprise Style Box","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10483"},{"name":"Valentine Surprise Style Box","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10484"},{"name":"Halloween Surprise Style Box","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10485"},{"name":"St.Patrick's Day Surprise Style Box","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10486"},{"name":"Anniversary Surprise Style Box","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10487"},{"name":"Black Mage Surprise Style Box","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10488"},{"name":"Black Friday Royal Hair Coupon","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10489"},{"name":"Black Friday Royal Face Coupon","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10490"},{"name":"Anniversary Royal Hair Coupon","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10491"},{"name":"Anniversary Royal Face Coupon","category":"Functional","type":"Cosmetic","chance":4,"item_idx":"10492"},{"name":"Incredible Chaos Scroll of Goodness 50% (3)","category":"Functional","type":"Scroll","chance":4,"item_idx":"10493"},{"name":"Royal Hair Coupon (3)","category":"Functional","type":"Cosmetic","chance":2.86,"item_idx":"10494"},{"name":"Royal Face Coupon (3)","category":"Functional","type":"Cosmetic","chance":2.86,"item_idx":"10495"},{"name":"Gachapon Ticket (11)","category":"Functional","type":"Use","chance":1.5,"item_idx":"10496"},{"name":"Golden Hammer 100 % Coupon (2)","category":"Functional","type":"Use","chance":1.5,"item_idx":"10497"},{"name":"Nodestone (10)","category":"Functional","type":"Use","chance":0.5,"item_idx":"10498"},{"name":"Onyx Apple (50)","category":"Functional","type":"Use","chance":0.409,"item_idx":"10499"},{"name":"Perfect Innocence Scroll","category":"Functional","type":"Scroll","chance":3,"item_idx":"10500"},{"name":"Superior Shielding Ward","category":"Functional","type":"Scroll","chance":3,"item_idx":"10501"},{"name":"9th Anniversary Prime Scroll for Accessory (3)","category":"Functional","type":"Scroll","chance":0.1,"item_idx":"10502"},{"name":"9th Anniversary Prime Scroll for One-Handed Weapon (3)","category":"Functional","type":"Scroll","chance":0.1,"item_idx":"10503"},{"name":"9th Anniversary Prime Scroll for Two-Handed Weapon (3)","category":"Functional","type":"Scroll","chance":0.1,"item_idx":"10504"},{"name":"9th Anniversary Prime Scroll for Armor (3)","category":"Functional","type":"Scroll","chance":0.1,"item_idx":"10505"},{"name":"Red Cube (11)","category":"Functional","type":"Use","chance":0.5,"item_idx":"10506"},{"name":"Black Cube (5)","category":"Functional","type":"Use","chance":0.5,"item_idx":"10507"},{"name":"Bonus Potential Cube (5)","category":"Functional","type":"Use","chance":0.5,"item_idx":"10508"},{"name":"Unique Potential Scroll 80%","category":"Functional","type":"Scroll","chance":0.2,"item_idx":"10509"},{"name":"Unique Potential Scroll 60%","category":"Functional","type":"Scroll","chance":2.5,"item_idx":"10510"},{"name":"Permanent Hyper Teleport Rock Coupon","category":"Functional","type":"Use","chance":0.01,"item_idx":"10511"},{"name":"Gachapon Ticket (50)","category":"Functional","type":"Use","chance":0.1,"item_idx":"10512"},{"name":"50,000-Maple-Point Coupon","category":"Functional","type":"Maple Points","chance":0.1,"item_idx":"10513"},{"name":"Black Cube (11)","category":"Functional","type":"Use","chance":0.3,"item_idx":"10514"},{"name":"Bonus Potential Cube (11)","category":"Functional","type":"Use","chance":0.3,"item_idx":"10515"},{"name":"White Cube (3)","category":"Functional","type":"Use","chance":0.3,"item_idx":"10516"},{"name":"White Cube (5)","category":"Functional","type":"Use","chance":0.3,"item_idx":"10517"},{"name":"Violet Cube (3)","category":"Functional","type":"Use","chance":0.3,"item_idx":"10518"},{"name":"Violet Cube (5)","category":"Functional","type":"Use","chance":0.3,"item_idx":"10519"},{"name":"Unique Potential Scroll 100%","category":"Functional","type":"Scroll","chance":0.1,"item_idx":"10520"},{"name":"Meister Shoulder","category":"Equipment","type":"Shoulder","chance":0.2,"item_idx":"10521"},{"name":"Meister Earring","category":"Equipment","type":"Earring","chance":0.2,"item_idx":"10522"},{"name":"Meister Ring","category":"Equipment","type":"Ring","chance":0.2,"item_idx":"10523"},{"name":"Scarlet Ring","category":"Equipment","type":"Ring","chance":0.2,"item_idx":"10524"},{"name":"Scarlet Earring","category":"Equipment","type":"Earring","chance":0.2,"item_idx":"10525"},{"name":"Scarlet Shoulder","category":"Equipment","type":"Shoulder","chance":0.2,"item_idx":"10526"},{"name":"Superior Engraved Gollux Belt","category":"Equipment","type":"Belt","chance":0.2,"item_idx":"10527"},{"name":"Superior Engraved Gollux Pendant","category":"Equipment","type":"Pendant","chance":0.2,"item_idx":"10528"},{"name":"Superior Gollux Earrings","category":"Equipment","type":"Earring","chance":0.2,"item_idx":"10529"},{"name":"Tyrant Hyades Gloves","category":"Equipment","type":"Gloves","chance":0.2,"item_idx":"10530"},{"name":"Tyrant Hermes Gloves","category":"Equipment","type":"Gloves","chance":0.2,"item_idx":"10531"},{"name":"Tyrant Charon Gloves","category":"Equipment","type":"Gloves","chance":0.2,"item_idx":"10532"},{"name":"Tyrant Lycaon Gloves","category":"Equipment","type":"Gloves","chance":0.2,"item_idx":"10533"},{"name":"Tyrant Altair Gloves","category":"Equipment","type":"Gloves","chance":0.2,"item_idx":"10534"},{"name":"Tyrant Hyades Cloak","category":"Equipment","type":"Cape","chance":0.2,"item_idx":"10535"},{"name":"Tyrant Hermes Cloak","category":"Equipment","type":"Cape","chance":0.2,"item_idx":"10536"},{"name":"Tyrant Charon Cloak","category":"Equipment","type":"Cape","chance":0.2,"item_idx":"10537"},{"name":"Tyrant Lycaon Cloak","category":"Equipment","type":"Cape","chance":0.2,"item_idx":"10538"},{"name":"Tyrant Altair Cloak","category":"Equipment","type":"Cape","chance":0.2,"item_idx":"10539"},{"name":"Tyrant Hyades Boots","category":"Equipment","type":"Shoes","chance":0.2,"item_idx":"10540"},{"name":"Tyrant Hermes Boots","category":"Equipment","type":"Shoes","chance":0.2,"item_idx":"10541"},{"name":"Tyrant Charon Boots","category":"Equipment","type":"Shoes","chance":0.2,"item_idx":"10542"},{"name":"Tyrant Lycaon Boots","category":"Equipment","type":"Shoes","chance":0.2,"item_idx":"10543"},{"name":"Tyrant Altair Boots","category":"Equipment","type":"Shoes","chance":0.2,"item_idx":"10544"},{"name":"Tyrant Hyades Belt","category":"Equipment","type":"Belt","chance":0.2,"item_idx":"10545"},{"name":"Tyrant Hermes Belt","category":"Equipment","type":"Belt","chance":0.2,"item_idx":"10546"},{"name":"Tyrant Charon Belt","category":"Equipment","type":"Belt","chance":0.2,"item_idx":"10547"},{"name":"Tyrant Lycaon Belt","category":"Equipment","type":"Belt","chance":0.2,"item_idx":"10548"},{"name":"Tyrant Altair Belt","category":"Equipment","type":"Belt","chance":0.2,"item_idx":"10549"},{"name":"AbsoLab Knight Shoulder","category":"Equipment","type":"Shoulder","chance":0.3,"item_idx":"10550"},{"name":"AbsoLab Mage Shoulder","category":"Equipment","type":"Shoulder","chance":0.3,"item_idx":"10551"},{"name":"AbsoLab Archer Shoulder","category":"Equipment","type":"Shoulder","chance":0.3,"item_idx":"10552"},{"name":"AbsoLab Thief Shoulder","category":"Equipment","type":"Shoulder","chance":0.3,"item_idx":"10553"},{"name":"AbsoLab Pirate Shoulder","category":"Equipment","type":"Shoulder","chance":0.3,"item_idx":"10554"},{"name":"AbsoLab Knight Gloves","category":"Equipment","type":"Gloves","chance":0.3,"item_idx":"10555"},{"name":"AbsoLab Mage Gloves","category":"Equipment","type":"Gloves","chance":0.3,"item_idx":"10556"},{"name":"AbsoLab Archer Gloves","category":"Equipment","type":"Gloves","chance":0.3,"item_idx":"10557"},{"name":"AbsoLab Bandit Gloves","category":"Equipment","type":"Gloves","chance":0.3,"item_idx":"10558"},{"name":"AbsoLab Pirate Gloves","category":"Equipment","type":"Gloves","chance":0.3,"item_idx":"10559"},{"name":"AbsoLab Knight Helm","category":"Equipment","type":"Hat","chance":0.3,"item_idx":"10560"},{"name":"AbsoLab Mage Crown","category":"Equipment","type":"Hat","chance":0.3,"item_idx":"10561"},{"name":"AbsoLab Archer Hood","category":"Equipment","type":"Hat","chance":0.3,"item_idx":"10562"},{"name":"AbsoLab Bandit Cap","category":"Equipment","type":"Hat","chance":0.3,"item_idx":"10563"},{"name":"AbsoLab Pirate Fedora","category":"Equipment","type":"Hat","chance":0.3,"item_idx":"10564"},{"name":"AbsoLab Knight Suit","category":"Equipment","type":"Overall","chance":0.3,"item_idx":"10565"},{"name":"AbsoLab Mage Suit","category":"Equipment","type":"Overall","chance":0.3,"item_idx":"10566"},{"name":"AbsoLab Archer Suit","category":"Equipment","type":"Overall","chance":0.3,"item_idx":"10567"},{"name":"AbsoLab Bandit Suit","category":"Equipment","type":"Overall","chance":0.3,"item_idx":"10568"},{"name":"AbsoLab Pirate Suit","category":"Equipment","type":"Overall","chance":0.3,"item_idx":"10569"},{"name":"AbsoLab Knight Cape","category":"Equipment","type":"Cape","chance":0.3,"item_idx":"10570"},{"name":"AbsoLab Mage Cape","category":"Equipment","type":"Cape","chance":0.3,"item_idx":"10571"},{"name":"AbsoLab Archer Cape","category":"Equipment","type":"Cape","chance":0.3,"item_idx":"10572"},{"name":"AbsoLab Bandit Cape","category":"Equipment","type":"Cape","chance":0.3,"item_idx":"10573"},{"name":"AbsoLab Pirate Cape","category":"Equipment","type":"Cape","chance":0.3,"item_idx":"10574"},{"name":"AbsoLab Knight Shoes","category":"Equipment","type":"Shoes","chance":0.3,"item_idx":"10575"},{"name":"AbsoLab Mage Shoes","category":"Equipment","type":"Shoes","chance":0.3,"item_idx":"10576"},{"name":"AbsoLab Archer Shoes","category":"Equipment","type":"Shoes","chance":0.3,"item_idx":"10577"},{"name":"AbsoLab Bandit Shoes","category":"Equipment","type":"Shoes","chance":0.3,"item_idx":"10578"},{"name":"AbsoLab Pirate Shoes","category":"Equipment","type":"Shoes","chance":0.3,"item_idx":"10579"},{"name":"Arcane Umbra Mage Shoes","category":"Equipment","type":"Shoes","chance":0.01,"item_idx":"10580"},{"name":"Arcane Umbra Archer Shoes","category":"Equipment","type":"Shoes","chance":0.01,"item_idx":"10581"},{"name":"Arcane Umbra Knight Shoes","category":"Equipment","type":"Shoes","chance":0.01,"item_idx":"10582"},{"name":"Arcane Umbra Thief Shoes","category":"Equipment","type":"Shoes","chance":0.01,"item_idx":"10583"},{"name":"Arcane Umbra Pirate Shoes","category":"Equipment","type":"Shoes","chance":0.01,"item_idx":"10584"},{"name":"Arcane Umbra Knight Gloves","category":"Equipment","type":"Gloves","chance":0.01,"item_idx":"10585"},{"name":"Arcane Umbra Mage Gloves","category":"Equipment","type":"Gloves","chance":0.01,"item_idx":"10586"},{"name":"Arcane Umbra Archer Gloves","category":"Equipment","type":"Gloves","chance":0.01,"item_idx":"10587"},{"name":"Arcane Umbra Thief Gloves","category":"Equipment","type":"Gloves","chance":0.01,"item_idx":"10588"},{"name":"Arcane Umbra Pirate Gloves","category":"Equipment","type":"Gloves","chance":0.01,"item_idx":"10589"},{"name":"Arcane Umbra Knight Cape","category":"Equipment","type":"Cape","chance":0.01,"item_idx":"10590"},{"name":"Arcane Umbra Mage Cape","category":"Equipment","type":"Cape","chance":0.01,"item_idx":"10591"},{"name":"Arcane Umbra Archer Cape","category":"Equipment","type":"Cape","chance":0.01,"item_idx":"10592"},{"name":"Arcane Umbra Thief Cape","category":"Equipment","type":"Cape","chance":0.01,"item_idx":"10593"},{"name":"Arcane Umbra Pirate Cape","category":"Equipment","type":"Cape","chance":0.01,"item_idx":"10594"},{"name":"Legendary Potential Scroll 50%","category":"Functional","type":"Scroll","chance":0.05,"item_idx":"10595"},{"name":"King of Beasts Hide","category":"Equipment","type":"Pocket Item","chance":0.05,"item_idx":"10596"},{"name":"King of Beasts Totem","category":"Equipment","type":"Totem","chance":0.05,"item_idx":"10597"},{"name":"Ryude's Sword","category":"Equipment","type":"Weapon","chance":0.06,"item_idx":"10598"},{"name":"Alicia's Mutated Staff","category":"Equipment","type":"Weapon","chance":0.09,"item_idx":"10599"},{"name":"Lightseeker","category":"Equipment","type":"Weapon","chance":0.09,"item_idx":"10600"},{"name":"Aquarius Crown","category":"Equipment","type":"Hat","chance":0.06,"item_idx":"10601"},{"name":"100% 15-Star Enhancement (Lv. 150)","category":"Functional","type":"Scroll","chance":0.1,"item_idx":"10602"},{"name":"100% 15-Star Enhancement (Lv. 160)","category":"Functional","type":"Scroll","chance":0.1,"item_idx":"10603"},{"name":"100% 17-Star Enhancement (Lv. 150)","category":"Functional","type":"Scroll","chance":0.05,"item_idx":"10604"},{"name":"100% 17-Star Enhancement (Lv. 160)","category":"Functional","type":"Scroll","chance":0.05,"item_idx":"10605"},{"name":"Lidium Heart","category":"Android","type":"Heart","chance":0.4,"item_idx":"10606"},{"name":"Superior Lidium Heart","category":"Android","type":"Heart","chance":0.2,"item_idx":"10607"},{"name":"Titanium Heart","category":"Android","type":"Heart","chance":0.1,"item_idx":"10608"},{"name":"Electronic Heart Ω-Series","category":"Android","type":"Heart","chance":0.2,"item_idx":"10609"},{"name":"Breath of Divinity","category":"Equipment","type":"Ring","chance":0.01,"item_idx":"10610"},{"name":"Lightning God Ring","category":"Equipment","type":"Ring","chance":0.03,"item_idx":"10611"},{"name":"Lucid's Earrings Coupon","category":"Equipment","type":"Earrings","chance":0.05,"item_idx":"10612"},{"name":"Permanent Pendant Slot Expansion Coupon","category":"Functional","type":"Use","chance":0.05,"item_idx":"10613"},{"name":"Tinkerer's Black Belt","category":"Equipment","type":"Belt","chance":0.05,"item_idx":"10614"},{"name":"Tinkerer's Black Shoulder Accessory","category":"Equipment","type":"Shoulder","chance":0.05,"item_idx":"10615"},{"name":"Cursed Kaiserium","category":"Equipment","type":"Weapon","chance":0.09,"item_idx":"10616"},{"name":"1-Million-Maple-Point Chip","category":"Functional","type":"Maple Points","chance":0.001,"item_idx":"10617"},{"name":"Reaper's Pendant","category":"Equipment","type":"Pendant","chance":0.05,"item_idx":"10618"},{"name":"Rifle Bullet","category":"Equipment","type":"Pocket Item","chance":0.02,"item_idx":"10619"},{"name":"Dark Doom Totem","category":"Equipment","type":"Totem","chance":0.02,"item_idx":"10620"},{"name":"Dark Avenger Totem","category":"Equipment","type":"Totem","chance":0.02,"item_idx":"10621"},{"name":"Dark Hellia Totem","category":"Equipment","type":"Totem","chance":0.02,"item_idx":"10622"},{"name":"Dark Grin Totem","category":"Equipment","type":"Totem","chance":0.02,"item_idx":"10623"},{"name":"Hunter Totem","category":"Equipment","type":"Totem","chance":0.02,"item_idx":"10624"},{"name":"Firestarter Ring Coupon","category":"Equipment","type":"Ring","chance":0.02,"item_idx":"10625"},{"name":"The Ring of Torment Coupon","category":"Equipment","type":"Ring","chance":0.02,"item_idx":"10626"},{"name":"X One-Handed Weapon Attack Scroll","category":"Functional","type":"Scroll","chance":0.02,"item_idx":"10627"},{"name":"X One-Handed Weapon Magic ATT Scroll","category":"Functional","type":"Scroll","chance":0.02,"item_idx":"10628"},{"name":"X Two-Handed Weapon Attack Scroll","category":"Functional","type":"Scroll","chance":0.02,"item_idx":"10629"},{"name":"X Two-Handed Weapon Magic ATT Scroll","category":"Functional","type":"Scroll","chance":0.02,"item_idx":"10630"},{"name":"X Armor Attack Scroll","category":"Functional","type":"Scroll","chance":0.02,"item_idx":"10631"},{"name":"X Armor Magic ATT Scroll","category":"Functional","type":"Scroll","chance":0.02,"item_idx":"10632"},{"name":"X Accessory Attack Scroll","category":"Functional","type":"Scroll","chance":0.02,"item_idx":"10633"},{"name":"X Accessory Magic ATT Scroll","category":"Functional","type":"Scroll","chance":0.02,"item_idx":"10634"},{"name":"X Pet Equipment Attack Scroll","category":"Functional","type":"Scroll","chance":0.02,"item_idx":"10635"},{"name":"X Pet Equipment Magic ATT Scroll","category":"Functional","type":"Scroll","chance":0.02,"item_idx":"10636"},{"name":"Battle-Roid (M) Coupon","category":"Android","type":"Android","chance":0.01,"item_idx":"10637"},{"name":"Battle-Roid (F) Coupon","category":"Android","type":"Android","chance":0.01,"item_idx":"10638"},{"name":"Outlaw Heart","category":"Android","type":"Heart","chance":0.01,"item_idx":"10639"},{"name":"100,000-Maple-Point Coupon","category":"Functional","type":"Maple Points","chance":0.01,"item_idx":"10640"},{"name":"Dreaming Lucid Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10641"},{"name":"Lil Magnus Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10642"},{"name":"Lil Hilla Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10643"},{"name":"Lil Arkarium Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10644"},{"name":"Lil Orchid Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10645"},{"name":"Lil Von Leon Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10646"},{"name":"Lil Cygnus Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10647"},{"name":"Lil Luminous (Light) Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10648"},{"name":"Lil Luminous (Dark) Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10649"},{"name":"Lil Luminous (Equilibrium) Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10650"},{"name":"Lil Mercedes Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10651"},{"name":"Lil Phantom Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10652"},{"name":"Lil Shade Familiar","category":"Familiar","type":"Unique","chance":0.02,"item_idx":"10653"},{"name":"Lil Moonbeam Familiar","category":"Familiar","type":"Epic","chance":0.02,"item_idx":"10654"}],"b":[{"name":"Royal Hair Coupon","category":"Functional","type":"Cosmetic","chance":3,"item_idx":"10655"},{"name":"Royal Face Coupon","category":"Functional","type":"Cosmetic","chance":3,"item_idx":"10656"},{"name":"April Fools' Day Hair Coupon","category":"Functional","type":"Cosmetic","chance":3,"item_idx":"10657"},{"name":"April Fools' Day Face Coupon","category":"Functional","type":"Cosmetic","chance":3,"item_idx":"10658"},{"name":"2x EXP Coupon (1 Hour) (6)","category":"Functional","type":"Use","chance":3},{"name":"2x Drop Coupon (1 Hour) (6)","category":"Functional","type":"Use","chance":3},{"name":"4-hour 2x EXP Special Coupon","category":"Functional","type":"Use","chance":7,"item_idx":"10661"},{"name":"1-day 2x EXP Special Coupon","category":"Functional","type":"Use","chance":3,"item_idx":"10662"},{"name":"Shield Scroll","category":"Functional","type":"Scroll","chance":7,"item_idx":"10663"},{"name":"Guardian Scroll","category":"Functional","type":"Scroll","chance":7,"item_idx":"10664"},{"name":"4-hour 2x Drop Special Coupon","category":"Functional","type":"Use","chance":5,"item_idx":"10665"},{"name":"Bonus Potential Cube","category":"Functional","type":"Use","chance":4,"item_idx":"10666"},{"name":"Red Cube (2)","category":"Functional","type":"Use","chance":4,"item_idx":"10667"},{"name":"Chaos Scroll of Goodness 50%","category":"Functional","type":"Scroll","chance":5,"item_idx":"10668"},{"name":"Special Bonus Potential Scroll","category":"Functional","type":"Scroll","chance":5,"item_idx":"10669"},{"name":"20 Slot Soul Bag","category":"Functional","type":"Storage","chance":0.8,"item_idx":"10670"},{"name":"20 Slot Herb Bag","category":"Functional","type":"Storage","chance":0.8,"item_idx":"10671"},{"name":"20 Slot Mineral Bag","category":"Functional","type":"Storage","chance":0.8,"item_idx":"10672"},{"name":"20 Slot Production Bag","category":"Functional","type":"Storage","chance":0.8,"item_idx":"10673"},{"name":"20 Slot Recipe Bag","category":"Functional","type":"Storage","chance":0.8,"item_idx":"10674"},{"name":"20 Slot Chair Bag","category":"Functional","type":"Storage","chance":0.8,"item_idx":"10675"},{"name":"20 Slot Title Bag","category":"Functional","type":"Storage","chance":0.8,"item_idx":"10676"},{"name":"20 Slot Scroll Bag","category":"Functional","type":"Storage","chance":0.5,"item_idx":"10677"},{"name":"40 Slot Chair Bag","category":"Functional","type":"Storage","chance":0.3,"item_idx":"10678"},{"name":"40-Slot Soul Bag","category":"Functional","type":"Storage","chance":0.3,"item_idx":"10679"},{"name":"White Cube","category":"Functional","type":"Use","chance":0.2,"item_idx":"10680"},{"name":"Violet Cube","category":"Functional","type":"Use","chance":0.2,"item_idx":"10681"},{"name":"Innocence Scroll 50% (3)","category":"Functional","type":"Scroll","chance":0.5,"item_idx":"10682"},{"name":"Epic Potential Scroll 50% (3)","category":"Functional","type":"Scroll","chance":0.5,"item_idx":"10683"},{"name":"Eternal Flame of Rebirth (5)","category":"Functional","type":"Use","chance":0.5,"item_idx":"10684"},{"name":"Powerful Rebirth Flame (5)","category":"Functional","type":"Use","chance":0.5},{"name":"Platinum Scissors of Karma","category":"Functional","type":"Use","chance":2,"item_idx":"10686"},{"name":"Fantastical Android (M) Coupon","category":"Android","type":"Android","chance":0.55,"item_idx":"10687"},{"name":"Fantastical Android (F) Coupon","category":"Android","type":"Android","chance":0.55,"item_idx":"10688"},{"name":"Summeroid (M) Coupon","category":"Android","type":"Android","chance":1,"item_idx":"10689"},{"name":"Summeroid (F) Coupon","category":"Android","type":"Android","chance":1,"item_idx":"10690"},{"name":"Princessoid Coupon","category":"Android","type":"Android","chance":1,"item_idx":"10691"},{"name":"Zero Android Coupon","category":"Android","type":"Android","chance":1,"item_idx":"10692"},{"name":"Golden Hammer 100% Coupon","category":"Functional","type":"Use","chance":0.5,"item_idx":"10693"},{"name":"Onyx Apple (25)","category":"Functional","type":"Use","chance":0.43,"item_idx":"10694"},{"name":"Transparent Cape","category":"Equipment","type":"Cape","chance":0.2,"item_idx":"10695"},{"name":"Transparent Gloves","category":"Equipment","type":"Glove","chance":0.2,"item_idx":"10696"},{"name":"Transparent Shoes","category":"Equipment","type":"Shoes","chance":0.2,"item_idx":"10697"},{"name":"Transparent Earrings","category":"Equipment","type":"Earring","chance":0.2,"item_idx":"10698"},{"name":"Transparent Hat","category":"Equipment","type":"Hat","chance":0.2,"item_idx":"10699"},{"name":"Transparent Eye Accessory","category":"Equipment","type":"Eye Accessory","chance":0.2,"item_idx":"10700"},{"name":"Transparent Face Accessory","category":"Equipment","type":"Face Accessory","chance":0.2,"item_idx":"10701"},{"name":"Universal Transparent Weapon","category":"Equipment","type":"Weapon","chance":0.2,"item_idx":"10702"},{"name":"Transparent Katara","category":"Equipment","type":"Weapon","chance":0.2,"item_idx":"10703"},{"name":"Transparent Claw","category":"Equipment","type":"Weapon","chance":0.2,"item_idx":"10704"},{"name":"Transparent Knuckle","category":"Equipment","type":"Weapon","chance":0.2,"item_idx":"10705"},{"name":"Transparent Wand","category":"Equipment","type":"Weapon","chance":0.2,"item_idx":"10706"},{"name":"Transparent Shield","category":"Equipment","type":"Shield","chance":0.2,"item_idx":"10707"},{"name":"Beast Tamer Transparent Ears","category":"Functional","type":"Cosmetic","chance":0.2,"item_idx":"10708"},{"name":"Beast Tamer Transparent Tail","category":"Functional","type":"Cosmetic","chance":0.2,"item_idx":"10709"},{"name":"Gachapon Ticket (5)","category":"Functional","type":"Use","chance":2,"item_idx":"10710"},{"name":"Premium Surprise Style Box (2)","category":"Functional","type":"Cosmetic","chance":2,"item_idx":"10711"},{"name":"Waterwheel Chair","category":"Chair","type":"Chair","chance":0.2,"item_idx":"10712"},{"name":"Spring Rain Chair","category":"Chair","type":"Chair","chance":0.2,"item_idx":"10713"},{"name":"Pink Bean's Adventure Stories Chair","category":"Chair","type":"Chair","chance":0.2,"item_idx":"10714"},{"name":"Animal Crystal Ball Chair","category":"Chair","type":"Chair","chance":0.2,"item_idx":"10715"},{"name":"Shared Shelter Umbrella","category":"Chair","type":"Chair","chance":0.2,"item_idx":"10716"},{"name":"Teddy Bear Kitchen Window Chair","category":"Chair","type":"Chair","chance":0.2,"item_idx":"10717"},{"name":"Red Umbrella Chair","category":"Chair","type":"Chair","chance":0.2,"item_idx":"10718"},{"name":"Sounds of Spring","category":"Chair","type":"Chair","chance":0.2,"item_idx":"10719"},{"name":"Open Concert Chair","category":"Chair","type":"Chair","chance":0.2,"item_idx":"10720"},{"name":"Rock Spirits Chair","category":"Chair","type":"Chair","chance":0.2,"item_idx":"10721"},{"name":"9th Anniversary Prime Scroll for Accessory","category":"Functional","type":"Scroll","chance":0.4,"item_idx":"10722"},{"name":"9th Anniversary Prime Scroll for One-Handed Weapon","category":"Functional","type":"Scroll","chance":0.4,"item_idx":"10723"},{"name":"9th Anniversary Prime Scroll for Two-Handed Weapon","category":"Functional","type":"Scroll","chance":0.4,"item_idx":"10724"},{"name":"9th Anniversary Prime Scroll for Armor","category":"Functional","type":"Scroll","chance":0.4,"item_idx":"10725"},{"name":"Dominator Pendant","category":"Equipment","type":"Pendant","chance":0.5,"item_idx":"10726"},{"name":"Sweetwater Cape","category":"Equipment","type":"Cape","chance":0.065,"item_idx":"10727"},{"name":"Sweetwater Gloves","category":"Equipment","type":"Glove","chance":0.065,"item_idx":"10728"},{"name":"Sweetwater Hat","category":"Equipment","type":"Hat","chance":0.065,"item_idx":"10729"},{"name":"Sweetwater Pendant","category":"Equipment","type":"Pendant","chance":0.065,"item_idx":"10730"},{"name":"Sweetwater Monocle","category":"Equipment","type":"Eye Accessory","chance":0.065,"item_idx":"10731"},{"name":"Sweetwater Earrings","category":"Equipment","type":"Earring","chance":0.065,"item_idx":"10732"},{"name":"Sweetwater Tattoo","category":"Equipment","type":"Face Accessory","chance":0.06,"item_idx":"10733"},{"name":"Sweetwater Belt","category":"Equipment","type":"Belt","chance":0.065,"item_idx":"10734"},{"name":"Sweetwater Shoulder","category":"Equipment","type":"Shoulder","chance":0.065,"item_idx":"10735"},{"name":"Sweetwater Suit","category":"Equipment","type":"Overall","chance":0.065,"item_idx":"10736"},{"name":"Sweetwater Shoes","category":"Equipment","type":"Shoes","chance":0.065,"item_idx":"10737"},{"name":"Sweetwater Shining Rod","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10738"},{"name":"Sweetwater Soul Shooter","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10739"},{"name":"Sweetwater Demon Sword","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10740"},{"name":"Sweetwater Chain Sword","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10741"},{"name":"Sweetwater Tigress Scepter","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10742"},{"name":"Sweetwater Psy-limiter","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10743"},{"name":"Sweetwater Sword","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10744"},{"name":"Sweetwater Axe","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10745"},{"name":"Sweetwater Mace","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10746"},{"name":"Sweetwater Knife","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10747"},{"name":"Sweetwater Katara","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10748"},{"name":"Sweetwater Cane","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10749"},{"name":"Sweetwater Wand","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10750"},{"name":"Sweetwater Staff","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10751"},{"name":"Sweetwater Two-Handed Sword","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10752"},{"name":"Sweetwater Two-Handed Axe","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10753"},{"name":"Sweetwater Maul","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10754"},{"name":"Sweetwater Spear","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10755"},{"name":"Sweetwater Polearm","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10756"},{"name":"Sweetwater Bow","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10757"},{"name":"Sweetwater Crossbow","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10758"},{"name":"Sweetwater Steer","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10759"},{"name":"Sweetwater Grip","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10760"},{"name":"Sweetwater Shooter","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10761"},{"name":"Sweetwater Twin Angels","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10762"},{"name":"Sweetwater Hand Cannon","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10763"},{"name":"Sweetwater Katana","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10764"},{"name":"Sweetwater Wind","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10765"},{"name":"Sweetwater Chain","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10766"},{"name":"Sweetwater Lucent Gauntlet","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10767"},{"name":"Sweetwater Gauntlet Buster","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10768"},{"name":"Sweetwater Ancient Bow","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10769"},{"name":"Sweetwater Ritual Fan","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10770"},{"name":"Sweetwater Bladecaster","category":"Equipment","type":"Weapon","chance":0.065,"item_idx":"10771"},{"name":"Terminus Defender","category":"Equipment","type":"Shield","chance":0.08,"item_idx":"10772"},{"name":"Terminus Illuminator","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10773"},{"name":"Terminus Firebreather","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10774"},{"name":"Terminus Vanquisher","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10775"},{"name":"Terminus Jaeger","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10776"},{"name":"Terminus Scepter","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10777"},{"name":"Terminus Divider","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10778"},{"name":"Terminus Chopper","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10779"},{"name":"Terminus Crusher","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10780"},{"name":"Terminus Prowler","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10781"},{"name":"Terminus Silencer","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10782"},{"name":"Terminus Orchestrator","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10783"},{"name":"Terminus Enchanter","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10784"},{"name":"Terminus Mesmerizer","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10785"},{"name":"Terminus Dominator","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10786"},{"name":"Terminus Devastator","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10787"},{"name":"Terminus Demolisher","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10788"},{"name":"Terminus Impaler","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10789"},{"name":"Terminus Warmonger","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10790"},{"name":"Terminus Stormchaser","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10791"},{"name":"Terminus Bolter","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10792"},{"name":"Terminus Executioner","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10793"},{"name":"Terminus Striker","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10794"},{"name":"Terminus Raider","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10795"},{"name":"Terminus Raptor","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10796"},{"name":"Terminus Scorcher","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10797"},{"name":"Terminus Grand Master","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10798"},{"name":"Terminus Summoner","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10799"},{"name":"Terminus Psy-limiter","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10800"},{"name":"Terminus Chain","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10801"},{"name":"Terminus Lucent Gauntlet","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10802"},{"name":"Terminus Gauntlet","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10803"},{"name":"Terminus Ancient Bow","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10804"},{"name":"Terminus Ritual Fan","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10805"},{"name":"Terminus Bladecaster","category":"Equipment","type":"Weapon","chance":0.08,"item_idx":"10806"},{"name":"10,000-Maple-Point Chip","category":"Functional","type":"Maple Points","chance":0.03,"item_idx":"10807"},{"name":"25,000-Maple-Point Coupon","category":"Functional","type":"Maple Points","chance":0.01,"item_idx":"10808"},{"name":"Tinkerer's Red Belt","category":"Equipment","type":"Belt","chance":0.03,"item_idx":"10809"},{"name":"Tinkerer's Red Shoulder Accessory","category":"Equipment","type":"Shoulder","chance":0.03,"item_idx":"10810"},{"name":"Magnificent Darknell Soul","category":"Functional","type":"Soul","chance":0.15,"item_idx":"10811"},{"name":"Magnificent Damien Soul","category":"Functional","type":"Soul","chance":0.15,"item_idx":"10812"},{"name":"Magnificent Lotus Soul","category":"Functional","type":"Soul","chance":0.15,"item_idx":"10813"},{"name":"Magnificent Magnus Soul","category":"Functional","type":"Soul","chance":0.15,"item_idx":"10814"},{"name":"Magnificent Cygnus Soul","category":"Functional","type":"Soul","chance":0.15,"item_idx":"10815"},{"name":"Magnificent Lucid Soul","category":"Functional","type":"Soul","chance":0.1,"item_idx":"10816"},{"name":"Magnificent Will Soul","category":"Functional","type":"Soul","chance":0.1,"item_idx":"10817"}],"c":[{"name":"Tinkerer's Chest","category":"Functional","type":"Use","chance":10,"item_idx":"10818"},{"name":"Gachapon Ticket","category":"Functional","type":"Use","chance":10,"item_idx":"10819"},{"name":"Red Cube","category":"Functional","type":"Use","chance":5,"item_idx":"10820"},{"name":"Buff Freezer (5)","category":"Functional","type":"Use","chance":5,"item_idx":"10821"},{"name":"Safety Gem","category":"Functional","type":"Use","chance":5,"item_idx":"10822"},{"name":"Respawn Pass","category":"Functional","type":"Use","chance":5,"item_idx":"10823"},{"name":"Beauty Salon Hair Slot Coupon","category":"Functional","type":"Cosmetic","chance":5,"item_idx":"10824"},{"name":"Beauty Salon Face Slot Coupon","category":"Functional","type":"Cosmetic","chance":5,"item_idx":"10825"},{"name":"Red Cube (2)","category":"Functional","type":"Use","chance":1,"item_idx":"10826"},{"name":"Black Cube","category":"Functional","type":"Use","chance":1,"item_idx":"10827"},{"name":"Onyx Apple (5)","category":"Functional","type":"Use","chance":2,"item_idx":"10828"},{"name":"Evolution One-handed Weapon ATT Scroll (2)","category":"Functional","type":"Scroll","chance":3,"item_idx":"10829"},{"name":"Evolution One-handed Weapon Magic ATT Scroll (2)","category":"Functional","type":"Scroll","chance":3,"item_idx":"10830"},{"name":"Evolution Two-handed Weapon ATT Scroll (2)","category":"Functional","type":"Scroll","chance":3,"item_idx":"10831"},{"name":"Evolution Two-handed Weapon Magic ATT Scroll (2)","category":"Functional","type":"Scroll","chance":3,"item_idx":"10832"},{"name":"Innocence Scroll 50%","category":"Functional","type":"Scroll","chance":0.9,"item_idx":"10833"},{"name":"Clean Slate Scroll 20% (2)","category":"Functional","type":"Scroll","chance":0.9,"item_idx":"10834"},{"name":"Epic Potential Scroll 50%","category":"Functional","type":"Scroll","chance":1,"item_idx":"10835"},{"name":"Equip Tab 4 Slot Coupon","category":"Functional","type":"Use","chance":2.5,"item_idx":"10836"},{"name":"Use Tab 4 Slot Coupon","category":"Functional","type":"Use","chance":2.5,"item_idx":"10837"},{"name":"Set-up Tab 4 Slot Coupon","category":"Functional","type":"Use","chance":2.5,"item_idx":"10838"},{"name":"ETC Tab 4 Slot Coupon","category":"Functional","type":"Use","chance":2.5,"item_idx":"10839"},{"name":"Equip Tab 8 Slot Coupon","category":"Functional","type":"Use","chance":1.5,"item_idx":"10840"},{"name":"Use Tab 8 Slot Coupon","category":"Functional","type":"Use","chance":1.5,"item_idx":"10841"},{"name":"Set-Up Tab 8 Slot Coupon","category":"Functional","type":"Use","chance":1.5,"item_idx":"10842"},{"name":"Etc Tab 8 Slot Coupon","category":"Functional","type":"Use","chance":1.5,"item_idx":"10843"},{"name":"Incredible Chaos Scroll of Goodness 50%","category":"Functional","type":"Scroll","chance":2,"item_idx":"10844"},{"name":"Eternal Flame of Rebirth (3)","category":"Functional","type":"Use","chance":1.5,"item_idx":"10845"},{"name":"Powerful Rebirth Flame (3)","category":"Functional","type":"Use","chance":1.5},{"name":"Soft Petal Skin Android Coupon","category":"Functional","type":"Cosmetic","chance":1,"item_idx":"10847"},{"name":"9th Anniversary Prime Scroll for Accessory","category":"Functional","type":"Scroll","chance":0.09,"item_idx":"10848"},{"name":"9th Anniversary Prime Scroll for One-Handed Weapon","category":"Functional","type":"Scroll","chance":0.09,"item_idx":"10849"},{"name":"9th Anniversary Prime Scroll for Two-Handed Weapon","category":"Functional","type":"Scroll","chance":0.09,"item_idx":"10850"},{"name":"9th Anniversary Prime Scroll for Armor","category":"Functional","type":"Scroll","chance":0.09,"item_idx":"10851"},{"name":"Pure Equip Enhancement Scroll","category":"Functional","type":"Scroll","chance":2,"item_idx":"10852"},{"name":"Pure Equip Enhancement Scroll (2)","category":"Functional","type":"Scroll","chance":0.7,"item_idx":"10853"},{"name":"Gorilla Robo (Permanent)","category":"Pet","type":"Pet","chance":0.1},{"name":"VIP Warrior Shield","category":"Equipment","type":"Shield","chance":0.5,"item_idx":"10859"},{"name":"VIP Magician Shield","category":"Equipment","type":"Shield","chance":0.5,"item_idx":"10860"},{"name":"VIP Thief Shield","category":"Equipment","type":"Shield","chance":0.5,"item_idx":"10861"},{"name":"Dragon Khanjar","category":"Equipment","type":"Shield","chance":0.5,"item_idx":"10862"},{"name":"Bed Head Coupon (M)","category":"Functional","type":"Cosmetic","chance":0.1,"item_idx":"10863"},{"name":"Vivacious Wavy Hair Coupon (F)","category":"Functional","type":"Cosmetic","chance":0.1,"item_idx":"10864"},{"name":"Novel Spunky Evan Hair Coupon","category":"Functional","type":"Cosmetic","chance":0.1,"item_idx":"10865"},{"name":"Ballroom Classic Hair Coupon","category":"Functional","type":"Cosmetic","chance":0.1,"item_idx":"10866"},{"name":"Kerning City Hair Coupon","category":"Functional","type":"Cosmetic","chance":0.1,"item_idx":"10867"},{"name":"Fairy King Oberon Hair Coupon","category":"Functional","type":"Cosmetic","chance":0.1,"item_idx":"10868"},{"name":"Ellinia Hair Coupon","category":"Functional","type":"Cosmetic","chance":0.1,"item_idx":"10869"},{"name":"Henesys Hair Coupon","category":"Functional","type":"Cosmetic","chance":0.1,"item_idx":"10870"},{"name":"Nautilus Hair Coupon","category":"Functional","type":"Cosmetic","chance":0.1,"item_idx":"10871"},{"name":"Spell Trace 5,000 Coupon","category":"Functional","type":"Use","chance":1.5,"item_idx":"10872"},{"name":"VIP Necklace","category":"Equipment","type":"Pendant","chance":0.1,"item_idx":"10873"},{"name":"5,000-Maple-Point Coupon","category":"Functional","type":"Maple Points","chance":0.08,"item_idx":"10874"},{"name":"Marvelous","category":"Equipment","type":"Medal","chance":0.08,"item_idx":"10875"},{"name":"Tinkerer's Blue Belt","category":"Equipment","type":"Belt","chance":0.08,"item_idx":"10876"},{"name":"Tinkerer's Blue Shoulder Accessory","category":"Equipment","type":"Shoulder","chance":0.08,"item_idx":"10877"},{"name":"Magnus's Rage","category":"Equipment","type":"Ring","chance":0.01,"item_idx":"10878"},{"name":"Hilla's Rage","category":"Equipment","type":"Ring","chance":0.01,"item_idx":"10879"}]};
+var gacha_db = {
+    "a": [{
+        "name": "All-Star Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10479"
+    }, {
+        "name": "All-Star Face Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10480"
+    }, {
+        "name": "Gachapon Ticket (5)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 4,
+        "item_idx": "10481"
+    }, {
+        "name": "Hyper Teleport Rock (7 Days)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 4,
+        "item_idx": "10482"
+    }, {
+        "name": "Premium Surprise Style Box",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10483"
+    }, {
+        "name": "Valentine Surprise Style Box",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10484"
+    }, {
+        "name": "Halloween Surprise Style Box",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10485"
+    }, {
+        "name": "St.Patrick's Day Surprise Style Box",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10486"
+    }, {
+        "name": "Anniversary Surprise Style Box",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10487"
+    }, {
+        "name": "Black Mage Surprise Style Box",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10488"
+    }, {
+        "name": "Black Friday Royal Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10489"
+    }, {
+        "name": "Black Friday Royal Face Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10490"
+    }, {
+        "name": "Anniversary Royal Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10491"
+    }, {
+        "name": "Anniversary Royal Face Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 4,
+        "item_idx": "10492"
+    }, {
+        "name": "Incredible Chaos Scroll of Goodness 50% (3)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 4,
+        "item_idx": "10493"
+    }, {
+        "name": "Royal Hair Coupon (3)",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 2.86,
+        "item_idx": "10494"
+    }, {
+        "name": "Royal Face Coupon (3)",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 2.86,
+        "item_idx": "10495"
+    }, {
+        "name": "Gachapon Ticket (11)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1.5,
+        "item_idx": "10496"
+    }, {
+        "name": "Golden Hammer 100 % Coupon (2)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1.5,
+        "item_idx": "10497"
+    }, {
+        "name": "Nodestone (10)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.5,
+        "item_idx": "10498"
+    }, {
+        "name": "Onyx Apple (50)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.409,
+        "item_idx": "10499"
+    }, {
+        "name": "Perfect Innocence Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 3,
+        "item_idx": "10500"
+    }, {
+        "name": "Superior Shielding Ward",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 3,
+        "item_idx": "10501"
+    }, {
+        "name": "9th Anniversary Prime Scroll for Accessory (3)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.1,
+        "item_idx": "10502"
+    }, {
+        "name": "9th Anniversary Prime Scroll for One-Handed Weapon (3)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.1,
+        "item_idx": "10503"
+    }, {
+        "name": "9th Anniversary Prime Scroll for Two-Handed Weapon (3)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.1,
+        "item_idx": "10504"
+    }, {
+        "name": "9th Anniversary Prime Scroll for Armor (3)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.1,
+        "item_idx": "10505"
+    }, {
+        "name": "Red Cube (11)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.5,
+        "item_idx": "10506"
+    }, {
+        "name": "Black Cube (5)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.5,
+        "item_idx": "10507"
+    }, {
+        "name": "Bonus Potential Cube (5)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.5,
+        "item_idx": "10508"
+    }, {
+        "name": "Unique Potential Scroll 80%",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.2,
+        "item_idx": "10509"
+    }, {
+        "name": "Unique Potential Scroll 60%",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 2.5,
+        "item_idx": "10510"
+    }, {
+        "name": "Permanent Hyper Teleport Rock Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.01,
+        "item_idx": "10511"
+    }, {
+        "name": "Gachapon Ticket (50)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.1,
+        "item_idx": "10512"
+    }, {
+        "name": "50,000-Maple-Point Coupon",
+        "category": "Functional",
+        "type": "Maple Points",
+        "chance": 0.1,
+        "item_idx": "10513"
+    }, {
+        "name": "Black Cube (11)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.3,
+        "item_idx": "10514"
+    }, {
+        "name": "Bonus Potential Cube (11)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.3,
+        "item_idx": "10515"
+    }, {
+        "name": "White Cube (3)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.3,
+        "item_idx": "10516"
+    }, {
+        "name": "White Cube (5)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.3,
+        "item_idx": "10517"
+    }, {
+        "name": "Violet Cube (3)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.3,
+        "item_idx": "10518"
+    }, {
+        "name": "Violet Cube (5)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.3,
+        "item_idx": "10519"
+    }, {
+        "name": "Unique Potential Scroll 100%",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.1,
+        "item_idx": "10520"
+    }, {
+        "name": "Meister Shoulder",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.2,
+        "item_idx": "10521"
+    }, {
+        "name": "Meister Earring",
+        "category": "Equipment",
+        "type": "Earring",
+        "chance": 0.2,
+        "item_idx": "10522"
+    }, {
+        "name": "Meister Ring",
+        "category": "Equipment",
+        "type": "Ring",
+        "chance": 0.2,
+        "item_idx": "10523"
+    }, {
+        "name": "Scarlet Ring",
+        "category": "Equipment",
+        "type": "Ring",
+        "chance": 0.2,
+        "item_idx": "10524"
+    }, {
+        "name": "Scarlet Earring",
+        "category": "Equipment",
+        "type": "Earring",
+        "chance": 0.2,
+        "item_idx": "10525"
+    }, {
+        "name": "Scarlet Shoulder",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.2,
+        "item_idx": "10526"
+    }, {
+        "name": "Superior Engraved Gollux Belt",
+        "category": "Equipment",
+        "type": "Belt",
+        "chance": 0.2,
+        "item_idx": "10527"
+    }, {
+        "name": "Superior Engraved Gollux Pendant",
+        "category": "Equipment",
+        "type": "Pendant",
+        "chance": 0.2,
+        "item_idx": "10528"
+    }, {
+        "name": "Superior Gollux Earrings",
+        "category": "Equipment",
+        "type": "Earring",
+        "chance": 0.2,
+        "item_idx": "10529"
+    }, {
+        "name": "Tyrant Hyades Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.2,
+        "item_idx": "10530"
+    }, {
+        "name": "Tyrant Hermes Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.2,
+        "item_idx": "10531"
+    }, {
+        "name": "Tyrant Charon Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.2,
+        "item_idx": "10532"
+    }, {
+        "name": "Tyrant Lycaon Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.2,
+        "item_idx": "10533"
+    }, {
+        "name": "Tyrant Altair Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.2,
+        "item_idx": "10534"
+    }, {
+        "name": "Tyrant Hyades Cloak",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.2,
+        "item_idx": "10535"
+    }, {
+        "name": "Tyrant Hermes Cloak",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.2,
+        "item_idx": "10536"
+    }, {
+        "name": "Tyrant Charon Cloak",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.2,
+        "item_idx": "10537"
+    }, {
+        "name": "Tyrant Lycaon Cloak",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.2,
+        "item_idx": "10538"
+    }, {
+        "name": "Tyrant Altair Cloak",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.2,
+        "item_idx": "10539"
+    }, {
+        "name": "Tyrant Hyades Boots",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.2,
+        "item_idx": "10540"
+    }, {
+        "name": "Tyrant Hermes Boots",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.2,
+        "item_idx": "10541"
+    }, {
+        "name": "Tyrant Charon Boots",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.2,
+        "item_idx": "10542"
+    }, {
+        "name": "Tyrant Lycaon Boots",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.2,
+        "item_idx": "10543"
+    }, {
+        "name": "Tyrant Altair Boots",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.2,
+        "item_idx": "10544"
+    }, {
+        "name": "Tyrant Hyades Belt",
+        "category": "Equipment",
+        "type": "Belt",
+        "chance": 0.2,
+        "item_idx": "10545"
+    }, {
+        "name": "Tyrant Hermes Belt",
+        "category": "Equipment",
+        "type": "Belt",
+        "chance": 0.2,
+        "item_idx": "10546"
+    }, {
+        "name": "Tyrant Charon Belt",
+        "category": "Equipment",
+        "type": "Belt",
+        "chance": 0.2,
+        "item_idx": "10547"
+    }, {
+        "name": "Tyrant Lycaon Belt",
+        "category": "Equipment",
+        "type": "Belt",
+        "chance": 0.2,
+        "item_idx": "10548"
+    }, {
+        "name": "Tyrant Altair Belt",
+        "category": "Equipment",
+        "type": "Belt",
+        "chance": 0.2,
+        "item_idx": "10549"
+    }, {
+        "name": "AbsoLab Knight Shoulder",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.3,
+        "item_idx": "10550"
+    }, {
+        "name": "AbsoLab Mage Shoulder",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.3,
+        "item_idx": "10551"
+    }, {
+        "name": "AbsoLab Archer Shoulder",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.3,
+        "item_idx": "10552"
+    }, {
+        "name": "AbsoLab Thief Shoulder",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.3,
+        "item_idx": "10553"
+    }, {
+        "name": "AbsoLab Pirate Shoulder",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.3,
+        "item_idx": "10554"
+    }, {
+        "name": "AbsoLab Knight Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.3,
+        "item_idx": "10555"
+    }, {
+        "name": "AbsoLab Mage Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.3,
+        "item_idx": "10556"
+    }, {
+        "name": "AbsoLab Archer Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.3,
+        "item_idx": "10557"
+    }, {
+        "name": "AbsoLab Bandit Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.3,
+        "item_idx": "10558"
+    }, {
+        "name": "AbsoLab Pirate Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.3,
+        "item_idx": "10559"
+    }, {
+        "name": "AbsoLab Knight Helm",
+        "category": "Equipment",
+        "type": "Hat",
+        "chance": 0.3,
+        "item_idx": "10560"
+    }, {
+        "name": "AbsoLab Mage Crown",
+        "category": "Equipment",
+        "type": "Hat",
+        "chance": 0.3,
+        "item_idx": "10561"
+    }, {
+        "name": "AbsoLab Archer Hood",
+        "category": "Equipment",
+        "type": "Hat",
+        "chance": 0.3,
+        "item_idx": "10562"
+    }, {
+        "name": "AbsoLab Bandit Cap",
+        "category": "Equipment",
+        "type": "Hat",
+        "chance": 0.3,
+        "item_idx": "10563"
+    }, {
+        "name": "AbsoLab Pirate Fedora",
+        "category": "Equipment",
+        "type": "Hat",
+        "chance": 0.3,
+        "item_idx": "10564"
+    }, {
+        "name": "AbsoLab Knight Suit",
+        "category": "Equipment",
+        "type": "Overall",
+        "chance": 0.3,
+        "item_idx": "10565"
+    }, {
+        "name": "AbsoLab Mage Suit",
+        "category": "Equipment",
+        "type": "Overall",
+        "chance": 0.3,
+        "item_idx": "10566"
+    }, {
+        "name": "AbsoLab Archer Suit",
+        "category": "Equipment",
+        "type": "Overall",
+        "chance": 0.3,
+        "item_idx": "10567"
+    }, {
+        "name": "AbsoLab Bandit Suit",
+        "category": "Equipment",
+        "type": "Overall",
+        "chance": 0.3,
+        "item_idx": "10568"
+    }, {
+        "name": "AbsoLab Pirate Suit",
+        "category": "Equipment",
+        "type": "Overall",
+        "chance": 0.3,
+        "item_idx": "10569"
+    }, {
+        "name": "AbsoLab Knight Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.3,
+        "item_idx": "10570"
+    }, {
+        "name": "AbsoLab Mage Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.3,
+        "item_idx": "10571"
+    }, {
+        "name": "AbsoLab Archer Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.3,
+        "item_idx": "10572"
+    }, {
+        "name": "AbsoLab Bandit Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.3,
+        "item_idx": "10573"
+    }, {
+        "name": "AbsoLab Pirate Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.3,
+        "item_idx": "10574"
+    }, {
+        "name": "AbsoLab Knight Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.3,
+        "item_idx": "10575"
+    }, {
+        "name": "AbsoLab Mage Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.3,
+        "item_idx": "10576"
+    }, {
+        "name": "AbsoLab Archer Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.3,
+        "item_idx": "10577"
+    }, {
+        "name": "AbsoLab Bandit Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.3,
+        "item_idx": "10578"
+    }, {
+        "name": "AbsoLab Pirate Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.3,
+        "item_idx": "10579"
+    }, {
+        "name": "Arcane Umbra Mage Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.01,
+        "item_idx": "10580"
+    }, {
+        "name": "Arcane Umbra Archer Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.01,
+        "item_idx": "10581"
+    }, {
+        "name": "Arcane Umbra Knight Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.01,
+        "item_idx": "10582"
+    }, {
+        "name": "Arcane Umbra Thief Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.01,
+        "item_idx": "10583"
+    }, {
+        "name": "Arcane Umbra Pirate Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.01,
+        "item_idx": "10584"
+    }, {
+        "name": "Arcane Umbra Knight Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.01,
+        "item_idx": "10585"
+    }, {
+        "name": "Arcane Umbra Mage Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.01,
+        "item_idx": "10586"
+    }, {
+        "name": "Arcane Umbra Archer Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.01,
+        "item_idx": "10587"
+    }, {
+        "name": "Arcane Umbra Thief Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.01,
+        "item_idx": "10588"
+    }, {
+        "name": "Arcane Umbra Pirate Gloves",
+        "category": "Equipment",
+        "type": "Gloves",
+        "chance": 0.01,
+        "item_idx": "10589"
+    }, {
+        "name": "Arcane Umbra Knight Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.01,
+        "item_idx": "10590"
+    }, {
+        "name": "Arcane Umbra Mage Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.01,
+        "item_idx": "10591"
+    }, {
+        "name": "Arcane Umbra Archer Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.01,
+        "item_idx": "10592"
+    }, {
+        "name": "Arcane Umbra Thief Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.01,
+        "item_idx": "10593"
+    }, {
+        "name": "Arcane Umbra Pirate Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.01,
+        "item_idx": "10594"
+    }, {
+        "name": "Legendary Potential Scroll 50%",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.05,
+        "item_idx": "10595"
+    }, {
+        "name": "King of Beasts Hide",
+        "category": "Equipment",
+        "type": "Pocket Item",
+        "chance": 0.05,
+        "item_idx": "10596"
+    }, {
+        "name": "King of Beasts Totem",
+        "category": "Equipment",
+        "type": "Totem",
+        "chance": 0.05,
+        "item_idx": "10597"
+    }, {
+        "name": "Ryude's Sword",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.06,
+        "item_idx": "10598"
+    }, {
+        "name": "Alicia's Mutated Staff",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.09,
+        "item_idx": "10599"
+    }, {
+        "name": "Lightseeker",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.09,
+        "item_idx": "10600"
+    }, {
+        "name": "Aquarius Crown",
+        "category": "Equipment",
+        "type": "Hat",
+        "chance": 0.06,
+        "item_idx": "10601"
+    }, {
+        "name": "100% 15-Star Enhancement (Lv. 150)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.1,
+        "item_idx": "10602"
+    }, {
+        "name": "100% 15-Star Enhancement (Lv. 160)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.1,
+        "item_idx": "10603"
+    }, {
+        "name": "100% 17-Star Enhancement (Lv. 150)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.05,
+        "item_idx": "10604"
+    }, {
+        "name": "100% 17-Star Enhancement (Lv. 160)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.05,
+        "item_idx": "10605"
+    }, {
+        "name": "Lidium Heart",
+        "category": "Android",
+        "type": "Heart",
+        "chance": 0.4,
+        "item_idx": "10606"
+    }, {
+        "name": "Superior Lidium Heart",
+        "category": "Android",
+        "type": "Heart",
+        "chance": 0.2,
+        "item_idx": "10607"
+    }, {
+        "name": "Titanium Heart",
+        "category": "Android",
+        "type": "Heart",
+        "chance": 0.1,
+        "item_idx": "10608"
+    }, {
+        "name": "Electronic Heart Ω-Series",
+        "category": "Android",
+        "type": "Heart",
+        "chance": 0.2,
+        "item_idx": "10609"
+    }, {
+        "name": "Breath of Divinity",
+        "category": "Equipment",
+        "type": "Ring",
+        "chance": 0.01,
+        "item_idx": "10610"
+    }, {
+        "name": "Lightning God Ring",
+        "category": "Equipment",
+        "type": "Ring",
+        "chance": 0.03,
+        "item_idx": "10611"
+    }, {
+        "name": "Lucid's Earrings Coupon",
+        "category": "Equipment",
+        "type": "Earrings",
+        "chance": 0.05,
+        "item_idx": "10612"
+    }, {
+        "name": "Permanent Pendant Slot Expansion Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.05,
+        "item_idx": "10613"
+    }, {
+        "name": "Tinkerer's Black Belt",
+        "category": "Equipment",
+        "type": "Belt",
+        "chance": 0.05,
+        "item_idx": "10614"
+    }, {
+        "name": "Tinkerer's Black Shoulder Accessory",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.05,
+        "item_idx": "10615"
+    }, {
+        "name": "Cursed Kaiserium",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.09,
+        "item_idx": "10616"
+    }, {
+        "name": "1-Million-Maple-Point Chip",
+        "category": "Functional",
+        "type": "Maple Points",
+        "chance": 0.001,
+        "item_idx": "10617"
+    }, {
+        "name": "Reaper's Pendant",
+        "category": "Equipment",
+        "type": "Pendant",
+        "chance": 0.05,
+        "item_idx": "10618"
+    }, {
+        "name": "Rifle Bullet",
+        "category": "Equipment",
+        "type": "Pocket Item",
+        "chance": 0.02,
+        "item_idx": "10619"
+    }, {
+        "name": "Dark Doom Totem",
+        "category": "Equipment",
+        "type": "Totem",
+        "chance": 0.02,
+        "item_idx": "10620"
+    }, {
+        "name": "Dark Avenger Totem",
+        "category": "Equipment",
+        "type": "Totem",
+        "chance": 0.02,
+        "item_idx": "10621"
+    }, {
+        "name": "Dark Hellia Totem",
+        "category": "Equipment",
+        "type": "Totem",
+        "chance": 0.02,
+        "item_idx": "10622"
+    }, {
+        "name": "Dark Grin Totem",
+        "category": "Equipment",
+        "type": "Totem",
+        "chance": 0.02,
+        "item_idx": "10623"
+    }, {
+        "name": "Hunter Totem",
+        "category": "Equipment",
+        "type": "Totem",
+        "chance": 0.02,
+        "item_idx": "10624"
+    }, {
+        "name": "Firestarter Ring Coupon",
+        "category": "Equipment",
+        "type": "Ring",
+        "chance": 0.02,
+        "item_idx": "10625"
+    }, {
+        "name": "The Ring of Torment Coupon",
+        "category": "Equipment",
+        "type": "Ring",
+        "chance": 0.02,
+        "item_idx": "10626"
+    }, {
+        "name": "X One-Handed Weapon Attack Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.02,
+        "item_idx": "10627"
+    }, {
+        "name": "X One-Handed Weapon Magic ATT Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.02,
+        "item_idx": "10628"
+    }, {
+        "name": "X Two-Handed Weapon Attack Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.02,
+        "item_idx": "10629"
+    }, {
+        "name": "X Two-Handed Weapon Magic ATT Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.02,
+        "item_idx": "10630"
+    }, {
+        "name": "X Armor Attack Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.02,
+        "item_idx": "10631"
+    }, {
+        "name": "X Armor Magic ATT Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.02,
+        "item_idx": "10632"
+    }, {
+        "name": "X Accessory Attack Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.02,
+        "item_idx": "10633"
+    }, {
+        "name": "X Accessory Magic ATT Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.02,
+        "item_idx": "10634"
+    }, {
+        "name": "X Pet Equipment Attack Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.02,
+        "item_idx": "10635"
+    }, {
+        "name": "X Pet Equipment Magic ATT Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.02,
+        "item_idx": "10636"
+    }, {
+        "name": "Battle-Roid (M) Coupon",
+        "category": "Android",
+        "type": "Android",
+        "chance": 0.01,
+        "item_idx": "10637"
+    }, {
+        "name": "Battle-Roid (F) Coupon",
+        "category": "Android",
+        "type": "Android",
+        "chance": 0.01,
+        "item_idx": "10638"
+    }, {
+        "name": "Outlaw Heart",
+        "category": "Android",
+        "type": "Heart",
+        "chance": 0.01,
+        "item_idx": "10639"
+    }, {
+        "name": "100,000-Maple-Point Coupon",
+        "category": "Functional",
+        "type": "Maple Points",
+        "chance": 0.01,
+        "item_idx": "10640"
+    }, {
+        "name": "Dreaming Lucid Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10641"
+    }, {
+        "name": "Lil Magnus Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10642"
+    }, {
+        "name": "Lil Hilla Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10643"
+    }, {
+        "name": "Lil Arkarium Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10644"
+    }, {
+        "name": "Lil Orchid Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10645"
+    }, {
+        "name": "Lil Von Leon Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10646"
+    }, {
+        "name": "Lil Cygnus Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10647"
+    }, {
+        "name": "Lil Luminous (Light) Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10648"
+    }, {
+        "name": "Lil Luminous (Dark) Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10649"
+    }, {
+        "name": "Lil Luminous (Equilibrium) Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10650"
+    }, {
+        "name": "Lil Mercedes Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10651"
+    }, {
+        "name": "Lil Phantom Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10652"
+    }, {
+        "name": "Lil Shade Familiar",
+        "category": "Familiar",
+        "type": "Unique",
+        "chance": 0.02,
+        "item_idx": "10653"
+    }, {
+        "name": "Lil Moonbeam Familiar",
+        "category": "Familiar",
+        "type": "Epic",
+        "chance": 0.02,
+        "item_idx": "10654"
+    }],
+    "b": [{
+        "name": "Royal Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 3,
+        "item_idx": "10655"
+    }, {
+        "name": "Royal Face Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 3,
+        "item_idx": "10656"
+    }, {
+        "name": "April Fools' Day Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 3,
+        "item_idx": "10657"
+    }, {
+        "name": "April Fools' Day Face Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 3,
+        "item_idx": "10658"
+    }, {
+        "name": "2x EXP Coupon (1 Hour) (6)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 3,
+        "item_idx": "10659"
+    }, {
+        "name": "2x Drop Coupon (1 Hour) (6)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 3,
+        "item_idx": "10660"
+    }, {
+        "name": "4-hour 2x EXP Special Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 7,
+        "item_idx": "10661"
+    }, {
+        "name": "1-day 2x EXP Special Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 3,
+        "item_idx": "10662"
+    }, {
+        "name": "Shield Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 7,
+        "item_idx": "10663"
+    }, {
+        "name": "Guardian Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 7,
+        "item_idx": "10664"
+    }, {
+        "name": "4-hour 2x Drop Special Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 5,
+        "item_idx": "10665"
+    }, {
+        "name": "Bonus Potential Cube",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 4,
+        "item_idx": "10666"
+    }, {
+        "name": "Red Cube (2)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 4,
+        "item_idx": "10667"
+    }, {
+        "name": "Chaos Scroll of Goodness 50%",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 5,
+        "item_idx": "10668"
+    }, {
+        "name": "Special Bonus Potential Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 5,
+        "item_idx": "10669"
+    }, {
+        "name": "20 Slot Soul Bag",
+        "category": "Functional",
+        "type": "Storage",
+        "chance": 0.8,
+        "item_idx": "10670"
+    }, {
+        "name": "20 Slot Herb Bag",
+        "category": "Functional",
+        "type": "Storage",
+        "chance": 0.8,
+        "item_idx": "10671"
+    }, {
+        "name": "20 Slot Mineral Bag",
+        "category": "Functional",
+        "type": "Storage",
+        "chance": 0.8,
+        "item_idx": "10672"
+    }, {
+        "name": "20 Slot Production Bag",
+        "category": "Functional",
+        "type": "Storage",
+        "chance": 0.8,
+        "item_idx": "10673"
+    }, {
+        "name": "20 Slot Recipe Bag",
+        "category": "Functional",
+        "type": "Storage",
+        "chance": 0.8,
+        "item_idx": "10674"
+    }, {
+        "name": "20 Slot Chair Bag",
+        "category": "Functional",
+        "type": "Storage",
+        "chance": 0.8,
+        "item_idx": "10675"
+    }, {
+        "name": "20 Slot Title Bag",
+        "category": "Functional",
+        "type": "Storage",
+        "chance": 0.8,
+        "item_idx": "10676"
+    }, {
+        "name": "20 Slot Scroll Bag",
+        "category": "Functional",
+        "type": "Storage",
+        "chance": 0.5,
+        "item_idx": "10677"
+    }, {
+        "name": "40 Slot Chair Bag",
+        "category": "Functional",
+        "type": "Storage",
+        "chance": 0.3,
+        "item_idx": "10678"
+    }, {
+        "name": "40-Slot Soul Bag",
+        "category": "Functional",
+        "type": "Storage",
+        "chance": 0.3,
+        "item_idx": "10679"
+    }, {
+        "name": "White Cube",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.2,
+        "item_idx": "10680"
+    }, {
+        "name": "Violet Cube",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.2,
+        "item_idx": "10681"
+    }, {
+        "name": "Innocence Scroll 50% (3)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.5,
+        "item_idx": "10682"
+    }, {
+        "name": "Epic Potential Scroll 50% (3)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.5,
+        "item_idx": "10683"
+    }, {
+        "name": "Eternal Flame of Rebirth (5)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.5,
+        "item_idx": "10684"
+    }, {
+        "name": "Powerful Rebirth Flame (5)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.5,
+        "item_idx": "10685"
+    }, {
+        "name": "Platinum Scissors of Karma",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 2,
+        "item_idx": "10686"
+    }, {
+        "name": "Fantastical Android (M) Coupon",
+        "category": "Android",
+        "type": "Android",
+        "chance": 0.55,
+        "item_idx": "10687"
+    }, {
+        "name": "Fantastical Android (F) Coupon",
+        "category": "Android",
+        "type": "Android",
+        "chance": 0.55,
+        "item_idx": "10688"
+    }, {
+        "name": "Summeroid (M) Coupon",
+        "category": "Android",
+        "type": "Android",
+        "chance": 1,
+        "item_idx": "10689"
+    }, {
+        "name": "Summeroid (F) Coupon",
+        "category": "Android",
+        "type": "Android",
+        "chance": 1,
+        "item_idx": "10690"
+    }, {
+        "name": "Princessoid Coupon",
+        "category": "Android",
+        "type": "Android",
+        "chance": 1,
+        "item_idx": "10691"
+    }, {
+        "name": "Zero Android Coupon",
+        "category": "Android",
+        "type": "Android",
+        "chance": 1,
+        "item_idx": "10692"
+    }, {
+        "name": "Golden Hammer 100% Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.5,
+        "item_idx": "10693"
+    }, {
+        "name": "Onyx Apple (25)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 0.43,
+        "item_idx": "10694"
+    }, {
+        "name": "Transparent Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.2,
+        "item_idx": "10695"
+    }, {
+        "name": "Transparent Gloves",
+        "category": "Equipment",
+        "type": "Glove",
+        "chance": 0.2,
+        "item_idx": "10696"
+    }, {
+        "name": "Transparent Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.2,
+        "item_idx": "10697"
+    }, {
+        "name": "Transparent Earrings",
+        "category": "Equipment",
+        "type": "Earring",
+        "chance": 0.2,
+        "item_idx": "10698"
+    }, {
+        "name": "Transparent Hat",
+        "category": "Equipment",
+        "type": "Hat",
+        "chance": 0.2,
+        "item_idx": "10699"
+    }, {
+        "name": "Transparent Eye Accessory",
+        "category": "Equipment",
+        "type": "Eye Accessory",
+        "chance": 0.2,
+        "item_idx": "10700"
+    }, {
+        "name": "Transparent Face Accessory",
+        "category": "Equipment",
+        "type": "Face Accessory",
+        "chance": 0.2,
+        "item_idx": "10701"
+    }, {
+        "name": "Universal Transparent Weapon",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.2,
+        "item_idx": "10702"
+    }, {
+        "name": "Transparent Katara",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.2,
+        "item_idx": "10703"
+    }, {
+        "name": "Transparent Claw",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.2,
+        "item_idx": "10704"
+    }, {
+        "name": "Transparent Knuckle",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.2,
+        "item_idx": "10705"
+    }, {
+        "name": "Transparent Wand",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.2,
+        "item_idx": "10706"
+    }, {
+        "name": "Transparent Shield",
+        "category": "Equipment",
+        "type": "Shield",
+        "chance": 0.2,
+        "item_idx": "10707"
+    }, {
+        "name": "Beast Tamer Transparent Ears",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.2,
+        "item_idx": "10708"
+    }, {
+        "name": "Beast Tamer Transparent Tail",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.2,
+        "item_idx": "10709"
+    }, {
+        "name": "Gachapon Ticket (5)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 2,
+        "item_idx": "10710"
+    }, {
+        "name": "Premium Surprise Style Box (2)",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 2,
+        "item_idx": "10711"
+    }, {
+        "name": "Waterwheel Chair",
+        "category": "Chair",
+        "type": "Chair",
+        "chance": 0.2,
+        "item_idx": "10712"
+    }, {
+        "name": "Spring Rain Chair",
+        "category": "Chair",
+        "type": "Chair",
+        "chance": 0.2,
+        "item_idx": "10713"
+    }, {
+        "name": "Pink Bean's Adventure Stories Chair",
+        "category": "Chair",
+        "type": "Chair",
+        "chance": 0.2,
+        "item_idx": "10714"
+    }, {
+        "name": "Animal Crystal Ball Chair",
+        "category": "Chair",
+        "type": "Chair",
+        "chance": 0.2,
+        "item_idx": "10715"
+    }, {
+        "name": "Shared Shelter Umbrella",
+        "category": "Chair",
+        "type": "Chair",
+        "chance": 0.2,
+        "item_idx": "10716"
+    }, {
+        "name": "Teddy Bear Kitchen Window Chair",
+        "category": "Chair",
+        "type": "Chair",
+        "chance": 0.2,
+        "item_idx": "10717"
+    }, {
+        "name": "Red Umbrella Chair",
+        "category": "Chair",
+        "type": "Chair",
+        "chance": 0.2,
+        "item_idx": "10718"
+    }, {
+        "name": "Sounds of Spring",
+        "category": "Chair",
+        "type": "Chair",
+        "chance": 0.2,
+        "item_idx": "10719"
+    }, {
+        "name": "Open Concert Chair",
+        "category": "Chair",
+        "type": "Chair",
+        "chance": 0.2,
+        "item_idx": "10720"
+    }, {
+        "name": "Rock Spirits Chair",
+        "category": "Chair",
+        "type": "Chair",
+        "chance": 0.2,
+        "item_idx": "10721"
+    }, {
+        "name": "9th Anniversary Prime Scroll for Accessory",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.4,
+        "item_idx": "10722"
+    }, {
+        "name": "9th Anniversary Prime Scroll for One-Handed Weapon",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.4,
+        "item_idx": "10723"
+    }, {
+        "name": "9th Anniversary Prime Scroll for Two-Handed Weapon",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.4,
+        "item_idx": "10724"
+    }, {
+        "name": "9th Anniversary Prime Scroll for Armor",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.4,
+        "item_idx": "10725"
+    }, {
+        "name": "Dominator Pendant",
+        "category": "Equipment",
+        "type": "Pendant",
+        "chance": 0.5,
+        "item_idx": "10726"
+    }, {
+        "name": "Sweetwater Cape",
+        "category": "Equipment",
+        "type": "Cape",
+        "chance": 0.065,
+        "item_idx": "10727"
+    }, {
+        "name": "Sweetwater Gloves",
+        "category": "Equipment",
+        "type": "Glove",
+        "chance": 0.065,
+        "item_idx": "10728"
+    }, {
+        "name": "Sweetwater Hat",
+        "category": "Equipment",
+        "type": "Hat",
+        "chance": 0.065,
+        "item_idx": "10729"
+    }, {
+        "name": "Sweetwater Pendant",
+        "category": "Equipment",
+        "type": "Pendant",
+        "chance": 0.065,
+        "item_idx": "10730"
+    }, {
+        "name": "Sweetwater Monocle",
+        "category": "Equipment",
+        "type": "Eye Accessory",
+        "chance": 0.065,
+        "item_idx": "10731"
+    }, {
+        "name": "Sweetwater Earrings",
+        "category": "Equipment",
+        "type": "Earring",
+        "chance": 0.065,
+        "item_idx": "10732"
+    }, {
+        "name": "Sweetwater Tattoo",
+        "category": "Equipment",
+        "type": "Face Accessory",
+        "chance": 0.06,
+        "item_idx": "10733"
+    }, {
+        "name": "Sweetwater Belt",
+        "category": "Equipment",
+        "type": "Belt",
+        "chance": 0.065,
+        "item_idx": "10734"
+    }, {
+        "name": "Sweetwater Shoulder",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.065,
+        "item_idx": "10735"
+    }, {
+        "name": "Sweetwater Suit",
+        "category": "Equipment",
+        "type": "Overall",
+        "chance": 0.065,
+        "item_idx": "10736"
+    }, {
+        "name": "Sweetwater Shoes",
+        "category": "Equipment",
+        "type": "Shoes",
+        "chance": 0.065,
+        "item_idx": "10737"
+    }, {
+        "name": "Sweetwater Shining Rod",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10738"
+    }, {
+        "name": "Sweetwater Soul Shooter",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10739"
+    }, {
+        "name": "Sweetwater Demon Sword",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10740"
+    }, {
+        "name": "Sweetwater Chain Sword",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10741"
+    }, {
+        "name": "Sweetwater Tigress Scepter",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10742"
+    }, {
+        "name": "Sweetwater Psy-limiter",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10743"
+    }, {
+        "name": "Sweetwater Sword",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10744"
+    }, {
+        "name": "Sweetwater Axe",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10745"
+    }, {
+        "name": "Sweetwater Mace",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10746"
+    }, {
+        "name": "Sweetwater Knife",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10747"
+    }, {
+        "name": "Sweetwater Katara",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10748"
+    }, {
+        "name": "Sweetwater Cane",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10749"
+    }, {
+        "name": "Sweetwater Wand",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10750"
+    }, {
+        "name": "Sweetwater Staff",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10751"
+    }, {
+        "name": "Sweetwater Two-Handed Sword",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10752"
+    }, {
+        "name": "Sweetwater Two-Handed Axe",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10753"
+    }, {
+        "name": "Sweetwater Maul",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10754"
+    }, {
+        "name": "Sweetwater Spear",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10755"
+    }, {
+        "name": "Sweetwater Polearm",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10756"
+    }, {
+        "name": "Sweetwater Bow",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10757"
+    }, {
+        "name": "Sweetwater Crossbow",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10758"
+    }, {
+        "name": "Sweetwater Steer",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10759"
+    }, {
+        "name": "Sweetwater Grip",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10760"
+    }, {
+        "name": "Sweetwater Shooter",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10761"
+    }, {
+        "name": "Sweetwater Twin Angels",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10762"
+    }, {
+        "name": "Sweetwater Hand Cannon",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10763"
+    }, {
+        "name": "Sweetwater Katana",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10764"
+    }, {
+        "name": "Sweetwater Wind",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10765"
+    }, {
+        "name": "Sweetwater Chain",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10766"
+    }, {
+        "name": "Sweetwater Lucent Gauntlet",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10767"
+    }, {
+        "name": "Sweetwater Gauntlet Buster",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10768"
+    }, {
+        "name": "Sweetwater Ancient Bow",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10769"
+    }, {
+        "name": "Sweetwater Ritual Fan",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10770"
+    }, {
+        "name": "Sweetwater Bladecaster",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.065,
+        "item_idx": "10771"
+    }, {
+        "name": "Terminus Defender",
+        "category": "Equipment",
+        "type": "Shield",
+        "chance": 0.08,
+        "item_idx": "10772"
+    }, {
+        "name": "Terminus Illuminator",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10773"
+    }, {
+        "name": "Terminus Firebreather",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10774"
+    }, {
+        "name": "Terminus Vanquisher",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10775"
+    }, {
+        "name": "Terminus Jaeger",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10776"
+    }, {
+        "name": "Terminus Scepter",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10777"
+    }, {
+        "name": "Terminus Divider",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10778"
+    }, {
+        "name": "Terminus Chopper",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10779"
+    }, {
+        "name": "Terminus Crusher",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10780"
+    }, {
+        "name": "Terminus Prowler",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10781"
+    }, {
+        "name": "Terminus Silencer",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10782"
+    }, {
+        "name": "Terminus Orchestrator",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10783"
+    }, {
+        "name": "Terminus Enchanter",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10784"
+    }, {
+        "name": "Terminus Mesmerizer",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10785"
+    }, {
+        "name": "Terminus Dominator",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10786"
+    }, {
+        "name": "Terminus Devastator",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10787"
+    }, {
+        "name": "Terminus Demolisher",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10788"
+    }, {
+        "name": "Terminus Impaler",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10789"
+    }, {
+        "name": "Terminus Warmonger",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10790"
+    }, {
+        "name": "Terminus Stormchaser",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10791"
+    }, {
+        "name": "Terminus Bolter",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10792"
+    }, {
+        "name": "Terminus Executioner",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10793"
+    }, {
+        "name": "Terminus Striker",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10794"
+    }, {
+        "name": "Terminus Raider",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10795"
+    }, {
+        "name": "Terminus Raptor",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10796"
+    }, {
+        "name": "Terminus Scorcher",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10797"
+    }, {
+        "name": "Terminus Grand Master",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10798"
+    }, {
+        "name": "Terminus Summoner",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10799"
+    }, {
+        "name": "Terminus Psy-limiter",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10800"
+    }, {
+        "name": "Terminus Chain",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10801"
+    }, {
+        "name": "Terminus Lucent Gauntlet",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10802"
+    }, {
+        "name": "Terminus Gauntlet",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10803"
+    }, {
+        "name": "Terminus Ancient Bow",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10804"
+    }, {
+        "name": "Terminus Ritual Fan",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10805"
+    }, {
+        "name": "Terminus Bladecaster",
+        "category": "Equipment",
+        "type": "Weapon",
+        "chance": 0.08,
+        "item_idx": "10806"
+    }, {
+        "name": "10,000-Maple-Point Chip",
+        "category": "Functional",
+        "type": "Maple Points",
+        "chance": 0.03,
+        "item_idx": "10807"
+    }, {
+        "name": "25,000-Maple-Point Coupon",
+        "category": "Functional",
+        "type": "Maple Points",
+        "chance": 0.01,
+        "item_idx": "10808"
+    }, {
+        "name": "Tinkerer's Red Belt",
+        "category": "Equipment",
+        "type": "Belt",
+        "chance": 0.03,
+        "item_idx": "10809"
+    }, {
+        "name": "Tinkerer's Red Shoulder Accessory",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.03,
+        "item_idx": "10810"
+    }, {
+        "name": "Magnificent Darknell Soul",
+        "category": "Functional",
+        "type": "Soul",
+        "chance": 0.15,
+        "item_idx": "10811"
+    }, {
+        "name": "Magnificent Damien Soul",
+        "category": "Functional",
+        "type": "Soul",
+        "chance": 0.15,
+        "item_idx": "10812"
+    }, {
+        "name": "Magnificent Lotus Soul",
+        "category": "Functional",
+        "type": "Soul",
+        "chance": 0.15,
+        "item_idx": "10813"
+    }, {
+        "name": "Magnificent Magnus Soul",
+        "category": "Functional",
+        "type": "Soul",
+        "chance": 0.15,
+        "item_idx": "10814"
+    }, {
+        "name": "Magnificent Cygnus Soul",
+        "category": "Functional",
+        "type": "Soul",
+        "chance": 0.15,
+        "item_idx": "10815"
+    }, {
+        "name": "Magnificent Lucid Soul",
+        "category": "Functional",
+        "type": "Soul",
+        "chance": 0.1,
+        "item_idx": "10816"
+    }, {
+        "name": "Magnificent Will Soul",
+        "category": "Functional",
+        "type": "Soul",
+        "chance": 0.1,
+        "item_idx": "10817"
+    }],
+    "c": [{
+        "name": "Tinkerer's Chest",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 10,
+        "item_idx": "10818"
+    }, {
+        "name": "Gachapon Ticket",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 10,
+        "item_idx": "10819"
+    }, {
+        "name": "Red Cube",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 5,
+        "item_idx": "10820"
+    }, {
+        "name": "Buff Freezer (5)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 5,
+        "item_idx": "10821"
+    }, {
+        "name": "Safety Gem",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 5,
+        "item_idx": "10822"
+    }, {
+        "name": "Respawn Pass",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 5,
+        "item_idx": "10823"
+    }, {
+        "name": "Beauty Salon Hair Slot Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 5,
+        "item_idx": "10824"
+    }, {
+        "name": "Beauty Salon Face Slot Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 5,
+        "item_idx": "10825"
+    }, {
+        "name": "Red Cube (2)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1,
+        "item_idx": "10826"
+    }, {
+        "name": "Black Cube",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1,
+        "item_idx": "10827"
+    }, {
+        "name": "Onyx Apple (5)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 2,
+        "item_idx": "10828"
+    }, {
+        "name": "Evolution One-handed Weapon ATT Scroll (2)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 3,
+        "item_idx": "10829"
+    }, {
+        "name": "Evolution One-handed Weapon Magic ATT Scroll (2)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 3,
+        "item_idx": "10830"
+    }, {
+        "name": "Evolution Two-handed Weapon ATT Scroll (2)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 3,
+        "item_idx": "10831"
+    }, {
+        "name": "Evolution Two-handed Weapon Magic ATT Scroll (2)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 3,
+        "item_idx": "10832"
+    }, {
+        "name": "Innocence Scroll 50%",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.9,
+        "item_idx": "10833"
+    }, {
+        "name": "Clean Slate Scroll 20% (2)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.9,
+        "item_idx": "10834"
+    }, {
+        "name": "Epic Potential Scroll 50%",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 1,
+        "item_idx": "10835"
+    }, {
+        "name": "Equip Tab 4 Slot Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 2.5,
+        "item_idx": "10836"
+    }, {
+        "name": "Use Tab 4 Slot Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 2.5,
+        "item_idx": "10837"
+    }, {
+        "name": "Set-up Tab 4 Slot Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 2.5,
+        "item_idx": "10838"
+    }, {
+        "name": "ETC Tab 4 Slot Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 2.5,
+        "item_idx": "10839"
+    }, {
+        "name": "Equip Tab 8 Slot Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1.5,
+        "item_idx": "10840"
+    }, {
+        "name": "Use Tab 8 Slot Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1.5,
+        "item_idx": "10841"
+    }, {
+        "name": "Set-Up Tab 8 Slot Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1.5,
+        "item_idx": "10842"
+    }, {
+        "name": "Etc Tab 8 Slot Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1.5,
+        "item_idx": "10843"
+    }, {
+        "name": "Incredible Chaos Scroll of Goodness 50%",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 2,
+        "item_idx": "10844"
+    }, {
+        "name": "Eternal Flame of Rebirth (3)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1.5,
+        "item_idx": "10845"
+    }, {
+        "name": "Powerful Rebirth Flame (3)",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1.5,
+        "item_idx": "10846"
+    }, {
+        "name": "Soft Petal Skin Android Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 1,
+        "item_idx": "10847"
+    }, {
+        "name": "9th Anniversary Prime Scroll for Accessory",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.09,
+        "item_idx": "10848"
+    }, {
+        "name": "9th Anniversary Prime Scroll for One-Handed Weapon",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.09,
+        "item_idx": "10849"
+    }, {
+        "name": "9th Anniversary Prime Scroll for Two-Handed Weapon",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.09,
+        "item_idx": "10850"
+    }, {
+        "name": "9th Anniversary Prime Scroll for Armor",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.09,
+        "item_idx": "10851"
+    }, {
+        "name": "Pure Equip Enhancement Scroll",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 2,
+        "item_idx": "10852"
+    }, {
+        "name": "Pure Equip Enhancement Scroll (2)",
+        "category": "Functional",
+        "type": "Scroll",
+        "chance": 0.7,
+        "item_idx": "10853"
+    }, {
+        "name": "Gorilla Robo (Permanent)",
+        "category": "Pet",
+        "type": "Pet",
+        "chance": 0.1,
+        "item_idx": "10858"
+    }, {
+        "name": "VIP Warrior Shield",
+        "category": "Equipment",
+        "type": "Shield",
+        "chance": 0.5,
+        "item_idx": "10859"
+    }, {
+        "name": "VIP Magician Shield",
+        "category": "Equipment",
+        "type": "Shield",
+        "chance": 0.5,
+        "item_idx": "10860"
+    }, {
+        "name": "VIP Thief Shield",
+        "category": "Equipment",
+        "type": "Shield",
+        "chance": 0.5,
+        "item_idx": "10861"
+    }, {
+        "name": "Dragon Khanjar",
+        "category": "Equipment",
+        "type": "Shield",
+        "chance": 0.5,
+        "item_idx": "10862"
+    }, {
+        "name": "Bed Head Coupon (M)",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.1,
+        "item_idx": "10863"
+    }, {
+        "name": "Vivacious Wavy Hair Coupon (F)",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.1,
+        "item_idx": "10864"
+    }, {
+        "name": "Novel Spunky Evan Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.1,
+        "item_idx": "10865"
+    }, {
+        "name": "Ballroom Classic Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.1,
+        "item_idx": "10866"
+    }, {
+        "name": "Kerning City Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.1,
+        "item_idx": "10867"
+    }, {
+        "name": "Fairy King Oberon Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.1,
+        "item_idx": "10868"
+    }, {
+        "name": "Ellinia Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.1,
+        "item_idx": "10869"
+    }, {
+        "name": "Henesys Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.1,
+        "item_idx": "10870"
+    }, {
+        "name": "Nautilus Hair Coupon",
+        "category": "Functional",
+        "type": "Cosmetic",
+        "chance": 0.1,
+        "item_idx": "10871"
+    }, {
+        "name": "Spell Trace 5,000 Coupon",
+        "category": "Functional",
+        "type": "Use",
+        "chance": 1.5,
+        "item_idx": "10872"
+    }, {
+        "name": "VIP Necklace",
+        "category": "Equipment",
+        "type": "Pendant",
+        "chance": 0.1,
+        "item_idx": "10873"
+    }, {
+        "name": "5,000-Maple-Point Coupon",
+        "category": "Functional",
+        "type": "Maple Points",
+        "chance": 0.08,
+        "item_idx": "10874"
+    }, {
+        "name": "Marvelous",
+        "category": "Equipment",
+        "type": "Medal",
+        "chance": 0.08,
+        "item_idx": "10875"
+    }, {
+        "name": "Tinkerer's Blue Belt",
+        "category": "Equipment",
+        "type": "Belt",
+        "chance": 0.08,
+        "item_idx": "10876"
+    }, {
+        "name": "Tinkerer's Blue Shoulder Accessory",
+        "category": "Equipment",
+        "type": "Shoulder",
+        "chance": 0.08,
+        "item_idx": "10877"
+    }, {
+        "name": "Magnus's Rage",
+        "category": "Equipment",
+        "type": "Ring",
+        "chance": 0.01,
+        "item_idx": "10878"
+    }, {
+        "name": "Hilla's Rage",
+        "category": "Equipment",
+        "type": "Ring",
+        "chance": 0.01,
+        "item_idx": "10879"
+    }]
+};
 </script>
 
 <link rel="stylesheet" type="text/css" href="marvel/marvel.css">
