@@ -57,7 +57,7 @@ $(function() {
                 !cssText.includes("background")
             ) continue;
 
-            let bimg = cssText.match(/url\("(.*)"\);/gi);
+            let bimg = cssText.replace(" no-repeat","").match(/url\("(.*)"\);/gi);
 
             if (bimg == null || bimg === undefined) continue;
             
@@ -71,7 +71,7 @@ $(function() {
         }
     }
 
-    ip.remove();
+    //ip.remove();
 });
 
 //random functions
