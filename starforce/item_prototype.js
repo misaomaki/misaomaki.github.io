@@ -1041,16 +1041,6 @@ item.prototype.starforce_att_percent = function(att = 0, bwatt = 0, p_arr = []) 
 //generate a star force success map to test the prn against. map goes from 0 to 1.
 item.prototype.generate_sresult_map = function(sr, starcatch = false) {
     let poffset = prng();
-
-    let sc_success = sr.success * 0.045; //starcatch increase assumption
-
-    //slot in the star catch success rate and reduce fail by the same amount
-    sr = {
-        success: sr.success,
-        fail: sr.fail - sc_success,
-        destroy: sr.destroy,
-        sc_success: sc_success
-    };
     
     //randomize the catch map so that the result types are not always in the same order
     let catch_map = {};

@@ -14,12 +14,27 @@ let sf_audio_files = {
     EnchantStarStop: "EnchantStarStop.mp3",
     EnchantStarSuccess: "EnchantStarSuccess.mp3",
     EnchantSuccess: "EnchantSuccess.mp3",
-    // _ creates new instances instead of reusing the same one
-    _CubeEnchantSuccess: "CubeEnchantSuccess.mp3",
-    _BtMouseClick: "BtMouseClick.mp3",
-    _BtMouseOver: "BtMouseOver.mp3",
-    _DragStart: "DragStart.mp3",
-    _DragEnd: "DragEnd.mp3"
+    // _ creates new instances instead of reusing the same one (no longer true with options added)
+    _CubeEnchantSuccess: {
+        name: "CubeEnchantSuccess.mp3",
+        instances: 20 //number of audio channels to initialize. big number incase animation is removed and user goes nuts
+    },
+    _BtMouseClick: {
+        name: "BtMouseClick.mp3",
+        instances: 8
+    },
+    _BtMouseOver: {
+        name: "BtMouseOver.mp3",
+        instances: 8
+    },
+    _DragStart: {
+        name: "DragStart.mp3",
+        instances: 8
+    },
+    _DragEnd: {
+        name: "DragEnd.mp3",
+        instances: 8
+    }
 };
 
 let sfa = {
@@ -40,16 +55,22 @@ let sfa = {
         }
         */
     },
-    //todo - overlapping sound causes http request for that sound each time. 
     play: function(s, o) {
         let this_audio = {};
 
-        
+        let this_file = sf_audio_files[s];
 
-        if (s.startsWith("_")) {
-            this_audio = sfa.audio[s].cloneNode(false);
-        } else {
+        if (typeof this_file === "string") {
             this_audio = sfa.audio[s];
+        } else {
+            //move through audio instances on audio play. used to allow audio to overlap itself.
+            this_audio = sfa.audio[s + "_" + this_file.current_instance];
+
+            ++this_file.current_instance;
+
+            if (this_file.current_instance === this_file.instances) {
+                this_file.current_instance = 0;
+            }
         }
 
         this_audio.volume = sfa.volume;
@@ -77,10 +98,36 @@ let sfa = {
     }
 };
 
+//init audio file and store it in the sound object.
+let init_audio_channels = function(i) {
+    let saf = sf_audio_files[i];
+
+    let this_audio = "";
+
+    //if the object is string, then it is simply the name of the audio. if it's an object, the it has additional options
+    if (typeof saf === "string") {
+        this_audio = new Audio("./assets/starforce/sounds/" + sf_audio_files[i]);
+        this_audio.preload = "auto";
+        sfa.audio[i] = this_audio;
+    } else {
+        if (saf.instances == undefined) {
+            saf.instances = 1;
+        }
+
+        //current instance of audio channel to get for particular audio file. increment by 1 when played and reset when it reaches its max instances
+        if (saf.current_instance == undefined) {
+            saf.current_instance = 0;
+        }
+
+        for (let a = 0; a < saf.instances; ++a) {
+            this_audio = new Audio("./assets/starforce/sounds/" + sf_audio_files[i].name);
+            sfa.audio[i + "_" + a] = this_audio;
+        }
+    }
+};
+
 for (let i in sf_audio_files) {
-    let this_audio = new Audio("./assets/starforce/sounds/" + sf_audio_files[i]);
-    this_audio.preload = "auto";
-    sfa.audio[i] = this_audio;
+    init_audio_channels(i);
 }
 
 $(function() {

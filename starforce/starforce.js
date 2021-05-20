@@ -86,10 +86,13 @@ var star_success_rate = function(star, superior = false) {
     success_rate = +(base_success_rate - sdiff).toFixed(2);
     fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
 
+    let sc_rate = success_rate * 0.045; //starcatch assumption
+
     return {
         success: success_rate,
-        fail: fail_rate,
-        destroy: destroy_rate
+        fail: fail_rate - sc_rate,
+        destroy: destroy_rate,
+        sc_success: sc_rate
     };
 };
 
