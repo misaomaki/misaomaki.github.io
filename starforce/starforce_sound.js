@@ -1,6 +1,17 @@
 let sf_audio_files = {
     Enchant: "Enchant.mp3",
-    EnchantChanceTime: "EnchantChanceTime.mp3",
+    EnchantChanceTime: {
+        name: "EnchantChanceTime.mp3",
+        instances: 1,
+        events: {
+            ontimeupdate: function(i) {
+                if((this.currentTime / this.duration) > 0.40){
+                  this.currentTime = 0;
+                  this.play();
+                }
+            }
+        }
+    },
     EnchantDelay: "EnchantDelay.mp3",
     EnchantDestroy: "EnchantDestroy.mp3",
     EnchantDestroyed: "EnchantDestroyed.mp3",
@@ -64,12 +75,17 @@ let sfa = {
             this_audio = sfa.audio[s];
         } else {
             //move through audio instances on audio play. used to allow audio to overlap itself.
-            this_audio = sfa.audio[s + "_" + this_file.current_instance];
+            this_audio = sfa.audio[s][s + "_" + this_file.current_instance];
 
             ++this_file.current_instance;
 
-            if (this_file.current_instance === this_file.instances) {
+            if (this_file.current_instance >= this_file.instances) {
                 this_file.current_instance = 0;
+            }
+
+            //play any audi-specific events
+            for (let i in this_file.events) {
+                this_audio[i] = this_file[i];
             }
         }
 
@@ -79,6 +95,7 @@ let sfa = {
             this_audio[i] = o[i];
         }
 
+        /*
         if (s === "EnchantChanceTime") {
             this_audio.ontimeupdate= function(i) {
                 if((this.currentTime / this.duration) > 0.40){
@@ -87,14 +104,26 @@ let sfa = {
                 }
             };
         }
+        */
 
         this_audio.play();
     },
     stop: function(s) {
-        let this_audio = sfa.audio[s];
+        let this_file = sf_audio_files[s];
+        let this_audio = {};
 
-        this_audio.pause();
-        this_audio.currentTime = 0;
+        if (typeof this_file === 'string') {
+            this_audio = sfa.audio[s];
+            this_audio.pause();
+            this_audio.currentTime = 0;
+        } else {
+            //pause and reset all channels for an audio file
+            for (let i in sfa.audio[s]) {
+                this_audio =  sfa.audio[s][i];
+                this_audio.pause();
+                this_audio.currentTime = 0;
+            }
+        }
     }
 };
 
@@ -114,14 +143,22 @@ let init_audio_channels = function(i) {
             saf.instances = 1;
         }
 
+        if (saf.events == undefined) {
+            saf.events = {};
+        }
+
         //current instance of audio channel to get for particular audio file. increment by 1 when played and reset when it reaches its max instances
         if (saf.current_instance == undefined) {
             saf.current_instance = 0;
         }
 
+        if (sfa.audio[i] == undefined) {
+            sfa.audio[i] = {};
+        }
+
         for (let a = 0; a < saf.instances; ++a) {
             this_audio = new Audio("./assets/starforce/sounds/" + sf_audio_files[i].name);
-            sfa.audio[i + "_" + a] = this_audio;
+            sfa.audio[i][i + "_" + a] = this_audio;
         }
     }
 };

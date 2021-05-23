@@ -1952,7 +1952,7 @@ item.prototype.redraw_sf = function() {
                     Success Chance: ${(srate.success * 100).toFixed(1)}% <br>
                     <span style="transform: scale(0.95,1);display: inline-block;margin-left: -3px;">Failure (${is_droppable ? "Drop" : "Keep"}) Chance:</span> 
                     <span style="display:inline-block;margin-left: -5px;">
-                        ${((srate.fail + (is_event_droppable ? srate.destroy : 0)) * 100).toFixed(1)}%
+                        ${((srate.fail + srate.sc_success + (is_event_droppable ? srate.destroy : 0)) * 100).toFixed(1)}%
                     </span> <br>
                     ${
                         !is_event_droppable && srate.destroy !== 0 ?
