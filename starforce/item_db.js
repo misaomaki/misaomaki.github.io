@@ -7692,6 +7692,7 @@ var items_store = {
         },
         energy_chain_str: {
             name: "Genesis Whip Blade",
+            alt_name: "Genesis Whip Blade (STR)",
             override_image: "GenesisWhipBlade",
             level: 200,
             class: "weapon",
@@ -7721,6 +7722,7 @@ var items_store = {
         },
         energy_chain_luk: {
             name: "Genesis Whip Blade",
+            alt_name: "Genesis Whip Blade (LUK)",
             override_image: "GenesisWhipBlade",
             level: 200,
             class: "weapon",
@@ -7779,6 +7781,7 @@ var items_store = {
         },
         psy_limiter: {
             name: "Genesis Psy-limiter",
+            override_image: "GenesisPsyLimiter",
             level: 200,
             class: "weapon",
             type: "psy-limiter",
@@ -8091,6 +8094,7 @@ var items_store = {
         },
         two_handed_sword: {
             name: "Genesis Two-handed Sword",
+            override_image: "GenesisTwoHandedSword",
             level: 200,
             class: "weapon",
             type: "two-handed sword",
@@ -8119,6 +8123,7 @@ var items_store = {
         },
         two_handed_axe: {
             name: "Genesis Two-handed Axe",
+            override_image: "GenesisTwoHandedAxe",
             level: 200,
             class: "weapon",
             type: "two-handed axe",
@@ -8146,7 +8151,7 @@ var items_store = {
             hammers_added: 2
         },
         two_handed_hammer: {
-            name: "Arcane Umbra Two-handed Hammer",
+            name: "Genesis Two-handed Hammer",
             level: 200,
             class: "weapon",
             type: "two-handed blunt weapon",

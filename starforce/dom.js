@@ -1,4 +1,46 @@
 $(function() {
+    var item_create = $("#item_create");
+
+    var cube_menu = $("#cube_menu");
+
+    var sfmain =  $(".sf-main-border");
+    var sfpop = $(".sfp-main-border");
+    var sfitem = $(".sfi-main-border");
+    var sfr = $(".sfi-result");
+    var sfsc = $(".sfsc-main-border");
+    var sfsc_clone = sfsc.html();
+
+    var cube_main = $("#cube_container");
+    var cube_black_main = $("#black_cube_container");
+
+    var sf_enchant_effects = $(".sf-enchant-effects");
+    var sf_header_text = $(".sf-header-text");
+    var sf_chance_time_text = $(".sf-star-chance");
+
+    var sfi_result_con = $(".sfi-result-container");
+    var sfi_result = $(".sfi-result");
+    var sfi_info_right = $(".sfi-info-right");
+    var sfi_text = $(".sfi-text");
+
+    var sf_starcatch = $(".sf-starcatch.sf-checkbox");
+    var sf_safeguard = $(".sf-safeguard.sf-checkbox");
+    var enable_starcatch = !$(".sf-starcatch.sf-checkbox").hasClass("checked");
+    var enable_safeguard = !$(".sf-starcatch.sf-safeguard").hasClass("checked");
+
+    var sfsc_star_container = {};
+    var sfsc_star_trail_left = {};
+    var sfsc_star_trail_right = {};
+    var sfsc_star_item_status = {};
+    var sfsc_star_items = {};
+    var sfsc_star_hitbox = {};
+    var sfsc_star_road = {};
+    var sfsc_star_start = {};
+
+    var i_con = $(".item-main-border");
+
+
+
+
     let body = $("body");
     //maple button sounds
     body.on("click", ".maple-button", function() {
@@ -695,6 +737,26 @@ $(function() {
         $("#cube_log_table .row-hover").removeClass("row-hover");
     });
 
+    //auto starforce
+    $("#auto_starforce").on("click", function() {
+        let data = {
+            from: 10,
+            to: 15,
+            item: Item.idata,
+            sys_type: "GMS",
+            starcatch: sf_starcatch.hasClass("checked"),
+            events: event_options
+        };
+
+        let w_sf = new Worker("./starforce/worker_starforce.js");
+
+        w_sf.postMessage(data);
+
+        w_sf.onmessage = function(d) {
+            debugger;
+        };
+    });
+
     //MENU STUFF
     let optionbox = $("#option_box").dialog({
         autoOpen: false,
@@ -819,7 +881,7 @@ $(function() {
 
                     prn_map_html += `
                         <span class="result-${j2}${j2 === "destroy" ? "2" : ""} r-${j}" style="display:inline-block;width:100px;">
-                            ${j}:
+                            ${_tl.prn >= map[0] && _tl.prn < map[1] ? ">" : ""}${j}:
                         </span> 
                         ${map[0].toFixed(5)} - ${map[1].toFixed(5)} <br>
                     `;
@@ -984,45 +1046,6 @@ $(function() {
         if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
         return true;
     };
-
-    var item_create = $("#item_create");
-
-    var cube_menu = $("#cube_menu");
-
-    var sfmain =  $(".sf-main-border");
-    var sfpop = $(".sfp-main-border");
-    var sfitem = $(".sfi-main-border");
-    var sfr = $(".sfi-result");
-    var sfsc = $(".sfsc-main-border");
-    var sfsc_clone = sfsc.html();
-
-    var cube_main = $("#cube_container");
-    var cube_black_main = $("#black_cube_container");
-
-    var sf_enchant_effects = $(".sf-enchant-effects");
-    var sf_header_text = $(".sf-header-text");
-    var sf_chance_time_text = $(".sf-star-chance");
-
-    var sfi_result_con = $(".sfi-result-container");
-    var sfi_result = $(".sfi-result");
-    var sfi_info_right = $(".sfi-info-right");
-    var sfi_text = $(".sfi-text");
-
-    var sf_starcatch = $(".sf-starcatch.sf-checkbox");
-    var sf_safeguard = $(".sf-safeguard.sf-checkbox");
-    var enable_starcatch = !$(".sf-starcatch.sf-checkbox").hasClass("checked");
-    var enable_safeguard = !$(".sf-starcatch.sf-safeguard").hasClass("checked");
-
-    var sfsc_star_container = {};
-    var sfsc_star_trail_left = {};
-    var sfsc_star_trail_right = {};
-    var sfsc_star_item_status = {};
-    var sfsc_star_items = {};
-    var sfsc_star_hitbox = {};
-    var sfsc_star_road = {};
-    var sfsc_star_start = {};
-
-    var i_con = $(".item-main-border");
 
     var init_starcatch = function() {
         sfsc_star_container = $(".sfsc-star-container");
