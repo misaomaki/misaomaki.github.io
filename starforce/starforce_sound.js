@@ -85,7 +85,7 @@ let sfa = {
 
             //play any audi-specific events
             for (let i in this_file.events) {
-                this_audio[i] = this_file[i];
+                this_audio[i] = this_file.events[i];
             }
         }
 
@@ -94,17 +94,6 @@ let sfa = {
         for (let i in o) {
             this_audio[i] = o[i];
         }
-
-        /*
-        if (s === "EnchantChanceTime") {
-            this_audio.ontimeupdate= function(i) {
-                if((this.currentTime / this.duration) > 0.40){
-                  this.currentTime = 0;
-                  this.play();
-                }
-            };
-        }
-        */
 
         this_audio.play();
     },

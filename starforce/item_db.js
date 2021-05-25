@@ -7575,6 +7575,976 @@ var items_store = {
             upgrades: 12,
             hammers_added: 2
         }
+    },
+    genesis: {
+        shining_rod: {
+            name: "Genesis Shining Rod",
+            level: 200,
+            class: "weapon",
+            type: "shining rod",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 237,
+                matt: 400,
+                boss_damage: 0.3,
+                ied: 0.2,
+                int: 150,
+                luk: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 600,
+                luk: 0
+            },
+            img: "item-genesisshiningrod",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        bladecaster: {
+            name: "Genesis Bladecaster",
+            level: 200,
+            class: "weapon",
+            type: "bladecaster",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 340,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesisbladecaster",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        soul_shooter: {
+            name: "Genesis Soul Shooter",
+            level: 200,
+            class: "weapon",
+            type: "soul shooter",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "dex", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 255,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 0,
+                dex: 600,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesissoulshooter",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        desperado: {
+            name: "Genesis Desperado",
+            level: 200,
+            class: "weapon",
+            type: "desperado",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 340,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                maxHP: 2800
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesisdesperado",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        energy_chain_str: {
+            name: "Genesis Whip Blade",
+            override_image: "GenesisWhipBlade",
+            level: 200,
+            class: "weapon",
+            type: "whip blade",
+            speed: "fast",
+            job: ["thief", "pirate"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 255,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesiswhipblade",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        energy_chain_luk: {
+            name: "Genesis Whip Blade",
+            override_image: "GenesisWhipBlade",
+            level: 200,
+            class: "weapon",
+            type: "whip blade",
+            speed: "fast",
+            job: ["thief", "pirate"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 255,
+                boss_damage: 0.3,
+                ied: 0.2,
+                dex: 150,
+                luk: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesiswhipblade",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        scepter: {
+            name: "Genesis Scepter",
+            level: 200,
+            class: "weapon",
+            type: "scepter",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 237,
+                matt: 400,
+                boss_damage: 0.3,
+                ied: 0.2,
+                int: 150,
+                luk: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 600,
+                luk: 0
+            },
+            img: "item-genesisscepter",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        psy_limiter: {
+            name: "Genesis Psy-limiter",
+            level: 200,
+            class: "weapon",
+            type: "psy-limiter",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 237,
+                matt: 400,
+                boss_damage: 0.3,
+                ied: 0.2,
+                int: 150,
+                luk: 6150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 600,
+                luk: 0
+            },
+            img: "item-genesispsylimiter",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        chain: {
+            name: "Genesis Chain",
+            level: 200,
+            class: "weapon",
+            type: "chain",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 318,
+                boss_damage: 0.3,
+                ied: 0.2,
+                luk: 150,
+                dex: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 600
+            },
+            img: "item-genesischain",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        lucent_gauntlet: {
+            name: "Genesis Lucent Gauntlet",
+            level: 200,
+            class: "weapon",
+            type: "lucent gauntlet",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 237,
+                matt: 400,
+                boss_damage: 0.3,
+                ied: 0.2,
+                int: 150,
+                luk: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 600,
+                luk: 0
+            },
+            img: "item-genesislucentgauntlet",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        ritual_fan: {
+            name: "Genesis Ritual Fan",
+            level: 200,
+            class: "weapon",
+            type: "ritual fan",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 318,
+                boss_damage: 0.3,
+                ied: 0.2,
+                luk: 150,
+                dex: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 600
+            },
+            img: "item-genesisritualfan",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        sword: {
+            name: "Genesis Saber",
+            level: 200,
+            class: "weapon",
+            type: "one-handed sword",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 326,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesissaber",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        axe: {
+            name: "Genesis Axe",
+            level: 200,
+            class: "weapon",
+            type: "one-handed axe",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 326,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesisaxe",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        hammer: {
+            name: "Genesis Hammer",
+            level: 200,
+            class: "weapon",
+            type: "one-handed blunt weapon",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 326,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesishammer",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        dagger: {
+            name: "Genesis Dagger",
+            level: 200,
+            class: "weapon",
+            type: "dagger",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk",
+            pstat: ["dex", "luk"], 
+            att_type: "watt", 
+            flame_type: 2, 
+            bstat: Object.assign({}, stats, { 
+                watt: 318,
+                boss_damage: 0.3,
+                ied: 0.2,
+                luk: 150,
+                dex: 150
+            }),
+            req: { 
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 600
+            },
+            img: "item-genesisdagger",
+            upgrades: 8, 
+            hammers_added: 2
+        },
+        cane: {
+            name: "Genesis Cane",
+            level: 200,
+            class: "weapon",
+            type: "cane",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 326,
+                boss_damage: 0.3,
+                ied: 0.2,
+                luk: 150,
+                dex: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 600
+            },
+            img: "item-genesiscane",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        wand: {
+            name: "Genesis Wand",
+            level: 200,
+            class: "weapon",
+            type: "wand",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 237,
+                matt: 400,
+                boss_damage: 0.3,
+                ied: 0.2,
+                int: 150,
+                luk: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 600,
+                luk: 0
+            },
+            img: "item-genesiswand",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        staff: {
+            name: "Genesis Staff",
+            level: 200,
+            class: "weapon",
+            type: "staff",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 251,
+                matt: 406,
+                boss_damage: 0.3,
+                ied: 0.2,
+                int: 100,
+                luk: 100
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 600,
+                luk: 0
+            },
+            img: "item-genesisstaff",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        two_handed_sword: {
+            name: "Genesis Two-handed Sword",
+            level: 200,
+            class: "weapon",
+            type: "two-handed sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 340,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesistwohandedsword",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        two_handed_axe: {
+            name: "Genesis Two-handed Axe",
+            level: 200,
+            class: "weapon",
+            type: "two-handed axe",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 340,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesistwohandedaxe",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        two_handed_hammer: {
+            name: "Arcane Umbra Two-handed Hammer",
+            level: 200,
+            class: "weapon",
+            type: "two-handed blunt weapon",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 340,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesistwohandedhammer",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        spear: {
+            name: "Genesis Spear",
+            level: 200,
+            class: "weapon",
+            type: "spear",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 304,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesisspear",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        polearm: {
+            name: "Genesis Polearm",
+            level: 200,
+            class: "weapon",
+            type: "polearm",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 304,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesispolearm",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        bow: {
+            name: "Genesis Bow",
+            level: 200,
+            class: "weapon",
+            type: "bow",
+            speed: "normal",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 318,
+                boss_damage: 0.3,
+                speed: 19,
+                ied: 0.2,
+                dex: 150,
+                str: 150,
+                knockback: 0.8
+            }),
+            req: {
+                str: 0,
+                dex: 600,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesisbow",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        crossbow: {
+            name: "Genesis Crossbow",
+            level: 200,
+            class: "weapon",
+            type: "bow",
+            speed: "normal",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 326,
+                boss_damage: 0.3,
+                speed: 19,
+                ied: 0.2,
+                dex: 150,
+                str: 150,
+                knockback: 0.71
+            }),
+            req: {
+                str: 0,
+                dex: 600,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesiscrossbow",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        dual_bowguns: {
+            name: "Genesis Dual Bowguns",
+            level: 200,
+            class: "weapon",
+            type: "dual bowguns",
+            speed: "normal",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 318,
+                boss_damage: 0.3,
+                ied: 0.2,
+                dex: 150,
+                str: 150
+            }),
+            req: {
+                str: 0,
+                dex: 600,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesisdualbowguns",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        ancient_bow: {
+            name: "Genesis Ancient Bow",
+            level: 200,
+            class: "weapon",
+            type: "dual bowguns",
+            speed: "normal",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 318,
+                boss_damage: 0.3,
+                speed: 19,
+                ied: 0.2,
+                dex: 150,
+                str: 150,
+                knockback: 0.8
+            }),
+            req: {
+                str: 0,
+                dex: 600,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesisancientbow",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        guards: {
+            name: "Genesis Guards",
+            level: 200,
+            class: "weapon",
+            type: "claw",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 172,
+                boss_damage: 0.3,
+                ied: 0.2,
+                luk: 150,
+                dex: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 600
+            },
+            img: "item-genesisguards",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        knuckle: {
+            name: "Genesis Claw",
+            level: 200,
+            class: "weapon",
+            type: "knuckle",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 255,
+                boss_damage: 0.3,
+                ied: 0.2,
+                dex: 150,
+                str: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesisclaw",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        gun: {
+            name: "Genesis Pistol",
+            level: 200,
+            class: "weapon",
+            type: "gun",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 249,
+                boss_damage: 0.3,
+                ied: 0.2,
+                dex: 150,
+                str: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesispistol",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        hand_cannon: {
+            name: "Genesis Siege Gun",
+            level: 200,
+            class: "weapon",
+            type: "hand cannon",
+            speed: "slow",
+            job: ["pirate"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 348,
+                boss_damage: 0.3,
+                ied: 0.2,
+                dex: 150,
+                str: 150,
+                def: 250
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesissiegegun",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        katana: {
+            name: "Genesis Katana",
+            level: 200,
+            class: "weapon",
+            type: "katana",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 326,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesiskatana",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        fan: {
+            name: "Genesis Fan",
+            level: 200,
+            class: "weapon",
+            type: "fan",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int", 
+            pstat: ["int", "luk"], 
+            att_type: "matt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 237,
+                matt: 400,
+                boss_damage: 0.3,
+                ied: 0.2,
+                int: 150,
+                luk: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 600,
+                luk: 0
+            },
+            img: "item-genesisfan",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        arm_cannon: {
+            name: "Genesis Ellaha",
+            level: 200,
+            class: "weapon",
+            type: "arm cannon",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 255,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesisellaha",
+            upgrades: 8,
+            hammers_added: 2
+        },
     }
 };
 
