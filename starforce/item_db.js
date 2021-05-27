@@ -8152,6 +8152,7 @@ var items_store = {
         },
         two_handed_hammer: {
             name: "Genesis Two-handed Hammer",
+            override_image: "GenesisTwoHandedHammer",
             level: 200,
             class: "weapon",
             type: "two-handed blunt weapon",

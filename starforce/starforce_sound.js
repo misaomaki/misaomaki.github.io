@@ -55,7 +55,15 @@ let sfa = {
     setVolume: function(val) {
         sfa.volume = val;
         for (i in sfa.audio) {
-            sfa.audio[i].volume = sfa.volume;
+            let this_file = sf_audio_files[i];
+
+            if (typeof this_file === "string") {
+                sfa.audio[i].volume = sfa.volume;
+            } else {
+                for (let j in sfa.audio[i]) {
+                    sfa.audio[i][j].volume = sfa.volume;
+                }
+            }
         }
     },
     setSpeed: function(val) {
