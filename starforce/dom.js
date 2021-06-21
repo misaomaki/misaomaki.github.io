@@ -737,32 +737,13 @@ $(function() {
         $("#cube_log_table .row-hover").removeClass("row-hover");
     });
 
-    //auto starforce
-    $("#auto_starforce").on("click", function() {
-        let data = {
-            from: 10,
-            to: 15,
-            item: Item.idata,
-            sys_type: "GMS",
-            starcatch: sf_starcatch.hasClass("checked"),
-            events: event_options
-        };
-
-        let w_sf = new Worker("./starforce/worker_starforce.js");
-
-        w_sf.postMessage(data);
-
-        w_sf.onmessage = function(d) {
-            debugger;
-        };
-    });
-
     //MENU STUFF
     let optionbox = $("#option_box").dialog({
         autoOpen: false,
         modal: false
     });
 
+    //change rates of starforcing cost between GMS and KMS
     let sys_sfrates = $("#system_sfrates");
     sys_sfrates.on("click", function() {
         let _this = $(this);
@@ -772,6 +753,142 @@ $(function() {
         });
 
         Item.redraw();
+    });
+
+
+    let MAX_LOG_RECORDS = 5000;
+    //auto starforce
+    $("#auto_starforce").on("click", function() {
+        let html = `
+            <b>Automatically run starforcing to the desired star. This will generate starforce log data.</b>
+            <hr>
+            <div class="form-group">
+                <label class="form-label-group">
+                    <span class="form-label">
+                        Star From:
+                    </span>
+                    <input type="number" value="${Item.idata.meta.stars}" readonly disabled style="width:75px">
+                </label>
+                <label class="form-label-group" for="asf_star_to">
+                    <span class="form-label">
+                        Star To:
+                    </span>
+                    <input type="number" id="asf_star_to" value="22" min="${Item.idata.meta.stars}" style="width:75px">
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="form-label-group">
+                    <span class="form-label">
+                        Starcatch at stars:
+                    </span>
+                    <hr>
+                    <textarea id="asf_starcatch" 
+                        style="width:100%;height:50px"
+                        placeholder="Add stars to starcatch in a comma-delimited list here (ex. '14,20,21'). You can specify a range by using '-' (ex. '1-5'). This can be mixed and matched (ex. '10-15,20,21'). Leave blank to not starcatch."
+                    ></textarea>
+                </label>
+            </div>
+            <div class="form-group">
+                <div class="form-label-group">
+                    <span class="form-label">
+                        Safeguard at stars:
+                    </span>
+                    <hr>
+                    <span style="display: inline-block; padding: 5px;">
+                        <label for="asf_cb_all">
+                            <input type="checkbox" class="asf_checkbox_all" id="asf_cb_all" value="-1"> [All]
+                        </label>
+                    </span>
+                    ${
+                        [12,13,14,15,16].map((a,b)=>{
+                            return `
+                            <span style="display: inline-block; padding: 5px;">
+                                <label for="asf_cb_${b}">
+                                    <input type="checkbox" class="asf_checkbox" id="asf_cb_${b}" value="${a}"> ${a}
+                                </label>
+                            </span>
+                            `
+                        }).join("")
+                    }
+                </div>
+            </div>
+            <div class="form-footer" style="color:red">
+                The last ${MAX_LOG_RECORDS} log records will be kept in the starforce log.
+            </div>
+        `;
+
+        optionbox.html(html).dialog({
+            title: "Auto Star Force",
+            width: 1000,
+            height: "auto",
+            buttons: [{
+                text: "Close",
+                click: function() {
+                    $(this).dialog("close");
+                }
+            }, {
+                text: "Begin Starforcing",
+                id: "btnBeginStarforce",
+                click: function() {
+                    let btn = $("#btnBeginStarforce");
+
+                    btn.prop("disabled", true);
+                    btn.html("Processing starforce...");
+
+                    let starcatch_a = $("#asf_starcatch").val().split(",");
+                    
+                    let starcatch = [];
+                    
+                    //get the starcatch stars from textarea
+                    for (let i = 0; i < starcatch_a.length; ++i) {
+                        let _i = starcatch_a[i];
+
+                        if (_i.includes("-")) {
+                            let i_range = _i.split("-");
+
+                            for (let j = i_range[0]; j <= i_range[1]; ++j) {
+                                starcatch.push(+j);
+                            }
+                        } else {
+                            starcatch.push(+_i);
+                        }
+                    }
+
+                    //get the safeguard stars from the checkbox list
+                    let safeguard = $("#option_box .asf_checkbox:checked").map(function(a,b) {return +$(b).val()}).get();
+
+                    let stars_to = +$("#asf_star_to").val();
+
+                    let data = {
+                        to: stars_to,
+                        item: Item.idata,
+                        sys_type: sys_sfrates.val(),
+                        starcatch: starcatch,
+                        events: event_options,
+                        safeguard: safeguard,
+                        heuristic: false,
+                        max_records: MAX_LOG_RECORDS
+                    };
+            
+                    //post data to worker to calculate stars
+                    let w_sf = new Worker("./starforce/worker_starforce.js");
+            
+                    w_sf.postMessage(data);
+            
+                    w_sf.onmessage = function(d) {
+                        Item.set_item_level(d.data.stars_to);
+                        Item.idata.meta.sf_meta_data = d.data.data;
+                        Item.redraw();
+
+                        optionbox.dialog("close");
+                    };
+                }
+            }]
+        }).dialog("open");
+
+        $("#asf_cb_all").on("click", function(e) {
+            $("#option_box .asf_checkbox").prop("checked", e.target.checked);
+        });
     });
 
     $("#reverse_flame_check").on("click", function() {
@@ -973,33 +1090,35 @@ $(function() {
         }
 
         let html = `
-            <label for="cb_show_prn">
-                <input type="checkbox" id="cb_show_prn"> Show PRNG info.    
-            </label>
-            <hr>
-            <table style="width:100%;font-size:11px;" id="star_force_log">
-                <thead>
-                    <tr>
-                        <th>Run</th>
-                        <th>Star</th>
-                        <th>Result</th>
-                        <th>Safeguard</th>
-                        <th>Cost</th>
-                        <th>Cost, Silver MVP</th>
-                        <th>Cost, Gold MVP</th>
-                        <th>Cost, Diamond MVP</th>
-                        <th>Cost, 30% Off Event</th>
-                        <th>Cost, 30% + Silver MVP</th>
-                        <th>Cost, 30% + Gold MVP</th>
-                        <th>Cost, 30% + Diamond MVP</th>
-                        <th class="prn_number hidden">PRN</th>
-                        <th class="prn_map hidden">PRN Map</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${t_body}
-                </tbody>
-            </table>
+            <div style="max-height:800px">
+                <label for="cb_show_prn">
+                    <input type="checkbox" id="cb_show_prn"> Show PRNG info.    
+                </label>
+                <hr>
+                <table style="width:100%;font-size:11px;" id="star_force_log">
+                    <thead>
+                        <tr>
+                            <th>Run</th>
+                            <th>Star</th>
+                            <th>Result</th>
+                            <th>Safeguard</th>
+                            <th>Cost</th>
+                            <th>Cost, Silver MVP</th>
+                            <th>Cost, Gold MVP</th>
+                            <th>Cost, Diamond MVP</th>
+                            <th>Cost, 30% Off Event</th>
+                            <th>Cost, 30% + Silver MVP</th>
+                            <th>Cost, 30% + Gold MVP</th>
+                            <th>Cost, 30% + Diamond MVP</th>
+                            <th class="prn_number hidden">PRN</th>
+                            <th class="prn_map hidden">PRN Map</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${t_body}
+                    </tbody>
+                </table>
+            </div>
         `;
 
         optionbox.html(html).dialog({
@@ -1009,6 +1128,7 @@ $(function() {
             buttons: [{
                 text: "Close",
                 click: function() {
+                    optionbox.html("");
                     $(this).dialog("close");
                 }
             }]

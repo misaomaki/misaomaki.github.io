@@ -1706,3 +1706,19 @@ body, html {
      width: 250px;
      display: inline-block;
  }
+
+ /* generic form stuff */
+ .form-group {
+    padding: 5px;
+    margin-top: 10px;
+ }
+
+ .form-label-group {
+     user-select: none;
+ }
+
+ .form-footer {
+    display: block;
+    font-size: 0.8em;
+    font-style: italic;
+ }
