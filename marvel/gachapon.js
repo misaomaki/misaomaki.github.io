@@ -5,23 +5,23 @@ var gacha_rarity = [{
 }, {
     minc: 0.009,
     maxc: 0.01,
-    color: "#ff8000"
+    color: "#ff8000" //orange
 }, {
     minc: 0.01,
     maxc: 0.04,
-    color: "#a335ee"
+    color: "#a335ee" //purple
 }, {
     minc: 0.04,
     maxc: 0.07,
-    color: "#0070dd"
+    color: "#0070dd" //blue
 }, {
     minc: 0.07,
     maxc: 0.1,
-    color: "#15ae00",
+    color: "#15ae00", //green
 }, {
     minc: 0.1,
     maxc: 0.5,
-    color: "#e0c633"
+    color: "#e0c633" //gold
 }, {
     minc: 0.5,
     maxc: 1,
@@ -29,7 +29,7 @@ var gacha_rarity = [{
 }, {
     minc: 1,
     maxc: 100,
-    color: "#9d9d9d"
+    color: "#9d9d9d" //grey
 }];
 
 $(function() {

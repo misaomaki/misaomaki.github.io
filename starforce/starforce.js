@@ -8,11 +8,13 @@ var star_success_rate = function(star, superior = false) {
         destroy: 0
     };
     */
+    let starcatch_rate = 0.045; //starcatch assumption
     
     let base_success_rate = 1;
     let success_rate = 0;
     let destroy_rate = 0;
     let fail_rate = 0;
+    let sc_rate = 0;
 
     if (superior) {
         //success, destroy
@@ -39,11 +41,14 @@ var star_success_rate = function(star, superior = false) {
         success_rate = this_rate[0];
         destroy_rate = this_rate[1];
         fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
+        sc_rate = success_rate * starcatch_rate;
+        
         
         return {
             success: success_rate,
-            fail: fail_rate,
-            destroy: destroy_rate
+            fail: fail_rate - sc_rate,
+            destroy: destroy_rate,
+            sc_success: sc_rate
         };
     }
 
@@ -86,7 +91,7 @@ var star_success_rate = function(star, superior = false) {
     success_rate = +(base_success_rate - sdiff).toFixed(2);
     fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
 
-    let sc_rate = success_rate * 0.045; //starcatch assumption
+    sc_rate = success_rate * starcatch_rate; //starcatch assumption
 
     return {
         success: success_rate,
