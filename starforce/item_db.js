@@ -1283,6 +1283,35 @@ var items_store = {
             upgrades: 8,
             hammers_added: 2
         },
+        whispershot: {
+            name: "AbsoLab Whispershot",
+            level: 160,
+            class: "weapon",
+            type: "whispershot",
+            speed: "fast",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 192,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 60,
+                dex: 60,
+                speed: 12
+            }),
+            req: {
+                str: 0,
+                dex: 480,
+                int: 0,
+                luk: 0
+            },
+            img: "item-absolabwhispershot",
+            upgrades: 8,
+            hammers_added: 2
+        },
         chain: {
             name: "AbsoLab Chain",
             level: 160,
@@ -2617,6 +2646,34 @@ var items_store = {
                 luk: 0
             },
             img: "item-sweetwaterdualbowguns",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        whispershot: {
+            name: "Sweetwater Whispershot",
+            level: 160,
+            class: "weapon",
+            type: "whispershot",
+            speed: "fast",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 164,
+                boss_damage: 0.3,
+                ied: 0.1,
+                dex: 45,
+                str: 45
+            }),
+            req: {
+                str: 0,
+                dex: 385,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterwhispershot",
             upgrades: 8,
             hammers_added: 2
         },
@@ -4905,6 +4962,35 @@ var items_store = {
                 luk: 0
             },
             img: "item-fafnirdualwindwing",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        whispershot: {
+            name: "Fafnir Nightchaser",
+            level: 150,
+            class: "weapon",
+            type: "whispershot",
+            speed: "fast",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 160,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 40,
+                dex: 40,
+                knockback: 0.75
+            }),
+            req: {
+                str: 0,
+                dex: 450,
+                int: 0,
+                luk: 0
+            },
+            img: "item-fafnirnightchaser",
             upgrades: 8,
             hammers_added: 2
         },
@@ -8350,6 +8436,35 @@ var items_store = {
                 luk: 0
             },
             img: "item-genesisancientbow",
+            upgrades: 8,
+            hammers_added: 2
+        },
+        whispershot: {
+            name: "Genesis Whispershot",
+            level: 200,
+            class: "weapon",
+            type: "whispershot",
+            speed: "fast",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 318,
+                boss_damage: 0.3,
+                speed: 19,
+                ied: 0.2,
+                dex: 150,
+                str: 150
+            }),
+            req: {
+                str: 0,
+                dex: 600,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesiswhispershot",
             upgrades: 8,
             hammers_added: 2
         },
