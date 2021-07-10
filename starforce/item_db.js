@@ -6445,6 +6445,35 @@ var items_store = {
             upgrades: 8,
             hammers_added: 2
         },
+        whispershot: {
+            name: "Arcane Umbra Whispershot",
+            level: 200,
+            class: "weapon",
+            type: "whispershot",
+            speed: "fast",
+            job: ["bowman"],
+            mstat: "dex", 
+            pstat: ["dex", "str"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 276,
+                boss_damage: 0.3,
+                speed: 19,
+                ied: 0.2,
+                dex: 100,
+                str: 100
+            }),
+            req: {
+                str: 0,
+                dex: 600,
+                int: 0,
+                luk: 0
+            },
+            img: "item-arcanewhispershot",
+            upgrades: 8,
+            hammers_added: 2
+        },
         bladecaster: {
             name: "Arcane Umbra Bladecaster",
             level: 200,
