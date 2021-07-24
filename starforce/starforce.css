@@ -346,6 +346,26 @@ body, html {
     left: 4px;
 }
 
+.sf-enchant-hyper-start-fast {
+    position: absolute;
+    width: 229px;
+    height: 230px;
+    background-image: url(../assets/starforce/hyperEffectFast.png);
+    background-repeat: no-repeat;
+    animation: sf-key-enchant-start-fast 0.8s steps(8) forwards 1;
+    z-index: 200;
+    left: -51px;
+}
+
+@keyframes sf-key-enchant-start-fast {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -1840px;
+    }
+}
+
 @keyframes sf-key-enchant-start {
     0% {
         background-image: url(../assets/starforce/hyperEffect1.0.png);

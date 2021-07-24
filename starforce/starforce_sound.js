@@ -17,6 +17,7 @@ let sf_audio_files = {
     EnchantDestroyed: "EnchantDestroyed.mp3",
     EnchantFail: "EnchantFail.mp3",
     EnchantHyper: "EnchantHyper.mp3",
+    EnchantHyperFast: "EnchantHyperFast.mp3",
     EnchantStar1: "EnchantStar1.mp3",
     EnchantStar2: "EnchantStar2.mp3",
     EnchantStar3: "EnchantStar3.mp3",

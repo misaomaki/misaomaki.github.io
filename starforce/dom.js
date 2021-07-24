@@ -1442,12 +1442,12 @@ $(function() {
             sfa.stop(sc_start_sound);
         }
         
-        sf_enchant_effects.addClass("sf-enchant-hyper-start");
-        sfa.play("EnchantHyper", {playbackRate: system.animation_speed});
+        sf_enchant_effects.addClass("sf-enchant-hyper-start-fast");
+        sfa.play("EnchantHyperFast", {playbackRate: system.animation_speed});
 
         sfpop.addClass("hidden");
         setTimeout(()=>{
-            sf_enchant_effects.removeClass("sf-enchant-hyper-start");
+            sf_enchant_effects.removeClass("sf-enchant-hyper-start-fast");
         
             sfitem.removeClass("hidden");
             sfi_text.addClass("hidden");
@@ -1499,7 +1499,7 @@ $(function() {
                 sfi_result.removeClass(r_type);
                 isLoading = false;
             }, 1020 * system.animation_speed_actual);
-        },2500 * system.animation_speed_actual);
+        },850 * system.animation_speed_actual); //slow version - 2500
     };
 
     var starcatch_active = true;
