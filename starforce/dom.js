@@ -515,6 +515,8 @@ $(function() {
             <hr>
         `;
 
+        let option_box = $("#option_box");
+
         optionbox.html(html).dialog({
             title: "Cube Log",
             width: "100%",
@@ -529,6 +531,7 @@ $(function() {
             },{
                 text: "Close",
                 click: function() {
+                    option_box.html("");
                     $(this).dialog("close");
                 }
             }]
@@ -536,7 +539,6 @@ $(function() {
 
         let cube_log_table = $("#cube_log_table");
         let cube_log_prng = $("#cube_log_prng");
-        let option_box = $("#option_box");
 
         //show x rows at a time. hitting the show more will load x more rows. we start with showing x rows, so that is offset from the total at the start
         let at_a_time = 100;
@@ -888,6 +890,174 @@ $(function() {
 
         $("#asf_cb_all").on("click", function(e) {
             $("#option_box .asf_checkbox").prop("checked", e.target.checked);
+        });
+    });
+
+    //auto cube
+    $("#auto_cube").on("click", function() {
+        let html = `
+            <b>Automatically cube to the desired lines. This will generate cube log data.</b>
+            <hr>
+            <div class="form-group">
+                <label class="form-label-group">
+                    <span class="form-label">
+                        Select Cube
+                    </span>
+                    <div class="cube-selection" id="cube_select">
+                        <div class="cube auto-cube cube-red maple-button" data-id="red" data-type="main"></div>
+                        <div class="cube auto-cube cube-black maple-button" data-id="black" data-type="main"></div>
+                        <div class="cube auto-cube cube-bonus maple-button" data-id="bonus" data-type="bonus"></div>
+                    </div>
+                </label>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    Cube Lines
+                </div>
+                <div id="auto_cube_lines" class="hidden">
+                    <div class="item-cube-form cube-main-form" id="auto_cube_form_main">
+                        <label for="auto_cube_select_main">
+                            <span class="item-cube-label">Select Main Potential Tier:</span>
+                            <select id="auto_cube_select_main" class="auto-select-cube-type" data-type="main">
+                                <option value="">No Potential</option>
+                                <option value="rare">Rare</option>
+                                <option value="epic">Epic</option>
+                                <option value="unique">Unique</option>
+                                <option value="legendary">Legendary</option>
+                            </select>
+                        </label>  
+                        <div id="auto_cube_line_con_main" style="padding:5px;">
+                        </div>           
+                    </div>
+                    <div class="item-cube-form cube-bonus-form" id="auto_cube_form_bonus">
+                        <label for="auto_cube_select_bonus">
+                            <span class="item-cube-label">Select Bonus Potential Tier:</span>
+                            <select id="auto_cube_select_bonus" class="auto-select-cube-type" data-type="bonus">
+                                <option value="">No Potential</option>
+                                <option value="rare">Rare</option>
+                                <option value="epic">Epic</option>
+                                <option value="unique">Unique</option>
+                                <option value="legendary">Legendary</option>
+                            </select>
+                        </label>      
+                        <div id="auto_cube_line_con_bonus" style="padding:5px;">
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        `;
+
+        optionbox.html(html).dialog({
+            title: "Auto Cube",
+            width: 1000,
+            height: "auto",
+            buttons: [{
+                text: "Close",
+                click: function() {
+                    $(this).dialog("close");
+                }
+            }, {
+                text: "Begin Cubing",
+                id: "btnBeginCube",
+                click: function() {
+                    let _this = $(this);
+
+                    let btn = $("#btnBeginCube");
+
+                    btn.prop("disabled", true);
+                    btn.html("Processing cubes...");
+
+                    let c_cube = $("#cube_select .auto-cube-selected");
+                    let cube_type = c_cube.attr("data-type");
+                    let cube = c_cube.attr("data-id");
+
+                    let line_1 = $("#cube_stat_line_" + cube_type + "_1").val();
+                    let line_2 = $("#cube_stat_line_" + cube_type + "_2").val();
+                    let line_3 = $("#cube_stat_line_" + cube_type + "_3").val();
+
+                    let pot_tier = $("#option_box #auto_cube_select_" + cube_type).val();
+
+                    if (line_1 == null || line_2 == null || line_3 == null) {
+                        alert("Error: Must select a cube and potential lines.");
+
+                        btn.prop("disabled", false);
+                        btn.html("Begin Cubing");
+                        return false;
+                    }
+
+                    let data = {
+                        item: Item,
+                        cube_lines: [line_1, line_2, line_3],
+                        cube_type: cube_type,
+                        cube: cube,
+                        pot_tier: pot_tier
+                    };
+            
+                    //post data to worker to calculate cubes
+                    let w_c = new Worker("./starforce/worker_cube.js");   
+            
+                    w_c.postMessage(data);
+                        
+                    w_c.onmessage = function(d) {
+                        if (d.data.code < 0) {
+                            alert(d.data.message);
+                            return false;
+                        };
+
+                        //if there is an error, then set the item to the last cube log item
+                        if (d.data.code === 2) {
+                            alert(d.data.message);
+
+                            let last_result = d.data.data[0];
+                            let last_result_lines = last_result.results.result.map(a=>a.id);
+                            pot_tier = last_result.tier;
+
+                            line_1 = last_result_lines[0];
+                            line_2 = last_result_lines[1];
+                            line_3 = last_result_lines[2];
+                        }
+
+                        Item.idata.meta.cube_meta_data = d.data.data;
+
+                        Item.set_cube(cube_type, pot_tier, {
+                            line_0: line_1,
+                            line_1: line_2,
+                            line_2: line_3
+                        }, {
+                            write_log_record: false
+                        });
+            
+                        Item.redraw_item_tooltip();
+
+                        _this.dialog("close");
+                    };
+                }
+            }]
+        }).dialog("open");
+
+        let cube_line_con = $("#auto_cube_lines");
+        $("#cube_select .auto-cube").on("click", function() {
+            let _this = $(this);
+            let cube_type = _this.attr("data-type");
+            
+            $(".auto-cube.auto-cube-selected").removeClass("auto-cube-selected");
+            $(this).addClass("auto-cube-selected");
+
+            cube_line_con.removeClass("hidden");
+            $("#auto_cube_form_main,#auto_cube_form_bonus").addClass("hidden");
+            $("#auto_cube_form_" + cube_type).removeClass("hidden");
+        });
+
+        $("#option_box .auto-select-cube-type").on("change", function() {
+            let _this = $(this);
+            let type = _this.attr("data-type");
+            let pot_tier = _this.val();
+
+            let tier_html = cube_pot_dropdown_html(Item.idata, type, pot_tier);
+        
+            $("#auto_cube_line_con_" + type).html(tier_html);
+
+            $(".select-cube-line-" + type).select2();
         });
     });
 
@@ -1968,6 +2138,53 @@ $(function() {
                 flame_textbox.val(0);
             });
         }
+    };
+
+    var cube_pot_dropdown_html = function(this_item, type, pot_tier) {
+        //get item type, with sub class taking priority (copied from cube.js)
+        let item_type = this_item.sub_class;
+
+        if (this_item.class == "weapon") {
+            item_type = this_item.class;
+        } else if (item_type === "") {
+            item_type = this_item.type;
+        } 
+
+        item_type = item_type.replace(/\s/gi, "_");
+
+        //get the stats available for the main/bonus pot by its tier and item type
+        let stats = cube.pot_stats[type][item_type][pot_tier];
+
+        let tier_html = "";
+
+        //generate dropdowns for each line with the available stats
+        let idx = 0;
+        for (let i in stats) {
+            ++idx;
+
+            //remove duplicates from the stat options
+            let _s = stats[i];
+
+            tier_html += `
+                <div class="pot-stat-con" style="padding:5px">
+                    <span class="pot-stat-line">Line ${idx}:</span>
+                    <select id="cube_stat_line_${type}_${idx}" class="select-cube-line-${type}" data-id="${idx}">
+                        ${
+                            _s.map(function(a) {
+                                let sid = a[0];
+                                let _st = cube.stat_upgrade(this_item.level,sid); //line stat verbiage
+
+                                return `
+                                    <option value="${sid}">${_st}</option>
+                                `;
+                            }).join("")
+                        }
+                    </select>
+                </div>
+            `;
+        }
+
+        return tier_html;
     };
 
     //select a potential tier for main/bonus to display the lines and their stats to choose from

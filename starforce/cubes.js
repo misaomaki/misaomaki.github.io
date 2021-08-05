@@ -324,7 +324,7 @@ cube.rates.tier_up = {
 /*
 cube.rates.tier_up = {
     red: {
-        epic: 0,
+        epic: 1,
         unique: 1,
         legendary: 1
     },
@@ -340,6 +340,7 @@ cube.rates.tier_up = {
     }
 }
 */
+
 
 
 
@@ -5988,40 +5989,21 @@ cube.try_tier_up = function(c, r, o) {
     }
 }
 
-//set the cube type directly. go through the cube function to force a flimsy record write
-/*
-    f = main or bonus pot type
-    r = pot tier
-    s = struct of stat ids from cube.stat_type
-*/
-item.prototype.set_cube = function(f, r, s) {
-    let cube_type = "red";
-
-    if (f === "bonus") {
-        cube_type = "bonus";
-    }
-
-    let _this = this;
-
-    //go through the cube proc, but pass options that force the tier and stats
-    _this.cube(cube_type, $(), ()=>{}, {
-        no_tier_up: true,
-        force_stats: true,
-        stats: s,
-        force_tier: true,
-        tier: r
-    });
-}
-
 //cube item, type is cube type; dom is the active cubing window
 //cb is callback passed to the cube_draw function
 //o is any additional options
 let cubes_used = 0; //keep track of cube amount
-item.prototype.cube = function(type, dom, cb, o = {
-    no_tier_up: false,
-    force_stats: false,
-    stats: {}
-}) {
+cube.cube = function(type, dom, cb, o) {
+    o = Object.assign({
+        no_tier_up: false,
+        force_stats: false,
+        stats: {},
+        force_tier: false,
+        tier: {},
+        update_dom: true,
+        write_log_record: true
+    }, o);
+
     //no cube window passed means the function is used progranmatically
     //don't update dom stuff in that case, but continue with all the other stuff
     let hasDom = dom.length !== 0;
@@ -6051,25 +6033,27 @@ item.prototype.cube = function(type, dom, cb, o = {
 
     let cube_pot = this.idata.meta[pot_type]; //current potential
 
+    //if a tier is forced, set it to that
+    if (o.force_tier) {
+        cube_pot = o.tier;
+        this.idata.meta[pot_type] = cube_pot;
+    }
+    
     //if no potential, set it to rare
     if (cube_pot === "") {
-        //if a tier is forced, set it to that
-        if (o.force_tier) {
-            cube_pot = o.tier;
-        } else {
-            /* 
-                for a first black run where the item has no potential, we need an initial pot, so
-                we force a red cube run with no chance of tier up to initiallity set a potential,
-                then do the black cube
-            */
-            if (type === "black") {
-                this.cube("red", $(), ()=>{}, {
-                    no_tier_up: true
-                });
-            }
-
-            cube_pot = "rare";
+        /* 
+            for a first black run where the item has no potential, we need an initial pot, so
+            we force a red cube run with no chance of tier up to initiallity set a potential,
+            then do the black cube
+        */
+        if (type === "black") {
+            cube.cube.bind(this)("red", [], ()=>{}, {
+                no_tier_up: true
+            });
         }
+
+        cube_pot = "rare";
+
         this.idata.meta[pot_type] = cube_pot;
     }
 
@@ -6093,11 +6077,179 @@ item.prototype.cube = function(type, dom, cb, o = {
         run: cubes_used
     };
 
-    //update cube window
-    this.cube_draw(cube_results, dom, type, cb);
-    
+    //post-processing and update cube window
+    cube.cube_draw.bind(this)(cube_results, dom, type, cb, {update_dom: o.update_dom, write_log_record: o.write_log_record});
+
     return cube_results.tier_up.upgrade;
 }
+
+if (typeof item != 'undefined') {
+    //set the cube type directly. go through the cube function to force a flimsy record write
+    /*
+        f = main or bonus pot type
+        r = pot tier
+        s = struct of stat ids from cube.stat_type
+    */
+    item.prototype.set_cube = function(f, r, s, o) {
+        o = Object.assign({
+            write_log_record: true
+        }, o);
+
+        let cube_type = "red";
+
+        if (f === "bonus") {
+            cube_type = "bonus";
+        }
+
+        let _this = this;
+
+        //go through the cube proc, but pass options that force the tier and stats
+        _this.cube(cube_type, [], ()=>{}, {
+            no_tier_up: true,
+            force_stats: true,
+            stats: s,
+            force_tier: true,
+            tier: r,
+            write_log_record: o.write_log_record
+        });
+    }
+
+    item.prototype.cube = function(type, dom, cb, o) {
+        return cube.cube.bind(this)(type, dom, cb, o);
+    };
+}
+
+//redraw the cube window, as well as update the item tooltip
+//cb is callback if tooltip is to be drawn later or other things need to happen
+//o for any other options
+cube.cube_draw = function(cube_results, dom, type, cb, o) {
+    o = Object.assign({
+        update_dom: true,
+        write_log_record: true
+    }, o);
+
+    let hasDom = dom.length !== 0;
+
+    let results = cube_results.result;
+    let this_pot = "";
+    let this_pot_type = "cube_potential";
+
+    if (this.idata.meta.cube_log_item.type === "bonus") {
+        this_pot_type = "cube_potential_bonus";
+    }
+
+    this_pot = this.idata.meta[this_pot_type];
+
+    let curr_pot = this_pot;
+    let force_keep = false; //if tier up, then it is automatically selected
+
+    //if upgrade, then set next pot tier
+    //if black cube, then force it to be kept
+    if (cube_results.tier_up.upgrade) {
+        curr_pot = cube_results.tier_up.next_tier;
+        force_keep = true;
+    }
+
+    //whether to keep the pot or not
+    if (type !== "black" || force_keep) {
+        if (cube_results.tier_up.upgrade) {
+            this.idata.meta[this_pot_type] = curr_pot;
+        }
+
+        this.idata.boosts.cubes[this.idata.meta.cube_log_item.type] = results;
+    } else {
+        this.idata.meta.cube_log_item.keep = false;
+    }
+
+    if (hasDom) {
+        if (type !== "black") {
+            //set potential
+            let crp = dom.find(".cube-result-pot");
+            
+            if (crp.attr("data-pot") != curr_pot) {
+                crp.attr("data-pot", curr_pot);
+                crp.html(curr_pot.capitalize());
+            }
+
+            dom.find(".cube-result-stats").html(
+                results.map(function(a) {
+                    return `
+                        <span class="cube-result-line" title="${a.display}" data-id="${a.id}">${a.display}</span>
+                    `
+                }).join("<br>")
+            );
+        } else {
+            //get last kept cube
+            let prev_pot = this.idata.meta.cube_meta_data.find(function(a) {
+                return a.keep && a.type === "main";
+            });
+
+            let prev_pot_check = prev_pot.tier !== undefined;
+
+            //set before and after pot tier label
+            let crpbl = dom.find(".cube-result-before-label");
+            let crpal = dom.find(".cube-result-after-label");
+            let before_window = dom.find(".cube-black-window-before");
+            let after_window = dom.find(".cube-black-window-after");
+
+            if (prev_pot_check) {
+                let prev_pot_label = this_pot;
+
+                if (crpbl.attr("data-pot") != prev_pot_label) {
+                    crpbl.attr("data-pot", prev_pot_label);
+                    crpbl.html(prev_pot_label.capitalize());
+                }
+            }
+
+            if (crpal.attr("data-pot") != curr_pot) {
+                crpal.attr("data-pot", curr_pot);
+                crpal.html(curr_pot.capitalize());
+            }
+
+            //set before and after pot
+            let crpb = dom.find(".cube-result-before");
+            let crpa = dom.find(".cube-result-after");
+
+            if (prev_pot_check) {
+                before_window.attr("data-id", prev_pot.results.name);
+
+                crpb.html(
+                    prev_pot.results.result.map(function(a) {
+                        return `
+                            <span class="cube-result-line" title="${a.display}" data-id="${a.id}">${a.display}</span>
+                        `
+                    }).join("<br>")
+                );
+            }
+
+            after_window.attr("data-id", cube_results.name);
+
+            crpa.html(
+                results.map(function(a) {
+                    return `
+                        <span class="cube-result-line" title="${a.display}" data-id="${a.id}">${a.display}</span>
+                    `
+                }).join("<br>")
+            );
+        }
+    }
+
+    //log cube results
+    if (o.write_log_record) { 
+        this.idata.meta.cube_meta_data.unshift(
+            this.idata.meta.cube_log_item
+        );
+    }
+
+    //do other stuff before redrawing tooltip, otherwise just redraw
+    if (typeof cb === 'function') {
+        cb();
+    } else {
+        if (o.update_dom) {
+            this.redraw_item_tooltip();
+        }
+    }
+};
 
 //stat percentage map for cube based on potential and item type
 cube.stats = {
@@ -6258,127 +6410,5 @@ cube.stats = {
             tier_up: tier_up,
             name: generateUUID()
         };
-    }
-};
-
-//redraw the cube window, as well as update the item tooltip
-//cb is callback if tooltip is to be drawn later or other things need to happen
-item.prototype.cube_draw = function(cube_results, dom, type, cb) {
-    let hasDom = dom.length !== 0;
-
-    let results = cube_results.result;
-    let this_pot = "";
-    let this_pot_type = "cube_potential";
-
-    if (this.idata.meta.cube_log_item.type === "bonus") {
-        this_pot_type = "cube_potential_bonus";
-    }
-
-    this_pot = this.idata.meta[this_pot_type];
-
-    let curr_pot = this_pot;
-    let force_keep = false; //if tier up, then it is automatically selected
-
-    //if upgrade, then set next pot tier
-    //if black cube, then force it to be kept
-    if (cube_results.tier_up.upgrade) {
-        curr_pot = cube_results.tier_up.next_tier;
-        force_keep = true;
-    }
-
-    //whether to keep the pot or not
-    if (type !== "black" || force_keep) {
-        if (cube_results.tier_up.upgrade) {
-            this.idata.meta[this_pot_type] = curr_pot;
-        }
-
-        this.idata.boosts.cubes[this.idata.meta.cube_log_item.type] = results;
-    } else {
-        this.idata.meta.cube_log_item.keep = false;
-    }
-
-    if (hasDom) {
-        if (type !== "black") {
-            //set potential
-            let crp = dom.find(".cube-result-pot");
-            
-            if (crp.attr("data-pot") != curr_pot) {
-                crp.attr("data-pot", curr_pot);
-                crp.html(curr_pot.capitalize());
-            }
-
-            dom.find(".cube-result-stats").html(
-                results.map(function(a) {
-                    return `
-                        <span class="cube-result-line" title="${a.display}" data-id="${a.id}">${a.display}</span>
-                    `
-                }).join("<br>")
-            );
-        } else {
-            //get last kept cube
-            let prev_pot = this.idata.meta.cube_meta_data.find(function(a) {
-                return a.keep && a.type === "main";
-            });
-
-            let prev_pot_check = prev_pot.tier !== undefined;
-
-            //set before and after pot tier label
-            let crpbl = dom.find(".cube-result-before-label");
-            let crpal = dom.find(".cube-result-after-label");
-            let before_window = dom.find(".cube-black-window-before");
-            let after_window = dom.find(".cube-black-window-after");
-
-            if (prev_pot_check) {
-                let prev_pot_label = this_pot;
-
-                if (crpbl.attr("data-pot") != prev_pot_label) {
-                    crpbl.attr("data-pot", prev_pot_label);
-                    crpbl.html(prev_pot_label.capitalize());
-                }
-            }
-
-            if (crpal.attr("data-pot") != curr_pot) {
-                crpal.attr("data-pot", curr_pot);
-                crpal.html(curr_pot.capitalize());
-            }
-
-            //set before and after pot
-            let crpb = dom.find(".cube-result-before");
-            let crpa = dom.find(".cube-result-after");
-
-            if (prev_pot_check) {
-                before_window.attr("data-id", prev_pot.results.name);
-
-                crpb.html(
-                    prev_pot.results.result.map(function(a) {
-                        return `
-                            <span class="cube-result-line" title="${a.display}" data-id="${a.id}">${a.display}</span>
-                        `
-                    }).join("<br>")
-                );
-            }
-
-            after_window.attr("data-id", cube_results.name);
-
-            crpa.html(
-                results.map(function(a) {
-                    return `
-                        <span class="cube-result-line" title="${a.display}" data-id="${a.id}">${a.display}</span>
-                    `
-                }).join("<br>")
-            );
-        }
-    }
-
-    //log cube results
-    this.idata.meta.cube_meta_data.unshift(
-        this.idata.meta.cube_log_item
-    );
-
-    //do other stuff before redrawing tooltip, otherwise just redraw
-    if (typeof cb === 'function') {
-        cb();
-    } else {
-        this.redraw_item_tooltip();
     }
 };

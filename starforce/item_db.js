@@ -61,7 +61,7 @@ var items_store = {
             },
             img: "item-absolabshoes",
             upgrades: 7,
-            hammers_added: 2,
+            hammers_added: 2
         },
         warrior_boots: {
             name: "AbsoLab Knight Shoes",
@@ -3320,6 +3320,68 @@ var items_store = {
         }
     },
     pitched_boss: {
+        commanding_force_earrings: {
+            name: "Commanding Force Earrings",
+            level: 200,
+            class: "armor",
+            type: "earrings",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 5,
+                matt: 5,
+                str: 7,
+                dex: 7,
+                int: 7,
+                luk: 7,
+                hp: 500,
+                mp: 500
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-commandingforceearrings",
+            upgrades: 6,
+            hammers_added: 2
+        },
+        endless_terror: {
+            name: "Endless Terror",
+            level: 200,
+            class: "armor",
+            type: "ring",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 4,
+                matt: 4,
+                str: 5,
+                dex: 5,
+                int: 5,
+                luk: 5,
+                hp: 250,
+                mp: 250
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-endlessterror",
+            upgrades: 2,
+            hammers_added: 2
+        },
         magic_eye_patch: {
             name: "Magic Eyepatch",
             level: 160,
@@ -3387,6 +3449,7 @@ var items_store = {
             level: 160,
             class: "armor",
             type: "face accessory",
+            sub_class: "accessory",
             speed: "",
             job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
             mstat: "", 
@@ -7719,7 +7782,7 @@ var items_store = {
             },
             img: "item-genesisshiningrod",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         bladecaster: {
             name: "Genesis Bladecaster",
@@ -7747,7 +7810,7 @@ var items_store = {
             },
             img: "item-genesisbladecaster",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         soul_shooter: {
             name: "Genesis Soul Shooter",
@@ -7775,7 +7838,7 @@ var items_store = {
             },
             img: "item-genesissoulshooter",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         desperado: {
             name: "Genesis Desperado",
@@ -7803,7 +7866,7 @@ var items_store = {
             },
             img: "item-genesisdesperado",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         energy_chain_str: {
             name: "Genesis Whip Blade",
@@ -7833,7 +7896,7 @@ var items_store = {
             },
             img: "item-genesiswhipblade",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         energy_chain_luk: {
             name: "Genesis Whip Blade",
@@ -7863,7 +7926,7 @@ var items_store = {
             },
             img: "item-genesiswhipblade",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         scepter: {
             name: "Genesis Scepter",
@@ -7892,7 +7955,7 @@ var items_store = {
             },
             img: "item-genesisscepter",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         psy_limiter: {
             name: "Genesis Psy-limiter",
@@ -7922,7 +7985,7 @@ var items_store = {
             },
             img: "item-genesispsylimiter",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         chain: {
             name: "Genesis Chain",
@@ -7950,7 +8013,7 @@ var items_store = {
             },
             img: "item-genesischain",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         lucent_gauntlet: {
             name: "Genesis Lucent Gauntlet",
@@ -7979,7 +8042,7 @@ var items_store = {
             },
             img: "item-genesislucentgauntlet",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         ritual_fan: {
             name: "Genesis Ritual Fan",
@@ -8007,7 +8070,7 @@ var items_store = {
             },
             img: "item-genesisritualfan",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         sword: {
             name: "Genesis Saber",
@@ -8035,7 +8098,7 @@ var items_store = {
             },
             img: "item-genesissaber",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         axe: {
             name: "Genesis Axe",
@@ -8063,7 +8126,7 @@ var items_store = {
             },
             img: "item-genesisaxe",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         hammer: {
             name: "Genesis Hammer",
@@ -8091,7 +8154,7 @@ var items_store = {
             },
             img: "item-genesishammer",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         dagger: {
             name: "Genesis Dagger",
@@ -8119,7 +8182,7 @@ var items_store = {
             },
             img: "item-genesisdagger",
             upgrades: 8, 
-            hammers_added: 2
+            hammers_added: 0
         },
         cane: {
             name: "Genesis Cane",
@@ -8147,7 +8210,7 @@ var items_store = {
             },
             img: "item-genesiscane",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         wand: {
             name: "Genesis Wand",
@@ -8176,7 +8239,7 @@ var items_store = {
             },
             img: "item-genesiswand",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         staff: {
             name: "Genesis Staff",
@@ -8205,7 +8268,7 @@ var items_store = {
             },
             img: "item-genesisstaff",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         two_handed_sword: {
             name: "Genesis Two-handed Sword",
@@ -8234,7 +8297,7 @@ var items_store = {
             },
             img: "item-genesistwohandedsword",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         two_handed_axe: {
             name: "Genesis Two-handed Axe",
@@ -8263,7 +8326,7 @@ var items_store = {
             },
             img: "item-genesistwohandedaxe",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         two_handed_hammer: {
             name: "Genesis Two-handed Hammer",
@@ -8292,7 +8355,7 @@ var items_store = {
             },
             img: "item-genesistwohandedhammer",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         spear: {
             name: "Genesis Spear",
@@ -8320,7 +8383,7 @@ var items_store = {
             },
             img: "item-genesisspear",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         polearm: {
             name: "Genesis Polearm",
@@ -8348,7 +8411,7 @@ var items_store = {
             },
             img: "item-genesispolearm",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         bow: {
             name: "Genesis Bow",
@@ -8378,7 +8441,7 @@ var items_store = {
             },
             img: "item-genesisbow",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         crossbow: {
             name: "Genesis Crossbow",
@@ -8408,7 +8471,7 @@ var items_store = {
             },
             img: "item-genesiscrossbow",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         dual_bowguns: {
             name: "Genesis Dual Bowguns",
@@ -8436,7 +8499,7 @@ var items_store = {
             },
             img: "item-genesisdualbowguns",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         ancient_bow: {
             name: "Genesis Ancient Bow",
@@ -8466,7 +8529,7 @@ var items_store = {
             },
             img: "item-genesisancientbow",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         whispershot: {
             name: "Genesis Whispershot",
@@ -8495,7 +8558,7 @@ var items_store = {
             },
             img: "item-genesiswhispershot",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         guards: {
             name: "Genesis Guards",
@@ -8523,7 +8586,7 @@ var items_store = {
             },
             img: "item-genesisguards",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         knuckle: {
             name: "Genesis Claw",
@@ -8551,7 +8614,7 @@ var items_store = {
             },
             img: "item-genesisclaw",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         gun: {
             name: "Genesis Pistol",
@@ -8579,7 +8642,7 @@ var items_store = {
             },
             img: "item-genesispistol",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         hand_cannon: {
             name: "Genesis Siege Gun",
@@ -8608,7 +8671,7 @@ var items_store = {
             },
             img: "item-genesissiegegun",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         katana: {
             name: "Genesis Katana",
@@ -8636,7 +8699,7 @@ var items_store = {
             },
             img: "item-genesiskatana",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         fan: {
             name: "Genesis Fan",
@@ -8665,7 +8728,7 @@ var items_store = {
             },
             img: "item-genesisfan",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
         arm_cannon: {
             name: "Genesis Ellaha",
@@ -8693,7 +8756,7 @@ var items_store = {
             },
             img: "item-genesisellaha",
             upgrades: 8,
-            hammers_added: 2
+            hammers_added: 0
         },
     }
 };
