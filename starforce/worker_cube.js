@@ -85,8 +85,6 @@ onmessage = function(o) {
         }
     }
 
-    debugger;
-
     if (d.cube_lines.length !== 0) {
         /*
             run cube proc then check the results against the desired lines.

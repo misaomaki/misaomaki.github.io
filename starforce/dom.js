@@ -999,12 +999,15 @@ $(function() {
                     w_c.postMessage(data);
                         
                     w_c.onmessage = function(d) {
+                        //codes less than 1 are errors that cannot proceed
                         if (d.data.code < 0) {
+                            btn.prop("disabled", false);
+                            btn.html("Begin Cubing");
                             alert(d.data.message);
                             return false;
                         };
 
-                        //if there is an error, then set the item to the last cube log item
+                        //if item tier passed the desired tier, then exit and return the latest cube lines
                         if (d.data.code === 2) {
                             alert(d.data.message);
 
@@ -1012,9 +1015,7 @@ $(function() {
                             let last_result_lines = last_result.results.result.map(a=>a.id);
                             pot_tier = last_result.tier;
 
-                            line_1 = last_result_lines[0];
-                            line_2 = last_result_lines[1];
-                            line_3 = last_result_lines[2];
+                            [line_1, line_2, line_3] = last_result_lines;
                         }
 
                         Item.idata.meta.cube_meta_data = d.data.data;
