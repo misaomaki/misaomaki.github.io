@@ -1016,6 +1016,8 @@ $(function() {
                             pot_tier = last_result.tier;
 
                             [line_1, line_2, line_3] = last_result_lines;
+                        } else {
+                            [line_1, line_2, line_3] = d.data.pot;
                         }
 
                         Item.idata.meta.cube_meta_data = d.data.data;
@@ -1054,7 +1056,9 @@ $(function() {
             let type = _this.attr("data-type");
             let pot_tier = _this.val();
 
-            let tier_html = cube_pot_dropdown_html(Item.idata, type, pot_tier);
+            let tier_html = cube_pot_dropdown_html(Item.idata, type, pot_tier, {
+                wildcard: true
+            });
         
             $("#auto_cube_line_con_" + type).html(tier_html);
 
@@ -2141,7 +2145,11 @@ $(function() {
         }
     };
 
-    var cube_pot_dropdown_html = function(this_item, type, pot_tier) {
+    var cube_pot_dropdown_html = function(this_item, type, pot_tier, o) {
+        o = Object.assign({
+            wildcard: false
+        }, o);
+
         //get item type, with sub class taking priority (copied from cube.js)
         let item_type = this_item.sub_class;
 
@@ -2166,20 +2174,26 @@ $(function() {
             //remove duplicates from the stat options
             let _s = stats[i];
 
+            let stat_options = _s.map(function(a) {
+                let sid = a[0];
+                let _st = cube.stat_upgrade(this_item.level,sid); //line stat verbiage
+
+                return `
+                    <option value="${sid}">${_st}</option>
+                `;
+            });
+
+            if (o.wildcard) {
+                stat_options.push(`
+                <option value="-1">&lt;Any Line&gt;</option>
+                `);
+            }
+
             tier_html += `
                 <div class="pot-stat-con" style="padding:5px">
                     <span class="pot-stat-line">Line ${idx}:</span>
                     <select id="cube_stat_line_${type}_${idx}" class="select-cube-line-${type}" data-id="${idx}">
-                        ${
-                            _s.map(function(a) {
-                                let sid = a[0];
-                                let _st = cube.stat_upgrade(this_item.level,sid); //line stat verbiage
-
-                                return `
-                                    <option value="${sid}">${_st}</option>
-                                `;
-                            }).join("")
-                        }
+                        ${stat_options.join("")}
                     </select>
                 </div>
             `;

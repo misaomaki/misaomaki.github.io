@@ -12,29 +12,57 @@ importScripts("cubes.js");
     a = array 1
     b = array 2
     c = enforce array order. [1,2,3] and [3,2,1] will be considered the same if this is false
+
+    -1 is treated as a wildcard value, so [-1,2,3] is treated as equal to [4,2,3]
 */
 let arrayCompare = function(_a, _b, c = false) {
     if (
-      !Array.isArray(_a)
-      || !Array.isArray(_b)
-      || _a.length !== _b.length
-      ) {
+      !Array.isArray(_a) || !Array.isArray(_b) || _a.length !== _b.length
+    ) {
         return false;
-      }
-    
+    }
+
     let a = _a.concat();
     let b = _b.concat();
-    
+
+    //get count of lines in struct format
+    a = a.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
+    b = b.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
+   
     if (!c) {
-        a = a.sort();
-        b = b.sort();
+      for (let i in a) {
+          if (i == -1) continue;
+
+          let bv = b[i];
+          let av = a[i];
+
+          if (bv !== av) {
+              return false;
+          }
+      }
+    } else {
+      let ak = Object.keys(a);
+      let bk = Object.keys(b);
+      
+      //remove wildcard
+      let _ak = ak.filter((x)=>{return x != -1});
+      let _bk = bk.filter((x)=>{return x != -1});
+      
+      //check of object keys are the same after removal of wildcard 
+      if (_ak.length !== _bk.length) {
+      	return false;
+      }
+      
+      //check if each item in a and b are of the same line in the same order. if wildcard value, ignore.
+      for (let i = 0; i < ak.length; ++i) {
+      	if (ak[i] == -1 || bk[i] == -1) continue;
+      
+      	if (ak[i] !== bk[i]) {
+        	return false;
+        }
+      }
     }
     
-    for (let i = 0; i < a.length; ++i) {
-        if (a[i] !== b[i]) {
-            return false;
-         }
-    }
     
     return true;
 }
@@ -85,6 +113,7 @@ onmessage = function(o) {
         }
     }
 
+    let same_tier = false; //desired tier is equal to item tier
     if (d.cube_lines.length !== 0) {
         /*
             run cube proc then check the results against the desired lines.
@@ -103,6 +132,7 @@ onmessage = function(o) {
                 end the cubing if the item tiers up passed the desire tier, as those lines will never be hit.
                 return the last run to update the item's pots with
             */
+            same_tier = rarity_enum[d.pot_tier] === rarity_enum[cr.tier || ""];
             if (d.pot_tier !== "legendary") {
                 if (rarity_enum[d.pot_tier] < rarity_enum[cr.tier || ""]) {
                     postMessage({done: false, code: 2, message: "Item tiered passed the desired potential.", data: d.item.idata.meta.cube_meta_data});
@@ -113,11 +143,11 @@ onmessage = function(o) {
             //get the raw lines to check against the desired lines
             lines = cr.results.result.map((a)=>{return a.id});
         }
-        while (!arrayCompare(d.cube_lines, lines, d.enforce_order));
+        while (!(same_tier && arrayCompare(d.cube_lines, lines, d.enforce_order)));
     }
 
     //once process exits, mark the last record as keep
     d.item.idata.meta.cube_meta_data[0].keep = true;
 
-    postMessage({done: true, code: 1, message: "", data: d.item.idata.meta.cube_meta_data});
+    postMessage({done: true, code: 1, message: "", data: d.item.idata.meta.cube_meta_data, pot: lines});
 }
