@@ -44,15 +44,6 @@ let arrayCompare = function(_a, _b, c = false) {
       let ak = Object.keys(a);
       let bk = Object.keys(b);
       
-      //remove wildcard
-      let _ak = ak.filter((x)=>{return x != -1});
-      let _bk = bk.filter((x)=>{return x != -1});
-      
-      //check of object keys are the same after removal of wildcard 
-      if (_ak.length !== _bk.length) {
-      	return false;
-      }
-      
       //check if each item in a and b are of the same line in the same order. if wildcard value, ignore.
       for (let i = 0; i < ak.length; ++i) {
       	if (ak[i] == -1 || bk[i] == -1) continue;

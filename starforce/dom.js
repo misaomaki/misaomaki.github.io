@@ -2040,6 +2040,7 @@ $(function() {
                 }
             });
 
+            //select equipment from dropdown
             ddl_item.on("change", function(e) {
                 let _this = $(this);
                 let val = _this.val();
@@ -2122,6 +2123,12 @@ $(function() {
                     flame_adv.html("No");
                     flame_adv.attr("data-flame-type", 1);
                     flame_tier_rec.html("Gear is not flame advantaged. You should set flames between 1 and 5.");
+                }
+
+                //prefill genesis weapon stats, but not enforced
+                if (item_type[0] === "genesis") {
+                    $("#item_starforce").val(22);
+                    $("#scrolls_15").val(8);
                 }
             });
 
