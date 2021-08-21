@@ -16,12 +16,6 @@ importScripts("cubes.js");
     -1 is treated as a wildcard value, so [-1,2,3] is treated as equal to [4,2,3]
 */
 let arrayCompare = function(_a, _b, c = false) {
-    if (
-      !Array.isArray(_a) || !Array.isArray(_b) || _a.length !== _b.length
-    ) {
-        return false;
-    }
-
     let a = _a.concat();
     let b = _b.concat();
 
@@ -30,13 +24,11 @@ let arrayCompare = function(_a, _b, c = false) {
     b = b.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
    
     if (!c) {
+      //check if key from a exists in b. if wildcard value, ignore
       for (let i in a) {
           if (i == -1) continue;
 
-          let bv = b[i];
-          let av = a[i];
-
-          if (bv !== av) {
+          if (b[i] !== a[i]) {
               return false;
           }
       }
@@ -103,7 +95,7 @@ onmessage = function(o) {
             return false;
         }
     }
-
+    
     let same_tier = false; //desired tier is equal to item tier
     if (d.cube_lines.length !== 0) {
         /*
@@ -123,7 +115,9 @@ onmessage = function(o) {
                 end the cubing if the item tiers up passed the desire tier, as those lines will never be hit.
                 return the last run to update the item's pots with
             */
-            same_tier = rarity_enum[d.pot_tier] === rarity_enum[cr.tier || ""];
+            if (!same_tier) {
+                same_tier = rarity_enum[d.pot_tier] === rarity_enum[cr.tier || ""];
+            }
             if (d.pot_tier !== "legendary") {
                 if (rarity_enum[d.pot_tier] < rarity_enum[cr.tier || ""]) {
                     postMessage({done: false, code: 2, message: "Item tiered passed the desired potential.", data: d.item.idata.meta.cube_meta_data});

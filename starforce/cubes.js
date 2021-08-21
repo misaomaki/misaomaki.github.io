@@ -5992,7 +5992,6 @@ cube.try_tier_up = function(c, r, o) {
 //cube item, type is cube type; dom is the active cubing window
 //cb is callback passed to the cube_draw function
 //o is any additional options
-let cubes_used = 0; //keep track of cube amount
 cube.cube = function(type, dom, cb, o) {
     o = Object.assign({
         no_tier_up: false,
@@ -6064,7 +6063,7 @@ cube.cube = function(type, dom, cb, o) {
         return a.type === cube_type_opposite && a.keep
     });
 
-    ++cubes_used;
+    let cube_run = this.idata.meta.cube_meta_data.length + 1;
 
     //log cube results
     this.idata.meta.cube_log_item = {
@@ -6074,7 +6073,7 @@ cube.cube = function(type, dom, cb, o) {
         results: cube_results,
         keep: true,
         other: opposite_current_pot, //current bonus/main depending on if current type is main/bonus
-        run: cubes_used
+        run: cube_run
     };
 
     //post-processing and update cube window

@@ -174,6 +174,8 @@ onmessage = function(d) {
 
         let this_cost_discount = log_starforce_cost(this_cost, this_cost_actual, current_star);
 
+        ld.star_cost_discount = Object.assign({}, this_cost_discount);
+
         //log the starforce cost for all discounts from mvp and events. the cost accumulates with each run
         if (ld.id === 1) {
             ld.sf_cost_discount = Object.assign({}, this_cost_discount);
@@ -189,8 +191,9 @@ onmessage = function(d) {
 
         total_cost += this_cost_actual;
         ld.sf_cost += total_cost;
+        ld.star_cost = this_cost_actual;
 
-        log_data.push(ld);
+        log_data.unshift(ld);
     };
 
     //while the stars are less than the desired stars, run starforcing and log results
@@ -198,9 +201,12 @@ onmessage = function(d) {
         process_star(current_star);
     }
 
+    /*
+    //limit amount of records returned
     if (log_data.length > MAX_LOG_RECORDS) {
         log_data = log_data.slice(MAX_LOG_RECORDS * -1);
     }
+    */
 
     //return data from worker with the starforce log data
     postMessage({done: true, data: log_data, stars_to: to});

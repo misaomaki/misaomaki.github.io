@@ -1120,29 +1120,12 @@ $(function() {
         return false;
     });
 
-    //show starforce log table
-    $("#starforce_log").on("click", function(){
-        /*
-        for (let i = 0; i <= 100; ++i) {
-            let result = Item.starforce(0);
-            if (result === 'success' || result === 'sc_success' || result === "chance_time_success") {
-                Item.xgrade_item(0);
-            } else if (result === 'fail' || result === "sc_fail") {
-                Item.xgrade_item(1);
-            } else {
-                Item.xgrade_item(2);
-            }
-        }
-        */
-        
-        let this_log = Item.idata.meta.sf_meta_data;
-
+    let generate_star_force_log_rows = function(this_log) {
         let t_body = "";
         if (this_log.length > 0) {
-            for (let i = this_log.length - 1; i >= 0; --i) {
+            for (let i = 0; i < this_log.length; ++i) {
                 let _tl = this_log[i];
 
-                let sf_data= _tl.sf_data;
                 let prn_map = _tl.prn_map;
 
                 let prn_map_html = "";
@@ -1182,45 +1165,59 @@ $(function() {
                 let result = "";
                 let this_result = _tl.result;
                 let result_type = "";
-                if (this_result === "success") {
-                    result = "Success!";
-                    result_type = "result-success";
-                } else if (this_result === "fail") {
-                    result = "Failed";
-                    result_type = "result-fail";
-                } else if (this_result === "chance_time_success") {
-                    result = "Success! (Chance Time)";
-                    result_type = "result-success";
-                } else if (this_result === "sc_fail") {
-                    result = "Failed (Star Catch)";
-                    result_type = "result-fail";
-                } else if (this_result === "sc_success") {
-                    result = "Success! (Star Catch)";
-                    result_type = "result-success r-sc_success";
-                } else if (this_result === "destroy") {
-                    result = "Destroyed!";
-                    result_type = "result-destroy-text";
-                } else if (this_result === "fail-safeguard") {
-                    result = "Safeguard!";
-                    result_type = "result-destroy-text";
+
+                switch (this_result) {
+                    case "success":
+                        result = "Success!";
+                        result_type = "result-success";
+                        break;
+                    case "fail":
+                        result = "Failed";
+                        result_type = "result-fail";
+                        break;
+                    case "chance_time_success":
+                        result = "Success! (Chance Time)";
+                        result_type = "result-success";
+                        break;
+                    case "sc_fail":
+                        result = "Failed (Star Catch)";
+                        result_type = "result-fail";
+                        break;
+                    case "sc_success":
+                        result = "Success! (Star Catch)";
+                        result_type = "result-success r-sc_success";
+                        break;
+                    case "destroy":
+                        result = "Destroyed!";
+                        result_type = "result-destroy-text";
+                        break;
+                    case "fail-safeguard":
+                        result = "Safeguard!";
+                        result_type = "result-destroy-text";
+                        break;
                 }
 
                 let is_destroyed = ["destroy", "fail-safeguard"].includes(this_result);
 
                 let bgColor = "none";
                 let color = "black";
-                if (_tl.star === 22) {
-                    bgColor = "#0070dd";
-                    color = "white";
-                } else if (_tl.star === 23) {
-                    bgColor = "#a335ee";
-                    color = "white";
-                } else if (_tl.star === 24) {
-                    bgColor = "#ff8000";
-                    color = "white";
-                } else if (_tl.star === 25) {
-                    bgColor = "#00f70a";
-                    color = "white";
+                switch (_tl.star) {
+                    case 22:
+                        bgColor = "#0070dd";
+                        color = "white";
+                        break;
+                    case 23:
+                        bgColor = "#a335ee";
+                        color = "white";
+                        break;
+                    case 24:
+                        bgColor = "#ff8000";
+                        color = "white";
+                        break;
+                    case 25:
+                        bgColor = "#00f70a";
+                        color = "white";
+                        break;
                 }
 
                 t_body += `
@@ -1264,11 +1261,36 @@ $(function() {
             `;
         }
 
+        return t_body;
+    }
+
+    //log shows a set amount at a time to prevent long loading times
+    let sf_log_default = {
+        start: 0,
+        end: 100
+    };
+    let sf_log_start = sf_log_default.start;
+    let sf_log_end = sf_log_default.end;
+    let sf_log_step = 100;
+    //show starforce log table
+    $("#starforce_log").on("click", function(){        
+        sf_log_start = sf_log_default.start;
+        sf_log_end = sf_log_default.end;
+
+        let this_log = Item.idata.meta.sf_meta_data.slice(sf_log_start, sf_log_end);
+
+        let t_body = generate_star_force_log_rows(this_log);
+
         let html = `
             <div style="max-height:800px">
                 <label for="cb_show_prn">
-                    <input type="checkbox" id="cb_show_prn"> Show PRNG info.    
+                    <input type="checkbox" id="cb_show_prn"> Show PRNG info   
                 </label>
+                <label for="cb_show_add_stats">
+                    <input type="checkbox" id="cb_show_add_stats"> Show star force stats
+                </label>
+                <div id="con_sf_add_stats" style="font-size:11px">
+                </div>
                 <hr>
                 <table style="width:100%;font-size:11px;" id="star_force_log">
                     <thead>
@@ -1289,9 +1311,16 @@ $(function() {
                             <th class="prn_map hidden">PRN Map</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="star_force_log_body">
                         ${t_body}
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="20">
+                                <button id="star_force_log_show_more" style="width:100%">Show ${sf_log_step} More</button>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         `;
@@ -1309,16 +1338,230 @@ $(function() {
             }]
         }).dialog("open");
 
+        let sf_log_body = $("#star_force_log_body");
+        //bind show more button to show more star force log records
+        $("#star_force_log_show_more").on("click", function() {
+            sf_log_start += sf_log_start + sf_log_step;
+            sf_log_end += sf_log_end + sf_log_step;
+
+            let this_log = Item.idata.meta.sf_meta_data.slice(sf_log_start, sf_log_end);
+
+            if (this_log.length === 0) {
+                return false;
+            }
+
+            let t_body = generate_star_force_log_rows(this_log);
+
+            sf_log_body.append(t_body);
+        });
 
         return false;
     });
 
+    //toggle prn info in starforce log
     body.on("change", "#cb_show_prn", function(e) {
         let prn_row = $("#star_force_log .prn_number, #star_force_log .prn_map");
         if (e.target.checked) {
             prn_row.removeClass("hidden");
         } else {
             prn_row.addClass("hidden");
+        }
+    });
+
+
+    let generate_sf_overall_stats = function(s, title) {
+        let tbody = '';
+
+        if (s.length === 0) {
+            return '';
+        }
+
+        let sg_keys = Object.keys(s.safeguards);
+
+        let sg_booms = [];
+        let sg_booms2 = [];
+
+        //for booms, only show stars up to the max star
+        if ("booms" in s) {
+            sg_booms = Object.keys(s.booms);
+            sg_booms2 = sg_booms.splice(0, sg_booms.indexOf("b" + s.highest_star));
+        }
+
+        let has_boom = sg_booms.length > 0;
+        
+        tbody += `
+            <tr>
+                <td>${s.runs}</td>
+                <td>${s.final_star}</td>
+                <td>${s.highest_star}</td>
+                <td>${s.tot_success}</td>
+                <td>${s.tot_fail}</td>
+                <td>${s.sc_success}</td>
+                <td>${s.sc_fail}</td>
+                <td>${s.tot_safeguards}</td>
+                ${
+                    has_boom ?
+                    `<td>${s.tot_booms}</td>`
+                    :
+                    ""
+                }
+                <td>
+                    <table class="sub-table" style="width:100%;font-size:1em;">
+                        <thead>
+                            <tr>
+                                ${
+                                    sg_keys.map((a)=>{
+                                        return `
+                                            <th>${a.replace("sg", "")}</th>
+                                        `;
+                                    }).join("")
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            ${
+                                sg_keys.map((a)=>{
+                                    return `
+                                        <td>${s.safeguards[a]}</td>
+                                    `;
+                                }).join("")
+                            }
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                ${
+                    has_boom ?
+                    `
+                    <td>
+                        <table class="sub-table" style="width:100%;font-size:1em;">
+                            <thead>
+                                <tr>
+                                    ${
+                                        sg_booms2.map((a)=>{
+                                            return `
+                                                <th>${a.replace("b", "")}</th>
+                                            `;
+                                        }).join("")
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                ${
+                                    sg_booms2.map((a)=>{
+                                        return `
+                                            <td>${s.booms[a]}</td>
+                                        `;
+                                    }).join("")
+                                }
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    `  
+                    : ""
+                }
+                <td>
+                    <table class="sub-table" style="width:100%;font-size:1em;">
+                    <thead>
+                        <tr>
+                            <th>Normal</th>
+                            <th>Silver</th>
+                            <th>Gold</th>
+                            <th>Diamond</th>
+                            <th>30%</th>
+                            <th>30%+Silver</th>
+                            <th>30%+Gold</th>
+                            <th>30%+Diamond</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>${s.cost["1.0"].toNumber()}</td>
+                            <td>${s.cost["0.03"].toNumber()}</td>
+                            <td>${s.cost["0.05"].toNumber()}</td>
+                            <td>${s.cost["0.1"].toNumber()}</td>
+                            <td>${s.cost["0.3"].toNumber()}</td>
+                            <td>${s.cost["0.03,0.3"].toNumber()}</td>
+                            <td>${s.cost["0.05,0.3"].toNumber()}</td>
+                            <td>${s.cost["0.1,0.3"].toNumber()}</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </td>
+            </tr>
+        `;
+
+        let table = `
+            <table style="width:100%;font-size:1em" class="sf-stat-breakdown">
+                <thead>
+                    <tr>
+                        <th colspan="40" style="text-align:center">
+                            <b>${title}</b>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width:5%">Runs</th>
+                        <th style="width:2%">Final Star</th>
+                        <th style="width:2%">Highest Star</th>
+                        <th style="width:5%">Total Success</th>
+                        <th style="width:5%">Total Fail</th> 
+                        <th style="width:3%">Success<br>(Star Catch)</th>
+                        <th style="width:3%">Fail<br>(Star Catch)</th>
+                        <th style="width:2%">Total Safeguards</th>
+
+                        ${
+                            has_boom ? `<th style="width:2%">Total Booms</th>` : ""
+                        }
+
+                        <th style="width:10%">Safeguards</th>
+
+                        ${
+                            has_boom ? `<th style="width:15%">Booms</th>` : ""
+                        }
+
+                        <th style="width:46%">Total Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tbody}
+                </tbody>
+            </table>
+        `;
+
+        return table;
+    };
+
+    //toggle additional stats in starforce log
+    body.on("change", "#cb_show_add_stats", function(e) {
+        let con_stats = $("#con_sf_add_stats");
+
+        if (e.target.checked) {
+            let this_stats = analyze_starforce(Item.idata.meta.sf_meta_data);
+
+            let html = '';
+
+            //overall stats table
+            html += generate_sf_overall_stats(this_stats.g, "Overall Star Force Stats");
+
+            let tiL = this_stats.i.length;
+            //each individual boom stats
+            for (let i = 0; i < this_stats.i.length; ++i) {
+                let title = "Boom #" + (i+1);
+
+                if (i === tiL - 1) {
+                    title = "Final Item";
+                }
+
+                html += generate_sf_overall_stats(this_stats.i[i], title);
+            }
+
+            con_stats.html(html);
+            con_stats.removeClass("hidden");
+        } else {
+            con_stats.addClass("hidden");
         }
     });
 
@@ -2129,6 +2372,8 @@ $(function() {
                 if (item_type[0] === "genesis") {
                     $("#item_starforce").val(22);
                     $("#scrolls_15").val(8);
+                } else {
+                    $("#item_starforce").val(0);
                 }
             });
 

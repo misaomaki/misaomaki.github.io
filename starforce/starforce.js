@@ -497,3 +497,152 @@ var equip_gain_total = function(sa = []) {
 
     return tot;
 };  
+
+//generate html after analyzing item log data for starforce
+let analyze_starforce = function(d) {
+    let s = {
+        g: {
+            runs: d.length,
+            highest_star: 0,
+            final_star: 0,
+            success: 0,
+            chance_time_success: 0,
+            fail: 0,
+            sc_success: 0,
+            sc_fail: 0,
+            booms: {}, //broken down by level
+            safeguards: {}, //broken down by level
+            tot_safeguards: 0,
+            tot_booms: 0,
+            //cost broken down by events and mvp discounts
+            cost: {
+                "1.0": 0,
+                "0.1": 0,
+                "0.1,0.3": 0,
+                "0.03": 0,
+                "0.03,0.3": 0,
+                "0.3": 0,
+                "0.05": 0,
+                "0.05,0.3": 0
+            }
+        }, //global stats from all items
+        i: [] //boomed items get their own stats here
+    };
+
+    let is_new_item = false;
+
+    //base log item
+    let _sd = {
+        runs: 0,
+        highest_star: 0,
+        final_star: 0,
+        total_cost: 0,
+        success: 0,
+        chance_time_success: 0,
+        fail: 0,
+        sc_success: 0,
+        sc_fail: 0,
+        safeguards: {},
+        total_cost: 0,
+        tot_safeguards: 0,
+        cost: {
+            "1.0": 0,
+            "0.1": 0,
+            "0.1,0.3": 0,
+            "0.03": 0,
+            "0.03,0.3": 0,
+            "0.3": 0,
+            "0.05": 0,
+            "0.05,0.3": 0
+        }
+    };
+
+    //init boom count for each level to 0
+    for (let i = 12; i <= 25; ++i) {
+        s.g.booms["b" + i] = 0;
+        if (i < 17) {
+            s.g.safeguards["sg" + i] = 0;
+            _sd.safeguards["sg" + i] = 0;
+        }
+    }
+
+    let sd = $.extend(true, {}, _sd);
+
+    let dL1 = d.length - 1;
+
+    for (let i = dL1; i >= 0; --i) {
+        let _d = d[i];
+
+        //increment sf attempts count
+        ++sd.runs;
+
+        let result = _d.result;
+
+        if (_d.star > s.g.highest_star) {
+            s.g.highest_star = _d.star;
+        }
+
+        if (_d.star > sd.highest_star) {
+            sd.highest_star = _d.star;
+        }
+
+        //get total cost for global and individual boomed run
+        sd.cost["1.0"] += _d.star_cost;
+        s.g.cost["1.0"] += _d.star_cost;
+
+        for (let j in _d.sf_cost_discount) {
+            sd.cost[j] += _d.star_cost_discount[j];
+            s.g.cost[j] += _d.star_cost_discount[j];
+        }
+
+        //increment result count
+        if (result !== 'destroy') {
+            if (result === "fail-safeguard") {
+                let _pd = d[i+1];
+
+                ++s.g.safeguards["sg" + _pd.star];
+                ++sd.safeguards["sg" + _pd.star];
+
+                ++s.g.tot_safeguards;
+                ++sd.tot_safeguards;
+
+                //fail safeguard counts as fail
+                ++s.g.fail;
+                ++sd.fail;
+            } else {
+                ++sd[result];
+                ++s.g[result];
+            }
+        } else {
+            let _pd = d[i+1];
+
+            ++s.g.booms["b" + _pd.star];
+            ++s.g.tot_booms;
+
+            sd.final_star = _pd.star;
+
+            is_new_item = true;
+        }
+
+        //if item boomed, then commit item to s item store and init a new log item
+        //if no booms, then the final run is the same as total cost, so don't show it
+        if (is_new_item || (i === 0 && s.g.tot_booms > 0)) {
+            sd.tot_success = sd.success + sd.chance_time_success + sd.sc_success;
+            sd.tot_fail = sd.fail + sd.sc_fail;
+
+            if (i === 0) {
+                sd.final_star = _d.star;
+            }
+
+            s.i.push(sd);
+            sd = $.extend(true, {}, _sd);
+            is_new_item = false;
+        }
+    }
+
+    s.g.tot_success = s.g.success + s.g.chance_time_success + s.g.sc_success;
+    s.g.tot_fail = s.g.fail + s.g.sc_fail;
+    s.g.final_star = d[0].star;
+
+    return s;
+};

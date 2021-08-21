@@ -976,6 +976,9 @@ item.prototype.xgrade_item = function(type = 0) {
 
         let cost_chart = this.log_starforce_cost(is_safeguardable && is_safeguard, this_star_cost_prev, this_star_cost_prev_effective, current_star);
 
+        this.idata.meta.sf_log_item.star_cost_discount = Object.assign({}, cost_chart);
+        this.idata.meta.sf_log_item.star_cost = this_star_cost_prev * safeguard_multiplier;
+
         //cumulative sf cost
         if (this.idata.meta.sf_meta_data.length === 0) {
             this.idata.meta.sf_log_item.sf_cost = this_star_cost_prev * safeguard_multiplier;
@@ -992,7 +995,7 @@ item.prototype.xgrade_item = function(type = 0) {
             this.idata.meta.sf_log_item.sf_cost_discount = Object.assign({}, prev_sf_cost_discount);
         }
 
-        this.idata.meta.sf_meta_data.push(this.idata.meta.sf_log_item);
+        this.idata.meta.sf_meta_data.unshift(this.idata.meta.sf_log_item);
     }
 
     if (type === 0) {
