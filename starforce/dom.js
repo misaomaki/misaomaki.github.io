@@ -814,7 +814,7 @@ $(function() {
                     }
                 </div>
             </div>
-            <div class="form-footer" style="color:red">
+            <div class="form-footer hidden" style="color:red">
                 The last ${MAX_LOG_RECORDS} log records will be kept in the starforce log.
             </div>
         `;
@@ -1286,6 +1286,7 @@ $(function() {
                 <label for="cb_show_prn">
                     <input type="checkbox" id="cb_show_prn"> Show PRNG info   
                 </label>
+                |
                 <label for="cb_show_add_stats">
                     <input type="checkbox" id="cb_show_add_stats"> Show star force stats
                 </label>

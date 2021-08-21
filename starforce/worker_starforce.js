@@ -180,7 +180,7 @@ onmessage = function(d) {
         if (ld.id === 1) {
             ld.sf_cost_discount = Object.assign({}, this_cost_discount);
         } else {
-            let prev_cost_discount = Object.assign({}, log_data[ld.id - 2].sf_cost_discount);
+            let prev_cost_discount = Object.assign({}, log_data[0].sf_cost_discount);
 
             for (let a in this_cost_discount) {
                 prev_cost_discount[a] += this_cost_discount[a];

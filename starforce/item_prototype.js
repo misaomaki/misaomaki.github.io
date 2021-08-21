@@ -984,8 +984,8 @@ item.prototype.xgrade_item = function(type = 0) {
             this.idata.meta.sf_log_item.sf_cost = this_star_cost_prev * safeguard_multiplier;
             this.idata.meta.sf_log_item.sf_cost_discount = Object.assign({}, cost_chart);
         } else {
-            let prev_item = this.idata.meta.sf_meta_data[this.idata.meta.sf_meta_data.length - 1];
-            let prev_sf_cost_discount = Object.assign({}, this.idata.meta.sf_meta_data[this.idata.meta.sf_meta_data.length - 1].sf_cost_discount);
+            let prev_item = this.idata.meta.sf_meta_data[0];
+            let prev_sf_cost_discount = Object.assign({}, this.idata.meta.sf_meta_data[0].sf_cost_discount);
             this.idata.meta.sf_log_item.sf_cost = prev_item.sf_cost + (this_star_cost_prev * safeguard_multiplier);
 
             for (let i in cost_chart) {
