@@ -1550,10 +1550,10 @@ $(function() {
             let tiL = this_stats.i.length;
             //each individual boom stats
             for (let i = 0; i < this_stats.i.length; ++i) {
-                let title = "Boom #" + (i+1);
+                let title = `<span style="color:red">Boom #${(i+1)}</span>`;
 
                 if (i === tiL - 1) {
-                    title = "Final Item";
+                    title = `<span style="color:green">Current Item</span>`;
                 }
 
                 html += generate_sf_overall_stats(this_stats.i[i], title);
