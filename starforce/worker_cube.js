@@ -15,38 +15,35 @@ importScripts("cubes.js");
 
     -1 is treated as a wildcard value, so [-1,2,3] is treated as equal to [4,2,3]
 */
-let arrayCompare = function(_a, _b, c = false) {
-    let a = _a.concat();
-    let b = _b.concat();
-
-    //get count of lines in struct format
-    a = a.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
-    b = b.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
-   
+let arrayCompare = function(_a, _b, c = false) {   
     if (!c) {
-      //check if key from a exists in b. if wildcard value, ignore
-      for (let i in a) {
-          if (i == -1) continue;
+        //copy array
+        let a = _a.concat();
+        let b = _b.concat();
 
-          if (b[i] !== a[i]) {
-              return false;
-          }
-      }
-    } else {
-      let ak = Object.keys(a);
-      let bk = Object.keys(b);
-      
-      //check if each item in a and b are of the same line in the same order. if wildcard value, ignore.
-      for (let i = 0; i < ak.length; ++i) {
-      	if (ak[i] == -1 || bk[i] == -1) continue;
-      
-      	if (ak[i] !== bk[i]) {
-        	return false;
+        //get count of lines in struct format
+        a = a.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
+        b = b.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
+        
+        //check if key from a exists in b, then compare the count of a and b. if wildcard value, ignore
+        for (let i in a) {
+            if (i == -1) continue;
+
+            if (b[i] !== a[i]) {
+                return false;
+            }
         }
-      }
+    } else {
+        //if order is enforced, then compare array lines index to index. if wildcard value, ignore
+        for (let i = 0; i < _a.length; ++i) {
+            if (a[i] == -1 || b[i] == -1) continue;
+
+            if (a[i] !== b[i]) {
+                return false;
+            }
+        }
     }
-    
-    
+
     return true;
 }
 
@@ -104,7 +101,10 @@ onmessage = function(o) {
 
             log results as they are done.
         */
+        let idx = 0;
         do {
+            ++idx;
+
             cube.cube.bind(d.item)(d.cube, [], ()=>{}, {
                 update_dom: false
             });
@@ -127,6 +127,10 @@ onmessage = function(o) {
 
             //get the raw lines to check against the desired lines
             lines = cr.results.result.map((a)=>{return a.id});
+
+            if (idx !== 1 && idx % 10000 === 0) {
+                postMessage({done: false, code: 15, message: "Cubing process is still running. " + idx + " cubes have been used..."});
+            }
         }
         while (!(same_tier && arrayCompare(d.cube_lines, lines, d.enforce_order)));
     }

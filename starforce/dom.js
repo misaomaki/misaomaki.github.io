@@ -757,8 +757,6 @@ $(function() {
         Item.redraw();
     });
 
-
-    let MAX_LOG_RECORDS = 5000;
     //auto starforce
     $("#auto_starforce").on("click", function() {
         let html = `
@@ -813,16 +811,18 @@ $(function() {
                         }).join("")
                     }
                 </div>
-            </div>
-            <div class="form-footer hidden" style="color:red">
-                The last ${MAX_LOG_RECORDS} log records will be kept in the starforce log.
+                <span id="h_update"></span>
             </div>
         `;
 
+        let w_sf = {terminate:()=>{}}; //starforce worker
         optionbox.html(html).dialog({
             title: "Auto Star Force",
             width: 1000,
             height: "auto",
+            close: ()=>{
+                w_sf.terminate();
+            },
             buttons: [{
                 text: "Close",
                 click: function() {
@@ -868,16 +868,21 @@ $(function() {
                         starcatch: starcatch,
                         events: event_options,
                         safeguard: safeguard,
-                        heuristic: false,
-                        max_records: MAX_LOG_RECORDS
+                        heuristic: false
                     };
             
                     //post data to worker to calculate stars
-                    let w_sf = new Worker("./starforce/worker_starforce.js");
+                    w_sf = new Worker("./starforce/worker_starforce.js");
             
                     w_sf.postMessage(data);
             
+                    let h_update = $("#h_update");
                     w_sf.onmessage = function(d) {
+                        if (d.data.type === 2) {
+                            h_update.html(d.data.message);
+                            return false;
+                        }
+
                         Item.set_item_level(d.data.stars_to);
                         Item.idata.meta.sf_meta_data = d.data.data;
                         Item.redraw();
@@ -945,12 +950,17 @@ $(function() {
                     </div>
                 </div>
             </div>
+            <span id="cube_msg" style="color:red"></span>
         `;
 
+        let w_c = {terminate:()=>{}}; //worker
         optionbox.html(html).dialog({
             title: "Auto Cube",
             width: 1000,
             height: "auto",
+            close: ()=>{
+                w_c.terminate();
+            },
             buttons: [{
                 text: "Close",
                 click: function() {
@@ -994,10 +1004,11 @@ $(function() {
                     };
             
                     //post data to worker to calculate cubes
-                    let w_c = new Worker("./starforce/worker_cube.js");   
+                    w_c = new Worker("./starforce/worker_cube.js");   
             
                     w_c.postMessage(data);
-                        
+                    
+                    let cube_msg = $("#cube_msg");
                     w_c.onmessage = function(d) {
                         //codes less than 1 are errors that cannot proceed
                         if (d.data.code < 0) {
@@ -1006,6 +1017,12 @@ $(function() {
                             alert(d.data.message);
                             return false;
                         };
+
+                        //worker is sending updates about how many cubes are used. used for long-running cubing
+                        if (d.data.code === 15) {
+                            cube_msg.html(d.data.message);
+                            return false;
+                        }
 
                         //if item tier passed the desired tier, then exit and return the latest cube lines
                         if (d.data.code === 2) {
