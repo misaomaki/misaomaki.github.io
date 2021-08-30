@@ -120,7 +120,7 @@ onmessage = function(o) {
             }
             if (d.pot_tier !== "legendary") {
                 if (rarity_enum[d.pot_tier] < rarity_enum[cr.tier || ""]) {
-                    postMessage({done: false, code: 2, message: "Item tiered passed the desired potential.", data: d.item.idata.meta.cube_meta_data});
+                    postMessage({done: false, code: 2, message: "Item tiered passed the desired potential.", data: d.item});
                     return false;
                 }
             }
@@ -128,8 +128,15 @@ onmessage = function(o) {
             //get the raw lines to check against the desired lines
             lines = cr.results.result.map((a)=>{return a.id});
 
-            if (idx !== 1 && idx % 10000 === 0) {
-                postMessage({done: false, code: 15, message: "Cubing process is still running. " + idx + " cubes have been used..."});
+            //let user know the page didn't freeze and the process is still running
+            if (idx !== 1 && idx % 100 === 0) {
+                let return_message = "Cubing process is still running. " + idx + " cubes have been used...";
+                if (idx % 500 === 0) {
+                    d.item.idata.meta.cube_meta_data = [d.item.idata.meta.cube_meta_data[1]];
+                    postMessage({done: false, code: 16, message: return_message + "<br> Dumping saved log records to prevent crashing."});
+                } else {
+                    postMessage({done: false, code: 15, message: return_message});
+                }
             }
         }
         while (!(same_tier && arrayCompare(d.cube_lines, lines, d.enforce_order)));
@@ -138,5 +145,5 @@ onmessage = function(o) {
     //once process exits, mark the last record as keep
     d.item.idata.meta.cube_meta_data[0].keep = true;
 
-    postMessage({done: true, code: 1, message: "", data: d.item.idata.meta.cube_meta_data, pot: lines});
+    postMessage({done: true, code: 1, message: "", data: d.item, pot: lines});
 }

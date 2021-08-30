@@ -142,7 +142,7 @@ $(function() {
             cr = Item.cube(cube_type, bcc, ()=>{});
 
             if (cr) {
-                cube_animation = "cube-use-tier";
+                cube_animation = "cube-use-tier"; //tier up animation
             }
 
             bcc.removeClass("hidden");
@@ -281,6 +281,7 @@ $(function() {
     //generate cube log rows.
     var generate_cube_log_table = function(cube_data) {
         let cdl = cube_data.length;
+
         //show 100 cube log
         let max_start = 100;
 
@@ -432,22 +433,10 @@ $(function() {
 
         let cube_data = Item.idata.meta.cube_meta_data;
 
-        //get the cube types used
-        let cubes_used = cube_data.reduce((a,b)=>{
-            if (a[b.cube] === undefined) {
-                a[b.cube] = 1;
-            } else {
-                ++a[b.cube];
-            }
-
-            return a;
-        }, {});
-
         let cube_type_html = "";
 
-        for (let i in cubes_used) {
-            let cube_count = cubes_used[i];
-
+        for (let i in Item.idata.meta.cubes_used) {
+            let cube_count = Item.idata.meta.cubes_used[i];
             cube_type_html += `
                 <div class="cube-used">
                     <div class="cube cube-${i} cube-small"></div> <span class="cube-used-count">${cube_count}</span>
@@ -1019,16 +1008,20 @@ $(function() {
                         };
 
                         //worker is sending updates about how many cubes are used. used for long-running cubing
-                        if (d.data.code === 15) {
+                        if ([15,16].includes(d.data.code)) {
                             cube_msg.html(d.data.message);
                             return false;
                         }
+
+                        let cube_log_data = d.data.data.idata.meta.cube_meta_data;
+
+                        let data_cubes_used = d.data.data.idata.meta.cubes_used;
 
                         //if item tier passed the desired tier, then exit and return the latest cube lines
                         if (d.data.code === 2) {
                             alert(d.data.message);
 
-                            let last_result = d.data.data[0];
+                            let last_result = cube_log_data[0];
                             let last_result_lines = last_result.results.result.map(a=>a.id);
                             pot_tier = last_result.tier;
 
@@ -1037,7 +1030,9 @@ $(function() {
                             [line_1, line_2, line_3] = d.data.pot;
                         }
 
-                        Item.idata.meta.cube_meta_data = d.data.data;
+                        Item.idata.meta.cube_meta_data = cube_log_data;
+                        Item.idata.meta.cubes_used = data_cubes_used;
+                        Item.idata.meta.cubes_total = d.data.data.idata.meta.cubes_total;
 
                         Item.set_cube(cube_type, pot_tier, {
                             line_0: line_1,
@@ -1139,6 +1134,7 @@ $(function() {
 
     let generate_star_force_log_rows = function(this_log) {
         let t_body = "";
+        let prn_hidden = $("#cb_show_prn").prop("checked")
         if (this_log.length > 0) {
             for (let i = 0; i < this_log.length; ++i) {
                 let _tl = this_log[i];
@@ -1259,10 +1255,10 @@ $(function() {
                         <td>${_tl.sf_cost_discount["0.03,0.3"].toNumber()}</td>
                         <td>${_tl.sf_cost_discount["0.05,0.3"].toNumber()}</td>
                         <td>${_tl.sf_cost_discount["0.1,0.3"].toNumber()}</td>
-                        <td class="prn_number hidden ${is_destroyed ? "result-destroy" : ""}" style="white-space:nowrap">
+                        <td class="prn_number ${prn_hidden ? "" : "hidden"} ${is_destroyed ? "result-destroy" : ""}" style="white-space:nowrap">
                             <span class="${result_type}">${_tl.prn}</span>
                         </td>
-                        <td class="prn_map hidden" style="text-align:left">
+                        <td class="prn_map ${prn_hidden ? "" : "hidden"} style="text-align:left">
                             ${prn_map_html}
                         </td>
                     </tr>

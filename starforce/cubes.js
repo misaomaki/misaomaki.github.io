@@ -6063,7 +6063,10 @@ cube.cube = function(type, dom, cb, o) {
         return a.type === cube_type_opposite && a.keep
     });
 
-    let cube_run = this.idata.meta.cube_meta_data.length + 1;
+    if (o.write_log_record) {
+        ++this.idata.meta.cubes_total;
+        ++this.idata.meta.cubes_used[type];
+    }
 
     //log cube results
     this.idata.meta.cube_log_item = {
@@ -6073,7 +6076,7 @@ cube.cube = function(type, dom, cb, o) {
         results: cube_results,
         keep: true,
         other: opposite_current_pot, //current bonus/main depending on if current type is main/bonus
-        run: cube_run
+        run: this.idata.meta.cubes_total
     };
 
     //post-processing and update cube window
