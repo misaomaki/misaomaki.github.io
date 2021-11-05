@@ -6046,7 +6046,7 @@ cube.cube = function(type, dom, cb, o) {
             then do the black cube
         */
         if (type === "black") {
-            cube.cube.bind(this)("red", [], ()=>{}, {
+            cube.cube.call(this, "red", [], ()=>{}, {
                 no_tier_up: true
             });
         }
@@ -6080,7 +6080,7 @@ cube.cube = function(type, dom, cb, o) {
     };
 
     //post-processing and update cube window
-    cube.cube_draw.bind(this)(cube_results, dom, type, cb, {update_dom: o.update_dom, write_log_record: o.write_log_record});
+    cube.cube_draw.call(this, cube_results, dom, type, cb, {update_dom: o.update_dom, write_log_record: o.write_log_record});
 
     return cube_results.tier_up.upgrade;
 }
@@ -6117,7 +6117,7 @@ if (typeof item != 'undefined') {
     }
 
     item.prototype.cube = function(type, dom, cb, o) {
-        return cube.cube.bind(this)(type, dom, cb, o);
+        return cube.cube.call(this, type, dom, cb, o);
     };
 }
 

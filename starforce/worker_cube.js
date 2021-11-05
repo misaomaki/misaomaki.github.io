@@ -105,7 +105,7 @@ onmessage = function(o) {
         do {
             ++idx;
 
-            cube.cube.bind(d.item)(d.cube, [], ()=>{}, {
+            cube.cube.call(d.item, d.cube, [], ()=>{}, {
                 update_dom: false
             });
             
