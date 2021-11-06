@@ -3033,6 +3033,9 @@ var gacha_db = {
         "c": []
     };
 
+    /*
+        no amount of parsing hackery can get these ones because the names are too different
+    */
     var edgeCases = {
         "Battle-Roid (M) Coupon": "BattleRoid (Male)",
         "Battle-Roid (F) Coupon": "BattleRoid (Female)",
@@ -3101,6 +3104,9 @@ var gacha_db = {
     };
 
     $(function() {
+        /*
+            paste entire marvel rates page source into textarea. this will parse the rates
+        */
         $("#parse").on("change", function() {
             var n = $($(this).val());
 
@@ -3115,6 +3121,17 @@ var gacha_db = {
             });
          });
 
+         /*
+            from the rates tables, attempt to get the item_idx from the marvel page and associate them with the item.
+            this is for spinning to the correct item in the marvel run.
+
+            the names between the marvel rates page and marvel machine page can differ, so need to check on a lot of things.
+            if no item_idx can be found, it will output as undetected. these will have to be handled manually by
+            including it in the edgeCases dictionary or a new parsing function will have to be added to accommodate
+            it.
+
+            if all is successful, then output the stringified JSON in the console. this copied into gacha_db as is.
+         */
         let parse_table = function(tbl) {
             let _this = tbl.html();
             let n = tbl.find("tr");
@@ -3238,10 +3255,6 @@ var gacha_db = {
                     
                     if (typeof item.item_idx !== 'string') {
                         item.item_idx = undefined;
-                    }
-
-                    if (item.name.toLowerCase().includes("tangy")) {
-                        debugger;
                     }
 
                     if (typeof item.item_idx == 'undefined' || typeof item.item_idx !== "string") {
