@@ -3579,6 +3579,71 @@ var items_store = {
             skill: "Grants the skill Dawn Shield.",
             flavor: "The Heavens themselves are watching over you."
         },
+        kanna_treasure: {
+            name: "KannaTreasureRing",
+            alt_name: "Kanna's Treasure",
+            level: 140,
+            class: "armor",
+            type: "ring",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                watt: 1,
+                matt: 1,
+                str: 5,
+                dex: 5,
+                int: 5,
+                luk: 5,
+                hp: 200,
+                mp: 200,
+                def: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-kannatreasure",
+            upgrades: 1,
+            hammers_added: 2
+        },
+        guardian_angel_ring: {
+            name: "Guardian Angel Ring",
+            level: 160,
+            class: "armor",
+            type: "ring",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                watt: 2,
+                matt: 2,
+                str: 5,
+                dex: 5,
+                int: 5,
+                luk: 5,
+                hp: 200,
+                mp: 200,
+                def: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-guardianangelring",
+            upgrades: 2,
+            hammers_added: 2
+        },
         aquarius: {
             name: "Aquarius Crown",
             level: 150,
