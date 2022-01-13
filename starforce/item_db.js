@@ -7877,6 +7877,63 @@ var items_store = {
             upgrades: 8,
             hammers_added: 0
         },
+        lapis: {
+            name: "Genesis Lapis",
+            level: 200,
+            class: "weapon",
+            type: "Heavy Sword",
+            speed: "slow",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 342,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150,
+                def: 250
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesislapis",
+            upgrades: 8,
+            hammers_added: 0
+        },
+        lazuli: {
+            name: "Genesis Lazuli",
+            level: 200,
+            class: "weapon",
+            type: "Long Sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 337,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            }),
+            req: {
+                str: 600,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesislazuli",
+            upgrades: 8,
+            hammers_added: 0
+        },
         soul_shooter: {
             name: "Genesis Soul Shooter",
             level: 200,
