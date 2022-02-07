@@ -175,7 +175,7 @@ cube.stat_type = {
     boss35: "Boss Monster Damage: +35%",
     boss40: "Boss Monster Damage: +40%",
     boss12: "Boss Monster Damage: +12%",
-    boss18: "Boss Monster Damgae: +18%",
+    boss18: "Boss Monster Damage: +18%",
     crit_dmg1: "Critical Damage: +1%",
     crit_dmg3: "Critical Damage: +3%",
     crit_dmg8: "Critical Damage: +8%",

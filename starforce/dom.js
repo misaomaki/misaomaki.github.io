@@ -2440,24 +2440,31 @@ $(function() {
             //remove duplicates from the stat options
             let _s = stats[i];
 
-            let stat_options = "";
+            let stat_options = [];
 
             if (o.wildcard) {
-                stat_options += `
-                    <option value="-1">&lt;Any Line&gt;</option>
-                `;
+                stat_options.push({
+                    type: "-----",
+                    html: `
+                        <option value="-1">&lt;Any Line&gt;</option>
+                    `
+                });
             }
 
+            /* return cube options with select html and its type so that we can sort it*/
             stat_options = _s.reduce(function(a,b) {
                 let sid = b[0];
                 let _st = cube.stat_upgrade(this_item.level,sid); //line stat verbiage
 
-                a += `
-                    <option value="${sid}">${_st}</option>
-                `;
+                a.push({
+                    type: _st,
+                    html: `
+                        <option value="${sid}">${_st}</option>
+                    `}
+                );
 
                 return a;
-            }, stat_options);
+            }, stat_options).sort((a,b)=>{return a.type > b.type ? 1 : -1;}).map((a)=>{return a.html}).join();
 
             tier_html += `
                 <div class="pot-stat-con" style="padding:5px">
@@ -2496,34 +2503,9 @@ $(function() {
         //get the stats available for the main/bonus pot by its tier and item type
         let stats = cube.pot_stats[type][item_type][pot_tier];
 
-        let tier_html = "";
-
-        //generate dropdowns for each line with the available stats
-        let idx = 0;
-        for (let i in stats) {
-            ++idx;
-
-            //remove duplicates from the stat options
-            let _s = stats[i];
-
-            tier_html += `
-                <div class="pot-stat-con" style="padding:5px">
-                    <span class="pot-stat-line">Line ${idx}:</span>
-                    <select id="cube_stat_line_${type}_${idx}" class="select-cube-line-${type}" data-id="${idx}">
-                        ${
-                            _s.map(function(a) {
-                                let sid = a[0];
-                                let _st = cube.stat_upgrade(this_item.level,sid); //line stat verbiage
-
-                                return `
-                                    <option value="${sid}">${_st}</option>
-                                `;
-                            }).join("")
-                        }
-                    </select>
-                </div>
-            `;
-        }
+        let tier_html = cube_pot_dropdown_html(this_item, type, pot_tier, {
+            wildcard: false
+        });
 
         $("#cube_line_con_" + type).html(tier_html);
 
