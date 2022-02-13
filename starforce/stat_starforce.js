@@ -27,6 +27,11 @@ $(function() {
     */
     var worker = {};
     var sf_analysis_items = []; /* store analyzed starforce runs */
+    /* keep track of highest and lowest costs */
+    var sf_minmax = {
+        highest_cost: 0,
+        lowest_cost: 0
+    }; 
     var sf_idx = 0; /* keep track of how many runs */
     var sf_data = {
         reload_log: true
@@ -49,6 +54,7 @@ $(function() {
         };
     }
 
+    /* reset variables */
     var reset_variables = function() {
         sf_idx = 0;
         sf_analysis_items = [];
@@ -75,7 +81,7 @@ $(function() {
         </div>
         <hr>
         <div style="padding:10px" id="stat_options_container">
-            Analyze star force runs by looking at the averages across many items. 
+            Analyze starforce runs by looking at the averages across many items. 
             <br><br>
             Starforce Cost Type: <select id="stat_sfrates">
                 <option value="GMS">GMS</option>
@@ -158,6 +164,7 @@ $(function() {
         $("#reset_sf_statistics").prop("disabled", false);
         $("#stat_options_container").removeClass("hidden");
         stat_processing = false;
+        worker.terminate();
     });
 
     /* reset variables and ui */
@@ -282,9 +289,6 @@ $(function() {
                         `
                             ${
                                 Object.keys(avg_data[i]).reduce((a,b)=>{
-                                    if (i === "cost") {
-                                        debugger;
-                                    }
                                     let j = `
                                         <tr>
                                             <td class="data-label-row data-sub-row"">
@@ -332,7 +336,9 @@ $(function() {
 
         let pdl = part_data.length;
 
-        /* calculate the  */
+        //get_min_max_vals(part_data, part);
+
+        /* calculate the averages */
         let calculate_avg = (a)=>{
             for (let i in a) {
                 if (i in a) {
@@ -372,5 +378,14 @@ $(function() {
         }, {});
 
         return total_avg_data;
+    };
+
+    /* keep track of min and max values of certain items */
+    var get_min_max_vals = function(d, part) {
+        for (let i = 0; i < d.length; ++i) {
+            let _d = d[i];
+
+            //TODO
+        }   
     }
 });
