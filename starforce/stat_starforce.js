@@ -25,7 +25,7 @@ $(function() {
         worker for starforcing. faster than using the Item.starforce() method
         because it only writes necessary log data
     */
-    var worker = {};
+    var worker = {terminate:()=>{}};
     var sf_analysis_items = []; /* store analyzed starforce runs */
     /* keep track of highest and lowest costs */
     var sf_minmax = {
