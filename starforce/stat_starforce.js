@@ -58,6 +58,10 @@ $(function() {
     var reset_variables = function() {
         sf_idx = 0;
         sf_analysis_items = [];
+        sf_minmax = {
+            highest_cost: 0,
+            lowest_cost: 0
+        };
     };
 
     /* html for starforce analysis screen */
@@ -195,10 +199,13 @@ $(function() {
 
     /* copy from dom.js (todo: make both use same function) - get starcatch values from textarea */
     var get_starcatch = function() {
-        let starcatch_a = $("#stat_starcatch").val().split(",");
-                    
         let starcatch = [];
-        
+        let val = $("#stat_starcatch").val();
+
+        if (val === "") return starcatch;
+
+        let starcatch_a = val.split(",");
+                    
         //get the starcatch stars from textarea
         for (let i = 0; i < starcatch_a.length; ++i) {
             let _i = starcatch_a[i];

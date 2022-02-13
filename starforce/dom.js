@@ -826,22 +826,25 @@ $(function() {
                     btn.prop("disabled", true);
                     btn.html("Processing starforce...");
 
-                    let starcatch_a = $("#asf_starcatch").val().split(",");
-                    
+                    let starcatch_val = $("#asf_starcatch").val();
                     let starcatch = [];
-                    
-                    //get the starcatch stars from textarea
-                    for (let i = 0; i < starcatch_a.length; ++i) {
-                        let _i = starcatch_a[i];
 
-                        if (_i.includes("-")) {
-                            let i_range = _i.split("-");
+                    if (starcatch_val !== '') {
+                        let starcatch_a = starcatch_val.split(",");
 
-                            for (let j = i_range[0]; j <= i_range[1]; ++j) {
-                                starcatch.push(+j);
+                        //get the starcatch stars from textarea
+                        for (let i = 0; i < starcatch_a.length; ++i) {
+                            let _i = starcatch_a[i];
+
+                            if (_i.includes("-")) {
+                                let i_range = _i.split("-");
+
+                                for (let j = i_range[0]; j <= i_range[1]; ++j) {
+                                    starcatch.push(+j);
+                                }
+                            } else {
+                                starcatch.push(+_i);
                             }
-                        } else {
-                            starcatch.push(+_i);
                         }
                     }
 
