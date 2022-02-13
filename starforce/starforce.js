@@ -499,6 +499,7 @@ var equip_gain_total = function(sa = []) {
 };  
 
 //generate html after analyzing item log data for starforce
+//pass in Item.idata.meta.sf_meta_data
 let analyze_starforce = function(d) {
     let s = {
         g: {

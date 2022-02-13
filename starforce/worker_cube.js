@@ -129,14 +129,13 @@ onmessage = function(o) {
             lines = cr.results.result.map((a)=>{return a.id});
 
             //let user know the page didn't freeze and the process is still running
-            if (idx !== 1 && idx % 10000 === 0) {
-                let return_message = "Cubing process is still running. " + idx + " cubes have been used...";
-                if (idx % 50000 === 0) {
+            if (idx !== 1 && idx % 1000 === 0) {
+                let return_message = `Cubing process is still running. ${idx} cubes have been used... <br><br> Every 5000 records, data is dumped to prevent browser crash.`;
+                if (idx % 5000 === 0) {
                     d.item.idata.meta.cube_meta_data = [d.item.idata.meta.cube_meta_data[1]];
-                    postMessage({done: false, code: 16, message: return_message + "<br> Dumping saved log records to prevent crashing."});
-                } else {
-                    postMessage({done: false, code: 15, message: return_message});
                 }
+
+                postMessage({done: false, code: 16, message: return_message});
             }
         }
         while (!(same_tier && arrayCompare(d.cube_lines, lines, d.enforce_order)));

@@ -7,6 +7,12 @@ let $ = function() {};
 importScripts("init.js");
 importScripts("starforce.js");
 
+/*
+    while this is copied code from item_prototype.js, this starforcing is considerably faster
+    because it does not do a lot of the processes the real starforcing code does. useful for pure
+    starforce calculations without any interactions with the DOM
+*/
+
 let sf_log = {
     id: 0,
     sf_cost: 0,
@@ -185,8 +191,13 @@ onmessage = function(d) {
         starcatch: [],
         events: {},
         safeguard: [],
-        heuristic: false
+        heuristic: false,
+        reload_log: false
     }, data);
+
+    if (data.reload_log) {
+        log_data = [];
+    }
 
     let item = data.item;
 
@@ -214,168 +225,172 @@ onmessage = function(d) {
             [current_star] = process_star(item);
         }
     } else {
-        //init a dummy heuristic item. flimsy method for deep copy
-        let h_item = JSON.parse(JSON.stringify(item));
-
-        let h_current_star_default = end_star - 1;
-        let h_current_star = h_current_star_default;
-
-        let hidx_add = 0;
-
-        let h_boom = {}; //keep track of boom by star
-
-        /*
-            starforce between the given stars. for stars above 22, it is always [star], [star+1]. below 22, the h_start = 12
-            if the item booms, toss trace and start again at initial h_start. log the boomed item
-        */
-        let heuristic_starforce = function(h_start, h_end, o) {
-            o = {
-                log_to: h_log_data_master,
-                cb: (hld)=>{
-                    o.log_to.unshift(...hld);
-                },
-                ...o
-            };
-
-            h_item.meta.stars = h_start;
-
-            let h_end_m1 = h_end - 1;
-            let h_end_name = "b" + h_end_m1;
-            if (!(h_end_name in h_boom)) {
-                h_boom["b" + h_end_m1] = 0;
-            }
-
-            if (h_end <= 22) {
-                while (h_start < h_end) {
-                    [h_start] = process_star(h_item, {
-                        heuristic: true,
-                        log_data: h_log_data
-                    });
-                }
-            } else {
-                while (h_start < h_end) {
-                    let h_result = "";
-                    let h_start_pre = h_start;
-                    [h_start, h_result] = process_star(h_item, {
-                        heuristic: true,
-                        log_data: h_log_data
-                    });
-
-                    //if the item booms, reset the item to below the desired star and try again
-                    if (h_result === "destroy" && h_start_pre >= 22) {
-                        ++h_boom[h_end_name];
-                        //keep track of what the boomed run was trying to get to
-                        h_log_data[0].h_end_star = h_end_m1;
-                        h_item.meta.stars = h_start = h_end_m1;
-                        o.cb(h_log_data);
-                        hidx_add += h_log_data.length;
-                        h_log_data = [];
-                    }
-                }
-            }
-
-            o.cb(h_log_data);
-            hidx_add += h_log_data.length;
-            h_log_data = [];
-        }
-
-        //first run will get data for current star to end star
-        heuristic_starforce(current_star, end_star);
-        debugger;
-        
-        let hldmL = h_log_data_master.length;
-        hidx_add = 0;
-
-        let callstack_update = 0;
-        let boom_count = 0;
-        let upd_message = "";
-        /*
-            starting from the desired, run the heuristic starforce function. the first run with the end star will set the initial data
-            this part will then go through that data, and for any booms, run heuristic starforcing to the desired star. this will be done
-            recursively for all booms above 22. at 22, the runs will be real runs from 12->22.
-
-            code does the following for a run to 24 stars:
-
-            1. run heuristic starforcing from [current star]. if boom, start again at [desired star - 1]. bracket value is where the code starts with a new item set at [desired star - 1].
-            assuming the item started at 15. while the stars are below 22, it will not toss trace
-            15 -> 15 -> 12 -> 13 -> ... -> 23 -> 22 -> 23 -> {12 -> 23} -> ... -> 24
-
-            3. look for anywhere there is a boom (star = 12) in the sf records, fill in the gap, but starting at where it boomed -1 (so 12 -> 23 will start starforcing at 22)
-            any booms will start at [end star - 1]
-            15 -> ... -> 23 -> 22 -> 23 -> {12 -> [22} -> 21 -> 20 -> 21 -> {12 -> 22} -> ...] -> 23 ... -> 24
-
-            4. recursively do this until there are only 12 -> 22 gaps left, in which case, run starforcing normally to complete the starforce records
-            15 -> ... -> 23 -> 22 -> 23 -> 12 -> [13 -> 14 -> 13 -> ... ] -> 22 -> 21 -> 20 -> 21 -> 12 -> [11 -> 10 -> 11 -> ... ] -> 22 -> 23 ... -> 24
-
-            the purpose of this is to start at the end to get a definitive "end" to the starforcing, then work backwards to fill the gap. this allows us to track the progress of the starforcing, 
-            whereas if we starforced normally, getting to the end takes much longer and we can't track its progress since it's random
-
-
-            ISSUE: for 25: eventually crashes because too much data.
-        */
-        while (h_current_star_default >= 22) {
-            upd_message = "Beginning backfill of star: " + h_current_star_default;
-            callstack_update = 0;
-            postMessage({done: true, message: upd_message, type: 2});
-            for (let i = 0; i < hldmL; ++i) {
-                let h_i = h_log_data_master[i];
-
-                if (
-                    h_i.h_end_star !== h_current_star_default
-                ) {
-                    continue;
-                }
-
-                let i_start = h_i.h_end_star - 1;
-                let i_end = h_i.h_end_star;
-
-                if (i ===hldmL - 1) {
-                    i_start = h_log_data_master[i+1]
-                }
-
-                if (i_end <= 22) {
-                    i_start = 12;
-                }
-
-                //star force, then splice those records to before the current index to fill the "gap" from boom and new item with starforce records
-                heuristic_starforce(i_start, i_end, {
-                    cb: (hld)=>{
-                        h_log_data_master.splice(i, 0, ...hld);
-                    }
-                });
-
-                i += hidx_add;
-                hidx_add = 0;
-
-                hldmL = h_log_data_master.length;
-                delete h_i.h_end_star;
-                ++callstack_update;
-                ++boom_count;
-
-                if (callstack_update % 50 === 0 || i === hldmL) {
-                    postMessage({done: true, message: `${upd_message} (${((boom_count/h_boom["b" + h_current_star_default])*100).toFixed(2)}%)`, type: 2});
-                }
-            }
-
-            h_current_star_default--;
-            boom_count = 0;
-        }
-
-        postMessage({done: true, message: `Post-processing of heuristically-generated star force data...`, type: 2});
-
-        //post process
-        for (let i = hldmL - 1; i >= 0; --i) {
-            let h_i = h_log_data_master[i];
-            let h_i2 = h_log_data_master[i+1];
-
-            
-        }
-
-        postMessage({done: true, message: `Passing ${hldmL} records to be processed...`, type: 2});
-        log_data = h_log_data_master;
+        heuristic_starforce(item, current_star, end_star);
     }
 
     //return data from worker with the starforce log data
     //type - 1: complete log; type - 2: heuristic run update
     postMessage({done: true, data: log_data, stars_to: to, type: 1});
 }
+
+//NOT DONE
+var heuristic_starforce = function(item, current_star, end_star) {
+    //init a dummy heuristic item. flimsy method for deep copy
+    let h_item = JSON.parse(JSON.stringify(item));
+
+    let h_current_star_default = end_star - 1;
+
+    let hidx_add = 0;
+
+    let h_boom = {}; //keep track of boom by star
+
+    /*
+        starforce between the given stars. for stars above 22, it is always [star], [star+1]. below 22, the h_start = 12
+        if the item booms, toss trace and start again at initial h_start. log the boomed item
+    */
+    let heuristic_starforce = function(h_start, h_end, o) {
+        o = {
+            log_to: h_log_data_master,
+            cb: (hld)=>{
+                o.log_to.unshift(...hld);
+            },
+            ...o
+        };
+
+        h_item.meta.stars = h_start;
+
+        let h_end_m1 = h_end - 1;
+        let h_end_name = "b" + h_end_m1;
+        if (!(h_end_name in h_boom)) {
+            h_boom["b" + h_end_m1] = 0;
+        }
+
+        if (h_end <= 22) {
+            while (h_start < h_end) {
+                [h_start] = process_star(h_item, {
+                    heuristic: true,
+                    log_data: h_log_data
+                });
+            }
+        } else {
+            while (h_start < h_end) {
+                let h_result = "";
+                let h_start_pre = h_start;
+                [h_start, h_result] = process_star(h_item, {
+                    heuristic: true,
+                    log_data: h_log_data
+                });
+
+                //if the item booms, reset the item to below the desired star and try again
+                if (h_result === "destroy" && h_start_pre >= 22) {
+                    ++h_boom[h_end_name];
+                    //keep track of what the boomed run was trying to get to
+                    h_log_data[0].h_end_star = h_end_m1;
+                    h_item.meta.stars = h_start = h_end_m1;
+                    o.cb(h_log_data);
+                    hidx_add += h_log_data.length;
+                    h_log_data = [];
+                }
+            }
+        }
+
+        o.cb(h_log_data);
+        hidx_add += h_log_data.length;
+        h_log_data = [];
+    }
+
+    //first run will get data for current star to end star
+    heuristic_starforce(current_star, end_star);
+    
+    let hldmL = h_log_data_master.length;
+    hidx_add = 0;
+
+    let callstack_update = 0;
+    let boom_count = 0;
+    let upd_message = "";
+    /*
+        starting from the desired, run the heuristic starforce function. the first run with the end star will set the initial data
+        this part will then go through that data, and for any booms, run heuristic starforcing to the desired star. this will be done
+        recursively for all booms above 22. at 22, the runs will be real runs from 12->22.
+
+        code does the following for a run to 24 stars:
+
+        1. run heuristic starforcing from [current star]. if boom, start again at [desired star - 1]. bracket value is where the code starts with a new item set at [desired star - 1].
+        assuming the item started at 15. while the stars are below 22, it will not toss trace
+        15 -> 15 -> 12 -> 13 -> ... -> 23 -> 22 -> 23 -> {12 -> 23} -> ... -> 24
+
+        3. look for anywhere there is a boom (star = 12) in the sf records, fill in the gap, but starting at where it boomed -1 (so 12 -> 23 will start starforcing at 22)
+        any booms will start at [end star - 1]
+        15 -> ... -> 23 -> 22 -> 23 -> {12 -> [22} -> 21 -> 20 -> 21 -> {12 -> 22} -> ...] -> 23 ... -> 24
+
+        4. recursively do this until there are only 12 -> 22 gaps left, in which case, run starforcing normally to complete the starforce records
+        15 -> ... -> 23 -> 22 -> 23 -> 12 -> [13 -> 14 -> 13 -> ... ] -> 22 -> 21 -> 20 -> 21 -> 12 -> [11 -> 10 -> 11 -> ... ] -> 22 -> 23 ... -> 24
+
+        the purpose of this is to start at the end to get a definitive "end" to the starforcing, then work backwards to fill the gap. this allows us to track the progress of the starforcing, 
+        whereas if we starforced normally, getting to the end takes much longer and we can't track its progress since it's random
+
+
+        ISSUE: for 25: eventually crashes because too much data.
+    */
+    while (h_current_star_default >= 22) {
+        upd_message = "Beginning backfill of star: " + h_current_star_default;
+        callstack_update = 0;
+        postMessage({done: true, message: upd_message, type: 2});
+        for (let i = 0; i < hldmL; ++i) {
+            let h_i = h_log_data_master[i];
+
+            if (
+                h_i.h_end_star !== h_current_star_default
+            ) {
+                continue;
+            }
+
+            let i_start = h_i.h_end_star - 1;
+            let i_end = h_i.h_end_star;
+
+            if (i ===hldmL - 1) {
+                i_start = h_log_data_master[i+1]
+            }
+
+            if (i_end <= 22) {
+                i_start = 12;
+            }
+
+            //star force, then splice those records to before the current index to fill the "gap" from boom and new item with starforce records
+            heuristic_starforce(i_start, i_end, {
+                cb: (hld)=>{
+                    h_log_data_master.splice(i, 0, ...hld);
+                }
+            });
+
+            i += hidx_add;
+            hidx_add = 0;
+
+            hldmL = h_log_data_master.length;
+            delete h_i.h_end_star;
+            ++callstack_update;
+            ++boom_count;
+
+            if (callstack_update % 50 === 0 || i === hldmL) {
+                postMessage({done: true, message: `${upd_message} (${((boom_count/h_boom["b" + h_current_star_default])*100).toFixed(2)}%)`, type: 2});
+            }
+        }
+
+        h_current_star_default--;
+        boom_count = 0;
+    }
+
+    postMessage({done: true, message: `Post-processing of heuristically-generated star force data...`, type: 2});
+
+    //post process
+    //TODO. NO POINT IF ALL THE DATA CRASHES ANYWAY
+    for (let i = hldmL - 1; i >= 0; --i) {
+        let h_i = h_log_data_master[i];
+        let h_i2 = h_log_data_master[i+1];
+
+        
+    }
+
+    postMessage({done: true, message: `Passing ${hldmL} records to be processed...`, type: 2});
+    log_data = h_log_data_master;
+};

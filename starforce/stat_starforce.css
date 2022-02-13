@@ -1,0 +1,25 @@
+.stat-container {
+    width: 30%;
+    float: left;
+    padding: 5px;
+}
+
+.stat-table td.data-label-row {
+    width: 40%;
+    text-align: left;
+}
+
+.stat-table td.data-number-row {
+    width: 60%;
+    text-align: left;
+}
+
+.stat-table td.data-sub-row {
+    text-indent: 20px;
+}
+
+.stat-header {
+    font-weight: bold;
+    font-size: 1.1em;
+    text-decoration: underline;
+}

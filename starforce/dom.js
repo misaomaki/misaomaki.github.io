@@ -62,7 +62,7 @@ $(function() {
     });
 
 
-    var Item = {};
+    Item = {};
 
     //event buttons
     $(".event_cb").on("click", function(e) {
@@ -1903,25 +1903,15 @@ $(function() {
                 sfa.play("EnchantSuccess", {playbackRate: system.animation_speed});
                 r_type = "sfi-success";
                 sfi_text.filter(".sfi-text-success").removeClass("hidden");
-                Item.xgrade_item(0);
-
-                if (event_options.pre10x2 && !Item.idata.superior && Item.idata.meta.stars <= 11) {
-                    Item.xgrade_item(0);
-                }
-
-                Item.idata.meta.starcatch.count += 1;
             } else if (result.includes("fail")) {
                 sfa.play("EnchantFail", {playbackRate: system.animation_speed});
                 r_type = "sfi-fail";
                 sfi_text.filter(".sfi-text-fail").removeClass("hidden");
-                Item.xgrade_item(1);
             } else {
                 sfa.play("EnchantDestroyed", {playbackRate: system.animation_speed});
                 r_type = "sfi-destroy";
                 sfi_info_right.addClass("sf-item-boomed");
                 sfi_text.filter(".sfi-text-destroyed").removeClass("hidden");
-
-                Item.xgrade_item(2);
             }
 
             sfi_result.addClass(r_type);

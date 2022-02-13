@@ -123,7 +123,7 @@ item.prototype.cache = {
 
 item.prototype.clear_sf_history = function() {
     this.idata.meta.sf_meta_data = [];
-    return false;
+    return this;
 };
 
 item.prototype.is_droppable = function(current_star) {
@@ -164,6 +164,8 @@ item.prototype.set_item_level = function(star = 0) {
     this.idata.meta.chance_count = 0;
 
     this.idata.boosts.sf_data = sf_data;
+
+    return this;
 };
 
 //houses various lookup tables for flame tiers
@@ -1103,7 +1105,8 @@ item.prototype.generate_sresult_map = function(sr, starcatch = false) {
     return catch_map_offset;
 };
 
-item.prototype.starforce = function(starcatch = false) {
+/* get the starforce results */
+item.prototype.starforce_result = function(starcatch = false) {
     //generate log item
     this.idata.meta.sf_log_item =  Object.assign({}, this.cache.sf_meta_data);
     this.idata.meta.sf_log_item.id = this.idata.meta.sf_meta_data.length + 1; 
@@ -1192,6 +1195,22 @@ item.prototype.starforce = function(starcatch = false) {
     this.idata.meta.sf_log_item.result = r_type;
     return r_type;
 };
+
+/* get starforce result and update the item's stars */
+item.prototype.starforce = function(starcatch = false) {
+    let result = this.starforce_result(starcatch);
+
+    if (result.includes("success")) {
+        Item.xgrade_item(0);
+        Item.idata.meta.starcatch.count += 1;
+    } else if (result.includes("fail")) {
+        Item.xgrade_item(1);
+    } else {
+        Item.xgrade_item(2);
+    }
+
+    return result;
+}
 
 //update item stats on tooltip screen
 item.prototype.redraw_item_tooltip = function() {
