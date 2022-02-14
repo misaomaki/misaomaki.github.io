@@ -185,6 +185,7 @@ onmessage = function(d) {
     
     //bind default options
     data = Object.assign({
+        from: 0,
         to: 10,
         item: {},
         sys_type: "GMS",

@@ -1,7 +1,4 @@
 $(function() {
-    /* clone the Item object to do analysis on */
-    let item_clone = null;
-
     /* init modal */
     let stats_screen = $("#stat_box").dialog({
         position: {
@@ -28,10 +25,23 @@ $(function() {
     var worker = {terminate:()=>{}};
     var sf_analysis_items = []; /* store analyzed starforce runs */
     /* keep track of highest and lowest costs */
-    var sf_minmax = {
-        highest_cost: 0,
-        lowest_cost: 0
-    }; 
+    var sf_minmax = {}; 
+
+    var init_sfminmax = function() {
+    /* keep track of highest and lowest for each average run item */
+        [-1, 100, 10].map((a)=>{
+            sf_minmax[a] = {
+                highest_cost: {
+                    "1.0": 0
+                },
+                lowest_cost: {
+                    "1.0": 1e30
+                }
+            };
+        });
+    };
+    init_sfminmax();
+
     var sf_idx = 0; /* keep track of how many runs */
     var sf_data = {
         reload_log: true
@@ -58,10 +68,7 @@ $(function() {
     var reset_variables = function() {
         sf_idx = 0;
         sf_analysis_items = [];
-        sf_minmax = {
-            highest_cost: 0,
-            lowest_cost: 0
-        };
+        init_sfminmax();
     };
 
     /* html for starforce analysis screen */
@@ -71,7 +78,7 @@ $(function() {
                 <span class="form-label">
                     Star Start:
                 </span>
-                <input type="number" class="stat-input" id="stat_from" value="0" readonly disabled style="width:75px">
+                <input type="number" class="stat-input" id="stat_from" value="0" style="width:75px">
             </label>
             <label class="form-label-group" for="asf_star_to">
                 <span class="form-label">
@@ -144,13 +151,16 @@ $(function() {
         $("#stop_sf_statistics").removeClass("hidden");
         $("#reset_sf_statistics").prop("disabled", true);
         $("#stat_options_container").addClass("hidden");
+        let stat_from = $("#stat_from");
         let stat_to = $("#stat_to");
+        stat_from.prop("disabled", true);
         stat_to.prop("disabled", true);
         stat_processing = true;
         init_worker();
         
         //set up worker data
         sf_data.item = Item.idata;
+        sf_data.from = +stat_from.val();
         sf_data.to = +stat_to.val();
         sf_data.safeguard = $("#stat_options .stat_checkbox_sg:checked").map(function(a,b) {return +$(b).val()}).get();
         sf_data.starcatch = get_starcatch();
@@ -164,6 +174,7 @@ $(function() {
         let _this = $(this);
         _this.addClass("hidden");
         $("#begin_sf_statistics").removeClass("hidden");
+        $("#stat_from").prop("disabled", false);
         $("#stat_to").prop("disabled", false);
         $("#reset_sf_statistics").prop("disabled", false);
         $("#stat_options_container").removeClass("hidden");
@@ -175,7 +186,6 @@ $(function() {
     stats_screen.on("click", "#reset_sf_statistics", function() {
         reset_variables();
         update_main_ui();
-        begin_statistical_run();
         $(".stat-container").html("");
     });
 
@@ -234,7 +244,9 @@ $(function() {
         "tot_safeguards": "Total Safeguards",
         "safeguards": "Safeguards",
         "tot_booms": "Total Booms",
-        "booms": "Booms"
+        "booms": "Booms",
+        "min_cost": "Least Cost Item",
+        "max_cost": "Most Cost Item" 
     };
 
     var cost_key = {
@@ -275,10 +287,10 @@ $(function() {
                 ${
                     typeof avg_data[i] === 'object' ? `
                     ${
-                        i === "cost" ? `
+                        "cost,min_cost,max_cost".includes(i) ? `
                             ${
                                 Object.keys(cost_key).reduce((a,b)=>{
-                                    j = `
+                                    let j = `
                                         <tr>
                                             <td class="data-label-row data-sub-row">
                                                 ${cost_key[b]}
@@ -339,11 +351,9 @@ $(function() {
         -1 for no slice
     */
     var get_avg_data = function(data, part) {
-        let part_data = part === -1 ? data : data.slice(-part);
+        let part_data = part === -1 ? data.slice(0) : data.slice(-part);
 
         let pdl = part_data.length;
-
-        //get_min_max_vals(part_data, part);
 
         /* calculate the averages */
         let calculate_avg = (a)=>{
@@ -360,9 +370,27 @@ $(function() {
             }
         };
 
+        /* reset the stored highest and lowest after [part] runs */
+        if (part !== -1 && sf_idx % part === 0) {
+            sf_minmax[part].highest_cost = {"1.0": 0};
+            sf_minmax[part].lowest_cost = {"1.0": 1e30};
+        }
+
         /* get the avg totals for each item in the analysis data */
         let total_avg_data = part_data.reduce((a,b,c)=>{
             for (let i in b) {
+                /* keep track of min and max cost per part */
+                if (i === "cost") {
+                    if (b.cost["1.0"] > sf_minmax[part].highest_cost["1.0"]) {
+                        sf_minmax[part].highest_cost = {...{}, ...b[i]};
+                    }
+
+                    if (b.cost["1.0"] < sf_minmax[part].lowest_cost["1.0"]) {
+                        sf_minmax[part].lowest_cost = {...{}, ...b[i]};
+                    }
+                }
+
+
                 if (i in a) {
                     if (typeof a[i] === "object") {
                         for (j in a[i]) {
@@ -383,16 +411,10 @@ $(function() {
 
             return a;
         }, {});
+        
+        total_avg_data.min_cost = sf_minmax[part].lowest_cost;
+        total_avg_data.max_cost = sf_minmax[part].highest_cost;
 
         return total_avg_data;
     };
-
-    /* keep track of min and max values of certain items */
-    var get_min_max_vals = function(d, part) {
-        for (let i = 0; i < d.length; ++i) {
-            let _d = d[i];
-
-            //TODO
-        }   
-    }
 });
