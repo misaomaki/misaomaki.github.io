@@ -38,9 +38,6 @@ $(function() {
 
     var i_con = $(".item-main-border");
 
-
-
-
     let body = $("body");
     //maple button sounds
     body.on("click", ".maple-button", function() {
@@ -60,8 +57,7 @@ $(function() {
 
         return false;
     });
-
-
+    
     Item = {};
 
     //event buttons

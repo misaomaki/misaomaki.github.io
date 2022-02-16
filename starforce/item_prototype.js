@@ -1209,6 +1209,11 @@ item.prototype.starforce = function(starcatch = false) {
         Item.xgrade_item(2);
     }
 
+    /* ??? */
+    if (Item.idata.meta.stars >= 22) {
+        congrats_from_maki();
+    }
+
     return result;
 }
 

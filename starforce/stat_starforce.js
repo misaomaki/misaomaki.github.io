@@ -358,14 +358,12 @@ $(function() {
         /* calculate the averages */
         let calculate_avg = (a)=>{
             for (let i in a) {
-                if (i in a) {
-                    if (typeof a[i] === "object") {
-                        for (j in a[i]) {
-                            a[i][j] = a[i][j] / pdl;
-                        }
-                    } else {
-                        a[i] = a[i] / pdl;
+                if (typeof a[i] === "object") {
+                    for (j in a[i]) {
+                        a[i][j] = a[i][j] / pdl;
                     }
+                } else {
+                    a[i] = a[i] / pdl;
                 }
             }
         };

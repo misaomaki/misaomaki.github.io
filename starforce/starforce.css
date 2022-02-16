@@ -184,7 +184,7 @@ body, html {
     width: 386px;
     top: 30px;
     left: -2px;
-    animation: sf-key-chance-time 0.6s steps(6) forwards infinite;
+    animation: sf-key-chance-time 1.5s steps(6) forwards infinite;
 }
 
 .sf-star-chance-time {
@@ -197,6 +197,60 @@ body, html {
     }
     to {
         background-position-y: -852px;
+    }
+}
+
+#maki {
+    position:fixed;
+    height: 146px;
+    width: 134px;
+    background: url("../assets/maple_items/makiowo.png");
+    background-size: cover;
+    animation:  go-maki 0.5s steps(3) forwards infinite, 
+                owo-maki 2s steps(72) forwards 1;
+    animation-direction: alternate;
+    transform: scale(5);
+    z-index: 9999999999;
+    right: -30vw;
+    bottom: 18vh;
+}
+
+.maki-goodbye {
+    animation:  go-maki 0.5s steps(3) forwards infinite, 
+                bye-maki 3s steps(72) forwards 1 !important;
+    animation-direction: alternate;
+    animation-delay: 1.9s, 0s !important;
+}
+
+@keyframes go-maki {
+    0% {
+        background-position-x: 0px;
+    }
+
+    100% {
+        background-position-x: -390px;
+    }
+}
+
+@keyframes owo-maki {
+    0% {
+    }
+
+    100% {
+        transform: scale(5) rotate(-20deg);
+        right: 8vw;
+    }
+}
+
+@keyframes bye-maki {
+    0% {
+        transform: scale(5) rotate(-20deg);
+        right: 8vw;
+    }
+
+    100% {
+        transform: scale(5) rotate(0);
+        right: -23vw;
     }
 }
 

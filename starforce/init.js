@@ -222,3 +222,20 @@ var generateUUID = function() { // Public Domain/MIT
         return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
 }
+
+var congrats_from_maki = function() {
+    if (prng() > 0.1) {
+        return;
+    }
+
+    $("body").append(`
+        <div id="maki"></div>
+    `);
+
+    setTimeout(()=>{
+        $("#maki").addClass("maki-goodbye");
+        setTimeout(()=>{
+            $("#maki").remove();
+        },3300);
+    },4000);
+}
