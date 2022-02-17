@@ -29,7 +29,7 @@ $(function() {
 
     var init_sfminmax = function() {
     /* keep track of highest and lowest for each average run item */
-        [-1, 100, 10].map((a)=>{
+        [-1, 100, 10].forEach((a)=>{
             sf_minmax[a] = {
                 highest_cost: {
                     "1.0": 0

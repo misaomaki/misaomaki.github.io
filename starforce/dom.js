@@ -491,7 +491,7 @@ $(function() {
                     <tfoot>
                         <tr>
                             <td colspan="20">
-                                <button id="cube_log_show_more" style="width:100%">Show 100 More</button>
+                                <span id="infinite_scroller_down">
                             </td>
                         </tr>
                     </tfoot>
@@ -529,7 +529,7 @@ $(function() {
         let at_a_time = 100;
         let current_shown = at_a_time;
         let cdl = cube_data.length;
-        $("#cube_log_show_more").on("click", function() {
+        let cube_log_show_more = function() {
             if (current_shown > cdl) return false;
 
             let start_index = current_shown;
@@ -544,8 +544,17 @@ $(function() {
             let new_t_body = generate_cube_log_table(nextCubeData);
 
             cube_log_table.append(new_t_body);
-        });
+        };
 
+        /* infinite scroller */
+        let scroller = new IntersectionObserver((e)=>{
+            if (e[0].intersectionRatio <= 0) return;
+
+            cube_log_show_more(1);
+        });
+        let scroll_watcher = document.querySelector("#infinite_scroller_down");
+
+        scroller.observe(scroll_watcher);
 
         let btn_cube_log_back2 = $("#btn_cube_log_back2");
         //click row to get the prng information
@@ -1330,7 +1339,7 @@ $(function() {
                     <tfoot>
                         <tr>
                             <td colspan="20">
-                                <button id="star_force_log_show_more" style="width:100%">Show ${sf_log_step} More</button>
+                                <class id="infinite_scroller_down">
                             </td>
                         </tr>
                     </tfoot>
@@ -1352,10 +1361,12 @@ $(function() {
         }).dialog("open");
 
         let sf_log_body = $("#star_force_log_body");
-        //bind show more button to show more star force log records
-        $("#star_force_log_show_more").on("click", function() {
-            sf_log_start += sf_log_start + sf_log_step;
-            sf_log_end += sf_log_end + sf_log_step;
+
+        let sf_log_show_more = function(direction) {
+            let this_step = sf_log_step * direction;
+
+            sf_log_start += sf_log_start + this_step;
+            sf_log_end += sf_log_end + this_step;
 
             let this_log = Item.idata.meta.sf_meta_data.slice(sf_log_start, sf_log_end);
 
@@ -1366,7 +1377,17 @@ $(function() {
             let t_body = generate_star_force_log_rows(this_log);
 
             sf_log_body.append(t_body);
+        }
+
+        /* infinite scroller */
+        let scroller = new IntersectionObserver((e)=>{
+            if (e[0].intersectionRatio <= 0) return;
+
+            sf_log_show_more(1);
         });
+        let scroll_watcher = document.querySelector("#infinite_scroller_down");
+
+        scroller.observe(scroll_watcher);
 
         return false;
     });

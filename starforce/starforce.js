@@ -601,6 +601,8 @@ let analyze_starforce = function(d) {
             if (result === "fail-safeguard") {
                 let _pd = d[i+1];
 
+                if (_pd == undefined) continue;
+
                 ++s.g.safeguards["sg" + _pd.star];
                 ++sd.safeguards["sg" + _pd.star];
 
