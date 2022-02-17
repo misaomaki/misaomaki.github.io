@@ -205,10 +205,10 @@ onmessage = function(d) {
     //get star to start at and star to end at
     let current_star = item.meta.stars;
     let to = data.to;
-
     //override item's current star
-    if (d.from != null) {
-        current_star = d.from;
+    if (data.from != null) {
+        current_star = data.from;
+        item.meta.stars = current_star;
     }
 
     //get the max stars allowed and see if it's over the "to" stars requested

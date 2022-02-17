@@ -206,9 +206,10 @@ body, html {
     width: 134px;
     background: url("../assets/maple_items/makiowo.png");
     background-size: cover;
-    animation:  go-maki 0.5s steps(3) forwards infinite, 
+    animation:  go-maki 0.7s steps(3) forwards infinite, 
                 owo-maki 2s steps(72) forwards 1;
     animation-direction: alternate;
+    transition-timing-function: initial, "ease-out";
     transform: scale(5);
     z-index: 9999999999;
     right: -30vw;
@@ -216,7 +217,7 @@ body, html {
 }
 
 .maki-goodbye {
-    animation:  go-maki 0.5s steps(3) forwards infinite, 
+    animation:  go-maki 1s steps(3) forwards infinite, 
                 bye-maki 3s steps(72) forwards 1 !important;
     animation-direction: alternate;
     animation-delay: 1.9s, 0s !important;
@@ -236,6 +237,11 @@ body, html {
     0% {
     }
 
+    50% {
+        transform: scale(5) rotate(-20deg);
+        right: 8vw;
+    }
+
     100% {
         transform: scale(5) rotate(-20deg);
         right: 8vw;
@@ -250,7 +256,7 @@ body, html {
 
     100% {
         transform: scale(5) rotate(0);
-        right: -23vw;
+        right: -400px;
     }
 }
 
