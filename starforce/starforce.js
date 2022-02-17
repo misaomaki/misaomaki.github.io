@@ -617,6 +617,8 @@ let analyze_starforce = function(d) {
         } else {
             let _pd = d[i+1];
 
+            if (_pd == undefined) continue;
+
             ++s.g.booms["b" + _pd.star];
             ++s.g.tot_booms;
 
