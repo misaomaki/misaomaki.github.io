@@ -485,7 +485,7 @@ $(function() {
                             <th>Overall</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="cube_body">
                         ${t_body}
                     </tbody>
                     <tfoot>
@@ -524,6 +524,7 @@ $(function() {
 
         let cube_log_table = $("#cube_log_table");
         let cube_log_prng = $("#cube_log_prng");
+        let cube_body = $("#cube_body");
 
         //show x rows at a time. hitting the show more will load x more rows. we start with showing x rows, so that is offset from the total at the start
         let at_a_time = 100;
@@ -543,7 +544,7 @@ $(function() {
 
             let new_t_body = generate_cube_log_table(nextCubeData);
 
-            cube_log_table.append(new_t_body);
+            cube_body.append(new_t_body);
         };
 
         /* infinite scroller */
