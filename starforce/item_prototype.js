@@ -1203,15 +1203,15 @@ item.prototype.starforce = function(starcatch = false) {
     if (result.includes("success")) {
         Item.xgrade_item(0);
         Item.idata.meta.starcatch.count += 1;
+
+        /* ??? */
+        if (Item.idata.meta.stars >= 22) {
+            congrats_from_maki();
+        }
     } else if (result.includes("fail")) {
         Item.xgrade_item(1);
     } else {
         Item.xgrade_item(2);
-    }
-
-    /* ??? */
-    if (Item.idata.meta.stars >= 22) {
-        congrats_from_maki();
     }
 
     return result;

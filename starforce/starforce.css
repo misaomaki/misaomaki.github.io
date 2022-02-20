@@ -200,7 +200,7 @@ body, html {
     }
 }
 
-#maki {
+.maki {
     position:fixed;
     height: 146px;
     width: 134px;

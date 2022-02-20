@@ -223,19 +223,21 @@ var generateUUID = function() { // Public Domain/MIT
     });
 }
 
-var congrats_from_maki = function() {
-    if (prng() > 0.1) {
+var congrats_from_maki = function(owo = false) {
+    if (!owo && prng() > 0.1) {
         return;
     }
 
+    let id = generateUUID();
+
     $("body").append(`
-        <div id="maki"></div>
+        <div id="${id}" class="maki"></div>
     `);
 
     setTimeout(()=>{
-        $("#maki").addClass("maki-goodbye");
+        $("#" + id).addClass("maki-goodbye");
         setTimeout(()=>{
-            $("#maki").remove();
+            $("#" + id).remove();
         },3300);
     },4000);
 }
