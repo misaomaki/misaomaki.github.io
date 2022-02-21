@@ -237,7 +237,7 @@ body, html {
     0% {
     }
 
-    50% {
+    25% {
         transform: scale(5) rotate(-20deg);
         right: 8vw;
     }

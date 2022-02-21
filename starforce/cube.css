@@ -80,6 +80,7 @@
     margin-left: 40px;
     position: relative;
     cursor: pointer;
+    image-rendering: pixelated;
 }
 
 .cube-tiny {
