@@ -209,7 +209,7 @@ body, html {
     animation:  go-maki 0.7s steps(3) forwards infinite, 
                 owo-maki 2s steps(72) forwards 1;
     animation-direction: alternate;
-    transition-timing-function: initial, "ease-out";
+    image-rendering: pixelated;
     transform: scale(5);
     z-index: 9999999999;
     right: -30vw;
@@ -1033,11 +1033,13 @@ body, html {
     position: absolute;
     width: 60px;
     height: 60px;
+    image-rendering: pixelated;
 }
 
 .sf-item-small {
     width: 38px;
     height: 38px;
+    image-rendering: pixelated;
 }
 
 .item-main-border {
