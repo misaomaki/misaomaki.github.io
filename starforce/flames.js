@@ -758,7 +758,9 @@ var flames = {
             "def",
             "all_stat",
             "watt",
-            "matt"
+            "matt",
+            "jump",
+            "speed"
         ];
 
         if (this.idata.class === "weapon") {
