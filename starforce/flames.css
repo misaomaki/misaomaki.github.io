@@ -1,0 +1,38 @@
+.flame-powerful {
+    background: url(../assets/cube/PowerfulRebirthFlame.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:28px;
+    top: -5px
+}
+
+.flame-eternal {
+    background: url(../assets/cube/EternalRebirthFlame.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:28px;
+    top: -5px
+}
+
+.flame-big {
+    transform: scale(2);
+    transform-origin: top;
+    margin-left: 40px;
+    position: relative;
+    cursor: pointer;
+    image-rendering: pixelated;
+}
+
+.flame-big:hover {
+    animation: MoveUpDown2 0.5s forwards 1;
+}
+
+@keyframes MoveUpDown2 {
+    0% {
+    }
+    100% {
+        height: 45px;
+    }
+}

@@ -1,10 +1,10 @@
-//scour the stylesheets and preload any images into a pseudocontainer, then delete the container
+//scour the stylesheets and append them to the body with style tag. remove style immediately afterwards
 //this is to force the preloading of images so that the images don't just jitter on the screen when they're first shown because they didn't load until they were called
-//(loads the images, but jitters on screen still? specific to the dom element?)
+//still jittery-ish. real solution is to move all images to a single spritesheet, but way too lazy for that
 $(function() {
     //inline css
     let s = $("style");
-    let ip = $("#img_preloader");
+    let new_style = "";
 
     for (let i = 0; i < s.length; ++i) {
         let i_s = s[i].innerHTML;
@@ -22,9 +22,9 @@ $(function() {
         for (let j = 0; j < i_img_l; ++j) {
             let j_img = i_img_m[j].replace("background: url(","").replace("background-image: url(", "").replace("border-image: url(", "").replace(");","");
 
-            ip.html(`
-                <img src="${j_img}">
-            `);
+            new_style += `
+                url(${j_img})
+            `;
         }
     }
 
@@ -40,7 +40,7 @@ $(function() {
     for (let i in ss) {
         let s = ss[i];
     
-        if (s.href === undefined || s.href === null || !s.href.includes("misaomaki")) continue; //inline or not from git domain (css from cdns and whatnot)
+        if (s.href === undefined || s.href === null || (!s.href.includes("misaomaki") && !s.href.includes(":5500"))) continue; //inline or not from git domain (css from cdns and whatnot)
 
         //local host detected, so don't even bother trying
         if (s.href.startsWith("file://")) break;
@@ -65,14 +65,28 @@ $(function() {
             for (let k = 0; k < bimg.length; ++k) {
                 let img = bimg[k].replace('url("', "").replace('");', "");
 
-                ip.html(`
-                    <img src="${img}">
-                `);
+                new_style += `
+                    url(${img})
+                `;
             }
         }
     }
 
-    //ip.remove();
+    new_style = `
+        body::after {
+            content: ${new_style};
+        }
+    `;
+
+    $("body").append(`
+        <style id="preload_style">
+        ${new_style}
+        </style>
+    `);
+   
+    setTimeout(()=>{
+        $("#preload_style").remove();
+    },100);
 });
 
 //random functions
