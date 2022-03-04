@@ -7887,7 +7887,7 @@ var items_store = {
             mstat: "str", 
             pstat: ["str", "dex"], 
             att_type: "watt", 
-            flame_type: 2,
+            flame_type: 1,
             bstat: Object.assign({}, stats, {
                 watt: 342,
                 boss_damage: 0.3,
@@ -7916,7 +7916,7 @@ var items_store = {
             mstat: "str", 
             pstat: ["str", "dex"], 
             att_type: "watt", 
-            flame_type: 2,
+            flame_type: 1,
             bstat: Object.assign({}, stats, {
                 watt: 337,
                 boss_damage: 0.3,
@@ -8957,30 +8957,26 @@ $(function() {
             
             istore = items_store[i][j];
 
+            let img_name = "";
+
             //if item uses an override image, then append that image instead.
             //override images should share a common istore.img name
             if (istore.override_image != null) {
                 if (shared_img.includes(istore.img)) continue;
-
-                style_items += `
-                    .${istore.img} {
-                        background: url(./assets/maple_items/${istore.override_image.replace("AbsoLab","Absolab").replace(/[\s-]/gi,"")}.png);
-                        background-repeat: no-repeat;
-                        background-size: contain;
-                    }
-                `;   
-
+                img_name = istore.override_image.replace("AbsoLab","Absolab").replace(/[\s-]/gi,"");
                 shared_img.push(istore.img);
             } else {
                 //github is case sensitive for url
-                style_items += `
-                    .${istore.img} {
-                        background: url(./assets/maple_items/${istore.name.replace("AbsoLab","Absolab").replace(/[\s-]/gi,"")}.png);
-                        background-repeat: no-repeat;
-                        background-size: contain;
-                    }
-                `;   
-            }     
+                img_name = istore.name.replace("AbsoLab","Absolab").replace(/[\s-]/gi,"")
+            }   
+
+            style_items += `
+                .${istore.img} {
+                    background: url(./assets/maple_items/${img_name}.png);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+            `;   
         }
     }
     
