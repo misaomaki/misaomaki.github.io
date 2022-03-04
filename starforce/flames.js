@@ -767,7 +767,7 @@ var flames = {
                 "damage"
             ];
 
-            avail_flames = avail_flames.push(...weapon_flames);
+            avail_flames.push(...weapon_flames);
         }
 
         /* 
