@@ -8916,7 +8916,9 @@ let items_other_data = {
             black: 0,
             bonus: 0
         }, //number of cubes used. keep track of type
-        cubes_total: 0
+        cubes_total: 0,
+        flames_meta_data: [], //flames tier log
+        flames_total: 0
     },
     boosts: {
         sf_data: [], //starforce data

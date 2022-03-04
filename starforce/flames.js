@@ -770,11 +770,13 @@ var flames = {
             avail_flames.push(...weapon_flames);
         }
 
+        shuffle(avail_flames);
+
         /* 
             SORT - randomly sort the flame types and get the first 4 (or whatever flame lines to apply) items from the list 
             REDUCE - using the flame stat as key, set its value to the flame tier from the tier rates table
         */
-        let stats_applied = avail_flames.sort(()=>0.5 - prng()).slice(0,lr).reduce((a,b)=>{
+        let stats_applied = avail_flames.slice(0,lr).reduce((a,b)=>{
             let tier = +get_random_result(tr) + 1; /* flame tier */
 
             /* boss flames always +2 */
@@ -785,6 +787,10 @@ var flames = {
             a[b] = tier;
             return a;
         },{});
+
+        /* log flames run */
+        ++this.idata.meta.flames_total;
+        this.idata.meta.flames_meta_data.unshift(stats_applied);
         
         this.set_item_flame_tier(stats_applied);
         this.redraw_item_tooltip();
