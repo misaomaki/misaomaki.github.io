@@ -713,11 +713,14 @@ var flames = {
     line_rates: function() {
         /* item has boss flames, so always 4 */
         if (this.idata.flame_type === 2) {
-            return 4;
+            return [4, []];
         }
 
         let flame_lines = 1; /* number of lines to apply */
         let flame_line_apply_rate = 0.20; /* probability to add new line */
+
+        /* log the probability determination */
+        let flame_log = [];
 
         /*
             do probabilty check 3x to see how many
@@ -726,12 +729,21 @@ var flames = {
         for (let i = 1; i <= 3; ++i) {
             let rng = prng();
 
+            let log = {
+                prng: rng,
+                apply_rate: flame_line_apply_rate,
+                apply: false
+            };
+
             if (rng <= flame_line_apply_rate) {
                 ++flame_lines;
+                log.apply = true;
             }
+
+            flame_log.push(log);
         }
 
-        return flame_lines;
+        return [flame_lines, flame_log];
     },
     /* 
         get the flame tiers to apply to an item
@@ -741,7 +753,7 @@ var flames = {
         if  (this.idata.flame_type === 0) return false;
 
         let tr = flames.tier_rates(flame);
-        let lr = flames.line_rates.call(this);
+        let [lr, lr_log] = flames.line_rates.call(this);
 
         let avail_flames = [
             "stats:str",
@@ -781,7 +793,10 @@ var flames = {
             tiers: {},
             stats: {},
             flame_type: flame,
-            run: this.idata.meta.flames_meta_data.length + 1
+            run: this.idata.meta.flames_meta_data.length + 1,
+            flame_list: avail_flames.concat(),
+            num_lines: lr,
+            num_lines_map: lr_log
         }
 
         /* 
@@ -996,6 +1011,70 @@ $(function(){
                 <h2>
                     Run #${id}, Flame: <div class="flame flame-${log_item.flame_type === 2 ? "eternal" : "powerful"} flame-small"></div>
                 </h2>
+                <hr>
+                ${
+                    Item.idata.flame_type === 1 ? `
+                        There is a 20% chance to add a new line to non-boss flame items.
+                        <span style="color:red;font-size:0.9em;">
+                            Note: Was not able to find the probability rates for how additional lines are added
+                            to non-boss flames, so an assumption was made.
+                        </span>
+                        <table style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">
+                                        The prng value must be below 0.20 to add an additional line. The first line is always guaranteed.
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Line #1</th>
+                                    <th>Line #2</th>
+                                    <th>Line #3</th>
+                                    <th>Line #4</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span style="color:green">
+                                            Guaranteed
+                                        </span>
+                                    </td>
+                                    ${
+                                        log_item.num_lines_map.reduce((x,y)=>{
+                                            x += `
+                                                <td>
+                                                    <span style="color:${y.apply ? "green": "red"}">
+                                                        ${y.prng}
+                                                    </span>
+                                                </td>         
+                                            `;
+
+                                            return x;
+                                        }, "")
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+                    ` : `
+                        Item is a boss flame equip, so there is a 100% chance to add 4 flame lines to the item.
+                    `
+                }
+                <hr>
+                    Stats are chosen by shuffling the list of possible flame stat types and choosing
+                    the first ${log_item.num_lines} line(s). <br>
+                    Randomized list of flame lines with chosen lines highlighted in blue: 
+                        <div style="padding:5px;width:100%">${log_item.flame_list.map((a,b)=>{
+                            if (b < log_item.num_lines) {
+                                return `
+                                    <span style="color:blue">${a}</span>
+                                `;
+                            }
+
+                            return a;
+                        }).join(" | ")}
+                    </div>
+                <hr>
                 <table style="width:100%">
                     <thead>
                         <tr>
