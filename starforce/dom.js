@@ -502,7 +502,8 @@ $(function() {
 
         let option_box = $("#option_box");
 
-        optionbox.html(html).dialog({
+        option_box.html(html).dialog({
+            position: {my: "center", at: "top center", of: window},
             title: "Cube Log",
             width: "100%",
             height: 850,

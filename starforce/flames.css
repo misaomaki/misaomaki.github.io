@@ -36,3 +36,18 @@
         height: 45px;
     }
 }
+
+.flames-sub-table-container {
+    height: 100px;
+    width: 100%;
+}
+
+.flames-sub-table {
+    width: 100%;
+    height: 100%;
+}
+
+.flame-data-row:hover {
+    background-color: rgb(255, 195, 195) !important;
+    cursor: pointer;
+}

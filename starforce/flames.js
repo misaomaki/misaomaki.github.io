@@ -668,7 +668,9 @@ item.prototype.set_item_flame_tier = function(s) {
         }
     }
 
-    this.idata.boosts.flames = Object.assign({}, stats, s);
+    let flames = Object.assign({}, stats, s);
+    this.idata.boosts.flames = flames;
+    return flames;
 };
 
 var flames = {
@@ -681,7 +683,7 @@ var flames = {
         let tiers = [];
         if (flame === 1) {
             tiers = [
-                0.25,
+                0.20,
                 0.30,
                 0.36,
                 0.14,
@@ -774,32 +776,55 @@ var flames = {
 
         shuffle(avail_flames);
 
+        /* log flames run */
+        let flames_log = {
+            tiers: {},
+            stats: {},
+            flame_type: flame,
+            run: this.idata.meta.flames_meta_data.length + 1
+        }
+
         /* 
-            SORT - randomly sort the flame types and get the first 4 (or whatever flame lines to apply) items from the list 
+            SHUFFLE the above array then get the first 4 (or however many lines to apply) items
             REDUCE - using the flame stat as key, set its value to the flame tier from the tier rates table
         */
-        let stats_applied = avail_flames.slice(0,lr).reduce((a,b)=>{
-            let tier = +get_random_result(tr) + 1; /* flame tier */
+        let flame_stats = {};
+        flames_log.tiers = avail_flames.slice(0,lr).reduce((a,b)=>{
+            let log_item = {};
+            let tier = +get_random_result(tr,(a)=>{log_item.random_map = a}, (b)=>{log_item.prn = b}) + 1; /* flame tier */
 
             /* boss flames always +2 */
             if (this.idata.flame_type === 2) {
                 tier += 2;
             }
 
-            a[b] = tier;
+            a[b] = {
+                tier: tier,
+                log_result: log_item
+            };
+
+            flame_stats[b] = tier;
             return a;
         },{});
 
-        /* log flames run */
         ++this.idata.meta.flames_total;
-        this.idata.meta.flames_meta_data.unshift(stats_applied);
+
+        /* set flame */
+        flames_log.stats = this.set_item_flame_tier(flame_stats);
+
+        /* get non-zero stat values from the flame stats */
+        flames_log.stats = Object.fromEntries(Object.entries(flames_log.stats).filter(([key,value])=>value !== 0));
+     
+        /* log run */
+        this.idata.meta.flames_meta_data.unshift(flames_log);
         
-        this.set_item_flame_tier(stats_applied);
         this.redraw_item_tooltip();
     }
 };
 
+/* flames-related DOM */
 $(function(){
+    /* flames at bottom left */
     $("#powerfulFlame").on("click", function(){
         sfa.play("_CubeEnchantSuccess");
         flames.apply.call(Item, 1);
@@ -808,5 +833,241 @@ $(function(){
     $("#eternalFlame").on("click", function(){
         sfa.play("_CubeEnchantSuccess");
         flames.apply.call(Item, 2);
+    });
+
+    /* open up flames log */
+    let get_flames_html = function() {
+        let flames = Item.idata.meta.flames_meta_data;
+
+        let t_body = flames.reduce((a,b)=>{
+            a += `
+                <tr data-id="${b.run}" class="flame-data-row">
+                    <td>${b.run}</td>
+                    <td>
+                        <div class="flame flame-${b.flame_type === 2 ? "eternal" : "powerful"} flame-small"></div>
+                    </td>
+                    <td>
+                        <div class="flames-sub-table-container">
+                            <table class="flames-sub-table">
+                                <tbody>
+                                ${
+                                    Object.keys(b.tiers).sort().reduce((x,y)=>{
+                                        x += `
+                                            <tr>
+                                                <td style="text-align:center;width:50%;">${y}</td>
+                                                <td style="text-align:center;width:50%;">${b.tiers[y].tier}</td>
+                                            </tr>
+                                        `;
+
+                                        return x;
+                                    }, "")
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flames-sub-table-container">
+                            <table class="flames-sub-table">
+                                <tbody>
+                                ${
+                                    Object.keys(b.stats).sort().reduce((x,y)=>{
+                                        if (y.startsWith("stats")) return x;
+                                        
+                                        x += `
+                                            <tr>
+                                                <td style="text-align:center;width:50%;">${y}</td>
+                                                <td style="text-align:center;width:50%;">
+                                                    ${
+                                                        ["boss_damage", "damage", "all_stat"].includes(y) ? (b.stats[y] * 100).toFixed(0) + "%"
+                                                        : 
+                                                        b.stats[y]
+                                                    }
+                                                </td>
+                                            </tr>
+                                        `;
+
+                                        return x;
+                                    }, "")
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            return a;
+        },"");
+
+        let html = `
+            <div id="flames_log_rng_map" class="hidden"></div>
+            <div id="flames_log_information">
+                <div id="flames_used"></div>
+                <table style="width:100%;font-size:11px;float:left;" id="cube_log_table">
+                    <thead>
+                        <tr>
+                            <th colspan="12">
+                                Click on the cells to view the flames PRNG info.
+                            </th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr>
+                            <th>Run</th>
+                            <th>Flame Type</th>
+                            <th>Tiers</th>
+                            <th>Stats</th>
+                        </tr>
+                    </thead>
+                    <tbody id="flames_body">
+                        ${t_body}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <span id="infinite_scroller_down">
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        `;
+
+        return html;
+    };
+
+    $("#flames_log").on("click", function() {
+        let option_box = $("#option_box");
+
+        let html = get_flames_html();
+
+        option_box.html(html).dialog({
+            position: {my: "center", at: "top center", of: window},
+            title: "Flames Log",
+            width: "60vw",
+            height: 850,
+            buttons: [{
+                text: "Back",
+                class: "hidden",
+                id: "btn_flames_back",
+                click: function() {
+                    flame_return_to_main();
+                }
+            },{
+                text: "Close",
+                click: function() {
+                    option_box.html("");
+                    $(this).dialog("close");
+                }
+            }]
+        }).dialog("open");
+
+        let flame_prn = $("#flames_log_rng_map");
+        let flame_container = $("#flames_log_information");
+        let flame_back_button = $("#btn_flames_back");
+
+        let flame_return_to_main = function() {
+            flame_prn.html("").addClass("hidden");
+            flame_container.removeClass("hidden");
+
+            option_box.dialog({
+                position: {my: "center", at: "top center", of: window},
+                width: "60vw",
+                height: 850
+            });
+
+            flame_back_button.addClass("hidden");
+        };
+
+        /* bind events to rows for flame log */
+        /* click flames row to pull up the rng map data */
+        $(".flame-data-row").on("click", function() {
+            let id = +$(this).attr("data-id");
+            let log_item = Item.idata.meta.flames_meta_data.find((a)=>a.run === id);
+
+            let log = log_item.tiers;
+
+            if (log == undefined) return false;
+
+            let log_keys = Object.keys(log).sort();
+            let tier_keys = Object.keys(log[log_keys[0]].log_result.random_map);
+            
+            let html = `
+                <h2>
+                    Run #${id}, Flame: <div class="flame flame-${log_item.flame_type === 2 ? "eternal" : "powerful"} flame-small"></div>
+                </h2>
+                <table style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            ${
+                                log_keys.reduce((a,b)=>{
+                                    a += `
+                                        <th>${b}</th>
+                                    `;
+                                    return a;
+                                }, "")
+                            }
+                        </tr>
+                        <tr>
+                            <th></th>
+                            ${
+                                log_keys.reduce((a,b)=>{
+                                    a += `
+                                        <th>${log[b].log_result.prn}</th>
+                                    `;
+                                    return a;
+                                }, "")
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${
+                            tier_keys.reduce((a,b)=>{
+                                a += `
+                                    <tr>
+                                        <td>${+b + 1 + (Item.idata.flame_type === 2 ? 2 : 0)}</td>
+                                        ${
+                                            log_keys.reduce((x,y)=>{
+                                                let map = log[y].log_result.random_map[b];
+                                                let prn = log[y].log_result.prn;
+
+                                                x += `
+                                                    <td>
+                                                        ${
+                                                            map.reduce((n,[from, to])=>{
+                                                                n += `
+                                                                    <span style="display:block" class="${prn >= from && prn <= to ? "highlight-row" : "" }">
+                                                                        ${from} - ${to}
+                                                                    </span>
+                                                                `;
+                                                                return n; 
+                                                            }, "")
+                                                        }
+                                                    </td>
+                                                `;
+                                                return x;
+                                            }, "")
+                                        }
+                                    </tr>
+                                `;
+                                return a;
+                            }, "")
+                        }
+                    </tbody>
+                </table>
+            `;
+
+            flame_prn.html(html).removeClass("hidden");
+            flame_container.addClass("hidden");
+
+            option_box.dialog({
+                position: {my: "center", at: "top center", of: window},
+                width: "100vw",
+                height: "auto"
+            });
+
+            flame_back_button.removeClass("hidden");
+        });
     });
 });
