@@ -1643,7 +1643,7 @@ $(function() {
         }).position({
             my: "center",
             at: "center",
-            of: document
+            of: sfcon
         });
 
         sfpop.draggable({
@@ -1652,7 +1652,7 @@ $(function() {
         }).position({
             my: "center",
             at: "center",
-            of: document
+            of: sfcon
         });
 
         sfitem.draggable({
@@ -1661,7 +1661,7 @@ $(function() {
         }).position({
             my: "center",
             at: "center",
-            of: document
+            of: sfcon
         });
 
         sfsc.draggable({
@@ -1670,7 +1670,7 @@ $(function() {
         }).position({
             my: "center",
             at: "center",
-            of: document
+            of: sfcon
         });
 
         i_con.draggable({
@@ -1684,7 +1684,7 @@ $(function() {
         }).position({
             my: "center",
             at: "center",
-            of: document
+            of: sfcon
         });
 
         cube_black_main.draggable({
@@ -1693,7 +1693,7 @@ $(function() {
         }).position({
             my: "center",
             at: "center",
-            of: document
+            of: sfcon
         });
     };
 
