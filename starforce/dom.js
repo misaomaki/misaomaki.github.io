@@ -1697,8 +1697,6 @@ $(function() {
         });
     };
 
-    initialize();
-
     window.onresize = function() {
         /*
             cannot reposition hidden dom, so when window resizes, check if it was hidden
@@ -2555,4 +2553,5 @@ $(function() {
     });
 
     init_item(); //start here
+    initialize();
 });
