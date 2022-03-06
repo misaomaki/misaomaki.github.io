@@ -3320,6 +3320,288 @@ var items_store = {
         }
     },
     pitched_boss: {
+        mitras_rage_warrior: {
+            name: "Mitra's Rage: Warrior",
+            level: 200,
+            class: "armor",
+            type: "emblem",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                watt: 5,
+                matt: 5,
+                str: 40,
+                dex: 40,
+                hp: 700
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-mrw",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false
+        },
+        mitras_rage_thief: {
+            name: "Mitra's Rage: Thief",
+            level: 200,
+            class: "armor",
+            type: "emblem",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                watt: 5,
+                matt: 5,
+                dex: 40,
+                luk: 40
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-mrt",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false
+        },
+        mitras_rage_bowman: {
+            name: "Mitra's Rage: Bowman",
+            level: 200,
+            class: "armor",
+            type: "emblem",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                watt: 5,
+                matt: 5,
+                str: 40,
+                dex: 40
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-mrb",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false
+        },
+        mitras_rage_pirate: {
+            name: "Mitra's Rage: Pirate",
+            level: 200,
+            class: "armor",
+            type: "emblem",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                watt: 5,
+                matt: 5,
+                str: 40,
+                dex: 40
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-mrp",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false
+        },
+        mitras_rage_magician: {
+            name: "Mitra's Rage: Magician",
+            level: 200,
+            class: "armor",
+            type: "emblem",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                watt: 5,
+                matt: 5,
+                int: 40,
+                luk: 40
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-mrm",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false
+        },
+        cursed_red_spellbook: {
+            name: "Cursed Red Spellbook",
+            level: 200,
+            class: "armor",
+            type: "pocket item",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 10,
+                matt: 10,
+                str: 20,
+                dex: 10,
+                int: 10,
+                luk: 10,
+                hp: 100,
+                mp: 100
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-crs",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false,
+            enhanceable: false
+        },
+        cursed_blue_spellbook: {
+            name: "Cursed Blue Spellbook",
+            level: 200,
+            class: "armor",
+            type: "pocket item",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 10,
+                matt: 10,
+                str: 10,
+                dex: 10,
+                int: 20,
+                luk: 10,
+                hp: 100,
+                mp: 100
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-cbs",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false,
+            enhanceable: false
+        },
+        cursed_green_spellbook: {
+            name: "Cursed Green Spellbook",
+            level: 200,
+            class: "armor",
+            type: "pocket item",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 10,
+                matt: 10,
+                str: 10,
+                dex: 20,
+                int: 10,
+                luk: 10,
+                hp: 100,
+                mp: 100
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-cgs",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false,
+            enhanceable: false
+        },
+        cursed_yellow_spellbook: {
+            name: "Cursed Yellow Spellbook",
+            level: 200,
+            class: "armor",
+            type: "pocket item",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 10,
+                matt: 10,
+                str: 10,
+                dex: 10,
+                int: 10,
+                luk: 20,
+                hp: 100,
+                mp: 100
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-cys",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false,
+            enhanceable: false
+        },
         commanding_force_earrings: {
             name: "Commanding Force Earrings",
             level: 200,
@@ -3509,41 +3791,7 @@ var items_store = {
             hammers_added: 2
         }
     },
-    misc: {
-        /*
-        pink_holy_cup: {
-            name: "Pink Holy Cup",
-            level: 140,
-            class: "armor",
-            type: "pocket",
-            speed: "",
-            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 2,
-            bstat: Object.assign({}, stats, {
-                watt: 5,
-                matt: 5,
-                str: 5,
-                dex: 5,
-                int: 5,
-                luk: 5,
-                hp: 50,
-                mp: 50
-            }),
-            req: {
-                str: 0,
-                dex: 0,
-                int: 0,
-                luk: 0
-            },
-            img: "item-pinkholycup",
-            upgrades: 0,
-            hammers_added: 0,
-            starforce: false
-        },
-        */
+    breath_of_divinity: {
         breath_of_divinity: {
             name: "Breath of Divinity",
             level: 150,
@@ -3578,6 +3826,42 @@ var items_store = {
             hammers_added: 2,
             skill: "Grants the skill Dawn Shield.",
             flavor: "The Heavens themselves are watching over you."
+        }
+    },
+    misc: {
+        pink_holy_cup: {
+            name: "Pink Holy Cup",
+            level: 140,
+            class: "armor",
+            type: "pocket item",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 2,
+            bstat: Object.assign({}, stats, {
+                watt: 5,
+                matt: 5,
+                str: 5,
+                dex: 5,
+                int: 5,
+                luk: 5,
+                hp: 50,
+                mp: 50
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-pinkholycup",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            enhanceable: false,
+            scrollable: false
         },
         kanna_treasure: {
             name: "KannaTreasureRing",
@@ -3671,6 +3955,37 @@ var items_store = {
             },
             img: "item-aquariuscrown",
             upgrades: 22,
+            hammers_added: 2
+        },
+        papulatus_mark: {
+            name: "Papulatus Mark",
+            level: 145,
+            class: "armor",
+            type: "eye accessory",
+            sub_class: "accessory",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                str: 8,
+                dex: 8,
+                int: 8,
+                luk: 8,
+                watt: 1,
+                matt: 1,
+                def: 150
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-papulatusmark",
+            upgrades: 5,
             hammers_added: 2
         }
     },
@@ -3776,7 +4091,33 @@ var items_store = {
             img: "item-dragonkhanjar",
             upgrades: 7,
             hammers_added: 2
-        }
+        },
+        terminus_defender: {
+            name: "Terminus Defender",
+            level: 160,
+            class: "armor",
+            type: "shield",
+            speed: "",
+            job: ["warrior"],
+            mstat: "", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                str: 13,
+                dex: 13,
+                def: 153
+            }),
+            req: {
+                str: 490,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-terminusdefender",
+            upgrades: 8,
+            hammers_added: 2
+        },
     },
     heart: {
         lidium_heart: {
@@ -8879,7 +9220,200 @@ var items_store = {
             img: "item-genesisellaha",
             upgrades: 8,
             hammers_added: 0
+        }
+    },
+    emblem: {
+        golden_maple_leaf: {
+            name: "Golden Maple Leaf Emblem",
+            level: 100,
+            class: "armor",
+            type: "emblem",
+            speed: "none",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                watt: 2,
+                matt: 2,
+                str: 10,
+                dex: 10,
+                int: 10,
+                luk: 10
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-goldenmapleleaf",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false
         },
+        honor_roll: {
+            name: "Honor Roll Emblem",
+            level: 100,
+            class: "armor",
+            type: "emblem",
+            speed: "none",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                watt: 5,
+                matt: 5,
+                str: 10,
+                dex: 10,
+                int: 10,
+                luk: 10
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-honorroll",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: false,
+            scrollable: false
+        },
+        gold_cygnus: {
+            name: "Gold Cygnus Emblem",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_heroes_aran: {
+            name: "Gold Heroes Emblem",
+            override_image: "Gold Heroes Emblem Aran",
+            alt_name: "Gold Heroes Emblem (Aran)",
+            img: "img-goldheroesemblemaran",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_heroes_evan: {
+            name: "Gold Heroes Emblem",
+            override_image: "Gold Heroes Emblem Evan",
+            alt_name: "Gold Heroes Emblem (Evan)",
+            img: "img-goldheroesemblemevan",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_heroes_shade: {
+            name: "Gold Heroes Emblem",
+            override_image: "Gold Heroes Emblem Shade",
+            alt_name: "Gold Heroes Emblem (Shade)",
+            img: "img-goldheroesemblemshade",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_heroes_mercedes: {
+            name: "Gold Heroes Emblem",
+            override_image: "Gold Heroes Emblem Mercedes",
+            alt_name: "Gold Heroes Emblem (Mercedes)",
+            img: "img-goldheroesemblemmercedes",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_heroes_luminous: {
+            name: "Gold Heroes Emblem",
+            override_image: "Gold Heroes Emblem Luminous",
+            alt_name: "Gold Heroes Emblem (Luminous)",
+            img: "img-goldheroesemblemluminous",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_resistance: {
+            name: "Gold Resistance Emblem",
+            img: "img-goldresistance",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_demon: {
+            name: "Gold Demon Emblem",
+            img: "img-golddemon",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        hybrid_heart: {
+            name: "Hybrid Heart",
+            img: "img-hybridheart",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        eternal_time: {
+            name: "Eternal Time Emblem",
+            img: "img-eternaltime",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_kinesis: {
+            name: "Gold Kinesis Emblem",
+            img: "img-goldkinesis",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        dragon: {
+            name: "Dragon Emblem",
+            img: "img-dragonemblem",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_hitman: {
+            name: "Gold Hitman Emblem",
+            img: "img-goldhitman",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_agent: {
+            name: "Gold Agent Emblem",
+            img: "img-goldagent",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        angel: {
+            name: "Angel Emblem",
+            img: "img-angelemblem",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_knights: {
+            name: "Gold Knight's Emblem",
+            img: "img-goldknights",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_crystal: {
+            name: "Gold Crystal Emblem",
+            img: "img-goldcrystal",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_abyssal: {
+            name: "Gold Abyssal Emblem",
+            img: "img-goldabyssal",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_earthseer: {
+            name: "Gold Earthseer Emblem",
+            img: "img-goldearthseer",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_three_paths: {
+            name: "Gold Three Paths Emblem",
+            img: "img-goldthreepaths",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_astro: {
+            name: "Gold Astro Emblem",
+            img: "img-goldastro",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_crescent: {
+            name: "Gold Crescent Emblem",
+            img: "img-goldcrescent",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_blossom: {
+            name: "Gold Blossom Emblem",
+            img: "img-goldblossom",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_forest: {
+            name: "Gold Forest Emblem",
+            img: "img-goldforest",
+            override_stat: "emblem|golden_maple_leaf"
+        }
     }
 };
 
@@ -8890,6 +9424,9 @@ let items_other_data = {
     max_hammers: 2, //number of hammers appliable,
     superior: false, //tyrant-related stuff
     starforce: true, //whether the item can be starforced or not
+    enhanceable: true, //whether the item can be cubed
+    scrollable: true, //whether the item can be scrolled
+    flame_type: 2, //0 - not flammable, 1 - non-boss flames, 2 - boss flames
     skill: "", //orange text at the bottom denoting a skill
     flavor: "", //flavor text in white at the bottom
     shadowknight: false, //use shadowknight coins
@@ -8918,7 +9455,10 @@ let items_other_data = {
         }, //number of cubes used. keep track of type
         cubes_total: 0,
         flames_meta_data: [], //flames tier log
-        flames_total: 0
+        flames_total: {
+            "1": 0,
+            "2": 0
+        } //count flames 1 - powerful 2 -rebirth
     },
     boosts: {
         sf_data: [], //starforce data
@@ -8963,12 +9503,14 @@ $(function() {
             //override images should share a common istore.img name
             if (istore.override_image != null) {
                 if (shared_img.includes(istore.img)) continue;
-                img_name = istore.override_image.replace("AbsoLab","Absolab").replace(/[\s-]/gi,"");
+                img_name = istore.override_image;
                 shared_img.push(istore.img);
             } else {
-                //github is case sensitive for url
-                img_name = istore.name.replace("AbsoLab","Absolab").replace(/[\s-]/gi,"")
+                img_name = istore.name;
             }   
+
+            //github is case sensitive for url
+            img_name = img_name.replace("AbsoLab","Absolab").replace(/[\s-:']/gi,"");
 
             style_items += `
                 .${istore.img} {

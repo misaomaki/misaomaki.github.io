@@ -128,6 +128,10 @@ $(function() {
     $("#cube_menu .cube").on("click", function() {
         if (cube_loading) return false;
 
+        if (!Item.idata.enhanceable) {
+            return false;
+        }
+
         let _this = $(this);
         let cube_type = _this.attr("data-id");
 
@@ -1794,7 +1798,8 @@ $(function() {
     };
 
     sfmain.on("click", ".sf-button-enhance", e=>{
-        if (Item.idata.meta.stars === Item.idata.meta.max_stars) {
+        /* at max stars or not starforceable */
+        if (!Item.idata.starforce || Item.idata.meta.stars === Item.idata.meta.max_stars) {
             return false;
         }
 
@@ -2062,6 +2067,9 @@ $(function() {
 
     let cube_select_main = $("#cube_select_main");
     let cube_select_bonus = $("#cube_select_bonus");
+    let item_cube_con = $("#item_cube_container");
+    let item_scroll_con = $("#item_scroll_container");
+    let starforce_input_con = $("#starforce_input_con");
 
     var init_item = function() {
         scroll_options = [];
@@ -2401,6 +2409,24 @@ $(function() {
                 } else {
                     $("#item_starforce").val(0);
                 }
+
+                /* item not cubeable so don't display cube options */
+                item_cube_con.removeClass("hidden");
+                if (!this_item.enhanceable) {
+                    item_cube_con.addClass("hidden");
+                }
+
+                /* item not scrollable so don't display scroll options */
+                item_scroll_con.removeClass("hidden");
+                if (!this_item.scrollable) {
+                    item_scroll_con.addClass("hidden");
+                }
+
+                starforce_input_con.removeClass("hidden");
+                /* item not starforceable so don't display starforce box */
+                if (!this_item.starforce) {
+                    starforce_input_con.addClass("hidden");
+                }
             });
 
             flame_tier.on("change", function(e) {
@@ -2500,6 +2526,10 @@ $(function() {
 
         let _item = ddl_item.val().split(";");
         let this_item = items_store[_item[0]][_item[1]];
+
+        if (!this_item.enhanceable) {
+            return false;
+        }
 
         //get item type, with sub class taking priority (copied from cube.js)
         let item_type = this_item.sub_class;

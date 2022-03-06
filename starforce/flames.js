@@ -822,7 +822,7 @@ var flames = {
             return a;
         },{});
 
-        ++this.idata.meta.flames_total;
+        ++this.idata.meta.flames_total[flame];
 
         /* set flame */
         flames_log.stats = this.set_item_flame_tier(flame_stats);
@@ -915,6 +915,11 @@ $(function(){
         },"");
 
         let html = `
+            <div id="flames_total">
+                <div class="flame flame-powerful flame-small"></div> x${Item.idata.meta.flames_total["1"]}
+                &nbsp;
+                <div class="flame flame-eternal flame-small"></div> x${Item.idata.meta.flames_total["2"]}
+            </div>
             <div id="flames_log_rng_map" class="hidden"></div>
             <div id="flames_log_information">
                 <div id="flames_used"></div>

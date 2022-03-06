@@ -568,6 +568,9 @@ item.prototype.redraw_item_tooltip = function() {
     let ipic = this.check_cache(()=>{
         return i_con.find(".item-container-item");
     }, "dom", "ipic");   
+    let istar_con = this.check_cache(()=>{
+        return i_con.find(".item-star-container");
+    }, "dom", "istar_con");
 
     //total stats from all sources: flames, stars, and scrolls
     let e_stats = Object.assign({}, stats);
@@ -855,9 +858,11 @@ item.prototype.redraw_item_tooltip = function() {
             }).join("").replace(/\s\s+\[\[remove\]\]/gi, "")
 
         }
+        ${this.idata.scrollable ? `
         Remaining Enhancements: ${this.idata.hammers_added + this.idata.upgrades - this.idata.boosts.scroll_data.length} <br>
         <span class="item-color-recovery">(Available Recoveries: 0)</span> <br>
         Hammers Applied: ${this.idata.hammers_added} ${this.idata.hammers_added == 2 ? "(MAX)" : ""}
+        `: ""}
     `;
 
     istats.html(html);
@@ -1080,12 +1085,17 @@ item.prototype.redraw_item_tooltip = function() {
     }
 
     istar.removeClass("hidden");
-    //remove stars based on max stars allowed
-    for (let i = 25; i > this.idata.meta.max_stars; --i) {
-        istar.filter(".item-star-" + i).addClass("hidden");
-    } 
-
-
+    /* don't show stars at top of tooltip if not starforceable */
+    if (!this.idata.starforce) {
+        istar_con.addClass("hidden");
+    } else {
+        istar_con.removeClass("hidden");
+        //remove stars based on max stars allowed
+        for (let i = 25; i > this.idata.meta.max_stars; --i) {
+            istar.filter(".item-star-" + i).addClass("hidden");
+        } 
+    }
+    
     return true;
 }
 
