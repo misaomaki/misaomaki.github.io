@@ -9293,132 +9293,132 @@ var items_store = {
             name: "Gold Heroes Emblem",
             override_image: "Gold Heroes Emblem Mercedes",
             alt_name: "Gold Heroes Emblem (Mercedes)",
-            img: "img-goldheroesemblemmercedes",
+            img: "item-goldheroesemblemmercedes",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_heroes_aran: {
             name: "Gold Heroes Emblem",
             override_image: "Gold Heroes Emblem Aran",
             alt_name: "Gold Heroes Emblem (Aran)",
-            img: "img-goldheroesemblemaran",
+            img: "item-goldheroesemblemaran",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_heroes_phantom: {
             name: "Gold Heroes Emblem",
             override_image: "Gold Heroes Emblem Phantom",
             alt_name: "Gold Heroes Emblem (Phantom)",
-            img: "img-goldheroesemblemsparta",
+            img: "item-goldheroesemblemsparta",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_heroes_luminous: {
             name: "Gold Heroes Emblem",
             override_image: "Gold Heroes Emblem Luminous",
             alt_name: "Gold Heroes Emblem (Luminous)",
-            img: "img-goldheroesemblemluminous",
+            img: "item-goldheroesemblemluminous",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_heroes_evan: {
             name: "Gold Heroes Emblem",
             override_image: "Gold Heroes Emblem Evan",
             alt_name: "Gold Heroes Emblem (Evan)",
-            img: "img-goldheroesemblemevan",
+            img: "item-goldheroesemblemevan",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_heroes_shade: {
             name: "Gold Heroes Emblem",
             override_image: "Gold Heroes Emblem Shade",
             alt_name: "Gold Heroes Emblem (Shade)",
-            img: "img-goldheroesemblemshade",
+            img: "item-goldheroesemblemshade",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_resistance: {
             name: "Gold Resistance Emblem",
-            img: "img-goldresistance",
+            img: "item-goldresistance",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_demon: {
             name: "Gold Demon Emblem",
-            img: "img-golddemon",
+            img: "item-golddemon",
             override_stat: "emblem|golden_maple_leaf"
         },
         hybrid_heart: {
             name: "Hybrid Heart",
-            img: "img-hybridheart",
+            img: "item-hybridheart",
             override_stat: "emblem|golden_maple_leaf"
         },
         eternal_time: {
             name: "Eternal Time Emblem",
-            img: "img-eternaltime",
+            img: "item-eternaltime",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_kinesis: {
             name: "Gold Kinesis Emblem",
-            img: "img-goldkinesis",
+            img: "item-goldkinesis",
             override_stat: "emblem|golden_maple_leaf"
         },
         dragon: {
             name: "Dragon Emblem",
-            img: "img-dragonemblem",
+            img: "item-dragonemblem",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_hitman: {
             name: "Gold Hitman Emblem",
-            img: "img-goldhitman",
+            img: "item-goldhitman",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_agent: {
             name: "Gold Agent Emblem",
-            img: "img-goldagent",
+            img: "item-goldagent",
             override_stat: "emblem|golden_maple_leaf"
         },
         angel: {
             name: "Angel Emblem",
-            img: "img-angelemblem",
+            img: "item-angelemblem",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_knights: {
             name: "Gold Knight's Emblem",
-            img: "img-goldknights",
+            img: "item-goldknights",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_crystal: {
             name: "Gold Crystal Emblem",
-            img: "img-goldcrystal",
+            img: "item-goldcrystal",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_abyssal: {
             name: "Gold Abyssal Emblem",
-            img: "img-goldabyssal",
+            img: "item-goldabyssal",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_earthseer: {
             name: "Gold Earthseer Emblem",
-            img: "img-goldearthseer",
+            img: "item-goldearthseer",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_three_paths: {
             name: "Gold Three Paths Emblem",
-            img: "img-goldthreepaths",
+            img: "item-goldthreepaths",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_astro: {
             name: "Gold Astro Emblem",
-            img: "img-goldastro",
+            img: "item-goldastro",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_crescent: {
             name: "Gold Crescent Emblem",
-            img: "img-goldcrescent",
+            img: "item-goldcrescent",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_blossom: {
             name: "Gold Blossom Emblem",
-            img: "img-goldblossom",
+            img: "item-goldblossom",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_forest: {
             name: "Gold Forest Emblem",
-            img: "img-goldforest",
+            img: "item-goldforest",
             override_stat: "emblem|golden_maple_leaf"
         }
     }
