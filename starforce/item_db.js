@@ -9289,11 +9289,32 @@ var items_store = {
             name: "Gold Cygnus Emblem",
             override_stat: "emblem|golden_maple_leaf"
         },
+        gold_heroes_mercedes: {
+            name: "Gold Heroes Emblem",
+            override_image: "Gold Heroes Emblem Mercedes",
+            alt_name: "Gold Heroes Emblem (Mercedes)",
+            img: "img-goldheroesemblemmercedes",
+            override_stat: "emblem|golden_maple_leaf"
+        },
         gold_heroes_aran: {
             name: "Gold Heroes Emblem",
             override_image: "Gold Heroes Emblem Aran",
             alt_name: "Gold Heroes Emblem (Aran)",
             img: "img-goldheroesemblemaran",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_heroes_phantom: {
+            name: "Gold Heroes Emblem",
+            override_image: "Gold Heroes Emblem Phantom",
+            alt_name: "Gold Heroes Emblem (Phantom)",
+            img: "img-goldheroesemblemsparta",
+            override_stat: "emblem|golden_maple_leaf"
+        },
+        gold_heroes_luminous: {
+            name: "Gold Heroes Emblem",
+            override_image: "Gold Heroes Emblem Luminous",
+            alt_name: "Gold Heroes Emblem (Luminous)",
+            img: "img-goldheroesemblemluminous",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_heroes_evan: {
@@ -9308,20 +9329,6 @@ var items_store = {
             override_image: "Gold Heroes Emblem Shade",
             alt_name: "Gold Heroes Emblem (Shade)",
             img: "img-goldheroesemblemshade",
-            override_stat: "emblem|golden_maple_leaf"
-        },
-        gold_heroes_mercedes: {
-            name: "Gold Heroes Emblem",
-            override_image: "Gold Heroes Emblem Mercedes",
-            alt_name: "Gold Heroes Emblem (Mercedes)",
-            img: "img-goldheroesemblemmercedes",
-            override_stat: "emblem|golden_maple_leaf"
-        },
-        gold_heroes_luminous: {
-            name: "Gold Heroes Emblem",
-            override_image: "Gold Heroes Emblem Luminous",
-            alt_name: "Gold Heroes Emblem (Luminous)",
-            img: "img-goldheroesemblemluminous",
             override_stat: "emblem|golden_maple_leaf"
         },
         gold_resistance: {
