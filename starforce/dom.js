@@ -1074,6 +1074,7 @@ $(function() {
         }).dialog("open");
 
         let cube_line_con = $("#auto_cube_lines");
+        /* change the cube type */
         $("#cube_select .auto-cube").on("click", function() {
             let _this = $(this);
             let cube_type = _this.attr("data-type");
@@ -1088,19 +1089,22 @@ $(function() {
 
         let cube_msg2 = $("#cube_msg2");
         let cube_expected = $("#cube_expected");
+        /* change the potential tier for cube */
         $("#option_box .auto-select-cube-type").on("change", function() {
             let _this = $(this);
             let type = _this.attr("data-type");
             let pot_tier = _this.val();
             cube_msg2.removeClass("hidden");
+            cube_expected.html(1); /* changing tier sets cube lines back to any, so probability is always 1 */
 
             let tier_html = cube_pot_dropdown_html(Item.idata, type, pot_tier, {
                 wildcard: true
             });
         
             $("#auto_cube_line_con_" + type).html(tier_html);
-
+            
             var cube_select = $(".select-cube-line-" + type).select2();
+            /* calculate probabilities based on lines chosen */
             cube_select.on("select2:select", function(e) {
                 let c_cube = $("#cube_select .auto-cube-selected");
                 let cube_type = c_cube.attr("data-type");
