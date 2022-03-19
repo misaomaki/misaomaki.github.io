@@ -184,7 +184,7 @@ body, html {
     width: 386px;
     top: 30px;
     left: -2px;
-    animation: sf-key-chance-time 1.5s steps(6) forwards infinite;
+    animation: sf-key-chance-time 0.7s steps(6) forwards infinite;
 }
 
 .sf-star-chance-time {

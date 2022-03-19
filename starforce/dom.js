@@ -953,6 +953,12 @@ $(function() {
                     </div>
                 </div>
             </div>
+            <span id="cube_msg2" class="hidden">
+                <span style="color:blue;display:block;padding-bottom:15px;">
+                    Estimated cubes to use (based on line probability): <span id="cube_expected">1</span>
+                    <span style="font-size:0.6em;display:block;">Excludes cubes needed to get to desired tier</span>
+                </span>
+            </span>
             <span id="cube_msg" style="color:red"></span>
         `;
 
@@ -982,7 +988,7 @@ $(function() {
 
                     let c_cube = $("#cube_select .auto-cube-selected");
                     let cube_type = c_cube.attr("data-type");
-                    let cube = c_cube.attr("data-id");
+                    let cube_name = c_cube.attr("data-id");
 
                     let line_1 = $("#cube_stat_line_" + cube_type + "_1").val();
                     let line_2 = $("#cube_stat_line_" + cube_type + "_2").val();
@@ -998,11 +1004,13 @@ $(function() {
                         return false;
                     }
 
+                    let lines = [line_1, line_2, line_3];
+
                     let data = {
                         item: Item,
-                        cube_lines: [line_1, line_2, line_3],
+                        cube_lines: lines,
                         cube_type: cube_type,
-                        cube: cube,
+                        cube: cube_name,
                         pot_tier: pot_tier
                     };
             
@@ -1012,6 +1020,7 @@ $(function() {
                     w_c.postMessage(data);
                     
                     let cube_msg = $("#cube_msg");
+
                     w_c.onmessage = function(d) {
                         //codes less than 1 are errors that cannot proceed
                         if (d.data.code < 0) {
@@ -1077,10 +1086,13 @@ $(function() {
             $("#auto_cube_form_" + cube_type).removeClass("hidden");
         });
 
+        let cube_msg2 = $("#cube_msg2");
+        let cube_expected = $("#cube_expected");
         $("#option_box .auto-select-cube-type").on("change", function() {
             let _this = $(this);
             let type = _this.attr("data-type");
             let pot_tier = _this.val();
+            cube_msg2.removeClass("hidden");
 
             let tier_html = cube_pot_dropdown_html(Item.idata, type, pot_tier, {
                 wildcard: true
@@ -1088,7 +1100,21 @@ $(function() {
         
             $("#auto_cube_line_con_" + type).html(tier_html);
 
-            $(".select-cube-line-" + type).select2();
+            var cube_select = $(".select-cube-line-" + type).select2();
+            cube_select.on("select2:select", function(e) {
+                let c_cube = $("#cube_select .auto-cube-selected");
+                let cube_type = c_cube.attr("data-type");
+                let cube_name = c_cube.attr("data-id");
+
+                let line_1 = $("#cube_stat_line_" + cube_type + "_1").val();
+                let line_2 = $("#cube_stat_line_" + cube_type + "_2").val();
+                let line_3 = $("#cube_stat_line_" + cube_type + "_3").val();
+                let lines = [line_1, line_2, line_3];
+
+                /* estimated cubes to use to desired lines */
+                let expected_cubes = parseInt(1 / cube.stats.get_probability.call(Item, lines, cube_type, cube_name, pot_tier)).toNumber();
+                cube_expected.html(expected_cubes);
+            });
         });
     });
 

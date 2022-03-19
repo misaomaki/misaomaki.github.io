@@ -5,6 +5,10 @@
 let $ = function() {};
 
 importScripts("init.js");
+importScripts("cube_dictionary.js");
+importScripts("cube_rates_main.js");
+importScripts("cube_rates_bonus.js");
+importScripts("cube_rates.js");
 importScripts("cubes.js");
 
 /*
