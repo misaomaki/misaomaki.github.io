@@ -1,3 +1,13 @@
+.dev-info {
+    color: white;
+    position: fixed;
+    font-family: Arial;
+    bottom: 0;
+    width: 100%;
+    padding: 5px;
+    font-size: 0.9em;
+}
+
 .ui-widget-overlay
 {
     opacity: .70 !important;

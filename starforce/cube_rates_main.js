@@ -2162,7 +2162,7 @@ cube.pot_stats.main = {
                 ["maxHp_p9", "t1"],
                 ["maxMp_p9", "t1"],
                 ["defp9", "t3"],
-                ["allp9", "t3"],
+                ["allp6", "t3"],
                 ["ignore_dmg1", "t3"],
                 ["ignore_dmg2", "t3"],
                 ["recover_hp30", "t3"],

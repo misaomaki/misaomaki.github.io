@@ -3273,6 +3273,23 @@ var gacha_db = {
 
 <script>
     //maplestory marvel rates parser
+    /*
+        HOW TO USE:
+        1.  copy live nexon marvel machine HTML for div classes slot-item-1, slot-item-2, slot-item-3 into the one above.
+        2.  open up the browser console for the simulator page.
+        3.  go to the marvel rates page https://maplestory.nexon.net/micro-site/39184 and copy the entire page source into the textarea provided here (set parse_mode = true).
+        4.  in the console, a structure will be generated for the rates. copy that into gacha_db object above.
+        5.  the console will output any maple items that could not be resolved due to name differences between the rates page and the marvel page.
+            the parser should take care of most common differences in naming between the two pages. therefore, any differences encountered are specific to that item.
+            we should add the item name as an edge case to the edgeCases dictionary. 
+            the key of the edgeCases object should be the item name from the marvel rates page and the value should be the name of the item from the marvel machine page.
+            EXTRA INFO NOT REQUIRED IN MOST CIRCUMSTANCES (
+                the item idx can also be looked up manually from the marvel machine page itself. it is the data-idx attribute in the div class=icon elements.
+                sometimes that dom element doesn't have the data-idx, but will have it in the "marvelous prizes" tabs in the marvel machine page.
+                one or the other has to have it otherwise spinning to that item is impossible. if all else fails, add an arbitrary data-idx to the icon class item and have
+                the gacha_db object reference that.
+            )
+    */
     let parse_mode = false;
 
     if (parse_mode) {
@@ -3286,6 +3303,7 @@ var gacha_db = {
     };
 
     /*
+        marvel machine page and marvel rates page do not always share the same name for items
         no amount of parsing hackery can get these ones because the names are too different
     */
     var edgeCases = {
@@ -3348,6 +3366,7 @@ var gacha_db = {
         "Beauty Album Face Slot Expansion": "Beauty Album Hair Slot Expansion (1)",
         "Powerful Rebirth Flame (3)": "Powerful Rebirth Flame  (3)",
         "Golden Hammer 100% Coupon (2)": "Golden Hammer 100 % Coupon (2)",
+        /* are the names manually written???? */
         "Robot (90 Day)": "Robot",
         "Sea-lixir (90 Day)": "Sea-lixir",
         "Love Potion (90 Day)": "Love Potion",
@@ -3358,7 +3377,7 @@ var gacha_db = {
         "Love Potion(90 Day)": "Love Potion",
         "Tangy Tonic(90 Day)": "Tangy Tonic",
         "Hyper Teleport Rock (1-day)": "Hyper Teleport Rock [1day]",
-        "AbsoLab Whip Blade": "AbsoLab Whip Blade (Pirate)" /* str and luk have the same name so have to manually map the idx */
+        "AbsoLab Whip Blade": "AbsoLab Whip Blade (Pirate)" /* str and luk have the same name on marvel rates page, so have to manually map the idx */
     };
 
     $(function() {
@@ -3397,6 +3416,7 @@ var gacha_db = {
             let type = "";
             let class_type = "";
 
+            /* certain items only show up in specific marvel slots, so use that to auto-detect what slot we are parsing for */
             if (_this.includes("Sea-lixir")) {
                 type = "c";
                 class_type = ".slot-item-1";
@@ -3423,8 +3443,10 @@ var gacha_db = {
                 if (item.name === "") continue;
                 if (item.name.includes("Item Name")) continue;
 
+                /* get item by the name given in the title attribute */
                 item.item_idx = $(class_type + " .icon[title='" + item.name.replace(/\'/gi, "\\'") + "' i]").attr("data-idx");
 
+                /* get item from edge case naming and find it from the title attribute again */
                 if (item.item_idx == undefined) {
                     item_name_diff = edgeCases[item.name];
 
@@ -3434,6 +3456,7 @@ var gacha_db = {
                 if (typeof item.item_idx == 'undefined') {
                     let this_name_diff = "";
 
+                    /* rename certain items due to specific items sharing a base name being consistently different between pages */
                     if (item.name.indexOf("Electronic Heart") >= 0) {
                         this_name_diff = "Electronic Heart O-Series";
                     }
@@ -3454,7 +3477,7 @@ var gacha_db = {
 
                     item.item_idx = $(class_type + " .icon[title='" + this_name_diff + "' i]").attr("data-idx");
 
-                    /* trailing space */
+                    /* add a trailing space to title attribute as some items have this */
                     if (item.item_idx == undefined) {
                         item.item_idx = $(class_type + " .icon[title='" + this_name_diff + " ' i]").attr("data-idx");
                     }
@@ -3489,7 +3512,7 @@ var gacha_db = {
                         check for item based on parsed image name. remove special characters and parenthesis
                     */
                     if (typeof item.item_idx == 'undefined') {
-                        item.item_idx = icons.filter(function() {
+                        item.item_idx = icons.find(function() {
                             let _this = $(this);
                             var style = _this.attr("style");
                             var img_name = style.match(/background\: url\('https\:\/\/nxcache.nexon.net\/maplestory\/shop\/gachapon\/img\/items\/(.*)\.png'\)/)[1];
@@ -3505,8 +3528,9 @@ var gacha_db = {
                         item.item_idx = undefined;
                     }
                     
+                    /* find item from the innerHTML of the div class */
                     if (typeof item.item_idx == 'undefined')  {
-                        item.item_idx = icons.filter(function() {
+                        item.item_idx = icons.find(function() {
                             return $(this).text().trim() === this_name_diff
                         }).attr("data-idx");
                     }
@@ -3515,6 +3539,7 @@ var gacha_db = {
                         item.item_idx = undefined;
                     }
 
+                    /* item cannot be found, so output for manual review */
                     if (typeof item.item_idx == 'undefined' || typeof item.item_idx !== "string") {
                         console.log(item);
                         continue;
@@ -3524,6 +3549,9 @@ var gacha_db = {
                 item_db[type].push(item);
             }
             console.log("done");
+            /*
+                output the mapped data to be copied to gacha_db
+            */
             if (item_db.a.length > 0 && item_db.b.length > 0 && item_db.c.length > 0) {
                 console.log(JSON.stringify(item_db));
             }
