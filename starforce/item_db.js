@@ -9421,6 +9421,605 @@ var items_store = {
             img: "item-goldforest",
             override_stat: "emblem|golden_maple_leaf"
         }
+    },
+    vip: {
+        "one-handed_sword": {
+            name: "VIP One-Handed Sword",
+            level: 127,
+            class: "weapon",
+            type: "one-handed sword",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 118,
+                str: 8,
+                dex: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipone-handedsword",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "two-handed_sword": {
+            name: "VIP Two-Handed Sword",
+            level: 127,
+            class: "weapon",
+            type: "two-handed sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 120,
+                str: 8,
+                dex: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-viptwo-handedsword",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "one-handed_axe": {
+            name: "VIP One-Handed Axe",
+            level: 127,
+            class: "weapon",
+            type: "one-handed sword",
+            speed: "fast",
+            job: ["warrior"],
+            mstat: "str",
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 118,
+                str: 8,
+                dex: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipone-handedaxe",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "two-handed_axe": {
+            name: "VIP Two-Handed Axe",
+            level: 127,
+            class: "weapon",
+            type: "two-handed sword",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 122,
+                str: 8,
+                dex: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-viptwo-handedaxe",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "one-handed_blunt_weapon": {
+            name: "VIP One-Handed Blunt Weapon",
+            level: 127,
+            class: "weapon",
+            type: "one-handed blunt weapon",
+            speed: "normal",
+            job: ["warrior"],
+            mstat: "str",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 118,
+                str: 8,
+                dex: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipone-handedbluntweapon",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "two-handed_blunt_weapon": {
+            name: "VIP Two-Handed Blunt Weapon",
+            level: 127,
+            class: "weapon",
+            type: "two-handed blunt weapon",
+            speed: "slow",
+            job: ["warrior"],
+            mstat: "str",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 122,
+                str: 8,
+                dex: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-viptwo-handedbluntweapon",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "bow": {
+            name: "VIP Bow",
+            level: 127,
+            class: "weapon",
+            type: "bow",
+            speed: "normal",
+            job: ["bowman"],
+            mstat: "dex",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 115,
+                str: 4,
+                dex: 8,
+                speed: 14,
+                knockback: 0.76
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipbow",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "crossbow": {
+            name: "VIP Crossbow",
+            level: 127,
+            class: "weapon",
+            type: "crossbow",
+            speed: "fast",
+            job: ["bowman"],
+            mstat: "dex",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 118,
+                str: 4,
+                dex: 8,
+                speed: 14,
+                knockback: 0.70
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipcrowwbow",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "claw": {
+            name: "VIP Claw",
+            level: 127,
+            class: "weapon",
+            type: "claw",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk",
+            pstat: ["dex", "luk"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 64,
+                dex: 4,
+                luk: 16
+                //Avoidability stat still relevant?
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipclaw",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "dagger_luk": {
+            name: "VIP Dagger (LUK)",
+            level: 127,
+            class: "weapon",
+            type: "dagger",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk",
+            pstat: ["dex", "luk"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 113,
+                dex: 4,
+                luk: 8
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipdaggerluk",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "dagger_str": {
+            name: "VIP Dagger (STR)",
+            level: 127,
+            class: "weapon",
+            type: "dagger",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk",
+            pstat: ["dex", "luk"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 115,
+                str: 4,
+                luk: 8
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipdaggerstr",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "spear": {
+            name: "VIP Spear",
+            level: 127,
+            class: "weapon",
+            type: "spear",
+            speed: "slow",
+            job: ["warrior"],
+            mstat: "str",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 122,
+                str: 8,
+                dex: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipspear",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "polearm": {
+            name: "VIP Polearm",
+            level: 127,
+            class: "weapon",
+            type: "polearm",
+            speed: "slow",
+            job: ["warrior"],
+            mstat: "str",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 122,
+                str: 8,
+                dex: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vippolearm",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "wand": {
+            name: "VIP Wand",
+            level: 127,
+            class: "weapon",
+            type: "wand",
+            speed: "normal",
+            job: ["magician"],
+            mstat: "int",
+            pstat: ["int", "luk"],
+            att_type: "matt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 83,
+                matt: 148,
+                int: 8,
+                luk: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipwand",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "staff": {
+            name: "VIP Staff",
+            level: 127,
+            class: "weapon",
+            type: "staff",
+            speed: "slow",
+            job: ["magician"],
+            mstat: "int",
+            pstat: ["int", "luk"],
+            att_type: "matt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 88,
+                matt: 150,
+                int: 8,
+                luk: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipwand",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "knuckle": {
+            name: "VIP Knuckle",
+            level: 64,
+            class: "weapon",
+            type: "knuckle",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "dex",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 92,
+                str: 8,
+                dex: 4
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipknuckle",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "gun": {
+            name: "VIP Gun",
+            level: 127,
+            class: "weapon",
+            type: "gun",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "dex",
+            pstat: ["str", "dex"],
+            att_type: "watt",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                watt: 92,
+                str: 4,
+                dex: 8
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipgun",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "katara": {
+            name: "VIP Katara",
+            level: 127,
+            class: "weapon",
+            type: "katara",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk",
+            pstat: ["dex", "luk"],
+            att_type: "watt",
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                watt: 68,
+                dex: 4,
+                luk: 8
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipkatara",
+            upgrades: 7,
+            hammers_added: 2
+        },
+        "belt": {
+            name: "VIP Belt",
+            level: 127,
+            class: "armor",
+            type: "belt",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "",
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "att",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                str: 8,
+                dex: 8,
+                int: 8,
+                luk: 8,
+                def: 80,
+                //magic def. still relevant?
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipbelt",
+            upgrades: 3,
+            hammers_added: 2
+        },
+        "earrings": {
+            name: "VIP Earrings",
+            level: 127,
+            class: "armor",
+            type: "earrings",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "",
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "att",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                str: 5,
+                dex: 5,
+                int: 5,
+                luk: 5,
+                mp: 80,
+                def: 55
+                //accuracy stat still relevant?
+                //magic def. still relevant?
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipearrings",
+            upgrades: 5,
+            hammers_added: 2
+        },
+        "necklace": {
+            name: "VIP Necklace",
+            level: 145,
+            class: "armor",
+            type: "pendant",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "",
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "att",
+            flame_type: 1,
+            bstat: Object.assign({}, stats, {
+                str: 10,
+                dex: 10,
+                int: 10,
+                luk: 10,
+                def: 150
+                //Avoidability still relevant?
+                //magic def. still relevant?
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipnecklace",
+            upgrades: 3,
+            hammers_added: 2
+        },
+        "ring": {
+            name: "VIP Ring",
+            level: 127,
+            class: "armor",
+            type: "ring",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "",
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "att",
+            flame_type: 0,
+            bstat: Object.assign({}, stats, {
+                str: 5,
+                dex: 5,
+                int: 5,
+                luk: 5,
+                hp: 80,
+                mp: 80,
+                def: 120
+                //Avoidability still relevant?
+                //magic def. still relevant?
+            }),
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-vipring",
+            upgrades: 0,
+            hammers_added: 0,
+        }
     }
 };
 
@@ -9517,7 +10116,7 @@ $(function() {
             }   
 
             //github is case sensitive for url
-            img_name = img_name.replace("AbsoLab","Absolab").replace(/[\s-:']/gi,"");
+            img_name = img_name.replace("AbsoLab","Absolab").replace(/[\s-:\(\)']/gi,"");
 
             style_items += `
                 .${istore.img} {
