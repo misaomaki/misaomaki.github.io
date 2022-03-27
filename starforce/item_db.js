@@ -9483,7 +9483,7 @@ var items_store = {
             speed: "fast",
             job: ["warrior"],
             mstat: "str",
-            pstat: ["str", "dex", "int", "luk"],
+            pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
             bstat: Object.assign({}, stats, {
@@ -10024,6 +10024,7 @@ var items_store = {
 };
 
 //metadata that is tacked onto every item in items_store
+/* TODO: only tack on when item is created. no need to put this object on EVERY object */
 let items_other_data = {
     stars: -1, //some items are hardcapped at a certain max star despite their item tier
     sub_class: "", //differentiate between armor classes for scrolling purposes
