@@ -31,6 +31,8 @@
         /* some lower-level items have different upgrade slots */
         let upgrades = {
             "overall": 10,
+            "top": 7,
+            "bottom": 7,
             "hat": 11,
             "boots": 8,
             "gloves": 6,
@@ -42,11 +44,13 @@
             "eye accessory": 3,
             "mechanical heart": 9,
             "earrings": 7,
-            "shoulder": 1
+            "shoulder": 1,
+            "ring": 3,
+            "shield": 10
         };
 
         let is_armor = function(type) {
-            return ["overall","hat","boots","gloves","cape"].includes(type);
+            return ["overall", "top", "bottom", "hat","boots","gloves","cape", "belt", "pendant", "face accessory", "eye accessory", "mechanical heart", "earrings", "shoulder", "ring", "shield"].includes(type);
         }
 
         let get_jobs = function(job) {
@@ -302,7 +306,7 @@
                     t.req[req_stat] = +req_val;
                 }
             }
-            debugger;
+
             if (t.job.length === 0) {
                 t.job = ["beginner", "warrior", "bowman", "magician", "thief", "pirate"];
             }
