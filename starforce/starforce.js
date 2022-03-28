@@ -236,7 +236,7 @@ var equip_gain = function(item) {
 
     add.star = star;
 
-    if (star === (item.superior ? 15 : 25)) {
+    if (star === (item.superior ? 15 : item.meta.max_stars)) {
         star = 1;
     }
 
