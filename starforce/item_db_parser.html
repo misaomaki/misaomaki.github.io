@@ -1,0 +1,341 @@
+<style>
+    .hidden {
+        display: none !important;
+    }
+</style>
+
+<textarea id="text" style="width:100%;height:400px"></textarea>
+<textarea id="textOutput" style="width:100%;height:400px" class="hidden"></textarea>
+<button id="parse">Get Items</button>
+
+<div id="output"></div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script>
+    $(function() {
+        let upgrades = {
+            "overall": 10,
+            "hat": 11,
+            "boots": 8,
+            "gloves": 6,
+            "cape": 7,
+            "weapon": 8,
+            "belt": 3,
+            "pedant": 5,
+            "face accessory": 5,
+            "eye accessory": 3,
+            "mechanical heart": 9 
+        };
+
+        let is_armor = function(type) {
+            return ["overall","hat","boots","gloves","cape"].includes(type);
+        }
+
+        let get_jobs = function(job) {
+            if (
+                ["adele", "demon avenger", "hayato", "blaster"].includes(job) 
+            ) {
+                return "warrior";
+            } else if (
+                ["kain","pathfinder"].includes(job)
+            ) {
+                return "bowman";
+            } else if (
+                ["luminous", "beast tamer", "kinesis", "illium", "kanna"].includes(job)
+            ) {
+                return "magician";
+            } else if (
+                ["xenon"].includes(job)
+            ) {
+                return "thief";
+            } else if (
+                ["angelic buster"].includes(job)
+            ) {
+                return "pirate";
+            }
+
+            return job;
+        }
+
+        let p_stat = {
+            "warrior": ["str", "dex"],
+            "bowman": ["str", "dex"],
+            "magician": ["int", "luk"],
+            "thief": ["dex", "luk"],
+            "pirate": ["str", "dex"]
+        };
+
+        let m_stat = {
+            "warrior": "str",
+            "bowman": "dex",
+            "magician": "int",
+            "thief": "luk",
+            "pirate": "dex"
+        };
+
+        /* resolve maplewiki stat to internal stat */
+        let resolve_stat = function(stat) {
+            switch (stat) {
+                case "defense":
+                    return "def";
+                break;
+                case "maxhp":
+                    return "hp";
+                break;
+                case "maxmp":
+                    return "mp";
+                break;
+                case "weaponattack":
+                    return "watt";
+                break;
+                case "magicattack":
+                    return "matt";
+                break;
+                case "attackspeed":
+                case "allstats":
+                    return "";
+                break;
+                case "bossdamage": 
+                    return "boss_damage";
+                break;
+                case "ignoredenemydefense":
+                    return "ied";
+                break;
+            }
+
+            return stat;
+        }
+
+        /* template of item_db item */
+        let item_template = {
+            name: "",
+            level: 0,
+            class: "",
+            type: "",
+            speed: "",
+            job: [],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 2,
+            bstat: {},
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "",
+            upgrades: 0,
+            hammers_added: 0,
+            starforce: true,
+            enhanceable: true,
+            scrollable: true
+        };
+
+        //stat variables shared through all processes
+        let stats = {
+            visible_stats: 0, //stats that come from non-bonus sources: base stats or scrolls
+            job_stats: 0, //stats related to the item's job. "pstat" parameter
+            rank: 0, //heart-related
+            watt: 0,
+            matt: 0,
+            watt_p: 0, //percent increase in stat
+            matt_p: 0,
+            def: 0,
+            def_p: 0,
+            hp: 0,
+            mp: 0,
+            p_hp: 0, //hp stats that provide a percentage increase. starts with p_ rather than ends with _p as they should be static increases rather than cumulative increases
+            p_mp: 0,
+            speed: 0,
+            jump: 0,
+            star: 0,
+            knockback: 0,
+            //flame stuff
+            boss_damage: 0,
+            ied: 0,
+            str: 0,
+            dex: 0,
+            int: 0,
+            luk: 0,
+            damage: 0,
+            all_stat: 0,
+            reqlvl: 0 //negative level requirements
+        };
+
+        $("#parse").on("click", function(){
+            let items = {};
+
+            /* get the wiki page as a dom fragment */
+            let dom = $($("#text").val());
+
+            /* get only the tables */
+            let tables = dom.find(".wikitable");
+
+            /* 
+                loop through the tables and detect item tables by their header
+                the first tr of tbody must be a header with "Picture and Name" part of the first td
+            */
+            for (let i = 0; i < tables.length; ++i) {
+                let table = tables.eq(i);
+
+                let tr = table.find("tbody tr");
+                
+                if (tr.length === 0) {
+                    continue;
+                }
+
+                /* header tr should have th */
+                let header_rows = tr.eq(0).find("th");
+
+                if (header_rows.length === 0) {
+                    continue;
+                }         
+                
+                if (header_rows.eq(0).text().trim() !== "Picture and Name") {
+                    continue;
+                }
+
+                /* go into table and extract the relevant data */
+                for (let j = 1; j < tr.length; ++j) {
+                    let td = tr.eq(j).find("td");
+
+                    let _item = extract_item_data(td);
+
+                    let item_key = (_item.job[0] + "_" + _item.type.replace(/[\s-]/gi,"_")).trim();
+
+                    items[item_key] = _item;
+                }
+            }
+
+            let sItems = JSON.stringify(items);
+
+            console.log(sItems);
+            $("#textOutput").removeClass("hidden").val(sItems);
+
+            $("#output").html(`
+                Completed. Check console for items json. <br>
+                Copy the stringified json into <a href="https://beautifier.io/">https://beautifier.io/</a> to get a pretty json.
+                <hr>
+                <span style="color:red">
+                    Issues: <br>
+                    For bows/crossbows - check knockback rate stat (key = knockback) as it is not part of the table <br>
+                    For xenon weapons - check if it's for pirate or thief and change job parameter as necessary <br>
+                    If item gives % max hp, change the hp stat to p_hp stat
+                </span>
+            `);
+        });
+
+        let extract_item_data = function(td) {
+            let t = Object.assign({}, item_template);
+
+            /* column 1 - PICTURE AND NAME */
+            let td_name = td.eq(0);
+            t.name = td_name.find("a").text().trim();
+
+            /* column 2 - TYPE */
+            let td_type = td.eq(1);
+            let type = td_type.find("a").text().trim().toLowerCase();
+            t.class = is_armor(type) ? "armor" : "weapon";
+            t.type = type;
+
+            if (t.type == "pocket item") {
+                t.type = "pocket";
+            } else if (t.type == "android heart") {
+                t.type = "mechanical heart";
+            }
+
+            t.img = `img-${t.name.replace(/\s/gi,"").toLowerCase()}`;
+
+            /* column 3 - REQUIREMENT */
+            let td_requirements = td.eq(2);
+            let req_array = td_requirements.html().trim().split("<br>");
+
+            let has_job_req = false;
+            t.req = {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            };
+
+            let this_job = "";
+
+            for (let i = 0; i < req_array.length; ++i) {
+                let req_item = req_array[i].toLowerCase();
+
+                if (req_item.includes("level")) {
+                    let [level_legend, level] = req_item.split(" ");
+                    t.level = +level;
+                } else if (req_item.includes("job")) { 
+                    t.job = [].concat();
+                    let [job_legend, job] = req_item.split(":");
+                    job = job.toLowerCase().trim();
+                    if (job.includes("</a>")) {
+                        let pre_job = $(job).text().trim();
+                        this_job = get_jobs(pre_job.toLowerCase());
+                    } else {
+                        this_job = get_jobs(job);
+                    }
+                    t.job.push(this_job.trim());
+                } else { /* else is a stat requirement */    
+                    let [req_stat, req_val] = req_item.replace(":", "").split(" ");
+                    t.req[req_stat] = +req_val;
+                }
+            }
+            debugger;
+            if (t.job.length === 0) {
+                t.job = ["beginner", "warrior", "bowman", "magician", "thief", "pirate"];
+            }
+
+            if (this_job != "") {
+                t.pstat = p_stat[this_job];
+                t.mstat = m_stat[this_job];  
+            } else {
+                t.pstat = ["str", "dex", "int", "luk"];
+            }
+
+            if (this_job === "magician") {
+                t.att_type = "matt";
+            } else {
+                t.att_type = "watt";
+            } 
+
+            /* column 4 - EFFECTS  */
+            let td_effects = td.eq(3);
+            let effects = td_effects.html().trim().split("<br>");
+            t.stat = {};
+            for (let i = 0; i < effects.length; ++i) {
+                let [_effect, effect_val] = effects[i].split(":");
+                let effect = _effect.toLowerCase().trim().replace(/\s/gi, "");
+                let rstat = resolve_stat(effect);
+            
+                if (rstat !== "") {
+                    t.stat[rstat] = +effect_val.replace("+", "").trim();
+                }
+
+                if (effect === "attackspeed") {
+                    t.speed = effect_val.replace(/\(.*\)/,"").trim().toLowerCase();
+                }
+
+                if (effect === "allstats") {
+                    ["str", "dex", "int", "luk"].forEach((a)=>{
+                        t.stat[a] = +effect_val.replace("+", "").trim();
+                    });
+                }
+            }
+            t.upgrades = upgrades[t.type] || 0;
+            if (t.upgrades > 0) {
+                t.hammers_added = 2;
+            }
+
+            return t;
+        }
+    });
+</script>
