@@ -3,9 +3,19 @@
         display: none !important;
     }
 </style>
+<pre>
+        Attempt to parse maple wiki tables for item data. Example of page to use: <a href="https://maplestory.fandom.com/wiki/Equipment_Set/8th_Bowman_Set">https://maplestory.fandom.com/wiki/Equipment_Set/8th_Bowman_Set</a>
+        To use this page, go to item set pages like the ones above, open up the Inspect Element tab (F12 for Chrome and Firefox, tab "Elements" in Chrome and "Inspector" in Firefox),
+    right click on the outer-most tag (html tag) and click "Edit as HTML". Copy all contents into the textbox provided below and hit "Get Items".
 
-<textarea id="text" style="width:100%;height:400px"></textarea>
-<textarea id="textOutput" style="width:100%;height:400px" class="hidden"></textarea>
+        Please not that this is not a perfect parser and not all item data is available on the maple wiki page. Some stats have to be checked by going directly to the item (example: bows missing knockback rate, 
+    but has it in the item itself <a href="https://maplestory.fandom.com/wiki/Utgard_Bow">https://maplestory.fandom.com/wiki/Utgard_Bow</a>)
+
+        For lower-level equips, verify upgrade slots, because they are hardcoded to check for the equipment based on level 140+ items.
+</pre>
+
+<textarea id="text" style="width:100%;height:300px"></textarea>
+<textarea id="textOutput" style="width:100%;height:300px" class="hidden"></textarea>
 <button id="parse">Get Items</button>
 
 <div id="output"></div>
@@ -18,6 +28,7 @@
 
 <script>
     $(function() {
+        /* some lower-level items have different upgrade slots */
         let upgrades = {
             "overall": 10,
             "hat": 11,
@@ -26,10 +37,12 @@
             "cape": 7,
             "weapon": 8,
             "belt": 3,
-            "pedant": 5,
+            "pendant": 5,
             "face accessory": 5,
             "eye accessory": 3,
-            "mechanical heart": 9 
+            "mechanical heart": 9,
+            "earrings": 7,
+            "shoulder": 1
         };
 
         let is_armor = function(type) {
@@ -220,7 +233,7 @@
             $("#textOutput").removeClass("hidden").val(sItems);
 
             $("#output").html(`
-                Completed. Check console for items json. <br>
+                Completed. <br>
                 Copy the stringified json into <a href="https://beautifier.io/">https://beautifier.io/</a> to get a pretty json.
                 <hr>
                 <span style="color:red">
