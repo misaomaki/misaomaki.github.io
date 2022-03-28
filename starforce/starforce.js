@@ -155,6 +155,9 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
     return Math.round(cost/100)*100;
 };
 
+/*
+    get the max stars for an item, based on its level
+*/
 var star_max = function(level, superior = false) {
     let tier = [];
 
@@ -191,6 +194,10 @@ var star_max = function(level, superior = false) {
     return sm;
 };
 
+/*
+    get the "tier" for starforcing to apply the appropriate stats
+    lower tiers give lower stat gains
+*/
 let star_tier = function(level, superior = false) {
     let tier = [];
 
@@ -229,6 +236,9 @@ let star_tier = function(level, superior = false) {
     return star_tier;
 };
 
+/*
+    get the equipment stats gained from the starforce based on its current star
+*/
 var equip_gain = function(item) {
     let add = Object.assign({}, stats);
 
