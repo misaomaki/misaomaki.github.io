@@ -873,13 +873,13 @@ item.prototype.redraw_item_tooltip = function() {
     let this_pot = this.idata.meta.cube_potential;
     let this_b_pot = this.idata.meta.cube_potential_bonus;
     let cube_html = "";
+    iflag.attr("class", "item-container-flag"); /* reset flag status to nothing */
     //main and bonus potential stuff
     if (this_pot !== "") {
         let main_pot = this.idata.boosts.cubes.main;
         let main_pot_keys = Object.keys(this.idata.boosts.cubes.main);
 
         /* replace the border flag of the item based on the potential of the main pot */
-        iflag.attr("class", "item-container-flag"); /* reset flag status to nothing */
         if (this_pot !== "") {
             iflag.addClass(`item-flag-${this_pot}`);
         }
