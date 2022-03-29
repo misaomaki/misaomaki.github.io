@@ -571,6 +571,9 @@ item.prototype.redraw_item_tooltip = function() {
     let istar_con = this.check_cache(()=>{
         return i_con.find(".item-star-container");
     }, "dom", "istar_con");
+    let iflag = this.check_cache(()=>{
+        return i_con.find(".item-container-flag");
+    }, "dom", "iflag");
 
     //total stats from all sources: flames, stars, and scrolls
     let e_stats = Object.assign({}, stats);
@@ -874,6 +877,12 @@ item.prototype.redraw_item_tooltip = function() {
     if (this_pot !== "") {
         let main_pot = this.idata.boosts.cubes.main;
         let main_pot_keys = Object.keys(this.idata.boosts.cubes.main);
+
+        /* replace the border flag of the item based on the potential of the main pot */
+        iflag.attr("class", "item-container-flag"); /* reset flag status to nothing */
+        if (this_pot !== "") {
+            iflag.addClass(`item-flag-${this_pot}`);
+        }
 
         //has main pot
         if (main_pot_keys.length > 0) {

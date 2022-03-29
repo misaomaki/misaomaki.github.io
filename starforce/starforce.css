@@ -1165,7 +1165,23 @@ body, html {
     height: 82px;
 }
 
-.item-flag-green {
+/* border around the item picture in the tooltip - denotes the main cube potential */
+.item-flag-rare {
+    background-image: url(../assets/item/ui.items.base.frame.color_frame.blue.png);
+    background-repeat: no-repeat;
+}
+
+.item-flag-epic {
+    background-image: url(../assets/item/ui.items.base.frame.color_frame.purple.png);
+    background-repeat: no-repeat;
+}
+
+.item-flag-unique {
+    background-image: url(../assets/item/ui.items.base.frame.color_frame.gold.png);
+    background-repeat: no-repeat;
+}
+
+.item-flag-legendary {
     background-image: url(../assets/item/ui.items.base.frame.color_frame.green.png);
     background-repeat: no-repeat;
 }
