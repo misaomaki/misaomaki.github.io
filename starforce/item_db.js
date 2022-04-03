@@ -10039,7 +10039,7 @@ var items_store = {
                 "int": 0,
                 "luk": 420
             },
-            "img": "img-ravenhornchaserhat",
+            "img": "item-ravenhornchaserhat",
             "upgrades": 10,
             "hammers_added": 2,
             "starforce": true,
@@ -10071,7 +10071,7 @@ var items_store = {
                 "int": 0,
                 "luk": 420
             },
-            "img": "img-ravenhornchaserarmor",
+            "img": "item-ravenhornchaserarmor",
             "upgrades": 12,
             "hammers_added": 2,
             "starforce": true,
@@ -10101,7 +10101,7 @@ var items_store = {
                 "int": 0,
                 "luk": 420
             },
-            "img": "img-ravenhornchaserboots",
+            "img": "item-ravenhornchaserboots",
             "upgrades": 7,
             "hammers_added": 2,
             "starforce": true,
@@ -10133,7 +10133,7 @@ var items_store = {
                 "int": 0,
                 "luk": 420
             },
-            "img": "img-ravenhornchasergloves",
+            "img": "item-ravenhornchasergloves",
             "upgrades": 7,
             "hammers_added": 2,
             "starforce": true,
@@ -10165,7 +10165,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-empresscape",
+            "img": "item-empresscape",
             "upgrades": 7,
             "hammers_added": 2,
             "starforce": true,
@@ -10198,7 +10198,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-empressshoulder",
+            "img": "item-empressshoulder",
             "upgrades": 1,
             "hammers_added": 2,
             "starforce": true,
@@ -10231,7 +10231,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-ravenhornfallenqueen",
+            "img": "item-ravenhornfallenqueen",
             "upgrades": 8,
             "hammers_added": 2,
             "starforce": true,
@@ -10260,7 +10260,7 @@ var items_store = {
                 "int": 0,
                 "luk": 420
             },
-            "img": "img-ravenhornchain",
+            "img": "item-ravenhornchain",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -10290,7 +10290,7 @@ var items_store = {
                 "int": 0,
                 "luk": 420
             },
-            "img": "img-ravenhornritualfan",
+            "img": "item-ravenhornritualfan",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -10320,7 +10320,7 @@ var items_store = {
                 "int": 0,
                 "luk": 420
             },
-            "img": "img-ravenhornbaselard",
+            "img": "item-ravenhornbaselard",
             "upgrades": 8,
             "hammers_added": 2,
             "starforce": true,
@@ -10349,7 +10349,7 @@ var items_store = {
                 "int": 0,
                 "luk": 420
             },
-            "img": "img-ravenhorncrimsoncane",
+            "img": "item-ravenhorncrimsoncane",
             "upgrades": 8,
             "hammers_added": 2,
             "starforce": true,
@@ -10378,7 +10378,7 @@ var items_store = {
                 "int": 0,
                 "luk": 420
             },
-            "img": "img-ravenhornmetalfist",
+            "img": "item-ravenhornmetalfist",
             "upgrades": 8,
             "hammers_added": 2,
             "starforce": true,
@@ -10407,7 +10407,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-sharktoothskipperhat",
+            "img": "item-sharktoothskipperhat",
             "img_type": "webp",
             "upgrades": 10,
             "hammers_added": 2,
@@ -10440,7 +10440,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-sharktoothskippercoat",
+            "img": "item-sharktoothskippercoat",
             "img_type": "webp",
             "upgrades": 12,
             "hammers_added": 2,
@@ -10471,7 +10471,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-sharktoothskipperboots",
+            "img": "item-sharktoothskipperboots",
             "img_type": "webp",
             "upgrades": 7,
             "hammers_added": 2,
@@ -10504,7 +10504,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-sharktoothskippergloves",
+            "img": "item-sharktoothskippergloves",
             "img_type": "webp",
             "upgrades": 7,
             "hammers_added": 2,
@@ -10537,7 +10537,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-empresscape",
+            "img": "item-empresscape",
             "upgrades": 7,
             "hammers_added": 2,
             "starforce": true,
@@ -10570,7 +10570,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-empressshoulder",
+            "img": "item-empressshoulder",
             "img_type": "webp",
             "upgrades": 1,
             "hammers_added": 2,
@@ -10604,7 +10604,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-sharktoothsouldrinker",
+            "img": "item-sharktoothsouldrinker",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -10634,7 +10634,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-sharktoothfallenqueen",
+            "img": "item-sharktoothfallenqueen",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -10664,7 +10664,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-sharktoothwildtalon",
+            "img": "item-sharktoothwildtalon",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -10694,7 +10694,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-sharktoothsharpshooter",
+            "img": "item-sharktoothsharpshooter",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -10724,7 +10724,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-sharktoothsupernova",
+            "img": "item-sharktoothsupernova",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -10755,7 +10755,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-falconwingsentinelcap",
+            "img": "item-falconwingsentinelcap",
             "img_type": "webp",
             "upgrades": 10,
             "hammers_added": 2,
@@ -10788,7 +10788,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-falconwingsentinelsuit",
+            "img": "item-falconwingsentinelsuit",
             "img_type": "webp",
             "upgrades": 12,
             "hammers_added": 2,
@@ -10819,7 +10819,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-falconwingsentinelboots",
+            "img": "item-falconwingsentinelboots",
             "img_type": "webp",
             "upgrades": 7,
             "hammers_added": 2,
@@ -10852,7 +10852,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-falconwingsentinelgloves",
+            "img": "item-falconwingsentinelgloves",
             "img_type": "webp",
             "upgrades": 7,
             "hammers_added": 2,
@@ -10885,7 +10885,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-empresscape",
+            "img": "item-empresscape",
             "upgrades": 7,
             "hammers_added": 2,
             "starforce": true,
@@ -10918,7 +10918,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-empressshoulder",
+            "img": "item-empressshoulder",
             "upgrades": 1,
             "hammers_added": 2,
             "starforce": true,
@@ -10951,7 +10951,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-falconwingsplendidnero",
+            "img": "item-falconwingsplendidnero",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -10981,7 +10981,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-falconwingcompositebow",
+            "img": "item-falconwingcompositebow",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11012,7 +11012,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-falconwingheavycrossbow",
+            "img": "item-falconwingheavycrossbow",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11043,7 +11043,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-falconwingdualbowguns",
+            "img": "item-falconwingdualbowguns",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11074,7 +11074,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-falconwingancientbow",
+            "img": "item-falconwingancientbow",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11105,7 +11105,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartbattlehelm",
+            "img": "item-lionheartbattlehelm",
             "img_type": "webp",
             "upgrades": 10,
             "hammers_added": 2,
@@ -11138,7 +11138,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartbattlemail",
+            "img": "item-lionheartbattlemail",
             "img_type": "webp",
             "upgrades": 12,
             "hammers_added": 2,
@@ -11169,7 +11169,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartbattleboots",
+            "img": "item-lionheartbattleboots",
             "img_type": "webp",
             "upgrades": 7,
             "hammers_added": 2,
@@ -11202,7 +11202,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartbattlebracers",
+            "img": "item-lionheartbattlebracers",
             "img_type": "webp",
             "upgrades": 12,
             "hammers_added": 2,
@@ -11235,7 +11235,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-empresscape",
+            "img": "item-empresscape",
             "upgrades": 7,
             "hammers_added": 2,
             "starforce": true,
@@ -11268,7 +11268,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-empressshoulder",
+            "img": "item-empressshoulder",
             "upgrades": 1,
             "hammers_added": 2,
             "starforce": true,
@@ -11301,7 +11301,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartrestraint",
+            "img": "item-lionheartrestraint",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11331,7 +11331,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartpainfuldestiny",
+            "img": "item-lionheartpainfuldestiny",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11361,7 +11361,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartcutlass",
+            "img": "item-lionheartcutlass",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11391,7 +11391,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartchampionaxe",
+            "img": "item-lionheartchampionaxe",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11421,7 +11421,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartbattlehammer",
+            "img": "item-lionheartbattlehammer",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11451,7 +11451,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartbattlescimitar",
+            "img": "item-lionheartbattlescimitar",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11481,7 +11481,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartbattleaxe",
+            "img": "item-lionheartbattleaxe",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11511,7 +11511,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartblastmaul",
+            "img": "item-lionheartblastmaul",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11541,7 +11541,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartfuscina",
+            "img": "item-lionheartfuscina",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11571,7 +11571,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartpartisan",
+            "img": "item-lionheartpartisan",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11601,7 +11601,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartredking",
+            "img": "item-lionheartredking",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11631,7 +11631,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-lionheartvalore",
+            "img": "item-lionheartvalore",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11661,7 +11661,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-dragontailmagesallet",
+            "img": "item-dragontailmagesallet",
             "img_type": "webp",
             "upgrades": 10,
             "hammers_added": 2,
@@ -11694,7 +11694,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-dragontailmagerobe",
+            "img": "item-dragontailmagerobe",
             "img_type": "webp",
             "upgrades": 12,
             "hammers_added": 2,
@@ -11725,7 +11725,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-dragontailmageshoes",
+            "img": "item-dragontailmageshoes",
             "img_type": "webp",
             "upgrades": 7,
             "hammers_added": 2,
@@ -11758,7 +11758,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-dragontailmagegloves",
+            "img": "item-dragontailmagegloves",
             "img_type": "webp",
             "upgrades": 7,
             "hammers_added": 2,
@@ -11791,7 +11791,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-empresscape",
+            "img": "item-empresscape",
             "upgrades": 7,
             "hammers_added": 2,
             "starforce": true,
@@ -11824,7 +11824,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-empressshoulder",
+            "img": "item-empressshoulder",
             "upgrades": 1,
             "hammers_added": 2,
             "starforce": true,
@@ -11857,7 +11857,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-dragontailthanatos",
+            "img": "item-dragontailthanatos",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11888,7 +11888,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-kittentailscepter",
+            "img": "item-kittentailscepter",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11919,7 +11919,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-dragontailpsy-limiter",
+            "img": "item-dragontailpsy-limiter",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11950,7 +11950,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-dragontaillucentgauntlet",
+            "img": "item-dragontaillucentgauntlet",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -11981,7 +11981,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-dragontailarcwand",
+            "img": "item-dragontailarcwand",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -12012,7 +12012,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-dragontailwarstaff",
+            "img": "item-dragontailwarstaff",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
@@ -12043,7 +12043,7 @@ var items_store = {
                 "int": 420,
                 "luk": 0
             },
-            "img": "img-dragontailfan",
+            "img": "item-dragontailfan",
             "img_type": "webp",
             "upgrades": 8,
             "hammers_added": 2,
