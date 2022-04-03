@@ -45,14 +45,14 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 luk: 20,
                 dex: 20,
                 def: 150,
                 speed: 10,
                 jump: 7
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -76,14 +76,14 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 str: 20,
                 dex: 20,
                 def: 150,
                 speed: 10,
                 jump: 7
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -107,14 +107,14 @@ var items_store = {
             att_type: "matt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 matt: 5,
                 luk: 20,
                 int: 20,
                 def: 150,
                 speed: 10,
                 jump: 7
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -138,14 +138,14 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 dex: 20,
                 str: 20,
                 def: 150,
                 speed: 10,
                 jump: 7
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -169,14 +169,14 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 dex: 20,
                 str: 20,
                 def: 150,
                 speed: 10,
                 jump: 7
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -200,12 +200,12 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 luk: 20,
                 dex: 20,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -229,12 +229,12 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 str: 20,
                 dex: 20,
                 def: 150
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -258,12 +258,12 @@ var items_store = {
             att_type: "matt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 matt: 5,
                 luk: 20,
                 int: 20,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -287,12 +287,12 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 dex: 20,
                 str: 20,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -316,12 +316,12 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 dex: 20,
                 str: 20,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -345,7 +345,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 0,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 14,
@@ -353,7 +353,7 @@ var items_store = {
                 int: 14,
                 luk: 14,
                 def: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -377,7 +377,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 0,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 14,
@@ -385,7 +385,7 @@ var items_store = {
                 int: 14,
                 luk: 14,
                 def: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -409,7 +409,7 @@ var items_store = {
             att_type: "matt", 
             flame_type: 0,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 14,
@@ -417,7 +417,7 @@ var items_store = {
                 int: 14,
                 luk: 14,
                 def: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -441,7 +441,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 0,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 14,
@@ -449,7 +449,7 @@ var items_store = {
                 int: 14,
                 luk: 14,
                 def: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -473,7 +473,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 0,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 14,
@@ -481,7 +481,7 @@ var items_store = {
                 int: 14,
                 luk: 14,
                 def: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -505,7 +505,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 matt: 2,
                 str: 15,
@@ -513,7 +513,7 @@ var items_store = {
                 int: 15,
                 luk: 15,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -537,7 +537,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 matt: 2,
                 str: 15,
@@ -545,7 +545,7 @@ var items_store = {
                 int: 15,
                 luk: 15,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -569,7 +569,7 @@ var items_store = {
             att_type: "matt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 matt: 2,
                 str: 15,
@@ -577,7 +577,7 @@ var items_store = {
                 int: 15,
                 luk: 15,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -601,7 +601,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 matt: 2,
                 str: 15,
@@ -609,7 +609,7 @@ var items_store = {
                 int: 15,
                 luk: 15,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -633,7 +633,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 matt: 2,
                 str: 15,
@@ -641,7 +641,7 @@ var items_store = {
                 int: 15,
                 luk: 15,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -664,13 +664,13 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 3,
                 dex: 45,
                 luk: 45,
                 def: 400,
                 ied: 0.1
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -693,13 +693,13 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 3,
                 dex: 45,
                 str: 45,
                 def: 400,
                 ied: 0.1
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -722,13 +722,13 @@ var items_store = {
             att_type: "matt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 3,
                 luk: 45,
                 int: 45,
                 def: 400,
                 ied: 0.1
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -751,13 +751,13 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 3,
                 dex: 45,
                 str: 45,
                 def: 400,
                 ied: 0.1
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -780,13 +780,13 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 3,
                 dex: 45,
                 str: 45,
                 def: 400,
                 ied: 0.1
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -809,12 +809,12 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 dex: 65,
                 luk: 65,
                 def: 300
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -837,12 +837,12 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 str: 65,
                 dex: 65,
                 def: 300
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -865,12 +865,12 @@ var items_store = {
             att_type: "matt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 matt: 5,
                 int: 65,
                 luk: 65,
                 def: 300
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -893,12 +893,12 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 str: 65,
                 dex: 65,
                 def: 300
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -921,12 +921,12 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: false,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 str: 65,
                 dex: 65,
                 def: 300
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -948,13 +948,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 203,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -976,14 +976,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 207,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60,
                 def: 160
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1007,13 +1007,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 154,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1037,13 +1037,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 154,
                 boss_damage: 0.3,
                 ied: 0.1,
                 dex: 60,
                 luk: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1065,13 +1065,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 154,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -1093,13 +1093,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 150,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -1121,13 +1121,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 154,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1149,14 +1149,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 210,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60,
                 def: 160
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1178,14 +1178,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 192,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60,
                 knockback: 0.75
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -1207,14 +1207,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 197,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60,
                 knockback: 0.68
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -1236,14 +1236,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 192,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60,
                 knockback: 0.75
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -1265,14 +1265,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 192,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60,
                 knockback: 0.75
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -1294,14 +1294,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 192,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60,
                 speed: 12
-            }),
+            },
             req: {
                 str: 0,
                 dex: 480,
@@ -1323,13 +1323,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 192,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1351,13 +1351,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 192,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1379,13 +1379,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 192,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1407,10 +1407,10 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, { 
+            bstat: { 
                 watt: 97,
                 luk: 40            
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1432,13 +1432,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 197,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1460,13 +1460,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 103,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1488,14 +1488,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 143,
                 matt: 241,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 60,
                 luk: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1517,14 +1517,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 143,
                 matt: 241,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 60,
                 luk: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1546,14 +1546,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 143,
                 matt: 241,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 60,
                 luk: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1575,14 +1575,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 143,
                 matt: 241,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 60,
                 luk: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1604,14 +1604,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 143,
                 matt: 241,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 60,
                 luk: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1633,14 +1633,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 151,
                 matt: 245,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 60,
                 luk: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1662,14 +1662,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 143,
                 matt: 241,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 60,
                 luk: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -1691,13 +1691,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 205,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1719,13 +1719,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 197,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 hp: 2250
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1747,13 +1747,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 197,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1775,13 +1775,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 197,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1803,13 +1803,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 197,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1831,13 +1831,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 205,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1859,13 +1859,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 205,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1887,13 +1887,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 205,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1915,13 +1915,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 205,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1943,13 +1943,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 184,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1971,13 +1971,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 197,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -1999,13 +1999,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 154,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 60,
                 dex: 60
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -2029,13 +2029,13 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, { 
+            bstat: { 
                 watt: 172,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 45,
                 dex: 45
-            }),
+            },
             req: { //item requirements
                 str: 0,
                 dex: 0,
@@ -2057,12 +2057,12 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, { 
+            bstat: { 
                 watt: 86,
                 boss_damage: 0.3,
                 ied: 0.1,
                 hp: 500
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2086,13 +2086,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 137,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2116,13 +2116,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 137,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2144,13 +2144,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 171,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2172,13 +2172,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 178,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2200,13 +2200,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 94,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2228,13 +2228,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 172,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2256,14 +2256,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 126,
                 matt: 208,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 45,
                 luk: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2285,14 +2285,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 126,
                 matt: 208,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 45,
                 luk: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2314,14 +2314,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 126,
                 matt: 208,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 45,
                 luk: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2343,14 +2343,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 126,
                 matt: 208,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 45,
                 luk: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2372,14 +2372,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 126,
                 matt: 208,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 45,
                 luk: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2401,14 +2401,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 132,
                 matt: 210,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 45,
                 luk: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2430,14 +2430,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 132,
                 matt: 210,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 45,
                 luk: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2459,14 +2459,14 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 182,
                 boss_damage: 0.3,
                 ied: 0.1,
                 dex: 45,
                 str: 45,
                 def: 160
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2488,13 +2488,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 137,
                 boss_damage: 0.3,
                 ied: 0.1,
                 dex: 45,
                 str: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2516,13 +2516,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 137,
                 boss_damage: 0.3,
                 ied: 0.1,
                 dex: 45,
                 str: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2544,13 +2544,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 137,
                 boss_damage: 0.3,
                 ied: 0.1,
                 dex: 45,
                 str: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -2572,7 +2572,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 160,
                 boss_damage: 0.3,
                 speed: 12,
@@ -2580,7 +2580,7 @@ var items_store = {
                 dex: 45,
                 str: 45,
                 knockback: 0.77
-            }),
+            },
             req: {
                 str: 0,
                 dex: 490,
@@ -2602,7 +2602,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 168,
                 boss_damage: 0.3,
                 speed: 19,
@@ -2610,7 +2610,7 @@ var items_store = {
                 dex: 45,
                 str: 45,
                 knockback: 0.77
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -2632,13 +2632,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 164,
                 boss_damage: 0.3,
                 ied: 0.1,
                 dex: 45,
                 str: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 385,
@@ -2660,13 +2660,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 164,
                 boss_damage: 0.3,
                 ied: 0.1,
                 dex: 45,
                 str: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 385,
@@ -2688,7 +2688,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 160,
                 boss_damage: 0.3,
                 speed: 12,
@@ -2696,7 +2696,7 @@ var items_store = {
                 dex: 45,
                 str: 45,
                 knockback: 0.77
-            }),
+            },
             req: {
                 str: 0,
                 dex: 385,
@@ -2718,13 +2718,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 180,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 460,
                 dex: 0,
@@ -2746,13 +2746,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 180,
                 boss_damage: 0.3,
                 hp: 2500,
                 ied: 0.1,
                 str: 45
-            }),
+            },
             req: {
                 str: 490,
                 dex: 0,
@@ -2774,13 +2774,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 178,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 460,
                 dex: 0,
@@ -2802,13 +2802,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 178,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 470,
                 dex: 0,
@@ -2830,13 +2830,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 178,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 350,
                 dex: 0,
@@ -2858,13 +2858,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 180,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 480,
                 dex: 0,
@@ -2886,13 +2886,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 182,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 490,
                 dex: 0,
@@ -2914,13 +2914,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 182,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 490,
                 dex: 0,
@@ -2942,13 +2942,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 182,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 490,
                 dex: 0,
@@ -2970,13 +2970,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 182,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 490,
                 dex: 0,
@@ -2998,13 +2998,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 180,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 490,
                 dex: 0,
@@ -3026,13 +3026,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 137,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 45,
                 dex: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3055,14 +3055,14 @@ var items_store = {
             att_type: "att", 
             flame_type: 1,
             stars: 15,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 16,
                 dex: 16,
                 luk: 16,
                 int: 16,
                 hp: 156,
                 def: 156
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3086,7 +3086,7 @@ var items_store = {
             att_type: "att", 
             flame_type: 1,
             stars: 15,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 13,
                 dex: 13,
                 luk: 13,
@@ -3094,7 +3094,7 @@ var items_store = {
                 watt: 22,
                 matt: 22,
                 def: 158
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3117,7 +3117,7 @@ var items_store = {
             att_type: "att", 
             flame_type: 1,
             stars: 15,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 12,
                 dex: 12,
                 luk: 12,
@@ -3125,7 +3125,7 @@ var items_store = {
                 hp: 300,
                 mp: 300,
                 def: 158
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3148,7 +3148,7 @@ var items_store = {
             att_type: "att", 
             flame_type: 1,
             stars: 15,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 13,
                 dex: 13,
                 luk: 13,
@@ -3156,7 +3156,7 @@ var items_store = {
                 hp: 330,
                 mp: 330,
                 def: 154
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3178,14 +3178,14 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"],
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 def: 61,
                 str: 16,
                 dex: 16,
                 int: 16,
                 luk: 16,
                 hp: 390
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3207,7 +3207,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"],
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 36,
                 dex: 36,
                 luk: 36,
@@ -3215,7 +3215,7 @@ var items_store = {
                 hp: 45,
                 mp: 45,
                 def: 288
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3237,7 +3237,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"],
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 36,
                 dex: 36,
                 luk: 36,
@@ -3245,7 +3245,7 @@ var items_store = {
                 hp: 900,
                 mp: 900,
                 def: 396
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3268,7 +3268,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 10,
                 dex: 10,
                 int: 10,
@@ -3276,7 +3276,7 @@ var items_store = {
                 hp: 240,
                 mp: 240,
                 def: 120
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3299,7 +3299,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 5,
                 dex: 5,
                 int: 5,
@@ -3307,7 +3307,7 @@ var items_store = {
                 def: 38,
                 hp: 120,
                 mp: 120
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3331,13 +3331,13 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 matt: 5,
                 str: 40,
                 dex: 40,
                 hp: 700
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3361,12 +3361,12 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 matt: 5,
                 dex: 40,
                 luk: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3390,12 +3390,12 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 matt: 5,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3419,12 +3419,12 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 matt: 5,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3448,12 +3448,12 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 matt: 5,
                 int: 40,
                 luk: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3477,7 +3477,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 20,
@@ -3486,7 +3486,7 @@ var items_store = {
                 luk: 10,
                 hp: 100,
                 mp: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3511,7 +3511,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 10,
@@ -3520,7 +3520,7 @@ var items_store = {
                 luk: 10,
                 hp: 100,
                 mp: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3545,7 +3545,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 10,
@@ -3554,7 +3554,7 @@ var items_store = {
                 luk: 10,
                 hp: 100,
                 mp: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3579,7 +3579,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 10,
@@ -3588,7 +3588,7 @@ var items_store = {
                 luk: 20,
                 hp: 100,
                 mp: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3613,7 +3613,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 matt: 5,
                 str: 7,
@@ -3622,7 +3622,7 @@ var items_store = {
                 luk: 7,
                 hp: 500,
                 mp: 500
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3644,7 +3644,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 4,
                 matt: 4,
                 str: 5,
@@ -3653,7 +3653,7 @@ var items_store = {
                 luk: 5,
                 hp: 250,
                 mp: 250
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3676,7 +3676,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 3,
                 matt: 3,
                 str: 15,
@@ -3684,7 +3684,7 @@ var items_store = {
                 int: 15,
                 luk: 15,
                 def: 300
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3707,7 +3707,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 10,
@@ -3715,7 +3715,7 @@ var items_store = {
                 int: 10,
                 luk: 10,
                 def: 200
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3738,7 +3738,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 3,
                 matt: 3,
                 str: 10,
@@ -3747,7 +3747,7 @@ var items_store = {
                 luk: 10,
                 p_hp: 0.05,
                 def: 200
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3769,7 +3769,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 6,
                 matt: 6,
                 str: 50,
@@ -3779,7 +3779,7 @@ var items_store = {
                 hp: 150,
                 mp: 150,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3803,7 +3803,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 25,
                 matt: 25,
                 str: 15,
@@ -3814,7 +3814,7 @@ var items_store = {
                 mp: 200,
                 speed: 18,
                 jump: 10
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3840,7 +3840,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 matt: 5,
                 str: 5,
@@ -3849,7 +3849,7 @@ var items_store = {
                 luk: 5,
                 hp: 50,
                 mp: 50
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3875,7 +3875,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 1,
                 matt: 1,
                 str: 5,
@@ -3885,7 +3885,7 @@ var items_store = {
                 hp: 200,
                 mp: 200,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3907,7 +3907,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 matt: 2,
                 str: 5,
@@ -3917,7 +3917,7 @@ var items_store = {
                 hp: 200,
                 mp: 200,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3939,14 +3939,14 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 1,
                 matt: 1,
                 str: 1,
                 dex: 1,
                 int: 1,
                 luk: 1
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -3969,7 +3969,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 8,
                 dex: 8,
                 int: 8,
@@ -3977,7 +3977,7 @@ var items_store = {
                 watt: 1,
                 matt: 1,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4001,10 +4001,10 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 int: 10,
                 def: 71
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4026,11 +4026,11 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 10,
                 dex: 10,
                 def: 118
-            }),
+            },
             req: {
                 str: 420,
                 dex: 0,
@@ -4052,10 +4052,10 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 luk: 10,
                 def: 99
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4077,11 +4077,11 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 luk: 2,
                 watt: 15,
                 def: 5
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4103,11 +4103,11 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 13,
                 dex: 13,
                 def: 153
-            }),
+            },
             req: {
                 str: 490,
                 dex: 0,
@@ -4132,14 +4132,14 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 3,
                 dex: 3,
                 int: 3,
                 luk: 3,
                 hp: 50,
                 rank: 5
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4162,14 +4162,14 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 3,
                 dex: 3,
                 int: 3,
                 luk: 3,
                 hp: 100,
                 rank: 5
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4191,14 +4191,14 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 3,
                 dex: 3,
                 int: 3,
                 luk: 3,
                 hp: 50,
                 rank: 5
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4220,14 +4220,14 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 5,
                 dex: 5,
                 int: 5,
                 luk: 5,
                 hp: 500,
                 rank: 5
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4251,7 +4251,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 10,
                 matt: 10,
                 str: 15,
@@ -4259,7 +4259,7 @@ var items_store = {
                 int: 15,
                 luk: 15,
                 def: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4281,7 +4281,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 8,
                 matt: 8,
                 str: 10,
@@ -4291,7 +4291,7 @@ var items_store = {
                 def: 150,
                 hp: 250,
                 mp: 250
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4314,7 +4314,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 matt: 5,
                 str: 28,
@@ -4322,7 +4322,7 @@ var items_store = {
                 int: 28,
                 luk: 28,
                 def: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4345,7 +4345,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 35,
                 matt: 35,
                 str: 60,
@@ -4355,7 +4355,7 @@ var items_store = {
                 def: 100,
                 hp: 200,
                 mp: 200
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4381,7 +4381,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: true,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 25,
                 matt: 25,
                 str: 50,
@@ -4389,7 +4389,7 @@ var items_store = {
                 int: 50,
                 luk: 50,
                 def: 105
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4441,7 +4441,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: true,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 30,
                 matt: 30,
                 str: 50,
@@ -4449,7 +4449,7 @@ var items_store = {
                 int: 50,
                 luk: 50,
                 def: 130
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4502,7 +4502,7 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: true,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 30,
                 matt: 30,
                 str: 50,
@@ -4510,7 +4510,7 @@ var items_store = {
                 int: 50,
                 luk: 50,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4563,12 +4563,12 @@ var items_store = {
             att_type: "watt", 
             flame_type: 2,
             superior: true,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 int: 12,
                 luk: 12,
                 def: 160,
                 watt: 15
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4584,12 +4584,12 @@ var items_store = {
             job: ["warrior"],
             mstat: "str", 
             pstat: ["dex", "str"], 
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 12,
                 dex: 12,
                 def: 160,
                 watt: 15
-            }),
+            },
             override_stat: "tyrant|thief_gloves"
         },
         mage_gloves: {
@@ -4598,12 +4598,12 @@ var items_store = {
             mstat: "int", 
             pstat: ["int", "luk"], 
             att_type: "matt",
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 int: 12,
                 luk: 12,
                 mp: 300,
                 matt: 15
-            }),
+            },
             override_stat: "tyrant|thief_gloves"
         },
         bowman_gloves: {
@@ -4611,12 +4611,12 @@ var items_store = {
             job: ["bowman"],
             mstat: "dex", 
             pstat: ["dex", "str"], 
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 12,
                 dex: 12,
                 def: 160,
                 watt: 15
-            }),
+            },
             override_stat: "tyrant|thief_gloves"
         },
         pirate_gloves: {
@@ -4624,12 +4624,12 @@ var items_store = {
             job: ["pirate"],
             mstat: "str", 
             pstat: ["dex", "str"], 
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 12,
                 dex: 12,
                 def: 160,
                 watt: 15
-            }),
+            },
             override_stat: "tyrant|thief_gloves"
         }
     },
@@ -4645,7 +4645,7 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 40,
                 luk: 40,
@@ -4653,7 +4653,7 @@ var items_store = {
                 ied: 0.10,
                 hp: 360,
                 mp: 360
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4675,7 +4675,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 40,
                 str: 40,
@@ -4683,7 +4683,7 @@ var items_store = {
                 ied: 0.10,
                 hp: 360,
                 mp: 360
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -4705,7 +4705,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 40,
                 str: 40,
@@ -4713,7 +4713,7 @@ var items_store = {
                 ied: 0.10,
                 hp: 360,
                 mp: 360
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -4735,7 +4735,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 40,
                 str: 40,
@@ -4743,7 +4743,7 @@ var items_store = {
                 ied: 0.10,
                 hp: 360,
                 mp: 360
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4765,7 +4765,7 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 matt: 2,
                 int: 40,
                 luk: 40,
@@ -4773,7 +4773,7 @@ var items_store = {
                 ied: 0.10,
                 hp: 360,
                 mp: 360
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4795,13 +4795,13 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 30,
                 luk: 30,
                 def: 135,
                 ied: 0.05
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4823,13 +4823,13 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 30,
                 luk: 30,
                 def: 135,
                 ied: 0.05
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4851,13 +4851,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 30,
                 str: 30,
                 def: 135,
                 ied: 0.05
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -4879,13 +4879,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 30,
                 str: 30,
                 def: 135,
                 ied: 0.05
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -4907,13 +4907,13 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 matt: 2,
                 int: 30,
                 luk: 30,
                 def: 135,
                 ied: 0.05
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4935,13 +4935,13 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 matt: 2,
                 int: 30,
                 luk: 30,
                 def: 135,
                 ied: 0.05
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -4963,13 +4963,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 30,
                 str: 30,
                 def: 210,
                 ied: 0.05
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -4991,13 +4991,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 30,
                 str: 30,
                 def: 210,
                 ied: 0.05
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5019,13 +5019,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 30,
                 str: 30,
                 def: 135,
                 ied: 0.05
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5047,13 +5047,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 dex: 30,
                 str: 30,
                 def: 135,
                 ied: 0.05
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5075,11 +5075,11 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 135,
                 str: 8,
                 dex: 4
-            }),
+            },
             req: {
                 str: 420,
                 dex: 0,
@@ -5101,13 +5101,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 169,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5129,12 +5129,12 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 139,
                 str: 35,
                 dex: 20,
                 def: 130
-            }),
+            },
             req: {
                 str: 420,
                 dex: 0,
@@ -5156,14 +5156,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 173,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40,
                 def: 150
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5187,13 +5187,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 128,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5217,13 +5217,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 128,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5245,13 +5245,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 128,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -5273,13 +5273,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 125,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -5301,13 +5301,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 128,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5329,14 +5329,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 175,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40,
                 def: 121
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5358,14 +5358,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 160,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40,
                 knockback: 0.75
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -5387,14 +5387,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 164,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40,
                 knockback: 0.75
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -5416,14 +5416,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 160,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40,
                 knockback: 0.75
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -5445,14 +5445,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 160,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40,
                 knockback: 0.75
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -5474,14 +5474,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 160,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40,
                 knockback: 0.75
-            }),
+            },
             req: {
                 str: 0,
                 dex: 450,
@@ -5503,13 +5503,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 160,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5531,13 +5531,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 160,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5559,13 +5559,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 160,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5587,10 +5587,10 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, { 
+            bstat: { 
                 watt: 81,
                 luk: 30
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5612,13 +5612,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 164,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5640,13 +5640,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 86,
                 boss_damage: 0.3,
                 ied: 0.1,
                 luk: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5668,14 +5668,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 119,
                 matt: 201,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 40,
                 luk: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5697,14 +5697,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 119,
                 matt: 201,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 40,
                 luk: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5726,14 +5726,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 119,
                 matt: 201,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 40,
                 luk: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5755,14 +5755,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 119,
                 matt: 201,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 40,
                 luk: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5784,14 +5784,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 119,
                 matt: 201,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 40,
                 luk: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5813,14 +5813,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 126,
                 matt: 204,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 40,
                 luk: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5842,14 +5842,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 126,
                 matt: 204,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 40,
                 luk: 40
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -5871,13 +5871,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 171,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5899,13 +5899,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 171,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 hp: 2000
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5927,13 +5927,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 164,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5955,13 +5955,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 164,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -5983,13 +5983,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 164,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -6011,13 +6011,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 171,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -6039,13 +6039,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 171,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -6067,13 +6067,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 171,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -6095,13 +6095,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 171,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -6123,13 +6123,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 153,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -6151,13 +6151,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 164,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -6179,13 +6179,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 128,
                 boss_damage: 0.3,
                 ied: 0.1,
                 str: 40,
                 dex: 40
-            }),
+            },
             req: {
                 str: 450,
                 dex: 0,
@@ -6209,13 +6209,13 @@ var items_store = {
             pstat: ["dex", "luk"], //visible stats. these are the stats that are updated when starforcing
             att_type: "watt", //watt or matt depending on magic or weapon attack
             flame_type: 2, //whether to use normal flame values (1) or flame advantage values (2) (flame advantage starts at tier 3). type = 0 means no flames
-            bstat: Object.assign({}, stats, { //the base stats of the item
+            bstat: { //the base stats of the item
                 watt: 276,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 100,
                 dex: 100
-            }),
+            },
             req: { //item requirements
                 str: 0,
                 dex: 0,
@@ -6237,13 +6237,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 293,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -6265,14 +6265,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 297,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100,
                 def: 200
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -6294,10 +6294,10 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, { 
+            bstat: { 
                 watt: 140,
                 luk: 65            
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6321,13 +6321,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 221,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6351,13 +6351,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 221,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6379,13 +6379,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 276,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6407,13 +6407,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 283,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6435,13 +6435,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 149,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6463,13 +6463,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 276,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6491,14 +6491,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 206,
                 matt: 347,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 100,
                 luk: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6520,14 +6520,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 206,
                 matt: 347,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 100,
                 luk: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6549,14 +6549,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 206,
                 matt: 347,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 100,
                 luk: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6578,14 +6578,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 206,
                 matt: 347,
                 boss_damage: 0.3,
                 ied: 0.1,
                 int: 100,
                 luk: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6607,14 +6607,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 206,
                 matt: 347,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 100,
                 luk: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6636,14 +6636,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 218,
                 matt: 353,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 100,
                 luk: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6665,14 +6665,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 206,
                 matt: 347,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 100,
                 luk: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6694,14 +6694,14 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 302,
                 boss_damage: 0.3,
                 ied: 0.2,
                 dex: 100,
                 str: 100,
                 def: 200
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -6723,13 +6723,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 216,
                 boss_damage: 0.3,
                 ied: 0.2,
                 dex: 100,
                 str: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -6751,13 +6751,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 221,
                 boss_damage: 0.3,
                 ied: 0.2,
                 dex: 100,
                 str: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -6779,13 +6779,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 221,
                 boss_damage: 0.3,
                 ied: 0.2,
                 dex: 100,
                 str: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -6807,7 +6807,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 276,
                 boss_damage: 0.3,
                 speed: 19,
@@ -6815,7 +6815,7 @@ var items_store = {
                 dex: 100,
                 str: 100,
                 knockback: 0.8
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -6837,7 +6837,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 283,
                 boss_damage: 0.3,
                 speed: 19,
@@ -6845,7 +6845,7 @@ var items_store = {
                 dex: 100,
                 str: 100,
                 knockback: 0.71
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -6867,13 +6867,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 276,
                 boss_damage: 0.3,
                 ied: 0.2,
                 dex: 100,
                 str: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -6895,7 +6895,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 276,
                 boss_damage: 0.3,
                 speed: 19,
@@ -6903,7 +6903,7 @@ var items_store = {
                 dex: 100,
                 str: 100,
                 knockback: 0.8
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -6925,14 +6925,14 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 276,
                 boss_damage: 0.3,
                 speed: 19,
                 ied: 0.2,
                 dex: 100,
                 str: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -6954,13 +6954,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 295,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -6982,13 +6982,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 295,
                 boss_damage: 0.3,
                 hp: 2500,
                 ied: 0.2,
                 str: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7010,13 +7010,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 283,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7038,13 +7038,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 283,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7066,13 +7066,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 283,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7094,13 +7094,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 295,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7122,13 +7122,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 295,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7150,13 +7150,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 295,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7178,13 +7178,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 295,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7206,13 +7206,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 264,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7234,13 +7234,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 283,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7262,13 +7262,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 221,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 100,
                 dex: 100
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7291,12 +7291,12 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 luk: 40,
                 dex: 40,
                 def: 250
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7319,12 +7319,12 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 str: 40,
                 dex: 40,
                 def: 250
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -7347,12 +7347,12 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 matt: 9,
                 str: 40,
                 dex: 40,
                 def: 250
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7375,12 +7375,12 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 str: 40,
                 dex: 40,
                 def: 250
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7403,12 +7403,12 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 str: 40,
                 dex: 40,
                 def: 250
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7431,14 +7431,14 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 luk: 40,
                 dex: 40,
                 def: 250,
                 speed: 10,
                 jump: 7
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7461,14 +7461,14 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 str: 40,
                 dex: 40,
                 def: 250,
                 speed: 10,
                 jump: 7
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -7491,14 +7491,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 matt: 9,
                 str: 40,
                 dex: 40,
                 def: 250,
                 speed: 10,
                 jump: 7
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7521,14 +7521,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 str: 40,
                 dex: 40,
                 def: 250,
                 speed: 10,
                 jump: 7
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7551,14 +7551,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 str: 40,
                 dex: 40,
                 def: 250,
                 speed: 10,
                 jump: 7
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7581,7 +7581,7 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 6,
                 matt: 6,
                 str: 35,
@@ -7589,7 +7589,7 @@ var items_store = {
                 int: 35,
                 luk: 35,
                 def: 450
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7612,7 +7612,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 6,
                 matt: 6,
                 str: 35,
@@ -7620,7 +7620,7 @@ var items_store = {
                 int: 35,
                 luk: 35,
                 def: 450
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7643,7 +7643,7 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 6,
                 matt: 6,
                 str: 35,
@@ -7651,7 +7651,7 @@ var items_store = {
                 int: 35,
                 luk: 35,
                 def: 450
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7674,7 +7674,7 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 6,
                 matt: 6,
                 str: 35,
@@ -7682,7 +7682,7 @@ var items_store = {
                 int: 35,
                 luk: 35,
                 def: 450
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7705,7 +7705,7 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 6,
                 matt: 6,
                 str: 35,
@@ -7713,7 +7713,7 @@ var items_store = {
                 int: 35,
                 luk: 35,
                 def: 450
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7736,7 +7736,7 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 20,
                 matt: 20,
                 str: 35,
@@ -7744,7 +7744,7 @@ var items_store = {
                 int: 35,
                 luk: 35,
                 def: 300
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7767,7 +7767,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 20,
                 matt: 20,
                 str: 35,
@@ -7775,7 +7775,7 @@ var items_store = {
                 int: 35,
                 luk: 35,
                 def: 300
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7798,7 +7798,7 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 20,
                 matt: 20,
                 str: 35,
@@ -7806,7 +7806,7 @@ var items_store = {
                 int: 35,
                 luk: 35,
                 def: 300
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7829,7 +7829,7 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 20,
                 matt: 20,
                 str: 35,
@@ -7837,7 +7837,7 @@ var items_store = {
                 int: 35,
                 luk: 35,
                 def: 300
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7860,7 +7860,7 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 20,
                 matt: 20,
                 str: 35,
@@ -7868,7 +7868,7 @@ var items_store = {
                 int: 35,
                 luk: 35,
                 def: 300
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7890,13 +7890,13 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 7,
                 dex: 65,
                 luk: 65,
                 def: 600,
                 ied: 0.15
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -7918,13 +7918,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 7,
                 dex: 65,
                 str: 65,
                 def: 600,
                 ied: 0.15
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -7946,13 +7946,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 7,
                 dex: 65,
                 str: 65,
                 def: 600,
                 ied: 0.15
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -7974,13 +7974,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 7,
                 dex: 65,
                 str: 65,
                 def: 600,
                 ied: 0.15
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8002,13 +8002,13 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 matt: 7,
                 int: 65,
                 luk: 65,
                 def: 600,
                 ied: 0.15
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8030,13 +8030,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 luk: 85,
                 dex: 85,
                 def: 500,
                 ied: 0.10
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8058,13 +8058,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 str: 85,
                 dex: 85,
                 def: 500,
                 ied: 0.10
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -8086,13 +8086,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 str: 85,
                 dex: 85,
                 def: 500,
                 ied: 0.10
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8114,13 +8114,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 9,
                 str: 85,
                 dex: 85,
                 def: 500,
                 ied: 0.10
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8142,13 +8142,13 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 matt: 9,
                 int: 85,
                 luk: 85,
                 def: 500,
                 ied: 0.10
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8172,14 +8172,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 237,
                 matt: 400,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 150,
                 luk: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8201,13 +8201,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 340,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8229,14 +8229,14 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 342,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150,
                 def: 250
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8258,13 +8258,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 337,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8286,13 +8286,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 255,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -8314,13 +8314,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 340,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 maxHP: 2800
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8344,13 +8344,13 @@ var items_store = {
             pstat: ["str", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 255,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8374,13 +8374,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 255,
                 boss_damage: 0.3,
                 ied: 0.2,
                 dex: 150,
                 luk: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8402,14 +8402,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 237,
                 matt: 400,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 150,
                 luk: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8432,14 +8432,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 237,
                 matt: 400,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 150,
                 luk: 6150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8461,13 +8461,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 318,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8489,14 +8489,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 237,
                 matt: 400,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 150,
                 luk: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8518,13 +8518,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 318,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8546,13 +8546,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 326,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8574,13 +8574,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 326,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8602,13 +8602,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 326,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8630,13 +8630,13 @@ var items_store = {
             pstat: ["dex", "luk"], 
             att_type: "watt", 
             flame_type: 2, 
-            bstat: Object.assign({}, stats, { 
+            bstat: { 
                 watt: 318,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 150,
                 dex: 150
-            }),
+            },
             req: { 
                 str: 0,
                 dex: 0,
@@ -8658,13 +8658,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 326,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8686,14 +8686,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 237,
                 matt: 400,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 150,
                 luk: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8715,14 +8715,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 251,
                 matt: 406,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 100,
                 luk: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -8745,13 +8745,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 340,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8774,13 +8774,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 340,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8803,13 +8803,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 340,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8831,13 +8831,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 304,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8859,13 +8859,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 304,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -8887,7 +8887,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 318,
                 boss_damage: 0.3,
                 speed: 19,
@@ -8895,7 +8895,7 @@ var items_store = {
                 dex: 150,
                 str: 150,
                 knockback: 0.8
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -8917,7 +8917,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 326,
                 boss_damage: 0.3,
                 speed: 19,
@@ -8925,7 +8925,7 @@ var items_store = {
                 dex: 150,
                 str: 150,
                 knockback: 0.71
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -8947,13 +8947,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 318,
                 boss_damage: 0.3,
                 ied: 0.2,
                 dex: 150,
                 str: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -8975,7 +8975,7 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 318,
                 boss_damage: 0.3,
                 speed: 19,
@@ -8983,7 +8983,7 @@ var items_store = {
                 dex: 150,
                 str: 150,
                 knockback: 0.8
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -9005,14 +9005,14 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 318,
                 boss_damage: 0.3,
                 speed: 19,
                 ied: 0.2,
                 dex: 150,
                 str: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 600,
@@ -9034,13 +9034,13 @@ var items_store = {
             pstat: ["luk", "dex"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 172,
                 boss_damage: 0.3,
                 ied: 0.2,
                 luk: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9062,13 +9062,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 255,
                 boss_damage: 0.3,
                 ied: 0.2,
                 dex: 150,
                 str: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -9090,13 +9090,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 249,
                 boss_damage: 0.3,
                 ied: 0.2,
                 dex: 150,
                 str: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -9118,14 +9118,14 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 348,
                 boss_damage: 0.3,
                 ied: 0.2,
                 dex: 150,
                 str: 150,
                 def: 250
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -9147,13 +9147,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 326,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -9175,14 +9175,14 @@ var items_store = {
             pstat: ["int", "luk"], 
             att_type: "matt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 237,
                 matt: 400,
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 150,
                 luk: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9204,13 +9204,13 @@ var items_store = {
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 255,
                 boss_damage: 0.3,
                 ied: 0.2,
                 str: 150,
                 dex: 150
-            }),
+            },
             req: {
                 str: 600,
                 dex: 0,
@@ -9234,14 +9234,14 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 2,
                 matt: 2,
                 str: 10,
                 dex: 10,
                 int: 10,
                 luk: 10
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9265,14 +9265,14 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 5,
                 matt: 5,
                 str: 10,
                 dex: 10,
                 int: 10,
                 luk: 10
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9434,11 +9434,11 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 118,
                 str: 8,
                 dex: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9460,11 +9460,11 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 120,
                 str: 8,
                 dex: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9486,11 +9486,11 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 118,
                 str: 8,
                 dex: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9512,11 +9512,11 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 122,
                 str: 8,
                 dex: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9538,11 +9538,11 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 118,
                 str: 8,
                 dex: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9564,11 +9564,11 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 122,
                 str: 8,
                 dex: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9590,13 +9590,13 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 115,
                 str: 4,
                 dex: 8,
                 speed: 14,
                 knockback: 0.76
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9618,13 +9618,13 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 118,
                 str: 4,
                 dex: 8,
                 speed: 14,
                 knockback: 0.70
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9646,12 +9646,12 @@ var items_store = {
             pstat: ["dex", "luk"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 64,
                 dex: 4,
                 luk: 16
                 //Avoidability stat still relevant?
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9673,11 +9673,11 @@ var items_store = {
             pstat: ["dex", "luk"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 113,
                 dex: 4,
                 luk: 8
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9699,11 +9699,11 @@ var items_store = {
             pstat: ["dex", "luk"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 115,
                 str: 4,
                 luk: 8
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9725,11 +9725,11 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 122,
                 str: 8,
                 dex: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9751,11 +9751,11 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 122,
                 str: 8,
                 dex: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9777,12 +9777,12 @@ var items_store = {
             pstat: ["int", "luk"],
             att_type: "matt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 83,
                 matt: 148,
                 int: 8,
                 luk: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9804,12 +9804,12 @@ var items_store = {
             pstat: ["int", "luk"],
             att_type: "matt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 88,
                 matt: 150,
                 int: 8,
                 luk: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9831,11 +9831,11 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 92,
                 str: 8,
                 dex: 4
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9857,11 +9857,11 @@ var items_store = {
             pstat: ["str", "dex"],
             att_type: "watt",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 92,
                 str: 4,
                 dex: 8
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9883,11 +9883,11 @@ var items_store = {
             pstat: ["dex", "luk"],
             att_type: "watt",
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 68,
                 dex: 4,
                 luk: 8
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9909,14 +9909,14 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"],
             att_type: "att",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 8,
                 dex: 8,
                 int: 8,
                 luk: 8,
                 def: 80,
                 //magic def. still relevant?
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9938,7 +9938,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"],
             att_type: "att",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 5,
                 dex: 5,
                 int: 5,
@@ -9947,7 +9947,7 @@ var items_store = {
                 def: 55
                 //accuracy stat still relevant?
                 //magic def. still relevant?
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9969,7 +9969,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"],
             att_type: "att",
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 10,
                 dex: 10,
                 int: 10,
@@ -9977,7 +9977,7 @@ var items_store = {
                 def: 150
                 //Avoidability still relevant?
                 //magic def. still relevant?
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9999,7 +9999,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"],
             att_type: "att",
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 5,
                 dex: 5,
                 int: 5,
@@ -10009,7 +10009,7 @@ var items_store = {
                 def: 120
                 //Avoidability still relevant?
                 //magic def. still relevant?
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -10019,6 +10019,2043 @@ var items_store = {
             img: "item-vipring",
             upgrades: 0,
             hammers_added: 0,
+        }
+    },
+    empress: {
+        "thief_hat": {
+            "name": "Raven Horn Chaser Hat",
+            "level": 140,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "img-ravenhornchaserhat",
+            "upgrades": 10,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 25,
+                "luk": 25,
+                "hp": 300,
+                "mp": 300,
+                "watt": 1,
+                "def": 250
+            }
+        },
+        "thief_overall": {
+            "name": "Raven Horn Chaser Armor",
+            "level": 140,
+            "class": "armor",
+            "type": "overall",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "img-ravenhornchaserarmor",
+            "upgrades": 12,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 30,
+                "luk": 30,
+                "watt": 2,
+                "def": 225
+            }
+        },
+        "thief_shoes": {
+            "name": "Raven Horn Chaser Boots",
+            "level": 140,
+            "class": "armor",
+            "type": "shoes",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "img-ravenhornchaserboots",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 15,
+                "luk": 15,
+                "watt": 1,
+                "def": 85,
+                "speed": 10,
+                "jump": 7
+            }
+        },
+        "thief_gloves": {
+            "name": "Raven Horn Chaser Gloves",
+            "level": 140,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "img-ravenhornchasergloves",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 16,
+                "luk": 16,
+                "hp": 350,
+                "watt": 5,
+                "def": 50
+            }
+        },
+        "thief_cape": {
+            "name": "Raven Horn Chaser Cape",
+            "override_image": "EmpressCape",
+            "level": 140,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-empresscape",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 7,
+                "luk": 7,
+                "watt": 1,
+                "def": 150,
+                "speed": 10,
+                "jump": 5
+            }
+        },
+        "thief_shoulder": {
+            "name": "Raven Horn Chaser Shoulder",
+            "override_image": "EmpressShoulder",
+            "level": 140,
+            "class": "armor",
+            "type": "shoulder",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-empressshoulder",
+            "upgrades": 1,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 11,
+                "dex": 11,
+                "int": 11,
+                "luk": 11,
+                "watt": 7,
+                "matt": 7,
+                "def": 100
+            }
+        },
+        "thief_whip_blade": {
+            "name": "Raven Horn Fallen Queen",
+            "level": 140,
+            "class": "weapon",
+            "type": "whip blade",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-ravenhornfallenqueen",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 20,
+                "luk": 35,
+                "watt": 102
+            }
+        },
+        "cadena_chain": {
+            "name": "Raven Horn Chain",
+            "level": 140,
+            "class": "weapon",
+            "type": "chain",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "img-ravenhornchain",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 20,
+                "luk": 35,
+                "watt": 128
+            }
+        },
+        "ritual_fan": {
+            "name": "Raven Horn Ritual Fan",
+            "level": 140,
+            "class": "weapon",
+            "type": "ritual fan",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "img-ravenhornritualfan",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 20,
+                "luk": 35,
+                "watt": 128
+            }
+        },
+        "thief_dagger": {
+            "name": "Raven Horn Baselard",
+            "level": 140,
+            "class": "weapon",
+            "type": "dagger",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "img-ravenhornbaselard",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 20,
+                "luk": 35,
+                "watt": 128
+            }
+        },
+        "thief_cane": {
+            "name": "Raven Horn Crimson Cane",
+            "level": 140,
+            "class": "weapon",
+            "type": "cane",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "img-ravenhorncrimsoncane",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 20,
+                "luk": 35,
+                "watt": 131
+            }
+        },
+        "thief_claw": {
+            "name": "Raven Horn Metal Fist",
+            "level": 140,
+            "class": "weapon",
+            "type": "claw",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "img-ravenhornmetalfist",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 20,
+                "luk": 35,
+                "watt": 69
+            }
+        },
+        "pirate_hat": {
+            "name": "Shark Tooth Skipper Hat",
+            "level": 140,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-sharktoothskipperhat",
+            "img_type": "webp",
+            "upgrades": 10,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 25,
+                "dex": 25,
+                "hp": 300,
+                "mp": 300,
+                "watt": 1,
+                "def": 250
+            }
+        },
+        "pirate_overall": {
+            "name": "Shark Tooth Skipper Coat",
+            "level": 140,
+            "class": "armor",
+            "type": "overall",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-sharktoothskippercoat",
+            "img_type": "webp",
+            "upgrades": 12,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 30,
+                "dex": 30,
+                "watt": 2,
+                "def": 225
+            }
+        },
+        "pirate_shoes": {
+            "name": "Shark Tooth Skipper Boots",
+            "level": 140,
+            "class": "armor",
+            "type": "shoes",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-sharktoothskipperboots",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 15,
+                "dex": 15,
+                "watt": 1,
+                "def": 85,
+                "speed": 10,
+                "jump": 7
+            }
+        },
+        "pirate_gloves": {
+            "name": "Shark Tooth Skipper Gloves",
+            "level": 140,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-sharktoothskippergloves",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 16,
+                "dex": 16,
+                "hp": 350,
+                "watt": 5,
+                "def": 50
+            }
+        },
+        "pirate_cape": {
+            "name": "Shark Tooth Skipper Cape",
+            "override_image": "EmpressCape",
+            "level": 140,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-empresscape",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 7,
+                "dex": 7,
+                "watt": 1,
+                "def": 150,
+                "speed": 10,
+                "jump": 5
+            }
+        },
+        "pirate_shoulder": {
+            "name": "Shark Tooth Skipper Shoulder",
+            "override_image": "EmpressShoulder",
+            "level": 140,
+            "class": "armor",
+            "type": "shoulder",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-empressshoulder",
+            "img_type": "webp",
+            "upgrades": 1,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 11,
+                "dex": 11,
+                "int": 11,
+                "luk": 11,
+                "watt": 7,
+                "matt": 7,
+                "def": 100
+            }
+        },
+        "pirate_soul_shooter": {
+            "name": "Shark Tooth Soul Drinker",
+            "level": 140,
+            "class": "weapon",
+            "type": "soul shooter",
+            "speed": "fast",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-sharktoothsouldrinker",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 20,
+                "dex": 35,
+                "watt": 102
+            }
+        },
+        "pirate_whip_blade": {
+            "name": "Shark Tooth Fallen Queen",
+            "level": 140,
+            "class": "weapon",
+            "type": "whip blade",
+            "speed": "fast",
+            "job": ["thief", "pirate"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-sharktoothfallenqueen",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 102
+            }
+        },
+        "pirate_knuckle": {
+            "name": "Shark Tooth Wild Talon",
+            "level": 140,
+            "class": "weapon",
+            "type": "knuckle",
+            "speed": "fast",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-sharktoothwildtalon",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 102
+            }
+        },
+        "pirate_gun": {
+            "name": "Shark Tooth Sharpshooter",
+            "level": 140,
+            "class": "weapon",
+            "type": "gun",
+            "speed": "fast",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-sharktoothsharpshooter",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 20,
+                "dex": 35,
+                "watt": 100
+            }
+        },
+        "pirate_hand_cannon": {
+            "name": "Shark Tooth Supernova",
+            "level": 140,
+            "class": "weapon",
+            "type": "hand cannon",
+            "speed": "slow",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-sharktoothsupernova",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 140,
+                "def": 101
+            }
+        },
+        "bowman_hat": {
+            "name": "Falcon Wing Sentinel Cap",
+            "level": 140,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-falconwingsentinelcap",
+            "img_type": "webp",
+            "upgrades": 10,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 25,
+                "dex": 25,
+                "hp": 300,
+                "mp": 300,
+                "watt": 1,
+                "def": 250
+            }
+        },
+        "bowman_overall": {
+            "name": "Falcon Wing Sentinel Suit",
+            "level": 140,
+            "class": "armor",
+            "type": "overall",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-falconwingsentinelsuit",
+            "img_type": "webp",
+            "upgrades": 12,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 30,
+                "dex": 30,
+                "watt": 2,
+                "def": 225
+            }
+        },
+        "bowman_shoes": {
+            "name": "Falcon Wing Sentinel Boots",
+            "level": 140,
+            "class": "armor",
+            "type": "shoes",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-falconwingsentinelboots",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 15,
+                "dex": 15,
+                "watt": 1,
+                "def": 85,
+                "speed": 10,
+                "jump": 7
+            }
+        },
+        "bowman_gloves": {
+            "name": "Falcon Wing Sentinel Gloves",
+            "level": 140,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-falconwingsentinelgloves",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 16,
+                "dex": 16,
+                "hp": 350,
+                "watt": 5,
+                "def": 50
+            }
+        },
+        "bowman_cape": {
+            "name": "Falcon Wing Sentinel Cape",
+            "override_image": "EmpressCape",
+            "level": 140,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-empresscape",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 7,
+                "dex": 7,
+                "watt": 1,
+                "def": 150,
+                "speed": 10,
+                "jump": 5
+            }
+        },
+        "bowman_shoulder": {
+            "name": "Falcon Wing Sentinel Shoulder",
+            "override_image": "EmpressShoulder",
+            "level": 140,
+            "class": "armor",
+            "type": "shoulder",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-empressshoulder",
+            "upgrades": 1,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 11,
+                "dex": 11,
+                "int": 11,
+                "luk": 11,
+                "watt": 7,
+                "matt": 7,
+                "def": 100
+            }
+        },
+        "bowman_whispershot": {
+            "name": "Falcon Wing Splendid Nero",
+            "level": 140,
+            "class": "weapon",
+            "type": "whispershot",
+            "speed": "fast",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-falconwingsplendidnero",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 20,
+                "dex": 35,
+                "watt": 128
+            }
+        },
+        "bowman_bow": {
+            "name": "Falcon Wing Composite Bow",
+            "level": 140,
+            "class": "weapon",
+            "type": "bow",
+            "speed": "normal",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-falconwingcompositebow",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 20,
+                "dex": 35,
+                "watt": 128,
+                "knockback": 0.75
+            }
+        },
+        "bowman_crossbow": {
+            "name": "Falcon Wing Heavy Crossbow",
+            "level": 140,
+            "class": "weapon",
+            "type": "crossbow",
+            "speed": "normal",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-falconwingheavycrossbow",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 20,
+                "dex": 35,
+                "watt": 131,
+                "knockback": 0.68
+            }
+        },
+        "bowman_dual_bowguns": {
+            "name": "Falcon Wing Dual Bowguns",
+            "level": 140,
+            "class": "weapon",
+            "type": "dual bowguns",
+            "speed": "normal",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-falconwingdualbowguns",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 20,
+                "dex": 35,
+                "watt": 128,
+                "knockback": 0.68
+            }
+        },
+        "bowman_ancient_bow": {
+            "name": "Falcon Wing Ancient Bow",
+            "level": 140,
+            "class": "weapon",
+            "type": "ancient bow",
+            "speed": "normal",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 420,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-falconwingancientbow",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 20,
+                "dex": 35,
+                "watt": 128,
+                "knockback": 0.75
+            }
+        },        
+        "warrior_hat": {
+            "name": "Lionheart Battle Helm",
+            "level": 140,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartbattlehelm",
+            "img_type": "webp",
+            "upgrades": 10,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 25,
+                "dex": 25,
+                "hp": 300,
+                "mp": 300,
+                "watt": 1,
+                "def": 325
+            }
+        },
+        "warrior_overall": {
+            "name": "Lionheart Battle Mail",
+            "level": 140,
+            "class": "armor",
+            "type": "overall",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartbattlemail",
+            "img_type": "webp",
+            "upgrades": 12,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 30,
+                "dex": 30,
+                "watt": 2,
+                "def": 350
+            }
+        },
+        "warrior_shoes": {
+            "name": "Lionheart Battle Boots",
+            "level": 140,
+            "class": "armor",
+            "type": "shoes",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartbattleboots",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 15,
+                "dex": 15,
+                "watt": 1,
+                "speed": 10,
+                "jump": 5,
+                "def": 150
+            }
+        },
+        "warrior_gloves": {
+            "name": "Lionheart Battle Bracers",
+            "level": 140,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartbattlebracers",
+            "img_type": "webp",
+            "upgrades": 12,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 16,
+                "dex": 16,
+                "watt": 5,
+                "hp": 350,
+                "def": 200
+            }
+        },
+        "warrior_cape": {
+            "name": "Lionheart Battle Cape",
+            "override_image": "EmpressCape",
+            "level": 140,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-empresscape",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 7,
+                "dex": 7,
+                "watt": 1,
+                "speed": 10,
+                "jump": 5,
+                "def": 200
+            }
+        },
+        "warrior_shoulder": {
+            "name": "Lionheart Battle Shoulder",
+            "override_image": "EmpressShoulder",
+            "level": 140,
+            "class": "armor",
+            "type": "shoulder",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-empressshoulder",
+            "upgrades": 1,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 11,
+                "dex": 11,
+                "int": 11,
+                "luk": 11,
+                "watt": 7,
+                "matt": 7,
+                "def": 100
+            }
+        },
+        "warrior_bladecaster": {
+            "name": "Lionheart Restraint",
+            "level": 140,
+            "class": "weapon",
+            "type": "bladecaster",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartrestraint",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 137
+            }
+        },
+        "warrior_desperado": {
+            "name": "Lionheart Painful Destiny",
+            "level": 140,
+            "class": "weapon",
+            "type": "desperado",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartpainfuldestiny",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 20,
+                "hp": 1750,
+                "watt": 137
+            }
+        },
+        "warrior_one_handed_sword": {
+            "name": "Lionheart Cutlass",
+            "level": 140,
+            "class": "weapon",
+            "type": "one-handed sword",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartcutlass",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 131
+            }
+        },
+        "warrior_one_handed_axe": {
+            "name": "Lionheart Champion Axe",
+            "level": 140,
+            "class": "weapon",
+            "type": "one-handed axe",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartchampionaxe",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 131
+            }
+        },
+        "warrior_one_handed_blunt_weapon": {
+            "name": "Lionheart Battle Hammer",
+            "level": 140,
+            "class": "weapon",
+            "type": "one-handed blunt weapon",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartbattlehammer",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 131
+            }
+        },
+        "warrior_two_handed_sword": {
+            "name": "Lionheart Battle Scimitar",
+            "level": 140,
+            "class": "weapon",
+            "type": "two-handed sword",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartbattlescimitar",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 137
+            }
+        },
+        "warrior_two_handed_axe": {
+            "name": "Lionheart Battle Axe",
+            "level": 140,
+            "class": "weapon",
+            "type": "two-handed axe",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartbattleaxe",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 137
+            }
+        },
+        "warrior_two_handed_blunt_weapon": {
+            "name": "Lionheart Blast Maul",
+            "level": 140,
+            "class": "weapon",
+            "type": "two-handed blunt weapon",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartblastmaul",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 137
+            }
+        },
+        "warrior_spear": {
+            "name": "Lionheart Fuscina",
+            "level": 140,
+            "class": "weapon",
+            "type": "spear",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartfuscina",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 137
+            }
+        },
+        "warrior_polearm": {
+            "name": "Lionheart Partisan",
+            "level": 140,
+            "class": "weapon",
+            "type": "polearm",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartpartisan",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 122
+            }
+        },
+        "warrior_katana": {
+            "name": "Lionheart Red King",
+            "level": 140,
+            "class": "weapon",
+            "type": "katana",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartredking",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 131
+            }
+        },
+        "warrior_arm_cannon": {
+            "name": "Lionheart Valore",
+            "level": 140,
+            "class": "weapon",
+            "type": "arm cannon",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 420,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-lionheartvalore",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 102
+            }
+        },        
+        "magician_hat": {
+            "name": "Dragon Tail Mage Sallet",
+            "level": 140,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-dragontailmagesallet",
+            "img_type": "webp",
+            "upgrades": 10,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 25,
+                "luk": 25,
+                "hp": 300,
+                "mp": 300,
+                "matt": 1,
+                "def": 150
+            }
+        },
+        "magician_overall": {
+            "name": "Dragon Tail Mage Robe",
+            "level": 140,
+            "class": "armor",
+            "type": "overall",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-dragontailmagerobe",
+            "img_type": "webp",
+            "upgrades": 12,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 30,
+                "luk": 30,
+                "matt": 2,
+                "def": 200
+            }
+        },
+        "magician_shoes": {
+            "name": "Dragon Tail Mage Shoes",
+            "level": 140,
+            "class": "armor",
+            "type": "shoes",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-dragontailmageshoes",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 15,
+                "luk": 15,
+                "matt": 1,
+                "def": 50,
+                "speed": 10,
+                "jump": 7
+            }
+        },
+        "magician_gloves": {
+            "name": "Dragon Tail Mage Gloves",
+            "level": 140,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-dragontailmagegloves",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 16,
+                "luk": 16,
+                "hp": 350,
+                "matt": 5,
+                "def": 30
+            }
+        },
+        "magician_cape": {
+            "name": "Dragon Tail Mage Cape",
+            "override_image": "EmpressCape",
+            "level": 140,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-empresscape",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 7,
+                "luk": 7,
+                "matt": 1,
+                "def": 100,
+                "speed": 10,
+                "jump": 5
+            }
+        },
+        "magician_shoulder": {
+            "name": "Dragon Tail Mage Shoulder",
+            "override_image": "EmpressShoulder",
+            "level": 140,
+            "class": "armor",
+            "type": "shoulder",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 0,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-empressshoulder",
+            "upgrades": 1,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 11,
+                "dex": 11,
+                "int": 11,
+                "luk": 11,
+                "watt": 7,
+                "matt": 7,
+                "def": 100
+            }
+        },
+        "magician_shining_rod": {
+            "name": "Dragon Tail Thanatos",
+            "level": 140,
+            "class": "weapon",
+            "type": "shining rod",
+            "speed": "normal",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-dragontailthanatos",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 35,
+                "luk": 20,
+                "watt": 95,
+                "matt": 161
+            }
+        },
+        "magician_scepter": {
+            "name": "Kitten Tail Scepter",
+            "level": 140,
+            "class": "weapon",
+            "type": "scepter",
+            "speed": "normal",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-kittentailscepter",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 35,
+                "luk": 20,
+                "watt": 95,
+                "matt": 161
+            }
+        },
+        "magician_psy_limiter": {
+            "name": "Dragon Tail Psy-limiter",
+            "level": 140,
+            "class": "weapon",
+            "type": "psy-limiter",
+            "speed": "normal",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-dragontailpsy-limiter",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 35,
+                "luk": 20,
+                "watt": 95,
+                "matt": 161
+            }
+        },
+        "magician_lucent_gauntlet": {
+            "name": "Dragon Tail Lucent Gauntlet",
+            "level": 140,
+            "class": "weapon",
+            "type": "lucent gauntlet",
+            "speed": "normal",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-dragontaillucentgauntlet",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 35,
+                "luk": 20,
+                "watt": 95,
+                "matt": 161
+            }
+        },
+        "magician_wand": {
+            "name": "Dragon Tail Arc Wand",
+            "level": 140,
+            "class": "weapon",
+            "type": "wand",
+            "speed": "normal",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-dragontailarcwand",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 35,
+                "luk": 20,
+                "watt": 95,
+                "matt": 161
+            }
+        },
+        "magician_staff": {
+            "name": "Dragon Tail War Staff",
+            "level": 140,
+            "class": "weapon",
+            "type": "staff",
+            "speed": "slow",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-dragontailwarstaff",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 35,
+                "luk": 20,
+                "watt": 101,
+                "matt": 163
+            }
+        },
+        "magician_fan": {
+            "name": "Dragon Tail Fan",
+            "level": 140,
+            "class": "weapon",
+            "type": "fan",
+            "speed": "fast",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "img-dragontailfan",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "int": 35,
+                "luk": 20,
+                "watt": 95,
+                "matt": 128
+            }
         }
     }
 };
@@ -10088,6 +12125,7 @@ $(function() {
         for (let j in items_store[i]) {
             let istore_override = {};
             let istore =  items_store[i][j];
+            istore.bstat = Object.assign({}, stats, istore.bstat); /* append the rest of the stats to the bstat item */
 
             //if the item uses an override stat, append the stat from a different specified item's stat.
             //used when an item type shares base stats but are for different jobs or whatever
@@ -10105,6 +12143,7 @@ $(function() {
             istore = items_store[i][j];
 
             let img_name = "";
+            let img_ext = "png";
 
             //if item uses an override image, then append that image instead.
             //override images should share a common istore.img name
@@ -10116,12 +12155,16 @@ $(function() {
                 img_name = istore.name;
             }   
 
+            if (istore.img_type !== undefined) {
+                img_ext = istore.img_type;
+            }
+
             //github is case sensitive for url
             img_name = img_name.replace("AbsoLab","Absolab").replace(/[\s-:\(\)']/gi,"");
 
             style_items += `
                 .${istore.img} {
-                    background: url(./assets/maple_items/${img_name}.png);
+                    background: url(./assets/maple_items/${img_name}.${img_ext});
                     background-repeat: no-repeat;
                     background-size: contain;
                 }

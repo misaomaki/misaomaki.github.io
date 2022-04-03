@@ -327,14 +327,14 @@
             /* column 4 - EFFECTS  */
             let td_effects = td.eq(3);
             let effects = td_effects.html().trim().split("<br>");
-            t.stat = {};
+            t.bstat = {};
             for (let i = 0; i < effects.length; ++i) {
                 let [_effect, effect_val] = effects[i].split(":");
                 let effect = _effect.toLowerCase().trim().replace(/\s/gi, "");
                 let rstat = resolve_stat(effect);
             
                 if (rstat !== "") {
-                    t.stat[rstat] = +effect_val.replace("+", "").trim();
+                    t.bstat[rstat] = +effect_val.replace("+", "").trim();
                 }
 
                 if (effect === "attackspeed") {
@@ -343,7 +343,7 @@
 
                 if (effect === "allstats") {
                     ["str", "dex", "int", "luk"].forEach((a)=>{
-                        t.stat[a] = +effect_val.replace("+", "").trim();
+                        t.bstat[a] = +effect_val.replace("+", "").trim();
                     });
                 }
             }
