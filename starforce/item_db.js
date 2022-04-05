@@ -3987,6 +3987,38 @@ var items_store = {
             img: "item-papulatusmark",
             upgrades: 5,
             hammers_added: 2
+        },
+        "liberated_kaiserium": {
+            "name": "Liberated Kaiserium",
+            "level": 150,
+            "class": "weapon",
+            "type": "two-handed sword",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 999,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-liberatedkaiserium",
+            "img_type": "webp",
+            "upgrades": 1,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "str": 200,
+                "dex": 200,
+                "int": 200,
+                "luk": 200,
+                "watt": 400
+            }
         }
     },
     shield: {
