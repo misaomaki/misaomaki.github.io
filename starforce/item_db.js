@@ -4005,7 +4005,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-liberatedkaiserium",
+            "img": "item-liberatedkaiserium",
             "img_type": "webp",
             "upgrades": 1,
             "hammers_added": 2,
