@@ -1,36 +1,1824 @@
-//stat variables shared through all processes
-var stats = {
-    visible_stats: 0, //stats that come from non-bonus sources: base stats or scrolls
-    job_stats: 0, //stats related to the item's job. "pstat" parameter
-    rank: 0, //heart-related
-    watt: 0,
-    matt: 0,
-    watt_p: 0, //percent increase in stat
-    matt_p: 0,
-    def: 0,
-    def_p: 0,
-    hp: 0,
-    mp: 0,
-    p_hp: 0, //hp stats that provide a percentage increase. starts with p_ rather than ends with _p as they should be static increases rather than cumulative increases
-    p_mp: 0,
-    speed: 0,
-    jump: 0,
-    star: 0,
-    knockback: 0,
-    //flame stuff
-    boss_damage: 0,
-    ied: 0,
-    str: 0,
-    dex: 0,
-    int: 0,
-    luk: 0,
-    damage: 0,
-    all_stat: 0,
-    reqlvl: 0 //negative level requirements
-};
-
 //maplestory items
 var items_store = {
+    pensalir: {
+        "warrior_hat": {
+            "name": "Pensalir Battle Helm",
+            "level": 140,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 16,
+                "dex": 10,
+                "hp": 150,
+                "mp": 150,
+                "def": 225
+            },
+            "req": {
+                "str": 390,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirbattlehelm",
+            "img_type": "webp",
+            "upgrades": 11,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_overall": {
+            "name": "Pensalir Battle Mail",
+            "level": 140,
+            "class": "armor",
+            "type": "overall",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 20,
+                "dex": 20,
+                "watt": 1,
+                "def": 325
+            },
+            "req": {
+                "str": 430,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirbattlemail",
+            "img_type": "webp",
+            "upgrades": 10,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_shoes": {
+            "name": "Pensalir Battle Boots",
+            "override_image": "PensalirBoots",
+            "level": 140,
+            "class": "weapon",
+            "type": "shoes",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 15,
+                "dex": 9,
+                "watt": 1,
+                "def": 120,
+                "speed": 5
+            },
+            "req": {
+                "str": 450,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirbattleboots",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_gloves": {
+            "name": "Pensalir Battle Gloves",
+            "override_image": "PensalirGloves",
+            "level": 140,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 11,
+                "dex": 10,
+                "hp": 200,
+                "watt": 2,
+                "def": 65
+            },
+            "req": {
+                "str": 450,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirbattlegloves",
+            "img_type": "webp",
+            "upgrades": 6,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_cape": {
+            "name": "Pensalir Battle Cape",
+            "override_image": "PensalirCape",
+            "level": 140,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 4,
+                "dex": 4,
+                "int": 4,
+                "luk": 4,
+                "def": 150,
+                "jump": 4
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirbattlecape",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_bladecaster": {
+            "name": "Utgard Restraint",
+            "level": 140,
+            "class": "weapon",
+            "type": "bladecaster",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 122
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardrestraint",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_desperado": {
+            "name": "Utgard Desperado",
+            "level": 140,
+            "class": "weapon",
+            "type": "desperado",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 122
+            },
+            "req": {
+                "str": 430,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgarddesperado",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_one_handed_sword": {
+            "name": "Utgard Saber",
+            "level": 140,
+            "class": "weapon",
+            "type": "one-handed sword",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 118
+            },
+            "req": {
+                "str": 400,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardsaber",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_one_handed_axe": {
+            "name": "Utgard Axe",
+            "level": 140,
+            "class": "weapon",
+            "type": "one-handed axe",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 118
+            },
+            "req": {
+                "str": 410,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardaxe",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_one_handed_blunt_weapon": {
+            "name": "Utgard Hair",
+            "level": 140,
+            "class": "weapon",
+            "type": "one-handed blunt weapon",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 118
+            },
+            "req": {
+                "str": 320,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardhair",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_two_handed_sword": {
+            "name": "Utgard Two-handed Sword",
+            "level": 140,
+            "class": "weapon",
+            "type": "two-handed sword",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 122
+            },
+            "req": {
+                "str": 430,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardtwo-handedsword",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_two_handed_axe": {
+            "name": "Utgard Two-handed Axe",
+            "level": 140,
+            "class": "weapon",
+            "type": "two-handed axe",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 124
+            },
+            "req": {
+                "str": 430,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardtwo-handedaxe",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_two_handed_blunt_weapon": {
+            "name": "Utgard Two-handed Hammer",
+            "level": 140,
+            "class": "weapon",
+            "type": "two-handed blunt weapon",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 124
+            },
+            "req": {
+                "str": 430,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardtwo-handedhammer",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_spear": {
+            "name": "Utgard Spear",
+            "level": 140,
+            "class": "weapon",
+            "type": "spear",
+            "speed": "normal",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 124
+            },
+            "req": {
+                "str": 430,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardspear",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_polearm": {
+            "name": "Utgard Hellslayer",
+            "level": 140,
+            "class": "weapon",
+            "type": "polearm",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 122
+            },
+            "req": {
+                "str": 430,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardhellslayer",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_katana": {
+            "name": "Utgard Katana",
+            "level": 140,
+            "class": "weapon",
+            "type": "katana",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 118
+            },
+            "req": {
+                "str": 400,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardkatana",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "warrior_arm_cannon": {
+            "name": "Utgard Hrimthurs",
+            "level": 140,
+            "class": "weapon",
+            "type": "arm cannon",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 90
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardhrimthurs",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_hat": {
+            "name": "Pensalir Mage Sallet",
+            "level": 140,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "int": 16,
+                "luk": 15,
+                "hp": 150,
+                "mp": 150,
+                "def": 110
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 428,
+                "luk": 0
+            },
+            "img": "item-pensalirmagesallet",
+            "img_type": "webp",
+            "upgrades": 11,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_overall": {
+            "name": "Pensalir Mage Robe",
+            "level": 140,
+            "class": "armor",
+            "type": "overall",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "int": 20,
+                "luk": 20,
+                "mp": 60,
+                "matt": 1,
+                "def": 150
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 415,
+                "luk": 0
+            },
+            "img": "item-pensalirmagerobe",
+            "img_type": "webp",
+            "upgrades": 10,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_shoes": {
+            "name": "Pensalir Mage Boots",
+            "override_image": "PensalirBoots",
+            "level": 140,
+            "class": "weapon",
+            "type": "shoes",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "int": 11,
+                "luk": 10,
+                "matt": 1,
+                "def": 50,
+                "speed": 5
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 428,
+                "luk": 0
+            },
+            "img": "item-pensalirmageboots",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_gloves": {
+            "name": "Pensalir Mage Gloves",
+            "override_image": "PensalirGloves",
+            "level": 140,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "int": 11,
+                "luk": 11,
+                "hp": 200,
+                "matt": 2,
+                "def": 40
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 428,
+                "luk": 0
+            },
+            "img": "item-pensalirmagegloves",
+            "img_type": "webp",
+            "upgrades": 6,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_cape": {
+            "name": "Pensalir Mage Cape",
+            "override_image": "PensalirCape",
+            "level": 140,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 4,
+                "dex": 4,
+                "int": 4,
+                "luk": 4,
+                "def": 150,
+                "jump": 4
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirmagecape",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_shining_rod": {
+            "name": "Utgard Shining Rod",
+            "level": 140,
+            "class": "weapon",
+            "type": "shining rod",
+            "speed": "normal",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 93,
+                "matt": 153
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 415,
+                "luk": 0
+            },
+            "img": "item-utgardshiningrod",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_scepter": {
+            "name": "Utgard Shining Stick",
+            "level": 140,
+            "class": "weapon",
+            "type": "scepter",
+            "speed": "normal",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 93,
+                "matt": 153
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 415,
+                "luk": 0
+            },
+            "img": "item-utgardshiningstick",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_psy_limiter": {
+            "name": "Utgard Psy-limiter",
+            "level": 140,
+            "class": "weapon",
+            "type": "psy-limiter",
+            "speed": "normal",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 93,
+                "matt": 153
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 415,
+                "luk": 0
+            },
+            "img": "item-utgardpsy-limiter",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_lucent_gauntlet": {
+            "name": "Utgard Lucent Gauntlet",
+            "level": 140,
+            "class": "weapon",
+            "type": "lucent gauntlet",
+            "speed": "normal",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 93,
+                "matt": 153
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 415,
+                "luk": 0
+            },
+            "img": "item-utgardlucentgauntlet",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_wand": {
+            "name": "Utgard Wand",
+            "level": 140,
+            "class": "weapon",
+            "type": "wand",
+            "speed": "normal",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 93,
+                "matt": 153
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 415,
+                "luk": 0
+            },
+            "img": "item-utgardwand",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_staff": {
+            "name": "Utgard Staff",
+            "level": 140,
+            "class": "weapon",
+            "type": "staff",
+            "speed": "slow",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 98,
+                "matt": 155
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 423,
+                "luk": 0
+            },
+            "img": "item-utgardstaff",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "magician_fan": {
+            "name": "Utgard Fan",
+            "level": 140,
+            "class": "weapon",
+            "type": "fan",
+            "speed": "fast",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 93,
+                "matt": 115
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 415,
+                "luk": 0
+            },
+            "img": "item-utgardfan",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "bowman_hat": {
+            "name": "Pensalir Sentinel Cap",
+            "level": 140,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 15,
+                "dex": 16,
+                "hp": 150,
+                "mp": 150,
+                "def": 165
+            },
+            "req": {
+                "str": 0,
+                "dex": 430,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirsentinelcap",
+            "img_type": "webp",
+            "upgrades": 11,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "bowman_overall": {
+            "name": "Pensalir Sentinel Suit",
+            "level": 140,
+            "class": "armor",
+            "type": "overall",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 18,
+                "dex": 20,
+                "watt": 1,
+                "def": 180
+            },
+            "req": {
+                "str": 0,
+                "dex": 430,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirsentinelsuit",
+            "img_type": "webp",
+            "upgrades": 10,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "bowman_shoes": {
+            "name": "Pensalir Sentinel Boots",
+            "override_image": "PensalirBoots",
+            "level": 140,
+            "class": "weapon",
+            "type": "shoes",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 9,
+                "dex": 10,
+                "watt": 1,
+                "def": 80,
+                "speed": 5
+            },
+            "req": {
+                "str": 0,
+                "dex": 430,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirsentinelboots",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "bowman_gloves": {
+            "name": "Pensalir Sentinel Gloves",
+            "override_image": "PensalirGloves",
+            "level": 140,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 10,
+                "dex": 11,
+                "hp": 200,
+                "watt": 2,
+                "def": 50
+            },
+            "req": {
+                "str": 0,
+                "dex": 390,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirsentinelgloves",
+            "img_type": "webp",
+            "upgrades": 6,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "bowman_cape": {
+            "name": "Pensalir Sentinel Cape",
+            "override_image": "PensalirCape",
+            "level": 140,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 4,
+                "dex": 4,
+                "int": 4,
+                "luk": 4,
+                "def": 150,
+                "jump": 4
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirsentinelcape",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "bowman_whispershot": {
+            "name": "Utgard Whispershot",
+            "level": 140,
+            "class": "weapon",
+            "type": "whispershot",
+            "speed": "fast",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 115,
+                "speed": 14
+            },
+            "req": {
+                "str": 0,
+                "dex": 345,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardwhispershot",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "bowman_bow": {
+            "name": "Utgard Bow",
+            "level": 140,
+            "class": "weapon",
+            "type": "bow",
+            "speed": "normal",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 115,
+                "speed": 14,
+                "knockback": 0.75
+            },
+            "req": {
+                "str": 0,
+                "dex": 345,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardbow",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "bowman_crossbow": {
+            "name": "Utgard Crossbow",
+            "level": 140,
+            "class": "weapon",
+            "type": "crossbow",
+            "speed": "normal",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 118,
+                "speed": 14,
+                "knockback": 0.68
+            },
+            "req": {
+                "str": 0,
+                "dex": 390,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardcrossbow",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "bowman_dual_bowguns": {
+            "name": "Utgard Dual Bowguns",
+            "level": 140,
+            "class": "weapon",
+            "type": "dual bowguns",
+            "speed": "normal",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 115,
+                "speed": 14
+            },
+            "req": {
+                "str": 0,
+                "dex": 345,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgarddualbowguns",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "bowman_ancient_bow": {
+            "name": "Utgard Ancient Bow",
+            "level": 140,
+            "class": "weapon",
+            "type": "ancient bow",
+            "speed": "normal",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 115,
+                "speed": 14,
+                "knockback": 0.75
+            },
+            "req": {
+                "str": 0,
+                "dex": 345,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardancientbow",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_hat": {
+            "name": "Pensalir Chaser Hat",
+            "level": 140,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "dex": 15,
+                "luk": 15,
+                "hp": 150,
+                "mp": 150,
+                "def": 165
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 340
+            },
+            "img": "item-pensalirchaserhat",
+            "img_type": "webp",
+            "upgrades": 11,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_overall": {
+            "name": "Pensalir Chaser Armor",
+            "level": 140,
+            "class": "armor",
+            "type": "overall",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "dex": 18,
+                "luk": 20,
+                "watt": 1,
+                "def": 180
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 340
+            },
+            "img": "item-pensalirchaserarmor",
+            "img_type": "webp",
+            "upgrades": 10,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_shoes": {
+            "name": "Pensalir Chaser Boots",
+            "override_image": "PensalirBoots",
+            "level": 140,
+            "class": "weapon",
+            "type": "shoes",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "dex": 9,
+                "luk": 10,
+                "watt": 1,
+                "def": 80,
+                "speed": 5
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 340
+            },
+            "img": "item-pensalirchaserboots",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_gloves": {
+            "name": "Pensalir Chaser Gloves",
+            "override_image": "PensalirGloves",
+            "level": 140,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "dex": 11,
+                "luk": 11,
+                "hp": 200,
+                "watt": 2,
+                "def": 50
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 340
+            },
+            "img": "item-pensalirchasergloves",
+            "img_type": "webp",
+            "upgrades": 6,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_cape": {
+            "name": "Pensalir Chaser Cape",
+            "override_image": "PensalirCape",
+            "level": 140,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 4,
+                "dex": 4,
+                "int": 4,
+                "luk": 4,
+                "def": 150,
+                "jump": 4
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirchasercape",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_whip_blade": {
+            "name": "Utgard Energy Chain",
+            "alt_name": "Utgard Energy Chain (Thief)",
+            "override_image": "UtgardEnergyChain",
+            "level": 140,
+            "class": "weapon",
+            "type": "whip blade",
+            "speed": "fast",
+            "job": ["thief", "pirate"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 90
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardenergychain",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_chain": {
+            "name": "Utgard Chain",
+            "level": 140,
+            "class": "weapon",
+            "type": "chain",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 115
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardchain",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_ritual_fan": {
+            "name": "Utgard Giant Ritual Fan",
+            "level": 140,
+            "class": "weapon",
+            "type": "ritual fan",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 115
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardgiantritualfan",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_dagger": {
+            "name": "Utgard Dagger",
+            "level": 140,
+            "class": "weapon",
+            "type": "dagger",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 115
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgarddagger",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_cane": {
+            "name": "Utgard Cane",
+            "level": 140,
+            "class": "weapon",
+            "type": "cane",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 118
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "item-utgardcane",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_claw": {
+            "name": "Utgard Guards",
+            "level": 140,
+            "class": "weapon",
+            "type": "claw",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "luk": 10,
+                "watt": 62
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 410
+            },
+            "img": "item-utgardguards",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "pirate_hat": {
+            "name": "Pensalir Skipper Hat",
+            "level": 140,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 15,
+                "dex": 15,
+                "hp": 150,
+                "mp": 150,
+                "def": 165
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirskipperhat",
+            "img_type": "webp",
+            "upgrades": 11,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "pirate_overall": {
+            "name": "Pensalir Skipper Coat",
+            "level": 140,
+            "class": "armor",
+            "type": "overall",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 20,
+                "dex": 20,
+                "watt": 1,
+                "def": 180
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirskippercoat",
+            "img_type": "webp",
+            "upgrades": 10,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "pirate_shoes": {
+            "name": "Pensalir Skipper Boots",
+            "override_image": "PensalirBoots",
+            "level": 140,
+            "class": "weapon",
+            "type": "shoes",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 10,
+                "dex": 10,
+                "watt": 1,
+                "def": 80,
+                "speed": 5
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirskipperboots",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "pirate_gloves": {
+            "name": "Pensalir Skipper Gloves",
+            "override_image": "PensalirGloves",
+            "level": 140,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 11,
+                "dex": 11,
+                "hp": 200,
+                "watt": 2,
+                "def": 50
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirskippergloves",
+            "img_type": "webp",
+            "upgrades": 6,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "pirate_cape": {
+            "name": "Pensalir Skipper Cape",
+            "override_image": "PensalirCape",
+            "level": 140,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 4,
+                "dex": 4,
+                "int": 4,
+                "luk": 4,
+                "def": 150,
+                "jump": 4
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-pensalirskippercape",
+            "img_type": "webp",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "pirate_soul_shooter": {
+            "name": "Utgard Dragon Soul",
+            "level": 140,
+            "class": "weapon",
+            "type": "soul shooter",
+            "speed": "fast",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 92
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgarddragonsoul",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "pirate_whip_blade": {
+            "name": "Utgard Energy Chain",
+            "alt_name": "Utgard Energy Chain (Pirate)",
+            "override_image": "UtgardEnergyChain",
+            "level": 140,
+            "class": "weapon",
+            "type": "whip blade",
+            "speed": "fast",
+            "job": ["thief", "pirate"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 90
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardenergychain",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "pirate_knuckle": {
+            "name": "Utgard Claw",
+            "level": 140,
+            "class": "weapon",
+            "type": "knuckle",
+            "speed": "fast",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 90
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardclaw",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "pirate_gun": {
+            "name": "Utgard Pistol",
+            "level": 140,
+            "class": "weapon",
+            "type": "gun",
+            "speed": "fast",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 90
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardpistol",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "pirate_hand_cannon": {
+            "name": "Utgard Siege Gun",
+            "level": 140,
+            "class": "weapon",
+            "type": "hand cannon",
+            "speed": "slow",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 122,
+                "def": 140
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardsiegegun",
+            "img_type": "webp",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        }
+    },
     absolab: {
         thief_boots: {
             name: "AbsoLab Bandit Shoes",

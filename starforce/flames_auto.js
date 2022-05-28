@@ -1,0 +1,358 @@
+$(function(){
+    let w_f = {terminate:()=>{}}; //worker
+    const lines_1 = [
+        {
+            name: "STR",
+            type: "str",
+            tier: 1
+        },
+        {
+            name: "DEX",
+            type: "dex",
+            tier: 1
+        },
+        {
+            name: "INT",
+            type: "int",
+            tier: 1
+        },
+        {
+            name: "LUK",
+            type: "luk",
+            tier: 1
+        },
+        {
+            name: "STR,DEX",
+            type: "str,dex",
+            tier: 2
+        },
+        {
+            name: "STR,INT",
+            type: "str,int",
+            tier: 2
+        },
+        {
+            name: "STR,LUK",
+            type: "str,luk",
+            tier: 2
+        },
+        {
+            name: "DEX,INT",
+            type: "dex,int",
+            tier: 2
+        },
+        {
+            name: "INT,LUK",
+            type: "int,luk",
+            tier: 2
+        },
+        {
+            name: "All Stats",
+            type: "all_stat",
+            tier: 1,
+            value: "%"
+        }
+    ];
+
+    const lines_2 = [
+        {
+            name: "Attack Power",
+            type: "watt",
+            tier: 1,
+            for: 2
+        },
+        {
+            name: "Magic Attack",
+            type: "matt",
+            tier: 1,
+            for: 2
+        },
+        {
+            name: "Damage",
+            type: "damage",
+            tier: 1,
+            for: 2,
+            value: "%"
+        },
+        {
+            name: "Boss Damage",
+            type: "boss_damage",
+            tier: 1,
+            for: 2,
+            value: "%"
+        },
+        {
+            name: "Req Level",
+            type: "reqlevel",
+            tier: 1,
+            value: "-"
+        },
+        {
+            name: "Max HP",
+            type: "hp",
+            tier: 1
+        },
+        {
+            name: "Max MP",
+            type: "mp",
+            tier: 1
+        },
+        {
+            name: "DEF",
+            type: "def",
+            tier: 1
+        },
+        {
+            name: "Jump",
+            type: "jump",
+            tier: 1
+        },
+        {
+            name: "Speed",
+            type: "Speed",
+            tier: 1
+        }
+    ];
+
+    let optionbox = $("#option_box").dialog({
+        autoOpen: false,
+        modal: false
+    });
+
+    $("#auto_flames").on("click", function() {
+        generate_flame_html(2);
+    });
+
+    var generate_flame_html = function(flame_type) {
+        let min_flames = 1;
+        let max_flames = 5;
+
+        /* red flames can't get tier 5 stats */
+        if (flame_type === 1) {
+            max_flames = 4;
+        } else if (flame_type === 2) {
+            min_flames = 2; /* rainbow flames can't get tier 1 stats */
+        }
+
+        if (Item.idata.flame_type === 2) {
+            min_flames += 2;
+            max_flames += 2;
+        }
+
+        const lines_generater = (a,b)=>{
+            a += `
+                <span class="flame-box ${b.for != null && b.for === 2 ? "item-weapon" : ""} item-armor ${b.tier == 1 ? "item-custom-flame" : ""}">
+                    <span class="item-flame-label">${b.name}</span> 
+                    <select class="flame-search" data-for="${b.type}" id="auto_flame_${b.type}_search">
+                        <option value="1">>=</option>
+                        <option value="0">=</option>
+                    </select>
+                    <input type="number" class="flame-form" min="0" max="7" value="0" data-id="${b.type}" ${
+                        b.value != null ? `data-type="${b.value}"` : ""
+                    }/>
+                    ${
+                        b.value === "%" ? `
+                            <span class="flame-percent hidden">%</span>
+                        ` : ""
+                    }
+                </span>
+            `;
+
+            return a;
+        };
+
+        let html = `
+            <b>Automatically flame to the desired lines. This will generate flame log data.</b>
+            <hr>
+            <div class="item-form auto_flame_container" id="auto_flame_container" style="min-height:375px;">
+                <div class="item-form">
+                    <span class="item-label">
+                        <b>Select Flame</b>
+                    </span><br>
+                    <div class="flame flame-powerful flame-small maple-button auto-flame-flame ${flame_type === 1 ? "auto-cube-selected" : ""}" style="padding:5px" data-val="1"></div>
+                    <div class="flame flame-eternal flame-small maple-button auto-flame-flame ${flame_type === 2 ? "auto-cube-selected" : ""}" style="padding:5px" data-val="2"></div>
+                    <hr>
+                    <span class="item-label">
+                        <b>Flames</b>
+                    </span>
+                    <hr>                
+                        <label for="auto_flame_as_tier" style="margin-right:10px">
+                            <input type="checkbox" id="auto_flame_as_tier" checked> Value is Flame Tiers
+                        </label>
+                    <hr>
+                    <label style="font-size:0.9em">
+                        ${
+                            Item.idata.flame_type == 2 ? `Select up to 4 flame tiers between ${min_flames} and ${max_flames}` : `Select up to 4 flame tiers between 1 and 5`
+                        }, or input custom flame tier values. 
+                        <br><br>For tiers, you can have the auto flame process either only get flames exactly equal to the tier, or greater than or equal to the tier.
+                        <br><br>For custom values, it will always search as greater than or equal to. <br>
+                        <span style="color:red">WARNING: There is no validation for custom values, so if you give impossible stats for the eternal or powerful flames to attain, the process will run forever.</span>
+                    </label>
+                    <hr>
+                    <div class="item-flame-form">
+                        ${
+                            lines_1.reduce(lines_generater, "")
+                        }
+                    </div>
+                    <div class="item-flame-form">
+                        ${
+                            lines_2.reduce(lines_generater, "")
+                        }
+                    </div>
+                </div>
+            </div>
+            <span id="flame_msg" style="color:red"></span>
+        `;
+
+        optionbox.html(html).dialog({
+            title: "Auto Flames",
+            width: 1000,
+            height: "auto",
+            close: ()=>{
+                w_f.terminate();
+            },
+            buttons: [{
+                text: "Close",
+                click: function() {
+                    $(this).dialog("close");
+                }
+            }, {
+                text: "Begin Flaming",
+                id: "btnBeginFlame",
+                click: function() {
+                    let btn = $("#btnBeginFlame");
+
+                    btn.prop("disabled", true);
+                    btn.html("Processing flaming...");
+
+                    process_auto_flame(min_flames, max_flames);
+                }
+            }]
+        }).dialog("open");
+
+        /* if armor, hide the flame types that armor cannot get */
+        let weapon_flames = $("#auto_flame_container .item-weapon:not(.item-armor)");
+        if (Item.idata.class !== "weapon") {
+            weapon_flames.addClass("hidden");
+        } else {
+            weapon_flames.removeClass("hidden");
+        }
+
+        /* change to custom flames */
+        let flame_box = $("#auto_flame_container .flame-box");
+        let flame_search = $("#auto_flame_container .flame-search");
+        let flame_textbox = $("#auto_flame_container .flame-form");
+        let flame_percent = $("#auto_flame_container .flame-percent");
+
+        $("#auto_flame_as_tier").on("change", function(e) {
+            if (e.target.checked) {
+                flame_textbox.attr("max", max_flames);
+                flame_percent.addClass("hidden");
+                flame_search.removeClass("hidden");
+
+                flame_box.filter(":not(.item-custom-flame)").removeClass("hidden");
+            } else {
+                flame_textbox.removeAttr("max");
+                flame_percent.removeClass("hidden");
+                flame_search.addClass("hidden");
+
+                flame_box.filter(":not(.item-custom-flame)").addClass("hidden");
+            }
+
+            flame_textbox.val(0);
+        });
+
+        let auto_flame_flames = $("#auto_flame_container .auto-flame-flame");
+        auto_flame_flames.on("click", function() {
+            auto_flame_flames.removeClass("auto-cube-selected");
+            let _this = $(this);
+            _this.addClass("auto-cube-selected");
+            let id = +_this.attr("data-val");
+
+            generate_flame_html(id);
+
+            sfa.play("_BtMouseClick"); /*got overwritten*/
+        });
+    }
+    
+    var process_auto_flame = function(min_flames, max_flames) {
+        /* validation */
+        let flames_out_of_bounds = false;
+
+        /* get flame values and the type */
+        var data = {
+            item: Item,
+            flame_options: {},
+            flame_options_search: {},
+            is_tier: $("#auto_flame_as_tier").prop("checked"),
+            max_flames: max_flames,
+            flame: +$("#auto_flame_container .auto-flame-flame.auto-cube-selected").attr("data-val") /* powerful or eternal flame */
+        }
+        
+        /* get non-zero flame values */
+        let flames = $("#auto_flame_container .flame-form").filter(function() {
+            let fval =  +$(this).val();
+
+            if (fval !== 0 && (fval > max_flames || fval < min_flames)) {
+                flames_out_of_bounds = true;
+            }
+
+            return fval > 0;
+        });
+
+        if (flames.length === 0) {
+            return alert("No flames have been selected.");
+        }
+
+        if (data.is_tier) {
+            if (flames.length > 4) {
+                return alert("Please limit flame lines to 4 or less.");
+            }
+            if (flames_out_of_bounds) {
+                return alert(`Flame values must be between ${min_flames} and ${max_flames}`);
+            }
+        }
+
+        //set up flame data to send to flame function
+        flames.each(function() {
+            let _this = $(this);
+            let this_attr = _this.attr("data-id");
+            let type = _this.attr("data-type") || "";
+            let val = +_this.val() || 0;
+            let equal_type = data.is_tier ? $(`#auto_flame_${this_attr}_search`).val() : "1"; /* search type is always greater than or equal to for non-tier values */
+
+            if (data.is_tier && (["str", "dex", "int", "luk"].includes(this_attr) || this_attr.includes(","))) {
+                this_attr = "stats:" + this_attr;
+            } else if (!data.is_tier) {
+                if (type === "%") {
+                    val = val / 100;
+                } else if (type === "-") {
+                    val = Math.abs(val) * -1;
+                }
+            }
+
+            data.flame_options[this_attr] = val;
+            data.flame_options_search[this_attr] = equal_type;
+        });
+
+        w_f = new Worker("./starforce/worker_flames.js");
+            
+        w_f.postMessage(data);
+
+        let flame_msg = $("#flame_msg");
+        w_f.onmessage = function(d) {
+                //worker is sending updates about how many cubes are used. used for long-running cubing
+                if (d.data.code == 16) {
+                flame_msg.html(d.data.message);
+                return false;
+            }
+
+            Item.idata.meta.flames_meta_data.push(...d.data.data.flame_log);
+            Item.idata.meta.flames_total = d.data.data.flame_used;
+            Item.idata.boosts.flames = d.data.data.flame_stats;
+
+            Item.redraw_item_tooltip();
+            optionbox.dialog("close");
+        };
+    };
+});

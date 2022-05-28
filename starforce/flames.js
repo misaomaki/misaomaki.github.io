@@ -423,6 +423,16 @@ item.prototype.reverse_flame_lookup = function() {
         return is_match;
     };
 
+    let end_val = "6";
+    let over_val = 7;
+    let add_val = 3;
+
+    if (Item.idata.flame_type === 1) {
+        end_val = "4";
+        over_val = 5;
+        add_val = 5;
+    }
+
     //check all permutations of stats from the passed flame stat types
     let flame_permutator = function(st, stc) {
         //get base initialization of the item's flame stats
@@ -441,22 +451,23 @@ item.prototype.reverse_flame_lookup = function() {
             dont go that high. the code checks: 000, 001, ..., 101, 
             102, 103, 104, 105, 106, 110, 111, ..., 165, 166, 200,
             ..., 666
+
+            for non-boss flames, do -2 from the tiers
         */
        let p_start = 0;
        let stc_l = st.length;
-       let p_end = +("6".repeat(stc_l));
+
+       let p_end = +(end_val.repeat(stc_l));
         for (let i = p_start; i <= p_end; ++i ) {
             let _i = 0;
 
-            //skip numbers containing 7, 8, 9
-            if (i % 10 === 7) {
-                i += 3;
-            } 
-            if (i % 100 === 70) {
-                i += 30;
-            }
-            if (i % 1000 === 700) {
-                i += 300;
+            //skip numbers containing 7, 8, 9 for boss and 5, 6, 7, 8, 9 for non-boss
+            if (i % 10 === over_val) {
+                i += add_val;
+            } else if (i % 100 === over_val * 10) {
+                i += add_val * 10;
+            } else if (i % 1000 === over_val * 100) {
+                i += add_val * 100;
             }
 
             _i = (i + "");
@@ -749,7 +760,12 @@ var flames = {
         get the flame tiers to apply to an item
         this = item object
     */
-    apply: function(flame) {
+    apply: function(flame, o) {
+        o = Object.assign({
+            update_dom: true,
+            idx: -1 /* for processes that dump data, idx has to be tallied from an outside process and cannot use the meta log length */
+        }, o);
+
         if  (this.idata.flame_type === 0) return false;
 
         let tr = flames.tier_rates(flame);
@@ -793,7 +809,7 @@ var flames = {
             tiers: {},
             stats: {},
             flame_type: flame,
-            run: this.idata.meta.flames_meta_data.length + 1,
+            run: o.idx === -1 ? this.idata.meta.flames_meta_data.length + 1 : o.idx,
             flame_list: avail_flames.concat(),
             num_lines: lr,
             num_lines_map: lr_log
@@ -833,7 +849,9 @@ var flames = {
         /* log run */
         this.idata.meta.flames_meta_data.unshift(flames_log);
         
-        this.redraw_item_tooltip();
+        if (o.update_dom) {
+            this.redraw_item_tooltip();
+        }
     }
 };
 
@@ -850,10 +868,44 @@ $(function(){
         flames.apply.call(Item, 2);
     });
 
-    /* open up flames log */
-    let get_flames_html = function() {
-        let flames = Item.idata.meta.flames_meta_data;
+    let flame_log_default = {
+        start: 0,
+        end: 25
+    };
+    let flame_log_start = flame_log_default.start;
+    let flame_log_end = flame_log_default.end;
+    let flame_log_step = 25;
 
+    let reset_flame_log_vars = function() {
+        flame_log_default = {
+            start: 0,
+            end: 25
+        };
+        flame_log_start = flame_log_default.start;
+        flame_log_end = flame_log_default.end;
+        flame_log_step = 25;
+    }
+
+    let flame_show_more = function(initial) {
+        if (!initial) {
+            let this_step = flame_log_step;
+
+            flame_log_start += flame_log_start + this_step;
+            flame_log_end += flame_log_end + this_step;
+        }
+
+        let this_log = Item.idata.meta.flames_meta_data.slice(flame_log_start, flame_log_end);
+
+        if (this_log.length === 0) {
+            return false;
+        }
+
+        let t_body = get_flame_rows(this_log);
+
+        $("#flames_body").append(t_body);
+    }
+
+    let get_flame_rows = function(flames) {
         let t_body = flames.reduce((a,b)=>{
             a += `
                 <tr data-id="${b.run}" class="flame-data-row">
@@ -914,6 +966,11 @@ $(function(){
             return a;
         },"");
 
+        return t_body;
+    };
+
+    /* open up flames log */
+    let get_flames_html = function() {
         let html = `
             <div id="flames_total">
                 <div class="flame flame-powerful flame-small"></div> x${Item.idata.meta.flames_total["1"]}
@@ -940,7 +997,6 @@ $(function(){
                         </tr>
                     </thead>
                     <tbody id="flames_body">
-                        ${t_body}
                     </tbody>
                     <tfoot>
                         <tr>
@@ -958,6 +1014,7 @@ $(function(){
 
     $("#flames_log").on("click", function() {
         let option_box = $("#option_box");
+        reset_flame_log_vars();
 
         let html = get_flames_html();
 
@@ -981,6 +1038,18 @@ $(function(){
                 }
             }]
         }).dialog("open");
+
+        flame_show_more(true);
+
+        /* infinite scroller */
+        let scroller = new IntersectionObserver((e)=>{
+            if (e[0].intersectionRatio <= 0) return;
+
+            flame_show_more(false);
+        });
+        let scroll_watcher = document.querySelector("#infinite_scroller_down");
+
+        scroller.observe(scroll_watcher);
 
         let flame_prn = $("#flames_log_rng_map");
         let flame_container = $("#flames_log_information");

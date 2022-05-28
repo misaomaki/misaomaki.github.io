@@ -210,6 +210,10 @@ body, html {
     }
 }
 
+.maple-button {
+    cursor: pointer;
+}
+
 .maki {
     position:fixed;
     height: 146px;

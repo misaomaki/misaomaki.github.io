@@ -134,8 +134,8 @@ onmessage = function(o) {
 
             //let user know the page didn't freeze and the process is still running
             if (idx !== 1 && idx % 1000 === 0) {
-                let return_message = `Cubing process is still running. ${idx} cubes have been used... <br><br> Every 5000 records, data is dumped to prevent browser crash.`;
-                if (idx % 5000 === 0) {
+                let return_message = `Cubing process is still running. ${idx} cubes have been used... <br><br> Every 20000 records, data is dumped to prevent browser crash.`;
+                if (idx % 20000 === 0) {
                     d.item.idata.meta.cube_meta_data = [d.item.idata.meta.cube_meta_data[1]];
                 }
 

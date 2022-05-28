@@ -2196,6 +2196,10 @@ $(function() {
 
                     Item.set_item_scroll(scroll_options);
 
+                    Item.set_meta_options({
+                        nebulite_compensation: $("#item_neb_comp").prop("checked")
+                    });
+
                     //set cube stuff
                     let cube_main_pot = cube_select_main.val();
                     if (cube_main_pot !== "") {
@@ -2208,10 +2212,6 @@ $(function() {
                         Item.set_cube("main", cube_main_pot, cube_main_pot_stats);
                     }
 
-                    Item.set_meta_options({
-                        nebulite_compensation: $("#item_neb_comp").prop("checked")
-                    });
-
                     let cube_bonus_pot = cube_select_bonus.val();
                     if (cube_bonus_pot !== "") {
                         let cube_bonus_pot_stats = {
@@ -2223,10 +2223,6 @@ $(function() {
                         Item.set_cube("bonus", cube_bonus_pot, cube_bonus_pot_stats);
                     }
 
-                    Item.set_meta_options({
-                        nebulite_compensation: $("#item_neb_comp").prop("checked")
-                    });
-
                     //add the image to the cube windows
                     $(".cube-item").attr("class", "cube-item").addClass(Item.idata.img);
 
@@ -2235,6 +2231,7 @@ $(function() {
                     } else {
                         Item.set_item_flame(flame_options);
                     }
+                    
                     let sys_sfrates = $("#system_sfrates");
 
                     Item.set_meta_options({

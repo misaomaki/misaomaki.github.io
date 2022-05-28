@@ -1,5 +1,9 @@
 var item = function(it) {
-    this.idata = $.extend(true, {}, it);
+    if (structuredClone != null) {
+        this.idata = structuredClone(it);
+    } else {
+        this.idata = JSON.parse(JSON.stringify(it));
+    }
 };
 
 item.prototype.cache = {
