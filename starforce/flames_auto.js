@@ -150,7 +150,7 @@ $(function(){
                         <option value="1">>=</option>
                         <option value="0">=</option>
                     </select>
-                    <input type="number" class="flame-form" min="0" max="7" value="0" data-id="${b.type}" ${
+                    <input type="number" class="flame-form" min="0" max="${max_flames}" value="0" data-id="${b.type}" ${
                         b.value != null ? `data-type="${b.value}"` : ""
                     }/>
                     ${
@@ -184,9 +184,7 @@ $(function(){
                         </label>
                     <hr>
                     <label style="font-size:0.9em">
-                        ${
-                            Item.idata.flame_type == 2 ? `Select up to 4 flame tiers between ${min_flames} and ${max_flames}` : `Select up to 4 flame tiers between 1 and 5`
-                        }, or input custom flame tier values. 
+                        Select up to 4 flame tiers between ${min_flames} and ${max_flames}, or input custom flame tier values. 
                         <br><br>For tiers, you can have the auto flame process either only get flames exactly equal to the tier, or greater than or equal to the tier.
                         <br><br>For custom values, it will always search as greater than or equal to. <br>
                         <span style="color:red">WARNING: There is no validation for custom values, so if you give impossible stats for the eternal or powerful flames to attain, the process will run forever.</span>
@@ -228,7 +226,12 @@ $(function(){
                     btn.prop("disabled", true);
                     btn.html("Processing flaming...");
 
-                    process_auto_flame(min_flames, max_flames);
+                    var f = process_auto_flame(min_flames, max_flames);
+
+                    if (!f) {
+                        btn.prop("disabled", false);
+                        btn.html("Begin Flaming");
+                    }
                 }
             }]
         }).dialog("open");
@@ -296,15 +299,18 @@ $(function(){
         });
 
         if (flames.length === 0) {
-            return alert("No flames have been selected.");
+             alert("No flames have been selected.");
+             return false;
         }
 
         if (data.is_tier) {
             if (flames.length > 4) {
-                return alert("Please limit flame lines to 4 or less.");
+                alert("Please limit flame lines to 4 or less.");
+                return false;
             }
             if (flames_out_of_bounds) {
-                return alert(`Flame values must be between ${min_flames} and ${max_flames}`);
+                alert(`Flame values must be between ${min_flames} and ${max_flames}`);
+                return false;
             }
         }
 
@@ -336,8 +342,8 @@ $(function(){
 
         let flame_msg = $("#flame_msg");
         w_f.onmessage = function(d) {
-                //worker is sending updates about how many cubes are used. used for long-running cubing
-                if (d.data.code == 16) {
+            //worker is sending updates about how many flames are used. used for long-running flaming
+            if (d.data.code == 16) {
                 flame_msg.html(d.data.message);
                 return false;
             }
