@@ -58,20 +58,18 @@ $(function(){
         {
             name: "Attack Power",
             type: "watt",
-            tier: 1,
-            for: 2
+            tier: 1
         },
         {
             name: "Magic Attack",
             type: "matt",
-            tier: 1,
-            for: 2
+            tier: 1
         },
         {
             name: "Damage",
             type: "damage",
             tier: 1,
-            for: 2,
+            for: 2, /* weapon only */
             value: "%"
         },
         {
@@ -140,8 +138,13 @@ $(function(){
         }
 
         const lines_generater = (a,b)=>{
+            /* skip weapon-specific lines if not a weapon */
+            if (b.for != null && b.for === 2 && Item.idata.class === "armor") {
+                return a;
+            }
+
             a += `
-                <span class="flame-box ${b.for != null && b.for === 2 ? "item-weapon" : ""} item-armor ${b.tier == 1 ? "item-custom-flame" : ""}">
+                <span class="flame-box item-armor ${b.tier == 1 ? "item-custom-flame" : ""}">
                     <span class="item-flame-label">${b.name}</span> 
                     <select class="flame-search" data-for="${b.type}" id="auto_flame_${b.type}_search">
                         <option value="1">>=</option>
@@ -229,14 +232,6 @@ $(function(){
                 }
             }]
         }).dialog("open");
-
-        /* if armor, hide the flame types that armor cannot get */
-        let weapon_flames = $("#auto_flame_container .item-weapon:not(.item-armor)");
-        if (Item.idata.class !== "weapon") {
-            weapon_flames.addClass("hidden");
-        } else {
-            weapon_flames.removeClass("hidden");
-        }
 
         /* change to custom flames */
         let flame_box = $("#auto_flame_container .flame-box");
