@@ -2,6 +2,11 @@ $(function(){
     let w_f = {terminate:()=>{}}; //worker
     const lines_1 = [
         {
+            name: "Any Stat",
+            type: "any_stat",
+            tier: 3  /* 1 - tiers and custom, 2 - tiers only, 3 - custom only */
+        },
+        {
             name: "STR",
             type: "str",
             tier: 1
@@ -144,7 +149,7 @@ $(function(){
             }
 
             a += `
-                <span class="flame-box item-armor ${b.tier == 1 ? "item-custom-flame" : ""}">
+                <span class="flame-box item-armor ${b.tier == 1 ? "item-custom-flame" : ""}  ${b.tier == 3 ? "item-custom-only hidden" : ""}">
                     <span class="item-flame-label">${b.name}</span> 
                     <select class="flame-search" data-for="${b.type}" id="auto_flame_${b.type}_search">
                         <option value="1">>=</option>
@@ -249,12 +254,14 @@ $(function(){
                 flame_search.removeClass("hidden");
 
                 flame_box.filter(":not(.item-custom-flame)").removeClass("hidden");
+                flame_box.filter(".item-custom-only").addClass("hidden");
             } else {
                 flame_textbox.removeAttr("max");
                 flame_percent.removeClass("hidden");
                 flame_search.addClass("hidden");
 
                 flame_box.filter(":not(.item-custom-flame)").addClass("hidden");
+                flame_box.filter(".item-custom-only").removeClass("hidden");
             }
 
             flame_textbox.val(0);

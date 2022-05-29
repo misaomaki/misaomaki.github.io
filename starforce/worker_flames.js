@@ -32,12 +32,27 @@ var compare_flames_tier = function(item_flame, desired_flame, desired_flame_sear
 /*
     compare flame stats against tier stats
 */
+var all_stat = ["str", "dex", "int", "luk"];
 var compare_flames_stats = function(item_flame, desired_flame) {
     for (let i in desired_flame) {
-        if (item_flame[i] == null ) {
-            return false;
-        } else { 
-            if (item_flame[i] < desired_flame[i]) {
+        if (i !== "any_stat") {
+            if (item_flame[i] == null) {
+                return false;
+            } else { 
+                if (i !== "any_stat" && item_flame[i] < desired_flame[i]) {
+                    return false;
+                }
+            }
+        } else {
+            let any_greater = false;
+            for (let j = 0; j < all_stat.length; ++j) {
+                if (item_flame[all_stat[j]] >= desired_flame.any_stat) {
+                    any_greater = true;
+                    break;
+                }
+            }
+
+            if (!any_greater) {
                 return false;
             }
         }

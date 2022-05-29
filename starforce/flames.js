@@ -464,9 +464,11 @@ item.prototype.reverse_flame_lookup = function() {
             //skip numbers containing 7, 8, 9 for boss and 5, 6, 7, 8, 9 for non-boss
             if (i % 10 === over_val) {
                 i += add_val;
-            } else if (i % 100 === over_val * 10) {
+            } 
+            if (i % 100 === over_val * 10) {
                 i += add_val * 10;
-            } else if (i % 1000 === over_val * 100) {
+            } 
+            if (i % 1000 === over_val * 100) {
                 i += add_val * 100;
             }
 
