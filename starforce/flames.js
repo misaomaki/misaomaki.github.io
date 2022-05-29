@@ -1011,12 +1011,31 @@ $(function(){
 
         return html;
     };
+    
+    let flame_prn = "";
+    let flame_container = "";
+    let flame_back_button = "";
+    let option_box = "";
 
     $("#flames_log").on("click", function() {
-        let option_box = $("#option_box");
+        option_box = $("#option_box");
+
         reset_flame_log_vars();
 
         let html = get_flames_html();
+
+        let flame_return_to_main = function() {
+            flame_prn.html("").addClass("hidden");
+            flame_container.removeClass("hidden");
+
+            option_box.dialog({
+                position: {my: "center", at: "top center", of: window},
+                width: "60vw",
+                height: 850
+            });
+
+            flame_back_button.addClass("hidden");
+        };
 
         option_box.html(html).dialog({
             position: {my: "center", at: "top center", of: window},
@@ -1050,177 +1069,164 @@ $(function(){
         let scroll_watcher = document.querySelector("#infinite_scroller_down");
 
         scroller.observe(scroll_watcher);
+    });
 
-        let flame_prn = $("#flames_log_rng_map");
-        let flame_container = $("#flames_log_information");
-        let flame_back_button = $("#btn_flames_back");
+    /* bind events to rows for flame log */
+    /* click flames row to pull up the rng map data */
+    $("body").on("click", ".flame-data-row", function() {
+        let id = +$(this).attr("data-id");
+        let log_item = Item.idata.meta.flames_meta_data.find((a)=>a.run === id);
 
-        let flame_return_to_main = function() {
-            flame_prn.html("").addClass("hidden");
-            flame_container.removeClass("hidden");
+        let log = log_item.tiers;
 
-            option_box.dialog({
-                position: {my: "center", at: "top center", of: window},
-                width: "60vw",
-                height: 850
-            });
+        if (log == undefined) return false;
 
-            flame_back_button.addClass("hidden");
-        };
+        let log_keys = Object.keys(log).sort();
+        let tier_keys = Object.keys(log[log_keys[0]].log_result.random_map);
+        
+        let html = `
+            <h2>
+                Run #${id}, Flame: <div class="flame flame-${log_item.flame_type === 2 ? "eternal" : "powerful"} flame-small"></div>
+            </h2>
+            <hr>
+            ${
+                Item.idata.flame_type === 1 ? `
+                    There is a 20% chance to add a new line to non-boss flame items.
+                    <span style="color:red;font-size:0.9em;">
+                        Note: Was not able to find the probability rates for how additional lines are added
+                        to non-boss flames, so an assumption was made.
+                    </span>
+                    <table style="width:100%">
+                        <thead>
+                            <tr>
+                                <th colspan="4">
+                                    The prng value must be below 0.20 to add an additional line. The first line is always guaranteed.
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Line #1</th>
+                                <th>Line #2</th>
+                                <th>Line #3</th>
+                                <th>Line #4</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span style="color:green">
+                                        Guaranteed
+                                    </span>
+                                </td>
+                                ${
+                                    log_item.num_lines_map.reduce((x,y)=>{
+                                        x += `
+                                            <td>
+                                                <span style="color:${y.apply ? "green": "red"}">
+                                                    ${y.prng}
+                                                </span>
+                                            </td>         
+                                        `;
 
-        /* bind events to rows for flame log */
-        /* click flames row to pull up the rng map data */
-        $(".flame-data-row").on("click", function() {
-            let id = +$(this).attr("data-id");
-            let log_item = Item.idata.meta.flames_meta_data.find((a)=>a.run === id);
+                                        return x;
+                                    }, "")
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                ` : `
+                    Item is a boss flame equip, so there is a 100% chance to add 4 flame lines to the item.
+                `
+            }
+            <hr>
+                Stats are chosen by shuffling the list of possible flame stat types and choosing
+                the first ${log_item.num_lines} line(s). <br>
+                Randomized list of flame lines with chosen lines highlighted in blue: 
+                    <div style="padding:5px;width:100%">${log_item.flame_list.map((a,b)=>{
+                        if (b < log_item.num_lines) {
+                            return `
+                                <span style="color:blue">${a}</span>
+                            `;
+                        }
 
-            let log = log_item.tiers;
-
-            if (log == undefined) return false;
-
-            let log_keys = Object.keys(log).sort();
-            let tier_keys = Object.keys(log[log_keys[0]].log_result.random_map);
-            
-            let html = `
-                <h2>
-                    Run #${id}, Flame: <div class="flame flame-${log_item.flame_type === 2 ? "eternal" : "powerful"} flame-small"></div>
-                </h2>
-                <hr>
-                ${
-                    Item.idata.flame_type === 1 ? `
-                        There is a 20% chance to add a new line to non-boss flame items.
-                        <span style="color:red;font-size:0.9em;">
-                            Note: Was not able to find the probability rates for how additional lines are added
-                            to non-boss flames, so an assumption was made.
-                        </span>
-                        <table style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th colspan="4">
-                                        The prng value must be below 0.20 to add an additional line. The first line is always guaranteed.
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>Line #1</th>
-                                    <th>Line #2</th>
-                                    <th>Line #3</th>
-                                    <th>Line #4</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <span style="color:green">
-                                            Guaranteed
-                                        </span>
-                                    </td>
-                                    ${
-                                        log_item.num_lines_map.reduce((x,y)=>{
-                                            x += `
-                                                <td>
-                                                    <span style="color:${y.apply ? "green": "red"}">
-                                                        ${y.prng}
-                                                    </span>
-                                                </td>         
-                                            `;
-
-                                            return x;
-                                        }, "")
-                                    }
-                                </tr>
-                            </tbody>
-                        </table>
-                    ` : `
-                        Item is a boss flame equip, so there is a 100% chance to add 4 flame lines to the item.
-                    `
-                }
-                <hr>
-                    Stats are chosen by shuffling the list of possible flame stat types and choosing
-                    the first ${log_item.num_lines} line(s). <br>
-                    Randomized list of flame lines with chosen lines highlighted in blue: 
-                        <div style="padding:5px;width:100%">${log_item.flame_list.map((a,b)=>{
-                            if (b < log_item.num_lines) {
-                                return `
-                                    <span style="color:blue">${a}</span>
-                                `;
-                            }
-
-                            return a;
-                        }).join(" | ")}
-                    </div>
-                <hr>
-                <table style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Tier</th>
-                            ${
-                                log_keys.reduce((a,b)=>{
-                                    a += `
-                                        <th>${b}</th>
-                                    `;
-                                    return a;
-                                }, "")
-                            }
-                        </tr>
-                        <tr>
-                            <th></th>
-                            ${
-                                log_keys.reduce((a,b)=>{
-                                    a += `
-                                        <th>${log[b].log_result.prn}</th>
-                                    `;
-                                    return a;
-                                }, "")
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
+                        return a;
+                    }).join(" | ")}
+                </div>
+            <hr>
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Tier</th>
                         ${
-                            tier_keys.reduce((a,b)=>{
+                            log_keys.reduce((a,b)=>{
                                 a += `
-                                    <tr>
-                                        <td>${+b + 1 + (Item.idata.flame_type === 2 ? 2 : 0)}</td>
-                                        ${
-                                            log_keys.reduce((x,y)=>{
-                                                let map = log[y].log_result.random_map[b];
-                                                let prn = log[y].log_result.prn;
-
-                                                x += `
-                                                    <td>
-                                                        ${
-                                                            map.reduce((n,[from, to])=>{
-                                                                n += `
-                                                                    <span style="display:block" class="${prn >= from && prn <= to ? "highlight-row" : "" }">
-                                                                        ${from} - ${to}
-                                                                    </span>
-                                                                `;
-                                                                return n; 
-                                                            }, "")
-                                                        }
-                                                    </td>
-                                                `;
-                                                return x;
-                                            }, "")
-                                        }
-                                    </tr>
+                                    <th>${b}</th>
                                 `;
                                 return a;
                             }, "")
                         }
-                    </tbody>
-                </table>
-            `;
+                    </tr>
+                    <tr>
+                        <th></th>
+                        ${
+                            log_keys.reduce((a,b)=>{
+                                a += `
+                                    <th>${log[b].log_result.prn}</th>
+                                `;
+                                return a;
+                            }, "")
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    ${
+                        tier_keys.reduce((a,b)=>{
+                            a += `
+                                <tr>
+                                    <td>${+b + 1 + (Item.idata.flame_type === 2 ? 2 : 0)}</td>
+                                    ${
+                                        log_keys.reduce((x,y)=>{
+                                            let map = log[y].log_result.random_map[b];
+                                            let prn = log[y].log_result.prn;
 
-            flame_prn.html(html).removeClass("hidden");
-            flame_container.addClass("hidden");
+                                            x += `
+                                                <td>
+                                                    ${
+                                                        map.reduce((n,[from, to])=>{
+                                                            n += `
+                                                                <span style="display:block" class="${prn >= from && prn <= to ? "highlight-row" : "" }">
+                                                                    ${from} - ${to}
+                                                                </span>
+                                                            `;
+                                                            return n; 
+                                                        }, "")
+                                                    }
+                                                </td>
+                                            `;
+                                            return x;
+                                        }, "")
+                                    }
+                                </tr>
+                            `;
+                            return a;
+                        }, "")
+                    }
+                </tbody>
+            </table>
+        `;
 
-            option_box.dialog({
-                position: {my: "center", at: "top center", of: window},
-                width: "100vw",
-                height: "auto"
-            });
+        flame_prn = $("#flames_log_rng_map");
+        flame_container = $("#flames_log_information");
+        flame_back_button = $("#btn_flames_back");
 
-            flame_back_button.removeClass("hidden");
+        flame_prn.html(html).removeClass("hidden");
+        flame_container.addClass("hidden");
+
+        option_box.dialog({
+            position: {my: "center", at: "top center", of: window},
+            width: "100vw",
+            height: "auto"
         });
+
+        flame_back_button.removeClass("hidden");
     });
 });

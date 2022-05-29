@@ -355,5 +355,7 @@ $(function(){
             Item.redraw_item_tooltip();
             optionbox.dialog("close");
         };
+
+        return true;
     };
 });
