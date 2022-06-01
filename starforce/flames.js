@@ -686,6 +686,50 @@ item.prototype.set_item_flame_tier = function(s) {
     return flames;
 };
 
+/*
+    pass main and secondary stat to override the item's internal primrary/secondary stat
+
+    o contains 2 attributes
+     {
+         mstat - main stat
+         sstat - secondary stat
+     }
+
+     not relevant to weapons
+*/
+item.prototype.get_flame_score = function(o) {
+    if (this.idata.class === "weapon") return -1;
+
+    let m = "";
+    let s = "";
+    let a = "";
+
+    if (o != undefined) {
+        m = o.mstat;
+        s = o.sstat;
+        
+        if (m === "int") {
+            a = "matt";
+        } else {
+            a = "watt";
+        }
+    } else {
+        m = this.idata.mstat;
+        a = this.idata.att_type;
+
+        /* if empty, then ignore as we're not going to assume what the main stat is */
+        if (m === "") {
+            return -1;
+        } else {
+            [s] = this.idata.pstat.filter((a)=>{return a !== m});
+        }
+    }
+
+    let score = this.idata.boosts.flames[m] + this.idata.boosts.flames[a] * 4 + this.idata.boosts.flames.all_stat * 800 + this.idata.boosts.flames[s]/8;
+
+    return score;
+}
+
 var flames = {
     /* 
         get rates of flame tier 1-5

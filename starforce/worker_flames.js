@@ -39,7 +39,7 @@ var compare_flames_stats = function(item_flame, desired_flame) {
             if (item_flame[i] == null) {
                 return false;
             } else { 
-                if (i !== "any_stat" && item_flame[i] < desired_flame[i]) {
+                if (item_flame[i] < desired_flame[i]) {
                     return false;
                 }
             }

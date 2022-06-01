@@ -1124,6 +1124,7 @@ $(function() {
 
     $("#reverse_flame_check").on("click", function() {
         let b = Item.reverse_flame_lookup();
+        let score = Item.get_flame_score();
         
         let html = '';
         for (let a in b) {
@@ -1158,6 +1159,11 @@ $(function() {
                         ${html}
                     </tbody>
                 </table>
+                <br><br>
+                ${score !== -1 ? `
+                Your flame score is:<br> ${score}
+                ` : ""}
+                
             `;
         }
 

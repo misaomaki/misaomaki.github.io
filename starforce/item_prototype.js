@@ -1,5 +1,5 @@
 var item = function(it) {
-    if (structuredClone != null) {
+    if (structuredClone != undefined) {
         this.idata = structuredClone(it);
     } else {
         this.idata = JSON.parse(JSON.stringify(it));
