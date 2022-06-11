@@ -17475,7 +17475,7 @@ var items_store = {
                 "dex": 8,
                 "int": 8,
                 "luk": 8,
-                "hp": 0.05,
+                "p_hp": 0.05,
                 "watt": 2,
                 "matt": 2,
                 "def": 100
