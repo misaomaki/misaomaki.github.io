@@ -16165,13 +16165,13 @@ var items_store = {
             "scrollable": true,
             "img_type": "png"
         },
-        "bladecaster_bladecaster": {
+        "warrior_bladecaster": {
             "name": "Amaterasu Bladecaster",
             "level": 150,
             "class": "weapon",
             "type": "bladecaster",
             "speed": "fast",
-            "job": ["bladecaster"],
+            "job": ["warrior"],
             "att_type": "watt",
             "flame_type": 2,
             "bstat": {

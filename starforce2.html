@@ -184,44 +184,44 @@
 
 <div id="sfcon">
     <div class="cube-menu hidden" id="cube_menu">
-        <div class="cube cube-red cube-big maple-button" data-id="red"></div>
-        <div class="cube cube-black cube-big maple-button" data-id="black"></div>
-        <div class="cube cube-bonus cube-big maple-button" data-id="bonus"></div>
+        <div class="cube cube-red cube-big maple-button cube-option" data-id="red" id="cube_red"></div>
+        <div class="cube cube-black cube-big maple-button cube-option" data-id="black" id="cube_black"></div>
+        <div class="cube cube-bonus cube-big maple-button cube-option" data-id="bonus" id="cube_bonus"></div>
 
-        <div class="flame flame-powerful flame-big maple-button" data-id="powerful" id="powerfulFlame"></div>
-        <div class="flame flame-eternal flame-big maple-button" data-id="eternal" id="eternalFlame"></div>
+        <div class="flame flame-powerful flame-big maple-button flame-option" data-id="powerful" id="powerfulFlame"></div>
+        <div class="flame flame-eternal flame-big maple-button flame-option" data-id="eternal" id="eternalFlame"></div>
     </div>
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="#" id="starforce_log">Starforce Log</a>
-        <a href="#" id="cube_log">Cube Log</a>
-        <a href="#" id="flames_log">Flames Log</a>
-        <a href="#" id="reverse_flame_check" title="Based on the flame stats on the item, check to see what flame types and what tiers there are.
+        <a href="#" id="starforce_log" class="starforce-option">Starforce Log</a>
+        <a href="#" id="cube_log" class="cube-option">Cube Log</a>
+        <a href="#" id="flames_log" class="flame-option">Flames Log</a>
+        <a href="#" id="reverse_flame_check" class="flame-option" title="Based on the flame stats on the item, check to see what flame types and what tiers there are.
 Custom flame stats may not yield any tiers if the values are inputted arbitrarily.
 
 This is a reverse lookup and the stat flames are the most complicated to resolve, so the more stat flames you have, the longer it takes to determine.
 Some combination of stat flame tiers may overlap with other stat flame tier combinations. It will simply return the first one it finds.
 It will also only try to determine the stat flame tiers up to a maximum of 4 flame stat types. Any more flame stat types will return no tiers.">Check Flame Tier</a> 
         <span class="margin">&nbsp;</span>
-        <a href="#" id="auto_starforce">Auto Starforce</a>
-        <a href="#" id="auto_cube">Auto Cube</a>
-        <a href="#" id="auto_flames">Auto Flames</a>
+        <a href="#" id="auto_starforce" class="starforce-option">Auto Starforce</a>
+        <a href="#" id="auto_cube" class="cube-option">Auto Cube</a>
+        <a href="#" id="auto_flames" class="flame-option">Auto Flames</a>
         <span class="margin">&nbsp;</span>
-        <a href="#" id="statistics_starforce">Starforce Statistics</a>
+        <a href="#" id="statistics_starforce" class="starforce-option">Starforce Statistics</a>
         <span class="margin">&nbsp;</span>
         <hr>
         <div class="menu-group">
             <b>System</b>
             <br>
-            <label class="side-bar-item" for="system_sfrates">
+            <label class="side-bar-item starforce-option" for="system_sfrates">
                 <select id="system_sfrates">
                     <option value="GMS">GMS</option>
                     <option value="KMS">KMS</option>
                 </select> Starforce Cost Type
             </label>
         </div>
-        <div class="menu-group">
+        <div class="menu-group starforce-option">
             <b>Events</b>
             <br>
             <label class="side-bar-item" for="event_51015">
@@ -243,8 +243,8 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
             </label>
         </div>
         <div class="menu-group">
-            <b>Settings</b>
-            <label class="side-bar-item" for="sf_conf_popup">
+            <div style="display:block"><b>Settings</b></div>
+            <label class="side-bar-item starforce-option" for="sf_conf_popup">
                 <input type="checkbox" class="system_cb" id="sf_conf_popup" data-bind="confirmation_popup" title="Don't show the popup that confirms if you want to starforce." checked> Show Confirmation Popup
             </label>
             <b>Animation Speed</b>
@@ -257,7 +257,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
             Suggestions? Feedback? Comments? <br>
             Reddit: UltimatePowerVaccuum <br> 
             Discord: ddf1995#4952 <br>
-            Maplestory: MisaoMaki | Bera
+            Maplestory: <span onclick="congrats_from_maki(true)">MisaoMaki</span> | Bera
         </div>
     </div>
     

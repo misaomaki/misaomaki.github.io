@@ -109,6 +109,24 @@ $(function() {
         Item.redraw();
     };
 
+    var starforce_options = $(".starforce-option");
+    var cube_options = $(".cube-option");
+    var flames_options = $(".flame-option");
+    var show_relevant_enhancements = function() {
+        starforce_options.addClass("hidden");
+        cube_options.addClass("hidden");
+        flames_options.addClass("hidden");
+        if (Item.idata.enhanceable) {
+            cube_options.removeClass("hidden");
+        }
+        if (Item.idata.flame_type > 0) {
+            flames_options.removeClass("hidden");
+        }
+        if (Item.idata.starforce) {
+            starforce_options.removeClass("hidden");
+        }
+    };
+
     //CUBE STUFF
 
     //init cubing
@@ -2120,6 +2138,7 @@ $(function() {
             width: 700,
             title: "Maplestory Item Simulator",
             buttons: [{
+                /* CREATE A NEW MAPLESTORY ITEM */
                 text: "Create",
                 click: function() {
                     cubes_used = 0; //reset cube log counter
@@ -2252,6 +2271,8 @@ $(function() {
                     item_is_init = true;
 
                     $(this).dialog("close");
+
+                    show_relevant_enhancements();
 
                     return false;
                 }
