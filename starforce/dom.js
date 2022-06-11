@@ -890,6 +890,8 @@ $(function() {
                         Item.idata.meta.sf_meta_data = d.data.data;
                         Item.redraw();
 
+                        sfa.play("EnchantSuccess");
+
                         optionbox.dialog("close");
                     };
                 }
@@ -1066,6 +1068,7 @@ $(function() {
                         });
             
                         Item.redraw_item_tooltip();
+                        sfa.play("_CubeEnchantSuccess");
 
                         _this.dialog("close");
                     };

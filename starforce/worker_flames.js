@@ -74,6 +74,7 @@ onmessage = function(o) {
     let this_item = new item(o.data.item.idata);
     let current_tiers = {};
     let idx = 0; 
+    log_cache = [];
 
     do {
         idx += 1;
@@ -85,9 +86,9 @@ onmessage = function(o) {
         current_tiers = this_item.idata.meta.flames_meta_data[0];
 
         if (idx !== 1 && idx % 1000 === 0) {
-            let return_message = `Flaming process is still running. ${idx} flames have been used... <br><br> Every 20000 records, data is dumped to prevent browser crash.`;
+            let return_message = `Flaming process is still running. ${idx} flames have been used... <br><br> Every 2000 records, data is dumped to prevent browser crash.`;
 
-            if (idx % 20000 === 0) {
+            if (idx % 2000 === 0) {
                 this_item.idata.meta.flames_meta_data = [this_item.idata.meta.flames_meta_data[1]];
             }
 

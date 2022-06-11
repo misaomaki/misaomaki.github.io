@@ -67,7 +67,7 @@
             ) {
                 return "magician";
             } else if (
-                ["xenon"].includes(job)
+                ["xenon", "hoyoung", "cadena"].includes(job)
             ) {
                 return "thief";
             } else if (
@@ -186,7 +186,7 @@
             reqlvl: 0 //negative level requirements
         };
 
-        $("#parse").on("click", function(){
+        $("#parse").on("click", async function(){
             let items = {};
 
             /* get the wiki page as a dom fragment */
@@ -220,25 +220,31 @@
                 }
 
                 /* go into table and extract the relevant data */
+                let key_store = {};
+                $("#output").html("DOWNLOADING IMAGES...");
                 for (let j = 1; j < tr.length; ++j) {
                     let td = tr.eq(j).find("td");
 
-                    let _item = extract_item_data(td);
+                    let _item = await extract_item_data(td);
 
-                    let item_key = (_item.job[0] + "_" + _item.type.replace(/[\s-]/gi,"_")).trim();
+                    let item_key = (_item.job[0] + "_" + _item.type.replace(/[\s-\(\)]/gi,"_")).trim();
+                    key_store[item_key] = 1;
 
-                    items[item_key] = _item;
+                    if (item_key in items) {
+                        ++ key_store[item_key];
+                        items[item_key +  key_store[item_key]] = _item;
+                    } else {
+                        items[item_key] = _item;
+                    }
                 }
             }
 
             let sItems = JSON.stringify(items);
-
-            console.log(sItems);
             $("#textOutput").removeClass("hidden").val(sItems);
 
             $("#output").html(`
                 Completed. <br>
-                Copy the stringified json into <a href="https://beautifier.io/">https://beautifier.io/</a> to get a pretty json.
+                Copy the stringified json into <a href="https://beautifier.io/" target="_BLANK">https://beautifier.io/</a> to get a pretty json.
                 <hr>
                 <span style="color:red">
                     Issues: <br>
@@ -249,12 +255,38 @@
             `);
         });
 
-        let extract_item_data = function(td) {
+        let regex_removespecialchar = /[\s-'\(\)]/gi;
+
+        var download_image = function(url, name){
+            return new Promise((res, rej)=>{
+                fetch(url)
+                    .then(resp => resp.blob())
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        let ext = blob.type.replace("image/","");
+                        a.style.display = 'none';
+                        a.href = url;
+                        // the filename you want
+                        a.download = name;
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        res(ext);
+                    })
+                    .catch(() => alert('An error sorry'));
+            })
+        }
+                
+        let extract_item_data = async function(td) {
             let t = Object.assign({}, item_template);
 
             /* column 1 - PICTURE AND NAME */
             let td_name = td.eq(0);
             t.name = td_name.find("a").text().trim();
+            let img = td.find(".image").attr("href").replace(/(\/revision\/latest\?cb=(.*))/,"");
+            let img_name = t.name.replace(regex_removespecialchar, "");
+            t.img_type = await download_image(img, img_name);
 
             /* column 2 - TYPE */
             let td_type = td.eq(1);
@@ -268,7 +300,7 @@
                 t.type = "mechanical heart";
             }
 
-            t.img = `item-${t.name.replace(/\s/gi,"").toLowerCase()}`;
+            t.img = `item-${t.name.replace(regex_removespecialchar,"").toLowerCase()}`;
 
             /* column 3 - REQUIREMENT */
             let td_requirements = td.eq(2);
@@ -330,11 +362,20 @@
             t.bstat = {};
             for (let i = 0; i < effects.length; ++i) {
                 let [_effect, effect_val] = effects[i].split(":");
-                let effect = _effect.toLowerCase().trim().replace(/\s/gi, "");
+                let effect = _effect.toLowerCase().trim().replace(regex_removespecialchar, "");
                 let rstat = resolve_stat(effect);
-            
+                
                 if (rstat !== "") {
-                    t.bstat[rstat] = +effect_val.replace("+", "").trim();
+                    var isPercent = false;
+                    if (effect_val.includes("%")) {
+                        isPercent = true;
+                    }
+
+                    t.bstat[rstat] = +effect_val.replace("+", "").replace("%", "").trim();
+
+                    if (isPercent) {
+                        t.bstat[rstat] /= 100;
+                    }
                 }
 
                 if (effect === "attackspeed") {
@@ -350,6 +391,15 @@
             t.upgrades = upgrades[t.type] || 0;
             if (t.upgrades > 0) {
                 t.hammers_added = 2;
+            }
+
+            if (["ring"].includes(t.type)) {
+                t.enhanceable = false;
+                t.flame_type = 0;
+            } else if (["shoulder"].includes(t.type)) {
+                t.flame_type = 0;
+            } else if (["face accessory", "eye accessory"].includes(t.type)) {
+                t.sub_class = "accessory";
             }
 
             return t;

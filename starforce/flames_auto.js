@@ -360,6 +360,7 @@ $(function(){
             Item.idata.boosts.flames = d.data.data.flame_stats;
 
             Item.redraw_item_tooltip();
+            sfa.play("_CubeEnchantSuccess");
             optionbox.dialog("close");
         };
 

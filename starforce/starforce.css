@@ -1107,6 +1107,11 @@ body, html {
     font-weight: bold;
 }
 
+.item-current-name {
+    width: 231px;
+    display: inline-block;
+}
+
 .item-main-body {
     background-image: url(../assets/item/ui.items.frame.line.png);
     width: 262px;
