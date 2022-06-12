@@ -18024,8 +18024,7 @@ $(function() {
         for (let j in items_store[i]) {
             let istore_override = {};
             let istore =  items_store[i][j];
-            istore.bstat = Object.assign({}, stats, istore.bstat); /* append the rest of the stats to the bstat item */
-
+            
             //if the item uses an override stat, append the stat from a different specified item's stat.
             //used when an item type shares base stats but are for different jobs or whatever
             if (istore.override_stat != null) {
@@ -18037,9 +18036,11 @@ $(function() {
             
             iod.meta.max_stars = iod.stars !== -1 ? iod.stars : star_max(istore.level, istore.superior);
 
-            items_store[i][j] = {...iod, ...istore_override, ...items_store[i][j]};
+            items_store[i][j] = {...iod, ...istore_override, ...istore};
             
             istore = items_store[i][j];
+
+            istore.bstat = Object.assign({}, stats, istore.bstat); /* append the rest of the stats to the bstat item */
 
             let img_name = "";
             let img_ext = "png";

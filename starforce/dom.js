@@ -109,6 +109,7 @@ $(function() {
         Item.redraw();
     };
 
+    /* only show starforce/cube/flame options if the item allows it */
     var starforce_options = $(".starforce-option");
     var cube_options = $(".cube-option");
     var flames_options = $(".flame-option");
