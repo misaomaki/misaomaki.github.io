@@ -908,10 +908,12 @@ $(function() {
                         Item.set_item_level(d.data.stars_to);
                         Item.idata.meta.sf_meta_data = d.data.data;
                         Item.redraw();
-
                         sfa.play("EnchantSuccess");
-
                         optionbox.dialog("close");
+
+                        if (system.auto_open_log) {
+                            $("#starforce_log").trigger("click");
+                        }
                     };
                 }
             }]
@@ -1090,6 +1092,10 @@ $(function() {
                         sfa.play("_CubeEnchantSuccess");
 
                         _this.dialog("close");
+
+                        if (system.auto_open_log) {
+                            $("#cube_log").trigger("click");
+                        }
                     };
                 }
             }]

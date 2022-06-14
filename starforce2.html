@@ -211,14 +211,17 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
         <a href="#" id="statistics_starforce" class="starforce-option">Starforce Statistics</a>
         <span class="margin">&nbsp;</span>
         <hr>
-        <div class="menu-group">
-            <b>System</b>
+        <div class="menu-group starforce-option">
+            <b>Starforce</b>
             <br>
-            <label class="side-bar-item starforce-option" for="system_sfrates">
+            <label class="side-bar-item" for="system_sfrates">
                 <select id="system_sfrates">
                     <option value="GMS">GMS</option>
                     <option value="KMS">KMS</option>
                 </select> Starforce Cost Type
+            </label>
+            <label class="side-bar-item" for="sf_conf_popup">
+                <input type="checkbox" class="system_cb" id="sf_conf_popup" data-bind="confirmation_popup" title="Don't show the popup that confirms if you want to starforce." checked> Show Confirmation Popup
             </label>
         </div>
         <div class="menu-group starforce-option">
@@ -236,23 +239,24 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
         </div>
         <span class="margin">&nbsp;</span>
         <div class="menu-group">
-            <b>Audio</b>
+            <div style="display:block"><b>System</b></div>
             <br>
+            <b>Audio</b> 
             <label class="side-bar-item" for="sf_sound">
                 <input id="sf_sound" type="range" min="0" max="100" step="1" value="40"></input> <span id="sf_sound_display">40</span>
             </label>
         </div>
         <div class="menu-group">
-            <div style="display:block"><b>Settings</b></div>
-            <label class="side-bar-item starforce-option" for="sf_conf_popup">
-                <input type="checkbox" class="system_cb" id="sf_conf_popup" data-bind="confirmation_popup" title="Don't show the popup that confirms if you want to starforce." checked> Show Confirmation Popup
-            </label>
             <b>Animation Speed</b>
             <label class="side-bar-item" for="sf_playback">
                 <input id="sf_playback" type="range" min="1" max="10" step="0.1" value="1"></input> <span id="sf_playback_display">1</span>
             </label>
         </div>
-
+        <div class="menu-group">
+            <label class="side-bar-item" for="sf_auto_open_log">
+                <input type="checkbox" class="system_cb" id="sf_auto_open_log" data-bind="auto_open_log" checked> Open log when autoproc completes
+            </label>
+        </div>
         <div class="dev-info" id="dev-info">
             Suggestions? Feedback? Comments? <br>
             Reddit: UltimatePowerVaccuum <br> 
@@ -674,6 +678,7 @@ crossorigin="anonymous"></script>
     };
 
     var system = {
+        auto_open_log: true,
         confirmation_popup: true,
         animation_speed: 1,
         animation_speed_actual: 1

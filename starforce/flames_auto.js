@@ -362,6 +362,9 @@ $(function(){
             Item.redraw_item_tooltip();
             sfa.play("_CubeEnchantSuccess");
             optionbox.dialog("close");
+            if (system.auto_open_log) {
+                $("#flames_log").trigger("click");
+            }
         };
 
         return true;
