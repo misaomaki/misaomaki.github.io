@@ -14162,7 +14162,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 36,
                 "luk": 36,
@@ -14195,7 +14195,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 43,
                 "luk": 43,
@@ -14226,7 +14226,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 21,
                 "luk": 21,
@@ -14259,7 +14259,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 21,
                 "luk": 21,
@@ -14291,7 +14291,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 10,
                 "luk": 10,
@@ -14324,7 +14324,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 11,
                 "luk": 11,
@@ -14357,7 +14357,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 0,
             "bstat": {
                 "dex": 6,
                 "luk": 6,
@@ -14388,7 +14388,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 30,
                 "luk": 53,
@@ -14418,7 +14418,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 30,
                 "luk": 53,
@@ -14448,7 +14448,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 30,
                 "luk": 53,
@@ -14478,7 +14478,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 30,
                 "luk": 53,
@@ -14508,7 +14508,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 30,
                 "luk": 53,
@@ -14538,7 +14538,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "dex": 30,
                 "luk": 53,
@@ -14730,7 +14730,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 36,
                 "luk": 36,
@@ -14763,7 +14763,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 43,
                 "luk": 43,
@@ -14794,7 +14794,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 21,
                 "luk": 21,
@@ -14827,7 +14827,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 21,
                 "luk": 21,
@@ -14859,7 +14859,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 10,
                 "luk": 10,
@@ -14892,7 +14892,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 11,
                 "luk": 11,
@@ -14925,7 +14925,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 0,
             "bstat": {
                 "int": 6,
                 "luk": 6,
@@ -14957,7 +14957,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 53,
                 "luk": 30,
@@ -14988,7 +14988,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 53,
                 "luk": 30,
@@ -15019,7 +15019,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 53,
                 "luk": 30,
@@ -15050,7 +15050,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 53,
                 "luk": 30,
@@ -15081,7 +15081,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 53,
                 "luk": 30,
@@ -15112,7 +15112,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 53,
                 "luk": 30,
@@ -15143,7 +15143,7 @@ var items_store = {
             "mstat": "int",
             "pstat": ["int", "luk"],
             "att_type": "matt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "int": 53,
                 "luk": 30,
@@ -15407,7 +15407,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 36,
                 "dex": 36,
@@ -15440,7 +15440,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 43,
                 "dex": 43,
@@ -15471,7 +15471,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 21,
                 "dex": 21,
@@ -15504,7 +15504,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 21,
                 "dex": 21,
@@ -15536,7 +15536,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 10,
                 "dex": 10,
@@ -15569,7 +15569,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 11,
                 "dex": 11,
@@ -15602,7 +15602,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 0,
             "bstat": {
                 "str": 6,
                 "dex": 6,
@@ -15634,7 +15634,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 30,
                 "dex": 53,
@@ -15664,7 +15664,7 @@ var items_store = {
             "mstat": "luk",
             "pstat": ["dex", "luk"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -15694,7 +15694,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -15724,7 +15724,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 30,
                 "dex": 53,
@@ -15754,7 +15754,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -15785,7 +15785,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 60,
                 "dex": 60,
@@ -15948,7 +15948,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 36,
                 "dex": 36,
@@ -15981,7 +15981,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 43,
                 "dex": 43,
@@ -16012,7 +16012,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 21,
                 "dex": 21,
@@ -16045,7 +16045,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 21,
                 "dex": 21,
@@ -16077,7 +16077,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 10,
                 "dex": 10,
@@ -16110,7 +16110,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 11,
                 "dex": 11,
@@ -16143,7 +16143,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 0,
             "bstat": {
                 "str": 6,
                 "dex": 6,
@@ -16173,7 +16173,7 @@ var items_store = {
             "speed": "fast",
             "job": ["warrior"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16203,7 +16203,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16234,7 +16234,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16264,7 +16264,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16294,7 +16294,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16324,7 +16324,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16354,7 +16354,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16384,7 +16384,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16414,7 +16414,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16444,7 +16444,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16474,7 +16474,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16504,7 +16504,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 53,
                 "dex": 30,
@@ -16920,7 +16920,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 36,
                 "dex": 36,
@@ -16953,7 +16953,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 43,
                 "dex": 43,
@@ -16984,7 +16984,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 21,
                 "dex": 21,
@@ -17017,7 +17017,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 21,
                 "dex": 21,
@@ -17049,7 +17049,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 10,
                 "dex": 10,
@@ -17082,7 +17082,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 11,
                 "dex": 11,
@@ -17115,7 +17115,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 0,
             "bstat": {
                 "str": 6,
                 "dex": 6,
@@ -17147,7 +17147,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 30,
                 "dex": 53,
@@ -17178,7 +17178,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 30,
                 "dex": 53,
@@ -17209,7 +17209,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 30,
                 "dex": 53,
@@ -17240,7 +17240,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 30,
                 "dex": 53,
@@ -17270,7 +17270,7 @@ var items_store = {
             "mstat": "dex",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 2,
+            "flame_type": 1,
             "bstat": {
                 "str": 30,
                 "dex": 53,
