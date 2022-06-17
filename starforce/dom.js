@@ -908,7 +908,7 @@ $(function() {
                         Item.set_item_level(d.data.stars_to);
                         Item.idata.meta.sf_meta_data = d.data.data;
                         Item.redraw();
-                        sfa.play("EnchantSuccess");
+                        sfa.play("EnchantSuccess", {playbackRate: 1});
                         optionbox.dialog("close");
 
                         if (system.auto_open_log) {
@@ -1379,7 +1379,7 @@ $(function() {
                 </label>
                 |
                 <label for="cb_show_add_stats">
-                    <input type="checkbox" id="cb_show_add_stats"> Show star force stats
+                    <input type="checkbox" id="cb_show_add_stats"> Show Starforce Summary
                 </label>
                 <div id="con_sf_add_stats" style="font-size:11px">
                 </div>

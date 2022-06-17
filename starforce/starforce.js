@@ -122,37 +122,46 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
         }
     }
 
+    let rlevel = parseInt(level/10,10) * 10;
     let divisor = 0;
     let power = 2.7;
+    let cost = 0;
 
     if (type === "GMS") {
         if (star < 10) {
-            divisor = 25;
+            divisor = 2500;
             power = 1;
         } else if (star < 15) {
-            divisor = 400;
+            divisor = 40000;
         } else if (star < 18) {
-            divisor = 120;
+            divisor = 12000;
         } else if (star < 20) {
-            divisor = 110;
+            divisor = 11000;
         } else if (star < 25) {
-            divisor = 100;
+            divisor = 10000;
         }
+
+        cost = Math.round(0.78 * ( 
+            Math.pow(rlevel, 3) * Math.pow(star + 1, power) / divisor
+        ) + 7.8) * 100;
     } else {
         if (star < 10) {
-            divisor = 25;
+            divisor = 2500;
             power = 1;
         } else if (star < 15) {
-            divisor = 400;
+            divisor = 40000;
         } else if (star < 25) {
-            divisor = 200;
+            divisor = 20000;
         }
+
+        cost = Math.round(( 
+            Math.pow(rlevel, 3) * Math.pow(star + 1, power) / divisor
+        ) + 10) * 100;
     }
 
-    let rlevel = parseInt(level/10,10) * 10;
-    let cost = 1000 + Math.pow(rlevel, 3) * (Math.pow(star + 1, power) / divisor);
+    //cost = 1000 + Math.pow(rlevel, 3) * (Math.pow(star + 1, power) / divisor);
 
-    return Math.round(cost/100)*100;
+    return cost;
 };
 
 /*
