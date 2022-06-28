@@ -1,3 +1,43 @@
+.job-icon {
+    width: 15px;
+    display: inline-block;
+    height: 15px;
+    position: relative;
+    top: 20px;
+    left: 21px;
+    opacity: 0.7;
+}
+
+.job-warrior {
+    background: url("../assets/job/icon-job-warrior.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.job-magician {
+    background: url("../assets/job/icon-job-magician.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.job-bowman {
+    background: url("../assets/job/icon-job-archer.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.job-thief {
+    background: url("../assets/job/icon-job-thief.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.job-pirate {
+    background: url("../assets/job/icon-job-pirate.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .dev-info {
     color: white;
     position: fixed;

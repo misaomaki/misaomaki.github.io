@@ -73,9 +73,17 @@ $(function() {
     $(".system_cb").on("click", function(e) {
         let _this = $(this);
         let bind_val = _this.attr("data-bind");
+        let redraw = +_this.attr("data-redraw");
+
+        if (redraw === undefined) {
+            redraw = 1;
+        }
 
         system[bind_val] = e.target.checked;
-        Item.redraw_sf(); 
+
+        if (redraw === 1) {
+            Item.redraw_sf(); 
+        }
     });
 
     //initialize the item object
@@ -2143,8 +2151,8 @@ $(function() {
                 $(this).parent().children().children('.ui-dialog-titlebar-close').hide();
             },
             modal: true,
-            height: $(window).height() * 0.6,
-            width: 700,
+            height: $(window).height() * 0.9,
+            width: 800,
             title: "Maplestory Item Simulator",
             buttons: [{
                 /* CREATE A NEW MAPLESTORY ITEM */
@@ -2373,10 +2381,33 @@ $(function() {
                     let item_type = a.id.split(";");
                     let this_item = items_store[item_type[0]][item_type[1]];
 
+                    let specific_job = this_item.job.length === 1 ? this_item.job[0] : "";
+
+                    if (system.ddl_with_name) {
+                        return $(`
+                            <span>
+                                <span class="${this_item.img}" style="display:inline-block;width:30px;height:30px;"></span> ${a.text}
+                            </span>
+                        `);
+                    }
+
                     return $(`
-                        <span>
-                            <span class="${this_item.img}" style="display:inline-block;width:30px;height:30px;"></span> ${a.text}
+                        <span class="${this_item.img}" style="display:inline-block;width:30px;height:30px;" title="${a.text}">
+                            <span class="job-icon job-${specific_job}"></span>
                         </span>
+                    `);
+                }
+            });
+
+            ddl_item.on("select2:open", function() {
+                $("#select2_css").remove();
+                if (!system.ddl_with_name) {
+                    $("body").append(`
+                        <style id="select2_css">
+                            .select2-results__option--selectable {
+                                display: inline-block !important;
+                            }
+                        </style>
                     `);
                 }
             });

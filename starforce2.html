@@ -678,6 +678,7 @@ crossorigin="anonymous"></script>
     };
 
     var system = {
+        ddl_with_name: false,
         auto_open_log: true,
         confirmation_popup: true,
         animation_speed: 1,
@@ -754,7 +755,9 @@ crossorigin="anonymous"></script>
 <div id="item_create" style="display:none">
     <div id="item_body">
         <div class="item-form">
-            <span class="item-label">Item:</span> <span id="item_select"></span> <select id="ddl_item_select"></select>
+            <span class="item-label">Item:</span> <span id="item_select"></span> <select id="ddl_item_select"></select> 
+            <input type="checkbox" class="system_cb" id="cbDropdownOldStyle" data-bind="ddl_with_name" data-redraw="0"> 
+            <label for="cbDropdownOldStyle">List with Item Name</label>
         </div>
         <span id="weapon_init" class="hidden"> 
             <div class="item-form" id="starforce_input_con">
