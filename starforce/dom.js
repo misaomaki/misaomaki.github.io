@@ -1643,27 +1643,29 @@ $(function() {
         let con_stats = $("#con_sf_add_stats");
 
         if (e.target.checked) {
-            let this_stats = analyze_starforce(Item.idata.meta.sf_meta_data);
+            if (!con_stats.hasClass("data-loaded")) {
+                let this_stats = analyze_starforce(Item.idata.meta.sf_meta_data);
 
-            let html = '';
+                let html = '';
 
-            //overall stats table
-            html += generate_sf_overall_stats(this_stats.g, "Overall Star Force Stats");
+                //overall stats table
+                html += generate_sf_overall_stats(this_stats.g, "Overall Star Force Stats");
 
-            let tiL = this_stats.i.length;
-            //each individual boom stats
-            for (let i = 0; i < this_stats.i.length; ++i) {
-                let title = `<span style="color:red">Boom #${(i+1)}</span>`;
+                let tiL = this_stats.i.length;
+                //each individual boom stats
+                for (let i = 0; i < this_stats.i.length; ++i) {
+                    let title = `<span style="color:red">Boom #${(i+1)}</span>`;
 
-                if (i === tiL - 1) {
-                    title = `<span style="color:green">Current Item</span>`;
+                    if (i === tiL - 1) {
+                        title = `<span style="color:green">Current Item</span>`;
+                    }
+
+                    html += generate_sf_overall_stats(this_stats.i[i], title);
                 }
 
-                html += generate_sf_overall_stats(this_stats.i[i], title);
+                con_stats.html(html);
             }
-
-            con_stats.html(html);
-            con_stats.removeClass("hidden");
+            con_stats.addClass("data-loaded").removeClass("hidden");
         } else {
             con_stats.addClass("hidden");
         }

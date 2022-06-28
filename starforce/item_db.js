@@ -17496,7 +17496,7 @@ var items_store = {
         },
         "face_accessory": {
             "name": "Twilight Mark",
-            "level": 160,
+            "level": 140,
             "class": "armor",
             "type": "face accessory",
             "sub_class": "accessory",
@@ -17522,7 +17522,7 @@ var items_store = {
                 "luk": 0
             },
             "img": "item-twilightmark",
-            "upgrades": 5,
+            "upgrades": 3,
             "hammers_added": 2,
             "starforce": true,
             "enhanceable": true,
