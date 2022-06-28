@@ -1,5 +1,487 @@
 //maplestory items
 var items_store = {
+    eternal: {
+        "bowman_hat": {
+            "name": "Eternal Archer Hat",
+            "level": 250,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 80,
+                "dex": 80,
+                "watt": 10,
+                "def": 750,
+                "ied": 0.15
+            },
+            "req": {
+                "str": 0,
+                "dex": 750,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalarcherhat",
+            "upgrades": 11,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "bowman_top": {
+            "name": "Eternal Archer Hood",
+            "level": 250,
+            "class": "armor",
+            "type": "top",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 50,
+                "dex": 50,
+                "watt": 6,
+                "def": 325,
+                "ied": 0.05
+            },
+            "req": {
+                "str": 0,
+                "dex": 750,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalarcherhood",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "bowman_bottom": {
+            "name": "Eternal Archer Pants",
+            "level": 250,
+            "class": "armor",
+            "type": "bottom",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 50,
+                "dex": 50,
+                "watt": 6,
+                "def": 325,
+                "ied": 0.05
+            },
+            "req": {
+                "str": 0,
+                "dex": 750,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalarcherpants",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "pirate_hat": {
+            "name": "Eternal Pirate Hat",
+            "level": 250,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 80,
+                "dex": 80,
+                "watt": 10,
+                "def": 750,
+                "ied": 0.15
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalpiratehat",
+            "upgrades": 11,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "pirate_top": {
+            "name": "Eternal Pirate Coat",
+            "level": 250,
+            "class": "armor",
+            "type": "top",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 50,
+                "dex": 50,
+                "watt": 6,
+                "def": 325,
+                "ied": 0.05
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalpiratecoat",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "pirate_bottom": {
+            "name": "Eternal Pirate Pants",
+            "level": 250,
+            "class": "armor",
+            "type": "bottom",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 50,
+                "dex": 50,
+                "watt": 6,
+                "def": 325,
+                "ied": 0.05
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalpiratepants",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "warrior_hat": {
+            "name": "Eternal Knight Helm",
+            "level": 250,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 80,
+                "dex": 80,
+                "watt": 10,
+                "def": 750,
+                "ied": 0.15
+            },
+            "req": {
+                "str": 750,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalknighthelm",
+            "upgrades": 11,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "warrior_top": {
+            "name": "Eternal Knight Armor",
+            "level": 250,
+            "class": "armor",
+            "type": "top",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 50,
+                "dex": 50,
+                "watt": 6,
+                "def": 325,
+                "ied": 0.05
+            },
+            "req": {
+                "str": 750,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalknightarmor",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "warrior_bottom": {
+            "name": "Eternal Knight Pants",
+            "level": 250,
+            "class": "armor",
+            "type": "bottom",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 50,
+                "dex": 50,
+                "watt": 6,
+                "def": 325,
+                "ied": 0.05
+            },
+            "req": {
+                "str": 750,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalknightpants",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "magician_hat": {
+            "name": "Eternal Mage Hat",
+            "level": 250,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "int": 80,
+                "luk": 80,
+                "matt": 10,
+                "def": 750,
+                "ied": 0.15
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 750,
+                "luk": 0
+            },
+            "img": "item-eternalmagehat",
+            "upgrades": 11,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "magician_top": {
+            "name": "Eternal Mage Robe",
+            "level": 250,
+            "class": "armor",
+            "type": "top",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "int": 50,
+                "luk": 50,
+                "matt": 6,
+                "def": 325,
+                "ied": 0.05
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 750,
+                "luk": 0
+            },
+            "img": "item-eternalmagerobe",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "magician_bottom": {
+            "name": "Eternal Mage Pants",
+            "level": 250,
+            "class": "armor",
+            "type": "bottom",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "int": 50,
+                "luk": 50,
+                "matt": 6,
+                "def": 325,
+                "ied": 0.05
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 750,
+                "luk": 0
+            },
+            "img": "item-eternalmagepants",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "thief_hat": {
+            "name": "Eternal Thief Bandana",
+            "level": 250,
+            "class": "armor",
+            "type": "hat",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 80,
+                "dex": 80,
+                "watt": 10,
+                "def": 750,
+                "ied": 0.15
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 750
+            },
+            "img": "item-eternalthiefbandana",
+            "upgrades": 11,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "thief_top": {
+            "name": "Eternal Thief Shirt",
+            "level": 250,
+            "class": "armor",
+            "type": "top",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 50,
+                "dex": 50,
+                "watt": 6,
+                "def": 325,
+                "ied": 0.05
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 750
+            },
+            "img": "item-eternalthiefshirt",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "thief_bottom": {
+            "name": "Eternal Thief Pants",
+            "level": 250,
+            "class": "armor",
+            "type": "bottom",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 50,
+                "dex": 50,
+                "watt": 6,
+                "def": 325,
+                "ied": 0.05
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 750
+            },
+            "img": "item-eternalthiefpants",
+            "upgrades": 7,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        }
+    },
     pensalir: {
         "warrior_hat": {
             "name": "Pensalir Battle Helm",
@@ -5431,7 +5913,7 @@ var items_store = {
             mstat: "", 
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
-            flame_type: 2,
+            flame_type: 0,
             bstat: {
                 watt: 4,
                 matt: 4,
