@@ -18148,7 +18148,7 @@ var items_store = {
                 "luk": 0
             },
             "img": "item-blackgatemask",
-            "upgrades": 5,
+            "upgrades": 2,
             "hammers_added": 2,
             "starforce": true,
             "enhanceable": true,

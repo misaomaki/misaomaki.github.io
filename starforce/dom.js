@@ -2404,7 +2404,7 @@ $(function() {
                 if (!system.ddl_with_name) {
                     $("body").append(`
                         <style id="select2_css">
-                            .select2-results__option--selectable {
+                            #select2-ddl_item_select-results .select2-results__option--selectable {
                                 display: inline-block !important;
                             }
                         </style>
