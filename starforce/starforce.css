@@ -1,3 +1,7 @@
+#select2-ddl_item_select-results .select2-results__option--selectable {
+    display: inline-block !important;
+}
+
 .job-icon {
     width: 15px;
     display: inline-block;

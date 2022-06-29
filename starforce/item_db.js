@@ -18325,7 +18325,7 @@ var items_store = {
                 "luk": 0
             },
             "img": "item-blackgatering",
-            "upgrades": 3,
+            "upgrades": 2,
             "hammers_added": 2,
             "starforce": true,
             "enhanceable": false,
@@ -18361,7 +18361,7 @@ var items_store = {
                 "luk": 0
             },
             "img": "item-blackgatenecklace",
-            "upgrades": 5,
+            "upgrades": 4,
             "hammers_added": 2,
             "starforce": true,
             "enhanceable": true,

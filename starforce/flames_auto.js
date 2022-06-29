@@ -86,7 +86,7 @@ $(function(){
         },
         {
             name: "Req Level",
-            type: "reqlevel",
+            type: "reqlvl",
             tier: 1,
             value: "-"
         },
