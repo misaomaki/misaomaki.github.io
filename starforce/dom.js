@@ -2399,6 +2399,20 @@ $(function() {
                 }
             });
 
+            /* append css for icon blocks in dropdown, depending on setting */
+            ddl_item.on("select2:open", function() {
+                $("#select2_css").remove();
+                if (!system.ddl_with_name) {
+                    $("body").append(`
+                        <style id="select2_css">
+                            #select2-ddl_item_select-results .select2-results__option--selectable {
+                                display: inline-block !important;
+                            }
+                        </style>
+                    `);
+                }
+            });
+
             //select equipment from dropdown
             ddl_item.on("change", function(e) {
                 let _this = $(this);
