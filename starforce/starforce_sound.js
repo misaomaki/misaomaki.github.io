@@ -5,8 +5,9 @@ let sf_audio_files = {
         instances: 1,
         events: {
             ontimeupdate: function(i) {
-                if((this.currentTime / this.duration) > 0.40){
-                  this.currentTime = 0;
+                if((this.currentTime / this.duration) > 0.84)
+                {
+                  this.currentTime = 0.47;
                   this.play();
                 }
             }

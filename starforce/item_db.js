@@ -9821,7 +9821,7 @@ var items_store = {
             class: "armor",
             type: "gloves",
             speed: "",
-            job: ["warrior"],
+            job: ["pirate"],
             mstat: "str", 
             pstat: ["str", "dex"], 
             att_type: "watt", 
