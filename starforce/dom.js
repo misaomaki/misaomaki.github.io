@@ -36,6 +36,9 @@ $(function() {
     var sfsc_star_road = {};
     var sfsc_star_start = {};
 
+    let cc = $("#cube_container");
+    let bcc = $("#black_cube_container");
+
     var i_con = $(".item-main-border");
 
     let body = $("body");
@@ -136,621 +139,6 @@ $(function() {
         }
     };
 
-    //CUBE STUFF
-
-    //init cubing
-    //cube containers
-    let cc = $("#cube_container");
-    let bcc = $("#black_cube_container");
-    let cube_black_results = $(".cube-black-result");
-
-    let cube_red_go = $(".cube-red");
-    let cube_black_go = $(".cube-black");
-    let cube_bonus_go = $(".cube-bonus");
-
-    //while cube aniamtion plays, disallow cube actions
-    let cube_loading = false;
-
-    //cubes at the bottom left
-    $("#cube_menu .cube").on("click", function() {
-        if (cube_loading) return false;
-
-        if (!Item.idata.enhanceable) {
-            return false;
-        }
-
-        let _this = $(this);
-        let cube_type = _this.attr("data-id");
-
-        cube_loading = true;
-        let cr = false; //cube upgrade
-        let cube_animation = "cube-use-normal";
-        if (cube_type === "black") {
-            cr = Item.cube(cube_type, bcc, ()=>{});
-
-            if (cr) {
-                cube_animation = "cube-use-tier"; //tier up animation
-            }
-
-            bcc.removeClass("hidden");
-            cc.addClass("hidden");
-
-            let bcc_play = bcc.find(".cube-black-upgrade").removeClass("hidden").addClass(cube_animation);
-            let bcc_button = bcc.find(".btn-one-more-try").addClass("disabled");
-
-            setTimeout(function() {
-                bcc_play.addClass("hidden").removeClass(cube_animation);
-                bcc_button.removeClass("disabled");
-                cube_loading = false;
-                Item.redraw_item_tooltip();
-            }, 1500 * system.animation_speed_actual);
-        } else {
-            cr = Item.cube(cube_type, cc, ()=>{});
-
-            if (cr) {
-                cube_animation = "cube-use-tier";
-            }
-
-            bcc.addClass("hidden");
-            cc.removeClass("hidden");
-
-            if (cube_type === "red") {
-                cc.find(".cube-main").removeClass("cube-main-bonus");
-                cc.find(".reset-cube-red").removeClass("reset-cube-bonus");
-            } else if (cube_type === "bonus") {
-                cc.find(".cube-main").addClass("cube-main-bonus");
-                cc.find(".reset-cube-red").addClass("reset-cube-bonus");
-            }
-
-            let cc_play = cc.find(".cube-upgrade").removeClass("hidden").addClass(cube_animation);
-            let cc_button = cc.find(".btn-one-more-try").addClass("disabled");
-            let cc_ok = cc.find(".btn-cube-ok").addClass("disabled");
-
-            setTimeout(function() {
-                cc_play.addClass("hidden").removeClass(cube_animation);
-                cc_button.removeClass("disabled");
-                cc_ok.removeClass("disabled");
-                cube_loading = false;
-                Item.redraw_item_tooltip();
-            }, 1500 * system.animation_speed_actual);
-        }
-    });
-
-    //close cube window
-    $(".btn-cube-ok").on("click", function() {
-        cc.addClass("hidden");
-    });
-
-    //one more try
-    $(".btn-one-more-try").on("click", function() {
-        let _this = $(this);
-
-        if (_this.hasClass("btn-cube-black")) {
-            cube_black_go.trigger("click");
-        } else {
-            let is_bonus = cube_main.find(".cube-main").hasClass("cube-main-bonus");
-
-            if (is_bonus) {
-                cube_bonus_go.trigger("click");
-            } else {
-                cube_red_go.trigger("click");
-            }
-        }
-    });
-
-    //apply before stats
-    cube_black_results.on("click", function() {
-        let _this = $(this);
-        let this_id = _this.attr("data-id");
-
-        let this_pot = Item.idata.meta.cube_meta_data.find(function(a) {
-            return a.results.name === this_id;
-        });
-
-        let is_before = _this.hasClass("cube-black-window-before");
-
-        //update keep flag when selected for logging
-        //update pot tier too in case user is an idiot and wants to keep lower potential
-        let curr_pot = Item.idata.meta.cube_meta_data[0];
-        curr_pot.keep = !is_before;
-        Item.idata.meta.cube_potential = this_pot.tier;
-
-        Item.idata.boosts.cubes.main = this_pot.results.result;
-    
-        Item.redraw_item_tooltip();
-
-        bcc.addClass("hidden");
-    });
-
-    let mapToDisplayHtml = function(a, cb) {
-        let html = '';
-
-        let this_data = [];
-        //get data from struct to array
-        for (let i in a) {
-            let _a = a[i];
-
-            for (let j = 0; j < _a.length; ++j) {
-                let j_a = _a[j];
-
-                this_data.push({
-                    name: i,
-                    from: j_a[0],
-                    to: j_a[1]
-                });
-            }
-        }
-
-        //sort by "from" range item
-        this_data = this_data.sort((a,b)=>{
-            if (a.from < b.from) {
-                return -1;
-            } else if (a.from > b.from) {
-                return 1;
-            }
-
-            return 0;
-        });
-
-        //map to html
-        for (let i = 0; i < this_data.length; ++i) {
-            let _i = this_data[i];
-
-            _i.from = _i.from.toFixed(5);
-            _i.to = _i.to.toFixed(5);
-            
-            html += cb(_i);
-        }
-
-        return html;
-    };
-
-    //generate cube log rows.
-    var generate_cube_log_table = function(cube_data) {
-        let cdl = cube_data.length;
-
-        //show 100 cube log
-        let max_start = 100;
-
-        if (cdl < max_start) {
-            max_start = cdl;
-        }
-
-        let t_body = "";
-
-        for (let i = 0; i < max_start; ++i) {
-            let _i_cd = cube_data[i];
-            let run = _i_cd.run;
-
-            let i_results = {}; //main
-            let i_results_b = {}; //bonus
-
-            let i_cd = {};
-
-            //other is opposite of the cube type used. if cube type is bonus, then other is main and vice-versa
-            let i_cd_other = _i_cd.other || {
-                type: ""
-            };
-            
-            //check to see which is the main pot and bonus pot since the log logs the current main and bpot
-            if (_i_cd.type === "main") {
-                i_cd = _i_cd;
-                i_cd_b = i_cd_other;
-                i_results = _i_cd.results.result;
-                
-                if (i_cd_other.type !== "") {
-                    i_results_b = i_cd_other.results.result;
-                }
-            } else {
-                i_cd = i_cd_other;
-                i_cd_b = _i_cd;
-                
-                if (i_cd_other.type !== "") {
-                    i_results = i_cd_other.results.result;
-                }
-
-                i_results_b = _i_cd.results.result;
-            }
-
-            let lucky3 = false;
-            let luckyb3 = false;
-
-            if (i_cd.type !== "") {
-                //remove the identifier digit from the stat type id. this allows us to check to see if all 3 lines are the same. if it is, highlight it as noteworthy
-                let i1 = i_results[0].id.replace(/\d+$/, "");
-                let i2 = i_results[1].id.replace(/\d+$/, "");
-                let i3 = i_results[2].id.replace(/\d+$/, "");
-
-                lucky3 = i1 === i2 && i2 === i3; //three in a row
-            }
-
-            if (i_cd_b.type !== "") {
-                //bpot
-                let ib1 = i_results_b[0].id.replace(/\d+$/, "");
-                let ib2 = i_results_b[1].id.replace(/\d+$/, "");
-                let ib3 = i_results_b[2].id.replace(/\d+$/, "");
-
-                luckyb3 = ib1 === ib2 && ib2 === ib3; 
-            }
-
-            t_body += `
-                <tr data-run="${run}" data-pot="${_i_cd.tier}" data-pot-b="${i_cd_b.tier}" data-cube="${_i_cd.cube}" data-cube-b="${i_cd_b.cube}">
-                    <td>
-                        ${run}
-                    </td>
-                    <td>
-                        <div class="cube cube-${_i_cd.cube} cube-tiny"></div>
-                    </td>
-                    <td>
-                        <span class="pot-item">
-                            <span class="tooltip-${i_cd.tier}"></span>
-                            <span class="tooltip-${i_cd_b.tier}"></span>
-                        </span>
-                    </td>
-                    <td>
-                        ${_i_cd.cube === "black" ? (_i_cd.keep ? "Yes" : "No") : ""}
-                    </td>
-                    ${
-                        i_cd.type !== "" ? 
-                        `
-                            <td data-id="${i_cd.results.name}" class="cube-rng-row row-main ${lucky3 ? "pot-triple" : ""}">
-                                ${i_results[0].display}
-                            </td>
-                            <td data-id="${i_cd.results.name}" class="cube-rng-row row-main ${lucky3 ? "pot-triple" : ""}">
-                                ${i_results[1].display}
-                            </td>
-                            <td data-id="${i_cd.results.name}" class="cube-rng-row row-main ${lucky3 ? "pot-triple" : ""}">
-                                ${i_results[2].display}
-                            </td>
-                            <td data-id="${i_cd.results.name}" class="cube-rng-row row-main ${lucky3 ? "pot-triple" : ""}">
-                                <span class="pot-item-container" style="text-align:left;width:100%;display:inline-block">
-                                    <span class="pot-item pot-item-1" data-id="1">• ${i_results[0].display}</span> <br>
-                                    <span class="pot-item pot-item-2" data-id="2">• ${i_results[1].display}</span> <br>
-                                    <span class="pot-item pot-item-3" data-id="3">• ${i_results[2].display}</span>
-                                </span>
-                            </td>
-                        `
-                        :
-                        `
-                            <td colspan="4"></td>
-                        `
-                    }
-                    ${
-                        i_cd_b.type !== "" ? 
-                        `
-                            <td data-id="${i_cd_b.results.name}" class="cube-rng-row row-bonus ${luckyb3 ? "pot-triple" : ""}">
-                                ${i_results_b[0].display}
-                            </td>
-                            <td data-id="${i_cd_b.results.name}" class="cube-rng-row row-bonus ${luckyb3 ? "pot-triple" : ""}">
-                                ${i_results_b[1].display}
-                            </td>
-                            <td data-id="${i_cd_b.results.name}" class="cube-rng-row row-bonus ${luckyb3 ? "pot-triple" : ""}">
-                                ${i_results_b[2].display}
-                            </td>
-                            <td data-id="${i_cd_b.results.name}" class="cube-rng-row row-bonus ${luckyb3 ? "pot-triple" : ""}">
-                                <span class="pot-item-container" style="text-align:left;width:100%;display:inline-block">
-                                    <span class="pot-item pot-item-1" data-id="1">• ${i_results_b[0].display}</span> <br>
-                                    <span class="pot-item pot-item-2" data-id="2">• ${i_results_b[1].display}</span> <br>
-                                    <span class="pot-item pot-item-3" data-id="3">• ${i_results_b[2].display}</span>
-                                </span>
-                            </td>
-                        `
-                        :
-                        `
-                            <td colspan="4"></td>
-                        `
-                    }
-                </tr>
-            `;
-        }
-
-        return t_body;
-    };
-
-    //cube log popup
-    $("#cube_log").on("click", function() {
-        //sim cubes
-        /*
-        for (let i = 0; i < 10; ++i) {
-            Item.cube("red", $());
-            Item.cube("black", $());
-            Item.cube("bonus", $());
-        }
-        */
-
-        let cube_data = Item.idata.meta.cube_meta_data;
-
-        let cube_type_html = "";
-
-        for (let i in Item.idata.meta.cubes_used) {
-            let cube_count = Item.idata.meta.cubes_used[i];
-            cube_type_html += `
-                <div class="cube-used">
-                    <div class="cube cube-${i} cube-small"></div> <span class="cube-used-count">${cube_count}</span>
-                </div>
-            `;
-        }
-
-        let t_body = "";
-        if (cube_data.length === 0) {
-            t_body = `
-                <tr>
-                    <td colspan="20" style="text-align:center">No Records Found</td>
-                </tr>
-            `;
-
-        } else {
-            t_body = generate_cube_log_table(cube_data);
-        }
-
-        let html = `
-            ${cube_type_html}
-            <div id="cube_log_information">
-                <div id="cube_log_prng"></div>
-                <table style="width:100%;font-size:11px;float:left;" id="cube_log_table">
-                    <thead>
-                        <tr>
-                            <th colspan="12">
-                                Click on the cells in the "Main" or "Bonus" columns to view the PRNG info for that cube result.
-                            </th>
-                        </tr>
-                        <tr>
-                            <th colspan="4"></th>
-                            <th colspan="4">Main</th>
-                            <th colspan="4">Bonus</th>
-                        </tr>
-                    </thead>
-                    <thead>
-                        <tr>
-                            <th>Run</th>
-                            <th>Cube</th>
-                            <th>Potential</th>
-                            <th>Keep?</th>
-                            <th>Line #1</th>
-                            <th>Line #2</th>
-                            <th>Line #3</th>
-                            <th>Overall</th>
-                            <th>Line #1</th>
-                            <th>Line #2</th>
-                            <th>Line #3</th>
-                            <th>Overall</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cube_body">
-                        ${t_body}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="20">
-                                <span id="infinite_scroller_down">
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-            <hr>
-        `;
-
-        let option_box = $("#option_box");
-
-        option_box.html(html).dialog({
-            position: {my: "center", at: "top center", of: window},
-            title: "Cube Log",
-            width: "100%",
-            height: 850,
-            buttons: [{
-                text: "Back",
-                class: "hidden",
-                id: "btn_cube_log_back2",
-                click: function() {
-                    $("#btn_cube_log_back").trigger("click");
-                }
-            },{
-                text: "Close",
-                click: function() {
-                    option_box.html("");
-                    $(this).dialog("close");
-                }
-            }]
-        }).dialog("open");
-
-        let cube_log_table = $("#cube_log_table");
-        let cube_log_prng = $("#cube_log_prng");
-        let cube_body = $("#cube_body");
-
-        //show x rows at a time. hitting the show more will load x more rows. we start with showing x rows, so that is offset from the total at the start
-        let at_a_time = 100;
-        let current_shown = at_a_time;
-        let cdl = cube_data.length;
-        let cube_log_show_more = function() {
-            if (current_shown > cdl) return false;
-
-            let start_index = current_shown;
-            current_shown += at_a_time;
-
-            if (current_shown > cdl) {
-                current_shown = cdl;
-            }
-
-            let nextCubeData = cube_data.slice(start_index, current_shown);
-
-            let new_t_body = generate_cube_log_table(nextCubeData);
-
-            cube_body.append(new_t_body);
-        };
-
-        /* infinite scroller */
-        let scroller = new IntersectionObserver((e)=>{
-            if (e[0].intersectionRatio <= 0) return;
-
-            cube_log_show_more(1);
-        });
-        let scroll_watcher = document.querySelector("#infinite_scroller_down");
-
-        scroller.observe(scroll_watcher);
-
-        let btn_cube_log_back2 = $("#btn_cube_log_back2");
-        //click row to get the prng information
-        cube_log_table.on("click", ".cube-rng-row", function() {
-            let _this = $(this);
-            let id = _this.attr("data-id");
-
-            let is_bonus = _this.hasClass("row-bonus");
-
-            let tr = _this.closest("tr");
-            let run = tr.attr("data-run");
-            let pot_tier = tr.attr(is_bonus ? "data-pot-b" : "data-pot");
-            let cube = tr.attr(is_bonus ? "data-cube-b" : "data-cube");
-
-            let cube_object = Item.idata.meta.cube_meta_data.find((a)=>{
-                return a.results.name === id;
-            });
-
-            let cube_line = [0,1,2];
-
-            //get the cube maps for each line and add it to an array. also add the length to a different array
-            let cube_lines_length = [];
-            let cube_lines = cube_line.reduce(function(a,b) {
-                let b_item = cube_object.results.map["line_" + b];
-                a.push(b_item);
-
-                cube_lines_length.push(b_item.length);
-
-                return a;
-            },[]);
-
-            //get the rng map and prng for the tier up rate. if already legendary, then this should be undefined
-            let cube_log_item = cube_object.results.tier_up.cube_log_item;
-            
-            let tier_rng = "";
-            let tier_map = "";
-            let html_tier = "";
-            
-            if (cube_log_item != undefined) {
-                tier_rng = cube_object.results.tier_up.cube_log_item.tier_prng;
-                tier_map = cube_object.results.tier_up.cube_log_item.r_map;
-
-                html_tier = mapToDisplayHtml(tier_map, (a)=>{
-                    return `
-                        <tr class="${tier_rng >= a.from && tier_rng < a.to ? 'highlight-row' : ''}">
-                            <td>${a.name}</td>
-                            <td>${a.from} - ${a.to}</td>
-                        </tr>
-                    `
-                });
-            }
-
-            //get the maximum size of the result maps
-            let rng_rows_length = new Array(Math.max(...cube_lines_length)).fill();
-
-            //get the rng value used to determine the stat for each line. used for highlighting the relevant stat row from the probability map
-            let chosen_row = [];
-            //create a table of prng range values for the lines
-            //the lines with the most possible values will determine the table's length
-            let dom2 = `
-                <button id="btn_cube_log_back" style="width:150px;display:block;margin-bottom:10px;">Back</button> 
-                <hr>
-                <br>
-                <b>Cube Run: #${run} | Cube: <div style="top: 12px;position: relative;" class="cube cube-${cube} cube-tiny" data-id="red"></div> | Pot: <span class="tooltip-${pot_tier}"></span></b>
-                ${html_tier !== "" ? 
-                `
-                    <h2>Tier Up</h2>
-                    <div class="tooltip-item" id="tooltip_tier" style="width:100%;display:block;">
-                        <table style="width:100%;font-size:11px;">
-                            <thead>
-                                <tr>
-                                    <th>Tier Up?</th>
-                                    <th>Range</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="2">
-                                        <b>${tier_rng}</b>
-                                    </td>
-                                </tr>
-                                ${html_tier}
-                            </tbody>
-                        </table>
-                    </div>
-                ` : ''
-                }
-                <h2>Stat Determination</h2>
-                <div class="tooltip-item" id="tooltip_item" style="width:100%;height:90%;display:block;">
-                    <table style="width:100%;height:100%;font-size:11px;">
-                        <thead>
-                            <tr>
-                            ${
-                                cube_line.map(function(a,b) {
-                                    return `
-                                        <th>Line #${b+1}</th>
-                                        <th>Range</th>
-                                    `;
-                                }).join("")
-                            }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${
-                                cube_object.results.result.map(function(x) {
-                                    chosen_row.push(x.prng);
-                                    return `
-                                        <td colspan="2" style="text-align:center" title="The pseudo-random number used to check against the probability map.">
-                                            <b>${x.prng}</b>
-                                        </td>
-                                    `
-                                }).join("")
-                            }
-                            ${
-                                rng_rows_length.map(function(a,b,c) {
-                                    return `<tr>${
-                                        cube_lines.map(function(x,y) {
-                                            let _a = x[b];
-
-                                            if (_a === undefined) {
-                                                return `
-                                                    <td></td>
-                                                    <td></td>
-                                                `;
-                                            }
-
-
-                                            let _chosen = chosen_row[y];
-                                            let isChosen = _chosen >= _a.from && _chosen < _a.to;
-
-                                            return `
-                                                <td ${isChosen ? `class="highlight-row"` : ""} title="${(_a.chance * 100).toFixed(4)}% chance" data-id="${_a.id}">${_a.display}</td>
-                                                <td ${isChosen ? `class="highlight-row"` : ""}>${_a.from.toFixed(5)} - ${_a.to.toFixed(5)}</td>
-                                            `;
-                                        }).join("")
-                                    }</tr>`
-                                }).join("")
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            `;
-
-            cube_log_prng.removeClass("hidden");
-            cube_log_prng.html(dom2);
-
-            btn_cube_log_back2.removeClass("hidden");
-
-            //return from viewing the prng info for a cube run
-            $("#btn_cube_log_back").on("click", function() {
-                cube_log_prng.addClass("hidden");
-                cube_log_table.removeClass("hidden");
-                btn_cube_log_back2.addClass("hidden");
-            });
-
-            cube_log_table.addClass("hidden");
-
-            option_box.scrollTop(0);
-        });
-
-        return false;
-    });
-
     //hover over the main or bonus cells to highlight all cells of that type within a row
     body.on("mouseover", ".cube-rng-row", function() {
         let _this = $(this);
@@ -846,6 +234,11 @@ $(function() {
         optionbox.html(html).dialog({
             title: "Auto Star Force",
             width: 1000,
+            position: {
+                my: "center top",
+                at: "center top",
+                of: window
+            },
             height: "auto",
             close: ()=>{
                 w_sf.terminate();
@@ -943,6 +336,9 @@ $(function() {
                         Select Cube
                     </span>
                     <div class="cube-selection" id="cube_select">
+                        <div class="cube auto-cube cube-occult maple-button" data-id="occult" data-type="main"></div>
+                        <div class="cube auto-cube cube-master maple-button" data-id="master" data-type="main"></div>
+                        <div class="cube auto-cube cube-meister maple-button" data-id="meister" data-type="main"></div>
                         <div class="cube auto-cube cube-red maple-button" data-id="red" data-type="main"></div>
                         <div class="cube auto-cube cube-black maple-button" data-id="black" data-type="main"></div>
                         <div class="cube auto-cube cube-bonus maple-button" data-id="bonus" data-type="bonus"></div>
@@ -997,6 +393,12 @@ $(function() {
         optionbox.html(html).dialog({
             title: "Auto Cube",
             width: 1000,
+            modal: true,
+            position: {
+                my: "center top",
+                at: "center top",
+                of: window
+            },
             height: "auto",
             close: ()=>{
                 w_c.terminate();
@@ -1021,9 +423,9 @@ $(function() {
                     let cube_type = c_cube.attr("data-type");
                     let cube_name = c_cube.attr("data-id");
 
-                    let line_1 = $("#cube_stat_line_" + cube_type + "_1").val();
-                    let line_2 = $("#cube_stat_line_" + cube_type + "_2").val();
-                    let line_3 = $("#cube_stat_line_" + cube_type + "_3").val();
+                    let line_1 = $("#cube_stat_line_" + cube_name + "_1").val();
+                    let line_2 = $("#cube_stat_line_" + cube_name + "_2").val();
+                    let line_3 = $("#cube_stat_line_" + cube_name + "_3").val();
 
                     let pot_tier = $("#option_box #auto_cube_select_" + cube_type).val();
 
@@ -1052,7 +454,7 @@ $(function() {
                     
                     let cube_msg = $("#cube_msg");
 
-                    w_c.onmessage = function(d) {
+                    w_c.onmessage = async function(d) {
                         //codes less than 1 are errors that cannot proceed
                         if (d.data.code < 0) {
                             btn.prop("disabled", false);
@@ -1088,14 +490,15 @@ $(function() {
                         Item.idata.meta.cubes_used = data_cubes_used;
                         Item.idata.meta.cubes_total = d.data.data.idata.meta.cubes_total;
 
-                        Item.set_cube(cube_type, pot_tier, {
+                        await Item.set_cube(cube_name, pot_tier, {
                             line_0: line_1,
                             line_1: line_2,
                             line_2: line_3
                         }, {
                             write_log_record: false
                         });
-            
+
+                        cube.update_cube_menu.call(Item, $("#cube_menu"));
                         Item.redraw_item_tooltip();
                         sfa.play("_CubeEnchantSuccess");
 
@@ -1109,50 +512,64 @@ $(function() {
             }]
         }).dialog("open");
 
+        cube.update_cube_menu.call(Item, $("#cube_select"));
+
         let cube_line_con = $("#auto_cube_lines");
         /* change the cube type */
         $("#cube_select .auto-cube").on("click", function() {
             let _this = $(this);
-            let cube_type = _this.attr("data-type");
+            if (_this.hasClass("disabled")) return false;
+            let type = _this.attr("data-type");
+            let cube_type = _this.attr("data-id");
+
+            let ddl_options = cube.get_dropdown_option(cube_type);
             
             $(".auto-cube.auto-cube-selected").removeClass("auto-cube-selected");
             $(this).addClass("auto-cube-selected");
 
             cube_line_con.removeClass("hidden");
             $("#auto_cube_form_main,#auto_cube_form_bonus").addClass("hidden");
-            $("#auto_cube_form_" + cube_type).removeClass("hidden");
+            $("#auto_cube_form_" + type).removeClass("hidden");
+
+            $(`#auto_cube_select_${type}`).html(ddl_options);
+            
+            cube_msg2.addClass("hidden");
+            $(`#auto_cube_line_con_${type}`).addClass("hidden");
         });
 
         let cube_msg2 = $("#cube_msg2");
         let cube_expected = $("#cube_expected");
         /* change the potential tier for cube */
-        $("#option_box .auto-select-cube-type").on("change", function() {
+        $("#option_box .auto-select-cube-type").on("change", async function() {
             let _this = $(this);
             let type = _this.attr("data-type");
+            let cube_type = $("#cube_select .auto-cube.auto-cube-selected").attr("data-id");
             let pot_tier = _this.val();
+            
             cube_msg2.removeClass("hidden");
             cube_expected.html(1); /* changing tier sets cube lines back to any, so probability is always 1 */
 
-            let tier_html = cube_pot_dropdown_html(Item.idata, type, pot_tier, {
+            let tier_html = await cube_pot_dropdown_html(Item.idata, cube_type, pot_tier, {
                 wildcard: true
             });
         
             $("#auto_cube_line_con_" + type).html(tier_html);
             
-            var cube_select = $(".select-cube-line-" + type).select2();
+            var cube_select = $(".select-cube-line-" + cube_type).select2();
+            $(`#auto_cube_line_con_${type}`).removeClass("hidden");
             /* calculate probabilities based on lines chosen */
-            cube_select.on("select2:select", function(e) {
+            cube_select.on("select2:select", async function(e) {
                 let c_cube = $("#cube_select .auto-cube-selected");
                 let cube_type = c_cube.attr("data-type");
                 let cube_name = c_cube.attr("data-id");
 
-                let line_1 = $("#cube_stat_line_" + cube_type + "_1").val();
-                let line_2 = $("#cube_stat_line_" + cube_type + "_2").val();
-                let line_3 = $("#cube_stat_line_" + cube_type + "_3").val();
+                let line_1 = $("#cube_stat_line_" + cube_name + "_1").val();
+                let line_2 = $("#cube_stat_line_" + cube_name + "_2").val();
+                let line_3 = $("#cube_stat_line_" + cube_name + "_3").val();
                 let lines = [line_1, line_2, line_3];
 
                 /* estimated cubes to use to desired lines */
-                let expected_cubes = parseInt(1 / cube.stats.get_probability.call(Item, lines, cube_type, cube_name, pot_tier)).toNumber();
+                let expected_cubes = parseInt(1 / await cube.stats.get_probability.call(Item, lines, cube_name, pot_tier)).toNumber();
                 cube_expected.html(expected_cubes);
             });
         });
@@ -1429,6 +846,11 @@ $(function() {
             title: "Starforce Log",
             width: "100%",
             height: "auto",
+            position: {
+                my: "center top",
+                at: "center top",
+                of: window
+            },
             buttons: [{
                 text: "Close",
                 click: function() {
@@ -2157,7 +1579,7 @@ $(function() {
             buttons: [{
                 /* CREATE A NEW MAPLESTORY ITEM */
                 text: "Create",
-                click: function() {
+                click: async function() {
                     cubes_used = 0; //reset cube log counter
 
                     let this_star = $("#item_starforce").val();
@@ -2249,12 +1671,12 @@ $(function() {
                     let cube_main_pot = cube_select_main.val();
                     if (cube_main_pot !== "") {
                         let cube_main_pot_stats = {
-                            line_0: $("#cube_stat_line_main_1").val(),
-                            line_1: $("#cube_stat_line_main_2").val(),
-                            line_2: $("#cube_stat_line_main_3").val()
+                            line_0: $("#cube_stat_line_red_1").val(),
+                            line_1: $("#cube_stat_line_red_2").val(),
+                            line_2: $("#cube_stat_line_red_3").val()
                         };
 
-                        Item.set_cube("main", cube_main_pot, cube_main_pot_stats);
+                        await Item.set_cube("red", cube_main_pot, cube_main_pot_stats);
                     }
 
                     let cube_bonus_pot = cube_select_bonus.val();
@@ -2265,7 +1687,7 @@ $(function() {
                             line_2: $("#cube_stat_line_bonus_3").val()
                         };
 
-                        Item.set_cube("bonus", cube_bonus_pot, cube_bonus_pot_stats);
+                        await Item.set_cube("bonus", cube_bonus_pot, cube_bonus_pot_stats);
                     }
 
                     //add the image to the cube windows
@@ -2284,12 +1706,10 @@ $(function() {
                     });
 
                     Item.redraw();
-
                     item_is_init = true;
-
                     $(this).dialog("close");
-
                     show_relevant_enhancements();
+                    cube.update_cube_menu.call(Item, cube_menu);
 
                     return false;
                 }
@@ -2545,7 +1965,7 @@ $(function() {
         }
     };
 
-    var cube_pot_dropdown_html = function(this_item, type, pot_tier, o) {
+    var cube_pot_dropdown_html = async function(this_item, type, pot_tier, o) {
         o = Object.assign({
             wildcard: false
         }, o);
@@ -2562,8 +1982,7 @@ $(function() {
         item_type = item_type.replace(/\s/gi, "_");
 
         //get the stats available for the main/bonus pot by its tier and item type
-        let stats = cube.pot_stats[type][item_type][pot_tier];
-
+        let stats = await cube.get_cube_type(this_item.level, item_type, type, pot_tier);
         let tier_html = "";
 
         //generate dropdowns for each line with the available stats
@@ -2585,15 +2004,14 @@ $(function() {
                 });
             }
 
-            /* return cube options with select html and its type so that we can sort it*/
-            stat_options = _s.reduce(function(a,b) {
-                let sid = b[0];
-                let _st = cube.stat_upgrade(this_item.level,sid); //line stat verbiage
+            let s_key = Object.keys(_s);
 
+            /* return cube options with select html and its type so that we can sort it*/
+            stat_options = s_key.reduce(function(a,b) {
                 a.push({
-                    type: _st,
+                    type: b,
                     html: `
-                        <option value="${sid}">${_st}</option>
+                        <option value="${HtmlEncode(b)}">${b}</option>
                     `}
                 );
 
@@ -2602,8 +2020,11 @@ $(function() {
 
             tier_html += `
                 <div class="pot-stat-con" style="padding:5px">
-                    <span class="pot-stat-line">Line ${idx}:</span>
-                    <select id="cube_stat_line_${type}_${idx}" class="select-cube-line-${type}" data-id="${idx}">
+                    <span class="pot-stat-line" style="display:block;font-weight:bold;"> 
+                        <span class="tooltip-label-${pot_tier}" style="font-size:1.3em">•</span>
+                        Line ${idx}:
+                    </span>
+                    <select id="cube_stat_line_${type}_${idx}" class="select-cube-line-${type}" data-id="${idx}" style="width:100%"pi>
                         ${stat_options}
                     </select>
                 </div>
@@ -2614,7 +2035,7 @@ $(function() {
     };
 
     //select a potential tier for main/bonus to display the lines and their stats to choose from
-    $(".select-cube-type").on("change", function() {
+    $(".select-cube-type").on("change", async function() {
         let _this = $(this);
         let type = _this.attr("data-type");
 
@@ -2638,16 +2059,15 @@ $(function() {
 
         item_type = item_type.replace(/\s/gi, "_");
 
-        //get the stats available for the main/bonus pot by its tier and item type
-        let stats = cube.pot_stats[type][item_type][pot_tier];
+        let cube_type = type === "main" ? "red" : "bonus";
 
-        let tier_html = cube_pot_dropdown_html(this_item, type, pot_tier, {
+        let tier_html = pot_tier !== "" ? await cube_pot_dropdown_html(this_item, cube_type, pot_tier, {
             wildcard: false
-        });
+        }) : "";
 
         $("#cube_line_con_" + type).html(tier_html);
 
-        $(".select-cube-line-" + type).select2();
+        $(".select-cube-line-" + cube_type).select2();
     });
 
     init_item(); //start here

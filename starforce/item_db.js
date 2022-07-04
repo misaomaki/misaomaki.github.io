@@ -18470,13 +18470,15 @@ let items_other_data = {
         },
         sf_log_item: {}, //current data to be worked on for star force stats. it will be pushed to the sf_meta_data array
         sf_meta_data: [], //starforce cost and other related data
-
         cube_log_item: {}, //current data to be worked on for cube stats. it will be pushed to the cube_meta_data
         cube_meta_data: [], //cube data
         cubes_used: {
             red: 0,
             black: 0,
-            bonus: 0
+            bonus: 0,
+            master: 0,
+            meister: 0,
+            occult: 0
         }, //number of cubes used. keep track of type
         cubes_total: 0,
         flames_meta_data: [], //flames tier log

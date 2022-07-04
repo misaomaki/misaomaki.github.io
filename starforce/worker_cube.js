@@ -5,10 +5,6 @@
 let $ = function() {};
 
 importScripts("init.js");
-importScripts("cube_dictionary.js");
-importScripts("cube_rates_main.js");
-importScripts("cube_rates_bonus.js");
-importScripts("cube_rates.js");
 importScripts("cubes.js");
 
 /*
@@ -51,15 +47,7 @@ let arrayCompare = function(_a, _b, c = false) {
     return true;
 }
 
-let rarity_enum = {
-    "": 0,
-    "rare": 1,
-    "epic": 2,
-    "unique": 3,
-    "legendary": 4
-};
-
-onmessage = function(o) {
+onmessage = async function(o) {
     let d = Object.assign({
         cube_lines: [],
         cube_type: "main",
@@ -75,7 +63,7 @@ onmessage = function(o) {
         check if pot lines have stat lines that go over the restriction limit.
     */
     let lines_check = d.cube_lines.map((a)=>{
-        return a.replace(/\d+$/, "");
+        return cube.stat_restriction_map[a]; /* resolve line into common type to check against (e.g., boss damage 40%/35%/30% becomes boss_dmg) */
     }).reduce((a,b)=>{
         if (b in a) {
             ++a[b]
@@ -109,7 +97,7 @@ onmessage = function(o) {
         do {
             ++idx;
 
-            cube.cube.call(d.item, d.cube, [], ()=>{}, {
+            await cube.cube.call(d.item, d.cube, [], ()=>{}, {
                 update_dom: false
             });
             
@@ -120,10 +108,10 @@ onmessage = function(o) {
                 return the last run to update the item's pots with
             */
             if (!same_tier) {
-                same_tier = rarity_enum[d.pot_tier] === rarity_enum[cr.tier || ""];
+                same_tier = cube.rarity_enum[d.pot_tier] === cube.rarity_enum[cr.tier || ""];
             }
             if (d.pot_tier !== "legendary") {
-                if (rarity_enum[d.pot_tier] < rarity_enum[cr.tier || ""]) {
+                if (cube.rarity_enum[d.pot_tier] < cube.rarity_enum[cr.tier || ""]) {
                     postMessage({done: false, code: 2, message: "Item tiered passed the desired potential.", data: d.item});
                     return false;
                 }

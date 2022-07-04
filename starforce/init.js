@@ -255,3 +255,40 @@ var congrats_from_maki = function(owo = false) {
         },3300);
     },4000);
 }
+
+var HtmlEncode = function(s) {
+  var el = document.createElement("div");
+  el.innerText = el.textContent = s;
+  s = el.innerHTML;
+  return s;
+}
+
+/*
+    calculate cube line restriction types map. ran manually whenever cube_hash files are updated with new lines (rare)
+*/
+var calculate_restriction_type = async function() {
+    let cube_restrict_type = {};
+    let data = await cube_rates.hash;
+
+    for (let hash in data) {
+        for (let lines in data[hash]) {
+            if (lines.includes("chance to ignore")) {
+                cube_restrict_type[lines] = "ignore_dmg";
+            } else if (lines.includes("Item Drop Rate")) {
+                cube_restrict_type[lines] = "item_drop";
+            } else if (lines.includes("chance to become invincible for")) {
+                cube_restrict_type[lines] = "invinc";
+            } else if (lines.includes("Ignored Enemy DEF")) {
+                cube_restrict_type[lines] = "ied";
+            } else if (lines.includes("Invincibility time after")) {
+                cube_restrict_type[lines] = "invinc2";
+            } else if (lines.includes("Decent")) {
+                cube_restrict_type[lines] = "decent_skill";
+            } else if (lines.includes("Boss Monster Damage")) {
+                cube_restrict_type[lines] = "boss_dmg";
+            }
+        }
+    }
+
+    console.log(JSON.stringify(cube_restrict_type));
+}

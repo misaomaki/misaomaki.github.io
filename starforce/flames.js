@@ -1086,6 +1086,11 @@ $(function(){
         option_box.html(html).dialog({
             position: {my: "center", at: "top center", of: window},
             title: "Flames Log",
+            position: {
+                my: "center top",
+                at: "center top",
+                of: window
+            },
             width: "60vw",
             height: 850,
             buttons: [{

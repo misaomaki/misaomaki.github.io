@@ -1,3 +1,9 @@
+.bottom-menu-items {
+    max-height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .job-icon {
     width: 15px;
     display: inline-block;
@@ -40,12 +46,12 @@
 
 .dev-info {
     color: white;
-    position: fixed;
     font-family: Arial;
     bottom: 0;
     width: 100%;
     padding: 5px;
     font-size: 0.9em;
+    white-space: nowrap;
 }
 
 .ui-widget-overlay

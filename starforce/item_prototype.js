@@ -352,7 +352,11 @@ item.prototype.xgrade_item = function(type = 0) {
         this.idata.meta.stars = d_star;
     }
 
-    this.idata.meta.sf_log_item.star = this.idata.meta.stars + (type === 0 && this.idata.meta.stars <= 11 && event_options.pre10x2 ? 1 : 0);
+    this.idata.meta.sf_log_item.events = Object.assign({}, event_options);
+    let additional_stars = (type === 0 && this.idata.meta.stars <= 11 && event_options.pre10x2 ? 1 : 0);
+    this.idata.meta.sf_log_item.star = this.idata.meta.stars + additional_stars;
+    this.idata.meta.stars += additional_stars;
+
     this.redraw();
 };
 
@@ -549,6 +553,7 @@ item.prototype.starforce = function(starcatch = false) {
 }
 
 //update item stats on tooltip screen
+//pass parts to update specific parts of the tooltip
 item.prototype.redraw_item_tooltip = function() {
     //dom cache
     let i_con = this.check_cache(()=>{

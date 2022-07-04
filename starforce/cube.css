@@ -73,6 +73,34 @@
     height:36px;
     width:36px;
 }
+.cube-meister {
+    background: url(../assets/cube/MeisterCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;  
+}
+.cube-master {
+    background: url(../assets/cube/MasterCraftsmanCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;  
+}
+.cube-occult {
+    background: url(../assets/cube/OccultCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;  
+    top: 7px;
+    left: 7px;
+}
+
+.cube.disabled {
+    filter: grayscale(1);
+    opacity: 0.5;
+}
 
 .cube-big {
     transform: scale(2);
@@ -107,13 +135,23 @@
 }
 
 /* red/bonus cube */
-.cube-main {
+.cube-main-red {
     position: absolute;
     background: url(../assets/cube/red/Cube_Red.backgrnd.png);
     background-repeat: no-repeat !important;
     display: inline-block;
     width: 195px;
-    height: 286;
+    height: 286px;
+    user-select: none;
+}
+
+.cube-main-master, .cube-main-meister, .cube-main-occult {
+    position: absolute;
+    background: url(../assets/cube/free/Cube.backgrnd.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 195px;
+    height: 286px;
     user-select: none;
 }
 
@@ -128,6 +166,10 @@
 .cube-main-bonus {
     background: url(../assets/cube/bonus/MiracleCube_Additional.backgrnd.png) !important;
     background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 195px;
+    height: 286px;
+    user-select: none;  
 }
 
 .cube-main-window {
@@ -160,6 +202,22 @@
     background: url(../assets/cube/bonus/MiracleCube_Additional.backgrnd3.png) !important;
     background-repeat: no-repeat !important;
 }
+
+.reset-cube-master {
+    background: url(../assets/cube/free/Cube_Master.backgrnd3.png) !important;
+    background-repeat: no-repeat !important;
+}
+
+.reset-cube-meister {
+    background: url(../assets/cube/free/Cube_Meister.backgrnd3.png) !important;
+    background-repeat: no-repeat !important;
+}
+
+.reset-cube-occult {
+    background: url(../assets/cube/free/Cube_Occult.backgrnd3.png) !important;
+    background-repeat: no-repeat !important;
+}
+
 
 .cube-window {
     position: relative;
