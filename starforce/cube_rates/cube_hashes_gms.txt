@@ -4998,8 +4998,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +20%": 0.047619,
-    "Meso acquisition amount: +4%": 0.047619,
-    "Item drop rate: +4%": 0.047619
+    "Meso Obtained: +4%": 0.047619,
+    "Item Drop Rate: +4%": 0.047619
   },
   "3a69d26da8d6bb4a5dbf560aff176d8edb1a65ab59daf5f354b99630c708db58da063e0e5c9a626bf5763668c5288e29c371ccc7b8f2c8ca850f2081fcfa1ac5": {
     "STR: +12": 0.054274,
@@ -5047,8 +5047,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +20%": 0.000237,
-    "Meso acquisition amount: +4%": 0.000237,
-    "Item drop rate: +4%": 0.000237
+    "Meso Obtained: +4%": 0.000237,
+    "Item Drop Rate: +4%": 0.000237
   },
   "1ba1cd36a3052dc54af98914993d6dc65048cb89bb67e98bb38ea1e2511b3267344d8428c65929a5ff0feb1dd2988c868c61ff840df00c4a7c1affdd7c18a68c": {
     "STR: +2%": 0.066667,
@@ -8221,8 +8221,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +20%": 0.047619,
-    "Meso acquisition amount: +4%": 0.047619,
-    "Item drop rate: +4%": 0.047619
+    "Meso Obtained: +4%": 0.047619,
+    "Item Drop Rate: +4%": 0.047619
   },
   "8d41f54d70b3925d0e377d2807cd166fdf1ce64fc2c703012ca78b51c9019335bf6cc9ff1a2f07ea2d04b866f9b52df6821145753f756d5af3e22c5c60dc6ef6": {
     "STR: +12": 0.054274,
@@ -8270,8 +8270,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +20%": 0.000237,
-    "Meso acquisition amount: +4%": 0.000237,
-    "Item drop rate: +4%": 0.000237
+    "Meso Obtained: +4%": 0.000237,
+    "Item Drop Rate: +4%": 0.000237
   },
   "a70193db927b906e569b9f0e5ba5bc19977fba98ab05421388bb07987d2f334b95f04148dcb18775a159c3aaa05e38ece748455a99640a6ef145317bbd149c9c": {
     "STR: +2": 0.052083,
@@ -9196,8 +9196,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +30%": 0.046154,
-    "Meso acquisition amount: +5%": 0.046154,
-    "Item drop rate: +5%": 0.046154
+    "Meso Obtained: +5%": 0.046154,
+    "Item Drop Rate: +5%": 0.046154
   },
   "fe385be92a8dbbb7d70ebb780dc5bb3080abdf24f708732189e459e22570f11af92b3c32cd4fe8b1098f81e0a3d17e52d1eb99264c0c6439baa48b4704dfd3cd": {
     "STR: +16": 0.054274,
@@ -9246,8 +9246,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +30%": 0.00023,
-    "Meso acquisition amount: +5%": 0.00023,
-    "Item drop rate: +5%": 0.00023
+    "Meso Obtained: +5%": 0.00023,
+    "Item Drop Rate: +5%": 0.00023
   },
   "d1c21fff3dcfcedd098b43f39ab159d18319c9a6d35e6a576aa0d6bb31dc2685826e2cce0c4099d9efe582d8dde894f6fee92cebe38b0c36ca5a295ba7374ed1": {
     "STR: +4": 0.06383,
@@ -12946,8 +12946,8 @@
     "Critical Damage: +1%": 0.036364,
     "All Stats: +2%": 0.036364,
     "HP Recovery Items and Skills: +10%": 0.054545,
-    "Meso acquisition amount: +2%": 0.054545,
-    "Item drop rate: +2%": 0.054545
+    "Meso Obtained: +2%": 0.054545,
+    "Item Drop Rate: +2%": 0.054545
   },
   "aa691fdf8aa64658ec0beedc689e8d43f3852356a8cbfd34e34d7a1542d3ca3d2ba481770bbb6690bf53cc3e92c6c2c1f51808ce2c331665cba212488dc1968c": {
     "STR: +6": 0.063512,
@@ -12987,8 +12987,8 @@
     "Critical Damage: +1%": 0.000181,
     "All Stats: +2%": 0.000181,
     "HP Recovery Items and Skills: +10%": 0.000271,
-    "Meso acquisition amount: +2%": 0.000271,
-    "Item drop rate: +2%": 0.000271
+    "Meso Obtained: +2%": 0.000271,
+    "Item Drop Rate: +2%": 0.000271
   },
   "ed0b2fe2d155e010f4543087f0caffacce7f6f51367859dfcf788b45ab317508f7327d1cff99d65eeb8a904688fa1e3e1903bea4e99ae4467dac10e8a90d8068": {
     "STR: +2%": 0.058126,
@@ -13968,8 +13968,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +20%": 0.047619,
-    "Meso acquisition amount: +4%": 0.047619,
-    "Item drop rate: +4%": 0.047619
+    "Meso Obtained: +4%": 0.047619,
+    "Item Drop Rate: +4%": 0.047619
   },
   "8cb2970ef05d45c7ff0fdf9f38017837ba29b1050c95a496b2f00fded54c480d7ed46d6c71aaa55dc0145c972dcbfe0a63026043418f42548d34412f8929198d": {
     "STR: +14": 0.054274,
@@ -14017,8 +14017,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +20%": 0.000237,
-    "Meso acquisition amount: +4%": 0.000237,
-    "Item drop rate: +4%": 0.000237
+    "Meso Obtained: +4%": 0.000237,
+    "Item Drop Rate: +4%": 0.000237
   },
   "1aa901f1bf02d8c75f8f3bf8ff207ada672eb505287ee92ae3e7a830e68d02488d979f407776d5b04f8543019c1d8bbb77df61a476f00031c0be769f453e1b50": {
     "STR: +2": 0.06,
@@ -14554,8 +14554,8 @@
     "Critical Damage: +1% ": 0.035088,
     "All Stats: +2%": 0.035088,
     "HP Recovery Items and Skills: +10%": 0.052632,
-    "Meso acquisition amount: +2%": 0.052632,
-    "Item drop rate: +2%": 0.052632
+    "Meso Obtained: +2%": 0.052632,
+    "Item Drop Rate: +2%": 0.052632
   },
   "d379ab371b6b0ee75195655b7901dd656681e9f6d329191b183da062ec379c7d1c446851def1bcba5ab22a36bfb42b92dfadbf2f5965b88fb910a42ba5800959": {
     "STR: +6": 0.063512,
@@ -14596,8 +14596,8 @@
     "Critical Damage: +1% ": 0.000175,
     "All Stats: +2%": 0.000175,
     "HP Recovery Items and Skills: +10%": 0.000262,
-    "Meso acquisition amount: +2%": 0.000262,
-    "Item drop rate: +2%": 0.000262
+    "Meso Obtained: +2%": 0.000262,
+    "Item Drop Rate: +2%": 0.000262
   },
   "860449ca0ac1027cb1ce712e89a7ad2cfcd7b6b2258c66022cb9b2a26452b59696f24afd8a22f216feed650170587f9c5aa02a6d2deb5fb1f27fd7464a99b349": {
     "STR: +6%": 0.097826,
@@ -21139,8 +21139,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +30%": 0.047619,
-    "Meso acquisition amount: +5%": 0.047619,
-    "Item drop rate: +5%": 0.047619
+    "Meso Obtained: +5%": 0.047619,
+    "Item Drop Rate: +5%": 0.047619
   },
   "072bf5767aa10f4efa40e64991a2f4f82500ab16bac92136c7acc596661fdfaef6e5ba00817a22c63be010f7ef8fb9fae90b49a44c071f6dd73ac542f67231a2": {
     "STR: +16": 0.054274,
@@ -21188,8 +21188,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +30%": 0.000237,
-    "Meso acquisition amount: +5%": 0.000237,
-    "Item drop rate: +5%": 0.000237
+    "Meso Obtained: +5%": 0.000237,
+    "Item Drop Rate: +5%": 0.000237
   },
   "74d40cdd99cb1c0c92c98622366f1d13acef9540f7197f76fc70bf5be749f6a12c8be622771bb2c8d5f4ec21429b3e845fc1479d9c86fb6f44679cbd05d108f8": {
     "STR: +2%": 0.102273,
@@ -21558,8 +21558,8 @@
     "Critical Damage: +1% ": 0.035088,
     "All Stats: +2%": 0.035088,
     "HP Recovery Items and Skills: +10%": 0.052632,
-    "Meso acquisition amount: +2%": 0.052632,
-    "Item drop rate: +2%": 0.052632
+    "Meso Obtained: +2%": 0.052632,
+    "Item Drop Rate: +2%": 0.052632
   },
   "b35091fc658af14a4fa43253167fa1896af38f2060d899d52dae17e642147477f661f7a58307ad64e22edf5e0ef978dae739318cfdf772cb9ca1fee1fbf73776": {
     "STR: +6": 0.063512,
@@ -21600,8 +21600,8 @@
     "Critical Damage: +1% ": 0.000175,
     "All Stats: +2%": 0.000175,
     "HP Recovery Items and Skills: +10%": 0.000262,
-    "Meso acquisition amount: +2%": 0.000262,
-    "Item drop rate: +2%": 0.000262
+    "Meso Obtained: +2%": 0.000262,
+    "Item Drop Rate: +2%": 0.000262
   },
   "11a236e9d950417bad9199918632a4ba33ff10f348ef68b317fa6e2ee0b379301ea26c0c5900dadc548787051a1f172d62f9933acb1feceafde353837591890f": {
     "Max HP: +10%": 0.073171,
@@ -23857,8 +23857,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +15%": 0.046154,
-    "Meso acquisition amount: +3%": 0.046154,
-    "Item drop rate: +3%": 0.046154
+    "Meso Obtained: +3%": 0.046154,
+    "Item Drop Rate: +3%": 0.046154
   },
   "21fbd6ce5973650a9c9ddae0a511bcf7f6feed6c0070f459bdf7b7f46ddf7ea365cdbb5a5483959db67fafb2217732d359d617d0949b7d9097b224a77e8b57b5": {
     "STR: +10": 0.054274,
@@ -23907,8 +23907,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +15%": 0.00023,
-    "Meso acquisition amount: +3%": 0.00023,
-    "Item drop rate: +3%": 0.00023
+    "Meso Obtained: +3%": 0.00023,
+    "Item Drop Rate: +3%": 0.00023
   },
   "6c72cfb43fa1ed27d72d8d9006efb9e13040060fc2647775d09e45c1bf3cfbd11c6442acc8ef81acfceea74d49959e3f31a94380e2ef140ee326207f5ce7f6e5": {
     "Max HP: +3%": 0.088235,
@@ -26619,8 +26619,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +15%": 0.047619,
-    "Meso acquisition amount: +3%": 0.047619,
-    "Item drop rate: +3%": 0.047619
+    "Meso Obtained: +3%": 0.047619,
+    "Item Drop Rate: +3%": 0.047619
   },
   "d6fed8177a548d584ce985765fdac99c4e21217ef6e1f04c1946ce76b6995bef356eb4b6100749f8764a806b7916a8e3fefd98a95708f32a53f6c265d6a9c88a": {
     "STR: +8": 0.054274,
@@ -26668,8 +26668,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +15%": 0.000237,
-    "Meso acquisition amount: +3%": 0.000237,
-    "Item drop rate: +3%": 0.000237
+    "Meso Obtained: +3%": 0.000237,
+    "Item Drop Rate: +3%": 0.000237
   },
   "4f2512542555fb596ec153465ae67fa63644557b2dc6d8cadd76928b5aefea144bad931f361713809640cc0883679b17056adb600983ff9f3e54096dbcc0d26d": {
     "STR: +12": 0.047619,
@@ -26695,8 +26695,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +15%": 0.047619,
-    "Meso acquisition amount: +3%": 0.047619,
-    "Item drop rate: +3%": 0.047619
+    "Meso Obtained: +3%": 0.047619,
+    "Item Drop Rate: +3%": 0.047619
   },
   "e469e0b56fa5d98691c89a8441b2e49a7ec8d837e1100fbddbe996d3e49e36dde010404064592916fd548a908362751b963bc37b86cfb89b4705dade05809aa9": {
     "STR: +10": 0.054274,
@@ -26744,8 +26744,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +15%": 0.000237,
-    "Meso acquisition amount: +3%": 0.000237,
-    "Item drop rate: +3%": 0.000237
+    "Meso Obtained: +3%": 0.000237,
+    "Item Drop Rate: +3%": 0.000237
   },
   "b20ed2370f5304649d64e5b8a50563cb03b5ae20dbb38e5407e5d6191f07ffcbbea14cd3974ee5c8e9b44e7a24a9841e956ff460c5687f07c3bacd4c44d99726": {
     "STR: +13": 0.035088,
@@ -29286,8 +29286,8 @@
     "Critical Damage: +1%": 0.036364,
     "All Stats: +2%": 0.036364,
     "HP Recovery Items and Skills: +10%": 0.054545,
-    "Meso acquisition amount: +2%": 0.054545,
-    "Item drop rate: +2%": 0.054545
+    "Meso Obtained: +2%": 0.054545,
+    "Item Drop Rate: +2%": 0.054545
   },
   "08845f813682dc8c28692e021f27b228a2caf1e3a043924757fa929d0fef2bc6a571143ebb9e5769911aed8f89895706a26b4fea8f5565d25d5ba4fc131630aa": {
     "STR: +6": 0.063512,
@@ -29327,8 +29327,8 @@
     "Critical Damage: +1%": 0.000181,
     "All Stats: +2%": 0.000181,
     "HP Recovery Items and Skills: +10%": 0.000271,
-    "Meso acquisition amount: +2%": 0.000271,
-    "Item drop rate: +2%": 0.000271
+    "Meso Obtained: +2%": 0.000271,
+    "Item Drop Rate: +2%": 0.000271
   },
   "31088871d9d25ab83f8ef7d6f9e1b12670b870c779fa12792b84f129525fb8da3c90167adf06986da06b41799305dcf518be136cf17c0f1115c52b1575d800a6": {
     "STR: +6": 0.122727,
@@ -31275,8 +31275,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +20%": 0.047619,
-    "Meso acquisition amount: +4%": 0.047619,
-    "Item drop rate: +4%": 0.047619
+    "Meso Obtained: +4%": 0.047619,
+    "Item Drop Rate: +4%": 0.047619
   },
   "10a5446029f3cd6fea116a2beaf3e2a28a2ab0942eca5b058b0f71ec031d82322410216bad7b3c9be63c852b8607e6fde9f43f3aca31e88beafda545c58346bd": {
     "STR: +14": 0.054274,
@@ -31324,8 +31324,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +20%": 0.000237,
-    "Meso acquisition amount: +4%": 0.000237,
-    "Item drop rate: +4%": 0.000237
+    "Meso Obtained: +4%": 0.000237,
+    "Item Drop Rate: +4%": 0.000237
   },
   "2fa1fef276e85ad7178a6c1cb46a0bd96ce565a7042f3818085f9cce4f19f108e0723319e521a389ec32af700eccba6d6d2333ee02ccded243e5ad70d3faa204": {
     "STR: +8": 0.06,
@@ -32795,8 +32795,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +15%": 0.047619,
-    "Meso acquisition amount: +3%": 0.047619,
-    "Item drop rate: +3%": 0.047619
+    "Meso Obtained: +3%": 0.047619,
+    "Item Drop Rate: +3%": 0.047619
   },
   "83d2331b1b70d5f45c6ba9a1065c2f8556e131f9572b97f4af99169042a283335f3ee8002d986800aa5a24b60a4042db72d257399bb9a3815828d00c7a331b98": {
     "STR: +8": 0.054274,
@@ -32844,8 +32844,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +15%": 0.000237,
-    "Meso acquisition amount: +3%": 0.000237,
-    "Item drop rate: +3%": 0.000237
+    "Meso Obtained: +3%": 0.000237,
+    "Item Drop Rate: +3%": 0.000237
   },
   "8870815042b794be76c488db3cae1633db272108465cc7ad61718ed6e6d7a39d450f2438a0d9e85ac0a898f74874c29217f348229b5d71d64b87988b4587d937": {
     "STR: +2%": 0.057826,
@@ -33574,8 +33574,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +15%": 0.046154,
-    "Meso acquisition amount: +3%": 0.046154,
-    "Item drop rate: +3%": 0.046154
+    "Meso Obtained: +3%": 0.046154,
+    "Item Drop Rate: +3%": 0.046154
   },
   "17a248ead62195c8735812763d4526e0bbab9b2a0170e4cab26d274fcee76e63e7a9c95cd5414804a8119ffeb941ed8b719cc9e1bad4c19f273fac6f8fba95f5": {
     "STR: +8": 0.054274,
@@ -33624,8 +33624,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +15%": 0.00023,
-    "Meso acquisition amount: +3%": 0.00023,
-    "Item drop rate: +3%": 0.00023
+    "Meso Obtained: +3%": 0.00023,
+    "Item Drop Rate: +3%": 0.00023
   },
   "dc019b503fc7f0c147b512248978787455371f316dfdf760661922a9d0a76b912b2f2aa146a4d8caf37ebc8a3019c71785b9702ead39b677356abfb54ae94599": {
     "STR: +3": 0.11753,
@@ -39103,8 +39103,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +20%": 0.046154,
-    "Meso acquisition amount: +4%": 0.046154,
-    "Item drop rate: +4%": 0.046154
+    "Meso Obtained: +4%": 0.046154,
+    "Item Drop Rate: +4%": 0.046154
   },
   "6ec7ba94388f743d83cc6317c5fefac47927567b078f7ddb3f631f5bc7ae1a0d1d255b30ccf17819a52f1d599a1722b1e805d808eb9f2479a6d3f51552465ce5": {
     "STR: +14": 0.054274,
@@ -39153,8 +39153,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +20%": 0.00023,
-    "Meso acquisition amount: +4%": 0.00023,
-    "Item drop rate: +4%": 0.00023
+    "Meso Obtained: +4%": 0.00023,
+    "Item Drop Rate: +4%": 0.00023
   },
   "378d4b88e1fdd353fc4c8286a1d290a1cdfe404733763fa279fed31d56469bb9598d0514d930389437832fcc6d1c9215c5275e69e1c9749f1cc8480a01d91141": {
     "STR: +12": 0.052174,
@@ -39383,8 +39383,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +30%": 0.046154,
-    "Meso acquisition amount: +5%": 0.046154,
-    "Item drop rate: +5%": 0.046154
+    "Meso Obtained: +5%": 0.046154,
+    "Item Drop Rate: +5%": 0.046154
   },
   "0cda53ab58494deb97a6ce5119d627443fd03fcb9d49762078b5c16b4473da7b1bbbfa8c1ef39040806b53d1d0df3dca2c5a02152364549bbf12395b36596fc2": {
     "STR: +16": 0.054274,
@@ -39433,8 +39433,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +30%": 0.00023,
-    "Meso acquisition amount: +5%": 0.00023,
-    "Item drop rate: +5%": 0.00023
+    "Meso Obtained: +5%": 0.00023,
+    "Item Drop Rate: +5%": 0.00023
   },
   "e1e2f34f90c607c3ae46fd868f60c0324f16ebd405eb490203ec6f8b37b5c5189e13ed0350b9a47401029d571d193f606e5ae1cf463caa311fb94b57e82539d1": {
     "STR: +6%": 0.080357,
@@ -43927,8 +43927,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +30%": 0.047619,
-    "Meso acquisition amount: +5%": 0.047619,
-    "Item drop rate: +5%": 0.047619
+    "Meso Obtained: +5%": 0.047619,
+    "Item Drop Rate: +5%": 0.047619
   },
   "522dba55a7b9b4833fcaeb109ced6304bc37a155c9b7537f435ea2ecb5a4ab31eeb173b380836195d61e42e1bbd6b4bf2524cdf319e84b48e7add748f28aeea3": {
     "STR: +16": 0.054274,
@@ -43976,8 +43976,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +30%": 0.000237,
-    "Meso acquisition amount: +5%": 0.000237,
-    "Item drop rate: +5%": 0.000237
+    "Meso Obtained: +5%": 0.000237,
+    "Item Drop Rate: +5%": 0.000237
   },
   "6b69a28b4dfc557a8f8b94fe790662232b25dae67a16359fb3cfbab1106dd184157ad730b5e30ff58f863d1e39d7d9ee0a83bb623b14fb10003fce0366fb438e": {
     "STR : +9%": 0.064516,
@@ -44730,8 +44730,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +15%": 0.046154,
-    "Meso acquisition amount: +3%": 0.046154,
-    "Item drop rate: +3%": 0.046154
+    "Meso Obtained: +3%": 0.046154,
+    "Item Drop Rate: +3%": 0.046154
   },
   "e486b6e76602c6cc81478a47fdf54e572c814b16764d88501daa9f440a06564de0d67e471569da0e514dd1ac676debec8f5fe3b9d18bc59aa60a4f7e2bc768b0": {
     "STR: +8": 0.054274,
@@ -44780,8 +44780,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +15%": 0.00023,
-    "Meso acquisition amount: +3%": 0.00023,
-    "Item drop rate: +3%": 0.00023
+    "Meso Obtained: +3%": 0.00023,
+    "Item Drop Rate: +3%": 0.00023
   },
   "504734bfc010e485f48476933ede9f6fda829ddc28e07ce170203daa2bc7058901158705943c27a70b781dd1720f50e46eb188baee343662e3878bbdfcf23bd3": {
     "STR: +6%": 0.073196,
@@ -48488,8 +48488,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +30%": 0.047619,
-    "Meso acquisition amount: +5%": 0.047619,
-    "Item drop rate: +5%": 0.047619
+    "Meso Obtained: +5%": 0.047619,
+    "Item Drop Rate: +5%": 0.047619
   },
   "a330a1ab4516cb89ea94bfee9a4b7c207406a50d9abb47e9ee91c08f93fd1c833ed585d9cfcde5b8d35cb06077d122f4f91d250c4db032725fff8997564e2db1": {
     "STR: +16": 0.054274,
@@ -48537,8 +48537,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +30%": 0.000237,
-    "Meso acquisition amount: +5%": 0.000237,
-    "Item drop rate: +5%": 0.000237
+    "Meso Obtained: +5%": 0.000237,
+    "Item Drop Rate: +5%": 0.000237
   },
   "1919700753cf7b6d3af980c72a902290e96bd2a0d6b4b2df7e2cadf44ec6a6b198964ec06574353f73c16ebdc00c6c951473a8757f69ce9d8bb92f04b894d4fd": {
     "STR: +6": 0.033417,
@@ -48781,8 +48781,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +20%": 0.046154,
-    "Meso acquisition amount: +4%": 0.046154,
-    "Item drop rate: +4%": 0.046154
+    "Meso Obtained: +4%": 0.046154,
+    "Item Drop Rate: +4%": 0.046154
   },
   "0375ae2fead04d10810d5fc5e0ecee2c06eafc23e28e0039b0396e36b78f334269fd3d34d23912f3b11282c2cadab5ca794f9d9c829077f3067365f6860d5f23": {
     "STR: +12": 0.054274,
@@ -48831,8 +48831,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +20%": 0.00023,
-    "Meso acquisition amount: +4%": 0.00023,
-    "Item drop rate: +4%": 0.00023
+    "Meso Obtained: +4%": 0.00023,
+    "Item Drop Rate: +4%": 0.00023
   },
   "5775954c839b3e5d710dbe709a22a49e495373aba44c20200ed9dad0ddae5bdb2e3689e84f6d9082eb3684e53d00c6bf1f0e026e346adf6851349be2936650fa": {
     "STR: +7%": 0.074074,
@@ -50284,8 +50284,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +30%": 0.046154,
-    "Meso acquisition amount: +5%": 0.046154,
-    "Item drop rate: +5%": 0.046154
+    "Meso Obtained: +5%": 0.046154,
+    "Item Drop Rate: +5%": 0.046154
   },
   "12a9210f42e61f3cb14331840b955165ce25a58418ba76ed78038d20df6422934bc2c830d7b4d3155ff79dc31789f604f3efe7c44a46ff895b341199a5098260": {
     "STR: +16": 0.054274,
@@ -50334,8 +50334,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +30%": 0.00023,
-    "Meso acquisition amount: +5%": 0.00023,
-    "Item drop rate: +5%": 0.00023
+    "Meso Obtained: +5%": 0.00023,
+    "Item Drop Rate: +5%": 0.00023
   },
   "dcdf676ca4c0fb411475f9aed8e2e320d3cffb8e170869f9c4c49ba2401d1f5ac78c53585ebcaea072d307dd43040c2e68ce57963f1a02a16d0f911f58ea08bd": {
     "STR: +6%": 0.056465,
@@ -52339,8 +52339,8 @@
     "All Stats: +9%": 0.069767,
     "MP consumption of all skills: -10%": 0.069767,
     "MP consumption of all skills: -20%": 0.069767,
-    "Meso acquisition amount: +20%": 0.069767,
-    "Item drop rate: +20%": 0.069767
+    "Meso Obtained: +20%": 0.069767,
+    "Item Drop Rate: +20%": 0.069767
   },
   "909de81f4c9fb03838d46ad457789026bc867f9ae0225352234b827f24fa4bdff6788fef903b74e61cfdcfe27170bcc1a6e6a7098a024c85b4b6f2aef1482792": {
     "STR : +9%": 0.102273,
@@ -52362,8 +52362,8 @@
     "All Stats: +9%": 0.006977,
     "MP consumption of all skills: -10%": 0.006977,
     "MP consumption of all skills: -20%": 0.006977,
-    "Meso acquisition amount: +20%": 0.006977,
-    "Item drop rate: +20%": 0.006977
+    "Meso Obtained: +20%": 0.006977,
+    "Item Drop Rate: +20%": 0.006977
   },
   "e233f17191e57f8aa26ffc3f24135de6f85651c479124da6543db9213cb26cdc1a3dce1287b04d3d5a7832bc347bbd5e4bdbccbd090ad58843e43cf351464d4d": {
     "STR : +9%": 0.1125,
@@ -52385,8 +52385,8 @@
     "All Stats: +9%": 0.000698,
     "MP consumption of all skills: -10%": 0.000698,
     "MP consumption of all skills: -20%": 0.000698,
-    "Meso acquisition amount: +20%": 0.000698,
-    "Item drop rate: +20%": 0.000698
+    "Meso Obtained: +20%": 0.000698,
+    "Item Drop Rate: +20%": 0.000698
   },
   "09a4471afda09f13e4f138ba4ba0751e2418020efa64d48ac4ee3456348ce00ecebf8798bb2edca480b1e7cb78f111a699a6b6f31b954cc62041d7aa3a147066": {
     "STR: +12%": 0.111111,
@@ -54851,8 +54851,8 @@
     "LUK per 10 Character Levels: +2": 0.030303,
     "HP Recovery Items and Skills: +30%": 0.045455,
     "Skill Cooldown: -1 sec (-5% for under 10 sec, minimum cooldown of 10 sec)": 0.045455,
-    "Meso acquisition amount: +5%": 0.045455,
-    "Item drop rate: +5%": 0.045455
+    "Meso Obtained: +5%": 0.045455,
+    "Item Drop Rate: +5%": 0.045455
   },
   "efe9a4aa92d2fc75f393970843d2a56cca0271a20474aba2becf7a3bcb89ed9722e32719cf7872ee9491d54b568a7108e0f3c552f9af8f3ef880271528542ca6": {
     "STR: +16": 0.054274,
@@ -54901,8 +54901,8 @@
     "LUK per 10 Character Levels: +2": 0.000151,
     "HP Recovery Items and Skills: +30%": 0.000226,
     "Skill Cooldown: -1 sec (-5% for under 10 sec, minimum cooldown of 10 sec)": 0.000226,
-    "Meso acquisition amount: +5%": 0.000226,
-    "Item drop rate: +5%": 0.000226
+    "Meso Obtained: +5%": 0.000226,
+    "Item Drop Rate: +5%": 0.000226
   },
   "f12c3f5dacd1a60075356cf9c5ac4994290e8298e81d56a9a40018eef74fe3e3deba10847d27e12b8cec56c1521204c70b16f72866d9c60a716d0eddb2b34479": {
     "STR: +2": 0.062438,
@@ -55495,8 +55495,8 @@
     "INT per 10 Character Levels: +2": 0.031746,
     "LUK per 10 Character Levels: +2": 0.031746,
     "HP Recovery Items and Skills: +30%": 0.047619,
-    "Meso acquisition amount: +5%": 0.047619,
-    "Item drop rate: +5%": 0.047619
+    "Meso Obtained: +5%": 0.047619,
+    "Item Drop Rate: +5%": 0.047619
   },
   "95bd04a8bf57a0c213973fa1a70e36f1072bac19db7a4a97e594c9367ab56a2057d5164716e6e48fae2b35ad9d639e1cc19b6e1b4a2af15d2d08126edc55ce3a": {
     "STR: +17": 0.054274,
@@ -55544,8 +55544,8 @@
     "INT per 10 Character Levels: +2": 0.000158,
     "LUK per 10 Character Levels: +2": 0.000158,
     "HP Recovery Items and Skills: +30%": 0.000237,
-    "Meso acquisition amount: +5%": 0.000237,
-    "Item drop rate: +5%": 0.000237
+    "Meso Obtained: +5%": 0.000237,
+    "Item Drop Rate: +5%": 0.000237
   },
   "ea9724b705f49a935944335d6aa59f04425076cce877efb6ea98342f71da14a5d24d868110185a5dfc3c4e54254d12d3948c5b0cf1a0e730541014d979a5ce54": {
     "STR: +8": 0.037348,
@@ -55664,8 +55664,8 @@
     "MP consumption of all skills: -5%": 0.088235,
     "MP consumption of all skills: -10%": 0.088235,
     "HP Recovery Items and Skills: +20%": 0.088235,
-    "Meso acquisition amount: +10%": 0.088235,
-    "Item drop rate: +10%": 0.088235
+    "Meso Obtained: +10%": 0.088235,
+    "Item Drop Rate: +10%": 0.088235
   },
   "b06b88392b0c99e628b4876056fc389a83c801efefdc42a22237b270a16a44e6eca2b41df19e8e3e2c13f268c4f83e623d9cd6c78f8a3d28460c8cdcb887cc99": {
     "STR: +3%": 0.095048,
@@ -55688,8 +55688,8 @@
     "MP consumption of all skills: -5%": 0.000176,
     "MP consumption of all skills: -10%": 0.000176,
     "HP Recovery Items and Skills: +20%": 0.000176,
-    "Meso acquisition amount: +10%": 0.000176,
-    "Item drop rate: +10%": 0.000176
+    "Meso Obtained: +10%": 0.000176,
+    "Item Drop Rate: +10%": 0.000176
   },
   "7f70d9fca645d4e56e6231ec35c10cf9fce8fa78acf8fce8de0ce3e1176d728cd5465d767a0ddb69f486068d2d077bb12637c76af8862c4b20de83e174868112": {
     "STR: +6%": 0.113636,
@@ -56144,8 +56144,8 @@
     "LUK per 10 Character Levels: +2": 0.030303,
     "HP Recovery Items and Skills: +30%": 0.045455,
     "Skill Cooldown: -1 sec (-5% for under 10 sec, minimum cooldown of 10 sec)": 0.045455,
-    "Meso acquisition amount: +5%": 0.045455,
-    "Item drop rate: +5%": 0.045455
+    "Meso Obtained: +5%": 0.045455,
+    "Item Drop Rate: +5%": 0.045455
   },
   "c33896fdea53372b78e075ee76f686be115a56843c262a7d884ca22691062098e11eb4916c7794c746d23c7fef3d4604fb50cb68c3279ff4b3f59b51640019a1": {
     "STR: +16": 0.054274,
@@ -56194,8 +56194,8 @@
     "LUK per 10 Character Levels: +2": 0.000151,
     "HP Recovery Items and Skills: +30%": 0.000226,
     "Skill Cooldown: -1 sec (-5% for under 10 sec, minimum cooldown of 10 sec)": 0.000226,
-    "Meso acquisition amount: +5%": 0.000226,
-    "Item drop rate: +5%": 0.000226
+    "Meso Obtained: +5%": 0.000226,
+    "Item Drop Rate: +5%": 0.000226
   },
   "70aa4868510502f8ab3f5080452749043c40af201dbd6832cbd5f935d727a006df43bed24a77213aba47a7658e9d4cbf9a6ae79caf6edd79cf3083f3a7b4471f": {
     "STR: +6%": 0.060606,
@@ -56462,8 +56462,8 @@
     "All Stats: +6%": 0.069767,
     "MP consumption of all skills: -10%": 0.069767,
     "MP consumption of all skills: -20%": 0.069767,
-    "Meso acquisition amount: +15%": 0.069767,
-    "Item drop rate: +15%": 0.069767
+    "Meso Obtained: +15%": 0.069767,
+    "Item Drop Rate: +15%": 0.069767
   },
   "27d81902760b4b7ba50fe9781c1208710f7cf88eb71d31575abb601776091f1f2c49d3e6cae9b8413f367ae4eddc4aba0ee62fa90aabe635a865526fac1e9e77": {
     "STR: +6%": 0.102273,
@@ -56485,8 +56485,8 @@
     "All Stats: +6%": 0.006977,
     "MP consumption of all skills: -10%": 0.006977,
     "MP consumption of all skills: -20%": 0.006977,
-    "Meso acquisition amount: +15%": 0.006977,
-    "Item drop rate: +15%": 0.006977
+    "Meso Obtained: +15%": 0.006977,
+    "Item Drop Rate: +15%": 0.006977
   },
   "47862e1759c77e2369982373636023f7a49e78eb55827371e1453992e341ebc15ed6bc4705a2c55a7dd9a002c1809a9ece2db7dbbbb21d006adec44c09f444ab": {
     "STR: +6%": 0.1125,
@@ -56508,8 +56508,8 @@
     "All Stats: +6%": 0.000698,
     "MP consumption of all skills: -10%": 0.000698,
     "MP consumption of all skills: -20%": 0.000698,
-    "Meso acquisition amount: +15%": 0.000698,
-    "Item drop rate: +15%": 0.000698
+    "Meso Obtained: +15%": 0.000698,
+    "Item Drop Rate: +15%": 0.000698
   },
   "d091dd75b3dbace684a24bd1eb115cd72f00d71d1878fff2608eb772cacf79805fd781e9954c2f35eb362e85d400123b45a4b7392b13d20ca3fada4bba1eb711": {
     "STR: +16": 0.046154,
@@ -56536,8 +56536,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +20%": 0.046154,
-    "Meso acquisition amount: +4%": 0.046154,
-    "Item drop rate: +4%": 0.046154
+    "Meso Obtained: +4%": 0.046154,
+    "Item Drop Rate: +4%": 0.046154
   },
   "1418f18c0e0ca5d7b9100c4e683cc4b2ea1909b66dffdda5edde81e203424ba627b2c867bdceaaeed2cea22c018a581c97a52ec9847adc90c0679620043d8804": {
     "STR: +14": 0.054274,
@@ -56586,8 +56586,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +20%": 0.00023,
-    "Meso acquisition amount: +4%": 0.00023,
-    "Item drop rate: +4%": 0.00023
+    "Meso Obtained: +4%": 0.00023,
+    "Item Drop Rate: +4%": 0.00023
   },
   "bb65e47f097438890ca11b8e6609e328bd8a9e94eb017b0fb0144a5c6e2b27d156d990714a765208b6191660dd4b9b3d91a7eca4932e37b12df3826a28448feb": {
     "STR: +12": 0.04381,
@@ -56710,8 +56710,8 @@
     "All Stats: +3%": 0.069767,
     "MP consumption of all skills: -5%": 0.069767,
     "MP consumption of all skills: -10%": 0.069767,
-    "Meso acquisition amount: +10%": 0.069767,
-    "Item drop rate: +10%": 0.069767
+    "Meso Obtained: +10%": 0.069767,
+    "Item Drop Rate: +10%": 0.069767
   },
   "6c1bea52eb4ff6ac21d8e212d8be692e0c8cbc611a99d3b7c5484baf0cb956168ca4506fe7fb6dc109f4d51263ac46e8a785f54613e6cb3b5ec4aa5d20b84f1f": {
     "STR: +3%": 0.090909,
@@ -56733,8 +56733,8 @@
     "All Stats: +3%": 0.013953,
     "MP consumption of all skills: -5%": 0.013953,
     "MP consumption of all skills: -10%": 0.013953,
-    "Meso acquisition amount: +10%": 0.013953,
-    "Item drop rate: +10%": 0.013953
+    "Meso Obtained: +10%": 0.013953,
+    "Item Drop Rate: +10%": 0.013953
   },
   "42858caffce6dc1e044a3f7744a29cd72cac6c3e0234ddb46c3d835dbdf529783cdb98406fcbfa055bfc3883a8704507a0f48fb285935a606b00f30df1fd5ab1": {
     "STR: +3%": 0.107955,
@@ -56756,8 +56756,8 @@
     "All Stats: +3%": 0.003488,
     "MP consumption of all skills: -5%": 0.003488,
     "MP consumption of all skills: -10%": 0.003488,
-    "Meso acquisition amount: +10%": 0.003488,
-    "Item drop rate: +10%": 0.003488
+    "Meso Obtained: +10%": 0.003488,
+    "Item Drop Rate: +10%": 0.003488
   },
   "0540c4bd6fcfbabac61927d6ec16590ac1ef007d8bced69792b5d40c66d92b7d1b632d779bdd441ac4730932f8d2ea93903d33276f2f0c75237692af20cdb913": {
     "STR: +13%": 0.071429,
@@ -56980,8 +56980,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +20%": 0.046154,
-    "Meso acquisition amount: +4%": 0.046154,
-    "Item drop rate: +4%": 0.046154
+    "Meso Obtained: +4%": 0.046154,
+    "Item Drop Rate: +4%": 0.046154
   },
   "8138d4c88a0dd4f6807003e9d07ad6d6a810b21f32cdef96318aed92817303811c25f141b8c4dded244800481e7a6d1500635d0e1704b73da12016d2491ab431": {
     "STR: +12": 0.054274,
@@ -57030,8 +57030,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +20%": 0.00023,
-    "Meso acquisition amount: +4%": 0.00023,
-    "Item drop rate: +4%": 0.00023
+    "Meso Obtained: +4%": 0.00023,
+    "Item Drop Rate: +4%": 0.00023
   },
   "4c942d46eb0f53a6c1ff69cfaf30c4ca9e601070c9ffe62f3a5e23c0cd1dd32e882f59ede0e61b565f71dd7d3485c13d90fd9816fadccd704d26044c5c9c97c4": {
     "STR: +4": 0.047619,
@@ -57098,8 +57098,8 @@
     "All Stats: +3%": 0.006977,
     "MP consumption of all skills: -5%": 0.006977,
     "MP consumption of all skills: -10%": 0.006977,
-    "Meso acquisition amount: +10%": 0.006977,
-    "Item drop rate: +10%": 0.006977
+    "Meso Obtained: +10%": 0.006977,
+    "Item Drop Rate: +10%": 0.006977
   },
   "88dbb6239e5f063378080516a52c3b99648ded30faaf753cafe2f212d92e54fcb29dcf9944893384f22e07d8c6621ea68cf498902c0e1cc3f1596986301282fd": {
     "STR: +3%": 0.1125,
@@ -57121,8 +57121,8 @@
     "All Stats: +3%": 0.000698,
     "MP consumption of all skills: -5%": 0.000698,
     "MP consumption of all skills: -10%": 0.000698,
-    "Meso acquisition amount: +10%": 0.000698,
-    "Item drop rate: +10%": 0.000698
+    "Meso Obtained: +10%": 0.000698,
+    "Item Drop Rate: +10%": 0.000698
   },
   "337fe69ba22f3d304e00012767504aac5eab94ed46aba3ba8dc28a061655631b184c2ad7489968611e878edaff53565b7803298b177710db8d82d4db9eb86a49": {
     "STR: +6": 0.08687,
@@ -57470,8 +57470,8 @@
     "MP consumption of all skills: -10%": 0.088235,
     "MP consumption of all skills: -20%": 0.088235,
     "HP Recovery Items and Skills: +30%": 0.088235,
-    "Meso acquisition amount: +15%": 0.088235,
-    "Item drop rate: +15%": 0.088235
+    "Meso Obtained: +15%": 0.088235,
+    "Item Drop Rate: +15%": 0.088235
   },
   "53969e497cd139e93bff56a0ff25bf2d8f90a36e03c5df6e5d3e1a5eec4351315ba14d72853902ceb5cf3e37fa9f29cb093b2195406b24351fa7a8c113dbead0": {
     "STR: +6%": 0.095048,
@@ -57494,8 +57494,8 @@
     "MP consumption of all skills: -10%": 0.000176,
     "MP consumption of all skills: -20%": 0.000176,
     "HP Recovery Items and Skills: +30%": 0.000176,
-    "Meso acquisition amount: +15%": 0.000176,
-    "Item drop rate: +15%": 0.000176
+    "Meso Obtained: +15%": 0.000176,
+    "Item Drop Rate: +15%": 0.000176
   },
   "68fcd56886f16954e8c2518dad9332b467dda6f9dce9e3b24c9e20e977b540f89ae336a4d5c7dbaea4b30df37776c127b6894b7b024a0f6c23a666ae5d5d5338": {
     "STR: +13": 0.0675,
@@ -57629,8 +57629,8 @@
     "All Stats: +6%": 0.069767,
     "MP consumption of all skills: -5%": 0.069767,
     "MP consumption of all skills: -10%": 0.069767,
-    "Meso acquisition amount: +15%": 0.069767,
-    "Item drop rate: +15%": 0.069767
+    "Meso Obtained: +15%": 0.069767,
+    "Item Drop Rate: +15%": 0.069767
   },
   "a609aa0d930a507aec6367f4e46513a65ca72e91a54aa65ac28e1a9ba5a4e6e45a17276e1f8d3ac4b07f61f11f4bef53befad3fe6213a3e1d76e67b2dbaa62b4": {
     "STR: +6%": 0.102273,
@@ -57652,8 +57652,8 @@
     "All Stats: +6%": 0.006977,
     "MP consumption of all skills: -5%": 0.006977,
     "MP consumption of all skills: -10%": 0.006977,
-    "Meso acquisition amount: +15%": 0.006977,
-    "Item drop rate: +15%": 0.006977
+    "Meso Obtained: +15%": 0.006977,
+    "Item Drop Rate: +15%": 0.006977
   },
   "fb13ffedc06951fe415376ae86fb12e0968820c303e34acc9e39678b69c0a967dc872c407f42b67e18b2166d579adb4b125f3fdec0fbb65f1e140bd784401697": {
     "STR: +6%": 0.1125,
@@ -57675,8 +57675,8 @@
     "All Stats: +6%": 0.000698,
     "MP consumption of all skills: -5%": 0.000698,
     "MP consumption of all skills: -10%": 0.000698,
-    "Meso acquisition amount: +15%": 0.000698,
-    "Item drop rate: +15%": 0.000698
+    "Meso Obtained: +15%": 0.000698,
+    "Item Drop Rate: +15%": 0.000698
   },
   "07fa4e81ad057cce8c520e6e304c338cf717f9e3afdee1e828109ca8cee76ca787df48a853d84f0d443e53ff52e4faba0c4660e66ea623e8767e830606930653": {
     "STR: +7%": 0.086957,
@@ -58165,8 +58165,8 @@
     "MP consumption of all skills: -15%": 0.088235,
     "MP consumption of all skills: -30%": 0.088235,
     "HP Recovery Items and Skills: +40%": 0.088235,
-    "Meso acquisition amount: +20%": 0.088235,
-    "Item drop rate: +20%": 0.088235
+    "Meso Obtained: +20%": 0.088235,
+    "Item Drop Rate: +20%": 0.088235
   },
   "f5b7d39a545d5a034a409b590c11d4fb21285c9e7a36a6f2d69cf8a8bcb81580db565ff3b46e222141885b04a92afddabcc1a003e67c3c73abbf9dfa6198d425": {
     "STR : +9%": 0.095048,
@@ -58189,8 +58189,8 @@
     "MP consumption of all skills: -15%": 0.000176,
     "MP consumption of all skills: -30%": 0.000176,
     "HP Recovery Items and Skills: +40%": 0.000176,
-    "Meso acquisition amount: +20%": 0.000176,
-    "Item drop rate: +20%": 0.000176
+    "Meso Obtained: +20%": 0.000176,
+    "Item Drop Rate: +20%": 0.000176
   },
   "964c05540a4f0ce493af59f1d5e80762791384f37eb7115267cb7ae53e384244fbe8b3d9aacbd0ef6ab1fee15dc873c92c4e1f20b30672445da5b2519f42cef5": {
     "STR: +10%": 0.088235,
@@ -58541,8 +58541,8 @@
     "All Stats: +9%": 0.013953,
     "MP consumption of all skills: -10%": 0.013953,
     "MP consumption of all skills: -20%": 0.013953,
-    "Meso acquisition amount: +20%": 0.013953,
-    "Item drop rate: +20%": 0.013953
+    "Meso Obtained: +20%": 0.013953,
+    "Item Drop Rate: +20%": 0.013953
   },
   "274bdd03c64b9dbced21a3d89fc90398e6979d81ba07ca062de23e27cfd6a98c14e8c9ca1df67ee1ae2f2fc4338817af9cd7a5fb2146c70b035f048bdb8485ae": {
     "STR : +9%": 0.107955,
@@ -58564,8 +58564,8 @@
     "All Stats: +9%": 0.003488,
     "MP consumption of all skills: -10%": 0.003488,
     "MP consumption of all skills: -20%": 0.003488,
-    "Meso acquisition amount: +20%": 0.003488,
-    "Item drop rate: +20%": 0.003488
+    "Meso Obtained: +20%": 0.003488,
+    "Item Drop Rate: +20%": 0.003488
   },
   "78f1814fc53a39c81e33c634a26df9cd0de529cd34ba845cc4694bebcf902dd18a83a5cf158f0c21f7c4be4346b51e5a74bce3a679df9c80ba8772a8eacff89d": {
     "STR: +12": 0.04381,
@@ -58605,8 +58605,8 @@
     "All Stats: +9%": 0.069767,
     "MP consumption of all skills: -15%": 0.069767,
     "MP consumption of all skills: -30%": 0.069767,
-    "Meso acquisition amount: +20%": 0.069767,
-    "Item drop rate: +20%": 0.069767
+    "Meso Obtained: +20%": 0.069767,
+    "Item Drop Rate: +20%": 0.069767
   },
   "33117429237da4ea37a9df5342709f09e9b8f7a54b2f31a12a7c812d3a77b79aacfa5ababab0f5ebe1f23bf7d4f88eab8d306f20303678e7a9b70b6cfaa68b6e": {
     "STR : +9%": 0.102273,
@@ -58628,8 +58628,8 @@
     "All Stats: +9%": 0.006977,
     "MP consumption of all skills: -15%": 0.006977,
     "MP consumption of all skills: -30%": 0.006977,
-    "Meso acquisition amount: +20%": 0.006977,
-    "Item drop rate: +20%": 0.006977
+    "Meso Obtained: +20%": 0.006977,
+    "Item Drop Rate: +20%": 0.006977
   },
   "ff5a89f089ae223d1949517d3768363d39fea30c35f97c115f970f057cc35dc8fffbf545188654fb2da30f291b77e6552195801b965771a12b07ad0b41b94498": {
     "STR : +9%": 0.1125,
@@ -58651,8 +58651,8 @@
     "All Stats: +9%": 0.000698,
     "MP consumption of all skills: -15%": 0.000698,
     "MP consumption of all skills: -30%": 0.000698,
-    "Meso acquisition amount: +20%": 0.000698,
-    "Item drop rate: +20%": 0.000698
+    "Meso Obtained: +20%": 0.000698,
+    "Item Drop Rate: +20%": 0.000698
   },
   "92c4cbfb53bbe02d4c4d04e0b421cb6cc089fea4839ff36c761bce9e9838b9e052aef3fdbb30a5cd66c3986eff079f8e36c6d30a262c4f54a8df200c34a6e71e": {
     "STR: +2%": 0.111111,
@@ -58746,8 +58746,8 @@
     "LUK per 10 Character Levels: +2": 0.030303,
     "HP Recovery Items and Skills: +30%": 0.045455,
     "Skill Cooldown: -1 sec (-5% for under 10 sec, minimum cooldown of 10 sec)": 0.045455,
-    "Meso acquisition amount: +5%": 0.045455,
-    "Item drop rate: +5%": 0.045455
+    "Meso Obtained: +5%": 0.045455,
+    "Item Drop Rate: +5%": 0.045455
   },
   "7ca7d6e98a7a90f857cb890676d793fb8471b1108ff8222b31a333e014f8f773008d44bb92c29c648daf04058a82beefde9ab728cdbbd360cd79a076b9bd3835": {
     "STR: +16": 0.054274,
@@ -58796,8 +58796,8 @@
     "LUK per 10 Character Levels: +2": 0.000151,
     "HP Recovery Items and Skills: +30%": 0.000226,
     "Skill Cooldown: -1 sec (-5% for under 10 sec, minimum cooldown of 10 sec)": 0.000226,
-    "Meso acquisition amount: +5%": 0.000226,
-    "Item drop rate: +5%": 0.000226
+    "Meso Obtained: +5%": 0.000226,
+    "Item Drop Rate: +5%": 0.000226
   },
   "a15bdb0a84fdcbd608e142725ea2d41831b5dd1682031fa2009a0501a03697fefcca2904ea1d6364abdd6c84303859064e2e0df8670f591b693466a395401db0": {
     "STR: +7": 0.08687,
@@ -59414,8 +59414,8 @@
     "All Stats: +6%": 0.013953,
     "MP consumption of all skills: -10%": 0.013953,
     "MP consumption of all skills: -20%": 0.013953,
-    "Meso acquisition amount: +15%": 0.013953,
-    "Item drop rate: +15%": 0.013953
+    "Meso Obtained: +15%": 0.013953,
+    "Item Drop Rate: +15%": 0.013953
   },
   "31f365a2f972d52fd749a7b415fd41603444f88bbbf4d98236d84bad500ed940f613a4246ec377143d473e3aab952c0b3d08b09df60467c6d313a6fededcc4c2": {
     "STR: +6%": 0.107955,
@@ -59437,8 +59437,8 @@
     "All Stats: +6%": 0.003488,
     "MP consumption of all skills: -10%": 0.003488,
     "MP consumption of all skills: -20%": 0.003488,
-    "Meso acquisition amount: +15%": 0.003488,
-    "Item drop rate: +15%": 0.003488
+    "Meso Obtained: +15%": 0.003488,
+    "Item Drop Rate: +15%": 0.003488
   },
   "13f0603270ccbdd94b43ddc2fd54ebdb07c196b8a4f265e15a880faa5a0d9b035113b97f997ce9b26b5618fb0ee9e77f25559c1b7371b97de92120396611d71a": {
     "STR : +9%": 0.102273,
@@ -59979,8 +59979,8 @@
     "MP consumption of all skills: -10%": 0.088235,
     "MP consumption of all skills: -20%": 0.088235,
     "HP Recovery Items and Skills: +40%": 0.088235,
-    "Meso acquisition amount: +20%": 0.088235,
-    "Item drop rate: +20%": 0.088235
+    "Meso Obtained: +20%": 0.088235,
+    "Item Drop Rate: +20%": 0.088235
   },
   "b1ab3e0a9fc1c81ecbd6563e3da0c5cc345bf653cb93124a326713b3ec70bae80b46cf477c24a567643c6101640c7b8d691da5bca28e566efb38bf533ef3b4cf": {
     "STR : +9%": 0.095048,
@@ -60003,8 +60003,8 @@
     "MP consumption of all skills: -10%": 0.000176,
     "MP consumption of all skills: -20%": 0.000176,
     "HP Recovery Items and Skills: +40%": 0.000176,
-    "Meso acquisition amount: +20%": 0.000176,
-    "Item drop rate: +20%": 0.000176
+    "Meso Obtained: +20%": 0.000176,
+    "Item Drop Rate: +20%": 0.000176
   },
   "2b8c9d382a628c99d919160db870dbdd54d3a01c2683381b7707e5342f4a2d0639f86256cb949bbd4a700e14cdbf96146a68706440e66e256415e74ff037b197": {
     "STR: +12": 0.045351,
@@ -60181,8 +60181,8 @@
     "MP consumption of all skills: -5%": 0.088235,
     "MP consumption of all skills: -10%": 0.088235,
     "HP Recovery Items and Skills: +30%": 0.088235,
-    "Meso acquisition amount: +15%": 0.088235,
-    "Item drop rate: +15%": 0.088235
+    "Meso Obtained: +15%": 0.088235,
+    "Item Drop Rate: +15%": 0.088235
   },
   "ca79f6075db4a9b6b4fa056e39e8fd5249bca2ba9db05c395e293983d3f9c76e67545b19548c76fe34609a393252a96201c679fbe92d2f6bbc636d251786815a": {
     "STR: +6%": 0.095048,
@@ -60205,8 +60205,8 @@
     "MP consumption of all skills: -5%": 0.000176,
     "MP consumption of all skills: -10%": 0.000176,
     "HP Recovery Items and Skills: +30%": 0.000176,
-    "Meso acquisition amount: +15%": 0.000176,
-    "Item drop rate: +15%": 0.000176
+    "Meso Obtained: +15%": 0.000176,
+    "Item Drop Rate: +15%": 0.000176
   },
   "f678f8da26146f1eed3687768541732434449d0705f63e47f343c6e6ada50c2248e8dc7ea2e1b5f593f072a5c429a563469337c80fbb0dbacb60d7830c371a65": {
     "STR: +12": 0.051111,
@@ -60293,8 +60293,8 @@
     "All Stats: +6%": 0.013953,
     "MP consumption of all skills: -5%": 0.013953,
     "MP consumption of all skills: -10%": 0.013953,
-    "Meso acquisition amount: +15%": 0.013953,
-    "Item drop rate: +15%": 0.013953
+    "Meso Obtained: +15%": 0.013953,
+    "Item Drop Rate: +15%": 0.013953
   },
   "1e4707b11a156c9f2e0da992ae1222d3eac85b91eaa143b7086f2b8544f445200c1aa3f3a40f4ae11b05681da58a60f2eae0e19359c1cda87c377be42aa76220": {
     "STR: +6%": 0.107955,
@@ -60316,8 +60316,8 @@
     "All Stats: +6%": 0.003488,
     "MP consumption of all skills: -5%": 0.003488,
     "MP consumption of all skills: -10%": 0.003488,
-    "Meso acquisition amount: +15%": 0.003488,
-    "Item drop rate: +15%": 0.003488
+    "Meso Obtained: +15%": 0.003488,
+    "Item Drop Rate: +15%": 0.003488
   },
   "1105bd70dc971b09c0296afa47dcf2ad924574408c95a444fd12db7faa381821466fa7de4e7b98230971f2a87cf1659fca0ee3047593f4cbc8eeb2338a8b82e5": {
     "STR: +7": 0.108,
@@ -60941,8 +60941,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -7%": 0.046875,
     "HP Recovery Items and Skills: +20%": 0.046875,
-    "Meso acquisition amount: +4%": 0.046875,
-    "Item drop rate: +4%": 0.046875
+    "Meso Obtained: +4%": 0.046875,
+    "Item Drop Rate: +4%": 0.046875
   },
   "27120a904485232c00c625a70567efa8560fa395e7bd64e8c5cc170244b295902d0a57fe4760fe6f474b7b7c1569dcffdf6d6f03ee3484e3a36bcd65665b1e58": {
     "STR: +12": 0.054274,
@@ -60990,8 +60990,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -7%": 0.000233,
     "HP Recovery Items and Skills: +20%": 0.000233,
-    "Meso acquisition amount: +4%": 0.000233,
-    "Item drop rate: +4%": 0.000233
+    "Meso Obtained: +4%": 0.000233,
+    "Item Drop Rate: +4%": 0.000233
   },
   "30261a293f0686ff281f2482fa0b490ba3f557c9220e27048ede61c4553fb25148ceba124d6843a1a03a5df592cfa63a5b9c2705199c0baced71c3799c2b3bad": {
     "STR: +4": 0.051111,
@@ -61090,8 +61090,8 @@
     "All Stats: +2%": 0.035714,
     "MP consumption of all skills: -3%": 0.053571,
     "HP Recovery Items and Skills: +10%": 0.053571,
-    "Meso acquisition amount: +2%": 0.053571,
-    "Item drop rate: +2%": 0.053571
+    "Meso Obtained: +2%": 0.053571,
+    "Item Drop Rate: +2%": 0.053571
   },
   "ef5f7c801cf11fcf0d888c207ad8074a97d342d2aa5ef8eb0aaf15c9b74bd0065d25c18d60b7d149eb70f8b9f09fb189f53b9066a3942640bb015fffa4771b91": {
     "STR: +6": 0.063512,
@@ -61131,8 +61131,8 @@
     "All Stats: +2%": 0.000178,
     "MP consumption of all skills: -3%": 0.000267,
     "HP Recovery Items and Skills: +10%": 0.000267,
-    "Meso acquisition amount: +2%": 0.000267,
-    "Item drop rate: +2%": 0.000267
+    "Meso Obtained: +2%": 0.000267,
+    "Item Drop Rate: +2%": 0.000267
   },
   "433c74c63a48951981ad51194deda5b3f865767200599acfde9902d8d304e8e3f8a4d4ae8beadb369462c70a3f33cbe0d38f6091bfa947e9636a091be2c26bf8": {
     "STR: +10%": 0.113636,
@@ -61534,8 +61534,8 @@
     "INT per 10 Character Levels: +2": 0.032787,
     "LUK per 10 Character Levels: +2": 0.032787,
     "HP Recovery Items and Skills: +30%": 0.04918,
-    "Meso acquisition amount: +5%": 0.04918,
-    "Item drop rate: +5%": 0.04918
+    "Meso Obtained: +5%": 0.04918,
+    "Item Drop Rate: +5%": 0.04918
   },
   "35f5b70639c407e1a73dfc9d09c73e438fee944b5fe71dffa4d5d51c1fd0b4ed73313fba6ff875b07cc0a37da120092e7df4bb99580374e1e6e8f8af05c0a268": {
     "STR: +16": 0.054274,
@@ -61582,8 +61582,8 @@
     "INT per 10 Character Levels: +2": 0.000163,
     "LUK per 10 Character Levels: +2": 0.000163,
     "HP Recovery Items and Skills: +30%": 0.000245,
-    "Meso acquisition amount: +5%": 0.000245,
-    "Item drop rate: +5%": 0.000245
+    "Meso Obtained: +5%": 0.000245,
+    "Item Drop Rate: +5%": 0.000245
   },
   "6446998d08e1c7ae1f752c52fdd2a910fdeaa20ef63560f79f434bbe7d4c2b5642ae6edcd85320bebf69ccacfe160ed7672d9b66ea06e15083c8232e1417a243": {
     "STR: +7%": 0.114286,
@@ -61681,8 +61681,8 @@
     "All Stats: +9%": 0.013953,
     "MP consumption of all skills: -15%": 0.013953,
     "MP consumption of all skills: -30%": 0.013953,
-    "Meso acquisition amount: +20%": 0.013953,
-    "Item drop rate: +20%": 0.013953
+    "Meso Obtained: +20%": 0.013953,
+    "Item Drop Rate: +20%": 0.013953
   },
   "69fe2518f53c75a0870f55ef6794574afd0adff0e4f654844bf5bc236689f4773aaa086368627e74c72af741d2c58a7761b5b45fd981085610d066d83f29e9f3": {
     "STR : +9%": 0.107955,
@@ -61704,8 +61704,8 @@
     "All Stats: +9%": 0.003488,
     "MP consumption of all skills: -15%": 0.003488,
     "MP consumption of all skills: -30%": 0.003488,
-    "Meso acquisition amount: +20%": 0.003488,
-    "Item drop rate: +20%": 0.003488
+    "Meso Obtained: +20%": 0.003488,
+    "Item Drop Rate: +20%": 0.003488
   },
   "0ced440a0b846e8004c405ddd19f8037180371611d34af9159fdb311056386197eb991d12130141cf8049771295daa9b30ee3541ed9b4a916518632f845bdd8a": {
     "STR: +19": 0.046154,
@@ -61732,8 +61732,8 @@
     "INT per 10 Character Levels: +2": 0.030769,
     "LUK per 10 Character Levels: +2": 0.030769,
     "HP Recovery Items and Skills: +30%": 0.046154,
-    "Meso acquisition amount: +5%": 0.046154,
-    "Item drop rate: +5%": 0.046154
+    "Meso Obtained: +5%": 0.046154,
+    "Item Drop Rate: +5%": 0.046154
   },
   "4dd0b9228d04907448f7dfd169cb018479aaf9d7c78f590634b71c165e775fd22b3f56999175176cbdcd337d28ecfcd721e9a03fcced597658423d2cd03fa32a": {
     "STR: +17": 0.054274,
@@ -61782,8 +61782,8 @@
     "INT per 10 Character Levels: +2": 0.000153,
     "LUK per 10 Character Levels: +2": 0.000153,
     "HP Recovery Items and Skills: +30%": 0.00023,
-    "Meso acquisition amount: +5%": 0.00023,
-    "Item drop rate: +5%": 0.00023
+    "Meso Obtained: +5%": 0.00023,
+    "Item Drop Rate: +5%": 0.00023
   },
   "56ee8a982eb456abe4f25f68949484d4283abff6f48ebbb4e4761fa1cfc80b01df7c10f4788231e11050b8fcf2dc84c3329ea5149374318f28da5ecec103a4e9": {
     "STR: +13%": 0.093023,
@@ -61796,8 +61796,8 @@
     "All Stats: +10%": 0.069767,
     "MP consumption of all skills: -15%": 0.069767,
     "MP consumption of all skills: -30%": 0.069767,
-    "Meso acquisition amount: +20%": 0.069767,
-    "Item drop rate: +20%": 0.069767
+    "Meso Obtained: +20%": 0.069767,
+    "Item Drop Rate: +20%": 0.069767
   },
   "c14531bf92214118497e9d9dd09c02bf335b641c5f897caaf69373647017c1d62f8d9c2e826e3d3b54b21442291b80b50d05256a00b6a14f52497a40c9560aca": {
     "STR: +10%": 0.102273,
@@ -61819,8 +61819,8 @@
     "All Stats: +10%": 0.006977,
     "MP consumption of all skills: -15%": 0.006977,
     "MP consumption of all skills: -30%": 0.006977,
-    "Meso acquisition amount: +20%": 0.006977,
-    "Item drop rate: +20%": 0.006977
+    "Meso Obtained: +20%": 0.006977,
+    "Item Drop Rate: +20%": 0.006977
   },
   "57469017b873a39fad9ed2eb132566f5766ff06de144f488a1b0369b24d7c69366ea06daebabaffe955ba94468cf91665f99206066c7c5a5a42fdb80f963e763": {
     "STR: +10%": 0.1125,
@@ -61842,8 +61842,8 @@
     "All Stats: +10%": 0.000698,
     "MP consumption of all skills: -15%": 0.000698,
     "MP consumption of all skills: -30%": 0.000698,
-    "Meso acquisition amount: +20%": 0.000698,
-    "Item drop rate: +20%": 0.000698
+    "Meso Obtained: +20%": 0.000698,
+    "Item Drop Rate: +20%": 0.000698
   },
   "4862ed5d132a24f80e19dfc2ce97727b07d9e3b35f31938a29cea3595737a2dd7f1c19c79827d676feca37c34273cc20a1109e5ad02853f968f2604f90f917df": {
     "STR: +4": 0.047148,
@@ -61923,8 +61923,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -5%": 0.046875,
     "HP Recovery Items and Skills: +15%": 0.046875,
-    "Meso acquisition amount: +3%": 0.046875,
-    "Item drop rate: +3%": 0.046875
+    "Meso Obtained: +3%": 0.046875,
+    "Item Drop Rate: +3%": 0.046875
   },
   "37ebb0c2c966d11dfcf140d60b37b93315a60b02c044b5dac6a0a65c6a6300b6e842ad128d86a83843ffef13893fa865c03269147fa2dd419d3f4fa86d43a2d6": {
     "STR: +8": 0.054274,
@@ -61972,8 +61972,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -5%": 0.000233,
     "HP Recovery Items and Skills: +15%": 0.000233,
-    "Meso acquisition amount: +3%": 0.000233,
-    "Item drop rate: +3%": 0.000233
+    "Meso Obtained: +3%": 0.000233,
+    "Item Drop Rate: +3%": 0.000233
   },
   "0a73e26c16fe4e098e0ade8bc4746c6e34172f390ae0bbd0258f56d3242c4f3a430125b1c781d3e01bbe7a6038d281bf65b3076988a1119a362e2209073e832e": {
     "STR: +12": 0.05291,
@@ -62073,8 +62073,8 @@
     "DEF: +3%": 0.056604,
     "All Stats: +2%": 0.037736,
     "HP Recovery Items and Skills: +10%": 0.056604,
-    "Meso acquisition amount: +2%": 0.056604,
-    "Item drop rate: +2%": 0.056604
+    "Meso Obtained: +2%": 0.056604,
+    "Item Drop Rate: +2%": 0.056604
   },
   "0ee07a82a36b29ebd311bfb492cd05f85bee5293d0a958acd3f4cdf96f3f05f807a863ef7881fbeff35e5bdb38ff7ee821bb5bca6b132b98c357f17fd86fe956": {
     "STR: +6": 0.063512,
@@ -62113,8 +62113,8 @@
     "DEF: +3%": 0.000282,
     "All Stats: +2%": 0.000188,
     "HP Recovery Items and Skills: +10%": 0.000282,
-    "Meso acquisition amount: +2%": 0.000282,
-    "Item drop rate: +2%": 0.000282
+    "Meso Obtained: +2%": 0.000282,
+    "Item Drop Rate: +2%": 0.000282
   },
   "12fe7cee4597d66ea8371dd4a5d4febfaea7b0cc70455c0456e28253b5af18f1b3f45ff51d81eab9be2af44c9900df0baacc8d1d4bef1df69373cb8700adcd56": {
     "STR: +6": 0.11753,
@@ -62187,8 +62187,8 @@
     "All Stats: +2%": 0.035714,
     "MP consumption of all skills: -3%": 0.053571,
     "HP Recovery Items and Skills: +10%": 0.053571,
-    "Meso acquisition amount: +2%": 0.053571,
-    "Item drop rate: +2%": 0.053571
+    "Meso Obtained: +2%": 0.053571,
+    "Item Drop Rate: +2%": 0.053571
   },
   "5db054a615cbe226b1e86807864e4c9a206778b58f7e1b6735484c93c346236d5b64ce2146f609a1f0f020520ba5aa0f26495b1d414c8c158260ee61e329ab78": {
     "STR: +6": 0.063512,
@@ -62228,8 +62228,8 @@
     "All Stats: +2%": 0.000178,
     "MP consumption of all skills: -3%": 0.000267,
     "HP Recovery Items and Skills: +10%": 0.000267,
-    "Meso acquisition amount: +2%": 0.000267,
-    "Item drop rate: +2%": 0.000267
+    "Meso Obtained: +2%": 0.000267,
+    "Item Drop Rate: +2%": 0.000267
   },
   "1f6f2c89e34de3e197b0332bacd5c14d93fcfbe186228e0589ea3a70773433e98c8e12f702f2529927600e2e586fa77a0ed47525f818733e5874e0e6137cf4c5": {
     "STR: +4": 0.05291,
@@ -62280,8 +62280,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -5%": 0.046875,
     "HP Recovery Items and Skills: +15%": 0.046875,
-    "Meso acquisition amount: +3%": 0.046875,
-    "Item drop rate: +3%": 0.046875
+    "Meso Obtained: +3%": 0.046875,
+    "Item Drop Rate: +3%": 0.046875
   },
   "50d931cf96aa618009afc50d32b712db9b293fadc2fd8cb8a43120f1c0ae9a249714a69311ff3ecbe67263824741201910a8ea4a040424cfb3563f015f08204f": {
     "STR: +8": 0.054274,
@@ -62329,8 +62329,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -5%": 0.000233,
     "HP Recovery Items and Skills: +15%": 0.000233,
-    "Meso acquisition amount: +3%": 0.000233,
-    "Item drop rate: +3%": 0.000233
+    "Meso Obtained: +3%": 0.000233,
+    "Item Drop Rate: +3%": 0.000233
   },
   "865ce5d10a832347a9229067dcc94c138c6c6a083bb5a973286c9e80a14c93bc23225b3a71eb195c5bd8f7ddcd11f026a368ebd976c3f1c0a8839767b063d897": {
     "STR: +6": 0.08687,
@@ -62384,8 +62384,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -10%": 0.046875,
     "HP Recovery Items and Skills: +30%": 0.046875,
-    "Meso acquisition amount: +5%": 0.046875,
-    "Item drop rate: +5%": 0.046875
+    "Meso Obtained: +5%": 0.046875,
+    "Item Drop Rate: +5%": 0.046875
   },
   "1e964af84c4478b0b89f0fcb5f951c5b38d1e5012167d8fa7d11e6aebbeb493883cce58cca01132c3f591e482a33fd2a5fd74bd7bbfd65a0c06d5cd828706dcb": {
     "STR: +16": 0.054274,
@@ -62433,8 +62433,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -10%": 0.000233,
     "HP Recovery Items and Skills: +30%": 0.000233,
-    "Meso acquisition amount: +5%": 0.000233,
-    "Item drop rate: +5%": 0.000233
+    "Meso Obtained: +5%": 0.000233,
+    "Item Drop Rate: +5%": 0.000233
   },
   "919ffe5481d43498a8cbc36e63f8dadedf2c854619d006b72b0655c8c35fed917058674faee58cd4415d34b91eb6e838fa7f10c9203a85ab86895fe67e7753a5": {
     "STR: +12": 0.045351,
@@ -62750,8 +62750,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -7%": 0.046875,
     "HP Recovery Items and Skills: +20%": 0.046875,
-    "Meso acquisition amount: +4%": 0.046875,
-    "Item drop rate: +4%": 0.046875
+    "Meso Obtained: +4%": 0.046875,
+    "Item Drop Rate: +4%": 0.046875
   },
   "7bf7f78bdb98a9124844db5cada383588854b18ebe19b8881794d68ddb7f0ce46e066fa4626b5ab5634ff9a45c4eee8be2c61b1e2fc4779679c5af506928ea82": {
     "STR: +12": 0.054274,
@@ -62799,8 +62799,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -7%": 0.000233,
     "HP Recovery Items and Skills: +20%": 0.000233,
-    "Meso acquisition amount: +4%": 0.000233,
-    "Item drop rate: +4%": 0.000233
+    "Meso Obtained: +4%": 0.000233,
+    "Item Drop Rate: +4%": 0.000233
   },
   "5fdf7054676ca0aa71cac21cbec63560803b9e440523819f50cd7b64c7fadbc0744ef4bfac16a5d606e801998eff3016dfb892ffd0429f463a46518da2d6a4d7": {
     "STR: +6": 0.11753,
@@ -63106,8 +63106,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -7%": 0.046875,
     "HP Recovery Items and Skills: +20%": 0.046875,
-    "Meso acquisition amount: +4%": 0.046875,
-    "Item drop rate: +4%": 0.046875
+    "Meso Obtained: +4%": 0.046875,
+    "Item Drop Rate: +4%": 0.046875
   },
   "bd830dfb7570458072ab860119e89680c9819f0e30223a42bdaa57e25090ecb956992e322c1ddde8fd0c5b0efd6eddad5eb0fa29ea3b101c6bba26ce9c0bf3ea": {
     "STR: +14": 0.054274,
@@ -63155,8 +63155,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -7%": 0.000233,
     "HP Recovery Items and Skills: +20%": 0.000233,
-    "Meso acquisition amount: +4%": 0.000233,
-    "Item drop rate: +4%": 0.000233
+    "Meso Obtained: +4%": 0.000233,
+    "Item Drop Rate: +4%": 0.000233
   },
   "656e5bc36cb6d10b13a9de675d79a6239e9bf6042a119388ad74844d413414f4861bd5404af9e985e72f682c9ed336ef1e452f174c9eef8b7d02ad56be45d0fa": {
     "STR: +19": 0.045455,
@@ -63183,8 +63183,8 @@
     "LUK per 10 Character Levels: +2": 0.030303,
     "HP Recovery Items and Skills: +30%": 0.045455,
     "Skill Cooldown: -1 sec (-5% for under 10 sec, minimum cooldown of 10 sec)": 0.045455,
-    "Meso acquisition amount: +5%": 0.045455,
-    "Item drop rate: +5%": 0.045455
+    "Meso Obtained: +5%": 0.045455,
+    "Item Drop Rate: +5%": 0.045455
   },
   "f359bc3f817cad360ef6ac469dbabe7fab704dbc9a6f6fc6992c90bd030af729f626c4e6dfa60e936b7e203179853aab81945e8dc9f3584e5920514950a01068": {
     "STR: +17": 0.054274,
@@ -63233,8 +63233,8 @@
     "LUK per 10 Character Levels: +2": 0.000151,
     "HP Recovery Items and Skills: +30%": 0.000226,
     "Skill Cooldown: -1 sec (-5% for under 10 sec, minimum cooldown of 10 sec)": 0.000226,
-    "Meso acquisition amount: +5%": 0.000226,
-    "Item drop rate: +5%": 0.000226
+    "Meso Obtained: +5%": 0.000226,
+    "Item Drop Rate: +5%": 0.000226
   },
   "7f69ea379c2f25edbde825e50db25c0098609904e68a2145a34b397f4376cba59e0bb6d82c35d213e6c1cf1b2d22c3c2e56c681779116928e5de2a0006e4f067": {
     "STR: +5": 0.11753,
@@ -63356,8 +63356,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -7%": 0.046875,
     "HP Recovery Items and Skills: +20%": 0.046875,
-    "Meso acquisition amount: +4%": 0.046875,
-    "Item drop rate: +4%": 0.046875
+    "Meso Obtained: +4%": 0.046875,
+    "Item Drop Rate: +4%": 0.046875
   },
   "50e6a43733928266e634b7a2a31f3b91d602f17fb29ec64f6df06a3fcc8019d325c8d4b2b7190334c9a4ee1964a0b54ad18efead794bb7a78a9cf6cdd9d25315": {
     "STR: +14": 0.054274,
@@ -63405,8 +63405,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -7%": 0.000233,
     "HP Recovery Items and Skills: +20%": 0.000233,
-    "Meso acquisition amount: +4%": 0.000233,
-    "Item drop rate: +4%": 0.000233
+    "Meso Obtained: +4%": 0.000233,
+    "Item Drop Rate: +4%": 0.000233
   },
   "1bf707b4d932372cc04503ae3c5b53db90978d69f34f25bf15f9741f5856237b62ed4555eda8e8df507cb89999f850d7db925b138bc27696282bf31043f865f3": {
     "STR: +7%": 0.109794,
@@ -63451,8 +63451,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -10%": 0.046875,
     "HP Recovery Items and Skills: +30%": 0.046875,
-    "Meso acquisition amount: +5%": 0.046875,
-    "Item drop rate: +5%": 0.046875
+    "Meso Obtained: +5%": 0.046875,
+    "Item Drop Rate: +5%": 0.046875
   },
   "6a4216799a283096502ea2534e047e96921943c064c45b52b15449ddaf20eb4abf92393699a0593453a9f798002d9d9fa3c36ccb0384047cdd9b607750464eaa": {
     "STR: +16": 0.054274,
@@ -63500,8 +63500,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -10%": 0.000233,
     "HP Recovery Items and Skills: +30%": 0.000233,
-    "Meso acquisition amount: +5%": 0.000233,
-    "Item drop rate: +5%": 0.000233
+    "Meso Obtained: +5%": 0.000233,
+    "Item Drop Rate: +5%": 0.000233
   },
   "2207dd122ce698db940dd675b52196517baf03c1cbe378e16340ecef020a4ec5d41abe74c6ba125679a402bcb517bf25dc4d75f1626badcbfa4b2ebc78e38574": {
     "STR: +3": 0.11753,
@@ -63553,8 +63553,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -5%": 0.046875,
     "HP Recovery Items and Skills: +15%": 0.046875,
-    "Meso acquisition amount: +3%": 0.046875,
-    "Item drop rate: +3%": 0.046875
+    "Meso Obtained: +3%": 0.046875,
+    "Item Drop Rate: +3%": 0.046875
   },
   "9a006e06fc71e5b702e5d3143bdf91d94104ae808f11a1687af0b8984f82f0156b0a3b072c16f03de88a1858dc0b8d642a390a8776f2bc4d70c2898cee7a2a1b": {
     "STR: +10": 0.054274,
@@ -63602,8 +63602,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -5%": 0.000233,
     "HP Recovery Items and Skills: +15%": 0.000233,
-    "Meso acquisition amount: +3%": 0.000233,
-    "Item drop rate: +3%": 0.000233
+    "Meso Obtained: +3%": 0.000233,
+    "Item Drop Rate: +3%": 0.000233
   },
   "7e5a1ae40a0ef522d7dc5a5a9344a75231b8375c6a4603795f1955924b7425e4193cae71f739417addf84aac83a374e993d41da6bf08ce5ede972eede5cfe54a": {
     "STR: +16": 0.04918,
@@ -63628,8 +63628,8 @@
     "INT per 10 Character Levels: +2": 0.032787,
     "LUK per 10 Character Levels: +2": 0.032787,
     "HP Recovery Items and Skills: +20%": 0.04918,
-    "Meso acquisition amount: +4%": 0.04918,
-    "Item drop rate: +4%": 0.04918
+    "Meso Obtained: +4%": 0.04918,
+    "Item Drop Rate: +4%": 0.04918
   },
   "f7d4caf48aa2242a18732292346e4ce4d41e2f4dbcdd271e0a6ee288c569c1590f9fcf1698e611e508a1b4437b13f41a7676d05e965feba79d87d17ade50bc8b": {
     "STR: +14": 0.054274,
@@ -63676,8 +63676,8 @@
     "INT per 10 Character Levels: +2": 0.000163,
     "LUK per 10 Character Levels: +2": 0.000163,
     "HP Recovery Items and Skills: +20%": 0.000245,
-    "Meso acquisition amount: +4%": 0.000245,
-    "Item drop rate: +4%": 0.000245
+    "Meso Obtained: +4%": 0.000245,
+    "Item Drop Rate: +4%": 0.000245
   },
   "58f6ae4b8f292df079075bd7bbac5dabd4a0b732e92d2df507f4562e8b59cfb5043e83fb4cbe61570b58ecd3cc1fcd62dcdf384a0fb6ef50e869c5382aeee90e": {
     "STR: +18": 0.04918,
@@ -63702,8 +63702,8 @@
     "INT per 10 Character Levels: +2": 0.032787,
     "LUK per 10 Character Levels: +2": 0.032787,
     "HP Recovery Items and Skills: +30%": 0.04918,
-    "Meso acquisition amount: +5%": 0.04918,
-    "Item drop rate: +5%": 0.04918
+    "Meso Obtained: +5%": 0.04918,
+    "Item Drop Rate: +5%": 0.04918
   },
   "9f8299d289c17f00c26806904c85f96f18a56ec2fe6eadb709c80aaae95f98f6fe422341bc782891d5efbc8c3837d06462fd8c4784b6b52bf749a56b0d6ba5ed": {
     "STR: +16": 0.054274,
@@ -63750,8 +63750,8 @@
     "INT per 10 Character Levels: +2": 0.000163,
     "LUK per 10 Character Levels: +2": 0.000163,
     "HP Recovery Items and Skills: +30%": 0.000245,
-    "Meso acquisition amount: +5%": 0.000245,
-    "Item drop rate: +5%": 0.000245
+    "Meso Obtained: +5%": 0.000245,
+    "Item Drop Rate: +5%": 0.000245
   },
   "8876a765afcd5a296dcc8440ad14eb927b2afb1a85f6e02db7d7162012fcab06bb888f5f6024e083d4708168bfa674fd62f77cfcbaf1e7d932c0707b5594e0ae": {
     "STR: +13%": 0.058824,
@@ -63765,8 +63765,8 @@
     "MP consumption of all skills: -15%": 0.088235,
     "MP consumption of all skills: -30%": 0.088235,
     "HP Recovery Items and Skills: +40%": 0.088235,
-    "Meso acquisition amount: +20%": 0.088235,
-    "Item drop rate: +20%": 0.088235
+    "Meso Obtained: +20%": 0.088235,
+    "Item Drop Rate: +20%": 0.088235
   },
   "54147650126e41431b91154a393cee5af50c01db398f3ec3096e3492d03f437247d9e3b1f599bf9da7d4b40a6f8619f63185e3e4aac2ef565f1d3fa0e5c82734": {
     "STR: +10%": 0.095048,
@@ -63789,8 +63789,8 @@
     "MP consumption of all skills: -15%": 0.000176,
     "MP consumption of all skills: -30%": 0.000176,
     "HP Recovery Items and Skills: +40%": 0.000176,
-    "Meso acquisition amount: +20%": 0.000176,
-    "Item drop rate: +20%": 0.000176
+    "Meso Obtained: +20%": 0.000176,
+    "Item Drop Rate: +20%": 0.000176
   },
   "a6fafbef676b2f4aff82f322af9ba8a4e29c87b2960060d834883c921209369dc02974dc1b2b6e9c972276045827e2df8e6486b1b7198dcecee190eb42fbb8a0": {
     "STR: +10%": 0.090909,
@@ -63812,8 +63812,8 @@
     "All Stats: +10%": 0.013953,
     "MP consumption of all skills: -15%": 0.013953,
     "MP consumption of all skills: -30%": 0.013953,
-    "Meso acquisition amount: +20%": 0.013953,
-    "Item drop rate: +20%": 0.013953
+    "Meso Obtained: +20%": 0.013953,
+    "Item Drop Rate: +20%": 0.013953
   },
   "0691c8afeffcf24a8f01e81feb4d8111af1b882b9c998dba448d49186398cb2cbfc3915aabfebbe294cb05581d2ddb185f0a4cc405b5af035c28beccb56caff3": {
     "STR: +10%": 0.107955,
@@ -63835,8 +63835,8 @@
     "All Stats: +10%": 0.003488,
     "MP consumption of all skills: -15%": 0.003488,
     "MP consumption of all skills: -30%": 0.003488,
-    "Meso acquisition amount: +20%": 0.003488,
-    "Item drop rate: +20%": 0.003488
+    "Meso Obtained: +20%": 0.003488,
+    "Item Drop Rate: +20%": 0.003488
   },
   "c9af255baf2e16f4e4ebc6948c83d2e46cca2569cbe7b00a0058381476aca82323949bdd76943ba299b6f588261be8179223dd5bb90f6d69f71269eee9ce9273": {
     "STR: +19": 0.04918,
@@ -63861,8 +63861,8 @@
     "INT per 10 Character Levels: +2": 0.032787,
     "LUK per 10 Character Levels: +2": 0.032787,
     "HP Recovery Items and Skills: +30%": 0.04918,
-    "Meso acquisition amount: +5%": 0.04918,
-    "Item drop rate: +5%": 0.04918
+    "Meso Obtained: +5%": 0.04918,
+    "Item Drop Rate: +5%": 0.04918
   },
   "18d9e1b59ae1bd163a1723d4254670b4bdfcdc66ea9fa57db15fdc0ed885e6a4646263b42ad791a5612514284a7d18388e13ca0ec90519095dc979a138fe518c": {
     "STR: +17": 0.054274,
@@ -63909,8 +63909,8 @@
     "INT per 10 Character Levels: +2": 0.000163,
     "LUK per 10 Character Levels: +2": 0.000163,
     "HP Recovery Items and Skills: +30%": 0.000245,
-    "Meso acquisition amount: +5%": 0.000245,
-    "Item drop rate: +5%": 0.000245
+    "Meso Obtained: +5%": 0.000245,
+    "Item Drop Rate: +5%": 0.000245
   },
   "a9c03a03944200cb393b66dafdbbe78a15f1b5c42a13229f7b7d468f031558ccee803145af5f86b9120d4803fd7359fcb85d568fbc300ede3eb03c3006a04c16": {
     "STR: +13": 0.047148,
@@ -63988,8 +63988,8 @@
     "INT per 10 Character Levels: +2": 0.032787,
     "LUK per 10 Character Levels: +2": 0.032787,
     "HP Recovery Items and Skills: +15%": 0.04918,
-    "Meso acquisition amount: +3%": 0.04918,
-    "Item drop rate: +3%": 0.04918
+    "Meso Obtained: +3%": 0.04918,
+    "Item Drop Rate: +3%": 0.04918
   },
   "bfaf5dceddc7e632d64e4cce137c2ee2bb8b84e5775ff52c43971fb3ab273e0633c32a9617b1196a516b639940fd485d370a0f181b3c4f34c0c505ff98ad097a": {
     "STR: +8": 0.054274,
@@ -64036,8 +64036,8 @@
     "INT per 10 Character Levels: +2": 0.000163,
     "LUK per 10 Character Levels: +2": 0.000163,
     "HP Recovery Items and Skills: +15%": 0.000245,
-    "Meso acquisition amount: +3%": 0.000245,
-    "Item drop rate: +3%": 0.000245
+    "Meso Obtained: +3%": 0.000245,
+    "Item Drop Rate: +3%": 0.000245
   },
   "f5269809266ff3e6be19331bb41ccbb153ecdf1034c4c7bd5892e5713b5e3522f9b0600c87e443955f70dc95856e1366bba94df47b87f7061082c565e28908dd": {
     "STR: +18": 0.046875,
@@ -64063,8 +64063,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -10%": 0.046875,
     "HP Recovery Items and Skills: +30%": 0.046875,
-    "Meso acquisition amount: +5%": 0.046875,
-    "Item drop rate: +5%": 0.046875
+    "Meso Obtained: +5%": 0.046875,
+    "Item Drop Rate: +5%": 0.046875
   },
   "ce5d24fe8ff69899801dadf1b6b2fe7fd8ee8f17d07170122b032b90d091164bdc733c10af3e92e0b19c4e4fea6c7c8adeae6149155bc5266318809be84897b5": {
     "STR: +16": 0.054274,
@@ -64112,8 +64112,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -10%": 0.000233,
     "HP Recovery Items and Skills: +30%": 0.000233,
-    "Meso acquisition amount: +5%": 0.000233,
-    "Item drop rate: +5%": 0.000233
+    "Meso Obtained: +5%": 0.000233,
+    "Item Drop Rate: +5%": 0.000233
   },
   "beea14131630c430b71c2ee6d235bd6da7348e3163627341c0e5fd3be63041c445d5e18617afaaa563cb90beb103a4ba5c74a31feab7655433b13d13ba4a597e": {
     "STR: +7": 0.11753,
@@ -64165,8 +64165,8 @@
     "LUK per 10 Character Levels: +2": 0.03125,
     "MP consumption of all skills: -10%": 0.046875,
     "HP Recovery Items and Skills: +30%": 0.046875,
-    "Meso acquisition amount: +5%": 0.046875,
-    "Item drop rate: +5%": 0.046875
+    "Meso Obtained: +5%": 0.046875,
+    "Item Drop Rate: +5%": 0.046875
   },
   "065232f55fb1721d7c8d0da712ccf8455d2b4edb5e9372618db8d3de9c38543fd485b55c598a126e42fea92b44248bb80753b6736c993197265e77b8bb40150e": {
     "STR: +17": 0.054274,
@@ -64214,8 +64214,8 @@
     "LUK per 10 Character Levels: +2": 0.000155,
     "MP consumption of all skills: -10%": 0.000233,
     "HP Recovery Items and Skills: +30%": 0.000233,
-    "Meso acquisition amount: +5%": 0.000233,
-    "Item drop rate: +5%": 0.000233
+    "Meso Obtained: +5%": 0.000233,
+    "Item Drop Rate: +5%": 0.000233
   },
   "3a31315f658012a1a0fa1b7f56b6f7d6dd56ad847c7715ba4d4b582f6ec9ea3b4dd2496397d631e5b1b5122985d3e8ab0bf70d2e1ebd59699ca0294840eb0ec5": {
     "STR: +15": 0.06,

@@ -338,7 +338,9 @@ kr_en_lines = {
     "캐릭터 기준 10레벨 당 LUK: +2": "LUK per 10 Character Levels: +2",
     "크리티컬 Damage:": "Critical Damage:",
     "캐릭터 기준 10레벨 당 Attack power: +1": "ATT per 10 Character Levels: +1",
-    "캐릭터 기준 10레벨 당 Horsepower: +1": "M. ATT per 10 Character Levels: +1"
+    "캐릭터 기준 10레벨 당 Horsepower: +1": "M. ATT per 10 Character Levels: +1",
+    "Item drop rate:": "Item Drop Rate:",
+    "Meso acquisition amount:": "Meso Obtained:"
 }
 def convert_kren_to_globalen():
     lines = ""
