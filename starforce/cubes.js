@@ -184,7 +184,7 @@ cube.get_cube_type = async function(level, type, cube_type, cube_tier) {
     type = type.replace(/\s/gi, "_");
     if (["belt", "shoulder"].includes(type)) {
         type = "cape";
-    } else if (["eye_accessory", "earrings", "ring", "pendant"].includes(type)) {
+    } else if (["accessory", "eye_accessory", "earrings", "ring", "pendant"].includes(type)) {
         type = "face_accessory";
     } else if (["badge"].includes(type)) {
         type = "mechanical heart";

@@ -1215,7 +1215,7 @@ body, html {
     position: absolute;
     display: block;
     left: 2px;
-    top: -1px;
+    top: 1px;
     width: 90px;
     height: 82px;
 }
