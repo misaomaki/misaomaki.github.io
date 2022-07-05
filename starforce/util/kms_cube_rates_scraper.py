@@ -316,7 +316,7 @@ kr_en_lines = {
     "Ignore monster defense rate:": "Ignored Enemy DEF:",
     "Damage when attacking boss monsters:": "Boss Monster Damage:",
     "Max MP :": "Max MP:",
-    "Invincible time after being hit: +1 seconds": "Invincibility time after being hit: +1 second",
+    "Invincible time after being hit: +1 second": "Invincibility time after being hit: +1 second",
     "Invincible time after being hit: +2 seconds": "Invincibility time after being hit: +2 seconds",
     "Invincible time after being hit: +3 seconds": "Invincibility time after being hit: +3 seconds",
     "HP recovery item and recovery skill efficiency:": "HP Recovery Items and Skills:",

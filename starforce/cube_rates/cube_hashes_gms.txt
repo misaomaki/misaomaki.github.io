@@ -778,7 +778,7 @@
     "Max MP: +4%": 0.131579,
     "DEF: +4%": 0.078947,
     "All Stats: +2%": 0.052632,
-    "Invincible time after being hit: +1 second": 0.078947
+    "Invincibility time after being hit: +1 second": 0.078947
   },
   "8800a14cdd3e9543d21bc5e6521aecfe00715893bc31ef04fe58e69605c96ea07698cc5d1163b4c7c2667697f16cf846d794e8083209e418da7685d855624c3e": {
     "STR: +8": 0.06,
@@ -804,7 +804,7 @@
     "Max MP: +4%": 0.026316,
     "DEF: +4%": 0.015789,
     "All Stats: +2%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "8ab3a2c09b9ab8a015df3fa9f9080f0060cd16c5f1023b5a048d8131874c1a6d7084c326715c84158fd5071919f073ae12007ecbca3c9a5ded8e93f75cb96fdd": {
     "STR: +8": 0.07125,
@@ -830,7 +830,7 @@
     "Max MP: +4%": 0.006579,
     "DEF: +4%": 0.003947,
     "All Stats: +2%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "eb598f5ec96b17dbfd23729f474ef4d9f0f699740eab410e1dc283d32ac37d8f14738181bfbce9034de1ae0866f2bef7b89816538b6ed3ad90649298335e3208": {
     "STR: +6%": 0.096154,
@@ -3850,7 +3850,7 @@
     "Max MP: +4%": 0.118421,
     "DEF: +4%": 0.071053,
     "All Stats: +2%": 0.047368,
-    "Invincible time after being hit: +1 second": 0.071053,
+    "Invincibility time after being hit: +1 second": 0.071053,
     "STR: +6%": 0.007576,
     "DEX: +6%": 0.007576,
     "INT: +6%": 0.007576,
@@ -3876,7 +3876,7 @@
     "Max MP: +4%": 0.130263,
     "DEF: +4%": 0.078158,
     "All Stats: +2%": 0.052105,
-    "Invincible time after being hit: +1 second": 0.078158,
+    "Invincibility time after being hit: +1 second": 0.078158,
     "STR: +6%": 0.000758,
     "DEX: +6%": 0.000758,
     "INT: +6%": 0.000758,
@@ -3902,7 +3902,7 @@
     "Max MP: +4%": 0.105263,
     "DEF: +4%": 0.063158,
     "All Stats: +2%": 0.042105,
-    "Invincible time after being hit: +1 second": 0.063158,
+    "Invincibility time after being hit: +1 second": 0.063158,
     "STR: +6%": 0.015152,
     "DEX: +6%": 0.015152,
     "INT: +6%": 0.015152,
@@ -3928,7 +3928,7 @@
     "Max MP: +4%": 0.125,
     "DEF: +4%": 0.075,
     "All Stats: +2%": 0.05,
-    "Invincible time after being hit: +1 second": 0.075,
+    "Invincibility time after being hit: +1 second": 0.075,
     "STR: +6%": 0.003788,
     "DEX: +6%": 0.003788,
     "INT: +6%": 0.003788,
@@ -4427,7 +4427,7 @@
     "20% chance to ignore 17 damage when attacked": 0.1,
     "20% chance to ignore 26 damage when attacked": 0.1,
     "30% chance to ignore 35 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "3a2b3bff7b8c48e965eeb700035bc961e0387d9a9aeba3ad0a1616125c7556c45ac1cff2b09c8b28a7c8e52caedad02d807a8d5ae60de02db0962e350b73ce02": {
     "STR: +10": 0.051111,
@@ -4456,7 +4456,7 @@
     "20% chance to ignore 17 damage when attacked": 0.007999,
     "20% chance to ignore 26 damage when attacked": 0.007999,
     "30% chance to ignore 35 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "a0dcb4fbd0d04501ddc4ab742782494c9d64660b4b747220f2bee372ec1022b0319d5447d692348aa29cac7e6f2aeb1aa23582fc1f96992746fd9522dbebbff3": {
     "STR: +12%": 0.121212,
@@ -5062,7 +5062,7 @@
     "20% chance to ignore 3 damage when attacked": 0.1,
     "20% chance to ignore 5 damage when attacked": 0.1,
     "30% chance to ignore 7 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "714ce47cb585d88e4e46cfec0e12f1f4607177221236c8b143b28511c425bd228be487263c6d5be2a3c992b76eada61b40bb34902cb7c3285039d516f7054c68": {
     "STR: +2": 0.05291,
@@ -5091,7 +5091,7 @@
     "20% chance to ignore 3 damage when attacked": 0.004762,
     "20% chance to ignore 5 damage when attacked": 0.004762,
     "30% chance to ignore 7 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "9f600d9c1f671120968c5aa5933b6219e987dadd30b7f8eb9a4a8d4aaba9b0e5ca3367ccdb1968060898ac10e9015e88deda2265d826a4851a242712f94f77c9": {
     "STR: +12": 0.055556,
@@ -5278,7 +5278,7 @@
     "20% chance to ignore 11 damage when attacked": 0.098304,
     "20% chance to ignore 17 damage when attacked": 0.098304,
     "30% chance to ignore 23 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR: +6%": 0.001028,
     "DEX: +6%": 0.001028,
     "INT: +6%": 0.001028,
@@ -6338,7 +6338,7 @@
     "Max MP: +6%": 0.118421,
     "DEF: +6%": 0.071053,
     "All Stats: +3%": 0.047368,
-    "Invincible time after being hit: +1 second": 0.071053,
+    "Invincibility time after being hit: +1 second": 0.071053,
     "STR : +9%": 0.007576,
     "DEX : +9%": 0.007576,
     "INT : +9%": 0.007576,
@@ -6364,7 +6364,7 @@
     "Max MP: +6%": 0.130263,
     "DEF: +6%": 0.078158,
     "All Stats: +3%": 0.052105,
-    "Invincible time after being hit: +1 second": 0.078158,
+    "Invincibility time after being hit: +1 second": 0.078158,
     "STR : +9%": 0.000758,
     "DEX : +9%": 0.000758,
     "INT : +9%": 0.000758,
@@ -6440,7 +6440,7 @@
     "Max MP: +2%": 0.118421,
     "DEF: +2%": 0.071053,
     "All Stats: +1%": 0.047368,
-    "Invincible time after being hit: +1 second": 0.071053,
+    "Invincibility time after being hit: +1 second": 0.071053,
     "STR: +3%": 0.008621,
     "DEX: +3%": 0.008621,
     "INT: +3%": 0.008621,
@@ -6464,7 +6464,7 @@
     "Max MP: +2%": 0.130263,
     "DEF: +2%": 0.078158,
     "All Stats: +1%": 0.052105,
-    "Invincible time after being hit: +1 second": 0.078158,
+    "Invincibility time after being hit: +1 second": 0.078158,
     "STR: +3%": 0.000862,
     "DEX: +3%": 0.000862,
     "INT: +3%": 0.000862,
@@ -6886,7 +6886,7 @@
     "Max MP: +2%": 0.131579,
     "DEF: +2%": 0.078947,
     "All Stats: +1%": 0.052632,
-    "Invincible time after being hit: +1 second": 0.078947
+    "Invincibility time after being hit: +1 second": 0.078947
   },
   "e8afb26e70995ce641acb6320b44f9a53be27eb185d327b25470e4f0d522cea563b11ea13c5c36a0107ae92730bcd39af1ea6c2f2a9597b3d58d2f0dae3cde38": {
     "STR: +2": 0.06,
@@ -6912,7 +6912,7 @@
     "Max MP: +2%": 0.026316,
     "DEF: +2%": 0.015789,
     "All Stats: +1%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "3e3679f9e6eb8c1049e3183110aa6d91841328ff2af7e0938892945131ac129714e2206183bd8c3cedd1c99529974289cf23e5b996c9008555e0f7b65e9f5edc": {
     "STR: +2": 0.07125,
@@ -6938,7 +6938,7 @@
     "Max MP: +2%": 0.006579,
     "DEF: +2%": 0.003947,
     "All Stats: +1%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "6046740ab803f87a0886c3ff3b1a4176830826a7ae3d64495b8cd98a471e8bcfb64ad27296e40c0626fb532969542a83a89faa144c1b2ed3fb00de4eebf0e78f": {
     "STR: +8": 0.06383,
@@ -7178,7 +7178,7 @@
     "Max MP: +2%": 0.013158,
     "DEF: +2%": 0.007895,
     "All Stats: +1%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "8035f9d6798e36d8e580fa380fa2f36dd1452913ce1b441a368fa508cb6d78e6e8cdb3654538b27fa93e44690533c586e2edecd6c1b8d51c94a841ddb56c8c3e": {
     "STR: +4": 0.07425,
@@ -7204,7 +7204,7 @@
     "Max MP: +2%": 0.001316,
     "DEF: +2%": 0.000789,
     "All Stats: +1%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "e7b1ba433f24acf45bc8315b9d657ad1ebdc3ce654c7537b37845ac06f0c81524517c198174fab4e0eca9dba772989bf12d2aaa436c8b45311df7847e1f26f96": {
     "STR: +4": 0.055556,
@@ -7821,7 +7821,7 @@
     "Max MP: +2%": 0.013158,
     "DEF: +2%": 0.007895,
     "All Stats: +1%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "dd55e80f58bfd2d9c8315606a0dd796bb683ade57916cf1a96569c7f7dacb52088992968a65cfa5ff0cae716f6aecc6ede43388d22f1e8808783f24ea77008b2": {
     "STR: +2": 0.07425,
@@ -7847,7 +7847,7 @@
     "Max MP: +2%": 0.001316,
     "DEF: +2%": 0.000789,
     "All Stats: +1%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "8f01cf6ba84b6678044d77f31fe94282bc69ce6c11ac2314c78b9b68ca9f6001b7939bf2afdf9a4491e0b861362cc99bbdb059278c0da8fce7ffc4e61b48533f": {
     "Max HP: +5%": 0.088235,
@@ -9156,7 +9156,7 @@
     "20% chance to ignore 25 damage when attacked": 0.098304,
     "20% chance to ignore 38 damage when attacked": 0.098304,
     "30% chance to ignore 51 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR : +9%": 0.001028,
     "DEX : +9%": 0.001028,
     "INT : +9%": 0.001028,
@@ -9359,7 +9359,7 @@
     "Max MP: +2%": 0.105263,
     "DEF: +2%": 0.063158,
     "All Stats: +1%": 0.042105,
-    "Invincible time after being hit: +1 second": 0.063158,
+    "Invincibility time after being hit: +1 second": 0.063158,
     "STR: +3%": 0.017241,
     "DEX: +3%": 0.017241,
     "INT: +3%": 0.017241,
@@ -9383,7 +9383,7 @@
     "Max MP: +2%": 0.125,
     "DEF: +2%": 0.075,
     "All Stats: +1%": 0.05,
-    "Invincible time after being hit: +1 second": 0.075,
+    "Invincibility time after being hit: +1 second": 0.075,
     "STR: +3%": 0.00431,
     "DEX: +3%": 0.00431,
     "INT: +3%": 0.00431,
@@ -10250,7 +10250,7 @@
     "20% chance to ignore 21 damage when attacked": 0.1,
     "20% chance to ignore 32 damage when attacked": 0.1,
     "30% chance to ignore 43 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "a3e56f8a323d75266ebd5b771a259eae48b624fba75e878b9d7c74fceef818e8d221355e2c57836c988c5d7d8edb10977a0d2c2773ebdb3205f4b40a4a5db1d4": {
     "STR: +12": 0.051111,
@@ -10279,7 +10279,7 @@
     "20% chance to ignore 21 damage when attacked": 0.007999,
     "20% chance to ignore 32 damage when attacked": 0.007999,
     "30% chance to ignore 43 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "543fa5983d800551bc848c9db05c8dcba598f3192e4cb61ca1679d258d5c4e0e4a0625fb2eeed01376a6c6e80f7df23144ea44f79621d06112be080ce9de06b4": {
     "STR: +4": 0.114286,
@@ -10798,7 +10798,7 @@
     "20% chance to ignore 23 damage when attacked": 0.1,
     "20% chance to ignore 35 damage when attacked": 0.1,
     "30% chance to ignore 47 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "d3a0ae8da9614f48724720aac7267d754ad508b6ad1dd9b45dc2a6bb0221f6562171364b9cab9979761db9c72fca93be8b4a5d43da958657cf859f383cd24bfb": {
     "STR: +12": 0.051111,
@@ -10827,7 +10827,7 @@
     "20% chance to ignore 23 damage when attacked": 0.007999,
     "20% chance to ignore 35 damage when attacked": 0.007999,
     "30% chance to ignore 47 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "5bf86691ce3c94582bf647af2c8a5da32d68b539e8e05028d02953f50218079d2bece9d1d6e28ffd4d79462211fa4b6d2b7d1be7ec87018a2227c18f16c88001": {
     "STR: +3%": 0.097561,
@@ -10886,7 +10886,7 @@
     "Max MP: +6%": 0.105263,
     "DEF: +6%": 0.063158,
     "All Stats: +3%": 0.042105,
-    "Invincible time after being hit: +1 second": 0.063158,
+    "Invincibility time after being hit: +1 second": 0.063158,
     "STR : +9%": 0.015152,
     "DEX : +9%": 0.015152,
     "INT : +9%": 0.015152,
@@ -10912,7 +10912,7 @@
     "Max MP: +6%": 0.125,
     "DEF: +6%": 0.075,
     "All Stats: +3%": 0.05,
-    "Invincible time after being hit: +1 second": 0.075,
+    "Invincibility time after being hit: +1 second": 0.075,
     "STR : +9%": 0.003788,
     "DEX : +9%": 0.003788,
     "INT : +9%": 0.003788,
@@ -11274,7 +11274,7 @@
     "Max MP: +4%": 0.026316,
     "DEF: +4%": 0.015789,
     "All Stats: +2%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "5db428d25380946c7cae8705e41b751883cbb21659f850bc2f172a4b72c49270c01d251dbe7ef752a4eb28a1528d9cca6b7736df8a36d153de1f27d4402bb3fd": {
     "STR: +6": 0.07125,
@@ -11300,7 +11300,7 @@
     "Max MP: +4%": 0.006579,
     "DEF: +4%": 0.003947,
     "All Stats: +2%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "d1ea39498b19545fb6573e798b060f066f005e2f4cfdd1a2e737350158aa421125f40fcf945241d253cbc6bd5affb1f704fe4e58c0873fd2989d0f783f9a2288": {
     "STR: +2": 0.055006,
@@ -11411,7 +11411,7 @@
     "20% chance to ignore 7 damage when attacked": 0.098814,
     "20% chance to ignore 11 damage when attacked": 0.098814,
     "30% chance to ignore 15 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR: +3%": 0.000791,
     "DEX: +3%": 0.000791,
     "INT: +3%": 0.000791,
@@ -11541,7 +11541,7 @@
     "20% chance to ignore 3 damage when attacked": 0.007999,
     "20% chance to ignore 5 damage when attacked": 0.007999,
     "30% chance to ignore 7 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "c9037f6b6201ef8cbc0381e6c4abe2e6a7c1f5ced02e3ecac8b37c87c1d138d682c809ab287cdc2dc6eefcf4457bfa438629598aa89192104af989d5b27e2d0b": {
     "STR: +4%": 0.074074,
@@ -11596,7 +11596,7 @@
     "20% chance to ignore 19 damage when attacked": 0.1,
     "20% chance to ignore 29 damage when attacked": 0.1,
     "30% chance to ignore 39 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "0fdb414ad44526f83cde754565662a57debd90ec89a9865d2e7d9529ee8ad672b9109c47dc80f1196c03d05eadfcdba96a171b3ff5d0a1e5c8c5d5aaeb52f944": {
     "STR: +10": 0.051111,
@@ -11625,7 +11625,7 @@
     "20% chance to ignore 19 damage when attacked": 0.007999,
     "20% chance to ignore 29 damage when attacked": 0.007999,
     "30% chance to ignore 39 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "9b1101cbb1411a5f18b05461fe1a1b6361feb2776e8910b87a8e823a78a6bd25edf7be9a8e261a1c5f550c3c7d54e1e87fa65f7e53c983effda387ed8286c71c": {
     "STR: +4%": 0.056174,
@@ -11694,7 +11694,7 @@
     "20% chance to ignore 19 damage when attacked": 0.098304,
     "20% chance to ignore 29 damage when attacked": 0.098304,
     "30% chance to ignore 39 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR : +9%": 0.001028,
     "DEX : +9%": 0.001028,
     "INT : +9%": 0.001028,
@@ -12030,7 +12030,7 @@
     "Max MP: +6%": 0.105263,
     "DEF: +6%": 0.063158,
     "All Stats: +3%": 0.042105,
-    "Invincible time after being hit: +1 second": 0.063158,
+    "Invincibility time after being hit: +1 second": 0.063158,
     "STR : +9%": 0.015152,
     "DEX : +9%": 0.015152,
     "INT : +9%": 0.015152,
@@ -12056,7 +12056,7 @@
     "Max MP: +6%": 0.125,
     "DEF: +6%": 0.075,
     "All Stats: +3%": 0.05,
-    "Invincible time after being hit: +1 second": 0.075,
+    "Invincibility time after being hit: +1 second": 0.075,
     "STR : +9%": 0.003788,
     "DEX : +9%": 0.003788,
     "INT : +9%": 0.003788,
@@ -12082,7 +12082,7 @@
     "Max MP: +6%": 0.118421,
     "DEF: +6%": 0.071053,
     "All Stats: +3%": 0.047368,
-    "Invincible time after being hit: +1 second": 0.071053,
+    "Invincibility time after being hit: +1 second": 0.071053,
     "STR : +9%": 0.007576,
     "DEX : +9%": 0.007576,
     "INT : +9%": 0.007576,
@@ -12108,7 +12108,7 @@
     "Max MP: +6%": 0.130263,
     "DEF: +6%": 0.078158,
     "All Stats: +3%": 0.052105,
-    "Invincible time after being hit: +1 second": 0.078158,
+    "Invincibility time after being hit: +1 second": 0.078158,
     "STR : +9%": 0.000758,
     "DEX : +9%": 0.000758,
     "INT : +9%": 0.000758,
@@ -12537,7 +12537,7 @@
     "Max MP: +6%": 0.131579,
     "DEF: +6%": 0.078947,
     "All Stats: +3%": 0.052632,
-    "Invincible time after being hit: +1 second": 0.078947
+    "Invincibility time after being hit: +1 second": 0.078947
   },
   "55577328d2984df61fd1b3403ad36c1845d3f5bb05c3ad3a49d02ac056e00be2a1f5e85b82447aafcf5aa8112703119958d8c58b4885a85d6355f04d3ea6b428": {
     "STR: +12": 0.06,
@@ -12563,7 +12563,7 @@
     "Max MP: +6%": 0.026316,
     "DEF: +6%": 0.015789,
     "All Stats: +3%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "d0e90ac34c1651fe97c089187cab3e9b8d40a848271c7e814fc56ed80ce5c4d696e392bdf9036a2bdb243c13571743848e7089316bd0ec5452a50e9db25da56c": {
     "STR: +12": 0.07125,
@@ -12589,7 +12589,7 @@
     "Max MP: +6%": 0.006579,
     "DEF: +6%": 0.003947,
     "All Stats: +3%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "2bb7791c9eab38981f9c97b42239ee0575c79a78a4c097ea300ad3f845fc75e39043955511f9f726a5e4245cd3f469e60b57d918ee108020ded62ada866ca8ee": {
     "STR: +6%": 0.075758,
@@ -12617,7 +12617,7 @@
     "Max MP: +4%": 0.118421,
     "DEF: +4%": 0.071053,
     "All Stats: +2%": 0.047368,
-    "Invincible time after being hit: +1 second": 0.071053,
+    "Invincibility time after being hit: +1 second": 0.071053,
     "STR: +6%": 0.007576,
     "DEX: +6%": 0.007576,
     "INT: +6%": 0.007576,
@@ -12643,7 +12643,7 @@
     "Max MP: +4%": 0.130263,
     "DEF: +4%": 0.078158,
     "All Stats: +2%": 0.052105,
-    "Invincible time after being hit: +1 second": 0.078158,
+    "Invincibility time after being hit: +1 second": 0.078158,
     "STR: +6%": 0.000758,
     "DEX: +6%": 0.000758,
     "INT: +6%": 0.000758,
@@ -13942,7 +13942,7 @@
     "20% chance to ignore 3 damage when attacked": 0.00099,
     "20% chance to ignore 5 damage when attacked": 0.00099,
     "30% chance to ignore 7 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "fda37cb883191de228ee943d89d04bb71e67ccf8a6627e26a7be6dab980756c831ccc8ba585baacc64bb85b94e9d135809ba13beb34ab751b65164f22a7c4e9e": {
     "STR: +16": 0.047619,
@@ -14082,7 +14082,7 @@
     "20% chance to ignore 5 damage when attacked": 0.1,
     "20% chance to ignore 8 damage when attacked": 0.1,
     "30% chance to ignore 11 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "12dd2086b04581834c716127f8c74a3d8553c3e3ae313dbb71c46181caebe3117d9d56d71d49aefa5212db012f68b8554fa42c4f63897ddf195e0f2c290c1818": {
     "STR: +2": 0.05291,
@@ -14111,7 +14111,7 @@
     "20% chance to ignore 5 damage when attacked": 0.004762,
     "20% chance to ignore 8 damage when attacked": 0.004762,
     "30% chance to ignore 11 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "f5f1a6cf7d1e648d14744fb2216b9ba3075cb97cdf3dc77d08d28da478555fcf1eb73e7e05f7fd292dd3756bc14e151271fa29cbefb5d6b94e83171713990ce6": {
     "STR: +4": 0.075,
@@ -14878,7 +14878,7 @@
     "20% chance to ignore 21 damage when attacked": 0.098304,
     "20% chance to ignore 32 damage when attacked": 0.098304,
     "30% chance to ignore 43 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR : +9%": 0.001028,
     "DEX : +9%": 0.001028,
     "INT : +9%": 0.001028,
@@ -15756,7 +15756,7 @@
     "Max MP: +2%": 0.026316,
     "DEF: +2%": 0.015789,
     "All Stats: +1%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "199dc4cf6e5c8cdbc5c7dfbf7517c5c89c4e7a519ef9c681702317e4d50a812efc4102c3e4e60007f89ef00953b93bf0e8092f8dec0b8c931232e66ec63c3063": {
     "STR: +4": 0.07125,
@@ -15782,7 +15782,7 @@
     "Max MP: +2%": 0.006579,
     "DEF: +2%": 0.003947,
     "All Stats: +1%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "7b607656020b0d15b7402448b28f17abd9d4dbd2eaf4be3ea2f54d5b9fa33df5ffd14a7e7a3b713278ee8177b01a471893c3c1d07eeb30df96d51e6d1facd160": {
     "Max HP: +10%": 0.078947,
@@ -15932,7 +15932,7 @@
     "Max MP: +6%": 0.026316,
     "DEF: +6%": 0.015789,
     "All Stats: +3%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "d143007d71ab4e2bd1074950dedcd900d18cb82b7de21431f3ce80ea5eade574db3d255144952be451d5ae0b41034d4b635485fa038e5587bc73a4e068f74cd4": {
     "STR: +12": 0.07125,
@@ -15958,7 +15958,7 @@
     "Max MP: +6%": 0.006579,
     "DEF: +6%": 0.003947,
     "All Stats: +3%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "aeb2cb6c7a7cb3f3bddf5d63b97cb3aefdffcd00d1c79518216b288b8cc95cad2a98007af727abbd8f7d10c933f46dca0631fe6b4bd98a7a5093e04fd7114f2f": {
     "STR: +4%": 0.121951,
@@ -16338,7 +16338,7 @@
     "20% chance to ignore 11 damage when attacked": 0.1,
     "20% chance to ignore 17 damage when attacked": 0.1,
     "30% chance to ignore 23 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "07535ccf562e612c9a0e23c4ce51c7483ec8aa1d81f5656fae92b6ce0050d64ecb7afcd31f126402c38ef905dd442b936a1ee2e36cc9d7654b6c47df6802834f": {
     "STR: +6": 0.055006,
@@ -16367,7 +16367,7 @@
     "20% chance to ignore 11 damage when attacked": 0.00099,
     "20% chance to ignore 17 damage when attacked": 0.00099,
     "30% chance to ignore 23 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "fdec53f7a8937f50d674b6b538d27b331f626f54d87006c0dca6292418cf410e47c12e2dfc416716015cc6f82f3b676f18897d864c755dbd231124a1d5848459": {
     "STR: +3%": 0.102273,
@@ -17961,7 +17961,7 @@
     "20% chance to ignore 9 damage when attacked": 0.1,
     "20% chance to ignore 14 damage when attacked": 0.1,
     "30% chance to ignore 19 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "cdfbcec7e92635783f072a3d273823242b62e22e42f542b485d278f959a5380b13782d562cd673275ed971259790255bc01dcab703becaeef6b6cb4f183c4b12": {
     "STR: +4": 0.05291,
@@ -17990,7 +17990,7 @@
     "20% chance to ignore 9 damage when attacked": 0.004762,
     "20% chance to ignore 14 damage when attacked": 0.004762,
     "30% chance to ignore 19 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "392684016c0e37e5d6addc6ccb07c3e750eccda2120fdbed01363d0d8cd5841d04f159e4846c946c98510c633e0286f17a3fab077e3c3c4c7adef895cf1317bc": {
     "STR : +9%": 0.060606,
@@ -18019,7 +18019,7 @@
     "20% chance to ignore 17 damage when attacked": 0.098814,
     "20% chance to ignore 26 damage when attacked": 0.098814,
     "30% chance to ignore 35 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR : +9%": 0.000719,
     "DEX : +9%": 0.000719,
     "INT : +9%": 0.000719,
@@ -18231,7 +18231,7 @@
     "20% chance to ignore 11 damage when attacked": 0.007999,
     "20% chance to ignore 17 damage when attacked": 0.007999,
     "30% chance to ignore 23 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "4df73d3332b36a1a9551db749763b9e0ca8115fa6f1ead90a6dffc229a25597593856fa0583e54ae139acff577550f45745337d21369f659920df90fc983d409": {
     "STR: +10": 0.054545,
@@ -18696,7 +18696,7 @@
     "20% chance to ignore 17 damage when attacked": 0.004762,
     "20% chance to ignore 26 damage when attacked": 0.004762,
     "30% chance to ignore 35 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "f0340ec56a042d074aa6bc0a88bd78fe9bc81985fdaea59c817a051cb3a251be7a4ef2850d405bd0667e98b4b561dd357a4040793414b65988695d4e085a134a": {
     "STR : +9%": 0.1,
@@ -19142,7 +19142,7 @@
     "Max MP: +4%": 0.013158,
     "DEF: +4%": 0.007895,
     "All Stats: +2%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "ce56f2b6aa523d6a32492af50732e58687db9a5d6ca191a7a722778a65a913132dba488d88a3ba8811e5ed11532bd78e92f9e9143a64a40be9a5dce3bf38ad67": {
     "STR: +8": 0.07425,
@@ -19168,7 +19168,7 @@
     "Max MP: +4%": 0.001316,
     "DEF: +4%": 0.000789,
     "All Stats: +2%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "ae6168b667ae962d4fc49152c2b7aacd7d0df02359ec2a8ff81b02a58baa58f283383d91833316920f265cd613d4fa380cf40b4781327e3dd87d79f613dd29cd": {
     "STR: +6%": 0.074074,
@@ -19265,7 +19265,7 @@
     "Max MP: +6%": 0.013158,
     "DEF: +6%": 0.007895,
     "All Stats: +3%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "0834ee930401d5b26a5d61da80efb2239351684332d7108f2e072b0811b66cf17e66e5a267fe53720a18a9b756b344ac4542cd9e817b239718c0da07a5f38d7f": {
     "STR: +10": 0.07425,
@@ -19291,7 +19291,7 @@
     "Max MP: +6%": 0.001316,
     "DEF: +6%": 0.000789,
     "All Stats: +3%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "16055b7939743fa7cbff339c973da234407b9fcc8b2bc2d0f28b895613b46d9fbb4b0df3287e604884a8236f3d66ecca25e3e34c65bb4145de2f44849d36b0fb": {
     "STR: +4%": 0.076923,
@@ -19808,7 +19808,7 @@
     "Max MP: +2%": 0.105263,
     "DEF: +2%": 0.063158,
     "All Stats: +1%": 0.042105,
-    "Invincible time after being hit: +1 second": 0.063158,
+    "Invincibility time after being hit: +1 second": 0.063158,
     "STR: +3%": 0.016129,
     "DEX: +3%": 0.016129,
     "INT: +3%": 0.016129,
@@ -19833,7 +19833,7 @@
     "Max MP: +2%": 0.125,
     "DEF: +2%": 0.075,
     "All Stats: +1%": 0.05,
-    "Invincible time after being hit: +1 second": 0.075,
+    "Invincibility time after being hit: +1 second": 0.075,
     "STR: +3%": 0.004032,
     "DEX: +3%": 0.004032,
     "INT: +3%": 0.004032,
@@ -20606,7 +20606,7 @@
     "20% chance to ignore 25 damage when attacked": 0.1,
     "20% chance to ignore 38 damage when attacked": 0.1,
     "30% chance to ignore 51 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "fba332136736031371dcacb854e1832f3e027b77f2c26b726219229899486e4f345cd0e31e287e463d2ad822d5f035fafb8a2f2b7e99d7cbaf564a2b98c546cc": {
     "STR: +12": 0.055006,
@@ -20635,7 +20635,7 @@
     "20% chance to ignore 25 damage when attacked": 0.00099,
     "20% chance to ignore 38 damage when attacked": 0.00099,
     "30% chance to ignore 51 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "af9bb0e301061a4dfbeb6290c71e5a5000fb5a93a297380fca304a5037b547728549a00bd6e799e57698ddd71b19d0cfeac6cb230798fd2bf3e1cdbdab0cfb37": {
     "STR: +2": 0.06,
@@ -20940,7 +20940,7 @@
     "20% chance to ignore 11 damage when attacked": 0.098814,
     "20% chance to ignore 17 damage when attacked": 0.098814,
     "30% chance to ignore 23 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR: +6%": 0.000719,
     "DEX: +6%": 0.000719,
     "INT: +6%": 0.000719,
@@ -22061,7 +22061,7 @@
     "20% chance to ignore 15 damage when attacked": 0.1,
     "20% chance to ignore 23 damage when attacked": 0.1,
     "30% chance to ignore 31 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "374db886cb361b16016e2979bb2da500a0c065b37b16b56194e8031aeda27989efe480fe527366c6e8c31bf632f3396e9685ba9c6868847263172b1a1ecc8a79": {
     "STR: +8": 0.055006,
@@ -22090,7 +22090,7 @@
     "20% chance to ignore 15 damage when attacked": 0.00099,
     "20% chance to ignore 23 damage when attacked": 0.00099,
     "30% chance to ignore 31 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "9784559bf964a44e5a86a39ab0a15bf6b43c0d532765a3f562ec07f3604f4c8f85cafbbf4b8a74289dd3ed8fd209bae87ae3f31aeb0ca864240eab9d7e337769": {
     "STR: +4": 0.062438,
@@ -22148,7 +22148,7 @@
     "20% chance to ignore 15 damage when attacked": 0.007999,
     "20% chance to ignore 23 damage when attacked": 0.007999,
     "30% chance to ignore 31 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "cc25cc49d64a01b900df549e71b217b290664da792636aef01552dea85f827149e56cbcc348f5e7ca3e56746b178595c912eb0391571517802e2ad7de599d91d": {
     "STR: +6%": 0.060606,
@@ -23544,7 +23544,7 @@
     "20% chance to ignore 5 damage when attacked": 0.098814,
     "20% chance to ignore 8 damage when attacked": 0.098814,
     "30% chance to ignore 11 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR: +3%": 0.000791,
     "DEX: +3%": 0.000791,
     "INT: +3%": 0.000791,
@@ -24302,7 +24302,7 @@
     "20% chance to ignore 3 damage when attacked": 0.098814,
     "20% chance to ignore 5 damage when attacked": 0.098814,
     "30% chance to ignore 7 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR: +3%": 0.000878,
     "DEX: +3%": 0.000878,
     "INT: +3%": 0.000878,
@@ -25075,7 +25075,7 @@
     "Max MP: +6%": 0.105263,
     "DEF: +6%": 0.063158,
     "All Stats: +3%": 0.042105,
-    "Invincible time after being hit: +1 second": 0.063158,
+    "Invincibility time after being hit: +1 second": 0.063158,
     "STR : +9%": 0.015152,
     "DEX : +9%": 0.015152,
     "INT : +9%": 0.015152,
@@ -25101,7 +25101,7 @@
     "Max MP: +6%": 0.125,
     "DEF: +6%": 0.075,
     "All Stats: +3%": 0.05,
-    "Invincible time after being hit: +1 second": 0.075,
+    "Invincibility time after being hit: +1 second": 0.075,
     "STR : +9%": 0.003788,
     "DEX : +9%": 0.003788,
     "INT : +9%": 0.003788,
@@ -25245,7 +25245,7 @@
     "Max MP: +4%": 0.026316,
     "DEF: +4%": 0.015789,
     "All Stats: +2%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "55c8f900eb2dcf97195b0f4f17ad0c9db72af345a908fa58d89ea419f3098cf70e63b5c4dba6aa7fc8e31037bf34398a49f9bf038750166c01a10ce0b1b47a9a": {
     "STR: +4": 0.07125,
@@ -25271,7 +25271,7 @@
     "Max MP: +4%": 0.006579,
     "DEF: +4%": 0.003947,
     "All Stats: +2%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "43f9c001ea01ae7098db42329f874e8ca37f447cc4ed0f18fd7ea3cd1bf5ca7331ba536df7d3f41e70088c255fae61132ce054d265fd0347a5519b734edda1a4": {
     "Max HP: +15": 0.058824,
@@ -25524,7 +25524,7 @@
     "Max MP: +4%": 0.105263,
     "DEF: +4%": 0.063158,
     "All Stats: +2%": 0.042105,
-    "Invincible time after being hit: +1 second": 0.063158,
+    "Invincibility time after being hit: +1 second": 0.063158,
     "STR: +6%": 0.015152,
     "DEX: +6%": 0.015152,
     "INT: +6%": 0.015152,
@@ -25550,7 +25550,7 @@
     "Max MP: +4%": 0.125,
     "DEF: +4%": 0.075,
     "All Stats: +2%": 0.05,
-    "Invincible time after being hit: +1 second": 0.075,
+    "Invincibility time after being hit: +1 second": 0.075,
     "STR: +6%": 0.003788,
     "DEX: +6%": 0.003788,
     "INT: +6%": 0.003788,
@@ -26105,7 +26105,7 @@
     "Max MP: +4%": 0.013158,
     "DEF: +4%": 0.007895,
     "All Stats: +2%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "9db943a5b2e94e1c86d57d635ff4d5f2dbee673e440a4624c5f8cd6ba5c32674ad7b71053fe45f06da1b617288b7af1456739a989d8c4a91de9d101e350e662c": {
     "STR: +4": 0.07425,
@@ -26131,7 +26131,7 @@
     "Max MP: +4%": 0.001316,
     "DEF: +4%": 0.000789,
     "All Stats: +2%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "c768cf165301d31af758905a6091d176ee2577fc29b22ae8d13b6166646f4f4a511173526ba5cb307120a47ada6f8745e727dc777cc6dcfa5a82ff8c5cc52a96": {
     "Max HP: +5%": 0.073171,
@@ -26220,7 +26220,7 @@
     "Max MP: +2%": 0.026316,
     "DEF: +2%": 0.015789,
     "All Stats: +1%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "82332332587a70c17b38d2ba5d713ec3e7c0957496a5523bb28b9131973991ea245c14291bc76a8cb61fe181e4d495f9c17b2d02896f16bf93b4cdb363d78b70": {
     "STR: +2": 0.07125,
@@ -26246,7 +26246,7 @@
     "Max MP: +2%": 0.006579,
     "DEF: +2%": 0.003947,
     "All Stats: +1%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "0ed2e4da15769d12804c8dcc99bbe6e8cf11207d668292a755abc07a328059e7476ea36c6c2ae500fd9e15ceaecb0abe25e18bf5c9a351213be76ab32d40dbca": {
     "STR: +4": 0.153692,
@@ -26467,7 +26467,7 @@
     "Max MP: +6%": 0.026316,
     "DEF: +6%": 0.015789,
     "All Stats: +3%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "b17340fd95a17a2dd81b5ffb89904d78e81a5e559a96bb347e140abd23672e9f62c211b4a7eab479c9233ec9e5e0295da2a8b03819929ba0ae8e6f0bdae15bde": {
     "STR: +10": 0.07125,
@@ -26493,7 +26493,7 @@
     "Max MP: +6%": 0.006579,
     "DEF: +6%": 0.003947,
     "All Stats: +3%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "553991eb1dae7e9a5b47900bab8cea9a845310825df996fb8fbf39e3041e60f0b425cfb1fee148df6d6defb975ca620b8d85e47cad7c87a64f1d41d01e62775b": {
     "STR: +3": 0.104167,
@@ -26823,7 +26823,7 @@
     "20% chance to ignore 7 damage when attacked": 0.098304,
     "20% chance to ignore 11 damage when attacked": 0.098304,
     "30% chance to ignore 15 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR: +3%": 0.001131,
     "DEX: +3%": 0.001131,
     "INT: +3%": 0.001131,
@@ -27830,7 +27830,7 @@
     "20% chance to ignore 13 damage when attacked": 0.1,
     "20% chance to ignore 20 damage when attacked": 0.1,
     "30% chance to ignore 27 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "7d9716a5e3069879ad20a26e0b6ec9ea76c8a28e4347f26e4a46166d2d233dc31bfe9f01c2d2612b1dd190bcec42c6ae56f95a48e154492ff4a5f6a20977e3e0": {
     "STR: +8": 0.051111,
@@ -27859,7 +27859,7 @@
     "20% chance to ignore 13 damage when attacked": 0.007999,
     "20% chance to ignore 20 damage when attacked": 0.007999,
     "30% chance to ignore 27 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "bfee47241cb708fadd2e8171e9749b1c2ccff2f13c7fc9400b85efc9ca951db5aa07f13bb9407d1207e108b1463fb37ab8e824579acac3b24ea0ffc4c1889a77": {
     "STR : +9%": 0.058824,
@@ -28479,7 +28479,7 @@
     "Max MP: +2%": 0.118421,
     "DEF: +2%": 0.071053,
     "All Stats: +1%": 0.047368,
-    "Invincible time after being hit: +1 second": 0.071053,
+    "Invincibility time after being hit: +1 second": 0.071053,
     "STR: +3%": 0.008065,
     "DEX: +3%": 0.008065,
     "INT: +3%": 0.008065,
@@ -28504,7 +28504,7 @@
     "Max MP: +2%": 0.130263,
     "DEF: +2%": 0.078158,
     "All Stats: +1%": 0.052105,
-    "Invincible time after being hit: +1 second": 0.078158,
+    "Invincibility time after being hit: +1 second": 0.078158,
     "STR: +3%": 0.000806,
     "DEX: +3%": 0.000806,
     "INT: +3%": 0.000806,
@@ -28594,7 +28594,7 @@
     "Max MP: +4%": 0.013158,
     "DEF: +4%": 0.007895,
     "All Stats: +2%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "483e70fe8386b3628a3dea1350a79b6c0be5480cf3a0b05877c408988898ea42f9ef0c5937eddb1c11423b5f0c57e984f6ac832c45d4c9954d4636e2c6a35e0b": {
     "STR: +6": 0.07425,
@@ -28620,7 +28620,7 @@
     "Max MP: +4%": 0.001316,
     "DEF: +4%": 0.000789,
     "All Stats: +2%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "bbd4b215e137a6c61fa9732b2da91b1416553b079526b6e0675cc8b07cb27cc478b795c1f61201e5527f10f09fd5b5a5056397f87b2f4fa460641d16f931642d": {
     "STR: +8": 0.055102,
@@ -28733,7 +28733,7 @@
     "20% chance to ignore 9 damage when attacked": 0.00099,
     "20% chance to ignore 14 damage when attacked": 0.00099,
     "30% chance to ignore 19 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "f80e549fb0077b01a3cbefa0f977790045f06f02f812f8623dfac0863fbae90229123db634ea40462cf94b8b96ebce7b89d3bdd030ad3a94d618c2599c3149b2": {
     "STR: +1": 0.096,
@@ -28803,7 +28803,7 @@
     "20% chance to ignore 13 damage when attacked": 0.098304,
     "20% chance to ignore 20 damage when attacked": 0.098304,
     "30% chance to ignore 27 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR: +6%": 0.001028,
     "DEX: +6%": 0.001028,
     "INT: +6%": 0.001028,
@@ -29481,7 +29481,7 @@
     "Max MP: +6%": 0.026316,
     "DEF: +6%": 0.015789,
     "All Stats: +3%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "13cd8f38cf1eee826db61809e32e81d124bbcf64d03ef137d0a2c8740a29a78155186a9b0f936681c731aba359c1a0d4ce8ae70dd7e4f4a4991e2ce069d88f37": {
     "STR: +12": 0.07125,
@@ -29507,7 +29507,7 @@
     "Max MP: +6%": 0.006579,
     "DEF: +6%": 0.003947,
     "All Stats: +3%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "4f23c118e42467b0f90bb3bd9faef4860bf560841edd33ebecbe18a5b6d84607c166d6efa2f37a44354b0c509bb15e673752929b529c88f12371ff781106bf03": {
     "STR: +14": 0.06,
@@ -29639,7 +29639,7 @@
     "20% chance to ignore 13 damage when attacked": 0.004762,
     "20% chance to ignore 20 damage when attacked": 0.004762,
     "30% chance to ignore 27 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "5396f6326f4519009d3c73eaa1fb3aee006b725e12ab393a14490b35f666587226fb1dcee485f3865d2af3f261824aadc5d09e016e8f9f770edd97b4a72d1005": {
     "STR: +6%": 0.064516,
@@ -29993,7 +29993,7 @@
     "20% chance to ignore 7 damage when attacked": 0.1,
     "20% chance to ignore 11 damage when attacked": 0.1,
     "30% chance to ignore 15 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "2c3e4c00423084f48ed8a7010663a9ef01602308c307b0304d6a9df28ba291f7125deffe4b939cbeec859811a6dd8b03182333ff544d7b7aed5e72f746b1eeaf": {
     "STR: +4": 0.051111,
@@ -30022,7 +30022,7 @@
     "20% chance to ignore 7 damage when attacked": 0.007999,
     "20% chance to ignore 11 damage when attacked": 0.007999,
     "30% chance to ignore 15 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "6fc38fffb420e6ef5cabd5d2d3d4c40fefc32c896f025cb687e6f4eec85a2b06d77c864d8cca90de3fe78a47fabdaa3e84af1e09b2cfd954a7409e61969ed65b": {
     "STR: +8": 0.032281,
@@ -30821,7 +30821,7 @@
     "Max MP: +6%": 0.026316,
     "DEF: +6%": 0.015789,
     "All Stats: +3%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "fbc2e5b58e466eee04f8429378424dd30489851e4686d1ae0c397bec0671e84ada4963fa0f48f684c901f98d1a81bc4c3d30c3f185f711bfe3640ed1c64489d9": {
     "STR: +10": 0.07125,
@@ -30847,7 +30847,7 @@
     "Max MP: +6%": 0.006579,
     "DEF: +6%": 0.003947,
     "All Stats: +3%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "d7d5f2911901c382290fe0295398ce5c386e5422880e4cb7c58d520f7ec1583c3b4d4b85b12c348c7ed5330b5ef1738fada11203c964f041ec485aa08e1b2d57": {
     "STR: +12": 0.04898,
@@ -31056,7 +31056,7 @@
     "20% chance to ignore 21 damage when attacked": 0.00099,
     "20% chance to ignore 32 damage when attacked": 0.00099,
     "30% chance to ignore 43 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "76536ee06b0f03e28d4deccfbda578b23d7c10020ccb0abf73d6ccfadd9d6f395d66df0922bf26e6bf29af71ad5d55f6d99af61626b1c060d78b52fda5675104": {
     "STR: +12%": 0.064516,
@@ -31351,7 +31351,7 @@
     "Max MP: +4%": 0.026316,
     "DEF: +4%": 0.015789,
     "All Stats: +2%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "90443a8a1c5a797c45f5a0303c72ddb0987473896c26271ab964be1409eaf291286890594785dd07543bab9986188bc34f58719359640a9eec7c08a29f330163": {
     "STR: +8": 0.07125,
@@ -31377,7 +31377,7 @@
     "Max MP: +4%": 0.006579,
     "DEF: +4%": 0.003947,
     "All Stats: +2%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "f6df23885c9ff524f16f50ac6f14c76505e1bd3bea8d80ef0771ab8a2f04d412d70a2fb20a09e416b185cffb46d049c4263ded7d87c05fcd2b8785f85e2105bd": {
     "STR: +4": 0.038827,
@@ -31810,7 +31810,7 @@
     "20% chance to ignore 9 damage when attacked": 0.098304,
     "20% chance to ignore 14 damage when attacked": 0.098304,
     "30% chance to ignore 19 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR: +6%": 0.001028,
     "DEX: +6%": 0.001028,
     "INT: +6%": 0.001028,
@@ -32177,7 +32177,7 @@
     "20% chance to ignore 5 damage when attacked": 0.098304,
     "20% chance to ignore 8 damage when attacked": 0.098304,
     "30% chance to ignore 11 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR: +3%": 0.001131,
     "DEX: +3%": 0.001131,
     "INT: +3%": 0.001131,
@@ -32523,7 +32523,7 @@
     "Max MP: +4%": 0.118421,
     "DEF: +4%": 0.071053,
     "All Stats: +2%": 0.047368,
-    "Invincible time after being hit: +1 second": 0.071053,
+    "Invincibility time after being hit: +1 second": 0.071053,
     "STR: +6%": 0.007576,
     "DEX: +6%": 0.007576,
     "INT: +6%": 0.007576,
@@ -32549,7 +32549,7 @@
     "Max MP: +4%": 0.130263,
     "DEF: +4%": 0.078158,
     "All Stats: +2%": 0.052105,
-    "Invincible time after being hit: +1 second": 0.078158,
+    "Invincibility time after being hit: +1 second": 0.078158,
     "STR: +6%": 0.000758,
     "DEX: +6%": 0.000758,
     "INT: +6%": 0.000758,
@@ -33057,7 +33057,7 @@
     "20% chance to ignore 21 damage when attacked": 0.004762,
     "20% chance to ignore 32 damage when attacked": 0.004762,
     "30% chance to ignore 43 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "ac23457cda30002170ee5c34951f3d6a703988f5d34952803057dabf53dd266d55ec8f85ceb79e525df1a2d94421700f6179b6f18de8163e3bc96a10c5a4dfdb": {
     "STR: +4%": 0.078643,
@@ -33186,7 +33186,7 @@
     "20% chance to ignore 5 damage when attacked": 0.00099,
     "20% chance to ignore 8 damage when attacked": 0.00099,
     "30% chance to ignore 11 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "a539f2ec83135411a6a6762ffc283778f30459c0d2dfb8a1ec5f4c2ea02662ade0436842ecb1948040cf2db6e41fe5db96049c45113f98071c704aea7b84c2c3": {
     "STR: +4%": 0.059578,
@@ -33866,7 +33866,7 @@
     "20% chance to ignore 15 damage when attacked": 0.098304,
     "20% chance to ignore 23 damage when attacked": 0.098304,
     "30% chance to ignore 31 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR: +6%": 0.001028,
     "DEX: +6%": 0.001028,
     "INT: +6%": 0.001028,
@@ -34059,7 +34059,7 @@
     "20% chance to ignore 23 damage when attacked": 0.098304,
     "20% chance to ignore 35 damage when attacked": 0.098304,
     "30% chance to ignore 47 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR : +9%": 0.001028,
     "DEX : +9%": 0.001028,
     "INT : +9%": 0.001028,
@@ -34599,7 +34599,7 @@
     "20% chance to ignore 9 damage when attacked": 0.007999,
     "20% chance to ignore 14 damage when attacked": 0.007999,
     "30% chance to ignore 19 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "1432bd4aa716d6a16960989c6d4079901fd2a0ef32c81c49d158f24de9468c44620cb6e9fd7c5abc24b862f2ff7e8fc7510becc4478519205398823f505de1d9": {
     "STR: +4%": 0.076923,
@@ -35312,7 +35312,7 @@
     "20% chance to ignore 3 damage when attacked": 0.098304,
     "20% chance to ignore 5 damage when attacked": 0.098304,
     "30% chance to ignore 7 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR: +3%": 0.001256,
     "DEX: +3%": 0.001256,
     "INT: +3%": 0.001256,
@@ -36234,7 +36234,7 @@
     "Max MP: +6%": 0.013158,
     "DEF: +6%": 0.007895,
     "All Stats: +3%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "71487a5c3e31335b96b102a71c3c5dd513ead6ccfe34474ce1f09002745c4366d19dd68682becbb3de09b34a72d93e19fa8518dda2954b128472d9134a1d2b13": {
     "STR: +12": 0.07425,
@@ -36260,7 +36260,7 @@
     "Max MP: +6%": 0.001316,
     "DEF: +6%": 0.000789,
     "All Stats: +3%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "8ba856fb439b419778d7e96a298be48fb0dc58254d1e1982220c078c1dfefca65a2e8a1a285b381c48fdc6140f295c9a6505016dcfd9f21ebe2f9fb13f766b6e": {
     "STR: +6": 0.051111,
@@ -36534,7 +36534,7 @@
     "20% chance to ignore 15 damage when attacked": 0.098814,
     "20% chance to ignore 23 damage when attacked": 0.098814,
     "30% chance to ignore 31 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR: +6%": 0.000719,
     "DEX: +6%": 0.000719,
     "INT: +6%": 0.000719,
@@ -36897,7 +36897,7 @@
     "Max MP: +6%": 0.013158,
     "DEF: +6%": 0.007895,
     "All Stats: +3%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "ccf328466002c3201dc65fc728dd37170331e3bfc69be21af50c16c1efab601a0a10a35cdfd91275c392ecfebe761a8abad6d9e6fea57a448158714e31911442": {
     "STR: +12": 0.07425,
@@ -36923,7 +36923,7 @@
     "Max MP: +6%": 0.001316,
     "DEF: +6%": 0.000789,
     "All Stats: +3%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "8e62a37fbb3da5b33a9bc66a9853a77b826a5c61a3059401c1cc6095b4f7819923344204e87ad596ac78b70657bf8f1f10aa5c28fa3bddad51740fee7ac9c802": {
     "Max HP: +2%": 0.090457,
@@ -37146,7 +37146,7 @@
     "20% chance to ignore 7 damage when attacked": 0.004762,
     "20% chance to ignore 11 damage when attacked": 0.004762,
     "30% chance to ignore 15 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "0699b1bcb9963f698a0be66afcfd132c000f7e0bf490b5d6705bbbe2a794dffac193ce0a0d40c9947f095eaa152ee228441db6af077e4a1a889c54088d395654": {
     "STR: +4%": 0.072818,
@@ -37244,7 +37244,7 @@
     "20% chance to ignore 13 damage when attacked": 0.00099,
     "20% chance to ignore 20 damage when attacked": 0.00099,
     "30% chance to ignore 27 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "0c5f4a25bb1a0ca343e847dd6818395543d95175eafd81ba308ea46fa1fb7a31d8c2fd0c4c07cb948c16538173c503292cd16f97553f9c27f628d4f5fb711aaf": {
     "STR: +6%": 0.072818,
@@ -37540,7 +37540,7 @@
     "20% chance to ignore 9 damage when attacked": 0.098814,
     "20% chance to ignore 14 damage when attacked": 0.098814,
     "30% chance to ignore 19 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR: +6%": 0.000719,
     "DEX: +6%": 0.000719,
     "INT: +6%": 0.000719,
@@ -37975,7 +37975,7 @@
     "20% chance to ignore 21 damage when attacked": 0.098814,
     "20% chance to ignore 32 damage when attacked": 0.098814,
     "30% chance to ignore 43 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR : +9%": 0.000719,
     "DEX : +9%": 0.000719,
     "INT : +9%": 0.000719,
@@ -39318,7 +39318,7 @@
     "20% chance to ignore 25 damage when attacked": 0.007999,
     "20% chance to ignore 38 damage when attacked": 0.007999,
     "30% chance to ignore 51 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "c0ceb9a09b9b3cc51532876873e7e256d35b544ce17275594c35d1d79669f6a2b3338e66289b1e1022c8236b367b73f8d8399a5b1684dc0b65bb2387d6e89252": {
     "Max HP: +7%": 0.071073,
@@ -40099,7 +40099,7 @@
     "20% chance to ignore 17 damage when attacked": 0.00099,
     "20% chance to ignore 26 damage when attacked": 0.00099,
     "30% chance to ignore 35 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "f52fd86e47be02feea6c8053443db9f2394bc6368d908d5a5d6d96b739c0d4d380ad6a43fa685dc1d2d07b14856d3185dc8190c2a220408e6d1e2acf60230703": {
     "STR: +2%": 0.08,
@@ -40353,7 +40353,7 @@
     "Max MP: +4%": 0.105263,
     "DEF: +4%": 0.063158,
     "All Stats: +2%": 0.042105,
-    "Invincible time after being hit: +1 second": 0.063158,
+    "Invincibility time after being hit: +1 second": 0.063158,
     "STR: +6%": 0.015152,
     "DEX: +6%": 0.015152,
     "INT: +6%": 0.015152,
@@ -40379,7 +40379,7 @@
     "Max MP: +4%": 0.125,
     "DEF: +4%": 0.075,
     "All Stats: +2%": 0.05,
-    "Invincible time after being hit: +1 second": 0.075,
+    "Invincibility time after being hit: +1 second": 0.075,
     "STR: +6%": 0.003788,
     "DEX: +6%": 0.003788,
     "INT: +6%": 0.003788,
@@ -40857,7 +40857,7 @@
     "20% chance to ignore 13 damage when attacked": 0.098814,
     "20% chance to ignore 20 damage when attacked": 0.098814,
     "30% chance to ignore 27 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR: +6%": 0.000719,
     "DEX: +6%": 0.000719,
     "INT: +6%": 0.000719,
@@ -41423,7 +41423,7 @@
     "Max MP: +6%": 0.013158,
     "DEF: +6%": 0.007895,
     "All Stats: +3%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "7a2d8d83c775fd52757f3ab5273cc326edabc567a01b52f72fa2bc7d915955fd4b5cd5e7a6ebd12ea57281bb6084e37143040d1bb7a514fefaeee35f6eac48ae": {
     "STR: +12": 0.07425,
@@ -41449,7 +41449,7 @@
     "Max MP: +6%": 0.001316,
     "DEF: +6%": 0.000789,
     "All Stats: +3%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "c500f66ccf9f6af2b6f44f70c80e9ce3cfd3ea2e4781eccc3f7e097dbf54e07057c4cb2faad8179d07cbf8ca6e0244a6efb94d87fce4a968e78870d18b107188": {
     "STR: +2": 0.054545,
@@ -42094,7 +42094,7 @@
     "Max MP: +4%": 0.013158,
     "DEF: +4%": 0.007895,
     "All Stats: +2%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "0083a91d84f0cfda5e83219a796dbf65777ccfcd77426d78ea64ac1331c57c7d4921535957896995e6441d613eb566ec4adb030d7e4b54946f618a40793d4dcc": {
     "STR: +8": 0.07425,
@@ -42120,7 +42120,7 @@
     "Max MP: +4%": 0.001316,
     "DEF: +4%": 0.000789,
     "All Stats: +2%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "dc18c6df707d22423ba715f9fd16774b9c09e3265f1499991cc9d7ba10d138cb95ca01de0a757628e26055b928536b7b944688b447c50a42c62a83b5fbbc037f": {
     "STR: +6%": 0.065536,
@@ -42134,7 +42134,7 @@
     "20% chance to ignore 17 damage when attacked": 0.098304,
     "20% chance to ignore 26 damage when attacked": 0.098304,
     "30% chance to ignore 35 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR : +9%": 0.001028,
     "DEX : +9%": 0.001028,
     "INT : +9%": 0.001028,
@@ -42389,7 +42389,7 @@
     "Max MP: +6%": 0.013158,
     "DEF: +6%": 0.007895,
     "All Stats: +3%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "08a1df863546c479fce02225a9011eebb29a2f9910edc2896d009034fadeb71676074031434258cf9c8e794fec8726151dd8f92d1efd4aad2b23831c2d1e7e51": {
     "STR: +10": 0.07425,
@@ -42415,7 +42415,7 @@
     "Max MP: +6%": 0.001316,
     "DEF: +6%": 0.000789,
     "All Stats: +3%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "a13d90e35033df2a83143cea6a3bcdbfe8fbca9725ca11114ea15674b3cc0fa2dc0be8d9f469d0ad6e4bc716bd5143eebbd51bb6b118450af8284c73bc7ab554": {
     "STR: +2": 0.051111,
@@ -42444,7 +42444,7 @@
     "20% chance to ignore 5 damage when attacked": 0.007999,
     "20% chance to ignore 8 damage when attacked": 0.007999,
     "30% chance to ignore 11 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "da745835c82cb63555a34e205ef1ae8e598f6b2973a3c495b9875559750705b6459aee2a7789ed700a7d92882d4c973ea19d8245b06c80c1f827d65baa72e7f2": {
     "STR: +10": 0.055102,
@@ -42702,7 +42702,7 @@
     "20% chance to ignore 19 damage when attacked": 0.098814,
     "20% chance to ignore 29 damage when attacked": 0.098814,
     "30% chance to ignore 39 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR : +9%": 0.000719,
     "DEX : +9%": 0.000719,
     "INT : +9%": 0.000719,
@@ -43211,7 +43211,7 @@
     "20% chance to ignore 23 damage when attacked": 0.004762,
     "20% chance to ignore 35 damage when attacked": 0.004762,
     "30% chance to ignore 47 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "801c7a48abbe90fc5a74e9edbc0f443fd732721ef745412e6e568a4a9cbce75830ba3c91dae404e8332951a036a02b1899d3878164407bd540967d3f9e651d7c": {
     "STR : +9%": 0.071429,
@@ -43642,7 +43642,7 @@
     "Max MP: +2%": 0.013158,
     "DEF: +2%": 0.007895,
     "All Stats: +1%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "4e0d0c11cbdd1d2bca5a11df9a8d0792f92323d0f2aa77a3463183616ad9aa7f742aaab45c5ca2461c2e5b3d5b9a7f80de9fc47e7ff80bc2b4bba22ab8a4d43a": {
     "STR: +2": 0.07425,
@@ -43668,7 +43668,7 @@
     "Max MP: +2%": 0.001316,
     "DEF: +2%": 0.000789,
     "All Stats: +1%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "4c7cfc3e01556926eaa6d6365459364a245aaf48ed4a12973d02931e048e8ab35524d4543ae3727d0840eba89d60c2da925984cd5ef1ed90f83541b26a905d7d": {
     "STR: +4": 0.033417,
@@ -44211,7 +44211,7 @@
     "Max MP: +6%": 0.118421,
     "DEF: +6%": 0.071053,
     "All Stats: +3%": 0.047368,
-    "Invincible time after being hit: +1 second": 0.071053,
+    "Invincibility time after being hit: +1 second": 0.071053,
     "STR : +9%": 0.007576,
     "DEX : +9%": 0.007576,
     "INT : +9%": 0.007576,
@@ -44237,7 +44237,7 @@
     "Max MP: +6%": 0.130263,
     "DEF: +6%": 0.078158,
     "All Stats: +3%": 0.052105,
-    "Invincible time after being hit: +1 second": 0.078158,
+    "Invincibility time after being hit: +1 second": 0.078158,
     "STR : +9%": 0.000758,
     "DEX : +9%": 0.000758,
     "INT : +9%": 0.000758,
@@ -44889,7 +44889,7 @@
     "20% chance to ignore 19 damage when attacked": 0.00099,
     "20% chance to ignore 29 damage when attacked": 0.00099,
     "30% chance to ignore 39 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "602165679618fac80eeef62928874d631210f2139eb4f84cca8976f8566e8c857d98aa9fb056b6b2e2dbf6254446959b821d6819facf69eea539d694747feccf": {
     "STR: +8": 0.045351,
@@ -45664,7 +45664,7 @@
     "20% chance to ignore 25 damage when attacked": 0.098814,
     "20% chance to ignore 38 damage when attacked": 0.098814,
     "30% chance to ignore 51 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR : +9%": 0.000719,
     "DEX : +9%": 0.000719,
     "INT : +9%": 0.000719,
@@ -47900,7 +47900,7 @@
     "20% chance to ignore 23 damage when attacked": 0.098814,
     "20% chance to ignore 35 damage when attacked": 0.098814,
     "30% chance to ignore 47 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR : +9%": 0.000719,
     "DEX : +9%": 0.000719,
     "INT : +9%": 0.000719,
@@ -48053,7 +48053,7 @@
     "20% chance to ignore 7 damage when attacked": 0.00099,
     "20% chance to ignore 11 damage when attacked": 0.00099,
     "30% chance to ignore 15 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "755a1d918346573288f14b59efcb08c8b03e8efd12cf08ef1bf1c58b75f937c29ef28fadcc5425d4687ecee8346120366fa42b832df5afc9af47160250ecace8": {
     "STR: +13%": 0.114286,
@@ -48226,7 +48226,7 @@
     "20% chance to ignore 19 damage when attacked": 0.004762,
     "20% chance to ignore 29 damage when attacked": 0.004762,
     "30% chance to ignore 39 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "f6fd0238434480ab91e22500d404c142dc65dcb9872ec8888bb87bae099b09ca268df50456519a92fe71578f5b3336c4e54c4d25b96644cc01ac27d59d574958": {
     "STR: +4": 0.055006,
@@ -49157,7 +49157,7 @@
     "20% chance to ignore 11 damage when attacked": 0.004762,
     "20% chance to ignore 17 damage when attacked": 0.004762,
     "30% chance to ignore 23 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "fc8db06e97c283fcbfb48eb74d397f7ce3fc179ffd2c5703a47abf6b9314c77ea32da5daee53d9d907ddc7a36c6a7be4cadc87cadf2df502ad1b2f94ed92b8dd": {
     "STR: +13%": 0.129032,
@@ -49431,7 +49431,7 @@
     "20% chance to ignore 15 damage when attacked": 0.004762,
     "20% chance to ignore 23 damage when attacked": 0.004762,
     "30% chance to ignore 31 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "3fd980b986d4951e47a4bf5d242eadfca0e967cb5790eb0c927e3fc02a2a293878abe46f5a1e01f5a03c4bac5aa418e37b9ed988138a23f3a9d25a1a31338c7b": {
     "STR: +10%": 0.060606,
@@ -49460,7 +49460,7 @@
     "20% chance to ignore 25 damage when attacked": 0.098814,
     "20% chance to ignore 38 damage when attacked": 0.098814,
     "30% chance to ignore 51 damage when attacked": 0.098814,
-    "Invincible time after being hit: +1 second": 0.098814,
+    "Invincibility time after being hit: +1 second": 0.098814,
     "STR: +10%": 0.000719,
     "DEX: +10%": 0.000719,
     "INT: +10%": 0.000719,
@@ -49586,7 +49586,7 @@
     "20% chance to ignore 25 damage when attacked": 0.004762,
     "20% chance to ignore 38 damage when attacked": 0.004762,
     "30% chance to ignore 51 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "5fdd26f82fc4d7059c847b319b94c269938253921cb7a7d558d25620576032d8c138def155a27e9089bb91d24da321a3c27d5108c692ab600c9a5999aa8f493b": {
     "STR: +2": 0.05291,
@@ -49917,7 +49917,7 @@
     "20% chance to ignore 23 damage when attacked": 0.00099,
     "20% chance to ignore 35 damage when attacked": 0.00099,
     "30% chance to ignore 47 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "711c61d1a4afc9207a16cf388a0f6933c4f495c2cd978cabe37ab43421f30c6339fe80afd403373de300d0db677daf2841d2e33e68e9ddf01f6ef9ebad23d8a3": {
     "STR: +12": 0.032281,
@@ -51425,7 +51425,7 @@
     "Max MP: +6%": 0.131579,
     "DEF: +6%": 0.078947,
     "All Stats: +4%": 0.052632,
-    "Invincible time after being hit: +1 second": 0.078947
+    "Invincibility time after being hit: +1 second": 0.078947
   },
   "56d36370e46cf07d1d2715e42c905ee48aaaf030372f81d07d92418bd230faf7e5cb6198abb4bc9ec278d7c5dcee4d71243c2d8326c4d61b41f4ded94a9a7b87": {
     "STR: +13": 0.0675,
@@ -51451,7 +51451,7 @@
     "Max MP: +6%": 0.013158,
     "DEF: +6%": 0.007895,
     "All Stats: +4%": 0.005263,
-    "Invincible time after being hit: +1 second": 0.007895
+    "Invincibility time after being hit: +1 second": 0.007895
   },
   "5f30ba43e96b5e138c41cef6fd569de26094509e93b97bc1c48a9fec96bc75878555b3084de1e5e0fa946cb7899a50e99ceb6a5c7e62a9eb3e63ab2138a70504": {
     "STR: +13": 0.07425,
@@ -51477,7 +51477,7 @@
     "Max MP: +6%": 0.001316,
     "DEF: +6%": 0.000789,
     "All Stats: +4%": 0.000526,
-    "Invincible time after being hit: +1 second": 0.000789
+    "Invincibility time after being hit: +1 second": 0.000789
   },
   "d2b6195f86c341baeac813e3fe37eac0b6c08fef18f626b246db5e1d17b7da7a385e94b0bcaa5a47d34ee8b8da9bb629d714098261bb75d6b25264431e5fac6f": {
     "STR: +6%": 0.073196,
@@ -51576,7 +51576,7 @@
     "20% chance to ignore 25 damage when attacked": 0.1,
     "20% chance to ignore 38 damage when attacked": 0.1,
     "30% chance to ignore 51 damage when attacked": 0.1,
-    "Invincible time after being hit: +1 second": 0.1
+    "Invincibility time after being hit: +1 second": 0.1
   },
   "459c2d301d0a99e7ffebb1e788912a7ae950b84b3ca9c2dce5e77ef10907eb06c8284f1c261eb0bc051d85dcaf30d8141bbf611fa61c308851b21c4b8f0e0abc": {
     "STR: +13": 0.055006,
@@ -51605,7 +51605,7 @@
     "20% chance to ignore 25 damage when attacked": 0.00099,
     "20% chance to ignore 38 damage when attacked": 0.00099,
     "30% chance to ignore 51 damage when attacked": 0.00099,
-    "Invincible time after being hit: +1 second": 0.00099
+    "Invincibility time after being hit: +1 second": 0.00099
   },
   "76da99f20bb91ab056692777a850eaf03f24bf5eba38b0e7b306be7ca633344592b1399a2e4ed6cbfdef29ece5da59682d8577628e0c6c462177137d4d05d041": {
     "STR: +7": 0.124875,
@@ -52848,7 +52848,7 @@
     "20% chance to ignore 25 damage when attacked": 0.007999,
     "20% chance to ignore 38 damage when attacked": 0.007999,
     "30% chance to ignore 51 damage when attacked": 0.007999,
-    "Invincible time after being hit: +1 second": 0.007999
+    "Invincibility time after being hit: +1 second": 0.007999
   },
   "844d72ccda10779bb00c165e00e37dbbd534e26758b1672256bb1560fe9c196fc6eafa9d5950560d9306ea8f84da4a4bd937609acdc81d6e65b32025a7a9f813": {
     "STR: +2": 0.072464,
@@ -53574,7 +53574,7 @@
     "Max MP: +6%": 0.105263,
     "DEF: +6%": 0.063158,
     "All Stats: +4%": 0.042105,
-    "Invincible time after being hit: +1 second": 0.063158,
+    "Invincibility time after being hit: +1 second": 0.063158,
     "STR: +10%": 0.015152,
     "DEX: +10%": 0.015152,
     "INT: +10%": 0.015152,
@@ -53600,7 +53600,7 @@
     "Max MP: +6%": 0.125,
     "DEF: +6%": 0.075,
     "All Stats: +4%": 0.05,
-    "Invincible time after being hit: +1 second": 0.075,
+    "Invincibility time after being hit: +1 second": 0.075,
     "STR: +10%": 0.003788,
     "DEX: +10%": 0.003788,
     "INT: +10%": 0.003788,
@@ -55823,7 +55823,7 @@
     "20% chance to ignore 25 damage when attacked": 0.004762,
     "20% chance to ignore 38 damage when attacked": 0.004762,
     "30% chance to ignore 51 damage when attacked": 0.004762,
-    "Invincible time after being hit: +1 second": 0.004762
+    "Invincibility time after being hit: +1 second": 0.004762
   },
   "7dc1b6885b59cdf45ec00b0a719cbba15dc4604b6ab2a9b9461dc44bf61fe87b43401cd4d160b4ce5280a90cc2a838454fd54d3bb7c7b4df7b9c5bdd0f3e5154": {
     "STR: +10%": 0.098039,
@@ -56643,7 +56643,7 @@
     "Max MP: +6%": 0.026316,
     "DEF: +6%": 0.015789,
     "All Stats: +4%": 0.010526,
-    "Invincible time after being hit: +1 second": 0.015789
+    "Invincibility time after being hit: +1 second": 0.015789
   },
   "c5933067cf2205e5b27e2a8497a0fb0a0a13cd407186c1e37ed6479b5ef057998809a855659a7a3083fc76ba724dbbe676bdab5328408e012a4dee9e6fb021b2": {
     "STR: +13": 0.07125,
@@ -56669,7 +56669,7 @@
     "Max MP: +6%": 0.006579,
     "DEF: +6%": 0.003947,
     "All Stats: +4%": 0.002632,
-    "Invincible time after being hit: +1 second": 0.003947
+    "Invincibility time after being hit: +1 second": 0.003947
   },
   "518587e10df3f27d9465aa7d16f566c284f838cad6ff9088bdf3194fe88a78bf5c9578d90b5315af97b31e83b06d0ee6e0c1e6e9f701d65186c1cc5ede2b2805": {
     "STR: +13": 0.05291,
@@ -56808,7 +56808,7 @@
     "20% chance to ignore 25 damage when attacked": 0.098304,
     "20% chance to ignore 38 damage when attacked": 0.098304,
     "30% chance to ignore 51 damage when attacked": 0.098304,
-    "Invincible time after being hit: +1 second": 0.098304,
+    "Invincibility time after being hit: +1 second": 0.098304,
     "STR: +10%": 0.001028,
     "DEX: +10%": 0.001028,
     "INT: +10%": 0.001028,
@@ -58010,7 +58010,7 @@
     "Max MP: +6%": 0.118421,
     "DEF: +6%": 0.071053,
     "All Stats: +4%": 0.047368,
-    "Invincible time after being hit: +1 second": 0.071053,
+    "Invincibility time after being hit: +1 second": 0.071053,
     "STR: +10%": 0.007576,
     "DEX: +10%": 0.007576,
     "INT: +10%": 0.007576,
@@ -58036,7 +58036,7 @@
     "Max MP: +6%": 0.130263,
     "DEF: +6%": 0.078158,
     "All Stats: +4%": 0.052105,
-    "Invincible time after being hit: +1 second": 0.078158,
+    "Invincibility time after being hit: +1 second": 0.078158,
     "STR: +10%": 0.000758,
     "DEX: +10%": 0.000758,
     "INT: +10%": 0.000758,

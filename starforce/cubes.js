@@ -573,8 +573,6 @@ cube.stats = {
         for (let i = 0; i < cube_lines.length; ++i) {
             let i_line = cube_lines[i];
             
-            shuffle(i_line);
-
             rates_probability["line_" + i] = i_line;
         }
 
@@ -587,6 +585,8 @@ cube.stats = {
         //i is the line, bp is to bypass forced stats if needed to prevent infinite looping
         let loop_rates_prob = function(i, bp = false) {
             let i_stat = rates_probability[i]; //the probability map associated with cube line
+            let shuff_i_stat = Object.keys(i_stat);
+            shuffle(shuff_i_stat);
 
             let i_map = []; //map for probability
 
@@ -597,11 +597,12 @@ cube.stats = {
 
             let restriction_rerun = false; //if the line hits the stat class restriction (e.g., 3 boss lines), then rerun it
             let already_found = false; //for forced stats, if the prob is already found, then don't mark any more as selected (in cases of duplicate stat items)
+
             //loop through probability map and compare the prng value to the range
-            for (let j in i_stat) {
+            for (let j = 0; j < shuff_i_stat.length; ++j) {
                 //get the probability value associated with the stat type
-                let j_stat = j;
-                let j_prob = i_stat[j]; //cube type for the probability
+                let j_stat = shuff_i_stat[j];
+                let j_prob = i_stat[j_stat]; //cube type for the probability
 
                 i_current += j_prob;
 
