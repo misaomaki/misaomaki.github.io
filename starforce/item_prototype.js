@@ -879,10 +879,12 @@ item.prototype.redraw_item_tooltip = function() {
 
     istats.html(html);
 
+    iflag.attr("class", "item-container-flag"); /* reset flag status to nothing */
+
     let this_pot = this.idata.meta.cube_potential;
     let this_b_pot = this.idata.meta.cube_potential_bonus;
     let cube_html = "";
-    iflag.attr("class", "item-container-flag"); /* reset flag status to nothing */
+    
     //main and bonus potential stuff
     if (this_pot !== "") {
         let main_pot = this.idata.boosts.cubes.main;

@@ -267,6 +267,7 @@ cube.get_item_level_tier = function(level) {
 //o is any additional options
 cube.cube = async function(type, dom, cb, o) {
     o = Object.assign({
+        force_keep: false,
         no_tier_up: false,
         force_stats: false,
         stats: {},
@@ -319,7 +320,7 @@ cube.cube = async function(type, dom, cb, o) {
             then do the black cube
         */
         if (type === "black") {
-            cube.cube.call(this, "red", [], ()=>{}, {
+            await cube.cube.call(this, "red", [], ()=>{}, {
                 no_tier_up: true
             });
         }
@@ -353,7 +354,7 @@ cube.cube = async function(type, dom, cb, o) {
     };
 
     //post-processing and update cube window
-    cube.cube_draw.call(this, cube_results, dom, type, cb, {update_dom: o.update_dom, write_log_record: o.write_log_record});
+    cube.cube_draw.call(this, cube_results, dom, type, cb, o);
 
     return cube_results.tier_up.upgrade;
 }
@@ -367,20 +368,19 @@ if (typeof item != 'undefined') {
     */
     item.prototype.set_cube = async function(f, r, s, o) {
         o = Object.assign({
+            force_keep: false,
+            no_tier_up: true,
+            force_stats: true,
+            stats: s,
+            force_tier: true,
+            tier: r,
             write_log_record: true
         }, o);
 
         let _this = this;
 
         //go through the cube proc, but pass options that force the tier and stats
-        await _this.cube(f, [], ()=>{}, {
-            no_tier_up: true,
-            force_stats: true,
-            stats: s,
-            force_tier: true,
-            tier: r,
-            write_log_record: o.write_log_record
-        });
+        await _this.cube(f, [], ()=>{}, o);
     }
 
     item.prototype.cube = async function(type, dom, cb, o) {
@@ -393,6 +393,7 @@ if (typeof item != 'undefined') {
 //o for any other options
 cube.cube_draw = function(cube_results, dom, type, cb, o) {
     o = Object.assign({
+        force_keep: false,
         update_dom: true,
         write_log_record: true
     }, o);
@@ -416,6 +417,11 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
     //if black cube, then force it to be kept
     if (cube_results.tier_up.upgrade) {
         curr_pot = cube_results.tier_up.next_tier;
+        force_keep = true;
+    }
+
+    /* force keep the record -- used for setting cubes directly for black cubes */
+    if (o.force_keep) {
         force_keep = true;
     }
 

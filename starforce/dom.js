@@ -495,7 +495,8 @@ $(function() {
                             line_1: line_2,
                             line_2: line_3
                         }, {
-                            write_log_record: false
+                            write_log_record: false,
+                            force_keep: true
                         });
 
                         cube.update_cube_menu.call(Item, $("#cube_menu"));
