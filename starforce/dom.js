@@ -1739,7 +1739,8 @@ $(function() {
                         sfmain.removeClass("masteria");
                     }
 
-                    document.title = "Item: " + Item.idata.name;
+                    document.title = "Sim: " + Item.idata.name;
+                    $("#favicon").attr("href", Item.idata.meta.img_name);
 
                     return false;
                 }

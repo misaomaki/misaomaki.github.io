@@ -18745,6 +18745,7 @@ let items_other_data = {
     flavor: "", //flavor text in white at the bottom
     shadowknight: false, //use shadowknight coins
     meta: {
+        img_name: "", /* img asset */
         cube_potential: "", //potential type: rare, epic, unique, legendary
         cube_potential_bonus: "", //bonus pot
         starforce_type: "GMS", //GMS or KMS. costs are different
@@ -18817,13 +18818,17 @@ $(function() {
 
             let img_name = "";
             let img_ext = "png";
+            let append_style = true;
 
             //if item uses an override image, then append that image instead.
             //override images should share a common istore.img name
             if (istore.override_image != null) {
-                if (shared_img.includes(istore.img)) continue;
                 img_name = istore.override_image;
-                shared_img.push(istore.img);
+                if (shared_img.includes(istore.img)) {
+                    append_style = false;
+                } else {
+                    shared_img.push(istore.img);
+                }
             } else {
                 img_name = istore.name;
             }   
@@ -18835,13 +18840,17 @@ $(function() {
             //github is case sensitive for url
             img_name = img_name.replace("AbsoLab","Absolab").replace(/[\s-:\(\)']/gi,"");
 
-            style_items += `
-                .${istore.img} {
-                    background: url(./assets/maple_items/${img_name}.${img_ext});
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                }
-            `;   
+            istore.meta.img_name = `./assets/maple_items/${img_name}.${img_ext}`;
+
+            if (append_style) {
+                style_items += `
+                    .${istore.img} {
+                        background: url(${istore.meta.img_name});
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                `;   
+            }
         }
     }
     
