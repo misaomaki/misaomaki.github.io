@@ -1,21 +1,5 @@
 $(function() {
-    var key_label = {
-        "runs": "Runs",
-        "tot_success": "Success",
-        "sc_success": "Success (Star Catch)",
-        "tot_fail": "Fails",
-        "sc_fail": "Fails (Star Catch)",
-        "cost": "Cost",
-        "sk_cost": "Shadowknight Coins",
-        "tot_safeguards": "Total Safeguards",
-        "safeguards": "Safeguards",
-        "tot_booms": "Total Booms",
-        "booms": "Booms",
-        "min_cost": "Least Cost Item",
-        "max_cost": "Most Cost Item",
-        "min_boom": "Least Booms",
-        "max_boom": "Most Booms"
-    };
+    var key_label = {};
 
     /* init modal */
     let stats_screen = $("#stat_box").dialog({
@@ -167,6 +151,24 @@ $(function() {
     /* continually run starforce from star to star and log the results*/
     stats_screen.on("click", "#begin_sf_statistics", function() {
         let _this = $(this);
+
+        key_label = {
+            "runs": "Runs",
+            "tot_success": "Success",
+            "sc_success": "Success (Star Catch)",
+            "tot_fail": "Fails",
+            "sc_fail": "Fails (Star Catch)",
+            "cost": "Cost",
+            "sk_cost": "Shadowknight Coins",
+            "tot_safeguards": "Total Safeguards",
+            "safeguards": "Safeguards",
+            "tot_booms": "Total Booms",
+            "booms": "Booms",
+            "min_cost": "Least Cost Item",
+            "max_cost": "Most Cost Item",
+            "min_boom": "Least Booms",
+            "max_boom": "Most Booms"
+        };
 
         /* remove shadowknight coin from table if not needed */
         if (!Item.idata.shadowknight) {

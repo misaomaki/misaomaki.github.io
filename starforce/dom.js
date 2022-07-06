@@ -1739,6 +1739,8 @@ $(function() {
                         sfmain.removeClass("masteria");
                     }
 
+                    document.title = "Item: " + Item.idata.name;
+
                     return false;
                 }
             }, {
