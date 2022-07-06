@@ -1,4 +1,22 @@
 $(function() {
+    var key_label = {
+        "runs": "Runs",
+        "tot_success": "Success",
+        "sc_success": "Success (Star Catch)",
+        "tot_fail": "Fails",
+        "sc_fail": "Fails (Star Catch)",
+        "cost": "Cost",
+        "sk_cost": "Shadowknight Coins",
+        "tot_safeguards": "Total Safeguards",
+        "safeguards": "Safeguards",
+        "tot_booms": "Total Booms",
+        "booms": "Booms",
+        "min_cost": "Least Cost Item",
+        "max_cost": "Most Cost Item",
+        "min_boom": "Least Booms",
+        "max_boom": "Most Booms"
+    };
+
     /* init modal */
     let stats_screen = $("#stat_box").dialog({
         position: {
@@ -36,7 +54,9 @@ $(function() {
                 },
                 lowest_cost: {
                     "1.0": 1e30
-                }
+                },
+                highest_boom: 0,
+                lowest_boom: 1e30
             };
         });
     };
@@ -147,6 +167,12 @@ $(function() {
     /* continually run starforce from star to star and log the results*/
     stats_screen.on("click", "#begin_sf_statistics", function() {
         let _this = $(this);
+
+        /* remove shadowknight coin from table if not needed */
+        if (!Item.idata.shadowknight) {
+            delete key_label["sk_cost"];
+        }
+
         _this.addClass("hidden");
         $("#stop_sf_statistics").removeClass("hidden");
         $("#reset_sf_statistics").prop("disabled", true);
@@ -234,21 +260,6 @@ $(function() {
         return starcatch;
     }
 
-    var key_label = {
-        "runs": "Runs",
-        "tot_success": "Success",
-        "sc_success": "Success (Star Catch)",
-        "tot_fail": "Fails",
-        "sc_fail": "Fails (Star Catch)",
-        "cost": "Cost",
-        "tot_safeguards": "Total Safeguards",
-        "safeguards": "Safeguards",
-        "tot_booms": "Total Booms",
-        "booms": "Booms",
-        "min_cost": "Least Cost Item",
-        "max_cost": "Most Cost Item" 
-    };
-
     var cost_key = {
         "1.0": "Normal",
         "0.03": "Silver",
@@ -280,7 +291,7 @@ $(function() {
                             typeof avg_data[i] === 'object' ?
                             ''
                             : 
-                            avg_data[i]
+                            avg_data[i].toNumber()
                         }
                     </td>
                 </tr>
@@ -372,6 +383,8 @@ $(function() {
         if (part !== -1 && sf_idx % part === 0) {
             sf_minmax[part].highest_cost = {"1.0": 0};
             sf_minmax[part].lowest_cost = {"1.0": 1e30};
+            sf_minmax[part].highest_boom = 0;
+            sf_minmax[part].lowest_boom = 1e30;
         }
 
         /* get the avg totals for each item in the analysis data */
@@ -385,6 +398,14 @@ $(function() {
 
                     if (b.cost["1.0"] < sf_minmax[part].lowest_cost["1.0"]) {
                         sf_minmax[part].lowest_cost = {...{}, ...b[i]};
+                    }
+
+                    if (b.tot_booms > sf_minmax[part].highest_boom) {
+                        sf_minmax[part].highest_boom = b.tot_booms;
+                    }
+
+                    if (b.tot_booms < sf_minmax[part].lowest_boom) {
+                        sf_minmax[part].lowest_boom = b.tot_booms;
                     }
                 }
 
@@ -412,6 +433,8 @@ $(function() {
         
         total_avg_data.min_cost = sf_minmax[part].lowest_cost;
         total_avg_data.max_cost = sf_minmax[part].highest_cost;
+        total_avg_data.max_boom = sf_minmax[part].highest_boom;
+        total_avg_data.min_boom = sf_minmax[part].lowest_boom;
 
         return total_avg_data;
     };

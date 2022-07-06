@@ -21,7 +21,8 @@ let sf_log = {
     prn: 0,
     prn_map: [],
     star: 0,
-    result: ""
+    result: "",
+    sk_cost: 0
 }; //starforce log item
 
 //from item_prototype.js
@@ -58,6 +59,7 @@ let is_droppable = function(current_star, superior) {
 
 let chance_count = 0; //chance time
 let total_cost = 0; //keep track of total sf cost
+let total_sk_cost = 0; //shadowknight coin cost
 let cache = {}; //cache starforce rng data
 let log_data = []; //capture all log data
 let h_log_data = []; //meta variable. captures log data for heuristic runs which will be pushed to the master heuristic log data on boom
@@ -173,6 +175,10 @@ let process_star = function(item, o = {}) {
     total_cost += this_cost_actual;
     ld.sf_cost += total_cost;
     ld.star_cost = this_cost_actual;
+    ld.sk_coin_cost = item.shadowknight ? shadowknight_coin_cost(star) : 0;
+    total_sk_cost += ld.sk_coin_cost;
+    ld.sk_cost += total_sk_cost;
+    
 
     this_log_data.unshift(ld);
 

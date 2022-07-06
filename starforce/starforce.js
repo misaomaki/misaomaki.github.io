@@ -203,6 +203,10 @@ var star_max = function(level, superior = false) {
     return sm;
 };
 
+var shadowknight_coin_cost = function(star) {
+    return 5 + star * 5;
+}
+
 /*
     get the "tier" for starforcing to apply the appropriate stats
     lower tiers give lower stat gains
@@ -544,7 +548,8 @@ let analyze_starforce = function(d) {
                 "0.3": 0,
                 "0.05": 0,
                 "0.05,0.3": 0
-            }
+            },
+            sk_cost: 0
         }, //global stats from all items
         i: [] //boomed items get their own stats here
     };
@@ -574,7 +579,8 @@ let analyze_starforce = function(d) {
             "0.3": 0,
             "0.05": 0,
             "0.05,0.3": 0
-        }
+        },
+        sk_cost: 0
     };
 
     //init boom count for each level to 0
@@ -609,6 +615,10 @@ let analyze_starforce = function(d) {
         //get total cost for global and individual boomed run
         sd.cost["1.0"] += _d.star_cost;
         s.g.cost["1.0"] += _d.star_cost;
+
+        /* shadowknight coin cost, if relevant */
+        sd.sk_cost += _d.sk_coin_cost;
+        s.g.sk_cost += _d.sk_coin_cost;
 
         for (let j in _d.sf_cost_discount) {
             sd.cost[j] += _d.star_cost_discount[j];

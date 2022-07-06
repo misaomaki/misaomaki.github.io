@@ -752,6 +752,11 @@ $(function() {
                             }
                         </td>
                         <td>${_tl.sf_cost.toNumber()}</td>
+                        ${
+                            Item.idata.shadowknight ? `
+                                <td>${_tl.sk_cost.toNumber()}</td>
+                            ` : ""
+                        }
                         <td>${_tl.sf_cost_discount["0.03"].toNumber()}</td>
                         <td>${_tl.sf_cost_discount["0.05"].toNumber()}</td>
                         <td>${_tl.sf_cost_discount["0.1"].toNumber()}</td>
@@ -771,7 +776,7 @@ $(function() {
         } else {
             t_body = `
                 <tr>
-                    <td colspan="15" style="text-align:center;">
+                    <td colspan="16" style="text-align:center;">
                         No starforce data found.    
                     </td>
                 </tr>
@@ -818,6 +823,11 @@ $(function() {
                             <th>Result</th>
                             <th>Safeguard</th>
                             <th>Cost</th>
+                            ${
+                                Item.idata.shadowknight ? `
+                                    <th title="Shadowknight Coins">SK Coins</th>
+                                ` : ""
+                            }
                             <th>Cost, Silver MVP</th>
                             <th>Cost, Gold MVP</th>
                             <th>Cost, Diamond MVP</th>
@@ -919,7 +929,7 @@ $(function() {
         //for booms, only show stars up to the max star
         if ("booms" in s) {
             sg_booms = Object.keys(s.booms);
-            sg_booms2 = sg_booms.splice(0, sg_booms.indexOf("b" + s.highest_star));
+            sg_booms2 = sg_booms.splice(0, sg_booms.indexOf("b" + s.highest_star) + 1);
         }
 
         let has_boom = sg_booms.length > 0;
@@ -1026,6 +1036,11 @@ $(function() {
                     </tbody>
                     </table>
                 </td>
+                ${
+                    Item.idata.shadowknight ? `
+                        <td>${s.sk_cost.toNumber()}</td>
+                    ` : ""
+                }
             </tr>
         `;
 
@@ -1041,8 +1056,8 @@ $(function() {
                         <th style="width:5%">Runs</th>
                         <th style="width:2%">Final Star</th>
                         <th style="width:2%">Highest Star</th>
-                        <th style="width:5%">Total Success</th>
-                        <th style="width:5%">Total Fail</th> 
+                        <th style="width:4%">Total Success</th>
+                        <th style="width:4%">Total Fail</th> 
                         <th style="width:3%">Success<br>(Star Catch)</th>
                         <th style="width:3%">Fail<br>(Star Catch)</th>
                         <th style="width:2%">Total Safeguards</th>
@@ -1058,6 +1073,11 @@ $(function() {
                         }
 
                         <th style="width:46%">Total Cost</th>
+                        ${
+                            Item.idata.shadowknight ? `
+                                <th title="Shadowknight Coins" style="width:2%">Total SK Coins</th>
+                            ` : ""
+                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -1711,6 +1731,13 @@ $(function() {
                     $(this).dialog("close");
                     show_relevant_enhancements();
                     cube.update_cube_menu.call(Item, cube_menu);
+
+                    /* append shadowknight coin ui if it uses it */
+                    if (Item.idata.shadowknight) {
+                        sfmain.addClass("masteria");
+                    } else {
+                        sfmain.removeClass("masteria");
+                    }
 
                     return false;
                 }

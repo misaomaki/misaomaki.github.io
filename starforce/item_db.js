@@ -18438,12 +18438,301 @@ var items_store = {
             "scrollable": true,
             "img_type": "png"
         }
+    },
+    masteria: {
+        "NumenalsWillpower_earrings": {
+          "name": "Numenal's Willpower",
+          "level": 180,
+          "class": "armor",
+          "type": "earrings",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 2,
+          "bstat": {
+            "str": 1,
+            "dex": 1,
+            "int": 1,
+            "luk": 1,
+            "hp": 150,
+            "mp": 150,
+            "watt": 5,
+            "matt": 5,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-numenalswillpower",
+          "upgrades": 3,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png",
+          "shadowknight": true
+        },
+        "GlonasHeart_ring": {
+          "name": "Glona's Heart",
+          "level": 180,
+          "class": "armor",
+          "type": "ring",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 0,
+          "bstat": {
+            "str": 7,
+            "dex": 7,
+            "int": 7,
+            "luk": 7,
+            "hp": 150,
+            "mp": 150,
+            "watt": 5,
+            "matt": 5,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-glonasheart",
+          "upgrades": 1,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png",
+          "shadowknight": true
+        },
+        "LegacyofLight_pendant": {
+          "name": "Legacy of Light",
+          "level": 180,
+          "class": "armor",
+          "type": "pendant",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 2,
+          "bstat": {
+            "str": 20,
+            "dex": 20,
+            "int": 20,
+            "luk": 20,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-legacyoflight",
+          "upgrades": 5,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png",
+          "shadowknight": true
+        },
+        "LegacyofDarkness_pendant": {
+          "name": "Legacy of Darkness",
+          "level": 180,
+          "class": "armor",
+          "type": "pendant",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 2,
+          "bstat": {
+            "str": 15,
+            "dex": 15,
+            "int": 15,
+            "luk": 15,
+            "watt": 5,
+            "matt": 5,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-legacyofdarkness",
+          "upgrades": 5,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png",
+          "shadowknight": true
+        },
+        "DelgrundsHonor_belt": {
+          "name": "Delgrund's Honor",
+          "level": 180,
+          "class": "armor",
+          "type": "belt",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 2,
+          "bstat": {
+            "str": 15,
+            "dex": 15,
+            "int": 15,
+            "luk": 15,
+            "hp": 150,
+            "mp": 150,
+            "watt": 5,
+            "matt": 5,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-delgrundshonor",
+          "upgrades": 1,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png",
+          "shadowknight": true
+        },
+        "LirenisWish_totem": {
+          "hidden": true,
+          "name": "Lireni's Wish",
+          "level": 100,
+          "class": "armor",
+          "type": "totem",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 0,
+          "bstat": {
+            "str": 7,
+            "dex": 7,
+            "int": 7,
+            "luk": 7,
+            "watt": 7,
+            "matt": 7
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-lireniswish",
+          "upgrades": 0,
+          "hammers_added": 0,
+          "starforce": false,
+          "enhanceable": false,
+          "scrollable": false,
+          "img_type": "png",
+          "shadowknight": true
+        }
     }
 }
 
 //metadata that is tacked onto every item in items_store
 /* TODO: only tack on when item is created. no need to put this object on EVERY object */
 let items_other_data = {
+    hidden: false, /* don't show item */
     stars: -1, //some items are hardcapped at a certain max star despite their item tier
     sub_class: "", //differentiate between armor classes for scrolling purposes
     max_hammers: 2, //number of hammers appliable,
@@ -18507,7 +18796,7 @@ $(function() {
     for (let i in items_store) {
         for (let j in items_store[i]) {
             let istore_override = {};
-            let istore =  items_store[i][j];
+            let istore = items_store[i][j];
             
             //if the item uses an override stat, append the stat from a different specified item's stat.
             //used when an item type shares base stats but are for different jobs or whatever

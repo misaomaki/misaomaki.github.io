@@ -50,7 +50,7 @@
         };
 
         let is_armor = function(type) {
-            return ["overall", "top", "bottom", "hat","boots","gloves","cape", "belt", "pendant", "face accessory", "eye accessory", "mechanical heart", "earrings", "shoulder", "ring", "shield"].includes(type);
+            return ["overall", "top", "bottom", "hat","boots","gloves","cape", "belt", "pendant", "face accessory", "eye accessory", "mechanical heart", "earrings", "shoulder", "ring", "shield", "totem"].includes(type);
         }
 
         let get_jobs = function(job) {
@@ -186,6 +186,8 @@
             reqlvl: 0 //negative level requirements
         };
 
+        let regex_removespecialchar = /[\s-'\(\)]/gi;
+
         $("#parse").on("click", async function(){
             let items = {};
 
@@ -227,7 +229,13 @@
 
                     let _item = await extract_item_data(td);
 
-                    let item_key = (_item.job[0] + "_" + _item.type.replace(/[\s-\(\)]/gi,"_")).trim();
+                    let job = _item.job[0];
+
+                    if (job === "beginner") {
+                        job = _item.name.replace(regex_removespecialchar, "").replace(/\s/gi, "_");
+                    }
+
+                    let item_key = (job + "_" + _item.type.replace(/[\s-\(\)]/gi,"_")).trim();
                     key_store[item_key] = 1;
 
                     if (item_key in items) {
@@ -254,8 +262,6 @@
                 </span>
             `);
         });
-
-        let regex_removespecialchar = /[\s-'\(\)]/gi;
 
         var download_image = function(url, name){
             return new Promise((res, rej)=>{
@@ -400,6 +406,11 @@
                 t.flame_type = 0;
             } else if (["face accessory", "eye accessory"].includes(t.type)) {
                 t.sub_class = "accessory";
+            } else if (t.type === "totem") {
+                t.enhanceable = false;
+                t.flame_type = 0;
+                t.scrollable = false;
+                t.starforce = false;
             }
 
             return t;

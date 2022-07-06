@@ -92,6 +92,13 @@ body, html {
     height: 295px;
 }
 
+/* shadowknight coin ui */
+.sf-main-border.masteria {
+    background: url(../assets/starforce/tab_hyper_masteria.backgrnd.png);
+    background-repeat: no-repeat;
+    height: 326px;
+}
+
 .sf-header-scroll {
     background: url(../assets/starforce/ui.button.scroll.png); 
 }
@@ -114,6 +121,12 @@ body, html {
 
 .sf-enchant {
     background: url(../assets/starforce/tab_hyper.backgrnd2.png);
+}
+
+/* shadowknight coin ui */
+.masteria > .sf-enchant {
+    background: url(../assets/starforce/tab_hyper.backgrnd_masteria.png);
+    height: 293px;
 }
 
 .sf-star10 {
@@ -422,6 +435,11 @@ body, html {
     left: -6px;
 }
 
+/* shadowknight coin ui */
+.masteria > .sf-main > .sf-button-container > .sf-button {
+    top: 44px;
+}
+
 .sf-starcatch {
     background-repeat: no-repeat !important;
     position: relative;
@@ -451,6 +469,15 @@ body, html {
     font-family: Arial;
     color: white;
     left: 174px;
+}
+
+.sf-data-shadowknight {
+    position: absolute;
+    top: 30px;
+    font-size: 12px;
+    font-family: Arial;
+    color: white;
+    left: 18px;
 }
 
 .sf-enchant-hyper-start {

@@ -19,7 +19,8 @@ item.prototype.cache = {
         prn: 0,
         prn_map: [],
         star: 0,
-        result: ""
+        result: "",
+        sk_cost: 0
     }, //object for meta_data for starforce logging
     scrl: { //item scrolls, start with _  is spell trace
         //weapon trace
@@ -309,23 +310,26 @@ item.prototype.xgrade_item = function(type = 0) {
 
         let cost_chart = this.log_starforce_cost(is_safeguardable && is_safeguard, this_star_cost_prev, this_star_cost_prev_effective, current_star);
 
-        this.idata.meta.sf_log_item.star_cost_discount = Object.assign({}, cost_chart);
+        this.idata.meta.sf_log_item.star_cost_discount = cost_chart;
         this.idata.meta.sf_log_item.star_cost = this_star_cost_prev * safeguard_multiplier;
+        this.idata.meta.sf_log_item.sk_coin_cost = this.idata.shadowknight ? shadowknight_coin_cost(current_star) : 0;
 
         //cumulative sf cost
         if (this.idata.meta.sf_meta_data.length === 0) {
             this.idata.meta.sf_log_item.sf_cost = this_star_cost_prev * safeguard_multiplier;
-            this.idata.meta.sf_log_item.sf_cost_discount = Object.assign({}, cost_chart);
+            this.idata.meta.sf_log_item.sf_cost_discount = cost_chart;
+            this.idata.meta.sf_log_item.sk_cost = this.idata.meta.sf_log_item.sk_coin_cost;
         } else {
             let prev_item = this.idata.meta.sf_meta_data[0];
             let prev_sf_cost_discount = Object.assign({}, this.idata.meta.sf_meta_data[0].sf_cost_discount);
             this.idata.meta.sf_log_item.sf_cost = prev_item.sf_cost + (this_star_cost_prev * safeguard_multiplier);
+            this.idata.meta.sf_log_item.sk_cost += prev_item.sk_cost + this.idata.meta.sf_log_item.sk_coin_cost;
 
             for (let i in cost_chart) {
                 prev_sf_cost_discount[i] += cost_chart[i];
             }
 
-            this.idata.meta.sf_log_item.sf_cost_discount = Object.assign({}, prev_sf_cost_discount);
+            this.idata.meta.sf_log_item.sf_cost_discount = prev_sf_cost_discount;
         }
 
         this.idata.meta.sf_meta_data.unshift(this.idata.meta.sf_log_item);
@@ -1195,6 +1199,9 @@ item.prototype.redraw_sf = function() {
     let current_meso = this.check_cache(()=>{
         return sfcon.find(".sf-data-meso");
     }, "dom", "current_meso");
+    let current_shadowknight = this.check_cache(()=>{
+        return sfcon.find(".sf-data-shadowknight");
+    }, "dom", "current_shadowknight");
     let sf_text = this.check_cache(()=>{
         return sfcon.find(".sf-text");
     }, "dom", "sf_text");
@@ -1471,6 +1478,12 @@ item.prototype.redraw_sf = function() {
         } else {
             cm.html(this_cost);
         }
+    }
+
+    //display shadowknight cost if relevant
+    if (this.idata.shadowknight) {
+        let sk = shadowknight_coin_cost(this_star);
+        current_shadowknight.html(sk);
     }
    
     this.idata.meta.sf_log_item = {};
