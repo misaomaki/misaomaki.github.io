@@ -310,6 +310,11 @@ kr_en_lines = {
     "Magic:": "Magic ATT:",
     "Attack power:": "ATT:",
     "Attack Power:": "ATT:",
+    "STR :": "STR:",
+    "INT :": "INT:",
+    "DEX :": "DEX:",
+    "LUK :": "LUK:",
+    "Attack :": "ATT:",
     "Jump power:": "Jump",
     "Movement speed:": "Movement Speed:",
     "Defense:": "DEF:",
@@ -338,13 +343,15 @@ kr_en_lines = {
     "캐릭터 기준 10레벨 당 LUK: +2": "LUK per 10 Character Levels: +2",
     "크리티컬 Damage:": "Critical Damage:",
     "캐릭터 기준 10레벨 당 Attack power: +1": "ATT per 10 Character Levels: +1",
+    "캐릭터 기준 10레벨 당 ATT: +1": "ATT per 10 Character Levels: +1",
     "캐릭터 기준 10레벨 당 Horsepower: +1": "M. ATT per 10 Character Levels: +1",
+    "캐릭터 기준 10레벨 당 Magic ATT +1": "M. ATT per 10 Character Levels: +1",
     "Item drop rate:": "Item Drop Rate:",
     "Meso acquisition amount:": "Meso Obtained:"
 }
 def convert_kren_to_globalen():
     lines = ""
-    with open(f"{dir}\cube_hashes_english.txt", 'r', encoding="utf-8") as f: 
+    with open(f"{dir}\cube_hashes_gms.txt", 'r', encoding="utf-8") as f: 
         lines = f.read()
 
     for kr, en in kr_en_lines.items():
