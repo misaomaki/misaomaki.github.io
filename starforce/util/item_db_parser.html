@@ -367,6 +367,10 @@
             let effects = td_effects.html().trim().split("<br>");
             t.bstat = {};
             for (let i = 0; i < effects.length; ++i) {
+                if (!effects[i].includes(":")) {
+                    effects[i] = effects[i].replace("+", ": +");
+                }
+
                 let [_effect, effect_val] = effects[i].split(":");
                 let effect = _effect.toLowerCase().trim().replace(regex_removespecialchar, "");
                 let rstat = resolve_stat(effect);

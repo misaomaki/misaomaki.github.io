@@ -128,6 +128,7 @@ $(function() {
         starforce_options.addClass("hidden");
         cube_options.addClass("hidden");
         flames_options.addClass("hidden");
+        
         if (Item.idata.enhanceable) {
             cube_options.removeClass("hidden");
         }

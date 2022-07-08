@@ -6157,103 +6157,6 @@ var items_store = {
             upgrades: 5,
             hammers_added: 2
         },
-        horntail_necklace: {
-            name: "Horntail Necklace",
-            level: 120,
-            class: "armor",
-            type: "pendant",
-            speed: "",
-            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 1,
-            bstat: Object.assign({}, stats, {
-                str: 7,
-                dex: 7,
-                int: 7,
-                luk: 7,
-                def: 108
-            }),
-            req: {
-                str: 0,
-                dex: 0,
-                int: 0,
-                luk: 0
-            },
-            img: "item-horntailnecklace",
-            img_type: "webp",
-            upgrades: 2,
-            hammers_added: 2
-        },
-        chaos_horntail_necklace: {
-            name: "Chaos Horntail Necklace",
-            level: 120,
-            class: "armor",
-            type: "pendant",
-            speed: "",
-            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 1,
-            bstat: Object.assign({}, stats, {
-                watt: 2,
-                matt: 2,
-                str: 10,
-                str: 10,
-                dex: 10,
-                int: 10,
-                luk: 10,
-                p_hp: 0.1,
-                p_mp: 0.1,
-                def: 140
-            }),
-            req: {
-                str: 0,
-                dex: 0,
-                int: 0,
-                luk: 0
-            },
-            img: "item-chaoshorntailnecklace",
-            img_type: "webp",
-            upgrades: 3,
-            hammers_added: 2
-        },
-        pink_holy_cup: {
-            name: "Pink Holy Cup",
-            level: 140,
-            class: "armor",
-            type: "pocket item",
-            speed: "",
-            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 2,
-            bstat: {
-                watt: 5,
-                matt: 5,
-                str: 5,
-                dex: 5,
-                int: 5,
-                luk: 5,
-                hp: 50,
-                mp: 50
-            },
-            req: {
-                str: 0,
-                dex: 0,
-                int: 0,
-                luk: 0
-            },
-            img: "item-pinkholycup",
-            upgrades: 0,
-            hammers_added: 0,
-            starforce: false,
-            enhanceable: false,
-            scrollable: false
-        },
         kanna_treasure: {
             name: "KannaTreasureRing",
             alt_name: "Kanna's Treasure",
@@ -6287,38 +6190,6 @@ var items_store = {
             upgrades: 1,
             hammers_added: 2
         },
-        guardian_angel_ring: {
-            name: "Guardian Angel Ring",
-            level: 160,
-            class: "armor",
-            type: "ring",
-            speed: "",
-            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 0,
-            bstat: {
-                watt: 2,
-                matt: 2,
-                str: 5,
-                dex: 5,
-                int: 5,
-                luk: 5,
-                hp: 200,
-                mp: 200,
-                def: 150
-            },
-            req: {
-                str: 0,
-                dex: 0,
-                int: 0,
-                luk: 0
-            },
-            img: "item-guardianangelring",
-            upgrades: 2,
-            hammers_added: 2
-        },
         aquarius: {
             name: "Aquarius Crown",
             level: 150,
@@ -6346,37 +6217,6 @@ var items_store = {
             },
             img: "item-aquariuscrown",
             upgrades: 22,
-            hammers_added: 2
-        },
-        papulatus_mark: {
-            name: "Papulatus Mark",
-            level: 145,
-            class: "armor",
-            type: "eye accessory",
-            sub_class: "accessory",
-            speed: "",
-            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 1,
-            bstat: {
-                str: 8,
-                dex: 8,
-                int: 8,
-                luk: 8,
-                watt: 1,
-                matt: 1,
-                def: 150
-            },
-            req: {
-                str: 0,
-                dex: 0,
-                int: 0,
-                luk: 0
-            },
-            img: "item-papulatusmark",
-            upgrades: 5,
             hammers_added: 2
         },
         "liberated_kaiserium": {
@@ -18328,7 +18168,7 @@ var items_store = {
             "upgrades": 2,
             "hammers_added": 2,
             "starforce": true,
-            "enhanceable": false,
+            "enhanceable": true,
             "scrollable": true,
             "img_type": "png"
         },
@@ -18725,6 +18565,899 @@ var items_store = {
           "scrollable": false,
           "img_type": "png",
           "shadowknight": true
+        }
+    },
+    "boss_accessory": {
+        "CondensedPowerCrystal_face_accessory": {
+          "name": "Condensed Power Crystal",
+          "level": 110,
+          "class": "armor",
+          "type": "face accessory",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 5,
+            "dex": 5,
+            "int": 5,
+            "luk": 5,
+            "watt": 5,
+            "matt": 5,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-condensedpowercrystal",
+          "upgrades": 5,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png",
+          "sub_class": "accessory"
+        },
+        "AquaticLetterEyeAccessory_eye_accessory": {
+          "name": "Aquatic Letter Eye Accessory",
+          "level": 100,
+          "class": "armor",
+          "type": "eye accessory",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 6,
+            "dex": 6,
+            "int": 6,
+            "luk": 6,
+            "watt": 1,
+            "matt": 1,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-aquaticlettereyeaccessory",
+          "upgrades": 3,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png",
+          "sub_class": "accessory"
+        },
+        "BlackBeanMark_eye_accessory": {
+          "name": "Black Bean Mark",
+          "level": 135,
+          "class": "armor",
+          "type": "eye accessory",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 7,
+            "dex": 7,
+            "int": 7,
+            "luk": 7,
+            "watt": 1,
+            "matt": 1,
+            "def": 120
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-blackbeanmark",
+          "upgrades": 5,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png",
+          "sub_class": "accessory"
+        },
+        "PapulatusMark_eye_accessory": {
+          "name": "Papulatus Mark",
+          "level": 145,
+          "class": "armor",
+          "type": "eye accessory",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 8,
+            "dex": 8,
+            "int": 8,
+            "luk": 8,
+            "watt": 1,
+            "matt": 1,
+            "def": 150
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-papulatusmark",
+          "upgrades": 5,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png",
+          "sub_class": "accessory"
+        },
+        "DeaSidusEarring_earrings": {
+          "name": "Dea Sidus Earring",
+          "level": 130,
+          "class": "armor",
+          "type": "earrings",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 5,
+            "dex": 5,
+            "int": 5,
+            "luk": 5,
+            "watt": 2,
+            "matt": 2,
+            "def": 50
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-deasidusearring",
+          "upgrades": 6,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "WillotheWisps_earrings": {
+          "name": "Will o' the Wisps",
+          "level": 130,
+          "class": "armor",
+          "type": "earrings",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 7,
+            "dex": 7,
+            "int": 7,
+            "luk": 7,
+            "hp": 100,
+            "mp": 100,
+            "watt": 2,
+            "matt": 2,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-willothewisps",
+          "upgrades": 5,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "SilverBlossomRing_ring": {
+          "name": "Silver Blossom Ring",
+          "level": 110,
+          "class": "armor",
+          "type": "ring",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 0,
+          "bstat": {
+            "str": 5,
+            "dex": 5,
+            "int": 5,
+            "luk": 5,
+            "watt": 2,
+            "matt": 2
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-silverblossomring",
+          "upgrades": 2,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "NobleIfiasRing_ring": {
+          "name": "Noble Ifia's Ring",
+          "level": 120,
+          "class": "armor",
+          "type": "ring",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 0,
+          "bstat": {
+            "str": 5,
+            "dex": 5,
+            "int": 5,
+            "luk": 5,
+            "hp": 200,
+            "mp": 200,
+            "watt": 2,
+            "matt": 2
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-nobleifiasring",
+          "upgrades": 2,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "GuardianAngelRing_ring": {
+          "name": "Guardian Angel Ring",
+          "level": 160,
+          "class": "armor",
+          "type": "ring",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 0,
+          "bstat": {
+            "str": 5,
+            "dex": 5,
+            "int": 5,
+            "luk": 5,
+            "hp": 200,
+            "mp": 200,
+            "watt": 2,
+            "matt": 2
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-guardianangelring",
+          "upgrades": 2,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": false,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "HorntailNecklace_pendant": {
+          "name": "Horntail Necklace",
+          "level": 120,
+          "class": "armor",
+          "type": "pendant",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 7,
+            "dex": 7,
+            "int": 7,
+            "luk": 7,
+            "def": 108
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-horntailnecklace",
+          "upgrades": 2,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "ChaosHorntailNecklace_pendant": {
+          "name": "Chaos Horntail Necklace",
+          "level": 120,
+          "class": "armor",
+          "type": "pendant",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 10,
+            "dex": 10,
+            "int": 10,
+            "luk": 10,
+            "hp": 0.1,
+            "mp": 0.1,
+            "watt": 2,
+            "matt": 2,
+            "def": 140
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-chaoshorntailnecklace",
+          "upgrades": 3,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "MechanatorPendant_pendant": {
+          "name": "Mechanator Pendant",
+          "level": 120,
+          "class": "armor",
+          "type": "pendant",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 10,
+            "dex": 10,
+            "int": 10,
+            "luk": 10,
+            "hp": 250,
+            "mp": 250,
+            "watt": 1,
+            "matt": 1,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-mechanatorpendant",
+          "upgrades": 2,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "DominatorPendant_pendant": {
+          "name": "Dominator Pendant",
+          "level": 140,
+          "class": "armor",
+          "type": "pendant",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 2,
+          "bstat": {
+            "str": 20,
+            "dex": 20,
+            "int": 20,
+            "luk": 20,
+            "hp": 0.1,
+            "mp": 0.1,
+            "watt": 3,
+            "matt": 3,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-dominatorpendant",
+          "upgrades": 5,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "GoldenCloverBelt_belt": {
+          "name": "Golden Clover Belt",
+          "level": 140,
+          "class": "armor",
+          "type": "belt",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 15,
+            "dex": 15,
+            "int": 15,
+            "luk": 15,
+            "hp": 150,
+            "mp": 150,
+            "watt": 1,
+            "matt": 1,
+            "def": 150
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-goldencloverbelt",
+          "upgrades": 3,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "EnragedZakumBelt_belt": {
+          "name": "Enraged Zakum Belt",
+          "level": 150,
+          "class": "armor",
+          "type": "belt",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 18,
+            "dex": 18,
+            "int": 18,
+            "luk": 18,
+            "hp": 150,
+            "mp": 150,
+            "watt": 1,
+            "matt": 1,
+            "def": 150
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-enragedzakumbelt",
+          "upgrades": 3,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "RoyalBlackMetalShoulder_shoulder": {
+          "name": "Royal Black Metal Shoulder",
+          "level": 120,
+          "class": "armor",
+          "type": "shoulder",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 0,
+          "bstat": {
+            "str": 10,
+            "dex": 10,
+            "int": 10,
+            "luk": 10,
+            "watt": 6,
+            "matt": 6,
+            "def": 100
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-royalblackmetalshoulder",
+          "upgrades": 1,
+          "hammers_added": 2,
+          "starforce": true,
+          "enhanceable": true,
+          "scrollable": true,
+          "img_type": "png"
+        },
+        "StoneofEternalLife_pocket": {
+          "name": "Stone of Eternal Life",
+          "level": 0,
+          "class": "weapon",
+          "type": "pocket item",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 1,
+          "bstat": {
+            "str": 3,
+            "dex": 3,
+            "int": 3,
+            "luk": 3,
+            "watt": 3,
+            "matt": 3
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0,
+            "none": null
+          },
+          "img": "item-stoneofeternallife",
+          "upgrades": 0,
+          "hammers_added": 0,
+          "starforce": false,
+          "enhanceable": false,
+          "scrollable": false,
+          "img_type": "png"
+        },
+        "PinkHolyCup_pocket": {
+          "name": "Pink Holy Cup",
+          "level": 140,
+          "class": "weapon",
+          "type": "pocket item",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 2,
+          "bstat": {
+            "str": 5,
+            "dex": 5,
+            "int": 5,
+            "luk": 5,
+            "hp": 50,
+            "mp": 50,
+            "watt": 5,
+            "matt": 5
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-pinkholycup",
+          "upgrades": 0,
+          "hammers_added": 0,
+          "starforce": false,
+          "enhanceable": false,
+          "scrollable": false,
+          "img_type": "png"
+        },
+        "CrystalVentusBadge_badge": {
+          "name": "Crystal Ventus Badge",
+          "level": 130,
+          "class": "weapon",
+          "type": "badge",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "watt",
+          "flame_type": 0,
+          "bstat": {
+            "str": 10,
+            "dex": 10,
+            "int": 10,
+            "luk": 10,
+            "watt": 5,
+            "matt": 5,
+            "speed": 10,
+            "jump": 10
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-crystalventusbadge",
+          "upgrades": 0,
+          "hammers_added": 0,
+          "starforce": false,
+          "enhanceable": false,
+          "scrollable": false,
+          "img_type": "png"
         }
     }
 }
