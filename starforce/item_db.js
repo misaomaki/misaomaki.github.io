@@ -18985,7 +18985,7 @@ var items_store = {
           "upgrades": 2,
           "hammers_added": 2,
           "starforce": true,
-          "enhanceable": false,
+          "enhanceable": true,
           "scrollable": true,
           "img_type": "png"
         },
@@ -19415,7 +19415,7 @@ var items_store = {
         "CrystalVentusBadge_badge": {
           "name": "Crystal Ventus Badge",
           "level": 130,
-          "class": "weapon",
+          "class": "armor",
           "type": "badge",
           "speed": "",
           "job": [

@@ -238,7 +238,7 @@ var generateUUID = function() { // Public Domain/MIT
 }
 
 var congrats_from_maki = function(owo = false) {
-    if (!owo && prng() > 0.1) {
+    if (!owo && prng() > 0.01) {
         return;
     }
 
