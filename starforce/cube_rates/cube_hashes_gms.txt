@@ -9030,7 +9030,7 @@
     "15% chance to recover 90 HP when attacking": 0.069767,
     "15% chance to recover 90 MP when attacking": 0.069767,
     "Ignored Enemy DEF: +4%": 0.023256,
-    "보스 몬스터 공격 시 Damage: +12%": 0.023256
+    "Boss Monster Damage: +12%": 0.023256
   },
   "5cac3129e0048ca7c9d1dd66810d0d1dab9498489ab28ea8c92f03883ec17d84420388443a7fc04a5833cb8556090233d76cba530eff676742da49279c7e9c50": {
     "Max HP: +5%": 0.086505,
@@ -9065,7 +9065,7 @@
     "15% chance to recover 90 HP when attacking": 0.001368,
     "15% chance to recover 90 MP when attacking": 0.001368,
     "Ignored Enemy DEF: +4%": 0.000456,
-    "보스 몬스터 공격 시 Damage: +12%": 0.000456
+    "Boss Monster Damage: +12%": 0.000456
   },
   "872d210d670054503963ec71d89595e8221460dafbbba7e868e5f6151c7a631a7e0f4f6bc9082ee752c9ec620ee8641dec93a01992e2d368c1a208fe1879722d": {
     "STR: +2": 0.035714,
@@ -9800,7 +9800,7 @@
     "15% chance to recover 70 HP when attacking": 0.06942,
     "15% chance to recover 70 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +7%": 0.000364,
     "Max MP: +7%": 0.000364,
     "ATT: +9%": 0.000243,
@@ -12679,7 +12679,7 @@
     "15% chance to recover 65 HP when attacking": 0.069767,
     "15% chance to recover 65 MP when attacking": 0.069767,
     "Ignored Enemy DEF: +4%": 0.023256,
-    "보스 몬스터 공격 시 Damage: +12%": 0.023256
+    "Boss Monster Damage: +12%": 0.023256
   },
   "0ce62597ec8b0032ba3bf8004bb7bed277c526f42d7e83e09312b8345a15447dca76e1843381d3631823341551b39fc9f51c493e5eeecefeba83ae27658c078c": {
     "Max HP: +3%": 0.086505,
@@ -12714,7 +12714,7 @@
     "15% chance to recover 65 HP when attacking": 0.001368,
     "15% chance to recover 65 MP when attacking": 0.001368,
     "Ignored Enemy DEF: +4%": 0.000456,
-    "보스 몬스터 공격 시 Damage: +12%": 0.000456
+    "Boss Monster Damage: +12%": 0.000456
   },
   "89ca0b1035f4bd9bd3374b4577de875e4286e73ed5797c598cb0e69f55589a0c1586cb09356e76a9ff39890e9724a2620c556df5b8054b0b72a3177f868ddd6e": {
     "STR: +2%": 0.072818,
@@ -21644,7 +21644,7 @@
     "15% chance to recover 85 HP when attacking": 0.06942,
     "15% chance to recover 85 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +10%": 0.000364,
     "Max MP: +10%": 0.000364,
     "ATT: +12%": 0.000243,
@@ -21955,7 +21955,7 @@
     "15% chance to recover 80 HP when attacking": 0.06942,
     "15% chance to recover 80 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +7%": 0.000383,
     "Max MP: +7%": 0.000383,
     "ATT: +12%": 0.000255,
@@ -22319,7 +22319,7 @@
     "15% chance to recover 60 HP when attacking": 0.06942,
     "15% chance to recover 60 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +5%": 0.000383,
     "Max MP: +5%": 0.000383,
     "ATT: +9%": 0.000255,
@@ -23691,7 +23691,7 @@
     "15% chance to recover 85 HP when attacking": 0.06942,
     "15% chance to recover 85 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +10%": 0.000383,
     "Max MP: +10%": 0.000383,
     "ATT: +12%": 0.000255,
@@ -24141,7 +24141,7 @@
     "15% chance to recover 85 HP when attacking": 0.069767,
     "15% chance to recover 85 MP when attacking": 0.069767,
     "Ignored Enemy DEF: +4%": 0.023256,
-    "보스 몬스터 공격 시 Damage: +12%": 0.023256
+    "Boss Monster Damage: +12%": 0.023256
   },
   "4e2ff724ea15931ad0a15e42ff7576feaca07991d606df9ee472250de6d43ac47c6976e8d408beb8b9fa6d90b84940e5a058795dc26fe939f4e202fde4a708eb": {
     "Max HP: +5%": 0.086505,
@@ -24176,7 +24176,7 @@
     "15% chance to recover 85 HP when attacking": 0.001368,
     "15% chance to recover 85 MP when attacking": 0.001368,
     "Ignored Enemy DEF: +4%": 0.000456,
-    "보스 몬스터 공격 시 Damage: +12%": 0.000456
+    "Boss Monster Damage: +12%": 0.000456
   },
   "4b480df9c01ffbd29a506ef89a4478a7da438046e430ac4050a3f3c33a460f48fd454630643aba95ffce330d090ca53c4e90fe56967cdafcd8ffaf7503c908b1": {
     "STR: +2%": 0.060606,
@@ -26174,7 +26174,7 @@
     "15% chance to recover 60 HP when attacking": 0.06942,
     "15% chance to recover 60 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +5%": 0.000364,
     "Max MP: +5%": 0.000364,
     "ATT: +9%": 0.000243,
@@ -26371,7 +26371,7 @@
     "15% chance to recover 90 HP when attacking": 0.06942,
     "15% chance to recover 90 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +10%": 0.000364,
     "Max MP: +10%": 0.000364,
     "ATT: +12%": 0.000243,
@@ -27392,7 +27392,7 @@
     "15% chance to recover 80 HP when attacking": 0.069767,
     "15% chance to recover 80 MP when attacking": 0.069767,
     "Ignored Enemy DEF: +4%": 0.023256,
-    "보스 몬스터 공격 시 Damage: +12%": 0.023256
+    "Boss Monster Damage: +12%": 0.023256
   },
   "d5fa543603da7801e654ceaafe9ae200bf780055a1788f3428565be80b30727bbe702107f58b90f78fcf1b7494938d07017580d7a92d21241c636de45e51be78": {
     "Max HP: +3%": 0.086505,
@@ -27427,7 +27427,7 @@
     "15% chance to recover 80 HP when attacking": 0.001368,
     "15% chance to recover 80 MP when attacking": 0.001368,
     "Ignored Enemy DEF: +4%": 0.000456,
-    "보스 몬스터 공격 시 Damage: +12%": 0.000456
+    "Boss Monster Damage: +12%": 0.000456
   },
   "a0241a98c835b2e210b5ee451cd9ae99222464e7fae416f78a917e2f4e0ac99f9177fa80183d2cef9f6607cfcb24696b14077e7c2cde4e90cb638ce6a73ff771": {
     "STR: +2": 0.039604,
@@ -28007,7 +28007,7 @@
     "15% chance to recover 60 HP when attacking": 0.069767,
     "15% chance to recover 60 MP when attacking": 0.069767,
     "Ignored Enemy DEF: +4%": 0.023256,
-    "보스 몬스터 공격 시 Damage: +12%": 0.023256
+    "Boss Monster Damage: +12%": 0.023256
   },
   "a0ddbdcf02566dc3cef8081d908a750325bdbb1d036656b923f810b3984cbbd7b657a46b8fcd1444eddcbccdb4d462f2276995c7e5a4bc1a130788611ac81840": {
     "Max HP: +2%": 0.086505,
@@ -28042,7 +28042,7 @@
     "15% chance to recover 60 HP when attacking": 0.001368,
     "15% chance to recover 60 MP when attacking": 0.001368,
     "Ignored Enemy DEF: +4%": 0.000456,
-    "보스 몬스터 공격 시 Damage: +12%": 0.000456
+    "Boss Monster Damage: +12%": 0.000456
   },
   "b9774d52c7b43e811e6a84eb9aecf0caf22ebcad10082ddf2feda3fea8cf1dbdaf5af31319e13a7097e89c589839e246fb8a67a98a6cdc2079752b49dd7508e7": {
     "STR: +6%": 0.108696,
@@ -31438,7 +31438,7 @@
     "15% chance to recover 75 HP when attacking": 0.069767,
     "15% chance to recover 75 MP when attacking": 0.069767,
     "Ignored Enemy DEF: +4%": 0.023256,
-    "보스 몬스터 공격 시 Damage: +12%": 0.023256
+    "Boss Monster Damage: +12%": 0.023256
   },
   "874aee9bb63c2fc6f98733856f30f6ab2707d363066fbb07bc09aabf35f2836ab663acbed5bfe34d361b8448b297f0f88373a36c4be2a996bb4621f3aa5825f1": {
     "Max HP: +3%": 0.086505,
@@ -31473,7 +31473,7 @@
     "15% chance to recover 75 HP when attacking": 0.001368,
     "15% chance to recover 75 MP when attacking": 0.001368,
     "Ignored Enemy DEF: +4%": 0.000456,
-    "보스 몬스터 공격 시 Damage: +12%": 0.000456
+    "Boss Monster Damage: +12%": 0.000456
   },
   "7acc9396a0d6abc1bc92446e99b0c11c62ee0968a1bc3c079d3f6f6144b124e6713daae76170d509fd1ed0f3e35fab1bd3a7746796a01985db8e0b5c0f2f7119": {
     "STR: +8": 0.05291,
@@ -34678,7 +34678,7 @@
     "15% chance to recover 70 HP when attacking": 0.069767,
     "15% chance to recover 70 MP when attacking": 0.069767,
     "Ignored Enemy DEF: +4%": 0.023256,
-    "보스 몬스터 공격 시 Damage: +12%": 0.023256
+    "Boss Monster Damage: +12%": 0.023256
   },
   "914d746ba5c273d7a90e6daec3285cae5cf3a2634de3c3140c14768c8279cf4d7a04653be12c7c022401d3e3e10419682cb603899898118faa29632fd1bfa19c": {
     "Max HP: +3%": 0.086505,
@@ -34713,7 +34713,7 @@
     "15% chance to recover 70 HP when attacking": 0.001368,
     "15% chance to recover 70 MP when attacking": 0.001368,
     "Ignored Enemy DEF: +4%": 0.000456,
-    "보스 몬스터 공격 시 Damage: +12%": 0.000456
+    "Boss Monster Damage: +12%": 0.000456
   },
   "6840a3b3184c4cb86dd0509f68f69d47be67a6b5988dbc07142274d93bcf9d4bf6ee0083946bb73bf4d979a1ddd9bb21192b380f0cf2183c1e6d693e65c6ddbc": {
     "STR: +8": 0.0675,
@@ -36189,7 +36189,7 @@
     "15% chance to recover 70 HP when attacking": 0.06942,
     "15% chance to recover 70 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +7%": 0.000383,
     "Max MP: +7%": 0.000383,
     "ATT: +9%": 0.000255,
@@ -44497,7 +44497,7 @@
     "15% chance to recover 65 HP when attacking": 0.06942,
     "15% chance to recover 65 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +7%": 0.000364,
     "Max MP: +7%": 0.000364,
     "ATT: +9%": 0.000243,
@@ -46277,7 +46277,7 @@
     "15% chance to recover 80 HP when attacking": 0.06942,
     "15% chance to recover 80 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +7%": 0.000364,
     "Max MP: +7%": 0.000364,
     "ATT: +12%": 0.000243,
@@ -46818,7 +46818,7 @@
     "15% chance to recover 75 HP when attacking": 0.06942,
     "15% chance to recover 75 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +7%": 0.000364,
     "Max MP: +7%": 0.000364,
     "ATT: +12%": 0.000243,
@@ -50644,7 +50644,7 @@
     "15% chance to recover 90 HP when attacking": 0.06942,
     "15% chance to recover 90 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +10%": 0.000383,
     "Max MP: +10%": 0.000383,
     "ATT: +12%": 0.000255,
@@ -52759,7 +52759,7 @@
     "15% chance to recover 75 HP when attacking": 0.06942,
     "15% chance to recover 75 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +7%": 0.000383,
     "Max MP: +7%": 0.000383,
     "ATT: +12%": 0.000255,
@@ -52799,7 +52799,7 @@
     "15% chance to recover 95 HP when attacking": 0.06942,
     "15% chance to recover 95 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +10%": 0.000364,
     "Max MP: +10%": 0.000364,
     "ATT: +12%": 0.000243,
@@ -53268,7 +53268,7 @@
     "15% chance to recover 95 HP when attacking": 0.069767,
     "15% chance to recover 95 MP when attacking": 0.069767,
     "Ignored Enemy DEF: +4%": 0.023256,
-    "보스 몬스터 공격 시 Damage: +12%": 0.023256
+    "Boss Monster Damage: +12%": 0.023256
   },
   "a06f1ecc3340537d1eb25da50d7cc9d145be53a9548ed14e7d55d557b8834972f2b4a399541ac8723873340bdaa7e557efafbb7e27c0e0d285f1ad3dd815f141": {
     "Max HP: +5%": 0.086505,
@@ -53303,7 +53303,7 @@
     "15% chance to recover 95 HP when attacking": 0.001368,
     "15% chance to recover 95 MP when attacking": 0.001368,
     "Ignored Enemy DEF: +4%": 0.000456,
-    "보스 몬스터 공격 시 Damage: +12%": 0.000456
+    "Boss Monster Damage: +12%": 0.000456
   },
   "023561d5bdb51ab302b643cef2451b0317203d00b3ae89501374073589a4bce26b97f25373417ecc3f192cfab812b630de38ededcef68dbdbabdd0069136ae14": {
     "STR: +2": 0.047148,
@@ -53427,7 +53427,7 @@
     "15% chance to recover 95 HP when attacking": 0.06942,
     "15% chance to recover 95 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +10%": 0.000383,
     "Max MP: +10%": 0.000383,
     "ATT: +12%": 0.000255,
@@ -54952,7 +54952,7 @@
     "15% chance to recover 95 HP when attacking": 0.069767,
     "15% chance to recover 95 MP when attacking": 0.069767,
     "Ignored Enemy DEF: +4%": 0.023256,
-    "보스 몬스터 공격 시 Damage: +12%": 0.023256
+    "Boss Monster Damage: +12%": 0.023256
   },
   "e4d0b1eb384830e8c6909b573ab66849e8abb1d7444a56f50ab0492e8610fd3c6c9ec93ff61522e359c48326801a6dead4b849db53f61cf00603b0574d20fb7e": {
     "Max HP: +5%": 0.086505,
@@ -54987,7 +54987,7 @@
     "15% chance to recover 95 HP when attacking": 0.001368,
     "15% chance to recover 95 MP when attacking": 0.001368,
     "Ignored Enemy DEF: +4%": 0.000456,
-    "보스 몬스터 공격 시 Damage: +12%": 0.000456
+    "Boss Monster Damage: +12%": 0.000456
   },
   "5d8db5dd0cab0e9eb3104151f87a510e40211cc939a8a3111f46c6935779b1d5b3101edca64b2cb1c2fe0be1a623ceafad0f6d5a6a7c57fdc7dd5c8256653ca4": {
     "STR: +13%": 0.088889,
@@ -55128,7 +55128,7 @@
     "15% chance to recover 95 HP when attacking": 0.06942,
     "15% chance to recover 95 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +10%": 0.000383,
     "Max MP: +10%": 0.000383,
     "ATT: +13%": 0.000255,
@@ -58132,7 +58132,7 @@
     "15% chance to recover 65 HP when attacking": 0.06942,
     "15% chance to recover 65 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +7%": 0.000383,
     "Max MP: +7%": 0.000383,
     "ATT: +9%": 0.000255,
@@ -58499,7 +58499,7 @@
     "15% chance to recover 95 HP when attacking": 0.06942,
     "15% chance to recover 95 MP when attacking": 0.06942,
     "Ignored Enemy DEF: +4%": 0.02314,
-    "보스 몬스터 공격 시 Damage: +12%": 0.02314,
+    "Boss Monster Damage: +12%": 0.02314,
     "Max HP: +10%": 0.000364,
     "Max MP: +10%": 0.000364,
     "ATT: +13%": 0.000243,

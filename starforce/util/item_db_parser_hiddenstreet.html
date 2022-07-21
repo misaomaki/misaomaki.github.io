@@ -4,14 +4,9 @@
     }
 </style>
 <pre>
-        Attempt to parse maple wiki tables for item data. Example of page to use: <a href="https://maplestory.fandom.com/wiki/Equipment_Set/8th_Bowman_Set">https://maplestory.fandom.com/wiki/Equipment_Set/8th_Bowman_Set</a>
+        Attempt to parse Hidden Street tables for item data. Example of page to use: <a href="https://www.hidden-street.net/gms/equipment/armour/cape">https://www.hidden-street.net/gms/equipment/armour/cape</a>
         To use this page, go to item set pages like the ones above, open up the Inspect Element tab (F12 for Chrome and Firefox, tab "Elements" in Chrome and "Inspector" in Firefox),
     right click on the outer-most tag (html tag) and click "Edit as HTML". Copy all contents into the textbox provided below and hit "Get Items".
-
-        Please note that this is not a perfect parser and not all item data is available on the maple wiki page. Some stats have to be checked by going directly to the item (example: bows missing knockback rate, 
-    but has it in the item itself <a href="https://maplestory.fandom.com/wiki/Utgard_Bow">https://maplestory.fandom.com/wiki/Utgard_Bow</a>)
-
-        For lower-level equips, verify upgrade slots, because this parser is hardcoded to use upgrade values for the equipment based on level 140+ items (as this data is not available in the maplewiki item tables).
 </pre>
 
 <textarea id="text" style="width:100%;height:300px"></textarea>
@@ -26,225 +21,25 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
 
+<script src="parser.js"></script>
+
 <script>
     $(function() {
-        /* some lower-level items have different upgrade slots */
-        let upgrades = {
-            "overall": 10,
-            "top": 7,
-            "bottom": 7,
-            "hat": 11,
-            "boots": 8,
-            "gloves": 6,
-            "cape": 7,
-            "weapon": 8,
-            "belt": 3,
-            "pendant": 5,
-            "face accessory": 5,
-            "eye accessory": 3,
-            "mechanical heart": 9,
-            "earrings": 7,
-            "shoulder": 1,
-            "ring": 3,
-            "shield": 10
-        };
-
-        let is_armor = function(type) {
-            return ["overall", "top", "bottom", "hat","boots","gloves","cape", "belt", "pendant", "face accessory", "eye accessory", "mechanical heart", "earrings", "shoulder", "ring", "shield", "totem"].includes(type);
-        }
-
-        let get_jobs = function(job) {
-            if (
-                ["adele", "demon avenger", "hayato", "blaster"].includes(job) 
-            ) {
-                return "warrior";
-            } else if (
-                ["kain","pathfinder"].includes(job)
-            ) {
-                return "bowman";
-            } else if (
-                ["luminous", "beast tamer", "kinesis", "illium", "kanna"].includes(job)
-            ) {
-                return "magician";
-            } else if (
-                ["xenon", "hoyoung", "cadena"].includes(job)
-            ) {
-                return "thief";
-            } else if (
-                ["angelic buster"].includes(job)
-            ) {
-                return "pirate";
-            }
-
-            return job;
-        }
-
-        let p_stat = {
-            "warrior": ["str", "dex"],
-            "bowman": ["str", "dex"],
-            "magician": ["int", "luk"],
-            "thief": ["dex", "luk"],
-            "pirate": ["str", "dex"]
-        };
-
-        let m_stat = {
-            "warrior": "str",
-            "bowman": "dex",
-            "magician": "int",
-            "thief": "luk",
-            "pirate": "dex"
-        };
-
-        /* resolve maplewiki stat to internal stat */
-        let resolve_stat = function(stat) {
-            switch (stat) {
-                case "defense":
-                    return "def";
-                break;
-                case "maxhp":
-                    return "hp";
-                break;
-                case "maxmp":
-                    return "mp";
-                break;
-                case "weaponattack":
-                    return "watt";
-                break;
-                case "magicattack":
-                    return "matt";
-                break;
-                case "attackspeed":
-                case "allstats":
-                    return "";
-                break;
-                case "bossdamage": 
-                    return "boss_damage";
-                break;
-                case "ignoredenemydefense":
-                    return "ied";
-                break;
-            }
-
-            return stat;
-        }
-
-        /* template of item_db item */
-        let item_template = {
-            name: "",
-            level: 0,
-            class: "",
-            type: "",
-            speed: "",
-            job: [],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 2,
-            bstat: {},
-            req: {
-                str: 0,
-                dex: 0,
-                int: 0,
-                luk: 0
-            },
-            img: "",
-            upgrades: 0,
-            hammers_added: 0,
-            starforce: true,
-            enhanceable: true,
-            scrollable: true
-        };
-
-        //stat variables shared through all processes
-        let stats = {
-            visible_stats: 0, //stats that come from non-bonus sources: base stats or scrolls
-            job_stats: 0, //stats related to the item's job. "pstat" parameter
-            rank: 0, //heart-related
-            watt: 0,
-            matt: 0,
-            watt_p: 0, //percent increase in stat
-            matt_p: 0,
-            def: 0,
-            def_p: 0,
-            hp: 0,
-            mp: 0,
-            p_hp: 0, //hp stats that provide a percentage increase. starts with p_ rather than ends with _p as they should be static increases rather than cumulative increases
-            p_mp: 0,
-            speed: 0,
-            jump: 0,
-            star: 0,
-            knockback: 0,
-            //flame stuff
-            boss_damage: 0,
-            ied: 0,
-            str: 0,
-            dex: 0,
-            int: 0,
-            luk: 0,
-            damage: 0,
-            all_stat: 0,
-            reqlvl: 0 //negative level requirements
-        };
-
-        let regex_removespecialchar = /[\s-'\(\)]/gi;
-
         $("#parse").on("click", async function(){
             let items = {};
 
             /* get the wiki page as a dom fragment */
             let dom = $($("#text").val());
 
-            /* get only the tables */
-            let tables = dom.find(".wikitable");
+            /* get the item tables */
+            let tables = dom.find(".database-info");
 
-            /* 
-                loop through the tables and detect item tables by their header
-                the first tr of tbody must be a header with "Picture and Name" part of the first td
-            */
             for (let i = 0; i < tables.length; ++i) {
                 let table = tables.eq(i);
 
-                let tr = table.find("tbody tr");
-                
-                if (tr.length === 0) {
-                    continue;
-                }
+                let _item = await extract_item_data(table);
 
-                /* header tr should have th */
-                let header_rows = tr.eq(0).find("th");
-
-                if (header_rows.length === 0) {
-                    continue;
-                }         
-                
-                if (header_rows.eq(0).text().trim() !== "Picture and Name") {
-                    continue;
-                }
-
-                /* go into table and extract the relevant data */
-                let key_store = {};
-                $("#output").html("DOWNLOADING IMAGES...");
-                for (let j = 1; j < tr.length; ++j) {
-                    let td = tr.eq(j).find("td");
-
-                    let _item = await extract_item_data(td);
-
-                    let job = _item.job[0];
-
-                    if (job === "beginner") {
-                        job = _item.name.replace(regex_removespecialchar, "").replace(/\s/gi, "_");
-                    }
-
-                    let item_key = (job + "_" + _item.type.replace(/[\s-\(\)]/gi,"_")).trim();
-                    key_store[item_key] = 1;
-
-                    if (item_key in items) {
-                        ++ key_store[item_key];
-                        items[item_key +  key_store[item_key]] = _item;
-                    } else {
-                        items[item_key] = _item;
-                    }
-                }
+                debugger
             }
 
             let sItems = JSON.stringify(items);
