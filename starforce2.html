@@ -198,9 +198,21 @@
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="#" id="starforce_log" class="starforce-option">Starforce Log</a>
-        <a href="#" id="cube_log" class="cube-option">Cube Log</a>
-        <a href="#" id="flames_log" class="flame-option">Flames Log</a>
+        <a href="#" id="starforce_log" class="starforce-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-starforce-star"></span>
+            </span> Starforce Log
+        </a>
+        <a href="#" id="cube_log" class="cube-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-cubes"></span>
+            </span> Cube Log
+        </a>
+        <a href="#" id="flames_log" class="flame-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-flames"></span>
+            </span> Flames Log
+        </a>
         <a href="#" id="reverse_flame_check" class="flame-option" title="Based on the flame stats on the item, check to see what flame types and what tiers there are.
 Custom flame stats may not yield any tiers if the values are inputted arbitrarily.
 
@@ -208,9 +220,21 @@ This is a reverse lookup and the stat flames are the most complicated to resolve
 Some combination of stat flame tiers may overlap with other stat flame tier combinations. It will simply return the first one it finds.
 It will also only try to determine the stat flame tiers up to a maximum of 4 flame stat types. Any more flame stat types will return no tiers.">Check Flame Tier</a> 
         <span class="margin">&nbsp;</span>
-        <a href="#" id="auto_starforce" class="starforce-option">Auto Starforce</a>
-        <a href="#" id="auto_cube" class="cube-option">Auto Cube</a>
-        <a href="#" id="auto_flames" class="flame-option">Auto Flames</a>
+        <a href="#" id="auto_starforce" class="starforce-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-starforce-star"></span>
+            </span> Auto Starforce
+        </a>
+        <a href="#" id="auto_cube" class="cube-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-cubes"></span>
+            </span> Auto Cube
+        </a>
+        <a href="#" id="auto_flames" class="flame-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-flames"></span>
+            </span> Auto Flames
+        </a>
         <span class="margin">&nbsp;</span>
         <a href="#" id="statistics_starforce" class="starforce-option">Starforce Statistics</a>
         <span class="margin">&nbsp;</span>
@@ -775,7 +799,7 @@ crossorigin="anonymous"></script>
             <div class="item-form" id="item_scroll_container">
                 <div class="item-form">
                     <span class="item-label">
-                        <b>Scrolls</b>
+                        <span class="item-label-icon item-white-scroll"></span> <b>Scrolls</b>
                     </span>Max Scrolls:
                     <span id="item_scroll_amount">
                         0
@@ -810,7 +834,7 @@ crossorigin="anonymous"></script>
                         <div class="item-scroll-form">
                             <span class="scroll-box item-weapon item-armor">
                                 <span class="item-scroll-label">
-                                    100%
+                                    <span class="item-label-icon item-spell-trace"></span> 100%
                                 </span>
                                 <input type="number" class="scroll-form" min="0" value="0" data-id="_100"/>
                             </span>
@@ -818,7 +842,7 @@ crossorigin="anonymous"></script>
                         <div class="item-scroll-form">
                             <span class="scroll-box item-weapon item-armor">
                                 <span class="item-scroll-label">
-                                    70%
+                                    <span class="item-label-icon item-spell-trace"></span> 70%
                                 </span>
                                 <input type="number" class="scroll-form" min="0" value="0" data-id="_70"/>
                             </span>
@@ -826,7 +850,7 @@ crossorigin="anonymous"></script>
                         <div class="item-scroll-form">
                             <span class="scroll-box item-weapon item-armor">
                                 <span class="item-scroll-label">
-                                    30%
+                                    <span class="item-label-icon item-spell-trace"></span> 30%
                                 </span>
                                 <input type="number" class="scroll-form" min="0" value="0" data-id="_30"/>
                             </span>
@@ -834,15 +858,23 @@ crossorigin="anonymous"></script>
                         <div class="item-scroll-form">
                             <span class="scroll-box item-weapon">
                                 <span class="item-scroll-label">
-                                    15%
+                                    <span class="item-label-icon item-spell-trace"></span> 15%
                                 </span>
                                 <input type="number" id="scrolls_15" class="scroll-form" min="0" value="0" data-id="_15"/>
                             </span>
                         </div>
                         <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-mechanical-heart">
+                                <span class="item-scroll-label">
+                                    <span class="item-label-icon item-evolution-scroll"></span> Evolution
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="evolution"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
                             <span class="scroll-box item-weapon item-armor">
                                 <span class="item-scroll-label">
-                                    Prime
+                                    <span class="item-label-icon item-prime-scroll"></span> Prime
                                 </span>
                                 <input type="number" class="scroll-form" min="0" value="0" data-id="prime"/>
                             </span>
@@ -852,7 +884,7 @@ crossorigin="anonymous"></script>
                         <div class="item-scroll-form">
                             <span class="scroll-box item-gollux">
                                 <span class="item-scroll-label">
-                                    Basic Gollux
+                                    <span class="item-label-icon item-gollux-scroll"></span> Basic Gollux
                                 </span>
                                 <input type="number" class="scroll-form" min="0" value="0" data-id="basic_gollux"/>
                             </span>
@@ -860,7 +892,7 @@ crossorigin="anonymous"></script>
                         <div class="item-scroll-form">
                             <span class="scroll-box item-gollux">
                                 <span class="item-scroll-label">
-                                    Advanced Gollux
+                                    <span class="item-label-icon item-gollux-scroll"></span> Advanced Gollux
                                 </span>
                                 <input type="number" class="scroll-form" min="0" value="0" data-id="advanced_gollux"/>
                             </span>
@@ -872,7 +904,7 @@ crossorigin="anonymous"></script>
             <div class="item-form item_flame_container" id="item_flame_container" style="min-height:375px;">
                 <div class="item-form">
                     <span class="item-label">
-                        <b>Flames</b>
+                        <span class="item-label-icon item-flames"></span> <b>Flames</b>
                     </span>
                     <label for="flame_as_tier" style="margin-right:10px" title="
 If checked, then the values for each textbox will correspond to a flame tier value. Flame tiers go from 0-7.
@@ -919,6 +951,7 @@ If unchecked, then you can write whatever flame value you want."
             <div class="item-form item_cube_container" id="item_cube_container" style="min-height:375px;">
                 <div class="item-form">
                     <span class="item-label">
+                        <span class="item-label-icon item-cubes"></span>
                         <b>Cubes</b>
                     </span>
                     <hr>

@@ -122,6 +122,9 @@ item.prototype.cache = {
             luk: 3,
             watt: 4,
             matt: 4
+        },
+        evolution: {
+            att: 8
         }
     } //scroll data
 };
@@ -210,10 +213,6 @@ item.prototype.set_item_scroll = function(s) {
                 _s.type = _s.type + "m";
                 has_lower_val = true;
             }
-
-            if (_s.stat != null) {
-                stat_gain = _s.stat;
-            }
         } else if (_s.type === "prime") {
             if (this.idata.class === "weapon" || this.idata.type === "mechanical heart") {
                 _s.type = "prime_weapon";
@@ -222,6 +221,10 @@ item.prototype.set_item_scroll = function(s) {
             } else if (this.idata.sub_class = "accessory") {
                 _s.type = "prime_accessory";
             }
+        }
+
+        if (_s.stat != null) {
+            stat_gain = _s.stat;
         }
 
         let scr_type = this.cache.scrl[_s.type];

@@ -1922,6 +1922,19 @@ $(function() {
                 flame_box.addClass("hidden");
                 scroll_box.addClass("hidden");
 
+                /* show specific or specials scrolls depending on item type */
+                if (item_type[0] === "gollux") {
+                    scroll_box.filter(function() {
+                        return $(this).hasClass("item-gollux");
+                    }).removeClass("hidden");
+                }
+
+                if (this_item.type === "mechanical heart") {
+                    scroll_box.filter(function() {
+                        return $(this).hasClass("item-mechanical-heart");
+                    }).removeClass("hidden");
+                }
+
                 //show weapon/armor-related flames
                 if (this_item.class === "weapon") {
                     all_box.filter(function() {
@@ -1930,12 +1943,6 @@ $(function() {
                 } else if (this_item.class === "armor") {
                     all_box.filter(function() {
                         return $(this).hasClass("item-armor");
-                    }).removeClass("hidden");
-                }
-
-                if (item_type[0] === "gollux") {
-                    scroll_box.filter(function() {
-                        return $(this).hasClass("item-gollux");
                     }).removeClass("hidden");
                 }
 

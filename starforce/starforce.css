@@ -4,6 +4,68 @@
     overflow-x: hidden;
 }
 
+.item-label-icon {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+
+.item-spell-trace {
+    width: 22px;
+    height: 22px;
+    background: url("../assets/maple_items/etc/SpellTrace.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-starforce-star {
+    background: url("../assets/starforce/ui.starcatch.star.png");
+    background-repeat: no-repeat;
+    background-size: contain;    
+    position: relative;
+    left: 5px;
+}
+
+.item-flames {
+    width: 35px;
+    height: 35px;
+    background: url("../assets/cube/flames.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-cubes {
+    width: 35px;
+    height: 35px;
+    background: url("../assets/cube/cubes.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-white-scroll {
+    background: url("../assets/maple_items/etc/WhiteScroll.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-evolution-scroll {
+    background: url("../assets/maple_items/etc/EvolutionScroll.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-gollux-scroll {
+    background: url("../assets/maple_items/etc/GolluxScroll.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-prime-scroll {
+    background: url("../assets/maple_items/etc/PrimeScroll.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .job-icon {
     width: 15px;
     display: inline-block;
