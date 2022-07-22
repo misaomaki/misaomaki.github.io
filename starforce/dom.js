@@ -1929,6 +1929,13 @@ $(function() {
                     }).removeClass("hidden");
                 }
 
+                /* show specific or specials scrolls depending on item type */
+                if (this_item.name.toLowerCase().includes("horntail")) {
+                    scroll_box.filter(function() {
+                        return $(this).hasClass("item-chaos-horn-tail");
+                    }).removeClass("hidden");
+                }
+
                 if (this_item.type === "mechanical heart") {
                     scroll_box.filter(function() {
                         return $(this).hasClass("item-mechanical-heart");

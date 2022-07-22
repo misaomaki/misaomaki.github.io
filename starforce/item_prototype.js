@@ -125,6 +125,14 @@ item.prototype.cache = {
         },
         evolution: {
             att: 8
+        },
+        dragon_stone: {
+            str: 15,
+            dex: 15,
+            int: 15,
+            luk: 15,
+            hp: 750,
+            def: 350
         }
     } //scroll data
 };
