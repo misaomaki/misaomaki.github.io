@@ -187,7 +187,7 @@ cube.get_cube_type = async function(level, type, cube_type, cube_tier) {
     } else if (["accessory", "eye_accessory", "earrings", "ring", "pendant"].includes(type)) {
         type = "face_accessory";
     } else if (["badge"].includes(type)) {
-        type = "mechanical heart";
+        type = "mechanical_heart";
     }
 
     if (cube_tier === "") {

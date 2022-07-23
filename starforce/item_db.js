@@ -19061,8 +19061,8 @@ var items_store = {
             "dex": 10,
             "int": 10,
             "luk": 10,
-            "hp": 0.1,
-            "mp": 0.1,
+            "p_hp": 0.1,
+            "p_mp": 0.1,
             "watt": 2,
             "matt": 2,
             "def": 140

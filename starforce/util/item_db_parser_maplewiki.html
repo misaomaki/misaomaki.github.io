@@ -13,7 +13,10 @@
 
         For lower-level equips, verify upgrade slots, because this parser is hardcoded to use upgrade values for the equipment based on level 140+ items (as this data is not available in the maplewiki item tables).
 </pre>
-
+<div class="hidden">
+    Job Override <input id="txtJob">
+    Equip Type Override <input id="txtEquip">
+</div>
 <textarea id="text" style="width:100%;height:300px"></textarea>
 <textarea id="textOutput" style="width:100%;height:300px" class="hidden"></textarea>
 <button id="parse">Get Items</button>
@@ -35,6 +38,17 @@
 
             /* get the wiki page as a dom fragment */
             let dom = $($("#text").val());
+
+            let options = {
+                job_override: "",
+                equip_override: ""
+            };
+
+            options.job_override = $("#txtJob").val().trim().toLowerCase();
+            if (options.job_override !== "") {
+                options.job_override = options.job_override.split(",");
+            }
+            options.equip_override = $("#txtEquip").val().trim().toLowerCase();
 
             /* get only the tables */
             let tables = dom.find(".wikitable");
@@ -69,7 +83,7 @@
                 for (let j = 1; j < tr.length; ++j) {
                     let td = tr.eq(j).find("td");
 
-                    let _item = await extract_item_data(td);
+                    let _item = await extract_item_data(td, options);
 
                     let job = _item.job[0];
 
@@ -126,7 +140,7 @@
             })
         }
                 
-        let extract_item_data = async function(td) {
+        let extract_item_data = async function(td, options) {
             let t = Object.assign({}, item_template);
 
             /* column 1 - PICTURE AND NAME */
