@@ -348,7 +348,8 @@ kr_en_lines = {
     "캐릭터 기준 10레벨 당 Magic ATT +1": "M. ATT per 10 Character Levels: +1",
     "Item drop rate:": "Item Drop Rate:",
     "Meso acquisition amount:": "Meso Obtained:",
-    "보스 몬스터 공격 시 Damage:": "Boss Monster Damage:"
+    "보스 몬스터 공격 시 Damage:": "Boss Monster Damage:",
+    "<Useful Hast> skill available": "Enables the &lt;Decent Haste&gt; skill",
 }
 def convert_kren_to_globalen():
     lines = ""

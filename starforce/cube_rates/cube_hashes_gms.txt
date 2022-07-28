@@ -4285,7 +4285,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.071429,
     "5% chance to ignore 40% of damage when attacked": 0.071429,
     "HP Recovery Items and Skills: +20%": 0.071429,
-    "<Useful Hast> skill available": 0.071429
+    "Enables the &lt;Decent Haste&gt; skill": 0.071429
   },
   "ec47767564b531c222d7b95ca7d3d2a5489c108e2bc09280dc8e7dcef204401c11f5ce514e33e18c9fdfe23df2f20b6f36afa1ca31234f6cc84538a3a147c4df": {
     "STR: +4%": 0.114286,
@@ -4307,7 +4307,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.014286,
     "5% chance to ignore 40% of damage when attacked": 0.014286,
     "HP Recovery Items and Skills: +20%": 0.014286,
-    "<Useful Hast> skill available": 0.014286
+    "Enables the &lt;Decent Haste&gt; skill": 0.014286
   },
   "8c5e39d6fabdfcc4c322393bd91c1a5be3ff7bcec98a5aeb871652d39452c45dc44cdfae92a746f69f7baa743175bfc7755b4383c2f598e7b6f5fba2248fcf9a": {
     "STR: +4%": 0.135714,
@@ -4329,7 +4329,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.003571,
     "5% chance to ignore 40% of damage when attacked": 0.003571,
     "HP Recovery Items and Skills: +20%": 0.003571,
-    "<Useful Hast> skill available": 0.003571
+    "Enables the &lt;Decent Haste&gt; skill": 0.003571
   },
   "fcba788cfb5f2667d038df27e14d776dc831902b50c9eed14398911643cc55b26aa746f92adab2af62172d2044acf815bb321b75e1db4ac5b8185148e749a859": {
     "STR: +2%": 0.128571,
@@ -11977,7 +11977,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.103448,
     "5% chance to ignore 40% of damage when attacked": 0.103448,
     "HP Recovery Items and Skills: +20%": 0.103448,
-    "<Useful Hast> skill available": 0.068966
+    "Enables the &lt;Decent Haste&gt; skill": 0.068966
   },
   "15523773ab0f6da9150157fbd9748e02c79288c5a5a9ff1cca22d7367077a9245404e31c919fe958e819bc6159cee01496cd4407d51a0b452cfe67af58228da2": {
     "STR: +4%": 0.073196,
@@ -12002,7 +12002,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001227,
     "5% chance to ignore 40% of damage when attacked": 0.001227,
     "HP Recovery Items and Skills: +20%": 0.001227,
-    "<Useful Hast> skill available": 0.000818
+    "Enables the &lt;Decent Haste&gt; skill": 0.000818
   },
   "b39600c737fcfded3624d7faec1aa1ec47ff250998bed0e4c6eeb019b135564922850c6d7b47b926a45a76605edf8c6983bea984e857147db82b5dbf71f0cf86": {
     "STR: +9%": 0.075758,
@@ -18606,7 +18606,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.103448,
     "5% chance to ignore 40% of damage when attacked": 0.103448,
     "HP Recovery Items and Skills: +30%": 0.103448,
-    "<Useful Hast> skill available": 0.068966
+    "Enables the &lt;Decent Haste&gt; skill": 0.068966
   },
   "462c3fdc4648763c406547b3f7236f340377a7d118b06cee667e9afd2e15fcf9e5a19d7c3fe95e878b16ea22bea4ab15f94056369fa9eda478c3a88879ff4221": {
     "STR: +6%": 0.073196,
@@ -18631,7 +18631,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001227,
     "5% chance to ignore 40% of damage when attacked": 0.001227,
     "HP Recovery Items and Skills: +30%": 0.001227,
-    "<Useful Hast> skill available": 0.000818
+    "Enables the &lt;Decent Haste&gt; skill": 0.000818
   },
   "af288e583f90358f47d0b92e38aff9c94de01585d3d31ba638c708728644921e0fc372492a330b2e3da684eb22fe11dde6121a31b83dc0ccae24d9fefe36146f": {
     "STR: +6": 0.104167,
@@ -19978,7 +19978,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.071429,
     "5% chance to ignore 40% of damage when attacked": 0.071429,
     "HP Recovery Items and Skills: +30%": 0.071429,
-    "<Useful Hast> skill available": 0.071429
+    "Enables the &lt;Decent Haste&gt; skill": 0.071429
   },
   "24a21997526bc5bb24f84fefec88c90b17af37598430e7771dcf000a973e100d42724cc38bae9eacf24c12d56ccee2180e7e49c1d3370edb9b3a2192e21e87f5": {
     "STR: +6%": 0.114286,
@@ -20000,7 +20000,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.014286,
     "5% chance to ignore 40% of damage when attacked": 0.014286,
     "HP Recovery Items and Skills: +30%": 0.014286,
-    "<Useful Hast> skill available": 0.014286
+    "Enables the &lt;Decent Haste&gt; skill": 0.014286
   },
   "11d71667e799c768b932e2cecb7e5373dc9faf783d1d566cf30a2a7d504860cb8e86deb540c5b7cbd6af170965daf3e4111debc35efe2f201ca625de11d179fd": {
     "STR: +6%": 0.135714,
@@ -20022,7 +20022,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.003571,
     "5% chance to ignore 40% of damage when attacked": 0.003571,
     "HP Recovery Items and Skills: +30%": 0.003571,
-    "<Useful Hast> skill available": 0.003571
+    "Enables the &lt;Decent Haste&gt; skill": 0.003571
   },
   "bb7a53296542377d8ab3321dc450209a7ee9cb679619c874d23b6d47b2e2cea5eef26b9de6da41f2c49a4ef87cd74fccc3bac885411800095b986772e6a19b88": {
     "STR: +7%": 0.108696,
@@ -30601,7 +30601,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001754,
     "5% chance to ignore 40% of damage when attacked": 0.001754,
     "HP Recovery Items and Skills: +20%": 0.001754,
-    "<Useful Hast> skill available": 0.00117
+    "Enables the &lt;Decent Haste&gt; skill": 0.00117
   },
   "f848f3945d0838bcb0f44edeec0def4e7e6eb4300c7846514315155c690149aea7b802d68d4651d845fef05867444454c034d3ce7bcb548b26df8fc12c0e95d2": {
     "STR: +4": 0.068182,
@@ -31084,7 +31084,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.103242,
     "5% chance to ignore 40% of damage when attacked": 0.103242,
     "HP Recovery Items and Skills: +30%": 0.103242,
-    "<Useful Hast> skill available": 0.068828,
+    "Enables the &lt;Decent Haste&gt; skill": 0.068828,
     "STR: +12%": 0.000129,
     "DEX: +12%": 0.000129,
     "INT: +12%": 0.000129,
@@ -31994,7 +31994,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001754,
     "5% chance to ignore 40% of damage when attacked": 0.001754,
     "HP Recovery Items and Skills: +30%": 0.001754,
-    "<Useful Hast> skill available": 0.00117
+    "Enables the &lt;Decent Haste&gt; skill": 0.00117
   },
   "7947d7617dfc07ea71a69b283fa2ed77551e54f73374ee116c3c0735426ea045b7aaf687e7fb38cf52e3ce52a603f47d280d4a2c06a5c16ba3e6a8b40f6e1b25": {
     "STR: +6%": 0.072818,
@@ -32019,7 +32019,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001754,
     "5% chance to ignore 40% of damage when attacked": 0.001754,
     "HP Recovery Items and Skills: +30%": 0.001754,
-    "<Useful Hast> skill available": 0.00117
+    "Enables the &lt;Decent Haste&gt; skill": 0.00117
   },
   "c0295b2a7f5ea34f4d1bc5258384c96654bb0e60abe95c97c07429957da1846f607afab07053c76343c1f604fddc1e6fda2d32f18a0fbdcd9192675dc0c69da6": {
     "STR: +9%": 0.1125,
@@ -34864,7 +34864,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001754,
     "5% chance to ignore 40% of damage when attacked": 0.001754,
     "HP Recovery Items and Skills: +30%": 0.001754,
-    "<Useful Hast> skill available": 0.00117
+    "Enables the &lt;Decent Haste&gt; skill": 0.00117
   },
   "0677c8422c5222d3f49562cec556ecd67848b2fa719823e9bd70189aa89dd7facd616b9cfb062b7da51adc83d1e74774c1f59ee0da6d5d9540ce29d6d85d00ee": {
     "STR: +2%": 0.059887,
@@ -37387,7 +37387,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.064286,
     "5% chance to ignore 40% of damage when attacked": 0.064286,
     "HP Recovery Items and Skills: +20%": 0.064286,
-    "<Useful Hast> skill available": 0.064286,
+    "Enables the &lt;Decent Haste&gt; skill": 0.064286,
     "STR: +9%": 0.01,
     "DEX: +9%": 0.01,
     "INT: +9%": 0.01,
@@ -37412,7 +37412,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.070714,
     "5% chance to ignore 40% of damage when attacked": 0.070714,
     "HP Recovery Items and Skills: +20%": 0.070714,
-    "<Useful Hast> skill available": 0.070714,
+    "Enables the &lt;Decent Haste&gt; skill": 0.070714,
     "STR: +9%": 0.001,
     "DEX: +9%": 0.001,
     "INT: +9%": 0.001,
@@ -39546,7 +39546,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.064286,
     "5% chance to ignore 40% of damage when attacked": 0.064286,
     "HP Recovery Items and Skills: +30%": 0.064286,
-    "<Useful Hast> skill available": 0.064286,
+    "Enables the &lt;Decent Haste&gt; skill": 0.064286,
     "STR: +12%": 0.01,
     "DEX: +12%": 0.01,
     "INT: +12%": 0.01,
@@ -39571,7 +39571,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.070714,
     "5% chance to ignore 40% of damage when attacked": 0.070714,
     "HP Recovery Items and Skills: +30%": 0.070714,
-    "<Useful Hast> skill available": 0.070714,
+    "Enables the &lt;Decent Haste&gt; skill": 0.070714,
     "STR: +12%": 0.001,
     "DEX: +12%": 0.001,
     "INT: +12%": 0.001,
@@ -43225,7 +43225,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.057143,
     "5% chance to ignore 40% of damage when attacked": 0.057143,
     "HP Recovery Items and Skills: +30%": 0.057143,
-    "<Useful Hast> skill available": 0.057143,
+    "Enables the &lt;Decent Haste&gt; skill": 0.057143,
     "STR: +12%": 0.02,
     "DEX: +12%": 0.02,
     "INT: +12%": 0.02,
@@ -43250,7 +43250,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.067857,
     "5% chance to ignore 40% of damage when attacked": 0.067857,
     "HP Recovery Items and Skills: +30%": 0.067857,
-    "<Useful Hast> skill available": 0.067857,
+    "Enables the &lt;Decent Haste&gt; skill": 0.067857,
     "STR: +12%": 0.005,
     "DEX: +12%": 0.005,
     "INT: +12%": 0.005,
@@ -44005,7 +44005,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.103242,
     "5% chance to ignore 40% of damage when attacked": 0.103242,
     "HP Recovery Items and Skills: +20%": 0.103242,
-    "<Useful Hast> skill available": 0.068828,
+    "Enables the &lt;Decent Haste&gt; skill": 0.068828,
     "STR: +9%": 0.000129,
     "DEX: +9%": 0.000129,
     "INT: +9%": 0.000129,
@@ -44344,7 +44344,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.007143,
     "5% chance to ignore 40% of damage when attacked": 0.007143,
     "HP Recovery Items and Skills: +30%": 0.007143,
-    "<Useful Hast> skill available": 0.007143
+    "Enables the &lt;Decent Haste&gt; skill": 0.007143
   },
   "56b039411b8137e003f125c40547b0ff1254f230bc96510738ac8f2c543ba81e9ceafa44850826f77aa34b1b4a1bd2a25846e041e22f994ec693c5c6ca984be3": {
     "STR: +6%": 0.141429,
@@ -44366,7 +44366,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.000714,
     "5% chance to ignore 40% of damage when attacked": 0.000714,
     "HP Recovery Items and Skills: +30%": 0.000714,
-    "<Useful Hast> skill available": 0.000714
+    "Enables the &lt;Decent Haste&gt; skill": 0.000714
   },
   "8eec89a2ab34f0fdd7ef7aa6db2e9a626bea51eab84aed7c1f8e7a72782da3768ff47d3a290a2a7b1af8d003a57d20c834b484478094ef891c5ccac3d09ce670": {
     "STR: +10%": 0.142857,
@@ -44944,7 +44944,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001227,
     "5% chance to ignore 40% of damage when attacked": 0.001227,
     "HP Recovery Items and Skills: +30%": 0.001227,
-    "<Useful Hast> skill available": 0.000818
+    "Enables the &lt;Decent Haste&gt; skill": 0.000818
   },
   "4778136b5addc74e12be41c58c88302f8d4816c204fef63a74c9bd84e6ecea52da03642ccad7b71ef84f9145cec494b337ac07a03e8ece8d299b71ffaddccea0": {
     "STR: +4%": 0.060606,
@@ -46373,7 +46373,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001754,
     "5% chance to ignore 40% of damage when attacked": 0.001754,
     "HP Recovery Items and Skills: +30%": 0.001754,
-    "<Useful Hast> skill available": 0.00117
+    "Enables the &lt;Decent Haste&gt; skill": 0.00117
   },
   "a6f0b6ec70e825d221825349427d7e29151ff6c9e6787647a02726326a21a67d8aee9fddcc66378d555c6a1187f8bfeea2959157825761932eeac8f30a3f2980": {
     "STR: +2": 0.108,
@@ -46581,7 +46581,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.057143,
     "5% chance to ignore 40% of damage when attacked": 0.057143,
     "HP Recovery Items and Skills: +20%": 0.057143,
-    "<Useful Hast> skill available": 0.057143,
+    "Enables the &lt;Decent Haste&gt; skill": 0.057143,
     "STR: +9%": 0.02,
     "DEX: +9%": 0.02,
     "INT: +9%": 0.02,
@@ -46606,7 +46606,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.067857,
     "5% chance to ignore 40% of damage when attacked": 0.067857,
     "HP Recovery Items and Skills: +20%": 0.067857,
-    "<Useful Hast> skill available": 0.067857,
+    "Enables the &lt;Decent Haste&gt; skill": 0.067857,
     "STR: +9%": 0.005,
     "DEX: +9%": 0.005,
     "INT: +9%": 0.005,
@@ -47351,7 +47351,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.007143,
     "5% chance to ignore 40% of damage when attacked": 0.007143,
     "HP Recovery Items and Skills: +20%": 0.007143,
-    "<Useful Hast> skill available": 0.007143
+    "Enables the &lt;Decent Haste&gt; skill": 0.007143
   },
   "1479353734852e1bb44fd147161d313dd2c22625870948c78359b9676ecf0a38cbd7dbd80d8bfa522bfd787ecfc3bf9bdcfe272b505377b29a4a686e48933d63": {
     "STR: +4%": 0.141429,
@@ -47373,7 +47373,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.000714,
     "5% chance to ignore 40% of damage when attacked": 0.000714,
     "HP Recovery Items and Skills: +20%": 0.000714,
-    "<Useful Hast> skill available": 0.000714
+    "Enables the &lt;Decent Haste&gt; skill": 0.000714
   },
   "5288e8bd31e3a98ac75b9268ec65fd53bb5d59833605bc7262efb3f6e9d7c5b9dfc1473b15a5d4d8e39015490f31d98d5f68546c61e36fd9706757a7dfb9c0c5": {
     "STR: +6%": 0.080357,
@@ -47572,7 +47572,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001227,
     "5% chance to ignore 40% of damage when attacked": 0.001227,
     "HP Recovery Items and Skills: +30%": 0.001227,
-    "<Useful Hast> skill available": 0.000818
+    "Enables the &lt;Decent Haste&gt; skill": 0.000818
   },
   "d0201a56715a63bff527ee37ef4b5524f33f0937eb10c60c39d711998e8dc262681d6b3cc3baed47effb863e07d4109c3cec5bea15f105169f0f78809e2c18e2": {
     "STR: +10": 0.047148,
@@ -47886,7 +47886,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001754,
     "5% chance to ignore 40% of damage when attacked": 0.001754,
     "HP Recovery Items and Skills: +30%": 0.001754,
-    "<Useful Hast> skill available": 0.00117
+    "Enables the &lt;Decent Haste&gt; skill": 0.00117
   },
   "92013c39ce93b1cb15f5597010aa7349ef6f56b5eb38780006541886705ff079c5d16cc9b0678fcb258af42f48bd5033bbfafeae726e3a156e8ba34815854016": {
     "STR: +6%": 0.065876,
@@ -49888,7 +49888,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001227,
     "5% chance to ignore 40% of damage when attacked": 0.001227,
     "HP Recovery Items and Skills: +30%": 0.001227,
-    "<Useful Hast> skill available": 0.000818
+    "Enables the &lt;Decent Haste&gt; skill": 0.000818
   },
   "e056867e1e34da197e2aac85eaa6aad900941578acebd7dba1cb7017785f5b212ad8e7792cf479a8521df74c8d5cc0beacb6e1183304e987ce3df2ad348870d2": {
     "STR: +12": 0.055006,
@@ -51502,7 +51502,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001227,
     "5% chance to ignore 40% of damage when attacked": 0.001227,
     "HP Recovery Items and Skills: +30%": 0.001227,
-    "<Useful Hast> skill available": 0.000818
+    "Enables the &lt;Decent Haste&gt; skill": 0.000818
   },
   "dfb8610a1e218c13f97fd7836e636f28274d0b442573afbff4178c9a4b6601a983c03d2ed0d9c643154430a194f8ce2fed437b02b88bf4341ed76b25cc8e5c35": {
     "STR: +12": 0.047148,
@@ -52632,7 +52632,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.103448,
     "5% chance to ignore 40% of damage when attacked": 0.103448,
     "HP Recovery Items and Skills: +30%": 0.103448,
-    "<Useful Hast> skill available": 0.068966
+    "Enables the &lt;Decent Haste&gt; skill": 0.068966
   },
   "b5a93b66c414884b74426275c61ab58fbafff6805270eae6007f3c5a3348295bace91b5a369ebf88bdcc8b7349e99b60c7befb9dfc64a637eb68fe91493be921": {
     "STR: +7%": 0.073196,
@@ -52657,7 +52657,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001227,
     "5% chance to ignore 40% of damage when attacked": 0.001227,
     "HP Recovery Items and Skills: +30%": 0.001227,
-    "<Useful Hast> skill available": 0.000818
+    "Enables the &lt;Decent Haste&gt; skill": 0.000818
   },
   "16fab70bca2f92d6c4f3a7b081267bfc783f398d81b4eb5cba26f8f0a859c62c7590260e732df7870efb0a68b4cc77deba931dc0b6fad89a730c5e00d93b367d": {
     "STR: +6%": 0.072818,
@@ -53781,7 +53781,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.071429,
     "5% chance to ignore 40% of damage when attacked": 0.071429,
     "HP Recovery Items and Skills: +30%": 0.071429,
-    "<Useful Hast> skill available": 0.071429
+    "Enables the &lt;Decent Haste&gt; skill": 0.071429
   },
   "c1c5b38b076aefbe6460af8d8d926e5ad7009fa8c9144b79d4360799392109a464ee6cfc26add516321321a5d52dd48521cf34769cabc9eb4baee1e6ff085c24": {
     "STR: +7%": 0.114286,
@@ -53803,7 +53803,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.014286,
     "5% chance to ignore 40% of damage when attacked": 0.014286,
     "HP Recovery Items and Skills: +30%": 0.014286,
-    "<Useful Hast> skill available": 0.014286
+    "Enables the &lt;Decent Haste&gt; skill": 0.014286
   },
   "6c302bf1cb52531b37b7e522b1114ddd9e4f1a764f8dd1fe51d4f17cbc684e16ee2d1b20e11186e2abb8de85e1055c2f84e34035a19b86172caa55b964cf406c": {
     "STR: +7%": 0.135714,
@@ -53825,7 +53825,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.003571,
     "5% chance to ignore 40% of damage when attacked": 0.003571,
     "HP Recovery Items and Skills: +30%": 0.003571,
-    "<Useful Hast> skill available": 0.003571
+    "Enables the &lt;Decent Haste&gt; skill": 0.003571
   },
   "84a69f92625d886636a14afc1c67c4db2a40d5582cf0d850d61ec74dbd8a38eb231b228246d4d02ad0d6e62cfd25d13d7ae13f4a9a1ad0832277a97cc91f91db": {
     "STR: +1": 0.08687,
@@ -55297,7 +55297,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.007143,
     "5% chance to ignore 40% of damage when attacked": 0.007143,
     "HP Recovery Items and Skills: +30%": 0.007143,
-    "<Useful Hast> skill available": 0.007143
+    "Enables the &lt;Decent Haste&gt; skill": 0.007143
   },
   "47d8140809bec7d04380c54056ba7619855a76730e1bf063b246c7cc684e5adc3badb97dd38072bf2ca5133ced438f4dcb01ff900cb9716fe228b5895727c561": {
     "STR: +7%": 0.141429,
@@ -55319,7 +55319,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.000714,
     "5% chance to ignore 40% of damage when attacked": 0.000714,
     "HP Recovery Items and Skills: +30%": 0.000714,
-    "<Useful Hast> skill available": 0.000714
+    "Enables the &lt;Decent Haste&gt; skill": 0.000714
   },
   "456e182fee025e462db54d99b24196929cccda16fd500fdef8e11249a90cdcf4f439c267dae8c16317172c13bb9d896b9bbe642cb04f414a81c1767e02bd9805": {
     "STR: +10%": 0.116279,
@@ -56364,7 +56364,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.103242,
     "5% chance to ignore 40% of damage when attacked": 0.103242,
     "HP Recovery Items and Skills: +30%": 0.103242,
-    "<Useful Hast> skill available": 0.068828,
+    "Enables the &lt;Decent Haste&gt; skill": 0.068828,
     "STR: +13%": 0.000129,
     "DEX: +13%": 0.000129,
     "INT: +13%": 0.000129,
@@ -59313,7 +59313,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.001754,
     "5% chance to ignore 40% of damage when attacked": 0.001754,
     "HP Recovery Items and Skills: +30%": 0.001754,
-    "<Useful Hast> skill available": 0.00117
+    "Enables the &lt;Decent Haste&gt; skill": 0.00117
   },
   "2e21b9f5dbade731f676e3e24e506ad8bf3353edb4eb7e611eb23e31aefa16282648f3400d2cb573f104c07b9cc950f0783b5d42407903a9dce715e29f44c478": {
     "STR: +6": 0.045351,
@@ -59903,7 +59903,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.064286,
     "5% chance to ignore 40% of damage when attacked": 0.064286,
     "HP Recovery Items and Skills: +30%": 0.064286,
-    "<Useful Hast> skill available": 0.064286,
+    "Enables the &lt;Decent Haste&gt; skill": 0.064286,
     "STR: +13%": 0.01,
     "DEX: +13%": 0.01,
     "INT: +13%": 0.01,
@@ -59928,7 +59928,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.070714,
     "5% chance to ignore 40% of damage when attacked": 0.070714,
     "HP Recovery Items and Skills: +30%": 0.070714,
-    "<Useful Hast> skill available": 0.070714,
+    "Enables the &lt;Decent Haste&gt; skill": 0.070714,
     "STR: +13%": 0.001,
     "DEX: +13%": 0.001,
     "INT: +13%": 0.001,
@@ -61222,7 +61222,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.057143,
     "5% chance to ignore 40% of damage when attacked": 0.057143,
     "HP Recovery Items and Skills: +30%": 0.057143,
-    "<Useful Hast> skill available": 0.057143,
+    "Enables the &lt;Decent Haste&gt; skill": 0.057143,
     "STR: +13%": 0.02,
     "DEX: +13%": 0.02,
     "INT: +13%": 0.02,
@@ -61247,7 +61247,7 @@
     "5% chance to ignore 20% of damage when attacked": 0.067857,
     "5% chance to ignore 40% of damage when attacked": 0.067857,
     "HP Recovery Items and Skills: +30%": 0.067857,
-    "<Useful Hast> skill available": 0.067857,
+    "Enables the &lt;Decent Haste&gt; skill": 0.067857,
     "STR: +13%": 0.005,
     "DEX: +13%": 0.005,
     "INT: +13%": 0.005,
