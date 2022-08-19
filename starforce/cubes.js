@@ -230,7 +230,7 @@ cube.resolve_cube_rates = async function(cube_type, type) {
 
 /* get the cube line hash data that points to cube line data */
 cube.fetch_cube_rates = async function() {
-    if (!("hash" in cube_lines)) {
+    if (!("hash" in cube_rates)) {
         let response = await fetch(`/starforce/cube_rates/cube_hashes_gms.txt`);
         cube_rates["hash"] = response.json();
     }
