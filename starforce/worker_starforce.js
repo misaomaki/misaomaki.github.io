@@ -113,6 +113,7 @@ let process_star = function(item, o = {}) {
     this_cost_actual = this_cost * cost_multiplier;
 
     /* check for budget and if the next run will go over budget */
+    /*
     if (o.budget.use_budget) {
         let budget_result = {
             overbudget: false,
@@ -133,6 +134,7 @@ let process_star = function(item, o = {}) {
 
         return [ld.star, ld.result, budget_results];
     }
+    */
 
     let this_results = get_random_result(this_sr, (a)=>{ld.prn_map = a;}, (b)=>{ld.prn = b;});
 
@@ -251,7 +253,7 @@ onmessage = function(d) {
     }
 
     //while the stars are less than the desired stars, run starforcing and log results
-    if (o.budget.use_budget) {
+    if (!data.budget.use_budget) {
         while (current_star < end_star) {
             [current_star] = process_star(item);
         }

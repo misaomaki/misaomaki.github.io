@@ -702,18 +702,18 @@ item.prototype.get_flame_score = function() {
     return score;
 }
 
+const FLAME_SCORE_TIER_DEF = [
+    [0,40,'#9d9d9d', 'Level 1-180; For: Normal Hilla, Normal Root Abyss, Normal Horntail'], /* gray */
+    [40,75,'#1eff00', 'Level 180-220; For: Chaos Horntail, Chaos Pink Bean, Hard Magnus'], /* green */
+    [75,100,'#0070dd', 'Level 220-250; For: Crimson Root Abyss, Normal Damien, Normal Lotus'], /* blue */
+    [100,160,'#a335ee', 'Level 250+; For: Hard Lucid/Lotus/Damien/Will/Gloom/Darknell/Hilla with party'], /* purple */
+    [160,10000,'#ff8000', 'Level 250+; For: Solo All Bosses'] /* orange */
+];
+
 var flames = {
     flame_score_tier: function(score) {
-        let tiers = [
-            [0,40,'#9d9d9d', 'Level 1-180; For: Normal Hilla, Normal Root Abyss, Normal Horntail'], /* gray */
-            [40,75,'#1eff00', 'Level 180-220; For: Chaos Horntail, Chaos Pink Bean, Hard Magnus'], /* green */
-            [75,100,'#0070dd', 'Level 220-250; For: Crimson Root Abyss, Normal Damien, Normal Lotus'], /* blue */
-            [100,160,'#a335ee', 'Level 250+; For: Hard Lucid/Lotus/Damien/Will/Gloom/Darknell/Hilla with party'], /* purple */
-            [160,10000,'#ff8000', 'Level 250+; For: Solo All Bosses'] /* orange */
-        ];
-
-        for (let i = 0; i < tiers.length; ++i) {
-            let [t1, t2, tcolor, ttitle] = tiers[i];
+        for (let i = 0; i < FLAME_SCORE_TIER_DEF.length; ++i) {
+            let [t1, t2, tcolor, ttitle] = FLAME_SCORE_TIER_DEF[i];
 
             if (score >= t1 && score < t2) {
                 return [i+1, tcolor, ttitle];
