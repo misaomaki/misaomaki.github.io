@@ -1002,7 +1002,7 @@ $(function(){
                         </div>
                     </td>
                     <td style="background-color:${fs_color};max-width:30px;font-size:20px;" title="${fs_title}">
-                        ${b.score.toFixed(3)}
+                        ${Math.round(b.score * 1000) / 1000}
                     </td>
                 </tr>
             `;
