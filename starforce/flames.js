@@ -688,42 +688,14 @@ item.prototype.set_item_flame_tier = function(s) {
 
 /*
     pass main and secondary stat to override the item's internal primrary/secondary stat
-
-    o contains 2 attributes
-     {
-         mstat - main stat
-         sstat - secondary stat
-     }
-
-     not relevant to weapons
+    not relevant to weapons
 */
-item.prototype.get_flame_score = function(o) {
+item.prototype.get_flame_score = function() {
     if (this.idata.class === "weapon") return -1;
 
-    let m = "";
-    let s = "";
-    let a = "";
-
-    if (o != undefined) {
-        m = o.mstat;
-        s = o.sstat;
-        
-        if (m === "int") {
-            a = "matt";
-        } else {
-            a = "watt";
-        }
-    } else {
-        m = this.idata.mstat;
-        a = this.idata.att_type;
-
-        /* if empty, then ignore as we're not going to assume what the main stat is */
-        if (m === "") {
-            return -1;
-        } else {
-            [s] = this.idata.pstat.filter((a)=>{return a !== m});
-        }
-    }
+    let m = this.idata.meta.fsstat; /* main stat */ 
+    let s = this.idata.meta.fsstat2; /* secondary stat */
+    let a = m === "int" ? "matt" : "watt";
 
     let score = this.idata.boosts.flames[m] + this.idata.boosts.flames[a] * 4 + this.idata.boosts.flames.all_stat * 800 + this.idata.boosts.flames[s]/8;
 
@@ -731,6 +703,25 @@ item.prototype.get_flame_score = function(o) {
 }
 
 var flames = {
+    flame_score_tier: function(score) {
+        let tiers = [
+            [0,40,'#9d9d9d', 'Level 1-180; For: Normal Hilla, Normal Root Abyss, Normal Horntail'], /* gray */
+            [40,75,'#1eff00', 'Level 180-220; For: Chaos Horntail, Chaos Pink Bean, Hard Magnus'], /* green */
+            [75,100,'#0070dd', 'Level 220-250; For: Crimson Root Abyss, Normal Damien, Normal Lotus'], /* blue */
+            [100,160,'#a335ee', 'Level 250+; For: Hard Lucid/Lotus/Damien/Will/Gloom/Darknell/Hilla with party'], /* purple */
+            [160,10000,'#ff8000', 'Level 250+; For: Solo All Bosses'] /* orange */
+        ];
+
+        for (let i = 0; i < tiers.length; ++i) {
+            let [t1, t2, tcolor, ttitle] = tiers[i];
+
+            if (score >= t1 && score < t2) {
+                return [i+1, tcolor, ttitle];
+            }
+        }  
+
+        return [-1, "black"];
+    },
     /* 
         get rates of flame tier 1-5
 
@@ -891,6 +882,7 @@ var flames = {
 
         /* get non-zero stat values from the flame stats */
         flames_log.stats = Object.fromEntries(Object.entries(flames_log.stats).filter(([key,value])=>value !== 0));
+        flames_log.score = this.get_flame_score();
      
         /* log run */
         this.idata.meta.flames_meta_data.unshift(flames_log);
@@ -951,8 +943,10 @@ $(function(){
         $("#flames_body").append(t_body);
     }
 
-    let get_flame_rows = function(flames) {
-        let t_body = flames.reduce((a,b)=>{
+    let get_flame_rows = function(this_flames) {
+        let t_body = this_flames.reduce((a,b)=>{
+            let [fs_tier, fs_color, fs_title] = flames.flame_score_tier(b.score);
+
             a += `
                 <tr data-id="${b.run}" class="flame-data-row">
                     <td>${b.run}</td>
@@ -1007,6 +1001,9 @@ $(function(){
                             </table>
                         </div>
                     </td>
+                    <td style="background-color:${fs_color};max-width:30px;font-size:20px;" title="${fs_title}">
+                        ${b.score.toFixed(3)}
+                    </td>
                 </tr>
             `;
             return a;
@@ -1040,6 +1037,7 @@ $(function(){
                             <th>Flame Type</th>
                             <th>Tiers</th>
                             <th>Stats</th>
+                            <th>Score</th>
                         </tr>
                     </thead>
                     <tbody id="flames_body">

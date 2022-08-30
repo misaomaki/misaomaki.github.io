@@ -1,25 +1,6 @@
 $(function() {
     var key_label = {};
 
-    /* init modal */
-    let stats_screen = $("#stat_box").dialog({
-        position: {
-            my: "center top",
-            at: "center top",
-            of: window
-        },
-        autoOpen: false,
-        modal: false,
-        width: "90vw",
-        title: "Statistical Analysis of Starforce",
-        buttons: [{
-            text: "Close",
-            click: function() {
-                $(this).dialog("close");
-            }
-        }]
-    });
-
     /* 
         worker for starforcing. faster than using the Item.starforce() method
         because it only writes necessary log data
@@ -50,6 +31,30 @@ $(function() {
     var sf_data = {
         reload_log: true
     };
+
+    /* init modal */
+    let stats_screen = $("#stat_box").dialog({
+        position: {
+            my: "center top",
+            at: "center top",
+            of: window
+        },
+        close: function() {
+            worker.terminate();
+            sf_analysis_item = {};
+            sf_minmax = {};
+        },
+        autoOpen: false,
+        modal: false,
+        width: "90vw",
+        title: "Statistical Analysis of Starforce",
+        buttons: [{
+            text: "Close",
+            click: function() {
+                $(this).dialog("close");
+            }
+        }]
+    });
 
     var init_worker = function() {
         worker = new Worker("./starforce/worker_starforce.js");

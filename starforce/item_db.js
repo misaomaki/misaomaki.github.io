@@ -7250,7 +7250,7 @@ var items_store = {
             type: "bottom",
             speed: "",
             job: ["warrior"],
-            mstat: "dex", 
+            mstat: "str", 
             pstat: ["dex", "str"], 
             att_type: "watt", 
             flame_type: 2,
@@ -19478,6 +19478,8 @@ let items_other_data = {
     flavor: "", //flavor text in white at the bottom
     shadowknight: false, //use shadowknight coins
     meta: {
+        fsstat: "", /* flame score MAIN stat. defaults to mstat parameter, but can be overridden */
+        fsstat2: "", /* flame score SECONDARY stat. defaults to pstat parameter, but can be overriden */
         img_name: "", /* img asset */
         cube_potential: "", //potential type: rare, epic, unique, legendary
         cube_potential_bonus: "", //bonus pot
@@ -19546,6 +19548,9 @@ $(function() {
             items_store[i][j] = {...iod, ...istore_override, ...istore};
             
             istore = items_store[i][j];
+
+            istore.meta.fsstat = istore.mstat; /* set flame score stat to main stat */
+            istore.meta.fsstat2 = istore.pstat.length == 2 ? istore.pstat.filter(a=>a!=istore.mstat)[0] : ""; /* set flame score stat to main stat */
 
             istore.bstat = Object.assign({}, stats, istore.bstat); /* append the rest of the stats to the bstat item */
 

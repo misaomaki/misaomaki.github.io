@@ -229,6 +229,23 @@ $(function() {
                 </div>
                 <span id="h_update"></span>
             </div>
+            <div class="form-group">
+                <div class="form-label-group">
+                    <span class="form-label">
+                        Budget:
+                    </span>
+                    <hr>
+                    <span style="display: inline-block; padding: 5px;">
+                        Stop the starforcing if it exceeds the meso budget or number of spare items.
+                    </span>
+                    <span style="display: inline-block; padding: 5px;">
+                        I have <input type="number" id="asf_budget_items" style="width:50px" min="-1" value="-1"> item(s) and 
+                        <input type="number" id="asf_budget_mesos" min="-1" value="-1"> mesos.
+                        <span style="display:inline-block;padding:5px;font-size:0.6em">-1 for no limit.</span>
+                    </span>
+                </div>
+                <span id="h_update"></span>
+            </div>
         `;
 
         let w_sf = {terminate:()=>{}}; //starforce worker
@@ -384,7 +401,7 @@ $(function() {
             <span id="cube_msg2" class="hidden">
                 <span style="color:blue;display:block;padding-bottom:15px;">
                     Estimated cubes to use (based on line probability): <span id="cube_expected">1</span>
-                    <span style="font-size:0.6em;display:block;">Excludes cubes needed to get to desired tier</span>
+                    <span style="font-size:0.6em;display:block;">Excludes cubes needed to get to desired tier. Probability is based on lines selected in exact order (number of cubes can be less due to permutations of the lines which is not accounted for).</span>
                 </span>
             </span>
             <span id="cube_msg" style="color:red"></span>
@@ -1586,6 +1603,9 @@ $(function() {
     let item_cube_con = $("#item_cube_container");
     let item_scroll_con = $("#item_scroll_container");
     let starforce_input_con = $("#starforce_input_con");
+    let ddl_flame_score = $("#ddlFlameScoreStat");
+    let ddl_flame_score2 = $("#ddlFlameScoreStat2");
+    let ddl_flame_score_con = $("#ddlFlameScoreStat_con");
 
     var init_item = function() {
         scroll_options = [];
@@ -1599,7 +1619,7 @@ $(function() {
             width: 800,
             title: "Maplestory Item Simulator",
             buttons: [{
-                /* CREATE A NEW MAPLESTORY ITEM */
+                /* CREATE A NEW MAPLESTORY ITEM (CREATE ITEM) */
                 text: "Create",
                 click: async function() {
                     cubes_used = 0; //reset cube log counter
@@ -1686,7 +1706,9 @@ $(function() {
                     Item.set_item_scroll(scroll_options);
 
                     Item.set_meta_options({
-                        nebulite_compensation: $("#item_neb_comp").prop("checked")
+                        nebulite_compensation: $("#item_neb_comp").prop("checked"),
+                        fsstat: ddl_flame_score.val(),
+                        fsstat2: ddl_flame_score2.val()
                     });
 
                     //set cube stuff
@@ -1892,11 +1914,13 @@ $(function() {
                 `);
 
                 //if the item does not have a primary stat, then show the dropdown to choose the stat
+                /*
                 if (this_item.mstat === "" && this_item.type !== "mechanical heart") {
                     scroll_type_box.removeClass("hidden");
                 } else {
                     scroll_type_box.addClass("hidden");
                 }
+                */
 
                 if (this_item.type === "mechanical heart") {
                     scroll_type_box_att.removeClass("hidden");
@@ -1915,8 +1939,22 @@ $(function() {
                 //if the item can even have flames
                 if (this_item.flame_type == 0) {
                     item_flame_container.addClass("hidden");
+                    ddl_flame_score_con.addClass("hidden");
                 } else {
                     item_flame_container.removeClass("hidden");
+                    ddl_flame_score_con.removeClass("hidden");
+
+                    /* auto select flame score stat, based on selected value */
+                    if (this_item.class === "weapon") {
+                        ddl_flame_score_con.addClass("hidden");
+                    } else {
+                        let this_stat = this_item.meta.fsstat;
+                        let this_stat2 = this_item.meta.fsstat2;
+                        if (this_stat === "") this_stat = "str";
+                        if (this_stat2 === "") this_stat2 = "dex";
+                        ddl_flame_score.val(this_stat);
+                        ddl_flame_score2.val(this_stat2);
+                    }
                 }
 
                 flame_box.addClass("hidden");
@@ -1988,6 +2026,11 @@ $(function() {
                 /* item not starforceable so don't display starforce box */
                 if (!this_item.starforce) {
                     starforce_input_con.addClass("hidden");
+                }
+
+                /* auto select scroll based on main stat */
+                if (this_item.meta.fsstat != "") {
+                    scroll_type.val(this_item.meta.fsstat);
                 }
             });
 
