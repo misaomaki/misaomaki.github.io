@@ -229,7 +229,7 @@ $(function() {
                 </div>
                 <span id="h_update"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group hidden">
                 <div class="form-label-group">
                     <span class="form-label">
                         Budget:
