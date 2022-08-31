@@ -229,7 +229,7 @@ $(function(){
                             <label style="font-size:0.9em">
                                 Run until a desired flame score or greater is reached. Flame score is calculated by:<br>
                                 PRIMARY STAT - +1 score per stat<br>
-                                SECONDARY STAT - +0.25 score per stat<br>
+                                SECONDARY STAT - +0.125 score per stat<br>
                                 ALL STAT - +4 score per value<br>
                                 WATT/MATT - +8 score per value
                             </label>
