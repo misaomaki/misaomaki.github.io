@@ -1001,9 +1001,14 @@ $(function(){
                             </table>
                         </div>
                     </td>
-                    <td style="background-color:${fs_color};max-width:30px;font-size:20px;" title="${fs_title}">
-                        ${Math.round(b.score * 1000) / 1000}
-                    </td>
+                    ${
+                        Item.idata.class === "armor" ?
+                        `
+                            <td style="background-color:${fs_color};max-width:30px;font-size:20px;" title="${fs_title}">
+                                ${Math.round(b.score * 1000) / 1000}
+                            </td>
+                        ` : ""
+                    }
                 </tr>
             `;
             return a;
@@ -1037,7 +1042,11 @@ $(function(){
                             <th>Flame Type</th>
                             <th>Tiers</th>
                             <th>Stats</th>
-                            <th>Score</th>
+                            ${
+                                Item.idata.class === "armor" ? `
+                                <th>Score</th>
+                                `: ""
+                            }
                         </tr>
                     </thead>
                     <tbody id="flames_body">

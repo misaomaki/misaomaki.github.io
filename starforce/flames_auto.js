@@ -172,17 +172,26 @@ $(function(){
         let html = `
             <b>Automatically flame to the desired lines. This will generate flame log data.</b>
             <hr>
-            <div class="item-form auto_flame_container" id="auto_flame_container" style="min-height:375px;">
-                <div class="item-form">
-                    <span class="item-label">
-                        <b>Select Flame</b>
-                    </span><br>
-                    <div class="flame flame-powerful flame-small maple-button auto-flame-flame ${flame_type === 1 ? "auto-cube-selected" : ""}" style="padding:5px" data-val="1"></div>
-                    <div class="flame flame-eternal flame-small maple-button auto-flame-flame ${flame_type === 2 ? "auto-cube-selected" : ""}" style="padding:5px" data-val="2"></div>
-                    <hr>
-                    <span class="item-label">
+            <div class="item-form auto_flame_container" id="auto_flame_container" style="min-height:375px;">                    
+                <span class="item-label">
+                    <b>Select Flame</b>
+                </span>
+                <br>
+                <div class="flame flame-powerful flame-small maple-button auto-flame-flame ${flame_type === 1 ? "auto-cube-selected" : ""}" style="padding:5px" data-val="1"></div>
+                <div class="flame flame-eternal flame-small maple-button auto-flame-flame ${flame_type === 2 ? "auto-cube-selected" : ""}" style="padding:5px" data-val="2"></div>
+                <hr>
+                <span class="item-form item-label">                
+                    ${
+                        Item.idata.class === "armor" ? 
+                        `
+                            <input type="radio" name="flame-selector" id="flame-selector-flame" value="1" checked> 
+                        ` : ""
+                    }
+                    <label for="flame-selector-flame"> 
                         <b>Flames</b>
-                    </span>
+                    </label>
+                </span>
+                <div id="af_flame_con" class="item-form">
                     <hr>                
                         <label for="auto_flame_as_tier" style="margin-right:10px">
                             <input type="checkbox" id="auto_flame_as_tier" checked> Value is Flame Tiers
@@ -206,6 +215,32 @@ $(function(){
                         }
                     </div>
                 </div>
+                ${
+                    Item.idata.class === "armor" ? 
+                    `
+                        <span class="item-form item-label">
+                            <input type="radio" name="flame-selector" id="flame-selector-score" value="2"> 
+                            <label for="flame-selector-score"> 
+                                <b>Flame Score</b>
+                            </label>
+                        </span>
+                        <div id="af_score_con" class="item-form item-armor form-disabled">
+                            <hr>
+                            <label style="font-size:0.9em">
+                                Run until a desired flame score or greater is reached. Flame score is calculated by:<br>
+                                PRIMARY STAT - +1 score per stat<br>
+                                SECONDARY STAT - +0.25 score per stat<br>
+                                ALL STAT - +4 score per value<br>
+                                WATT/MATT - +8 score per value
+                            </label>
+                            <hr>
+                            <span class="flame-box item-armor">
+                                <span class="item-flame-label">Flame Score</span> 
+                                <input type="number" id="af_flame_score" class="flame-form" value="0">
+                            </span>
+                        </div>
+                    ` : ""
+                } 
             </div>
             <span id="flame_msg" style="color:red"></span>
         `;
@@ -240,6 +275,21 @@ $(function(){
                 }
             }]
         }).dialog("open");
+
+        /* radio buttons for selecting flame or score */
+        if (Item.idata.class === "armor") {
+            let flame_con = $("#af_flame_con");
+            let score_con = $("#af_score_con");
+            $("#flame-selector-flame,#flame-selector-score").on("change", function(e) {
+                if (e.target.value == 1) {
+                    score_con.addClass("form-disabled").find(".flame-form").prop("disabled", true);
+                    flame_con.removeClass("form-disabled").find(".flame-form").prop("disabled", false);
+                } else {
+                    score_con.removeClass("form-disabled").find(".flame-form").prop("disabled", false);
+                    flame_con.addClass("form-disabled").find(".flame-form").prop("disabled", true);
+                }
+            });
+        }
 
         /* change to custom flames */
         let flame_box = $("#auto_flame_container .flame-box");
@@ -281,67 +331,83 @@ $(function(){
     }
     
     var process_auto_flame = function(min_flames, max_flames) {
-        /* validation */
-        let flames_out_of_bounds = false;
-
+        let flame_calc_type = +$("input[name=flame-selector]:checked").val() ?? 1; /* 1 - flame stats, 2 - flame score. default to flame stat if the radio buttons don't exist */
+            
         /* get flame values and the type */
         var data = {
             item: Item,
-            flame_options: {},
-            flame_options_search: {},
-            is_tier: $("#auto_flame_as_tier").prop("checked"),
-            max_flames: max_flames,
+            calc_type: flame_calc_type,
             flame: +$("#auto_flame_container .auto-flame-flame.auto-cube-selected").attr("data-val") /* powerful or eternal flame */
         }
-        
-        /* get non-zero flame values */
-        let flames = $("#auto_flame_container .flame-form").filter(function() {
-            let fval =  +$(this).val();
 
-            if (fval !== 0 && (fval > max_flames || fval < min_flames)) {
-                flames_out_of_bounds = true;
-            }
+        if (flame_calc_type == 1) {
+            /* validation */
+            let flames_out_of_bounds = false;
 
-            return fval > 0;
-        });
+            data.is_tier = $("#auto_flame_as_tier").prop("checked");
+            data.max_flames = max_flames;
+            data.flame_options = {};
+            data.flame_options_search = {};
 
-        if (flames.length === 0) {
-             alert("No flames have been selected.");
-             return false;
-        }
+            /* get non-zero flame values */
+            let flames = $("#auto_flame_container .flame-form").filter(function() {
+                let fval =  +$(this).val();
 
-        if (data.is_tier) {
-            if (flames.length > 4) {
-                alert("Please limit flame lines to 4 or less.");
+                if (fval !== 0 && (fval > max_flames || fval < min_flames)) {
+                    flames_out_of_bounds = true;
+                }
+
+                return fval > 0;
+            });
+
+            if (flames.length === 0) {
+                alert("No flames have been selected.");
                 return false;
             }
-            if (flames_out_of_bounds) {
-                alert(`Flame values must be between ${min_flames} and ${max_flames}`);
-                return false;
-            }
-        }
 
-        //set up flame data to send to flame function
-        flames.each(function() {
-            let _this = $(this);
-            let this_attr = _this.attr("data-id");
-            let type = _this.attr("data-type") || "";
-            let val = +_this.val() || 0;
-            let equal_type = data.is_tier ? $(`#auto_flame_${this_attr}_search`).val() : "1"; /* search type is always greater than or equal to for non-tier values */
-
-            if (data.is_tier && (["str", "dex", "int", "luk"].includes(this_attr) || this_attr.includes(","))) {
-                this_attr = "stats:" + this_attr;
-            } else if (!data.is_tier) {
-                if (type === "%") {
-                    val = val / 100;
-                } else if (type === "-") {
-                    val = Math.abs(val) * -1;
+            if (data.is_tier) {
+                if (flames.length > 4) {
+                    alert("Please limit flame lines to 4 or less.");
+                    return false;
+                }
+                if (flames_out_of_bounds) {
+                    alert(`Flame values must be between ${min_flames} and ${max_flames}`);
+                    return false;
                 }
             }
 
-            data.flame_options[this_attr] = val;
-            data.flame_options_search[this_attr] = equal_type;
-        });
+            //set up flame data to send to flame function
+            flames.each(function() {
+                let _this = $(this);
+                let this_attr = _this.attr("data-id");
+                let type = _this.attr("data-type") || "";
+                let val = +_this.val() || 0;
+                let equal_type = data.is_tier ? $(`#auto_flame_${this_attr}_search`).val() : "1"; /* search type is always greater than or equal to for non-tier values */
+
+                if (data.is_tier && (["str", "dex", "int", "luk"].includes(this_attr) || this_attr.includes(","))) {
+                    this_attr = "stats:" + this_attr;
+                } else if (!data.is_tier) {
+                    if (type === "%") {
+                        val = val / 100;
+                    } else if (type === "-") {
+                        val = Math.abs(val) * -1;
+                    }
+                }
+
+                data.flame_options[this_attr] = val;
+                data.flame_options_search[this_attr] = equal_type;
+            });
+        } else {
+            let flame_score = +$("#af_flame_score").val();
+
+            if (flame_score === "" || isNaN(flame_score) || flame_score <= 0) {
+                alert(`Flame Score must be a valid number greater than 0.`);
+                return false;
+            }
+
+            /* check against flame score */
+            data.flame_score = flame_score;
+        }
 
         w_f = new Worker("./starforce/worker_flames.js");
             
@@ -355,7 +421,7 @@ $(function(){
                 return false;
             }
 
-            Item.idata.meta.flames_meta_data.push(...d.data.data.flame_log);
+            Item.idata.meta.flames_meta_data.unshift(...d.data.data.flame_log);
             Item.idata.meta.flames_total = d.data.data.flame_used;
             Item.idata.boosts.flames = d.data.data.flame_stats;
 

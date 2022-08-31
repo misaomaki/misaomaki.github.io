@@ -61,6 +61,10 @@ var compare_flames_stats = function(item_flame, desired_flame) {
     return true;
 }
 
+var compare_score = function(item_score, desired_score) {
+    return item_score >= desired_score;
+}
+
 /* determine which one to used based on whether the desired stats are passed as tiers or raw stats */
 var compare_flames = function(is_tier, item_flame, desired_flame, desired_flame_search) {
     if (is_tier) {
@@ -75,6 +79,16 @@ onmessage = function(o) {
     let current_tiers = {};
     let idx = 0; 
     log_cache = [];
+
+    let search = function() {
+        return compare_flames(o.data.is_tier, current_tiers, o.data.flame_options, o.data.flame_options_search);
+    }
+
+    if (o.data.calc_type == 2) {
+        search = function() {
+            return compare_score(current_tiers.score, o.data.flame_score);
+        }
+    }
 
     do {
         idx += 1;
@@ -94,7 +108,7 @@ onmessage = function(o) {
 
             postMessage({done: false, code: 16, message: return_message});
         }
-    } while (!compare_flames(o.data.is_tier, current_tiers, o.data.flame_options, o.data.flame_options_search))
+    } while (!search())
 
     postMessage({
         done: true, 
