@@ -228,15 +228,15 @@ $(function(){
                             <hr>
                             <label style="font-size:0.9em">
                                 Run until a desired flame score or greater is reached. Flame score is calculated by:<br>
-                                PRIMARY STAT - +1 score per stat<br>
-                                SECONDARY STAT - +0.125 score per stat<br>
-                                ALL STAT - +4 score per value<br>
-                                WATT/MATT - +8 score per value
+                                PRIMARY STAT: +1 score per stat<br>
+                                SECONDARY STAT: +0.125 score per stat<br>
+                                WATT/MATT: +4 score per value<br>
+                                ALL STAT: +8 score per value<br>
                             </label>
                             <hr>
-                            <span class="flame-box item-armor">
+                            <span class="flame-box flame-score-box item-armor">
                                 <span class="item-flame-label">Flame Score</span> 
-                                <input type="number" id="af_flame_score" class="flame-form" value="0">
+                                <input type="number" id="af_flame_score" class="flame-form flame-score-form" value="0">
                             </span>
                         </div>
                     ` : ""
@@ -292,9 +292,9 @@ $(function(){
         }
 
         /* change to custom flames */
-        let flame_box = $("#auto_flame_container .flame-box");
+        let flame_box = $("#auto_flame_container .flame-box:not(.flame-score-box)");
         let flame_search = $("#auto_flame_container .flame-search");
-        let flame_textbox = $("#auto_flame_container .flame-form");
+        let flame_textbox = $("#auto_flame_container .flame-form:not(.flame-score-form)");
         let flame_percent = $("#auto_flame_container .flame-percent");
 
         $("#auto_flame_as_tier").on("change", function(e) {
