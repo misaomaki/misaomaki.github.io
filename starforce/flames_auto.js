@@ -331,7 +331,7 @@ $(function(){
     }
     
     var process_auto_flame = function(min_flames, max_flames) {
-        let flame_calc_type = +$("input[name=flame-selector]:checked").val() ?? 1; /* 1 - flame stats, 2 - flame score. default to flame stat if the radio buttons don't exist */
+        let flame_calc_type = $("input[name=flame-selector]:checked").val() ?? 1; /* 1 - flame stats, 2 - flame score. default to flame stat if the radio buttons don't exist */
             
         /* get flame values and the type */
         var data = {
