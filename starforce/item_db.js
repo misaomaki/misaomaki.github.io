@@ -18301,7 +18301,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 2,
           "bstat": {
             "str": 1,
@@ -18350,7 +18350,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 0,
           "bstat": {
             "str": 7,
@@ -18399,7 +18399,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 2,
           "bstat": {
             "str": 20,
@@ -18444,7 +18444,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 2,
           "bstat": {
             "str": 15,
@@ -18491,7 +18491,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 2,
           "bstat": {
             "str": 15,
@@ -18541,7 +18541,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 0,
           "bstat": {
             "str": 7,
@@ -18589,7 +18589,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 5,
@@ -18636,7 +18636,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 6,
@@ -18683,7 +18683,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 7,
@@ -18730,7 +18730,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 8,
@@ -18777,7 +18777,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 5,
@@ -18823,7 +18823,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 7,
@@ -18871,7 +18871,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 0,
           "bstat": {
             "str": 5,
@@ -18916,7 +18916,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 0,
           "bstat": {
             "str": 5,
@@ -18963,7 +18963,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 0,
           "bstat": {
             "str": 5,
@@ -19010,7 +19010,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 7,
@@ -19054,7 +19054,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 10,
@@ -19102,7 +19102,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 10,
@@ -19150,15 +19150,15 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 2,
           "bstat": {
             "str": 20,
             "dex": 20,
             "int": 20,
             "luk": 20,
-            "hp": 0.1,
-            "mp": 0.1,
+            "p_hp": 0.1,
+            "p_mp": 0.1,
             "watt": 3,
             "matt": 3,
             "def": 100
@@ -19198,7 +19198,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 15,
@@ -19246,7 +19246,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 18,
@@ -19294,7 +19294,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 0,
           "bstat": {
             "str": 10,
@@ -19322,7 +19322,7 @@ var items_store = {
         "StoneofEternalLife_pocket": {
           "name": "Stone of Eternal Life",
           "level": 0,
-          "class": "weapon",
+          "class": "armor",
           "type": "pocket item",
           "speed": "",
           "job": [
@@ -19340,7 +19340,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 1,
           "bstat": {
             "str": 3,
@@ -19368,7 +19368,7 @@ var items_store = {
         "PinkHolyCup_pocket": {
           "name": "Pink Holy Cup",
           "level": 140,
-          "class": "weapon",
+          "class": "armor",
           "type": "pocket item",
           "speed": "",
           "job": [
@@ -19386,7 +19386,7 @@ var items_store = {
             "int",
             "luk"
           ],
-          "att_type": "watt",
+          "att_type": "att",
           "flame_type": 2,
           "bstat": {
             "str": 5,
