@@ -307,7 +307,7 @@ const cube_line_as_int_stats = [
     "ATT", 
     "Magic ATT", 
     "Damage", 
-    "Boss Damage", 
+    "Boss Monster Damage", 
     "Ignored Enemy DEF", 
     "Max HP", 
     "Max MP", 

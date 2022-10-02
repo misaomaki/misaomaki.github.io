@@ -67,6 +67,8 @@ let resolve_stat_lines = (a,b)=>{
         is_percent: false
     };
 
+    item.id = item.id.trim();
+
     if (!(item.id in a)) {
         a[item.id] = Object.assign({}, item);
     } else {
