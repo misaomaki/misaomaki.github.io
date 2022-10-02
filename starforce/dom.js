@@ -469,7 +469,8 @@ $(function() {
                         cube_lines: lines,
                         cube_type: cube_type,
                         cube: cube_name,
-                        pot_tier: pot_tier
+                        pot_tier: pot_tier,
+                        allow_gt: $("#auto_cube_gt").prop("checked")
                     };
             
                     //post data to worker to calculate cubes

@@ -7,46 +7,6 @@ let $ = function() {};
 importScripts("init.js");
 importScripts("cubes.js");
 
-/*
-    check if array a and b contain the same values.
-    a = array 1
-    b = array 2
-    c = enforce array order. [1,2,3] and [3,2,1] will be considered the same if this is false
-
-    -1 is treated as a wildcard value, so [-1,2,3] is treated as equal to [4,2,3]
-*/
-let arrayCompare = function(_a, _b, c = false) {   
-    if (!c) {
-        //copy array
-        let a = _a.concat();
-        let b = _b.concat();
-
-        //get count of lines in struct format
-        a = a.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
-        b = b.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
-        
-        //check if key from a exists in b, then compare the count of a and b. if wildcard value, ignore
-        for (let i in a) {
-            if (i == -1) continue;
-
-            if (b[i] !== a[i]) {
-                return false;
-            }
-        }
-    } else {
-        //if order is enforced, then compare array lines index to index. if wildcard value, ignore
-        for (let i = 0; i < _a.length; ++i) {
-            if (a[i] == -1 || b[i] == -1) continue;
-
-            if (a[i] !== b[i]) {
-                return false;
-            }
-        }
-    }
-
-    return true;
-}
-
 let resolve_stat_lines = (a,b)=>{
     if (b == -1) {
         return a;
