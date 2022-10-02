@@ -14,6 +14,8 @@ importScripts("cubes.js");
     c = enforce array order. [1,2,3] and [3,2,1] will be considered the same if this is false
 
     -1 is treated as a wildcard value, so [-1,2,3] is treated as equal to [4,2,3]
+
+    DEPRECATE SOON
 */
 let arrayCompare = function(_a, _b, c = false) {   
     if (!c) {
@@ -72,7 +74,7 @@ let resolve_stat_lines = (a,b)=>{
     }
 
     /*
-        if true, then for all_stat line,
+        if true, then for all_stat line, add each primary attribute value to the returned data
     */
     if (this) {
         if (item.id.includes("All Stats")) {
@@ -101,12 +103,13 @@ let resolve_stat_lines = (a,b)=>{
 */
 let stat_compare = function(desired_lines, current_lines_unprocessed) {
     let current_lines = current_lines_unprocessed.reduce(resolve_stat_lines.bind(true),{});
-    let has_any_desired = false;
+    let has_any_desired = true;
     
     for (desired_line in desired_lines) {
         if (desired_line in current_lines) {
-            has_any_desired = true;
             if (current_lines[desired_line].value < desired_lines[desired_line].value) return false;
+        } else if (current_lines[desired_line] == null) {
+            return false;
         }
     }
 
