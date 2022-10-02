@@ -3,7 +3,7 @@
 */
 
 //stat variables shared through all processes
-var stats = {
+const stats = {
     visible_stats: 0, //stats that come from non-bonus sources: base stats or scrolls
     job_stats: 0, //stats related to the item's job. "pstat" parameter
     rank: 0, //heart-related

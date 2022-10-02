@@ -47,6 +47,65 @@ let arrayCompare = function(_a, _b, c = false) {
     return true;
 }
 
+let resolve_stat_lines = (a,b)=>{
+    if (b == -1) {
+        return a;
+    }
+
+    let item = cube.cube_line_stats[b] ?? {
+        id: b,
+        value: 0,
+        is_percent: false
+    };
+
+    if (!(item.id in a)) {
+        a[item.id] = Object.assign({}, item);
+    } else {
+        a[item.id].value += item.value;
+    }
+
+    /*
+        if true, then for all_stat line,
+    */
+    if (this) {
+        if (item.id.includes("All Stats")) {
+            for (let stats = ["STR", "INT", "DEX", "LUK"], i = 0; i < stats.length; ++i) {
+                let stat = stats[i];
+
+                if (item.is_percent) {
+                    stat += "_p";
+                }
+
+                if (stat in a) {
+                    a[stat].value += item.value;
+                } else {
+                    a[stat] = Object.assign({}, item);
+                    a[stat].id = stat;
+                }
+            }
+        }
+    }
+
+    return a;
+};
+
+/*
+    compare overall stats from current lines to the desired lines
+*/
+let stat_compare = function(desired_lines, current_lines_unprocessed) {
+    let current_lines = current_lines_unprocessed.reduce(resolve_stat_lines.bind(true),{});
+    let has_any_desired = false;
+    
+    for (desired_line in desired_lines) {
+        if (desired_line in current_lines) {
+            has_any_desired = true;
+            if (current_lines[desired_line].value < desired_lines[desired_line].value) return false;
+        }
+    }
+
+    return has_any_desired;
+}
+
 onmessage = async function(o) {
     let d = Object.assign({
         cube_lines: [],
@@ -54,7 +113,8 @@ onmessage = async function(o) {
         pot_tier: "legendary",
         cube: "red",
         item: {},
-        enforce_order: false
+        enforce_order: false,
+        allow_gt: true
     }, o.data);
 
     let lines = [];
@@ -82,6 +142,18 @@ onmessage = async function(o) {
         if (restriction_check < i_line) {
             postMessage({done: false, code: -1, message: "Potential combination contain lines that are restricted to 2 or fewer instances.", data: d.item.idata.meta.cube_meta_data});
             return false;
+        }
+    }
+
+    let search = function() {
+        return arrayCompare(d.cube_lines, lines, d.enforce_order);
+    }
+
+    if (d.allow_gt) {
+        let desired_lines = d.cube_lines.reduce(resolve_stat_lines.bind(false),{});
+
+        search = function() {
+            return stat_compare(desired_lines, lines);
         }
     }
     
@@ -130,7 +202,7 @@ onmessage = async function(o) {
                 postMessage({done: false, code: 16, message: return_message});
             }
         }
-        while (!(same_tier && arrayCompare(d.cube_lines, lines, d.enforce_order)));
+        while (!(same_tier && search()));
     }
 
     //once process exits, mark the last record as keep

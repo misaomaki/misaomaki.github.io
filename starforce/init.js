@@ -292,3 +292,66 @@ var calculate_restriction_type = async function() {
 
     console.log(JSON.stringify(cube_restrict_type));
 }
+
+/*
+    get the numerical value for stats for cube lines
+*/
+
+const cube_line_as_int_stats = [
+    "STR", 
+    "DEX", 
+    "INT", 
+    "LUK", 
+    "All Stats",
+    "DEF",
+    "ATT", 
+    "Magic ATT", 
+    "Damage", 
+    "Boss Damage", 
+    "Ignored Enemy DEF", 
+    "Max HP", 
+    "Max MP", 
+    "Critical Damage", 
+    "Critical Chance", 
+    "Item Drop Rate", 
+    "Mesos Obtained",
+    "HP Recovery Items and Skills"
+];
+
+var get_cube_line_as_int_value = async function() {
+    const cube_lines = {};
+    let data = await cube.fetch_cube_rates();
+    
+
+    for (let hash in data) {
+        for (let line in data[hash]) {
+            let line_id = cube_line_as_int_stats.find(a => line.startsWith(a));
+
+            let has_line = line_id != null;
+
+            if (!has_line) continue;
+            if (line in cube_lines) continue;
+
+            let int_value = line.match(/\d+%?/)[0] ?? "";
+            let is_percent = false;
+
+            if (int_value == "") continue;
+
+            if (int_value.includes("%")) {
+                int_value = +int_value.replace("%", "") / 100;
+                line_id += "_p";
+                is_percent = true;
+            } else {
+                int_value = +int_value;
+            }
+
+            cube_lines[line] = {
+                id: line_id,
+                value: int_value,
+                is_percent: is_percent
+            };
+        }
+    }
+
+    console.log(JSON.stringify(cube_lines));
+}

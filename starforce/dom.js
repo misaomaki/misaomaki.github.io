@@ -397,10 +397,17 @@ $(function() {
                         </div>  
                     </div>
                 </div>
+                <div>
+                    <input type="checkbox" id="auto_cube_gt" checked> 
+                    <label for="auto_cube_gt">
+                        Get stats greater than or equal to desired lines 
+                        <span title="Return lines with value greater than or equal to desired values for the following stats:\r\n${cube_line_as_int_stats.join("\r\n")}">[?]</span>
+                    </label>
+                </div>
             </div>
             <span id="cube_msg2" class="hidden">
                 <span style="color:blue;display:block;padding-bottom:15px;">
-                    Estimated cubes to use (based on line probability): <span id="cube_expected">1</span>
+                    Estimated cubes to use (based on line probability for the specific line): <span id="cube_expected">1</span>
                     <span style="font-size:0.6em;display:block;">Excludes cubes needed to get to desired tier. Probability is based on lines selected in exact order (number of cubes can be less due to permutations of the lines which is not accounted for).</span>
                 </span>
             </span>
