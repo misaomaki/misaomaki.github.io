@@ -354,7 +354,7 @@ $(function() {
                         Select Cube
                     </span>
                     <div class="cube-selection" id="cube_select">
-                        <div class="cube auto-cube cube-occult maple-button" data-id="occult" data-type="main"></div>
+                        <div class="cube auto-cube cube-occult maple-button" data-id="occult" data-type="main" style="position:relative;top:3px;left:3px"></div>
                         <div class="cube auto-cube cube-master maple-button" data-id="master" data-type="main"></div>
                         <div class="cube auto-cube cube-meister maple-button" data-id="meister" data-type="main"></div>
                         <div class="cube auto-cube cube-red maple-button" data-id="red" data-type="main"></div>
@@ -1921,18 +1921,17 @@ $(function() {
                     <span class="${this_item.img}" style="width:30px;height:30px;display:inline-block;position:relative;top:5px;"></span>
                 `);
 
-                //if the item does not have a primary stat, then show the dropdown to choose the stat
-                /*
-                if (this_item.mstat === "" && this_item.type !== "mechanical heart") {
-                    scroll_type_box.removeClass("hidden");
-                } else {
-                    scroll_type_box.addClass("hidden");
-                }
-                */
-
                 if (this_item.type === "mechanical heart") {
                     scroll_type_box_att.removeClass("hidden");
+                    scroll_type_box.addClass("hidden");
                 } else {
+                    //weapons don't show the armor-type scrolls
+                    if (this_item.class !== "weapon") {
+                        scroll_type_box.removeClass("hidden");
+                    } else {
+                        scroll_type_box.addClass("hidden");
+                    }
+    
                     scroll_type_box_att.addClass("hidden");
                 }
 

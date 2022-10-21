@@ -143,7 +143,7 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
 
         cost = Math.round(0.78 * ( 
             Math.pow(rlevel, 3) * Math.pow(star + 1, power) / divisor
-        ) + 7.8) * 100;
+        ) + 10 * 0.78) * 100;
     } else {
         if (star < 10) {
             divisor = 2500;
@@ -158,8 +158,6 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
             Math.pow(rlevel, 3) * Math.pow(star + 1, power) / divisor
         ) + 10) * 100;
     }
-
-    //cost = 1000 + Math.pow(rlevel, 3) * (Math.pow(star + 1, power) / divisor);
 
     return cost;
 };
