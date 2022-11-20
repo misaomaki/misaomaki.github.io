@@ -76,11 +76,7 @@ $(function() {
     $(".system_cb").on("click", function(e) {
         let _this = $(this);
         let bind_val = _this.attr("data-bind");
-        let redraw = +_this.attr("data-redraw");
-
-        if (redraw === undefined) {
-            redraw = 1;
-        }
+        let redraw = +(_this.attr("data-redraw") ?? 1);
 
         system[bind_val] = e.target.checked;
 

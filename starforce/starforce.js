@@ -110,6 +110,7 @@ var star_cost_type = function(item_type) {
     return 1;
 };
 
+/* type is deprecated. GMS and KMS have same calculations now */
 var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
     //superior equipment have a fixed cost
     if (superior) {
@@ -127,37 +128,18 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
     let power = 2.7;
     let cost = 0;
 
-    if (type === "GMS") {
-        if (star < 10) {
-            divisor = 2500;
-            power = 1;
-        } else if (star < 15) {
-            divisor = 40000;
-        } else if (star < 18) {
-            divisor = 12000;
-        } else if (star < 20) {
-            divisor = 11000;
-        } else if (star < 25) {
-            divisor = 10000;
-        }
-
-        cost = Math.round(0.78 * ( 
-            Math.pow(rlevel, 3) * Math.pow(star + 1, power) / divisor
-        ) + 10 * 0.78) * 100;
-    } else {
-        if (star < 10) {
-            divisor = 2500;
-            power = 1;
-        } else if (star < 15) {
-            divisor = 40000;
-        } else if (star < 25) {
-            divisor = 20000;
-        }
-
-        cost = Math.round(( 
-            Math.pow(rlevel, 3) * Math.pow(star + 1, power) / divisor
-        ) + 10) * 100;
+    if (star < 10) {
+        divisor = 2500;
+        power = 1;
+    } else if (star < 15) {
+        divisor = 40000;
+    } else if (star < 25) {
+        divisor = 20000;
     }
+
+    cost = Math.round(( 
+        Math.pow(rlevel, 3) * Math.pow(star + 1, power) / divisor
+    ) + 10) * 100;
 
     return cost;
 };
