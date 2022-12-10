@@ -103,10 +103,12 @@ $(function() {
         <div style="padding:10px" id="stat_options_container">
             Analyze starforce runs by looking at the averages across many items. 
             <br><br>
-            Starforce Cost Type: <select id="stat_sfrates">
-                <option value="GMS">GMS</option>
-                <option value="KMS">KMS</option>
-            </select> 
+            <div class="hidden>
+                Starforce Cost Type: <select id="stat_sfrates">
+                    <option value="GMS">GMS</option>
+                    <option value="KMS">KMS</option>
+                </select> 
+            </div>
             <br><br>
             Safeguard at stars: 
             <div id="stat_options">

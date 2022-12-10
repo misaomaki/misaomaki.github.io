@@ -19459,6 +19459,101 @@ var items_store = {
           "scrollable": false,
           "img_type": "png"
         }
+    },
+    totem: {
+        "Misty_Island_Totem": {
+          "name": "Misty Island Totem",
+          "level": 200,
+          "class": "armor",
+          "type": "totem",
+          "speed": "",
+          "job": [
+            "beginner",
+            "warrior",
+            "bowman",
+            "magician",
+            "thief",
+            "pirate"
+          ],
+          "mstat": "",
+          "pstat": [
+            "str",
+            "dex",
+            "int",
+            "luk"
+          ],
+          "att_type": "att",
+          "flame_type": 1,
+          "bstat": {
+            "str": 20,
+            "dex": 20,
+            "int": 20,
+            "luk": 20,
+            "watt": 5,
+            "matt": 5
+          },
+          "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+          },
+          "img": "item-mistyislandtotem",
+          "upgrades": 0,
+          "hammers_added": 0,
+          "starforce": false,
+          "enhanceable": false,
+          "scrollable": false,
+          "img_type": "png",
+          "shadowknight": false
+        },
+        "Frenzy_Totem": {
+            "name": "Frenzy Totem",
+            "level": 0,
+            "class": "armor",
+            "type": "totem",
+            "speed": "",
+            "job": [
+              "beginner",
+              "warrior",
+              "bowman",
+              "magician",
+              "thief",
+              "pirate"
+            ],
+            "mstat": "",
+            "pstat": [
+              "str",
+              "dex",
+              "int",
+              "luk"
+            ],
+            "att_type": "att",
+            "flame_type": 0,
+            "bstat": {
+              "str": 30,
+              "dex": 30,
+              "int": 30,
+              "luk": 30,
+              "watt": 10,
+              "matt": 10
+            },
+            "req": {
+              "str": 0,
+              "dex": 0,
+              "int": 0,
+              "luk": 0
+            },
+            "img": "item-frenzytotem",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "starforce": false,
+            "enhanceable": false,
+            "scrollable": false,
+            "img_type": "webp",
+            "shadowknight": false,
+            "flavor": "A giant totem with filled with mysterious power. Allows use of the Monolith skill."
+          }
     }
 }
 
