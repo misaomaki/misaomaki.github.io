@@ -19462,7 +19462,7 @@ var items_store = {
     },
     totem: {
         "Misty_Island_Totem": {
-          "name": "Misty Island Totem",
+          "name": "Ancient Slate Replica",
           "level": 200,
           "class": "armor",
           "type": "totem",
