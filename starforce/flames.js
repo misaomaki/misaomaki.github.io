@@ -759,8 +759,8 @@ var flames = {
         this = item object
     */
     line_rates: function() {
-        /* item has boss flames, so always 4 */
-        if (this.idata.flame_type === 2) {
+        /* if max lines flag set, always return max lines */
+        if (this.idata.flame_always_max_lines) {
             return [4, []];
         }
 
@@ -1148,7 +1148,7 @@ $(function(){
             </h2>
             <hr>
             ${
-                Item.idata.flame_type === 1 ? `
+                !Item.idata.flame_always_max_lines ? `
                     There is a 20% chance to add a new line to non-boss flame items.
                     <span style="color:red;font-size:0.9em;">
                         Note: Was not able to find the probability rates for how additional lines are added
@@ -1192,7 +1192,7 @@ $(function(){
                         </tbody>
                     </table>
                 ` : `
-                    Item is a boss flame equip, so there is a 100% chance to add 4 flame lines to the item.
+                    There is a 100% chance to add 4 flame lines to the item.
                 `
             }
             <hr>

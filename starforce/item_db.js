@@ -19485,6 +19485,7 @@ var items_store = {
           ],
           "att_type": "att",
           "flame_type": 1,
+          "flame_always_max_lines": true,
           "bstat": {
             "str": 20,
             "dex": 20,
@@ -19570,6 +19571,7 @@ let items_other_data = {
     enhanceable: true, //whether the item can be cubed
     scrollable: true, //whether the item can be scrolled
     flame_type: 2, //0 - not flammable, 1 - non-boss flames, 2 - boss flames
+    flame_always_max_lines: false, /* whether using flames guarantees 4 lines. automatically set as true for flame_type = 2, but can be overriden */
     skill: "", //orange text at the bottom denoting a skill
     flavor: "", //flavor text in white at the bottom
     shadowknight: false, //use shadowknight coins
@@ -19637,9 +19639,14 @@ $(function() {
                 istore_override = items_store[os_s[0]][os_s[1]];
             }
             
-            let iod = $.extend(true, {}, items_other_data);
+            let iod = $.extend(true, {}, items_other_data); /* copy of the default data */
             
             iod.meta.max_stars = iod.stars !== -1 ? iod.stars : star_max(istore.level, istore.superior);
+
+            /* set the always_max flag for boss flames for default. can be overriden by actual item */
+            if (iod.meta.flame_type == 2) {
+                iod.meta.flame_always_max_lines = true;
+            }
 
             items_store[i][j] = {...iod, ...istore_override, ...istore};
             
