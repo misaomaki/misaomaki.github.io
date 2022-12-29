@@ -19644,8 +19644,10 @@ $(function() {
             iod.meta.max_stars = iod.stars !== -1 ? iod.stars : star_max(istore.level, istore.superior);
 
             /* set the always_max flag for boss flames for default. can be overriden by actual item */
-            if (iod.meta.flame_type == 2) {
-                iod.meta.flame_always_max_lines = true;
+            if ("flame_always_max_lines" in istore) {
+                iod.meta.flame_always_max_lines = istore.flame_always_max_lines;
+            } else {
+                iod.meta.flame_always_max_lines = istore.flame_type == 2;
             }
 
             items_store[i][j] = {...iod, ...istore_override, ...istore};

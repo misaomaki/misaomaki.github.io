@@ -1704,7 +1704,7 @@ $(function() {
                     });
              
                     Item = new item(items_store[item_type[0]][item_type[1]]);
-
+                    
                     Item.set_item_level(this_star);
 
                     Item.set_item_scroll(scroll_options);

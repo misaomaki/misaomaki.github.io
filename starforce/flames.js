@@ -760,7 +760,7 @@ var flames = {
     */
     line_rates: function() {
         /* if max lines flag set, always return max lines */
-        if (this.idata.flame_always_max_lines) {
+        if (this.idata.meta.flame_always_max_lines) {
             return [4, []];
         }
 
@@ -1148,7 +1148,7 @@ $(function(){
             </h2>
             <hr>
             ${
-                !Item.idata.flame_always_max_lines ? `
+                !Item.idata.meta.flame_always_max_lines ? `
                     There is a 20% chance to add a new line to non-boss flame items.
                     <span style="color:red;font-size:0.9em;">
                         Note: Was not able to find the probability rates for how additional lines are added
