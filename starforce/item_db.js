@@ -19484,8 +19484,7 @@ var items_store = {
             "luk"
           ],
           "att_type": "att",
-          "flame_type": 1,
-          "flame_always_max_lines": true,
+          "flame_type": 2,
           "bstat": {
             "str": 20,
             "dex": 20,
