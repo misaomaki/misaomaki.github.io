@@ -1357,4 +1357,64 @@ $(function(){
 
         return false;
     });
+
+    /*
+        occult cube - mystical cube 
+        bonus occult cube - bonus mystical cube, 02439870
+        hard cube - master craftman's cube, 02439658
+        solid cube - meister cube, 02635223
+        red cube - glowing cube, 02439877
+        black cube - bright cube, 02439878
+    */
+    function change_cube_visual(type = "GMS") {
+        if (type === "GMS" && $("#css_cube_override").length === 0) {
+            $("body").append(`
+                <style id="css_cube_override">
+                    .cube-red {
+                        background: url(../assets/cube/GlowingCube.png) !important;
+                        background-repeat: no-repeat !important;
+                    }
+                    .cube-bonus {
+                        background: url(../assets/cube/BonusBrightCube.png) !important;
+                        background-repeat: no-repeat !important;
+                    }
+                    .cube-meister {
+                        background: url(../assets/cube/SolidCube.png) !important;
+                        background-repeat: no-repeat !important; 
+                        top: 8px;
+                    }
+                    .cube-meister.auto-cube, .cube-master.auto-cube {
+                        position: relative;
+                        top: 3px;
+                        left: 3px;
+                    }
+                    .cube-occult {
+                        background: url(../assets/cube/MysticalCube.png) !important;
+                        background-repeat: no-repeat !important;
+                    }
+                    .cube-master {
+                        background: url(../assets/cube/HardCube.png) !important;
+                        background-repeat: no-repeat !important;    
+                        top: 7px;
+                    }
+                    .cube-black {
+                        background: url(../assets/cube/BrightCube.png) !important;
+                        background-repeat: no-repeat !important;
+                    }
+                    .item-cubes {
+                        background-image: url(../assets/cube/cubes_gms.png) !important;
+                        background-repeat: no-repeat !important;
+                        background-size: contain;
+                    }
+                </style>
+            `);
+        } else {
+            $("#css_cube_override").remove();
+        }
+    }
+
+    /* change display. does not change rates */
+    $("#system_cube_display").on("change", function() {
+        change_cube_visual($(this).val());
+    });
 });

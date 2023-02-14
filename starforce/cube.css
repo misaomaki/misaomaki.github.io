@@ -66,6 +66,7 @@
     height:36px;
     width:36px;
 }
+
 .cube-bonus {
     background: url(../assets/cube/BonusCube.png);
     background-repeat: no-repeat !important;
@@ -73,6 +74,7 @@
     height:36px;
     width:36px;
 }
+
 .cube-meister {
     background: url(../assets/cube/MeisterCube.png);
     background-repeat: no-repeat !important;
@@ -80,6 +82,7 @@
     height:36px;
     width:36px;  
 }
+
 .cube-master {
     background: url(../assets/cube/MasterCraftsmanCube.png);
     background-repeat: no-repeat !important;
@@ -87,6 +90,7 @@
     height:36px;
     width:36px;  
 }
+
 .cube-occult {
     background: url(../assets/cube/OccultCube.png);
     background-repeat: no-repeat !important;
@@ -96,6 +100,7 @@
     top: 7px;
     left: 7px;
 }
+
 
 .cube.disabled {
     filter: grayscale(1);

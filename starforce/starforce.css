@@ -37,7 +37,7 @@
 .item-cubes {
     width: 35px;
     height: 35px;
-    background: url("../assets/cube/cubes.png");
+    background-image: url("../assets/cube/cubes.png");
     background-repeat: no-repeat;
     background-size: contain;
 }
