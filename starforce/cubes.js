@@ -1375,7 +1375,7 @@ $(function(){
                         background-repeat: no-repeat !important;
                     }
                     .cube-bonus {
-                        background: url(../assets/cube/BonusBrightCube.png) !important;
+                        background: url(../assets/cube/BonusGlowingCube.png) !important;
                         background-repeat: no-repeat !important;
                     }
                     .cube-meister {
@@ -1405,6 +1405,40 @@ $(function(){
                         background-image: url(../assets/cube/cubes_gms.png) !important;
                         background-repeat: no-repeat !important;
                         background-size: contain;
+                    }
+                    .reset-cube-bonus {
+                        background: url(../assets/cube/bonus/cube_bonus_glowing.backgrnd3.png) !important;
+                        background-repeat: no-repeat !important;
+                    }
+                    .reset-cube-red {
+                        background: url(../assets/cube/red/cube_glowing.backgrnd3.png) !important;
+                        background-repeat: no-repeat !important;    
+                        top: 4px;
+                    }
+                    .cube-main-red {
+                        background: url(../assets/cube/free/Cube.backgrnd.png) !important;
+                        background-repeat: no-repeat !important;
+                    }
+                    .cube-black-header-reset {
+                        background: url(../assets/cube/black/cube_bright.backgrnd3.png) !important;
+                        background-repeat: no-repeat !important;    
+                        top: 4px;
+                    }
+                    .cube-black-main {
+                        background: url(../assets/cube/black/cube_bright.backgrnd2.png) !important;
+                        background-repeat: no-repeat !important;
+                    }                   
+                    .reset-cube-occult {
+                        background: url(../assets/cube/free/cube_mystical.backgrnd3.png) !important;
+                        background-repeat: no-repeat !important;
+                    }               
+                    .reset-cube-master {
+                        background: url(../assets/cube/free/cube_hard.backgrnd3.png) !important;
+                        background-repeat: no-repeat !important;
+                    }                
+                    .reset-cube-meister {
+                        background: url(../assets/cube/free/cube_solid.backgrnd3.png) !important;
+                        background-repeat: no-repeat !important;
                     }
                 </style>
             `);
