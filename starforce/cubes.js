@@ -1408,7 +1408,8 @@ $(function(){
                     }
                     .reset-cube-bonus {
                         background: url(../assets/cube/bonus/cube_bonus_glowing.backgrnd3.png) !important;
-                        background-repeat: no-repeat !important;
+                        background-repeat: no-repeat !important;    
+                        top: 4px;
                     }
                     .reset-cube-red {
                         background: url(../assets/cube/red/cube_glowing.backgrnd3.png) !important;

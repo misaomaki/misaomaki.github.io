@@ -2164,4 +2164,10 @@ $(function() {
 
     init_item(); //start here
     initialize();
+    post_render();
+
+    function post_render() {
+        //default to GMS cube
+        $("#system_cube_display").val("GMS").trigger("change");
+    }
 });
