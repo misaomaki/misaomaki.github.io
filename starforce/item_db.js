@@ -4288,6 +4288,36 @@ var items_store = {
         }
     },
     sweetwater: {
+        pendant: {
+            name: "Sweetwater Pendant",
+            level: 160,
+            class: "armor",
+            sub_class: "accessory",
+            type: "pendant",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 1,
+            bstat: {
+                str: 34,
+                dex: 34,
+                int: 34,
+                luk: 34,
+                def: 330,
+                mp: 342
+            },
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwaterpendant",
+            upgrades: 3,
+            hammers_added: 2
+        },
         dagger: {
             name: "Sweetwater Knife",
             level: 160,

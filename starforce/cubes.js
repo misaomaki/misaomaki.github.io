@@ -1,6 +1,7 @@
 var cube = {
     rates: {},
-    type: {}
+    type: {},
+    user: {}  /* save user options (for auto cube) for each item type (saves lines selected and cube type) */
 };
 
 //some stats cannot exceed a certain number of lines. if not listed here, then assumes max lines allowed

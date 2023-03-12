@@ -340,7 +340,19 @@ $(function() {
     });
 
     //auto cube
+    //TODO: move to own file
     $("#auto_cube").on("click", function() {
+        let user_cube_option = cube.user[Item.idata.img] ?? {
+            selected_cube: "none",
+            cube_type: "none",
+            selected_pot: "none",
+            cube_selected: {
+                line_0: 0,
+                line_1: 0,
+                line_2: 0
+            }
+        };
+        
         let html = `
             <b>Automatically cube to the desired lines. This will generate cube log data.</b>
             <hr>
@@ -350,12 +362,12 @@ $(function() {
                         Select Cube
                     </span>
                     <div class="cube-selection" id="cube_select">
-                        <div class="cube auto-cube cube-occult maple-button" data-id="occult" data-type="main" style="position:relative;top:3px;left:3px"></div>
-                        <div class="cube auto-cube cube-master maple-button" data-id="master" data-type="main"></div>
-                        <div class="cube auto-cube cube-meister maple-button" data-id="meister" data-type="main"></div>
-                        <div class="cube auto-cube cube-red maple-button" data-id="red" data-type="main"></div>
-                        <div class="cube auto-cube cube-black maple-button" data-id="black" data-type="main"></div>
-                        <div class="cube auto-cube cube-bonus maple-button" data-id="bonus" data-type="bonus"></div>
+                        <div class="cube auto-cube cube-occult maple-button ${ user_cube_option.selected_cube == "occult" ? "auto-cube-selected" : ""}" data-id="occult" data-type="main" style="position:relative;top:3px;left:3px"></div>
+                        <div class="cube auto-cube cube-master maple-button ${ user_cube_option.selected_cube == "master" ? "auto-cube-selected" : ""}" data-id="master" data-type="main"></div>
+                        <div class="cube auto-cube cube-meister maple-button ${ user_cube_option.selected_cube == "meister" ? "auto-cube-selected" : ""}" data-id="meister" data-type="main"></div>
+                        <div class="cube auto-cube cube-red maple-button ${ user_cube_option.selected_cube == "red" ? "auto-cube-selected" : ""}" data-id="red" data-type="main"></div>
+                        <div class="cube auto-cube cube-black maple-button ${ user_cube_option.selected_cube == "black" ? "auto-cube-selected" : ""}" data-id="black" data-type="main"></div>
+                        <div class="cube auto-cube cube-bonus maple-button ${ user_cube_option.selected_cube == "bonus" ? "auto-cube-selected" : ""}" data-id="bonus" data-type="bonus"></div>
                     </div>
                 </label>
             </div>
@@ -367,7 +379,7 @@ $(function() {
                     <div class="item-cube-form cube-main-form" id="auto_cube_form_main">
                         <label for="auto_cube_select_main">
                             <span class="item-cube-label">Select Main Potential Tier:</span>
-                            <select id="auto_cube_select_main" class="auto-select-cube-type" data-type="main">
+                            <select id="auto_cube_select_main" class="auto_cube_select auto-select-cube-type" data-type="main">
                                 <option value="">No Potential</option>
                                 <option value="rare">Rare</option>
                                 <option value="epic">Epic</option>
@@ -381,7 +393,7 @@ $(function() {
                     <div class="item-cube-form cube-bonus-form" id="auto_cube_form_bonus">
                         <label for="auto_cube_select_bonus">
                             <span class="item-cube-label">Select Bonus Potential Tier:</span>
-                            <select id="auto_cube_select_bonus" class="auto-select-cube-type" data-type="bonus">
+                            <select id="auto_cube_select_bonus" class="auto_cube_select auto-select-cube-type" data-type="bonus">
                                 <option value="">No Potential</option>
                                 <option value="rare">Rare</option>
                                 <option value="epic">Epic</option>
@@ -475,6 +487,18 @@ $(function() {
                     w_c.postMessage(data);
                     
                     let cube_msg = $("#cube_msg");
+
+                    /* reset user cube option and store the lines */
+                    cube.user[Item.idata.img] = {
+                        selected_cube: cube_name,
+                        cube_type: cube_type,
+                        selected_pot: pot_tier,
+                        selected_lines: {
+                            line_0: line_1,
+                            line_1: line_2,
+                            line_2: line_3
+                        }
+                    };
 
                     w_c.onmessage = async function(d) {
                         //codes less than 1 are errors that cannot proceed
@@ -596,6 +620,23 @@ $(function() {
                 cube_expected.html(expected_cubes);
             });
         });
+
+        /* if user options are present, init them */
+        if (user_cube_option.selected_cube != "none") {
+            /* select the cube */
+            $("#cube_select .auto-cube-selected").trigger("click"); 
+
+            /* select the potential */
+            $("#auto_cube_lines .auto_cube_select:visible").val(user_cube_option.selected_pot).trigger("change");
+        
+            /* select the lines */
+            setTimeout(()=>{
+                $(`#cube_stat_line_${user_cube_option.selected_cube}_1`).val(user_cube_option.selected_lines.line_0).trigger("change");
+                $(`#cube_stat_line_${user_cube_option.selected_cube}_2`).val(user_cube_option.selected_lines.line_1).trigger("change");
+                let s3 = $(`#cube_stat_line_${user_cube_option.selected_cube}_3`).val(user_cube_option.selected_lines.line_2).trigger("change");
+                s3.trigger({type: "select2:select"}); /* update probability */
+            },0);
+        }
     });
 
     $("#reverse_flame_check").on("click", function() {
