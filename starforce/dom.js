@@ -342,7 +342,7 @@ $(function() {
     //auto cube
     //TODO: move to own file
     $("#auto_cube").on("click", function() {
-        let user_cube_option = cube.user[Item.idata.img] ?? {
+        let user_cube_option = cube.user[Item.idata.name] ?? {
             selected_cube: "none",
             cube_type: "none",
             selected_pot: "none",
@@ -489,7 +489,7 @@ $(function() {
                     let cube_msg = $("#cube_msg");
 
                     /* reset user cube option and store the lines */
-                    cube.user[Item.idata.img] = {
+                    cube.user[Item.idata.name] = {
                         selected_cube: cube_name,
                         cube_type: cube_type,
                         selected_pot: pot_tier,

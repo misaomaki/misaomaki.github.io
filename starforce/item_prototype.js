@@ -598,7 +598,12 @@ item.prototype.redraw_item_tooltip = function() {
     }, "dom", "istar_con");
     let iflag = this.check_cache(()=>{
         return i_con.find(".item-container-flag");
-    }, "dom", "iflag");
+    }, "dom", "iflag");    
+    let isub = this.check_cache(()=>{
+        return i_con.find(".item-sub-description");
+    }, "dom", "isub");
+
+    
 
     //total stats from all sources: flames, stars, and scrolls
     let e_stats = Object.assign({}, stats);
@@ -900,9 +905,13 @@ item.prototype.redraw_item_tooltip = function() {
     let this_pot = this.idata.meta.cube_potential;
     let this_b_pot = this.idata.meta.cube_potential_bonus;
     let cube_html = "";
+
+    isub.html('');
     
     //main and bonus potential stuff
     if (this_pot !== "") {
+        isub.html(`(${this_pot.capitalize()} Item)`);
+        
         let main_pot = this.idata.boosts.cubes.main;
         let main_pot_keys = Object.keys(this.idata.boosts.cubes.main);
 
