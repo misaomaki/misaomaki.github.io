@@ -122,6 +122,8 @@
     padding: 5px;
     font-size: 0.9em;
     white-space: nowrap;
+    position: absolute;
+    bottom: 63px;
 }
 
 .ui-widget-overlay
@@ -1898,6 +1900,14 @@ body, html {
 
 .item-color-trade-status, .item-color-skill {
     color: rgb(255,170,0);
+}
+
+.item-color-starforce {
+    color: rgb(255,204,0);
+}
+
+.item-color-scrolls {
+    color: rgb(170,170,255);
 }
 
 .potential-line {

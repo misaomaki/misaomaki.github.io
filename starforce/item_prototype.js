@@ -845,8 +845,12 @@ item.prototype.redraw_item_tooltip = function() {
 
                 let tot_gain = sf_total_gain[a.value] + scr_total_gain[a.value] + other_stats[a.value];
 
+                let sf_gain = sf_total_gain[a.value];
+                let other_gain = scr_total_gain[a.value] + other_stats[a.value];
+
                 if (["watt", "matt", "def"].includes(a.value)) {
                     tot_gain += percent_stats[a.value];
+                    sf_gain += percent_stats[a.value];
                 }
 
                 //for matt, if all sources have no matt, then don't display matt on the tooltip
@@ -875,10 +879,20 @@ item.prototype.redraw_item_tooltip = function() {
                                             `<span class="item-color-flame">+${flame_stats[a.value]}${a_symbol}</span></span>` : '' 
                                         }
                                         ${
-                                            tot_gain > 0 ?
+                                            tot_gain > 0 && !system.itt_kms_new ?
                                             `<span class="item-color-stat-upgrade">+${tot_gain}${a_symbol}</span>`
                                             :
                                             ''
+                                        }
+                                        ${
+                                            sf_gain > 0 && system.itt_kms_new ? `
+                                            <span class="item-color-starforce">+${sf_gain}</span>
+                                            ` : ""
+                                        }
+                                        ${
+                                            other_gain > 0 && system.itt_kms_new ? `
+                                            <span class="item-color-scrolls">+${other_gain}</span>
+                                            ` : ""
                                         }
                                         [[remove]]<span class="item-color-base">)</span>` 
                                     : ''

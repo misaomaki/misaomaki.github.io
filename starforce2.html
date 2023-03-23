@@ -62,13 +62,22 @@
     }
     
     .openbtn {
-      font-size: 20px;
-      cursor: pointer;
-      background-color: rgba(0,0,0,0.7);;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      white-space: nowrap;
+        font-size: 20px;
+        cursor: pointer;
+        background-color: rgba(0,0,0,0.7);;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        white-space: nowrap;    
+        display: block;
+        margin: 5px 0 5px 0;
+        width: 125px;
+        text-align: left;
+    }
+
+    .openbtn-left {
+        transition: .5s;
+        margin-left: -409px;
     }
     
     .openbtn:hover {
@@ -131,14 +140,28 @@
 </style>
 
 <script>
-    function openNav() {
-      document.getElementById("mySidebar").style.width = "300px";
-      document.getElementById("main").style.display = "none";
+    const dev_info = `
+        <div class="dev-info">
+            <hr>
+            Suggestions? Feedback? Comments? Bugs? <br>
+            Reddit: UltimatePowerVaccuum <br> 
+            Discord: ddf1995#4952 <br>
+            Maplestory: <span onclick="congrats_from_maki(true)">MisaoMaki</span> | Bera
+        </div>
+    `;
+    function openNav(type) {
+        let sb = $(".sidebar").css("width", "0");
+        let this_sb = sb.filter(`[data-type=${type}]`).css("width", "300px");
+        if (this_sb.find(".dev-info").length == 0) {
+            this_sb.append(dev_info);
+        }
+        $(".openbtn").addClass("openbtn-left");
     }
-    
-    function closeNav() {
-      document.getElementById("mySidebar").style.width = "0";
-      document.getElementById("main").style.display= "initial";
+
+    function closeNav(type) {
+        let main = $("#main");
+        $(".sidebar").filter(`[data-type=${type}]`).css("width", "0");
+        $(".openbtn").removeClass("openbtn-left");
     }
 </script>
 
@@ -164,20 +187,20 @@
 </style>
 
 <style>
-    #mysidebar .menu-group {
+    .sidebar .menu-group {
         color: white;
         padding: 5px;
         display: block;
         white-space: nowrap;
     }
 
-    #mysidebar margin {
+    .sidebar margin {
         display: block;
         width: 100%;
         padding: 5px;
     }
 
-    #mysidebar .side-bar-item {
+    .sidebar .side-bar-item {
         padding: 3px;
         display: block;
     }
@@ -195,9 +218,11 @@
         <div class="flame flame-powerful flame-big maple-button flame-option" data-id="powerful" id="powerfulFlame"></div>
         <div class="flame flame-eternal flame-big maple-button flame-option" data-id="eternal" id="eternalFlame"></div>
     </div>
+    
 
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+    <div id="logSideBar" class="sidebar" data-type="log">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav('log')">×</a>
         <a href="#" id="starforce_log" class="starforce-option">
             <span style="display:inline-block;width:40px">
                 <span class="item-label-icon item-starforce-star"></span>
@@ -238,7 +263,29 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
         <span class="margin">&nbsp;</span>
         <a href="#" id="statistics_starforce" class="starforce-option">Starforce Statistics</a>
         <span class="margin">&nbsp;</span>
-        <hr>
+    </div>
+
+    <div id="eventsSideBar" class="sidebar" data-type="events">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav('events')">×</a>
+        <div class="bottom-menu-items">
+            <div class="menu-group starforce-option">
+                <b>Starforce Events</b>
+                <br>
+                <label class="side-bar-item" for="event_51015">
+                    <input type="checkbox" class="event_cb" id="event_51015" data-bind="_51015"> 5/10/15 100% Success
+                </label>
+                <label class="side-bar-item" for="event_nb15">
+                    <input type="checkbox" class="event_cb" id="event_nb15" data-bind="nb15"> No-Boom Pre 15/8*
+                </label>
+                <label class="side-bar-item" for="event_pre10x2">
+                    <input type="checkbox" class="event_cb" id="event_pre10x2" data-bind="pre10x2"> 2x Stars Pre 10
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div id="optionSidebar" class="sidebar" data-type="options">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav('options')">×</a>
         <div class="bottom-menu-items">
             <div class="menu-group starforce-option">
                 <b>Starforce</b>
@@ -263,17 +310,13 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                     </select> Cube Type
                 </label>
             </div>
-            <div class="menu-group starforce-option">
-                <b>Events</b>
+            <div class="menu-group cube-option">
+                <b>Item Tooltip Display</b>
                 <br>
-                <label class="side-bar-item" for="event_51015">
-                    <input type="checkbox" class="event_cb" id="event_51015" data-bind="_51015"> 5/10/15 100% Success
-                </label>
-                <label class="side-bar-item" for="event_nb15">
-                    <input type="checkbox" class="event_cb" id="event_nb15" data-bind="nb15"> No-Boom Pre 15/8*
-                </label>
-                <label class="side-bar-item" for="event_pre10x2">
-                    <input type="checkbox" class="event_cb" id="event_pre10x2" data-bind="pre10x2"> 2x Stars Pre 10
+                <label class="side-bar-item" for="itt_kms_new">
+                    <input type="checkbox" class="system_cb" id="itt_kms_new" data-bind="itt_kms_new" data-redraw="2" 
+                        title="Split out starforce and scrolling stat gains from the total (blue stat in parenthesis is separated out to its components). This will become standard once GMS releases it."> 
+                    Show Starforce and Scroll Stats <br> separately.
                 </label>
             </div>
             <span class="margin">&nbsp;</span>
@@ -297,17 +340,13 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                 </label>
             </div>
         </div>
-        <div class="dev-info" id="dev-info">
-            Suggestions? Feedback? Comments? Bugs? <br>
-            Reddit: UltimatePowerVaccuum <br> 
-            Discord: ddf1995#4952 <br>
-            Maplestory: <span onclick="congrats_from_maki(true)">MisaoMaki</span> | Bera
-        </div>
     </div>
     
     <!-- menu stuff -->
     <div id="main">
-        <button class="openbtn" onclick="openNav()">☰ Options</button>  
+        <button class="openbtn" onclick="openNav('log')">☰ Logs</button>  
+        <button class="openbtn" onclick="openNav('events')">☰ Events</button>  
+        <button class="openbtn" onclick="openNav('options')">☰ Options</button>  
     </div>
     <div class="sfsc-main-border hidden">
         <div class="sfsc-main-header"></div>
@@ -723,7 +762,8 @@ crossorigin="anonymous"></script>
         auto_open_log: true,
         confirmation_popup: true,
         animation_speed: 1,
-        animation_speed_actual: 1
+        animation_speed_actual: 1,
+        itt_kms_new: false
     };
 
     //default animation speeds. can be speed up via the animation controls

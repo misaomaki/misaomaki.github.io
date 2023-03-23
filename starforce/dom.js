@@ -75,13 +75,15 @@ $(function() {
     //system buttons
     $(".system_cb").on("click", function(e) {
         let _this = $(this);
-        let bind_val = _this.attr("data-bind");
-        let redraw = +(_this.attr("data-redraw") ?? 1);
+        let data = _this.data();
+        let redraw = +(data.redraw ?? 1);
 
-        system[bind_val] = e.target.checked;
+        system[data.bind] = e.target.checked;
 
         if (redraw === 1) {
             Item.redraw_sf(); 
+        } else if (redraw === 2) {
+            Item.redraw_item_tooltip(); 
         }
     });
 
