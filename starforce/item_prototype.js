@@ -204,6 +204,13 @@ item.prototype.set_item_scroll = function(s) {
 
         let _s = s[i];
 
+        /* chaos scroll */
+        if (cogs.types.includes(_s.type)) {
+            cogs.scroll.call(this, _s.type, false);
+            curr_scrolls += 1;
+            continue;
+        }
+
         let stat_gain = this.idata.mstat;
         let has_lower_val = false;
 
@@ -220,7 +227,9 @@ item.prototype.set_item_scroll = function(s) {
             } else {
                 _s.type = _s.type + "m";
                 has_lower_val = true;
-            }
+            }            
+                
+            spell_trace_used += _s.amount;
         } else if (_s.type === "prime") {
             if (this.idata.class === "weapon" || this.idata.type === "mechanical heart") {
                 _s.type = "prime_weapon";
@@ -258,10 +267,6 @@ item.prototype.set_item_scroll = function(s) {
                     _j = this.idata.att_type;
                 }
             } 
-
-            if (j.startsWith("_")) {
-                spell_trace_used += 1;
-            }
 
             let stat_val = (scr_type[j] - (has_lower_val && this.idata.level < 100 ? 1 : 0))
 
@@ -860,16 +865,19 @@ item.prototype.redraw_item_tooltip = function() {
                     } 
                 }
 
+                /* keep track of the total calculated stats. used for chaos scrolls */
+                this.idata.meta.final_stats[a.value] = e_stats[a.value];
+
                 return `
                     ${a.value === "reqlvl" ? `
                         ${
-                            e_stats[a.value] !== 0 ?
+                            e_stats[a.value] > 0 ?
                             `${a.name} : ${e_stats[a.value]}${a_symbol} <br>`
                             :
                             ``
                         }
                     ` : `
-                        ${ e_stats[a.value] !== 0 ?
+                        ${ e_stats[a.value] > 0 ?
                             `<span class="${e_stats[a.value + "_upgrade"] ? "item-color-stat-upgrade" : ""}">
                                 ${a.name}: ${a_type !== "raw" ? "+" : ""}${e_stats[a.value]}${a_symbol}
                                 ${e_stats[a.value + "_upgrade"] ?
@@ -879,19 +887,19 @@ item.prototype.redraw_item_tooltip = function() {
                                             `<span class="item-color-flame">+${flame_stats[a.value]}${a_symbol}</span></span>` : '' 
                                         }
                                         ${
-                                            tot_gain > 0 && !system.itt_kms_new ?
-                                            `<span class="item-color-stat-upgrade">+${tot_gain}${a_symbol}</span>`
+                                            tot_gain != 0 && !system.itt_kms_new ?
+                                            `<span class="${tot_gain < 0 ? 'item-color-negative' : 'item-color-stat-upgrade'}">${tot_gain < 0 ? '' : '+'}${tot_gain}${a_symbol}</span>`
                                             :
                                             ''
                                         }
                                         ${
-                                            sf_gain > 0 && system.itt_kms_new ? `
-                                            <span class="item-color-starforce">+${sf_gain}</span>
+                                            sf_gain != 0 && system.itt_kms_new ? `
+                                            <span class="${sf_gain < 0 ? 'item-color-negative' : 'item-color-starforce'}item-color-starforce">${sf_gain < 0 ? '' : '+'}${sf_gain}</span>
                                             ` : ""
                                         }
                                         ${
-                                            other_gain > 0 && system.itt_kms_new ? `
-                                            <span class="item-color-scrolls">+${other_gain}</span>
+                                            other_gain != 0 && system.itt_kms_new ? `
+                                            <span class="${other_gain < 0 ? 'item-color-negative' : 'item-color-scrolls'}">${other_gain < 0 ? '' : '+'}${other_gain}</span>
                                             ` : ""
                                         }
                                         [[remove]]<span class="item-color-base">)</span>` 

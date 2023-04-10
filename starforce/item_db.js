@@ -19605,6 +19605,7 @@ let items_other_data = {
     flavor: "", //flavor text in white at the bottom
     shadowknight: false, //use shadowknight coins
     meta: {
+        final_stats: {}, /* keep track of the final calculated stats from the drawn tooltip. mostly used for chaos scrolls */
         fsstat: "", /* flame score MAIN stat. defaults to mstat parameter, but can be overridden */
         fsstat2: "", /* flame score SECONDARY stat. defaults to pstat parameter, but can be overriden */
         img_name: "", /* img asset */

@@ -1910,6 +1910,10 @@ body, html {
     color: rgb(170,170,255);
 }
 
+.item-color-negative {
+    color: rgb(255,0,102);
+}
+
 .potential-line {
     display: block;
     margin-left: 4px;

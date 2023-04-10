@@ -213,7 +213,8 @@ let star_tier = function(level, superior = false) {
             [138,149],
             [150,159],
             [160,199],
-            [200,275]
+            [200,249],
+            [250,300]
         ];
     }
 
@@ -438,6 +439,7 @@ var equip_gain = function(item) {
     } else if (star < 15) {
         add.job_stats += 3;
     } else if (star <= 25) {
+        /* starts at 16+ */
         let tier = [{
                 bonus_stat: 7,
                 bonus_att: [7,8,9,10,11],
@@ -458,6 +460,10 @@ var equip_gain = function(item) {
                 bonus_stat: 15,
                 bonus_att: [12,13,14,15,16,17,19,21,23,25],
                 bonus_att_weapon: [13,13,14,14,15,16,17,34,35,36]
+            },{
+                bonus_stat: 17,
+                bonus_att: [14,15,16,17,18,19,21,23,25,27],
+                bonus_att_weapon: [] /* CURRENTLY UNKNOWN */
             }
         ];
 
