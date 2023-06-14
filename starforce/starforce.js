@@ -66,14 +66,8 @@ var star_success_rate = function(star, superior = false) {
         sdiff = (75 + star) / 100;
     }
 
-    if (star < 12) {
+    if (star < 15) {
         destroy_rate = 0;
-    }else if (star === 12) {
-        destroy_rate = 0.006;
-    } else if (star === 13) {
-        destroy_rate = 0.013;
-    } else if (star === 14) {
-        destroy_rate = 0.014;
     } else if (star < 18) {
         destroy_rate = 0.021;
     } else if (star < 20) {
@@ -111,7 +105,7 @@ var star_cost_type = function(item_type) {
 };
 
 /* type is deprecated. GMS and KMS have same calculations now */
-var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
+var star_cost_old = function(level, star, type = "GMS", superior = false, sc_type) {
     //superior equipment have a fixed cost
     if (superior) {
         return Math.round(Math.pow(level,3.56)/100)*100;
@@ -139,6 +133,49 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
 
     cost = Math.round(( 
         Math.pow(rlevel, 3) * Math.pow(star + 1, power) / divisor
+    ) + 10) * 100;
+
+    return cost;
+};
+
+/* type is deprecated. GMS and KMS have same calculations now */
+var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
+    //superior equipment have a fixed cost
+    if (superior) {
+        return Math.round(Math.pow(level,3.56)/100)*100;
+    }
+
+    if (sc_type === 2) {
+        if (level > 150) {
+            level = 150;
+        }
+    }
+
+    let rlevel = parseInt(level/10,10) * 10;
+    let divisor = 0;
+    let power = 2.7;
+    let cost = 0;
+    let multiplier = 1;
+
+    if (star < 10) {
+        divisor = 2500;
+        power = 1;
+    } else if (star < 11) {
+        divisor = 40000;
+    } else if (star < 12) {
+        divisor = 22000;
+    } else if (star < 13) {
+        divisor = 15000;
+    } else if (star < 14) {
+        divisor = 11000;
+    } else if (star < 15) {
+        divisor = 7500;
+    } else if (star < 25) {
+        divisor = 20000;
+    }
+
+    cost = Math.round(( 
+        multiplier * Math.pow(rlevel, 3) * (Math.pow(star + 1, power) / divisor)
     ) + 10) * 100;
 
     return cost;

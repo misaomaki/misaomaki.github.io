@@ -32,3 +32,13 @@ const stats = {
     all_stat: 0,
     reqlvl: 0 //negative level requirements
 };
+
+const GLOBAL = {
+    starforce: {
+        safeguard_stars: {
+            min: 15,
+            max: 17
+        },
+        min_droppable_star: 15
+    }
+};

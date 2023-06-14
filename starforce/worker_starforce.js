@@ -6,6 +6,7 @@ let $ = function() {};
 
 importScripts("init.js");
 importScripts("starforce.js");
+importScripts("vars.js");
 
 /*
     while this is copied code from item_prototype.js, this starforcing is considerably faster
@@ -54,7 +55,7 @@ let is_droppable = function(current_star, superior) {
         return current_star !== 0;
     };
 
-    return !(current_star < 10 || [10,15,20].includes(current_star));
+    return !(current_star < GLOBAL.starforce.min_droppable_star || [10,15,20].includes(current_star));
 };
 
 let chance_count = 0; //chance time

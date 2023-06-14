@@ -147,7 +147,7 @@ item.prototype.is_droppable = function(current_star) {
         return current_star !== 0;
     };
 
-    return !(current_star < 10 || [10,15,20].includes(current_star));
+    return !(current_star < GLOBAL.starforce.min_droppable_star || [10,15,20].includes(current_star));
 };
 
 item.prototype.set_item_level = function(star = 0) {
@@ -309,7 +309,7 @@ item.prototype.xgrade_item = function(type = 0) {
             return sfcon.find(".sf-safeguard");
         }, "dom", "sf_safeguard");
 
-        let is_safeguardable = !this.idata.superior && current_star >= 12 && current_star < 17;
+        let is_safeguardable = !this.idata.superior && current_star >= GLOBAL.starforce.safeguard_stars.min && current_star < GLOBAL.starforce.safeguard_stars.max;
         let is_safeguard = !cb_safeguard.hasClass("disabled") && cb_safeguard.hasClass("checked");
 
         let safeguard_multiplier = is_safeguardable && is_safeguard && !this.idata.meta.chance_time ? 2 : 1;
@@ -894,7 +894,7 @@ item.prototype.redraw_item_tooltip = function() {
                                         }
                                         ${
                                             sf_gain != 0 && system.itt_kms_new ? `
-                                            <span class="${sf_gain < 0 ? 'item-color-negative' : 'item-color-starforce'}item-color-starforce">${sf_gain < 0 ? '' : '+'}${sf_gain}</span>
+                                            <span class="${sf_gain < 0 ? 'item-color-negative' : 'item-color-starforce'}">${sf_gain < 0 ? '' : '+'}${sf_gain}</span>
                                             ` : ""
                                         }
                                         ${
@@ -1460,7 +1460,7 @@ item.prototype.redraw_sf = function() {
     }
 
     let safeguard_multiplier = 1;
-    let is_safeguardable = !this.idata.superior && this_star >= 12 && this_star < 17;
+    let is_safeguardable = !this.idata.superior && this_star >= GLOBAL.starforce.safeguard_stars.min && this_star <= GLOBAL.starforce.safeguard_stars.max;
     if (is_safeguardable) {
         safeguard.removeClass("disabled");
         safeguard.trigger("click", true);

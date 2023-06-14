@@ -810,7 +810,7 @@ $(function() {
                             <span class="${result_type}">${result}</span>
                         </td>
                         <td>
-                            ${_tl.star >= 11 && _tl.star < 18 ?
+                            ${_tl.star >= GLOBAL.starforce.safeguard_stars.min && _tl.star <= GLOBAL.starforce.safeguard_stars.max ?
                                 _tl.is_safeguard ? "Yes" : "No"
                                 :
                                 ""
