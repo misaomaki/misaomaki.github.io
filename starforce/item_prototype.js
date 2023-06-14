@@ -1475,20 +1475,19 @@ item.prototype.redraw_sf = function() {
     //this part is wonky. fix later
     sf_text.attr("class", "sf-text");
     sf_description.addClass("hidden");
-    let is_destroyable = false;
-    if (this_star <= 10) {
-        sf_text.addClass("sf-text-start");
-    } else if (this_star < 12) {
-        sf_text.addClass("sf-text-downgradeable");
-    } else if (this_star < 15) {
-        sf_text.addClass("sf-text-bothways");
-        is_destroyable = true;
-    } else if (this_star === 15 || this_star === 20) {
+
+    let is_destroyable = srate.destroy > 0;
+    
+    if (is_droppable) {
+        if (is_destroyable) {
+            sf_text.addClass("sf-text-bothways");
+        } else {
+            sf_text.addClass("sf-text-downgradeable");
+        }
+    } else if (is_destroyable) {
         sf_text.addClass("sf-text-destroyable");
-        is_destroyable = true;
     } else {
-        sf_text.addClass("sf-text-bothways");
-        is_destroyable = true;
+        sf_text.addClass("sf-text-start");
     }
 
     if (is_safeguard && is_destroyable) {
