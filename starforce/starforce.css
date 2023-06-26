@@ -1886,7 +1886,7 @@ body, html {
     color: white;
 }
 
-.item-color-recovery {
+.item-color-recovery, .item-color-job-class {
     color: rgb(255,204,0);
 }
 

@@ -782,6 +782,7 @@ crossorigin="anonymous"></script>
 
 <!-- maplestory item db -->
 <script src="./starforce/item_db.js"></script>
+<script src="./starforce/item_meta.js"></script>
 <!-- item object and support functions -->
 <script src="./starforce/item_prototype.js"></script>
 <!-- star force data set up -->
@@ -839,6 +840,15 @@ crossorigin="anonymous"></script>
             <span class="item-label">Item:</span> <span id="item_select"></span> <select id="ddl_item_select"></select> 
             <input type="checkbox" class="system_cb" id="cbDropdownOldStyle" data-bind="ddl_with_name" data-redraw="0"> 
             <label for="cbDropdownOldStyle">List with Item Name</label>
+            <span title="
+Display items either only by their icon (more compact) or icon and item name.
+
+Advanced Search
+Start your search with the following to change search behavior:
+type:{value} - search items by their item type (example: type:dagger to display daggers only)
+
+Start value with equal sign (=) to make search exact. (example: type:=ring to display only rings rather than rings and earrings)
+            ">[?]</span>
         </div>
         <span id="weapon_init" class="hidden"> 
             <div class="item-form" id="starforce_input_con">

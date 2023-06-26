@@ -1893,9 +1893,89 @@ $(function() {
                     _this.val(min);
                 }
             });
+
+            /* chatgpt */
+            const splitByFirstSemicolon = function(str) {
+                const index = str.indexOf(':'); // Find the index of the first colon
+                
+                if (index === -1) {
+                    // If semicolon is not found, return the original string
+                    return [str];
+                }
+                
+                const firstPart = str.slice(0, index); // Extract the substring before the semicolon
+                const remainingPart = str.slice(index + 1); // Extract the substring after the semicolon
+                
+                return [firstPart, remainingPart];
+            }
             
             ddl_item.select2({
                 width: 400,
+                /*
+                    special search:
+                    {query}:{value}
+                    queries:
+                    type: - search by item type
+
+                    if value starts with =, then do exact search
+                */
+                matcher: function(params, data) {
+                    let term = params.term ?? "";
+
+                    if (term === "") {
+                        return data;
+                    }
+
+                    /* no special query. do name search */
+                    if (!term.includes(":")) {
+                        if (data.text.toUpperCase().includes(term.toUpperCase())) {
+                            return data;
+                        } else {
+                            return null;
+                        }
+                    }
+
+                    /* get query and its value - type:dagger -> type: | dagger */
+                    let [query, value] = splitByFirstSemicolon(term);
+
+                    if (value == null || value === "") {
+                        return null;
+                    }
+
+                    /* get item data */
+                    let [category, iclass] = data.id.split(";");
+                    if (category == null || iclass == null) return null;
+                    let this_item = items_store[category][iclass];
+
+                    /* check query */
+                    if (query == "type") {
+                        let this_value = value;
+                        let this_type = this_item.type;
+                        let is_match = false;
+
+                        if (!value.startsWith("=")) {
+                            this_value = this_value.replace(/[-\s]/gi, "").toUpperCase();
+                            this_type = this_type.replace(/[-\s]/gi, "").toUpperCase();
+
+                            if (this_type.includes(this_value)) {
+                                is_match = true;
+                            }
+                        } else {
+                            this_value = this_value.replace("=", "");
+                            if (this_value === this_type) {
+                                is_match = true;
+                            }
+                        }
+
+                        if (is_match) {
+                            return data
+                        } else {
+                            return null;
+                        }
+                    }
+
+                    return null;
+                },
                 templateResult: function(a) {
                     if (a.id === undefined || !a.id.includes(";")) return a.text;
 

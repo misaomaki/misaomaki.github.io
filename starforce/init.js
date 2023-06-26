@@ -112,8 +112,22 @@ Number.prototype.toNumber = function() {
     return this.toLocaleString();
 }
 
-String.prototype.capitalize = function(s) {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+/* chatgpt */
+String.prototype.capitalize = function() {
+  let sentence = this;
+
+  // Split the sentence into an array of words
+  let words = sentence.split(' ');
+
+  // Capitalize the first letter of each word
+  let capitalizedWords = words.map(function(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+
+  // Join the capitalized words back into a sentence
+  let capitalizedSentence = capitalizedWords.join(' ');
+
+  return capitalizedSentence;
 }
 
 //pass the generate_r_map result into this and then use a pseudrorandom number

@@ -1909,6 +1909,33 @@ var items_store = {
             "enhanceable": true,
             "scrollable": true
         },
+        "thief_chakram": {
+            "name": "Utgard Cetus",
+            "level": 140,
+            "class": "weapon",
+            "type": "chakram",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 115
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardcetus",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
         "thief_dagger": {
             "name": "Utgard Dagger",
             "level": 140,
@@ -3666,6 +3693,34 @@ var items_store = {
             upgrades: 8,
             hammers_added: 2
         },
+        chakram: {
+            name: "AbsoLab Chakram",
+            level: 160,
+            class: "weapon",
+            type: "chakram",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: {
+                watt: 192,
+                boss_damage: 0.3,
+                ied: 0.1,
+                luk: 60,
+                dex: 60
+            },
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 480
+            },
+            img: "item-absolabchakram",
+            upgrades: 8,
+            hammers_added: 2
+        },
         katara: {
             name: "AbsoLab Katara",
             level: 160,
@@ -3780,7 +3835,7 @@ var items_store = {
             name: "AbsoLab Scepter",
             level: 160,
             class: "weapon",
-            type: "scepter",
+            type: "beast tamer scepter",
             speed: "normal",
             job: ["magician"],
             mstat: "int", 
@@ -4346,6 +4401,34 @@ var items_store = {
             upgrades: 8, //max upgrades no hammers
             hammers_added: 2 //current hammers added to the weapon
         },
+        chakram: {
+            name: "Sweetwater Chakram",
+            level: 160,
+            class: "weapon",
+            type: "chakram",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["dex", "luk"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: { 
+                watt: 172,
+                boss_damage: 0.3,
+                ied: 0.1,
+                luk: 45,
+                dex: 45
+            },
+            req: { 
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 370
+            },
+            img: "item-sweetwaterchakram",
+            upgrades: 8, 
+            hammers_added: 2 
+        },
         katara: {
             name: "Sweetwater Katara",
             level: 160,
@@ -4578,7 +4661,7 @@ var items_store = {
             name: "Sweetwater Tigress Scepter",
             level: 160,
             class: "weapon",
-            type: "scepter",
+            type: "beast tamer scepter",
             speed: "normal",
             job: ["magician"],
             mstat: "int", 
@@ -7869,6 +7952,34 @@ var items_store = {
             upgrades: 8,
             hammers_added: 2
         },
+        chakram: {
+            name: "Fafnir Chakram",
+            level: 150,
+            class: "weapon",
+            type: "chakram",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk", 
+            pstat: ["luk", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: {
+                watt: 160,
+                boss_damage: 0.3,
+                ied: 0.1,
+                luk: 40,
+                dex: 40
+            },
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 450
+            },
+            img: "item-fafnirchakram",
+            upgrades: 8,
+            hammers_added: 2
+        },
         katara: {
             name: "Fafnir Rapid Edge",
             level: 160,
@@ -7983,7 +8094,7 @@ var items_store = {
             name: "Fafnir Scepter",
             level: 150,
             class: "weapon",
-            type: "scepter",
+            type: "beast tamer scepter",
             speed: "normal",
             job: ["magician"],
             mstat: "int", 
@@ -8519,6 +8630,34 @@ var items_store = {
             upgrades: 8, //max upgrades no hammers
             hammers_added: 2 //current hammers added to the weapon
         },
+        chakram: {
+            name: "Arcane Umbra Chakram",
+            level: 200,
+            class: "weapon",
+            type: "chakram",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk",
+            pstat: ["dex", "luk"], 
+            att_type: "watt", 
+            flame_type: 2, 
+            bstat: {
+                watt: 276,
+                boss_damage: 0.3,
+                ied: 0.2,
+                luk: 100,
+                dex: 100
+            },
+            req: { 
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 600
+            },
+            img: "item-arcanechakram",
+            upgrades: 8, 
+            hammers_added: 2
+        },
         lazuli9: {
             name: "Lazuli Type 9",
             level: 200,
@@ -8806,7 +8945,7 @@ var items_store = {
             name: "Arcane Umbra Scepter",
             level: 200,
             class: "weapon",
-            type: "scepter",
+            type: "beast tamer scepter",
             speed: "normal",
             job: ["magician"],
             mstat: "int", 
@@ -10688,7 +10827,7 @@ var items_store = {
             name: "Genesis Scepter",
             level: 200,
             class: "weapon",
-            type: "scepter",
+            type: "beast tamer scepter",
             speed: "normal",
             job: ["magician"],
             mstat: "int", 
@@ -10937,6 +11076,34 @@ var items_store = {
                 luk: 600
             },
             img: "item-genesisdagger",
+            upgrades: 8, 
+            hammers_added: 0
+        },
+        chakram: {
+            name: "Genesis Eclipse",
+            level: 200,
+            class: "weapon",
+            type: "chakram",
+            speed: "fast",
+            job: ["thief"],
+            mstat: "luk",
+            pstat: ["dex", "luk"], 
+            att_type: "watt", 
+            flame_type: 2, 
+            bstat: { 
+                watt: 318,
+                boss_damage: 0.3,
+                ied: 0.2,
+                luk: 150,
+                dex: 150
+            },
+            req: { 
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 600
+            },
+            img: "item-genesiseclipse",
             upgrades: 8, 
             hammers_added: 0
         },
@@ -14849,6 +15016,35 @@ var items_store = {
             "enhanceable": true,
             "scrollable": true,
             "img_type": "webp"
+        },
+        "thief_chakram": {
+            "name": "Tsukuyomi Chakram",
+            "level": 150,
+            "class": "weapon",
+            "type": "chakram",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "bstat": {
+                "dex": 30,
+                "luk": 53,
+                "watt": 147
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 480
+            },
+            "img": "item-tsukuyomichakram",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
         },
         "thief_cane": {
             "name": "Tsukuyomi's Wraith Hand",
@@ -19587,146 +19783,3 @@ var items_store = {
           }
     }
 }
-
-//metadata that is tacked onto every item in items_store
-/* TODO: only tack on when item is created. no need to put this object on EVERY object */
-let items_other_data = {
-    hidden: false, /* don't show item */
-    stars: -1, //some items are hardcapped at a certain max star despite their item tier
-    sub_class: "", //differentiate between armor classes for scrolling purposes
-    max_hammers: 2, //number of hammers appliable,
-    superior: false, //tyrant-related stuff
-    starforce: true, //whether the item can be starforced or not
-    enhanceable: true, //whether the item can be cubed
-    scrollable: true, //whether the item can be scrolled
-    flame_type: 2, //0 - not flammable, 1 - non-boss flames, 2 - boss flames
-    flame_always_max_lines: false, /* whether using flames guarantees 4 lines. automatically set as true for flame_type = 2, but can be overriden */
-    skill: "", //orange text at the bottom denoting a skill
-    flavor: "", //flavor text in white at the bottom
-    shadowknight: false, //use shadowknight coins
-    meta: {
-        final_stats: {}, /* keep track of the final calculated stats from the drawn tooltip. mostly used for chaos scrolls */
-        fsstat: "", /* flame score MAIN stat. defaults to mstat parameter, but can be overridden */
-        fsstat2: "", /* flame score SECONDARY stat. defaults to pstat parameter, but can be overriden */
-        img_name: "", /* img asset */
-        cube_potential: "", //potential type: rare, epic, unique, legendary
-        cube_potential_bonus: "", //bonus pot
-        starforce_type: "GMS", //GMS or KMS. costs are different
-        nebulite_compensation: false, //if the weapon had a 25% boss nebulite on it before and is compensated with 4% more base damage. bonuses from other nebulite types are not supported.
-        stars: 0, //current star of the item
-        max_stars: 0, //depending on the item level. tells the starforce window to stop allowing starforcing
-        chance_time: false, //whether the item will 100% upgrade in starforce
-        chance_count: 0, //2 will trigger chance time and reset the count
-        starcatch: {
-            speed: 1,
-            count: 0 //total success starforce
-        },
-        sf_log_item: {}, //current data to be worked on for star force stats. it will be pushed to the sf_meta_data array
-        sf_meta_data: [], //starforce cost and other related data
-        cube_log_item: {}, //current data to be worked on for cube stats. it will be pushed to the cube_meta_data
-        cube_meta_data: [], //cube data
-        cubes_used: {
-            red: 0,
-            black: 0,
-            bonus: 0,
-            master: 0,
-            meister: 0,
-            occult: 0
-        }, //number of cubes used. keep track of type
-        cubes_total: 0,
-        flames_meta_data: [], //flames tier log
-        flames_total: {
-            "1": 0,
-            "2": 0
-        } //count flames 1 - powerful 2 -rebirth
-    },
-    boosts: {
-        sf_data: [], //starforce data
-        scroll_data: [],
-        other_stats: Object.assign({}, stats), //for random stats like +1 from 4 or more spell traces
-        flames: Object.assign({}, stats),
-        cubes: {
-            main: {},
-            bonus: {}
-        }
-    }
-};
-
-$(function() { 
-    //merge base item data with meta item data
-    let style_items = "";
-    //item that share a common image
-    let shared_img = [];
-    for (let i in items_store) {
-        for (let j in items_store[i]) {
-            let istore_override = {};
-            let istore = items_store[i][j];
-            
-            //if the item uses an override stat, append the stat from a different specified item's stat.
-            //used when an item type shares base stats but are for different jobs or whatever
-            if (istore.override_stat != null) {
-                let os_s = istore.override_stat.split("|");
-                istore_override = items_store[os_s[0]][os_s[1]];
-            }
-            
-            let iod = $.extend(true, {}, items_other_data); /* copy of the default data */
-            
-            iod.meta.max_stars = iod.stars !== -1 ? iod.stars : star_max(istore.level, istore.superior);
-
-            /* set the always_max flag for boss flames for default. can be overriden by actual item */
-            if ("flame_always_max_lines" in istore) {
-                iod.meta.flame_always_max_lines = istore.flame_always_max_lines;
-            } else {
-                iod.meta.flame_always_max_lines = istore.flame_type == 2;
-            }
-
-            items_store[i][j] = {...iod, ...istore_override, ...istore};
-            
-            istore = items_store[i][j];
-
-            istore.meta.fsstat = istore.mstat; /* set flame score stat to main stat */
-            istore.meta.fsstat2 = istore.pstat.length == 2 ? istore.pstat.filter(a=>a!=istore.mstat)[0] : ""; /* set flame score stat to main stat */
-
-            istore.bstat = Object.assign({}, stats, istore.bstat); /* append the rest of the stats to the bstat item */
-
-            let img_name = "";
-            let img_ext = "png";
-            let append_style = true;
-
-            //if item uses an override image, then append that image instead.
-            //override images should share a common istore.img name
-            if (istore.override_image != null) {
-                img_name = istore.override_image;
-                if (shared_img.includes(istore.img)) {
-                    append_style = false;
-                } else {
-                    shared_img.push(istore.img);
-                }
-            } else {
-                img_name = istore.name;
-            }   
-
-            if (istore.img_type !== undefined) {
-                img_ext = istore.img_type;
-            }
-
-            //github is case sensitive for url
-            img_name = img_name.replace("AbsoLab","Absolab").replace(/[\s-:\(\)']/gi,"");
-
-            istore.meta.img_name = `./assets/maple_items/${img_name}.${img_ext}`;
-
-            if (append_style) {
-                style_items += `
-                    .${istore.img} {
-                        background: url(${istore.meta.img_name});
-                        background-repeat: no-repeat;
-                        background-size: contain;
-                    }
-                `;   
-            }
-        }
-    }
-    
-    //css <style> tag gets appended with the dynamically-generated image code
-    $("#maple_items").append(style_items);
-});
