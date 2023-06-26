@@ -76,6 +76,10 @@ const item_meta = {
                 class: "",
                 speed: 5
             },
+            "heavy sword": {
+                class: "Zero",
+                speed: 2
+            },
             katana: {
                 class: "Hayato",
                 speed: 5
@@ -87,6 +91,10 @@ const item_meta = {
             knuckle: {
                 class: "",
                 speed: 5
+            },
+            "long sword": {
+                class: "Zero",
+                speed: 6
             },
             "one-handed axe": {
                 class: "",
