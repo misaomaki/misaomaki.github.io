@@ -144,7 +144,7 @@ const item_meta = {
                 class: "",
                 speed: 4
             },
-            "Wand": {
+            "wand": {
                 class: "",
                 speed: 4
             },
