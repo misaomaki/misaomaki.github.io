@@ -1910,7 +1910,7 @@ $(function() {
             }
             
             ddl_item.select2({
-                width: 400,
+                width: 375,
                 /*
                     special search:
                     {query}:{value}

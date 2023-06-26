@@ -36,9 +36,9 @@ const item_meta = {
                 class: "",
                 speed: 5
             },
-            cannon: {
+            "hand cannon": {
                 class: "Cannoneer",
-                speed: 8
+                speed: 2
             },
             chakram: {
                 class: "Khali",
