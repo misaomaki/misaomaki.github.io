@@ -6391,6 +6391,34 @@ var items_store = {
             upgrades: 7,
             hammers_added: 2
         },
+        ruin_force_shield: {
+            name: "Ruin Force Shield",
+            level: 100,
+            class: "armor",
+            sub_class: "secondary",
+            type: "demon aegis",
+            speed: "",
+            job: ["warrior"],
+            mstat: "", 
+            pstat: ["str"], 
+            att_type: "att", 
+            flame_type: 0,
+            bstat: {
+                str: 10,
+                dex: 10,
+                hp: 560,
+                def: 81
+            },
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-ruinforceshield",
+            scrollable: false,
+            starforce: false
+        },
         deimos_warrior_shield: {
             name: "Deimos Warrior Shield",
             level: 130,

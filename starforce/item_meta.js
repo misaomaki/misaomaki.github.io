@@ -3,7 +3,7 @@ const item_meta = {
         attack_speed: {
             "1": "Very Slow",
             "2": "Slow",
-            "3": "Average",
+            "3": "Slow",
             "4": "Average",
             "5": "Fast",
             "6": "Fast",
