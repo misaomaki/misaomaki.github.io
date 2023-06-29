@@ -6395,7 +6395,7 @@ var items_store = {
             name: "Ruin Force Shield",
             level: 100,
             class: "armor",
-            sub_class: "secondary",
+            sub_class: "force shield",
             type: "demon aegis",
             speed: "",
             job: ["warrior"],

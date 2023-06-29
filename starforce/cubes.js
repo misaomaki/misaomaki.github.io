@@ -191,6 +191,8 @@ cube.get_cube_type = async function(level, type, cube_type, cube_tier) {
         type = "face_accessory";
     } else if (["badge"].includes(type)) {
         type = "mechanical_heart";
+    } else if (["secondary"].includes(type)) {
+        type = "weapon";
     }
 
     if (cube_tier === "") {
