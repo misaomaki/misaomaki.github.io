@@ -542,7 +542,16 @@ cube.stats = {
         d = cube tier (rare, epic...)
     */
     get_probability: async function(a, c, d) {
-        let type = Item.idata.class === "weapon" ? Item.idata.class : Item.idata.type;
+        let type = this.idata.sub_class;
+
+        if (this.idata.class == "weapon") {
+            type = this.idata.class;
+        } else if (type === "") {
+            type = this.idata.type;
+        } 
+
+        type = type.replace(/\s/gi, "_");
+
         let rates = await cube.get_cube_type(Item.idata.level, type, c, d);
         
         let item_prob = 1;
