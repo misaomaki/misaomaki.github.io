@@ -6417,7 +6417,8 @@ var items_store = {
             },
             img: "item-ruinforceshield",
             scrollable: false,
-            starforce: false
+            starforce: false,     
+            flavor: "A Demon Aegis containing the essence of a demon who sought only power and fell to ruin.  Increases your Final damage by 10% but your damage taken is increased by 25% (including damage proportional to Max HP)."
         },
         deimos_warrior_shield: {
             name: "Deimos Warrior Shield",
@@ -6443,7 +6444,7 @@ var items_store = {
             },
             img: "item-deimoswarriorshield",
             upgrades: 7,
-            hammers_added: 2
+            hammers_added: 2,
         },
         deimos_shadow_shield: {
             name: "Deimos Shadow Shield",
