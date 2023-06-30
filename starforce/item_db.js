@@ -12821,6 +12821,35 @@ var items_store = {
                 "watt": 128
             }
         },
+        "thief_chakram": {
+            "name": "Raven Horn Chakram",
+            "level": 140,
+            "class": "weapon",
+            "type": "chakram",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 420
+            },
+            "img": "item-ravenhornchakram",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "bstat": {
+                "dex": 20,
+                "luk": 35,
+                "watt": 128
+            }
+        },
         "thief_cane": {
             "name": "Raven Horn Crimson Cane",
             "level": 140,
@@ -15069,6 +15098,35 @@ var items_store = {
                 "luk": 480
             },
             "img": "item-tsukuyomichakram",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "thief_chakram2": {
+            "name": "Tsukuyomi Lupine Chakram",
+            "level": 160,
+            "class": "weapon",
+            "type": "chakram",
+            "speed": "fast",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "dex": 60,
+                "luk": 60,
+                "watt": 192
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 480
+            },
+            "img": "item-tsukuyomichakram2",
             "upgrades": 8,
             "hammers_added": 2,
             "starforce": true,
