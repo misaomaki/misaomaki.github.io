@@ -264,6 +264,7 @@ $(function() {
             
             istore = items_store[i][j];
 
+            /* get job info and speed */
             if (istore.class === "weapon") {
                 istore.weapon_data = {...{}, ...item_meta.class.weapon[istore.type], ...(istore.weapon_data ?? {})};
             }

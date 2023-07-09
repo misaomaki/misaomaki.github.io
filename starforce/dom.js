@@ -214,7 +214,7 @@ $(function() {
                         </label>
                     </span>
                     ${
-                        [12,13,14,15,16].map((a,b)=>{
+                        GLOBAL.starforce.safeguardable_stars.map((a,b)=>{
                             return `
                             <span style="display: inline-block; padding: 5px;">
                                 <label for="asf_cb_${b}">

@@ -42,3 +42,9 @@ const GLOBAL = {
         min_droppable_star: 15
     }
 };
+
+GLOBAL.starforce.safeguardable_stars = [];
+
+for (let i = GLOBAL.starforce.safeguard_stars.min; i < GLOBAL.starforce.safeguard_stars.max; ++i) {
+    GLOBAL.starforce.safeguardable_stars.push(i);
+}

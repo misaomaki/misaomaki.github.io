@@ -116,7 +116,7 @@ $(function() {
                     <input type="checkbox" class="stat_checkbox_all" id="stat_cb_all" value="-1"> [All]
                 </label>
                 ${
-                    [12,13,14,15,16].map((a,b)=>{
+                    GLOBAL.starforce.safeguardable_stars.map((a,b)=>{
                         return `
                         <span style="display: inline-block; padding: 5px;">
                             <label for="stat_cb_${b}">

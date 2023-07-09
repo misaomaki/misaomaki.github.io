@@ -830,14 +830,14 @@ item.prototype.redraw_item_tooltip = function() {
         percent_stats.def = this.starforce_att_percent(base_stats.def + scr_total_gain.def, 0, def_p);
         e_stats.def += percent_stats.def;
     }
-
+    
     let html = `
         Type: ${this.idata.type.capitalize()} <br>
         ${this.idata.class === "weapon" ? `
             Attack Speed: ${item_meta.enum.attack_speed[this.idata.weapon_data.speed]} (Stage ${this.idata.weapon_data.speed}) <br>
         ` : ''}
         ${
-            order.map((a)=>{
+            order.reduce((b, a)=>{
                 let a_type = a.type || "";
                 let a_symbol = a.symbol || "";
 
@@ -861,17 +861,17 @@ item.prototype.redraw_item_tooltip = function() {
                 //for matt, if all sources have no matt, then don't display matt on the tooltip
                 if (a.value === "matt") {
                     if (this.idata.class === "weapon" && percent_stats.matt + flame_stats.matt + base_stats.matt + other_stats[a.value] === 0) {
-                        return '';
+                        return b;
                     } 
                 }
 
                 /* keep track of the total calculated stats. used for chaos scrolls */
                 this.idata.meta.final_stats[a.value] = e_stats[a.value];
 
-                return `
+                b += `
                     ${a.value === "reqlvl" ? `
                         ${
-                            e_stats[a.value] > 0 ?
+                            e_stats[a.value] !== 0 ?
                             `${a.name} : ${e_stats[a.value]}${a_symbol} <br>`
                             :
                             ``
@@ -910,8 +910,9 @@ item.prototype.redraw_item_tooltip = function() {
                         }
                     `}
                 `;
-            }).join("").replace(/\s\s+\[\[remove\]\]/gi, "")
 
+                return b;
+            }, "").replace(/\s\s+\[\[remove\]\]/gi, "")
         }
         ${this.idata.scrollable ? `
         Remaining Enhancements: ${this.idata.hammers_added + this.idata.upgrades - this.idata.boosts.scroll_data.length} <br>
