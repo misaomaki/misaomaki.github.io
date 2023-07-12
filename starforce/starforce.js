@@ -607,7 +607,7 @@ let analyze_starforce = function(d) {
     };
 
     //init boom count for each level to 0
-    for (let i = 12; i <= 25; ++i) {
+    for (let i = GLOBAL.starforce.safeguard_stars.min; i <= 25; ++i) {
         s.g.booms["b" + i] = 0;
         if (i < 17) {
             s.g.safeguards["sg" + i] = 0;

@@ -754,9 +754,6 @@ item.prototype.redraw_item_tooltip = function() {
         type: "%",
         symbol: "%"
     },{
-        name: "Required Level",
-        value: "reqlvl"
-    },{
         name: "Attack Power",
         value: "watt"
     },{
@@ -765,6 +762,9 @@ item.prototype.redraw_item_tooltip = function() {
     },{
         name: "Defense",
         value: "def"
+    },{
+        name: "Required Level",
+        value: "reqlvl"
     },{
         name: "Speed",
         value: "speed"

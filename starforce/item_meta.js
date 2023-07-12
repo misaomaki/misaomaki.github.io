@@ -94,7 +94,7 @@ const item_meta = {
             },
             "long sword": {
                 class: "Zero",
-                speed: 6
+                speed: 4
             },
             "one-handed axe": {
                 class: "",
