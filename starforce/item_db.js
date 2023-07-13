@@ -6271,8 +6271,8 @@ var items_store = {
             hammers_added: 2
         },
         kanna_treasure: {
-            name: "KannaTreasureRing",
-            alt_name: "Kanna's Treasure",
+            name: "Kanna's Treasure",
+            override_image: "KannaTreasureRing",
             level: 140,
             class: "armor",
             type: "ring",
@@ -6364,165 +6364,6 @@ var items_store = {
                 "watt": 400
             }
         }
-    },
-    shield: {
-        deimos_sage_shield: {
-            name: "Deimos Sage Shield",
-            level: 130,
-            class: "armor",
-            type: "shield",
-            speed: "",
-            job: ["magician"],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 0,
-            bstat: {
-                int: 10,
-                def: 71
-            },
-            req: {
-                str: 0,
-                dex: 0,
-                int: 420,
-                luk: 0
-            },
-            img: "item-deimossageshield",
-            upgrades: 7,
-            hammers_added: 2
-        },
-        ruin_force_shield: {
-            name: "Ruin Force Shield",
-            level: 100,
-            class: "armor",
-            sub_class: "force shield",
-            type: "demon aegis",
-            speed: "",
-            job: ["warrior"],
-            mstat: "", 
-            pstat: ["str"], 
-            att_type: "att", 
-            flame_type: 0,
-            bstat: {
-                str: 10,
-                dex: 10,
-                hp: 560,
-                def: 81
-            },
-            req: {
-                str: 0,
-                dex: 0,
-                int: 0,
-                luk: 0
-            },
-            img: "item-ruinforceshield",
-            scrollable: false,
-            starforce: false,     
-            flavor: "A Demon Aegis containing the essence of a demon who sought only power and fell to ruin.  Increases your Final damage by 10% but your damage taken is increased by 25% (including damage proportional to Max HP)."
-        },
-        deimos_warrior_shield: {
-            name: "Deimos Warrior Shield",
-            level: 130,
-            class: "armor",
-            type: "shield",
-            speed: "",
-            job: ["warrior"],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 0,
-            bstat: {
-                str: 10,
-                dex: 10,
-                def: 118
-            },
-            req: {
-                str: 420,
-                dex: 0,
-                int: 0,
-                luk: 0
-            },
-            img: "item-deimoswarriorshield",
-            upgrades: 7,
-            hammers_added: 2,
-        },
-        deimos_shadow_shield: {
-            name: "Deimos Shadow Shield",
-            level: 130,
-            class: "armor",
-            type: "shield",
-            speed: "",
-            job: ["thief"],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 0,
-            bstat: {
-                luk: 10,
-                def: 99
-            },
-            req: {
-                str: 0,
-                dex: 0,
-                int: 0,
-                luk: 420
-            },
-            img: "item-deimosshadowshield",
-            upgrades: 7,
-            hammers_added: 2
-        },
-        dragon_khanjar: {
-            name: "Dragon Khanjar",
-            level: 130,
-            class: "armor",
-            type: "shield",
-            speed: "",
-            job: ["thief"],
-            mstat: "", 
-            pstat: ["str", "dex", "int", "luk"], 
-            att_type: "att", 
-            flame_type: 0,
-            bstat: {
-                luk: 2,
-                watt: 15,
-                def: 5
-            },
-            req: {
-                str: 0,
-                dex: 0,
-                int: 0,
-                luk: 150
-            },
-            img: "item-dragonkhanjar",
-            upgrades: 7,
-            hammers_added: 2
-        },
-        terminus_defender: {
-            name: "Terminus Defender",
-            level: 160,
-            class: "armor",
-            type: "shield",
-            speed: "",
-            job: ["warrior"],
-            mstat: "", 
-            pstat: ["str", "dex"], 
-            att_type: "watt", 
-            flame_type: 0,
-            bstat: {
-                str: 13,
-                dex: 13,
-                def: 153
-            },
-            req: {
-                str: 490,
-                dex: 0,
-                int: 0,
-                luk: 0
-            },
-            img: "item-terminusdefender",
-            upgrades: 8,
-            hammers_added: 2
-        },
     },
     heart: {
         lidium_heart: {
@@ -6645,6 +6486,414 @@ var items_store = {
         }
     },
     gollux: {
+        "cracked_gollux_earrings": {
+            "name": "Cracked Gollux Earrings",
+            "level": 120,
+            "class": "armor",
+            "type": "earrings",
+            "job": ["beginner", "warrior", "bowman", "magician", "thief", "pirate"],
+            "mstat": "",
+            "pstat": ["str", "dex", "int", "luk"],
+            "att_type": "att",
+            "flame_type": 1,
+            "bstat": {
+                "str": 9,
+                "int": 9,
+                "dex": 9,
+                "luk": 9,
+                "hp": 80,
+                "mp": 80,
+                "watt": 4,
+                "matt": 4,
+                "def": 100
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-crackedgolluxearrings",
+            "upgrades": 6,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "cracked_gollux_ring": {
+            "name": "Cracked Gollux Ring",
+            "level": 120,
+            "class": "armor",
+            "type": "ring",
+            "job": ["beginner", "warrior", "bowman", "magician", "thief", "pirate"],
+            "mstat": "",
+            "pstat": ["str", "dex", "int", "luk"],
+            "att_type": "att",
+            "flame_type": 0,
+            "bstat": {
+                "str": 4,
+                "int": 4,
+                "dex": 4,
+                "luk": 4,
+                "hp": 50,
+                "mp": 50,
+                "watt": 2,
+                "matt": 2,
+                "def": 50
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-crackedgolluxring",
+            "upgrades": 1,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "cracked_engraved_gollux_pendant": {
+            "name": "Cracked Engraved Gollux Pendant",
+            "level": 120,
+            "class": "armor",
+            "type": "pendant",
+            "job": ["beginner", "warrior", "bowman", "magician", "thief", "pirate"],
+            "mstat": "",
+            "pstat": ["str", "dex", "int", "luk"],
+            "att_type": "att",
+            "flame_type": 1,
+            "bstat": {
+                "str": 15,
+                "int": 15,
+                "dex": 15,
+                "luk": 15,
+                "hp": 200,
+                "mp": 200,
+                "watt": 3,
+                "matt": 3,
+                "def": 100
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-crackedengravedgolluxpendant",
+            "upgrades": 3,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "cracked_engraved_gollux_belt": {
+            "name": "Cracked Engraved Gollux Belt",
+            "level": 120,
+            "class": "armor",
+            "type": "belt",
+            "job": ["beginner", "warrior", "bowman", "magician", "thief", "pirate"],
+            "mstat": "",
+            "pstat": ["str", "dex", "int", "luk"],
+            "att_type": "att",
+            "flame_type": 1,
+            "bstat": {
+                "str": 8,
+                "int": 8,
+                "dex": 8,
+                "luk": 8,
+                "hp": 200,
+                "mp": 200,
+                "def": 100
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-crackedengravedgolluxbelt",
+            "upgrades": 3,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "solid_gollux_earrings": {
+            "name": "Solid Gollux Earrings",
+            "level": 130,
+            "class": "armor",
+            "type": "earrings",
+            "job": ["beginner", "warrior", "bowman", "magician", "thief", "pirate"],
+            "mstat": "",
+            "pstat": ["str", "dex", "int", "luk"],
+            "att_type": "att",
+            "flame_type": 1,
+            "bstat": {
+                "str": 10,
+                "int": 10,
+                "dex": 10,
+                "luk": 10,
+                "hp": 100,
+                "mp": 100,
+                "watt": 5,
+                "matt": 5,
+                "def": 100
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-solidgolluxearrings",
+            "upgrades": 6,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "solid_gollux_ring": {
+            "name": "Solid Gollux Ring",
+            "level": 130,
+            "class": "armor",
+            "type": "ring",
+            "job": ["beginner", "warrior", "bowman", "magician", "thief", "pirate"],
+            "mstat": "",
+            "pstat": ["str", "dex", "int", "luk"],
+            "att_type": "att",
+            "flame_type": 0,
+            "bstat": {
+                "str": 6,
+                "int": 6,
+                "dex": 6,
+                "luk": 6,
+                "hp": 100,
+                "mp": 100,
+                "watt": 4,
+                "matt": 4,
+                "def": 100
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-solidgolluxring",
+            "upgrades": 2,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "solid_engraved_gollux_pendant": {
+            "name": "Solid Engraved Gollux Pendant",
+            "level": 130,
+            "class": "armor",
+            "type": "pendant",
+            "job": ["beginner", "warrior", "bowman", "magician", "thief", "pirate"],
+            "mstat": "",
+            "pstat": ["str", "dex", "int", "luk"],
+            "att_type": "att",
+            "flame_type": 1,
+            "bstat": {
+                "str": 19,
+                "int": 19,
+                "dex": 19,
+                "luk": 19,
+                "hp": 250,
+                "mp": 250,
+                "watt": 3,
+                "matt": 3,
+                "def": 100
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-solidengravedgolluxpendant",
+            "upgrades": 4,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "solid_engraved_gollux_belt": {
+            "name": "Solid Engraved Gollux Belt",
+            "level": 130,
+            "class": "armor",
+            "type": "belt",
+            "job": ["beginner", "warrior", "bowman", "magician", "thief", "pirate"],
+            "mstat": "",
+            "pstat": ["str", "dex", "int", "luk"],
+            "att_type": "att",
+            "flame_type": 1,
+            "bstat": {
+                "str": 10,
+                "int": 10,
+                "dex": 10,
+                "luk": 10,
+                "hp": 200,
+                "mp": 200,
+                "watt": 10,
+                "matt": 10,
+                "def": 100
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "img-solidengravedgolluxbelt",
+            "upgrades": 3,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        'reinforced_gollux_earrings': {
+            'name': 'Reinforced Gollux Earrings',
+            'level': 140,
+            'class': 'armor',
+            'type': 'earrings',
+            'job': ['beginner', 'warrior', 'bowman', 'magician', 'thief', 'pirate'],
+            'mstat': '',
+            'pstat': ['str', 'dex', 'int', 'luk'],
+            'att_type': 'att',
+            'flame_type': 1,
+            'bstat': {
+                'str': 12,
+                'int': 12,
+                'dex': 12,
+                'luk': 12,
+                'hp': 150,
+                'mp': 150,
+                'watt': 6,
+                'matt': 6,
+                'def': 100
+            },
+            'req': {
+                'str': 0,
+                'dex': 0,
+                'int': 0,
+                'luk': 0
+            },
+            'img': 'img-reinforcedgolluxearrings',
+            'upgrades': 7,
+            'hammers_added': 2,
+            'starforce': true,
+            'enhanceable': true,
+            'scrollable': true
+        },
+        'reinforced_gollux_ring': {
+            'name': 'Reinforced Gollux Ring',
+            'level': 140,
+            'class': 'armor',
+            'type': 'ring',
+            'job': ['beginner', 'warrior', 'bowman', 'magician', 'thief', 'pirate'],
+            'mstat': '',
+            'pstat': ['str', 'dex', 'int', 'luk'],
+            'att_type': 'att',
+            'flame_type': 0,
+            'bstat': {
+                'str': 8,
+                'int': 8,
+                'dex': 8,
+                'luk': 8,
+                'hp': 200,
+                'mp': 200,
+                'watt': 5,
+                'matt': 5,
+                'def': 150,
+                'speed': 10
+            },
+            'req': {
+                'str': 0,
+                'dex': 0,
+                'int': 0,
+                'luk': 0
+            },
+            'img': 'img-reinforcedgolluxring',
+            'upgrades': 4,
+            'hammers_added': 2,
+            'starforce': true,
+            'enhanceable': true,
+            'scrollable': true
+        },
+        'reinforced_engraved_gollux_pendant': {
+            'name': 'Reinforced Engraved Gollux Pendant',
+            'level': 140,
+            'class': 'armor',
+            'type': 'pendant',
+            'job': ['beginner', 'warrior', 'bowman', 'magician', 'thief', 'pirate'],
+            'mstat': '',
+            'pstat': ['str', 'dex', 'int', 'luk'],
+            'att_type': 'att',
+            'flame_type': 1,
+            'bstat': {
+                'str': 23,
+                'int': 23,
+                'dex': 23,
+                'luk': 23,
+                'hp': 300,
+                'mp': 300,
+                'watt': 3,
+                'matt': 3,
+                'def': 100
+            },
+            'req': {
+                'str': 0,
+                'dex': 0,
+                'int': 0,
+                'luk': 0
+            },
+            'img': 'img-reinforcedengravedgolluxpendant',
+            'upgrades': 5,
+            'hammers_added': 2,
+            'starforce': true,
+            'enhanceable': true,
+            'scrollable': true
+        },
+        'reinforced_engraved_gollux_belt': {
+            'name': 'Reinforced Engraved Gollux Belt',
+            'level': 140,
+            'class': 'armor',
+            'type': 'belt',
+            'job': ['beginner', 'warrior', 'bowman', 'magician', 'thief', 'pirate'],
+            'mstat': '',
+            'pstat': ['str', 'dex', 'int', 'luk'],
+            'att_type': 'att',
+            'flame_type': 1,
+            'bstat': {
+                'str': 30,
+                'int': 30,
+                'dex': 30,
+                'luk': 30,
+                'hp': 200,
+                'mp': 200,
+                'watt': 20,
+                'matt': 20,
+                'def': 100
+            },
+            'req': {
+                'str': 0,
+                'dex': 0,
+                'int': 0,
+                'luk': 0
+            },
+            'img': 'img-reinforcedengravedgolluxbelt',
+            'upgrades': 3,
+            'hammers_added': 2,
+            'starforce': true,
+            'enhanceable': true,
+            'scrollable': true
+        }
+        ,
         earrings: {
             name: "Superior Gollux Earrings",
             level: 150,
@@ -19868,5 +20117,96 @@ var items_store = {
             "shadowknight": false,
             "flavor": "A giant totem with filled with mysterious power. Allows use of the Monolith skill."
           }
+    },
+    "badge": {
+        "ghost_ship_exorcist": {
+            "name": "Ghost Ship Exorcist",
+            "level": 150,
+            "class": "armor",
+            "type": "badge",
+            "speed": "",
+            "job": [
+              "beginner",
+              "warrior",
+              "bowman",
+              "magician",
+              "thief",
+              "pirate"
+            ],
+            "mstat": "",
+            "pstat": [
+              "str",
+              "dex",
+              "int",
+              "luk"
+            ],
+            "att_type": "att",
+            "flame_type": 0,
+            "bstat": {
+              "str": 3,
+              "dex": 3,
+              "int": 3,
+              "luk": 3,
+              "watt": 2,
+              "matt": 2,
+              "def": 70
+            },
+            "req": {
+              "str": 0,
+              "dex": 0,
+              "int": 0,
+              "luk": 0
+            },
+            "img": "item-ghostshipexorcist",
+            "upgrades": 1,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
+        "sengoku_hakase": {
+            "name": "Sengoku Hakase Badge",
+            "level": 160,
+            "class": "armor",
+            "type": "badge",
+            "speed": "",
+            "job": [
+              "beginner",
+              "warrior",
+              "bowman",
+              "magician",
+              "thief",
+              "pirate"
+            ],
+            "mstat": "",
+            "pstat": [
+              "str",
+              "dex",
+              "int",
+              "luk"
+            ],
+            "att_type": "att",
+            "flame_type": 0,
+            "bstat": {
+              "str": 10,
+              "dex": 10,
+              "int": 10,
+              "luk": 10,
+              "watt": 10,
+              "matt": 10
+            },
+            "req": {
+              "str": 0,
+              "dex": 0,
+              "int": 0,
+              "luk": 0
+            },
+            "img": "item-sengokuhakasebadge",
+            "upgrades": 2,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        }
     }
 }

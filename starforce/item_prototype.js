@@ -833,7 +833,7 @@ item.prototype.redraw_item_tooltip = function() {
     
     let html = `
         Type: ${this.idata.type.capitalize()} <br>
-        ${this.idata.class === "weapon" ? `
+        ${this.idata.class === "weapon" && this.idata.sub_class !== "secondary" ? `
             Attack Speed: ${item_meta.enum.attack_speed[this.idata.weapon_data.speed]} (Stage ${this.idata.weapon_data.speed}) <br>
         ` : ''}
         ${

@@ -296,7 +296,7 @@ $(function() {
             }
 
             //github is case sensitive for url
-            img_name = img_name.replace("AbsoLab","Absolab").replace(/[\s-:\(\)']/gi,"");
+            img_name = img_name.replace("AbsoLab","Absolab").replace(/[\s-:\(\)'<>]/gi,"");
 
             istore.meta.img_name = `./assets/maple_items/${img_name}.${img_ext}`;
 

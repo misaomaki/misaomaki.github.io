@@ -1836,6 +1836,7 @@ $(function() {
                     items_db[i].push(this_item);
                 }
 
+                /* sort by name */
                 items_db[i].sort((a,b)=>{
                     if (a.name < b.name) {
                         return -1;
