@@ -2758,36 +2758,34 @@ items_store["secondary: demon_aegis"] = {
         "scrollable": false,
         "sub_class": "secondary"
     },
-    "ruin_force_shield": {
-        "name": "Ruin Force Shield",
-        "level": 100,
-        "class": "weapon",
-        "type": "demon aegis",
-        "job": ["warrior"],
-        "mstat": "str",
-        "pstat": ["str", "dex"],
-        "att_type": "watt",
-        "flame_type": 0,
-        "bstat": {
-            "str": 10,
-            "dex": 10,
-            "hp": 560,
-            "maxdf": 100,
-            "def": 81
+    ruin_force_shield: {
+        name: "Ruin Force Shield",
+        level: 100,
+        class: "armor",
+        sub_class: "force shield",
+        type: "demon aegis",
+        speed: "",
+        job: ["warrior"],
+        mstat: "", 
+        pstat: ["str"], 
+        att_type: "att", 
+        flame_type: 0,
+        bstat: {
+            str: 10,
+            dex: 10,
+            hp: 560,
+            def: 81
         },
-        "req": {
-            "str": 0,
-            "dex": 0,
-            "int": 0,
-            "luk": 0
+        req: {
+            str: 0,
+            dex: 0,
+            int: 0,
+            luk: 0
         },
-        "img": "img-ruinforceshield",
-        "upgrades": 0,
-        "hammers_added": 0,
-        "starforce": false,
-        "enhanceable": true,
-        "scrollable": false,
-        "sub_class": "secondary"
+        img: "item-ruinforceshield",
+        scrollable: false,
+        starforce: false,     
+        flavor: "A Demon Aegis containing the essence of a demon who sought only power and fell to ruin.  Increases your Final damage by 10% but your damage taken is increased by 25% (including damage proportional to Max HP)."
     },
     "maple_treasure_force_shield": {
         "name": "Maple Treasure Force Shield",
@@ -7940,35 +7938,6 @@ items_store["secondary: shield"] = {
         upgrades: 7,
         hammers_added: 2
     },
-    ruin_force_shield: {
-        name: "Ruin Force Shield",
-        level: 100,
-        class: "armor",
-        sub_class: "force shield",
-        type: "demon aegis",
-        speed: "",
-        job: ["warrior"],
-        mstat: "", 
-        pstat: ["str"], 
-        att_type: "att", 
-        flame_type: 0,
-        bstat: {
-            str: 10,
-            dex: 10,
-            hp: 560,
-            def: 81
-        },
-        req: {
-            str: 0,
-            dex: 0,
-            int: 0,
-            luk: 0
-        },
-        img: "item-ruinforceshield",
-        scrollable: false,
-        starforce: false,     
-        flavor: "A Demon Aegis containing the essence of a demon who sought only power and fell to ruin.  Increases your Final damage by 10% but your damage taken is increased by 25% (including damage proportional to Max HP)."
-    },
     deimos_warrior_shield: {
         name: "Deimos Warrior Shield",
         level: 130,
@@ -8094,7 +8063,7 @@ items_store["secondary: shield"] = {
         "img": "img-stolenfence",
         "upgrades": 10,
         "hammers_added": 2,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -8121,7 +8090,7 @@ items_store["secondary: shield"] = {
         "img": "img-panlid",
         "upgrades": 10,
         "hammers_added": 2,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -8148,7 +8117,7 @@ items_store["secondary: shield"] = {
         "img": "img-mapleshield",
         "upgrades": 10,
         "hammers_added": 2,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -8175,7 +8144,7 @@ items_store["secondary: shield"] = {
         "img": "img-blackphoenixshield",
         "upgrades": 10,
         "hammers_added": 2,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -8203,7 +8172,7 @@ items_store["secondary: shield"] = {
         "img": "img-palette",
         "upgrades": 10,
         "hammers_added": 2,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -8230,7 +8199,7 @@ items_store["secondary: shield"] = {
         "img": "img-cokeplayshield",
         "upgrades": 10,
         "hammers_added": 2,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -8259,7 +8228,7 @@ items_store["secondary: shield"] = {
         "img": "img-stoneshield",
         "upgrades": 10,
         "hammers_added": 2,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
