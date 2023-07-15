@@ -2110,7 +2110,13 @@ $(function() {
                 //show weapon/armor-related flames
                 if (this_item.class === "weapon") {
                     all_box.filter(function() {
-                        return $(this).hasClass("item-weapon");
+                        let self = $(this);
+
+                        if (this_item.sub_class == "secondary" && self.hasClass("item-not-secondary")) {
+                            return false;
+                        }
+                        
+                        return self.hasClass(`item-weapon`);
                     }).removeClass("hidden");
                 } else if (this_item.class === "armor") {
                     all_box.filter(function() {

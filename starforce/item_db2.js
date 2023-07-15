@@ -6491,15 +6491,16 @@ items_store["secondary: mass"] = {
 };
 
 
+
 items_store["secondary: medallion"] = {
     "powers_medallion": {
         "name": "Powers Medallion",
         "level": 30,
         "class": "weapon",
         "type": "medallion",
-        "job": "heroe",
-        "mstat": "",
-        "pstat": ["str", "dex", "int", "luk"],
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
         "att_type": "att",
         "flame_type": 0,
         "bstat": {
@@ -6526,9 +6527,9 @@ items_store["secondary: medallion"] = {
         "level": 60,
         "class": "weapon",
         "type": "medallion",
-        "job": "heroe",
-        "mstat": "",
-        "pstat": ["str", "dex", "int", "luk"],
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
         "att_type": "att",
         "flame_type": 0,
         "bstat": {
@@ -6555,9 +6556,9 @@ items_store["secondary: medallion"] = {
         "level": 100,
         "class": "weapon",
         "type": "medallion",
-        "job": "heroe",
-        "mstat": "",
-        "pstat": ["str", "dex", "int", "luk"],
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
         "att_type": "att",
         "flame_type": 0,
         "bstat": {
@@ -6584,9 +6585,9 @@ items_store["secondary: medallion"] = {
         "level": 100,
         "class": "weapon",
         "type": "medallion",
-        "job": "heroe",
-        "mstat": "",
-        "pstat": ["str", "dex", "int", "luk"],
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
         "att_type": "att",
         "flame_type": 0,
         "bstat": {
@@ -6613,9 +6614,9 @@ items_store["secondary: medallion"] = {
         "level": 100,
         "class": "weapon",
         "type": "medallion",
-        "job": "heroe",
-        "mstat": "",
-        "pstat": ["str", "dex", "int", "luk"],
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
         "att_type": "att",
         "flame_type": 0,
         "bstat": {
@@ -6642,9 +6643,9 @@ items_store["secondary: medallion"] = {
         "level": 100,
         "class": "weapon",
         "type": "medallion",
-        "job": "heroe",
-        "mstat": "",
-        "pstat": ["str", "dex", "int", "luk"],
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
         "att_type": "att",
         "flame_type": 0,
         "bstat": {
@@ -6671,9 +6672,9 @@ items_store["secondary: medallion"] = {
         "level": 110,
         "class": "weapon",
         "type": "medallion",
-        "job": "heroe",
-        "mstat": "",
-        "pstat": ["str", "dex", "int", "luk"],
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
         "att_type": "att",
         "flame_type": 0,
         "bstat": {
@@ -6700,9 +6701,9 @@ items_store["secondary: medallion"] = {
         "level": 140,
         "class": "weapon",
         "type": "medallion",
-        "job": "heroe",
-        "mstat": "",
-        "pstat": ["str", "dex", "int", "luk"],
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
         "att_type": "att",
         "flame_type": 0,
         "bstat": {

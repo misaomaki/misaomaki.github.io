@@ -20162,7 +20162,11 @@ var items_store = {
             "hammers_added": 2,
             "starforce": true,
             "enhanceable": true,
-            "scrollable": true
+            "scrollable": true,
+            "override_meta": {
+                "starforce_gains_att": false,
+                "max_stars": 22
+            }
         },
         "sengoku_hakase": {
             "name": "Sengoku Hakase Badge",
@@ -20206,7 +20210,11 @@ var items_store = {
             "hammers_added": 2,
             "starforce": true,
             "enhanceable": true,
-            "scrollable": true
+            "scrollable": true,
+            "override_meta": {
+                "starforce_gains_att": false,
+                "max_stars": 22
+            }
         }
     }
 }

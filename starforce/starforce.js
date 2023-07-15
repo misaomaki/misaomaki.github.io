@@ -505,7 +505,6 @@ var equip_gain = function(item) {
         ];
 
         let base_visible_stat = 0;
-        let base_att = 0;
         let idx = star - 15;
 
         let _tier = tier[item_star_tier - 1];
@@ -514,14 +513,19 @@ var equip_gain = function(item) {
             base_visible_stat += _tier.bonus_stat;
         }
 
-        if (item.class === "weapon") {
-            base_att = _tier.bonus_att_weapon[idx];
-        } else {
-            base_att = _tier.bonus_att[idx];
+        if (item.meta.starforce_gains_att) {
+            let base_att = 0;
+            
+            if (item.class === "weapon") {
+                base_att = _tier.bonus_att_weapon[idx];
+            } else {
+                base_att = _tier.bonus_att[idx];
+            }
+
+            add.watt += base_att;
+            add.matt += base_att;
         }
 
-        add.watt += base_att;
-        add.matt += base_att;
         add.visible_stats += base_visible_stat;
     } 
 
