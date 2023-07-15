@@ -23,7 +23,7 @@ items_store["secondary: abyssal_path"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-initialpath",
+        "img": "item-initialpath",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -52,7 +52,7 @@ items_store["secondary: abyssal_path"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-secondarypath",
+        "img": "item-secondarypath",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -81,7 +81,7 @@ items_store["secondary: abyssal_path"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-advancedpath",
+        "img": "item-advancedpath",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -110,7 +110,7 @@ items_store["secondary: abyssal_path"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-ultimatepath",
+        "img": "item-ultimatepath",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -139,7 +139,7 @@ items_store["secondary: abyssal_path"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingultimatepath",
+        "img": "item-evolvingultimatepath",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -168,7 +168,7 @@ items_store["secondary: abyssal_path"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplepath",
+        "img": "item-onyxmaplepath",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -197,7 +197,7 @@ items_store["secondary: abyssal_path"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenpath",
+        "img": "item-frozenpath",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -226,7 +226,7 @@ items_store["secondary: abyssal_path"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnospath",
+        "img": "item-princessnospath",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -259,7 +259,7 @@ items_store["secondary: arrow_fletching"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-breezyfeather",
+        "img": "item-breezyfeather",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -288,7 +288,7 @@ items_store["secondary: arrow_fletching"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-gustyfeather",
+        "img": "item-gustyfeather",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -317,7 +317,7 @@ items_store["secondary: arrow_fletching"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-blastedfeather",
+        "img": "item-blastedfeather",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -346,7 +346,7 @@ items_store["secondary: arrow_fletching"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingblastedfeather",
+        "img": "item-evolvingblastedfeather",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -375,7 +375,7 @@ items_store["secondary: arrow_fletching"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplefeather",
+        "img": "item-onyxmaplefeather",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -404,7 +404,7 @@ items_store["secondary: arrow_fletching"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenfeather",
+        "img": "item-frozenfeather",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -433,7 +433,7 @@ items_store["secondary: arrow_fletching"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurefeather",
+        "img": "item-mapletreasurefeather",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -462,7 +462,7 @@ items_store["secondary: arrow_fletching"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosfeather",
+        "img": "item-princessnosfeather",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -495,7 +495,7 @@ items_store["secondary: arrowhead"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-wildbeak",
+        "img": "item-wildbeak",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -524,7 +524,7 @@ items_store["secondary: arrowhead"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-wildcrow",
+        "img": "item-wildcrow",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -553,7 +553,7 @@ items_store["secondary: arrowhead"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-wildheron",
+        "img": "item-wildheron",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -582,7 +582,7 @@ items_store["secondary: arrowhead"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingwildheron",
+        "img": "item-evolvingwildheron",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -611,7 +611,7 @@ items_store["secondary: arrowhead"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplewildheron",
+        "img": "item-onyxmaplewildheron",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -640,7 +640,7 @@ items_store["secondary: arrowhead"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenwildheron",
+        "img": "item-frozenwildheron",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -669,7 +669,7 @@ items_store["secondary: arrowhead"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurewildbeak",
+        "img": "item-mapletreasurewildbeak",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -698,7 +698,7 @@ items_store["secondary: arrowhead"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosarrowhead",
+        "img": "item-princessnosarrowhead",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -730,7 +730,7 @@ items_store["secondary: bladebinder"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-tracebladebinder",
+        "img": "item-tracebladebinder",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -759,7 +759,7 @@ items_store["secondary: bladebinder"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-embarkbladebinder",
+        "img": "item-embarkbladebinder",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -788,7 +788,7 @@ items_store["secondary: bladebinder"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-regularbladebinder",
+        "img": "item-regularbladebinder",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -817,7 +817,7 @@ items_store["secondary: bladebinder"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-noblebladebinder",
+        "img": "item-noblebladebinder",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -846,7 +846,7 @@ items_store["secondary: bladebinder"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingnoblebladebinder",
+        "img": "item-evolvingnoblebladebinder",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -875,7 +875,7 @@ items_store["secondary: bladebinder"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenshinybladebinder",
+        "img": "item-frozenshinybladebinder",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -904,7 +904,7 @@ items_store["secondary: bladebinder"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapleshinybladebinder",
+        "img": "item-onyxmapleshinybladebinder",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -933,7 +933,7 @@ items_store["secondary: bladebinder"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosimmortalbladebinder",
+        "img": "item-princessnosimmortalbladebinder",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -966,7 +966,7 @@ items_store["secondary: bow_thimble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-oneshot",
+        "img": "item-oneshot",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -995,7 +995,7 @@ items_store["secondary: bow_thimble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-sureshot",
+        "img": "item-sureshot",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1024,7 +1024,7 @@ items_store["secondary: bow_thimble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-trueshot",
+        "img": "item-trueshot",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1053,7 +1053,7 @@ items_store["secondary: bow_thimble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingtrueshot",
+        "img": "item-evolvingtrueshot",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1082,7 +1082,7 @@ items_store["secondary: bow_thimble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapletrueshot",
+        "img": "item-onyxmapletrueshot",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1111,7 +1111,7 @@ items_store["secondary: bow_thimble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozentrueshot",
+        "img": "item-frozentrueshot",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1140,7 +1140,7 @@ items_store["secondary: bow_thimble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasuretrueshot",
+        "img": "item-mapletreasuretrueshot",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1169,7 +1169,7 @@ items_store["secondary: bow_thimble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnoswreath",
+        "img": "item-princessnoswreath",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1198,7 +1198,7 @@ items_store["secondary: card"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-cartemagique",
+        "img": "item-cartemagique",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1223,7 +1223,7 @@ items_store["secondary: card"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-cartefantasmatique",
+        "img": "item-cartefantasmatique",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1248,7 +1248,7 @@ items_store["secondary: card"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-cartemagnifique",
+        "img": "item-cartemagnifique",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1273,7 +1273,7 @@ items_store["secondary: card"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-cartefinale",
+        "img": "item-cartefinale",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1300,7 +1300,7 @@ items_store["secondary: card"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingcartedernier",
+        "img": "item-evolvingcartedernier",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1328,7 +1328,7 @@ items_store["secondary: card"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-carteonyxmaple",
+        "img": "item-carteonyxmaple",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1356,7 +1356,7 @@ items_store["secondary: card"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-cartefrozen",
+        "img": "item-cartefrozen",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1384,7 +1384,7 @@ items_store["secondary: card"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurecarte",
+        "img": "item-mapletreasurecarte",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1412,7 +1412,7 @@ items_store["secondary: card"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnoscarte",
+        "img": "item-princessnoscarte",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1444,7 +1444,7 @@ items_store["secondary: charge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-rudimentarycharges",
+        "img": "item-rudimentarycharges",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1473,7 +1473,7 @@ items_store["secondary: charge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-standardcharges",
+        "img": "item-standardcharges",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1502,7 +1502,7 @@ items_store["secondary: charge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-highpoweredcharges",
+        "img": "item-highpoweredcharges",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1531,7 +1531,7 @@ items_store["secondary: charge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-masterworkcharges",
+        "img": "item-masterworkcharges",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1560,7 +1560,7 @@ items_store["secondary: charge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingmasterworkcharges",
+        "img": "item-evolvingmasterworkcharges",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1589,7 +1589,7 @@ items_store["secondary: charge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplecharges",
+        "img": "item-onyxmaplecharges",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1618,7 +1618,7 @@ items_store["secondary: charge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozencharges",
+        "img": "item-frozencharges",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1647,7 +1647,7 @@ items_store["secondary: charge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosmegatoncharges",
+        "img": "item-princessnosmegatoncharges",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1680,7 +1680,7 @@ items_store["secondary: charm"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-allsoulscharm",
+        "img": "item-allsoulscharm",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1709,7 +1709,7 @@ items_store["secondary: charm"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evilendercharm",
+        "img": "item-evilendercharm",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1738,7 +1738,7 @@ items_store["secondary: charm"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-deathsendercharm",
+        "img": "item-deathsendercharm",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1767,7 +1767,7 @@ items_store["secondary: charm"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingdeathsendercharm",
+        "img": "item-evolvingdeathsendercharm",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1796,7 +1796,7 @@ items_store["secondary: charm"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapledeathsendercharm",
+        "img": "item-onyxmapledeathsendercharm",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1825,7 +1825,7 @@ items_store["secondary: charm"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozendeathsendercharm",
+        "img": "item-frozendeathsendercharm",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1854,7 +1854,7 @@ items_store["secondary: charm"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasuredeathsendercharm",
+        "img": "item-mapletreasuredeathsendercharm",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1883,7 +1883,7 @@ items_store["secondary: charm"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnoscharm",
+        "img": "item-princessnoscharm",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1915,7 +1915,7 @@ items_store["secondary: chess_piece"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-pawnchesspiece",
+        "img": "item-pawnchesspiece",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1944,7 +1944,7 @@ items_store["secondary: chess_piece"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-knightchesspiece",
+        "img": "item-knightchesspiece",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -1973,7 +1973,7 @@ items_store["secondary: chess_piece"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-rookchesspiece",
+        "img": "item-rookchesspiece",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2002,7 +2002,7 @@ items_store["secondary: chess_piece"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-queenchesspiece",
+        "img": "item-queenchesspiece",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2031,7 +2031,7 @@ items_store["secondary: chess_piece"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingqueenchesspiece",
+        "img": "item-evolvingqueenchesspiece",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2060,7 +2060,7 @@ items_store["secondary: chess_piece"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplequeenchesspiece",
+        "img": "item-onyxmaplequeenchesspiece",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2089,7 +2089,7 @@ items_store["secondary: chess_piece"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenqueenchesspiece",
+        "img": "item-frozenqueenchesspiece",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2118,7 +2118,7 @@ items_store["secondary: chess_piece"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurechesspiece",
+        "img": "item-mapletreasurechesspiece",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2147,7 +2147,7 @@ items_store["secondary: chess_piece"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosorientalkingchesspiece",
+        "img": "item-princessnosorientalkingchesspiece",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2184,7 +2184,7 @@ items_store["secondary: core_controller"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-dualcorecontroller",
+        "img": "item-dualcorecontroller",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2217,7 +2217,7 @@ items_store["secondary: core_controller"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-quadcorecontroller",
+        "img": "item-quadcorecontroller",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2250,7 +2250,7 @@ items_store["secondary: core_controller"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-hexacorecontroller",
+        "img": "item-hexacorecontroller",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2283,7 +2283,7 @@ items_store["secondary: core_controller"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-octacorecontroller",
+        "img": "item-octacorecontroller",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2317,7 +2317,7 @@ items_store["secondary: core_controller"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingoctocorecontroller",
+        "img": "item-evolvingoctocorecontroller",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2350,7 +2350,7 @@ items_store["secondary: core_controller"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapleoctocorecontroller",
+        "img": "item-onyxmapleoctocorecontroller",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2383,7 +2383,7 @@ items_store["secondary: core_controller"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenoctocorecontroller",
+        "img": "item-frozenoctocorecontroller",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2415,7 +2415,7 @@ items_store["secondary: core_controller"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurecontroller",
+        "img": "item-mapletreasurecontroller",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2448,7 +2448,7 @@ items_store["secondary: core_controller"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnoscontroller",
+        "img": "item-princessnoscontroller",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2481,7 +2481,7 @@ items_store["secondary: dagger_scabbard"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-hiddenshadow",
+        "img": "item-hiddenshadow",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2510,7 +2510,7 @@ items_store["secondary: dagger_scabbard"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-vanishingshadow",
+        "img": "item-vanishingshadow",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2539,7 +2539,7 @@ items_store["secondary: dagger_scabbard"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-slashingshadow",
+        "img": "item-slashingshadow",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2568,7 +2568,7 @@ items_store["secondary: dagger_scabbard"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingslashingshadow",
+        "img": "item-evolvingslashingshadow",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2597,7 +2597,7 @@ items_store["secondary: dagger_scabbard"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapleshadow",
+        "img": "item-onyxmapleshadow",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2626,7 +2626,7 @@ items_store["secondary: dagger_scabbard"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenshadow",
+        "img": "item-frozenshadow",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2655,7 +2655,7 @@ items_store["secondary: dagger_scabbard"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasureshadow",
+        "img": "item-mapletreasureshadow",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2684,7 +2684,7 @@ items_store["secondary: dagger_scabbard"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnospurpleshadow",
+        "img": "item-princessnospurpleshadow",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2719,7 +2719,7 @@ items_store["secondary: demon_aegis"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapleforceshield",
+        "img": "item-onyxmapleforceshield",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2750,7 +2750,7 @@ items_store["secondary: demon_aegis"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenforceshield",
+        "img": "item-frozenforceshield",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2809,7 +2809,7 @@ items_store["secondary: demon_aegis"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasureforceshield",
+        "img": "item-mapletreasureforceshield",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2842,7 +2842,7 @@ items_store["secondary: document"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-dragonmastersrecords",
+        "img": "item-dragonmastersrecords",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2871,7 +2871,7 @@ items_store["secondary: document"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-dragonmastersresearch",
+        "img": "item-dragonmastersresearch",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2900,7 +2900,7 @@ items_store["secondary: document"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-dragonmasterslegacy",
+        "img": "item-dragonmasterslegacy",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2929,7 +2929,7 @@ items_store["secondary: document"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingdragonmasterslegacy",
+        "img": "item-evolvingdragonmasterslegacy",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2958,7 +2958,7 @@ items_store["secondary: document"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapledragonmasterslegacy",
+        "img": "item-onyxmapledragonmasterslegacy",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -2987,7 +2987,7 @@ items_store["secondary: document"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozendragonmasterslegacy",
+        "img": "item-frozendragonmasterslegacy",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3016,7 +3016,7 @@ items_store["secondary: document"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurelegacy",
+        "img": "item-mapletreasurelegacy",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3045,7 +3045,7 @@ items_store["secondary: document"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosdragonlegacy",
+        "img": "item-princessnosdragonlegacy",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3079,7 +3079,7 @@ items_store["secondary: dragon_essence"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-novasessence",
+        "img": "item-novasessence",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3110,7 +3110,7 @@ items_store["secondary: dragon_essence"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-novaguardianessence",
+        "img": "item-novaguardianessence",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3141,7 +3141,7 @@ items_store["secondary: dragon_essence"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-novajusticeessence",
+        "img": "item-novajusticeessence",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3172,7 +3172,7 @@ items_store["secondary: dragon_essence"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-novatruthessence",
+        "img": "item-novatruthessence",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3204,7 +3204,7 @@ items_store["secondary: dragon_essence"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingnovatruthessence",
+        "img": "item-evolvingnovatruthessence",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3235,7 +3235,7 @@ items_store["secondary: dragon_essence"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-novaonyxmapleessence",
+        "img": "item-novaonyxmapleessence",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3266,7 +3266,7 @@ items_store["secondary: dragon_essence"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-novafrozenessence",
+        "img": "item-novafrozenessence",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3297,7 +3297,7 @@ items_store["secondary: dragon_essence"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasureessence",
+        "img": "item-mapletreasureessence",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3328,7 +3328,7 @@ items_store["secondary: dragon_essence"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosdragonessence",
+        "img": "item-princessnosdragonessence",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3360,7 +3360,7 @@ items_store["secondary: fan_tassel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-manofantassel",
+        "img": "item-manofantassel",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3389,7 +3389,7 @@ items_store["secondary: fan_tassel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-lapislazulifantassel",
+        "img": "item-lapislazulifantassel",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3418,7 +3418,7 @@ items_store["secondary: fan_tassel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-corundumfantassel",
+        "img": "item-corundumfantassel",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3447,7 +3447,7 @@ items_store["secondary: fan_tassel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-moonstonefantassel",
+        "img": "item-moonstonefantassel",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3476,7 +3476,7 @@ items_store["secondary: fan_tassel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingmoonstonefantassel",
+        "img": "item-evolvingmoonstonefantassel",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3505,7 +3505,7 @@ items_store["secondary: fan_tassel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenfantassel",
+        "img": "item-frozenfantassel",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3534,7 +3534,7 @@ items_store["secondary: fan_tassel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplefantassel",
+        "img": "item-onyxmaplefantassel",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3563,7 +3563,7 @@ items_store["secondary: fan_tassel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosfantassel",
+        "img": "item-princessnosfantassel",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3596,7 +3596,7 @@ items_store["secondary: far_sight"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-eagleeye",
+        "img": "item-eagleeye",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3625,7 +3625,7 @@ items_store["secondary: far_sight"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-hawkeye",
+        "img": "item-hawkeye",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3654,7 +3654,7 @@ items_store["secondary: far_sight"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-falconeye",
+        "img": "item-falconeye",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3683,7 +3683,7 @@ items_store["secondary: far_sight"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingfalconeye",
+        "img": "item-evolvingfalconeye",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3712,7 +3712,7 @@ items_store["secondary: far_sight"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplefalconeye",
+        "img": "item-onyxmaplefalconeye",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3741,7 +3741,7 @@ items_store["secondary: far_sight"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenfalconeye",
+        "img": "item-frozenfalconeye",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3770,7 +3770,7 @@ items_store["secondary: far_sight"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurefalconeye",
+        "img": "item-mapletreasurefalconeye",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3799,7 +3799,7 @@ items_store["secondary: far_sight"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosfalconeye",
+        "img": "item-princessnosfalconeye",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3830,7 +3830,7 @@ items_store["secondary: fist"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-basicfist",
+        "img": "item-basicfist",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3859,7 +3859,7 @@ items_store["secondary: fist"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-proximafist",
+        "img": "item-proximafist",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3888,7 +3888,7 @@ items_store["secondary: fist"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-siriusfist",
+        "img": "item-siriusfist",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3917,7 +3917,7 @@ items_store["secondary: fist"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-arcturusfist",
+        "img": "item-arcturusfist",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3946,7 +3946,7 @@ items_store["secondary: fist"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapleclaw",
+        "img": "item-onyxmapleclaw",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -3975,7 +3975,7 @@ items_store["secondary: fist"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenmapleclaw",
+        "img": "item-frozenmapleclaw",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4004,7 +4004,7 @@ items_store["secondary: fist"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurefist",
+        "img": "item-mapletreasurefist",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4033,7 +4033,7 @@ items_store["secondary: fist"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosorionfist",
+        "img": "item-princessnosorionfist",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4065,7 +4065,7 @@ items_store["secondary: fox_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-bluefoxmarble",
+        "img": "item-bluefoxmarble",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4094,7 +4094,7 @@ items_store["secondary: fox_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-greenfoxmarble",
+        "img": "item-greenfoxmarble",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4123,7 +4123,7 @@ items_store["secondary: fox_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-redfoxmarble",
+        "img": "item-redfoxmarble",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4152,7 +4152,7 @@ items_store["secondary: fox_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-goldenfoxmarble",
+        "img": "item-goldenfoxmarble",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4181,7 +4181,7 @@ items_store["secondary: fox_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvinggoldenfoxmarble",
+        "img": "item-evolvinggoldenfoxmarble",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4210,7 +4210,7 @@ items_store["secondary: fox_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplefoxmarble",
+        "img": "item-onyxmaplefoxmarble",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4239,7 +4239,7 @@ items_store["secondary: fox_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenfoxmarble",
+        "img": "item-frozenfoxmarble",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4268,7 +4268,7 @@ items_store["secondary: fox_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurefoxmarble",
+        "img": "item-mapletreasurefoxmarble",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4297,7 +4297,7 @@ items_store["secondary: fox_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosfoxmarble",
+        "img": "item-princessnosfoxmarble",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4333,7 +4333,7 @@ items_store["secondary: iron_chain"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-starkchain",
+        "img": "item-starkchain",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4362,7 +4362,7 @@ items_store["secondary: iron_chain"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-darkchain",
+        "img": "item-darkchain",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4391,7 +4391,7 @@ items_store["secondary: iron_chain"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-berserkchain",
+        "img": "item-berserkchain",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4420,7 +4420,7 @@ items_store["secondary: iron_chain"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingberserkchain",
+        "img": "item-evolvingberserkchain",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4449,7 +4449,7 @@ items_store["secondary: iron_chain"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplechain",
+        "img": "item-onyxmaplechain",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4478,7 +4478,7 @@ items_store["secondary: iron_chain"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenchain",
+        "img": "item-frozenchain",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4507,7 +4507,7 @@ items_store["secondary: iron_chain"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurechain",
+        "img": "item-mapletreasurechain",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4536,7 +4536,7 @@ items_store["secondary: iron_chain"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosflowerchain",
+        "img": "item-princessnosflowerchain",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4572,7 +4572,7 @@ items_store["secondary: jewel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-erevefragment",
+        "img": "item-erevefragment",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4604,7 +4604,7 @@ items_store["secondary: jewel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-ereveidea",
+        "img": "item-ereveidea",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4636,7 +4636,7 @@ items_store["secondary: jewel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-erevebrilliance",
+        "img": "item-erevebrilliance",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4668,7 +4668,7 @@ items_store["secondary: jewel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingerevebrilliance",
+        "img": "item-evolvingerevebrilliance",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4700,7 +4700,7 @@ items_store["secondary: jewel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapleerevebrilliance",
+        "img": "item-onyxmapleerevebrilliance",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4732,7 +4732,7 @@ items_store["secondary: jewel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenerevebrilliance",
+        "img": "item-frozenerevebrilliance",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4764,7 +4764,7 @@ items_store["secondary: jewel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasureerevebrilliance",
+        "img": "item-mapletreasureerevebrilliance",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4796,7 +4796,7 @@ items_store["secondary: jewel"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosfloraljewel",
+        "img": "item-princessnosfloraljewel",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4826,7 +4826,7 @@ items_store["secondary: kodachi"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-whitetigerblade",
+        "img": "item-whitetigerblade",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4853,7 +4853,7 @@ items_store["secondary: kodachi"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-bluedragonblade",
+        "img": "item-bluedragonblade",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4881,7 +4881,7 @@ items_store["secondary: kodachi"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-lakemonsterblade",
+        "img": "item-lakemonsterblade",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4909,7 +4909,7 @@ items_store["secondary: kodachi"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-firephoenixblade",
+        "img": "item-firephoenixblade",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4937,7 +4937,7 @@ items_store["secondary: kodachi"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingfirephoenixblade",
+        "img": "item-evolvingfirephoenixblade",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4965,7 +4965,7 @@ items_store["secondary: kodachi"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapletigerblade",
+        "img": "item-onyxmapletigerblade",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -4993,7 +4993,7 @@ items_store["secondary: kodachi"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozentigerblade",
+        "img": "item-frozentigerblade",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5021,7 +5021,7 @@ items_store["secondary: kodachi"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurekodachi",
+        "img": "item-mapletreasurekodachi",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5050,7 +5050,7 @@ items_store["secondary: kodachi"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnoswakizashi",
+        "img": "item-princessnoswakizashi",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5082,7 +5082,7 @@ items_store["secondary: lucent_wings"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-basiclucentwings",
+        "img": "item-basiclucentwings",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5111,7 +5111,7 @@ items_store["secondary: lucent_wings"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-corelucentwings",
+        "img": "item-corelucentwings",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5140,7 +5140,7 @@ items_store["secondary: lucent_wings"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-holylucentwings",
+        "img": "item-holylucentwings",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5169,7 +5169,7 @@ items_store["secondary: lucent_wings"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-glorylucentwings",
+        "img": "item-glorylucentwings",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5198,7 +5198,7 @@ items_store["secondary: lucent_wings"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingglorylucentwings",
+        "img": "item-evolvingglorylucentwings",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5227,7 +5227,7 @@ items_store["secondary: lucent_wings"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplelucentwings",
+        "img": "item-onyxmaplelucentwings",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5256,7 +5256,7 @@ items_store["secondary: lucent_wings"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenlucentwings",
+        "img": "item-frozenlucentwings",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5285,7 +5285,7 @@ items_store["secondary: lucent_wings"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnoslucentwings",
+        "img": "item-princessnoslucentwings",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5314,7 +5314,7 @@ items_store["secondary: magic_arrow"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-magicarrows",
+        "img": "item-magicarrows",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5339,7 +5339,7 @@ items_store["secondary: magic_arrow"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-sharpmagicarrows",
+        "img": "item-sharpmagicarrows",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5364,7 +5364,7 @@ items_store["secondary: magic_arrow"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-eternalmagicarrows",
+        "img": "item-eternalmagicarrows",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5389,7 +5389,7 @@ items_store["secondary: magic_arrow"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-infinitemagicarrows",
+        "img": "item-infinitemagicarrows",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5416,7 +5416,7 @@ items_store["secondary: magic_arrow"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvinginfinitemagicarrows",
+        "img": "item-evolvinginfinitemagicarrows",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5444,7 +5444,7 @@ items_store["secondary: magic_arrow"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplemagicarrows",
+        "img": "item-onyxmaplemagicarrows",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5472,7 +5472,7 @@ items_store["secondary: magic_arrow"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenmagicarrows",
+        "img": "item-frozenmagicarrows",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5500,7 +5500,7 @@ items_store["secondary: magic_arrow"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasuremagicarrows",
+        "img": "item-mapletreasuremagicarrows",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5528,7 +5528,7 @@ items_store["secondary: magic_arrow"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosaccursedarrow",
+        "img": "item-princessnosaccursedarrow",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5561,7 +5561,7 @@ items_store["secondary: magic_book"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-whitegoldbookstrophe",
+        "img": "item-whitegoldbookstrophe",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": true,
@@ -5589,7 +5589,7 @@ items_store["secondary: magic_book"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-whitegoldbookantistrophe",
+        "img": "item-whitegoldbookantistrophe",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": true,
@@ -5617,7 +5617,7 @@ items_store["secondary: magic_book"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-whitegoldbookepode",
+        "img": "item-whitegoldbookepode",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": true,
@@ -5645,7 +5645,7 @@ items_store["secondary: magic_book"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingwhitegoldbookepode",
+        "img": "item-evolvingwhitegoldbookepode",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": true,
@@ -5673,7 +5673,7 @@ items_store["secondary: magic_book"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplewhitegoldbook",
+        "img": "item-onyxmaplewhitegoldbook",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": true,
@@ -5701,7 +5701,7 @@ items_store["secondary: magic_book"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenwhitegoldbook",
+        "img": "item-frozenwhitegoldbook",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": true,
@@ -5729,7 +5729,7 @@ items_store["secondary: magic_book"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurewhitegoldbook",
+        "img": "item-mapletreasurewhitegoldbook",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": true,
@@ -5757,7 +5757,7 @@ items_store["secondary: magic_book"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosgoldenbook",
+        "img": "item-princessnosgoldenbook",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": true,
@@ -5789,7 +5789,7 @@ items_store["secondary: magic_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-equalizerball",
+        "img": "item-equalizerball",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5818,7 +5818,7 @@ items_store["secondary: magic_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-energizerball",
+        "img": "item-energizerball",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5847,7 +5847,7 @@ items_store["secondary: magic_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-maximizerball",
+        "img": "item-maximizerball",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5876,7 +5876,7 @@ items_store["secondary: magic_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingmaximizerball",
+        "img": "item-evolvingmaximizerball",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5905,7 +5905,7 @@ items_store["secondary: magic_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplemaximizerball",
+        "img": "item-onyxmaplemaximizerball",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5934,7 +5934,7 @@ items_store["secondary: magic_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenmaximizerball",
+        "img": "item-frozenmaximizerball",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5963,7 +5963,7 @@ items_store["secondary: magic_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasureequalizerball",
+        "img": "item-mapletreasureequalizerball",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -5992,7 +5992,7 @@ items_store["secondary: magic_marble"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosaccursedmarble",
+        "img": "item-princessnosaccursedmarble",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6023,7 +6023,7 @@ items_store["secondary: magnum"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-magnum",
+        "img": "item-magnum",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6050,7 +6050,7 @@ items_store["secondary: magnum"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-splitmagnum",
+        "img": "item-splitmagnum",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6077,7 +6077,7 @@ items_store["secondary: magnum"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-vitalmagnum",
+        "img": "item-vitalmagnum",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6104,7 +6104,7 @@ items_store["secondary: magnum"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-eternalmagnum",
+        "img": "item-eternalmagnum",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6132,7 +6132,7 @@ items_store["secondary: magnum"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingeternalmagnum",
+        "img": "item-evolvingeternalmagnum",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6160,7 +6160,7 @@ items_store["secondary: magnum"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplemagnum",
+        "img": "item-onyxmaplemagnum",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6188,7 +6188,7 @@ items_store["secondary: magnum"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenmagnum",
+        "img": "item-frozenmagnum",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6216,7 +6216,7 @@ items_store["secondary: magnum"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasuremagnum",
+        "img": "item-mapletreasuremagnum",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6244,7 +6244,7 @@ items_store["secondary: magnum"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosmagnum",
+        "img": "item-princessnosmagnum",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6277,7 +6277,7 @@ items_store["secondary: mass"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-silverbeastmass",
+        "img": "item-silverbeastmass",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6306,7 +6306,7 @@ items_store["secondary: mass"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-phoenixmass",
+        "img": "item-phoenixmass",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6335,7 +6335,7 @@ items_store["secondary: mass"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-dragonmass",
+        "img": "item-dragonmass",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6364,7 +6364,7 @@ items_store["secondary: mass"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingdragonmass",
+        "img": "item-evolvingdragonmass",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6393,7 +6393,7 @@ items_store["secondary: mass"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapledragonmass",
+        "img": "item-onyxmapledragonmass",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6422,7 +6422,7 @@ items_store["secondary: mass"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozendragonmass",
+        "img": "item-frozendragonmass",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6451,7 +6451,7 @@ items_store["secondary: mass"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasuredragonmass",
+        "img": "item-mapletreasuredragonmass",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6480,7 +6480,7 @@ items_store["secondary: mass"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosflowerballast",
+        "img": "item-princessnosflowerballast",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6514,7 +6514,7 @@ items_store["secondary: medallion"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-powersmedallion",
+        "img": "item-powersmedallion",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6543,7 +6543,7 @@ items_store["secondary: medallion"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-ordersmedallion",
+        "img": "item-ordersmedallion",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6572,7 +6572,7 @@ items_store["secondary: medallion"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-virtuesmedallion",
+        "img": "item-virtuesmedallion",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6601,7 +6601,7 @@ items_store["secondary: medallion"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingvirtuesmedal",
+        "img": "item-evolvingvirtuesmedal",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6630,7 +6630,7 @@ items_store["secondary: medallion"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplemedal",
+        "img": "item-onyxmaplemedal",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6659,7 +6659,7 @@ items_store["secondary: medallion"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenmedal",
+        "img": "item-frozenmedal",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6688,7 +6688,7 @@ items_store["secondary: medallion"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasuremedal",
+        "img": "item-mapletreasuremedal",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6717,7 +6717,7 @@ items_store["secondary: medallion"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosmedal",
+        "img": "item-princessnosmedal",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6746,7 +6746,7 @@ items_store["secondary: orb"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-lightorb",
+        "img": "item-lightorb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6771,7 +6771,7 @@ items_store["secondary: orb"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-shiningorb",
+        "img": "item-shiningorb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6796,7 +6796,7 @@ items_store["secondary: orb"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-twinklingorb",
+        "img": "item-twinklingorb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6821,7 +6821,7 @@ items_store["secondary: orb"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-karmaorb",
+        "img": "item-karmaorb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6848,7 +6848,7 @@ items_store["secondary: orb"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingkarmaorb",
+        "img": "item-evolvingkarmaorb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6876,7 +6876,7 @@ items_store["secondary: orb"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapleorb",
+        "img": "item-onyxmapleorb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6904,7 +6904,7 @@ items_store["secondary: orb"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenorb",
+        "img": "item-frozenorb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6932,7 +6932,7 @@ items_store["secondary: orb"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasureorb",
+        "img": "item-mapletreasureorb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6960,7 +6960,7 @@ items_store["secondary: orb"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnossoulorb",
+        "img": "item-princessnossoulorb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -6992,7 +6992,7 @@ items_store["secondary: ornament"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-simplefourjadeornament",
+        "img": "item-simplefourjadeornament",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7021,7 +7021,7 @@ items_store["secondary: ornament"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-subtlefourjadeornament",
+        "img": "item-subtlefourjadeornament",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7050,7 +7050,7 @@ items_store["secondary: ornament"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-flashyfourjadeornament",
+        "img": "item-flashyfourjadeornament",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7079,7 +7079,7 @@ items_store["secondary: ornament"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-radiantfourjadeornament",
+        "img": "item-radiantfourjadeornament",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7108,7 +7108,7 @@ items_store["secondary: ornament"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenfourjadeornament",
+        "img": "item-frozenfourjadeornament",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7137,7 +7137,7 @@ items_store["secondary: ornament"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplefourjadeornament",
+        "img": "item-onyxmaplefourjadeornament",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7166,7 +7166,7 @@ items_store["secondary: ornament"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingfourjadeornament",
+        "img": "item-evolvingfourjadeornament",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7195,7 +7195,7 @@ items_store["secondary: ornament"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosimmortalfourjadeornament",
+        "img": "item-princessnosimmortalfourjadeornament",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7228,7 +7228,7 @@ items_store["secondary: powder_keg"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-pinfirebomb",
+        "img": "item-pinfirebomb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7257,7 +7257,7 @@ items_store["secondary: powder_keg"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-rimfirebomb",
+        "img": "item-rimfirebomb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7286,7 +7286,7 @@ items_store["secondary: powder_keg"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-centerfirebomb",
+        "img": "item-centerfirebomb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7315,7 +7315,7 @@ items_store["secondary: powder_keg"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingcenterfirebomb",
+        "img": "item-evolvingcenterfirebomb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7344,7 +7344,7 @@ items_store["secondary: powder_keg"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplecenterfirebomb",
+        "img": "item-onyxmaplecenterfirebomb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7373,7 +7373,7 @@ items_store["secondary: powder_keg"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozencenterfirebomb",
+        "img": "item-frozencenterfirebomb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7402,7 +7402,7 @@ items_store["secondary: powder_keg"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurecenterfirebomb",
+        "img": "item-mapletreasurecenterfirebomb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7431,7 +7431,7 @@ items_store["secondary: powder_keg"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosfirebomb",
+        "img": "item-princessnosfirebomb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7463,7 +7463,7 @@ items_store["secondary: relic"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-potentialrelic",
+        "img": "item-potentialrelic",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7492,7 +7492,7 @@ items_store["secondary: relic"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-awakenedrelic",
+        "img": "item-awakenedrelic",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7521,7 +7521,7 @@ items_store["secondary: relic"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-trinerelic",
+        "img": "item-trinerelic",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7550,7 +7550,7 @@ items_store["secondary: relic"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-perfectrelic",
+        "img": "item-perfectrelic",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7579,7 +7579,7 @@ items_store["secondary: relic"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingperfectrelic",
+        "img": "item-evolvingperfectrelic",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7608,7 +7608,7 @@ items_store["secondary: relic"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenrelic",
+        "img": "item-frozenrelic",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7637,7 +7637,7 @@ items_store["secondary: relic"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplerelic",
+        "img": "item-onyxmaplerelic",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7666,7 +7666,7 @@ items_store["secondary: relic"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosimmortalrelic",
+        "img": "item-princessnosimmortalrelic",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7699,7 +7699,7 @@ items_store["secondary: rosary"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-holyrosary",
+        "img": "item-holyrosary",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7728,7 +7728,7 @@ items_store["secondary: rosary"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-divinerosary",
+        "img": "item-divinerosary",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7757,7 +7757,7 @@ items_store["secondary: rosary"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-sacredrosary",
+        "img": "item-sacredrosary",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7786,7 +7786,7 @@ items_store["secondary: rosary"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingsacredrosary",
+        "img": "item-evolvingsacredrosary",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7815,7 +7815,7 @@ items_store["secondary: rosary"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplerosary",
+        "img": "item-onyxmaplerosary",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7844,7 +7844,7 @@ items_store["secondary: rosary"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenrosary",
+        "img": "item-frozenrosary",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7873,7 +7873,7 @@ items_store["secondary: rosary"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurerosary",
+        "img": "item-mapletreasurerosary",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -7902,7 +7902,7 @@ items_store["secondary: rosary"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosrosary",
+        "img": "item-princessnosrosary",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8061,7 +8061,7 @@ items_store["secondary: shield"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-stolenfence",
+        "img": "item-stolenfence",
         "upgrades": 10,
         "hammers_added": 2,
         "starforce": true,
@@ -8088,7 +8088,7 @@ items_store["secondary: shield"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-panlid",
+        "img": "item-panlid",
         "upgrades": 10,
         "hammers_added": 2,
         "starforce": true,
@@ -8115,7 +8115,7 @@ items_store["secondary: shield"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapleshield",
+        "img": "item-mapleshield",
         "upgrades": 10,
         "hammers_added": 2,
         "starforce": true,
@@ -8142,7 +8142,7 @@ items_store["secondary: shield"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-blackphoenixshield",
+        "img": "item-blackphoenixshield",
         "upgrades": 10,
         "hammers_added": 2,
         "starforce": true,
@@ -8170,7 +8170,7 @@ items_store["secondary: shield"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-palette",
+        "img": "item-palette",
         "upgrades": 10,
         "hammers_added": 2,
         "starforce": true,
@@ -8197,7 +8197,7 @@ items_store["secondary: shield"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-cokeplayshield",
+        "img": "item-cokeplayshield",
         "upgrades": 10,
         "hammers_added": 2,
         "starforce": true,
@@ -8226,7 +8226,7 @@ items_store["secondary: shield"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-stoneshield",
+        "img": "item-stoneshield",
         "upgrades": 10,
         "hammers_added": 2,
         "starforce": true,
@@ -8262,7 +8262,7 @@ items_store["secondary: soul_ring"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-pinksoulring",
+        "img": "item-pinksoulring",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8294,7 +8294,7 @@ items_store["secondary: soul_ring"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-purplesoulring",
+        "img": "item-purplesoulring",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8326,7 +8326,7 @@ items_store["secondary: soul_ring"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-bluesoulring",
+        "img": "item-bluesoulring",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8358,7 +8358,7 @@ items_store["secondary: soul_ring"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-greensoulring",
+        "img": "item-greensoulring",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8391,7 +8391,7 @@ items_store["secondary: soul_ring"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvinggreensoulring",
+        "img": "item-evolvinggreensoulring",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8423,7 +8423,7 @@ items_store["secondary: soul_ring"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplesoulring",
+        "img": "item-onyxmaplesoulring",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8455,7 +8455,7 @@ items_store["secondary: soul_ring"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozensoulring",
+        "img": "item-frozensoulring",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8486,7 +8486,7 @@ items_store["secondary: soul_ring"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasuresoulring",
+        "img": "item-mapletreasuresoulring",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8518,7 +8518,7 @@ items_store["secondary: soul_ring"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnossoulring",
+        "img": "item-princessnossoulring",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8529,12 +8529,12 @@ items_store["secondary: soul_ring"] = {
 };
 
 
-items_store["secondary: soul_shields"] = {
+items_store["secondary: soul_shield"] = {
     "soul_shield_of_protection": {
         "name": "Soul Shield of Protection",
         "level": 10,
         "class": "weapon",
-        "type": "soul shields",
+        "type": "soul shield",
         "job": ["warrior"],
         "mstat": "str",
         "pstat": ["str", "dex"],
@@ -8549,7 +8549,7 @@ items_store["secondary: soul_shields"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-soulshieldofprotection",
+        "img": "item-soulshieldofprotection",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8561,7 +8561,7 @@ items_store["secondary: soul_shields"] = {
         "name": "Soul Shield of Pride",
         "level": 30,
         "class": "weapon",
-        "type": "soul shields",
+        "type": "soul shield",
         "job": ["warrior"],
         "mstat": "str",
         "pstat": ["str", "dex"],
@@ -8577,7 +8577,7 @@ items_store["secondary: soul_shields"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-soulshieldofpride",
+        "img": "item-soulshieldofpride",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8589,7 +8589,7 @@ items_store["secondary: soul_shields"] = {
         "name": "Soul Shield of Courage",
         "level": 60,
         "class": "weapon",
-        "type": "soul shields",
+        "type": "soul shield",
         "job": ["warrior"],
         "mstat": "str",
         "pstat": ["str", "dex"],
@@ -8607,7 +8607,7 @@ items_store["secondary: soul_shields"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-soulshieldofcourage",
+        "img": "item-soulshieldofcourage",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8619,7 +8619,7 @@ items_store["secondary: soul_shields"] = {
         "name": "Soul Shield of Justice",
         "level": 100,
         "class": "weapon",
-        "type": "soul shields",
+        "type": "soul shield",
         "job": ["warrior"],
         "mstat": "str",
         "pstat": ["str", "dex"],
@@ -8638,7 +8638,7 @@ items_store["secondary: soul_shields"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-soulshieldofjustice",
+        "img": "item-soulshieldofjustice",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8650,7 +8650,7 @@ items_store["secondary: soul_shields"] = {
         "name": "Evolving Soul Shield of Justice",
         "level": 100,
         "class": "weapon",
-        "type": "soul shields",
+        "type": "soul shield",
         "job": ["warrior"],
         "mstat": "str",
         "pstat": ["str", "dex"],
@@ -8670,7 +8670,7 @@ items_store["secondary: soul_shields"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingsoulshieldofjustice",
+        "img": "item-evolvingsoulshieldofjustice",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8682,7 +8682,7 @@ items_store["secondary: soul_shields"] = {
         "name": "Onyx Maple Soul Shield",
         "level": 100,
         "class": "weapon",
-        "type": "soul shields",
+        "type": "soul shield",
         "job": ["warrior"],
         "mstat": "str",
         "pstat": ["str", "dex"],
@@ -8701,7 +8701,7 @@ items_store["secondary: soul_shields"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplesoulshield",
+        "img": "item-onyxmaplesoulshield",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8713,7 +8713,7 @@ items_store["secondary: soul_shields"] = {
         "name": "Frozen Soul Shield",
         "level": 100,
         "class": "weapon",
-        "type": "soul shields",
+        "type": "soul shield",
         "job": ["warrior"],
         "mstat": "str",
         "pstat": ["str", "dex"],
@@ -8732,7 +8732,7 @@ items_store["secondary: soul_shields"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozensoulshield",
+        "img": "item-frozensoulshield",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8744,7 +8744,7 @@ items_store["secondary: soul_shields"] = {
         "name": "Maple Treasure Soul Shield",
         "level": 110,
         "class": "weapon",
-        "type": "soul shields",
+        "type": "soul shield",
         "job": ["warrior"],
         "mstat": "str",
         "pstat": ["str", "dex"],
@@ -8762,7 +8762,7 @@ items_store["secondary: soul_shields"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasuresoulshield",
+        "img": "item-mapletreasuresoulshield",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8774,7 +8774,7 @@ items_store["secondary: soul_shields"] = {
         "name": "Princess No's Soul Shield",
         "level": 140,
         "class": "weapon",
-        "type": "soul shields",
+        "type": "soul shield",
         "job": ["warrior"],
         "mstat": "str",
         "pstat": ["str", "dex"],
@@ -8793,7 +8793,7 @@ items_store["secondary: soul_shields"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnossoulshield",
+        "img": "item-princessnossoulshield",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8825,7 +8825,7 @@ items_store["secondary: warp_forge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-transmittertyped",
+        "img": "item-transmittertyped",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8854,7 +8854,7 @@ items_store["secondary: warp_forge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-transmittertypec",
+        "img": "item-transmittertypec",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8883,7 +8883,7 @@ items_store["secondary: warp_forge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-transmittertypeb",
+        "img": "item-transmittertypeb",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8912,7 +8912,7 @@ items_store["secondary: warp_forge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-transmittertypea",
+        "img": "item-transmittertypea",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8941,7 +8941,7 @@ items_store["secondary: warp_forge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingtransmittertypea",
+        "img": "item-evolvingtransmittertypea",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8970,7 +8970,7 @@ items_store["secondary: warp_forge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapletransmitter",
+        "img": "item-onyxmapletransmitter",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -8999,7 +8999,7 @@ items_store["secondary: warp_forge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozentransmitter",
+        "img": "item-frozentransmitter",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9028,7 +9028,7 @@ items_store["secondary: warp_forge"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnostransmitter",
+        "img": "item-princessnostransmitter",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9060,7 +9060,7 @@ items_store["secondary: weapon_belt"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-dbasicweaponbelt",
+        "img": "item-dbasicweaponbelt",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9089,7 +9089,7 @@ items_store["secondary: weapon_belt"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-d30aweaponbelt",
+        "img": "item-d30aweaponbelt",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9118,7 +9118,7 @@ items_store["secondary: weapon_belt"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-d60advancedweaponbelt",
+        "img": "item-d60advancedweaponbelt",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9147,7 +9147,7 @@ items_store["secondary: weapon_belt"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-d100customweaponbelt",
+        "img": "item-d100customweaponbelt",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9176,7 +9176,7 @@ items_store["secondary: weapon_belt"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozend100weaponbelt",
+        "img": "item-frozend100weaponbelt",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9205,7 +9205,7 @@ items_store["secondary: weapon_belt"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmapled100weaponbelt",
+        "img": "item-onyxmapled100weaponbelt",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9234,7 +9234,7 @@ items_store["secondary: weapon_belt"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingd100weaponbelt",
+        "img": "item-evolvingd100weaponbelt",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9263,7 +9263,7 @@ items_store["secondary: weapon_belt"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosimmortalweaponbelt",
+        "img": "item-princessnosimmortalweaponbelt",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9295,7 +9295,7 @@ items_store["secondary: whistle"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-tinywhisper",
+        "img": "item-tinywhisper",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9324,7 +9324,7 @@ items_store["secondary: whistle"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-friendswhisper",
+        "img": "item-friendswhisper",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9353,7 +9353,7 @@ items_store["secondary: whistle"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-tutelarywhisper",
+        "img": "item-tutelarywhisper",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9382,7 +9382,7 @@ items_store["secondary: whistle"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mothernaturewhisper",
+        "img": "item-mothernaturewhisper",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9411,7 +9411,7 @@ items_store["secondary: whistle"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingmothernaturewhisper",
+        "img": "item-evolvingmothernaturewhisper",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9440,7 +9440,7 @@ items_store["secondary: whistle"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplewhisper",
+        "img": "item-onyxmaplewhisper",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9469,7 +9469,7 @@ items_store["secondary: whistle"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenwhisper",
+        "img": "item-frozenwhisper",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9498,7 +9498,7 @@ items_store["secondary: whistle"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurewhistle",
+        "img": "item-mapletreasurewhistle",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9527,7 +9527,7 @@ items_store["secondary: whistle"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosmagicalwhisper",
+        "img": "item-princessnosmagicalwhisper",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9560,7 +9560,7 @@ items_store["secondary: wrist_band"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-wristband",
+        "img": "item-wristband",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9589,7 +9589,7 @@ items_store["secondary: wrist_band"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-wristguard",
+        "img": "item-wristguard",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9618,7 +9618,7 @@ items_store["secondary: wrist_band"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-wristarmor",
+        "img": "item-wristarmor",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9647,7 +9647,7 @@ items_store["secondary: wrist_band"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-evolvingwristarmor",
+        "img": "item-evolvingwristarmor",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9676,7 +9676,7 @@ items_store["secondary: wrist_band"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-onyxmaplewristarmor",
+        "img": "item-onyxmaplewristarmor",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9705,7 +9705,7 @@ items_store["secondary: wrist_band"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-frozenwristarmor",
+        "img": "item-frozenwristarmor",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9734,7 +9734,7 @@ items_store["secondary: wrist_band"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-mapletreasurewristarmor",
+        "img": "item-mapletreasurewristarmor",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,
@@ -9763,7 +9763,7 @@ items_store["secondary: wrist_band"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "img-princessnosskullarmor",
+        "img": "item-princessnosskullarmor",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": false,

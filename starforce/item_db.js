@@ -6513,7 +6513,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-crackedgolluxearrings",
+            "img": "item-crackedgolluxearrings",
             "upgrades": 6,
             "hammers_added": 2,
             "starforce": true,
@@ -6547,7 +6547,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-crackedgolluxring",
+            "img": "item-crackedgolluxring",
             "upgrades": 1,
             "hammers_added": 2,
             "starforce": true,
@@ -6581,7 +6581,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-crackedengravedgolluxpendant",
+            "img": "item-crackedengravedgolluxpendant",
             "upgrades": 3,
             "hammers_added": 2,
             "starforce": true,
@@ -6613,7 +6613,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-crackedengravedgolluxbelt",
+            "img": "item-crackedengravedgolluxbelt",
             "upgrades": 3,
             "hammers_added": 2,
             "starforce": true,
@@ -6647,7 +6647,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-solidgolluxearrings",
+            "img": "item-solidgolluxearrings",
             "upgrades": 6,
             "hammers_added": 2,
             "starforce": true,
@@ -6681,7 +6681,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-solidgolluxring",
+            "img": "item-solidgolluxring",
             "upgrades": 2,
             "hammers_added": 2,
             "starforce": true,
@@ -6715,7 +6715,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-solidengravedgolluxpendant",
+            "img": "item-solidengravedgolluxpendant",
             "upgrades": 4,
             "hammers_added": 2,
             "starforce": true,
@@ -6749,7 +6749,7 @@ var items_store = {
                 "int": 0,
                 "luk": 0
             },
-            "img": "img-solidengravedgolluxbelt",
+            "img": "item-solidengravedgolluxbelt",
             "upgrades": 3,
             "hammers_added": 2,
             "starforce": true,
@@ -20157,7 +20157,7 @@ var items_store = {
               "int": 0,
               "luk": 0
             },
-            "img": "img-ghostshipexorcist",
+            "img": "item-ghostshipexorcist",
             "upgrades": 1,
             "hammers_added": 2,
             "starforce": true,
@@ -20205,7 +20205,7 @@ var items_store = {
               "int": 0,
               "luk": 0
             },
-            "img": "img-sengokuhakasebadge",
+            "img": "item-sengokuhakasebadge",
             "upgrades": 2,
             "hammers_added": 2,
             "starforce": true,
