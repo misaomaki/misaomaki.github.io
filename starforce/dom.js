@@ -1856,7 +1856,7 @@ $(function() {
                 let i_key = item_keys[i];
                 let _di = items_db[i_key];
 
-                itemsHtml += `<option disabled>${i_key.replace(/_/gi," ").toUpperCase()}</option>`;
+                itemsHtml += `<option value="0" disabled>${i_key.replace(/_/gi," ").toUpperCase()}</option>`;
                 for (let j = 0; j < _di.length; ++j) {
                     let j_item = _di[j];
                     itemsHtml += `
@@ -1927,6 +1927,11 @@ $(function() {
                         return data;
                     }
 
+                    /* non-item rows */
+                    if (data.id == 0) {
+                        return null;
+                    }
+                    
                     /* no special query. do name search */
                     if (!term.includes(":")) {
                         if (data.text.toUpperCase().includes(term.toUpperCase())) {

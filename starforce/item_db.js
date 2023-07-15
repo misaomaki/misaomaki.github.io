@@ -20157,7 +20157,7 @@ var items_store = {
               "int": 0,
               "luk": 0
             },
-            "img": "item-ghostshipexorcist",
+            "img": "img-ghostshipexorcist",
             "upgrades": 1,
             "hammers_added": 2,
             "starforce": true,
@@ -20205,7 +20205,7 @@ var items_store = {
               "int": 0,
               "luk": 0
             },
-            "img": "item-sengokuhakasebadge",
+            "img": "img-sengokuhakasebadge",
             "upgrades": 2,
             "hammers_added": 2,
             "starforce": true,
