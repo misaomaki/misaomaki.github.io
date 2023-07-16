@@ -184,7 +184,7 @@ let items_other_data = {
     skill: "", //orange text at the bottom denoting a skill
     flavor: "", //flavor text in white at the bottom
     shadowknight: false, //use shadowknight coins
-    meta: {
+   meta: {
         final_stats: {}, /* keep track of the final calculated stats from the drawn tooltip. mostly used for chaos scrolls */
         fsstat: "", /* flame score MAIN stat. defaults to mstat parameter, but can be overridden */
         fsstat2: "", /* flame score SECONDARY stat. defaults to pstat parameter, but can be overriden */
@@ -192,6 +192,7 @@ let items_other_data = {
         cube_potential: "", //potential type: rare, epic, unique, legendary
         cube_potential_bonus: "", //bonus pot
         starforce_type: "GMS", //GMS or KMS. costs are different
+        starforce_gains_att: true, /* 15+ stars gains att for starforce (badge-related mostly) */
         nebulite_compensation: false, //if the weapon had a 25% boss nebulite on it before and is compensated with 4% more base damage. bonuses from other nebulite types are not supported.
         stars: 0, //current star of the item
         max_stars: 0, //depending on the item level. tells the starforce window to stop allowing starforcing
