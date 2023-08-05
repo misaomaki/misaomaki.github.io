@@ -1877,6 +1877,13 @@ body, html {
     width: 227px;
 }
 
+/* Stick the header to the top of the container */
+#star_force_log > thead th {
+    position: sticky;
+    top: -9px; 
+    background-color: #f2f2f2;
+}
+
 .item-skill {
     display: inline-block;
     font-size: 10.5px;

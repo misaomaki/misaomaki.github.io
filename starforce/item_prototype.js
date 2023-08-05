@@ -399,68 +399,6 @@ item.prototype.starforce_att_percent = function(att = 0, bwatt = 0, p_arr = []) 
     return curr_att - att;
 };
 
-//generate a star force success map to test the prn against. map goes from 0 to 1.
-item.prototype.generate_sresult_map = function(sr, starcatch = false) {
-    let poffset = prng();
-    
-    //randomize the catch map so that the result types are not always in the same order
-    let catch_map = {};
-
-    let catch_type = ["destroy", "success", "sc_success", "fail"];
-    
-    shuffle(catch_type);
-
-    let i_start = 0;
-    let i_current = 0;
-    for (let i = 0; i < catch_type.length; ++i) {
-        let _i = catch_type[i];
-
-        i_current += sr[_i];
-        
-        catch_map[_i] = [
-            i_start,
-            i_current
-        ];
-
-        i_start = i_current;
-    }
-
-    let catch_map_offset = {};
-
-    for (let i in catch_map) {
-        let cval1 = catch_map[i][0] + poffset;
-        let cval2 = catch_map[i][1] + poffset;
-
-        if (cval2 - cval1 === 0) continue;
-
-        catch_map_offset[i] = [];
-
-        if (cval2 <= 1) {
-            catch_map_offset[i].push([
-                cval1,
-                cval2
-            ]);
-        } else if (cval1 < 1 && cval2 > 1) {
-            catch_map_offset[i].push([
-                cval1,
-                1
-            ]);
-
-            catch_map_offset[i].push([
-                0,
-                cval2 - 1
-            ]);
-        } else {
-            catch_map_offset[i].push([
-                cval1 - 1,
-                cval2 - 1
-            ]);
-        }
-    }
-
-    return catch_map_offset;
-};
-
 /* get the starforce results */
 item.prototype.starforce_result = function(starcatch = false) {
     //generate log item
@@ -468,42 +406,28 @@ item.prototype.starforce_result = function(starcatch = false) {
     this.idata.meta.sf_log_item.id = this.idata.meta.sf_meta_data.length + 1; 
 
     //generate random number to compare against
-    let pval = prng();
-
-    this.idata.meta.sf_log_item.prn = pval;
+    let pval = 0;
     
     let level = this.idata.level;
     let current_star = this.idata.meta.stars;
     
     //generate a result map to compare the prng value to
     let sr_catch = this.cache.sr["_" + level + current_star + "_" + this.idata.superior];
-    let catch_map = {};
-    
-    catch_map = this.generate_sresult_map(sr_catch, starcatch);
 
-    this.idata.meta.sf_log_item.prn_map = Object.assign({},catch_map);
+    let prn_map = {};
+    let r_type = get_random_result(sr_catch, (a)=>{
+        prn_map = a;
+    }, (a)=>{
+        pval = a;
+    });
 
-    let r_type = "";
-
+    this.idata.meta.sf_log_item.prn_map = prn_map;
+    this.idata.meta.sf_log_item.prn = pval;
 
     //5/10/15 100% event
     if (!this.idata.superior && event_options._51015 && [5,10,15].includes(current_star)) {
         r_type = "success";
-    } else {
-        //get result of catch_map: success, fail, destroyed, sc-success
-        for (let i in catch_map) {
-            let c_map = catch_map[i];
-            if (typeof c_map === 'undefined') continue;
-
-            for (let j = 0; j < c_map.length; ++j) {
-                let cm_val = c_map[j];
-                if (pval >= cm_val[0] && pval < cm_val[1]) {
-                    r_type = i;
-                    break;
-                }
-            }
-        }
-    }
+    } 
 
     let cb_safeguard = this.check_cache(()=>{
         return mcon.find(".sf-safeguard");

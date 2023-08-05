@@ -184,53 +184,53 @@ let items_other_data = {
     skill: "", //orange text at the bottom denoting a skill
     flavor: "", //flavor text in white at the bottom
     shadowknight: false, //use shadowknight coins
-   meta: {
-        final_stats: {}, /* keep track of the final calculated stats from the drawn tooltip. mostly used for chaos scrolls */
-        fsstat: "", /* flame score MAIN stat. defaults to mstat parameter, but can be overridden */
-        fsstat2: "", /* flame score SECONDARY stat. defaults to pstat parameter, but can be overriden */
-        img_name: "", /* img asset */
-        cube_potential: "", //potential type: rare, epic, unique, legendary
-        cube_potential_bonus: "", //bonus pot
-        starforce_type: "GMS", //GMS or KMS. costs are different
-        starforce_gains_att: true, /* 15+ stars gains att for starforce (badge-related mostly) */
-        nebulite_compensation: false, //if the weapon had a 25% boss nebulite on it before and is compensated with 4% more base damage. bonuses from other nebulite types are not supported.
-        stars: 0, //current star of the item
-        max_stars: 0, //depending on the item level. tells the starforce window to stop allowing starforcing
-        chance_time: false, //whether the item will 100% upgrade in starforce
-        chance_count: 0, //2 will trigger chance time and reset the count
-        starcatch: {
-            speed: 1,
-            count: 0 //total success starforce
+    meta: {
+            final_stats: {}, /* keep track of the final calculated stats from the drawn tooltip. mostly used for chaos scrolls */
+            fsstat: "", /* flame score MAIN stat. defaults to mstat parameter, but can be overridden */
+            fsstat2: "", /* flame score SECONDARY stat. defaults to pstat parameter, but can be overriden */
+            img_name: "", /* img asset */
+            cube_potential: "", //potential type: rare, epic, unique, legendary
+            cube_potential_bonus: "", //bonus pot
+            starforce_type: "GMS", //GMS or KMS. costs are different
+            starforce_gains_att: true, /* 15+ stars gains att for starforce (badge-related mostly) */
+            nebulite_compensation: false, //if the weapon had a 25% boss nebulite on it before and is compensated with 4% more base damage. bonuses from other nebulite types are not supported.
+            stars: 0, //current star of the item
+            max_stars: 0, //depending on the item level. tells the starforce window to stop allowing starforcing
+            chance_time: false, //whether the item will 100% upgrade in starforce
+            chance_count: 0, //2 will trigger chance time and reset the count
+            starcatch: {
+                speed: 1,
+                count: 0 //total success starforce
+            },
+            sf_log_item: {}, //current data to be worked on for star force stats. it will be pushed to the sf_meta_data array
+            sf_meta_data: [], //starforce cost and other related data
+            cube_log_item: {}, //current data to be worked on for cube stats. it will be pushed to the cube_meta_data
+            cube_meta_data: [], //cube data
+            cubes_used: {
+                red: 0,
+                black: 0,
+                bonus: 0,
+                master: 0,
+                meister: 0,
+                occult: 0
+            }, //number of cubes used. keep track of type
+            cubes_total: 0,
+            flames_meta_data: [], //flames tier log
+            flames_total: {
+                "1": 0,
+                "2": 0
+            } //count flames 1 - powerful 2 -rebirth
         },
-        sf_log_item: {}, //current data to be worked on for star force stats. it will be pushed to the sf_meta_data array
-        sf_meta_data: [], //starforce cost and other related data
-        cube_log_item: {}, //current data to be worked on for cube stats. it will be pushed to the cube_meta_data
-        cube_meta_data: [], //cube data
-        cubes_used: {
-            red: 0,
-            black: 0,
-            bonus: 0,
-            master: 0,
-            meister: 0,
-            occult: 0
-        }, //number of cubes used. keep track of type
-        cubes_total: 0,
-        flames_meta_data: [], //flames tier log
-        flames_total: {
-            "1": 0,
-            "2": 0
-        } //count flames 1 - powerful 2 -rebirth
-    },
-    boosts: {
-        sf_data: [], //starforce data
-        scroll_data: [],
-        other_stats: Object.assign({}, stats), //for random stats like +1 from 4 or more spell traces
-        flames: Object.assign({}, stats),
-        cubes: {
-            main: {},
-            bonus: {}
+        boosts: {
+            sf_data: [], //starforce data
+            scroll_data: [],
+            other_stats: Object.assign({}, stats), //for random stats like +1 from 4 or more spell traces
+            flames: Object.assign({}, stats),
+            cubes: {
+                main: {},
+                bonus: {}
+            }
         }
-    }
 };
 
 $(function() { 

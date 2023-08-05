@@ -67,13 +67,9 @@ let log_data = []; //capture all log data
 let data = {}; //data from the onmessage
 let current_star = 0;
 let end_star = 0;
-let budget_result = {};
 //process the starforcing. generate the random map and pick a starforce value
 let process_star = function(item, o = {}) {
     o = Object.assign({
-        budget: {
-            use_budget: false
-        },
         log_data: log_data
     }, o);
 
@@ -103,7 +99,7 @@ let process_star = function(item, o = {}) {
         this_cost = cache[name].cost;
     } else {
         this_sr = star_success_rate(star, item.superior);
-        this_cost = star_cost(item.level, star, data.sys_type, data.superior, star_cost_type(item.type));
+        this_cost = star_cost(item.level, star, data.sys_type, item.superior, star_cost_type(item.type));
     
         cache[name] = {
             sr: this_sr,
@@ -112,31 +108,6 @@ let process_star = function(item, o = {}) {
     }
 
     this_cost_actual = this_cost * cost_multiplier;
-
-    /* check for budget and if the next run will go over budget */
-    /*
-    if (o.budget.use_budget) {
-        let budget_result = {
-            overbudget: false,
-            reason: ""
-        };
-
-        if (total_cost > o.budget.items) {
-            
-        }
-        if (total_items > o.budget.items) {
-            budget_result.overbudget = true;
-            budget_result.reason = `You have used up your spare ${o.budget.items} item(s)`;
-        }
-
-        if (total_items > o.budget.items || total_cost > o.budget.mesos) {
-
-        }
-
-        return [ld.star, ld.result, budget_results];
-    }
-    */
-
     let this_results = get_random_result(this_sr, (a)=>{ld.prn_map = a;}, (b)=>{ld.prn = b;});
 
     //change star depending on result.
@@ -221,12 +192,7 @@ onmessage = function(d) {
         events: {},
         safeguard: [],
         heuristic: false,
-        reload_log: false,
-        budget: {
-            use_budget: false,
-            items: -1,
-            mesos: -1
-        }
+        reload_log: false
     }, data);
 
     if (data.reload_log) {
@@ -253,22 +219,11 @@ onmessage = function(d) {
         end_star = this_max_star;
     }
 
-    //while the stars are less than the desired stars, run starforcing and log results
-    if (!data.budget.use_budget) {
-        while (current_star < end_star) {
-            [current_star] = process_star(item);
-        }
-    } else {
-        while (current_star < end_star) {
-            [current_star, result, budget_result] = process_star(item, {budget: data.budget});
-
-            if (budget_result.out_of_resources) {
-                break;
-            }
-        }  
+    while (current_star < end_star) {
+        [current_star] = process_star(item);
     }
 
     //return data from worker with the starforce log data
     //type - 1: complete log; type - 2: heuristic run update
-    postMessage({done: true, data: log_data, stars_to: to, type: 1, budget: budget_result});
+    postMessage({done: true, data: log_data, stars_to: to, type: 1});
 }

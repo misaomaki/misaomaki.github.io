@@ -80,73 +80,82 @@ $(function() {
         init_sfminmax();
     };
 
+    let starforce_html = "";
+
     /* html for starforce analysis screen */
-    let starforce_html = `
-        <div class="form-group">
-            <label class="form-label-group">
-                <span class="form-label">
-                    Star Start:
-                </span>
-                <input type="number" class="stat-input" id="stat_from" value="0" style="width:75px">
-            </label>
-            <label class="form-label-group" for="asf_star_to">
-                <span class="form-label">
-                    Star To:
-                </span>
-                <input type="number" class="stat-input" id="stat_to" value="22" min="0" style="width:75px">
-            </label>
-            <button id="begin_sf_statistics" style="width:100px">Analyze</button>  
-            <button id="stop_sf_statistics" class="hidden" style="width:100px">Stop</button>
-            <button id="reset_sf_statistics" style="width:100px">Reset</button>
-        </div>
-        <hr>
-        <div style="padding:10px" id="stat_options_container">
-            Analyze starforce runs by looking at the averages across many items. 
-            <br><br>
-            <div class="hidden">
-                Starforce Cost Type: <select id="stat_sfrates">
-                    <option value="GMS">GMS</option>
-                    <option value="KMS">KMS</option>
-                </select> 
-            </div>
-            <br><br>
-            Safeguard at stars: 
-            <div id="stat_options">
-                <label for="stat_cb_all">
-                    <input type="checkbox" class="stat_checkbox_all" id="stat_cb_all" value="-1"> [All]
+    let starforce_html_f = function() {
+        return `
+            <div class="form-group">
+                <label class="form-label-group">
+                    <span class="form-label">
+                        Star Start:
+                    </span>
+                    <input type="number" class="stat-input" id="stat_from" value="0" style="width:75px">
                 </label>
-                ${
-                    GLOBAL.starforce.safeguardable_stars.map((a,b)=>{
-                        return `
-                        <span style="display: inline-block; padding: 5px;">
-                            <label for="stat_cb_${b}">
-                                <input type="checkbox" class="stat_checkbox_sg" id="stat_cb_${b}" value="${a}"> ${a}
-                            </label>
-                        </span>
-                        `
-                    }).join("")
-                }
+                <label class="form-label-group" for="asf_star_to">
+                    <span class="form-label">
+                        Star To:
+                    </span>
+                    <input type="number" class="stat-input" id="stat_to" value="${Item.idata.superior ? '12' : '22'}" min="0" style="width:75px">
+                </label>
+                <button id="begin_sf_statistics" style="width:100px">Analyze</button>  
+                <button id="stop_sf_statistics" class="hidden" style="width:100px">Stop</button>
+                <button id="reset_sf_statistics" style="width:100px">Reset</button>
             </div>
-            <br>
-            Starcatch:
-            <textarea id="stat_starcatch" 
-            style="width:100%;height:50px"
-            placeholder="Add stars to starcatch in a comma-delimited list here (ex. '14,20,21'). You can specify a range by using '-' (ex. '1-5'). This can be mixed and matched (ex. '10-15,20,21'). Leave blank to not starcatch."
-        ></textarea>
-        </div>
-        <hr>
-        <div id="stat_results">
-            Total Runs: <span id="stat_totalRuns">0</span>
             <hr>
-            <div id="stat_10" class="stat-container"></div>
-            <div id="stat_100" class="stat-container"></div>
-            <div id="stat_-1" class="stat-container"></div>
-        </div>
-    `;
+            <div style="padding:10px" id="stat_options_container">
+                Analyze starforce runs by looking at the averages across many items. 
+                <br><br>
+                <div class="hidden">
+                    Starforce Cost Type: <select id="stat_sfrates">
+                        <option value="GMS">GMS</option>
+                        <option value="KMS">KMS</option>
+                    </select> 
+                </div>
+                ${
+                    !Item.idata.superior ? `
+                        <br><br>
+                        Safeguard at stars: 
+                        <div id="stat_options">
+                            <label for="stat_cb_all">
+                                <input type="checkbox" class="stat_checkbox_all" id="stat_cb_all" value="-1"> [All]
+                            </label>
+                            ${
+                                GLOBAL.starforce.safeguardable_stars.map((a,b)=>{
+                                    return `
+                                    <span style="display: inline-block; padding: 5px;">
+                                        <label for="stat_cb_${b}">
+                                            <input type="checkbox" class="stat_checkbox_sg" id="stat_cb_${b}" value="${a}"> ${a}
+                                        </label>
+                                    </span>
+                                    `
+                                }).join("")
+                            }
+                        </div>
+                    ` : ""
+                }
+                <br>
+                Starcatch:
+                <textarea id="stat_starcatch" 
+                style="width:100%;height:50px"
+                placeholder="Add stars to starcatch in a comma-delimited list here (ex. '14,20,21'). You can specify a range by using '-' (ex. '1-5'). This can be mixed and matched (ex. '10-15,20,21'). Leave blank to not starcatch."
+            ></textarea>
+            </div>
+            <hr>
+            <div id="stat_results">
+                Total Runs: <span id="stat_totalRuns">0</span>
+                <hr>
+                <div id="stat_10" class="stat-container"></div>
+                <div id="stat_100" class="stat-container"></div>
+                <div id="stat_-1" class="stat-container"></div>
+            </div>
+        `
+    };
 
     let stat_processing = false;
     /* open starforce analysis window */
     $("#statistics_starforce").on("click", function() {
+        starforce_html = starforce_html_f();
         stats_screen.html(starforce_html).dialog({
             close: ()=>{
                 reset_variables();

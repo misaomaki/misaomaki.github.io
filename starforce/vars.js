@@ -35,6 +35,7 @@ const stats = {
 
 const GLOBAL = {
     starforce: {
+        max_stars: 25,
         safeguard_stars: {
             min: 15,
             max: 17

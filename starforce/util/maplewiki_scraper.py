@@ -124,6 +124,53 @@ def clean_stat_type(type):
     type = resolve_stat(type)
     return type
 
+
+#check starforce, scrollability, and cube status
+def set_enhancements(item):
+    this_enhance = {}
+
+    if (item["type"] in item_enhancibility):
+        this_enhance = item_enhancibility[item["type"]]
+    elif ("sub_class" in item and item["sub_class"] in item_enhancibility):
+        this_enhance = item_enhancibility[item["sub_class"]]
+
+    item.update(this_enhance)
+
+
+#general enhancability. if not listed, then assume all is allowed
+item_enhancibility = {
+    "pocket item": {
+        "starforce": False,
+        "scrollable": False
+    },
+    "badge": {
+        "starforce": False,
+        "enhanceable": False,
+        "scrollable": False,
+        "flame_type": 0
+    },
+    "totem": {
+        "starforce": False,
+        "enhanceable": False,
+        "scrollable": False,
+        "flame_type": 0
+    },
+    "shoulder": {
+        "flame_type": 0
+    },
+    "ring": {
+        "flame_type": 0
+    },
+    "mechanical heart": {
+        "flame_type": 0
+    },
+    "secondary": {
+        "scrollable": False,
+        "starforce": False,
+        "flame_type": 0
+    }
+}
+
 #categories page
 def request_items_page(url):
     x = r.get(url=url)
@@ -165,6 +212,10 @@ def request_item_page(url):
 #parse the results tables from the returning HTML data
 def parse_raw_html(content):
     soup = bs(content, features="html.parser")
+
+    parse_item_from_table(soup)
+
+def parse_item_from_table(soup):
     item_category = soup.find("span", {"class": "mw-page-title-main"}).get_text().strip().lower().replace(" ", "_")
 
     main_content = soup.find("div", attrs={
@@ -172,7 +223,7 @@ def parse_raw_html(content):
     })
 
     item_tables = main_content.find_all("table", {"class": "wikitable"})
-    item_data = parse_item_from_table(soup, item_tables)
+    item_data = extract_item_from_link(soup, item_tables)
     item_store = f'item_store["{item_category}"] = {json.dumps(item_data)};'
 
     with open('test.txt', 'a') as f:
@@ -180,7 +231,7 @@ def parse_raw_html(content):
         f.writelines('\n\n\n')
 
 #from the item table, loop through the rows and get the data
-def parse_item_from_table(soup, tables):
+def extract_item_from_table(soup, tables):
     for table in tables:
         rows = table.find("tbody").find_all("tr")
 
@@ -274,6 +325,9 @@ def parse_item_from_table(soup, tables):
             requirements = cell2.get_text().split(delimiter)
 
             for rq in requirements:
+                if (rq.strip().lower() == "none"):
+                    continue
+
                 [rq_type, rq_value] = rq.split(" ", 1)
                 rq_type = clean_req_type(rq_type)
                 rq_value = rq_value.strip().lower()
@@ -367,51 +421,89 @@ def parse_item_from_table(soup, tables):
             items[item["name"].lower().replace(" ", "_")] = item
     return items
 
-#check starforce, scrollability, and cube status
-def set_enhancements(item):
-    this_enhance = {}
 
-    if (item["type"] in item_enhancibility):
-        this_enhance = item_enhancibility[item["type"]]
-    elif ("sub_class" in item and item["sub_class"] in item_enhancibility):
-        this_enhance = item_enhancibility[item["sub_class"]]
+#from the item table, get the link to the item from the picture and name column and get the item data there
+def extract_item_from_link(soup, tables):
+    for table in tables:
+        rows = table.find("tbody").find_all("tr")
 
-    item.update(this_enhance)
+        items = {}
+
+        delimiter = "#####"
+        
+        #loop through the rows
+        for row in rows:
+            #check if header row
+            header = row.find_all("th")
+
+            lHeader = len(header)
+
+            if lHeader > 0:
+                if header[0].get_text().upper().strip() != "PICTURE AND NAME":
+                    break
+
+                continue
+
+            #get item row data
+            cells = row.find_all("td")
+
+            item = {
+                "name": "",
+                "level": 0,
+                "class": "",
+                "type": "",
+                "job": [],
+                "mstat": "", 
+                "pstat": ["str", "dex", "int", "luk"], 
+                "att_type": "att", 
+                "flame_type": 2,
+                "bstat": {},
+                "req": {
+                    "str": 0,
+                    "dex": 0,
+                    "int": 0,
+                    "luk": 0
+                },
+                "img": "",
+                "upgrades": 0,
+                "hammers_added": 0,
+                "starforce": True,
+                "enhanceable": True,
+                "scrollable": True
+            }
+
+            #PICTURE AND NAME
+            cell0 = cells[0]
+            item["name"] = cell0.get_text().strip()
+
+            if (False):
+                #save image to disk
+                img_url = cell0.find("a", {"class": "image"})["href"]
+
+                img_data_name = re.sub(r'\W+', '', item["name"])
+                item["img"] = f"img-{img_data_name.lower()}"
+                
+                img_data = r.get(img_url).content
+                #save image as name of item, removing any special characters
+                with open(f'{img_data_name}.png', 'wb') as handler:
+                    handler.write(img_data)
+
+            item_anchor = cell0.select("a")[1]
+            item_link = f'https://maplestory.fandom.com/{item_anchor["href"]}'
+            y = r.get(url=item_link)
+            soup2 = bs(y.text, features="html.parser").find("div", {"class": "mw-parser-output"})
+            item_tables = soup2.select("table")
+
+            for item_table in item_tables:
+                item_row = item_table.select("tbody tr")
+                print(item_row)
+                return
+            
+            #get url data
+            
+
+    return items
 
 
-#general enhancability. if not listed, then assume all is allowed
-item_enhancibility = {
-    "pocket item": {
-        "starforce": False,
-        "scrollable": False
-    },
-    "badge": {
-        "starforce": False,
-        "enhanceable": False,
-        "scrollable": False,
-        "flame_type": 0
-    },
-    "totem": {
-        "starforce": False,
-        "enhanceable": False,
-        "scrollable": False,
-        "flame_type": 0
-    },
-    "shoulder": {
-        "flame_type": 0
-    },
-    "ring": {
-        "flame_type": 0
-    },
-    "mechanical heart": {
-        "flame_type": 0
-    },
-    "secondary": {
-        "scrollable": False,
-        "starforce": False,
-        "flame_type": 0
-    }
-}
-
-request_items_page(ms["url"])
-#request_item_page('https://maplestory.fandom.com/wiki/Card')
+#request_items_page(ms["url"])
+request_item_page('https://maplestory.fandom.com/wiki/Cane#Obtainable')
