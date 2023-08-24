@@ -1,5 +1,8 @@
 let sf_audio_files = {
-    Enchant: "Enchant.mp3",
+    Enchant: {
+        name: "Enchant.mp3",
+        instances: 2
+    },
     EnchantChanceTime: {
         name: "EnchantChanceTime.mp3",
         instances: 1,
@@ -16,16 +19,25 @@ let sf_audio_files = {
     EnchantDelay: "EnchantDelay.mp3",
     EnchantDestroy: "EnchantDestroy.mp3",
     EnchantDestroyed: "EnchantDestroyed.mp3",
-    EnchantFail: "EnchantFail.mp3",
+    EnchantFail: {
+        name: "EnchantFail.mp3",
+        instances: 2
+    },
     EnchantHyper: "EnchantHyper.mp3",
-    EnchantHyperFast: "EnchantHyperFast.mp3",
+    EnchantHyperFast: {
+        name: "EnchantHyperFast.mp3",
+        instances: 2
+    },
     EnchantStar1: "EnchantStar1.mp3",
     EnchantStar2: "EnchantStar2.mp3",
     EnchantStar3: "EnchantStar3.mp3",
     EnchantStar4: "EnchantStar4.mp3",
     EnchantStar5: "EnchantStar5.mp3",
     EnchantStarStop: "EnchantStarStop.mp3",
-    EnchantStarSuccess: "EnchantStarSuccess.mp3",
+    EnchantStarSuccess: {
+        name: "EnchantStarSuccess.mp3",
+        instances: 2
+    },
     EnchantSuccess: "EnchantSuccess.mp3",
     // _ creates new instances instead of reusing the same one (no longer true with options added)
     _CubeEnchantSuccess: {
@@ -122,6 +134,11 @@ let sfa = {
                 this_audio.pause();
                 this_audio.currentTime = 0;
             }
+        }
+    },
+    stopAll: function() {
+        for (let audio in sf_audio_files) {
+            sfa.stop(audio);   
         }
     }
 };

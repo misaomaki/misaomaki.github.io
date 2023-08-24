@@ -412,7 +412,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
             <div class="sfi-result sf-variable-animation"></div>
         </div>
         <div class="sfi-button-container">
-            <span class="maple-button sfi-button sfi-button-ok"></span>
+            <span class="maple-button sfi-button sfi-button-ok" id="sfi_button_ok"></span>
         </div>
     </div>
 
@@ -803,6 +803,7 @@ crossorigin="anonymous"></script>
 <script src="./starforce/item_meta.js"></script>
 <!-- item object and support functions -->
 <script src="./starforce/item_prototype.js"></script>
+<script src="./starforce/scrolls.js"></script>
 <!-- star force data set up -->
 <script src="./starforce/starforce.js"></script>
 <!-- cubes functionality -->
@@ -814,6 +815,7 @@ crossorigin="anonymous"></script>
 <script src="./starforce/cogs.js"></script>
 <!-- ui/dom controls -->
 <script src="./starforce/dom.js"></script>
+<script src="./starforce/dom_menu.js"></script>
 <!-- ui - statistics -->
 <script src="./starforce/stat_starforce.js"></script>
 
@@ -958,7 +960,7 @@ Start value with equal sign (=) to make search exact. (example: type:=ring to di
                             </span>
                         </div>
                         <div class="item-scroll-form">
-                            <span class="scroll-box item-weapon">
+                            <span class="scroll-box item-weapon item-armor" data-for-armor="gloves,overall,hat,top,bottom,shoes,cape,shoulder,shield">
                                 <span class="item-scroll-label">
                                     <span class="item-label-icon item-spell-trace"></span> 15%
                                 </span>
