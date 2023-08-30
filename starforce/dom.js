@@ -682,11 +682,16 @@ $(function() {
                         j2 = "success";
                     }
 
+                    let row_selected = _tl.prn >= map[0] && _tl.prn < map[1];
+
                     prn_map_html += `
-                        <span class="result-${j2}${j2 === "destroy" ? "2" : ""} r-${j}" style="display:inline-block;width:100px;">
-                            ${_tl.prn >= map[0] && _tl.prn < map[1] ? ">" : ""}${j}:
-                        </span> 
-                        ${map[0].toFixed(5)} - ${map[1].toFixed(5)} <br>
+                        <span style="display:inline-block;width:100%" class="${row_selected ? 'highlight-row' : ''}">
+                            <span class="result-${j2}${j2 === "destroy" ? "2" : ""} r-${j}" style="display:inline-block;width:100px;text-align:left;">
+                                ${j}:
+                            </span> 
+                            ${map[0].toFixed(5)} - ${map[1].toFixed(5)} 
+                        </span>
+                        <br>
                     `;
                 }
 

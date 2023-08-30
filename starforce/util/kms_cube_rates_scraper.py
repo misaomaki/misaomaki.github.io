@@ -49,7 +49,7 @@ enums = {
         "master": 2711003,
         "meister": 2711004,
         "bonus_occult": 2730002,
-        "white": 5062500
+        "white": 5062500 #same as bonus
     },
     "grade": {
         "rare": 1,
