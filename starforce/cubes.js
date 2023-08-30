@@ -857,12 +857,13 @@ $(function(){
         //update pot tier too in case user is an idiot and wants to keep lower potential
         let curr_pot = Item.idata.meta.cube_meta_data[0];
         curr_pot.keep = !is_before;
-        Item.idata.meta.cube_potential = this_pot.tier;
 
         if (bcc_data.cube === "black") {
             Item.idata.boosts.cubes.main = this_pot.results.result;
+            Item.idata.meta.cube_potential = this_pot.tier;
         } else {
             Item.idata.boosts.cubes.bonus = this_pot.results.result;
+            Item.idata.meta.cube_potential_bonus = this_pot.tier;
         }
     
         Item.redraw_item_tooltip();
