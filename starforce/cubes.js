@@ -729,6 +729,7 @@ $(function(){
     let cube_black_results = $(".cube-black-result");
 
     let cube_black_go = $(".cube-black");
+    let cube_white_go = $(".cube-white");
 
     //while cube aniamtion plays, disallow cube actions
     let cube_loading = false;
@@ -828,7 +829,12 @@ $(function(){
         let _this = $(this);
 
         if (_this.hasClass("btn-cube-black")) {
-            cube_black_go.trigger("click");
+            let bccData = bcc.data();
+            if (bccData.cube === "black") {
+                cube_black_go.trigger("click");
+            } else {
+                cube_white_go.trigger("click");
+            }
         } else {
             let type = cc.attr("data-cube");
             $(`#cube_${type}`).trigger("click");
