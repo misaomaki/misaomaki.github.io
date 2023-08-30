@@ -41,6 +41,9 @@ const GLOBAL = {
             max: 17
         },
         min_droppable_star: 15
+    },
+    cubes: {
+        bonus: ["bonus", "bonus_occult", "white"]
     }
 };
 
