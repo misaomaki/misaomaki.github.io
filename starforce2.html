@@ -322,7 +322,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                 <b>Item Tooltip Display</b>
                 <br>
                 <label class="side-bar-item" for="itt_kms_new">
-                    <input type="checkbox" class="system_cb" id="itt_kms_new" data-bind="itt_kms_new" data-redraw="2" 
+                    <input type="checkbox" class="system_cb" id="itt_kms_new" checked data-bind="itt_kms_new" data-redraw="2" 
                         title="Split out starforce and scrolling stat gains from the total (blue stat in parenthesis is separated out to its components). This will become standard once GMS releases it."> 
                     Show Starforce and Scroll Stats <br> separately.
                 </label>
@@ -782,7 +782,7 @@ crossorigin="anonymous"></script>
         confirmation_popup: true,
         animation_speed: 1,
         animation_speed_actual: 1,
-        itt_kms_new: false
+        itt_kms_new: true
     };
 
     //default animation speeds. can be speed up via the animation controls

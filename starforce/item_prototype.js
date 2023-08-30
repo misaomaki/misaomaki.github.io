@@ -11,7 +11,7 @@ item.prototype.cache = {
     eg: {}, //equipment stat boost, item
     sr: {}, //current star success, level + star
     sc: {}, //current star cost, level + star
-    sf_meta_data: {
+    sf_meta_data: {  //object for meta_data for starforce logging
         id: 0,
         sf_cost: 0,
         sf_cost_discount: {},
@@ -21,120 +21,7 @@ item.prototype.cache = {
         star: 0,
         result: "",
         sk_cost: 0
-    }, //object for meta_data for starforce logging
-    scrl: { //item scrolls, start with _  is spell trace
-        //weapon trace
-        _100w: {
-            main: 1,
-            att: 3
-        },
-        _70w: {
-            main: 2,
-            att: 5
-        },
-        _30w: {
-            main: 3,
-            att: 7
-        },
-        _15w: {
-            main: 4,
-            att: 9
-        },
-        //armor, shield, shoulder trace
-        _100a: {
-            main: 3,
-            hp: 30,
-            def: 3
-        },
-        _70a: {
-            main: 4,
-            hp: 70,
-            def: 5
-        },
-        _30a: {
-            main: 7,
-            hp: 120,
-            def: 10
-        },
-        //glove trace
-        _100g: {
-            att: 1
-        },
-        _70g: {
-            att: 2
-        },
-        _30g: {
-            att: 3
-        },
-        //heart trace
-        _100h: {
-            att: 2
-        },
-        _70h: {
-            att: 3
-        },
-        _30h: {
-            att: 5
-        },
-        //other trace
-        _100m: {
-            main: 2
-        },
-        _70m: {
-            main: 3
-        },
-        _30m: {
-            main: 5
-        },
-        prime_weapon: {
-            str: 3,
-            dex: 3,
-            int: 3,
-            luk: 3,
-            watt: 10,
-            matt: 10
-        },
-        prime_armor: {
-            str: 10,
-            dex: 10,
-            int: 10,
-            luk: 10,
-            def: 10
-        },
-        prime_accessory: {
-            str: 10,
-            dex: 10,
-            int: 10,
-            luk: 10
-        },
-        basic_gollux: {
-            str: 1,
-            dex: 1,
-            int: 1,
-            luk: 1,
-            watt: 2,
-            matt: 2
-        },
-        advanced_gollux: {
-            str: 3,
-            dex: 3,
-            int: 3,
-            luk: 3,
-            watt: 4,
-            matt: 4
-        },
-        evolution: {
-            att: 8
-        },
-        dragon_stone: {
-            str: 15,
-            dex: 15,
-            int: 15,
-            luk: 15,
-            hp: 750,
-            def: 350
-        }
-    } //scroll data
+    }
 };
 
 item.prototype.clear_sf_history = function() {
