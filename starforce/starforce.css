@@ -1819,14 +1819,6 @@ body, html {
     display: inline-block;
 }
 
-.item-icon-pdd {
-    width: 20px;
-    height: 20px;
-    background-repeat: no-repeat;
-    background-image: url(../assets/item/ui.items.base.frame.icons.pdd.png);
-    display: inline-block;
-}
-
 .item-icon-bdr {
     width: 20px;
     height: 20px;

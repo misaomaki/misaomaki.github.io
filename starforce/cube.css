@@ -66,6 +66,13 @@
     height:36px;
     width:36px;
 }
+.cube-white {
+    background: url(../assets/cube/WhiteCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;
+}
 
 .cube-bonus {
     background: url(../assets/cube/BonusCube.png);
@@ -101,6 +108,15 @@
     left: 7px;
 }
 
+.cube-bonus-occult, .cube-bonus_occult {
+    background: url(../assets/cube/BonusOccultCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;  
+    top: 7px;
+    left: 7px;
+}
 
 .cube.disabled {
     filter: grayscale(1);
@@ -150,7 +166,7 @@
     user-select: none;
 }
 
-.cube-main-master, .cube-main-meister, .cube-main-occult {
+.cube-main-master, .cube-main-meister, .cube-main-occult, .cube-main-bonus_occult {
     position: absolute;
     background: url(../assets/cube/free/Cube.backgrnd.png);
     background-repeat: no-repeat !important;
@@ -160,7 +176,7 @@
     user-select: none;
 }
 
-.cube-main-header, .cube-black-main-header {
+.cube-main-header, .cube-black-main-header, .cube-white-main-header {
     position: absolute;
     width: 195px;
     height: 25px;
@@ -223,6 +239,10 @@
     background-repeat: no-repeat !important;
 }
 
+.reset-cube-bonus_occult {
+    background: url(../assets/cube/free/Cube_BonusOccult.backgrnd3.png) !important;
+    background-repeat: no-repeat !important;
+}
 
 .cube-window {
     position: relative;
@@ -323,9 +343,20 @@
     left: 5px;
 }
 
-.cube-black-header-reset {
+#black_cube_container[data-cube="black"] .cube-black-header-reset {
     position: relative;
     background: url(../assets/cube/black/Cube_Black.backgrnd3.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 186px;
+    height: 34px;
+    top: 5px;
+    left: 5px;
+}
+
+#black_cube_container[data-cube="white"] .cube-black-header-reset {
+    position: relative;
+    background: url(../assets/cube/white/Cube_White.backgrnd3.png);
     background-repeat: no-repeat !important;
     display: inline-block;
     width: 186px;

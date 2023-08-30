@@ -47,7 +47,9 @@ enums = {
         "bonus": 5062500,
         "occult": 2711000,
         "master": 2711003,
-        "meister": 2711004
+        "meister": 2711004,
+        "bonus_occult": 2730002,
+        "white": 5062500
     },
     "grade": {
         "rare": 1,
@@ -260,8 +262,6 @@ def create_cube_rates_json():
     print("done")
     return master_data
 
-#go!
-#create_cube_rates_json()
 
 #debug
 #request_cube_rates(5062009, 0, 1, 160)
@@ -362,6 +362,10 @@ def convert_kren_to_globalen():
     with open(f"cube_hashes_gms.txt", 'w', encoding="utf-8") as f:
         f.write(lines)
 
+#go!
+#create_cube_rates_json()
+
+#todo - make this less wonky to use
 #get_translations_from_lines()
 #translate_cube_hash_lines()
 #convert_kren_to_globalen()

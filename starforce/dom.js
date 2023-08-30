@@ -309,11 +309,13 @@ $(function() {
                     </span>
                     <div class="cube-selection" id="cube_select">
                         <div class="cube auto-cube cube-occult maple-button ${ user_cube_option.selected_cube == "occult" ? "auto-cube-selected" : ""}" data-id="occult" data-type="main" style="position:relative;top:3px;left:3px"></div>
+                        <div class="cube auto-cube cube-bonus-occult maple-button ${ user_cube_option.selected_cube == "bonus_occult" ? "auto-cube-selected" : ""}" data-id="bonus_occult" data-type="bonus" style="position:relative;top:3px;left:3px"></div>
                         <div class="cube auto-cube cube-master maple-button ${ user_cube_option.selected_cube == "master" ? "auto-cube-selected" : ""}" data-id="master" data-type="main"></div>
                         <div class="cube auto-cube cube-meister maple-button ${ user_cube_option.selected_cube == "meister" ? "auto-cube-selected" : ""}" data-id="meister" data-type="main"></div>
                         <div class="cube auto-cube cube-red maple-button ${ user_cube_option.selected_cube == "red" ? "auto-cube-selected" : ""}" data-id="red" data-type="main"></div>
                         <div class="cube auto-cube cube-black maple-button ${ user_cube_option.selected_cube == "black" ? "auto-cube-selected" : ""}" data-id="black" data-type="main"></div>
                         <div class="cube auto-cube cube-bonus maple-button ${ user_cube_option.selected_cube == "bonus" ? "auto-cube-selected" : ""}" data-id="bonus" data-type="bonus"></div>
+                        <div class="cube auto-cube cube-white maple-button ${ user_cube_option.selected_cube == "white" ? "auto-cube-selected" : ""}" data-id="white" data-type="bonus"></div>
                     </div>
                 </label>
             </div>

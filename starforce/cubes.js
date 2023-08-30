@@ -34,6 +34,7 @@ cube.rarity_enum = {
 */
 cube.update_cube_menu = function(targets) {
     let tier = cube.rarity_enum[this.idata.meta.cube_potential];
+    let bonus_tier = cube.rarity_enum[this.idata.meta.cube_potential_bonus];
 
     targets.find(".cube").removeClass("disabled");
 
@@ -43,6 +44,10 @@ cube.update_cube_menu = function(targets) {
 
     if (tier > 3) {
         targets.find(".cube[data-id=master]").addClass("disabled");
+    }
+
+    if (bonus_tier > 2) {
+        targets.find(".cube[data-id=bonus_occult]").addClass("disabled");
     }
 }
 
@@ -66,10 +71,20 @@ cube.rates.tier_up = {
     bonus: {
         epic: 0.047619,
         unique: 0.019608,
-        legendary: 0.004975
+        legendary: 0.007
+    },
+    white: {
+        epic: 0.047619,
+        unique: 0.019608,
+        legendary: 0.007
     },
     occult: {
         epic: 0.009901,
+        unique: 0,
+        legendary: 0
+    },
+    bonus_occult: {
+        epic: 0.004,
         unique: 0,
         legendary: 0
     },
@@ -84,42 +99,6 @@ cube.rates.tier_up = {
         legendary: 0.001996
     }
 }
-
-//DEBUG
-/*
-cube.rates.tier_up = {
-    red: {
-        epic: 0,
-        unique: 1,
-        legendary: 1
-    },
-    black: {
-        epic: 0,
-        unique: 0,
-        legendary: 0
-    },
-    bonus: {
-        epic: 0,
-        unique: 1,
-        legendary: 1
-    },
-    occult: {
-        epic: 0,
-        unique: 0,
-        legendary: 0
-    },
-    craftsman: {
-        epic: 1,
-        unique: 0,
-        legendary: 0
-    },
-    meister: {
-        epic: 0,
-        unique: 0,
-        legendary: 0
-    }
-}
-*/
 
 //tier in order
 cube.rarity_tier = ['rare', 'epic', 'unique', 'legendary'];
@@ -303,7 +282,7 @@ cube.cube = async function(type, dom, cb, o) {
     let cube_type_opposite = "bonus"; //log the current bonus/main pot, if the current is main/bonus 
     let pot_type = "cube_potential";
 
-    if (type == "bonus") {
+    if (type === "bonus" || type === "white") {
         cube_type = "bonus";
         cube_type_opposite = "main";
         pot_type = "cube_potential_bonus";
@@ -326,6 +305,10 @@ cube.cube = async function(type, dom, cb, o) {
         */
         if (type === "black") {
             await cube.cube.call(this, "red", [], ()=>{}, {
+                no_tier_up: true
+            });
+        } else if (type === "white") {
+            await cube.cube.call(this, "bonus", [], ()=>{}, {
                 no_tier_up: true
             });
         }
@@ -409,7 +392,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
     let this_pot = "";
     let this_pot_type = "cube_potential";
 
-    if (this.idata.meta.cube_log_item.type === "bonus") {
+    if (this.idata.meta.cube_log_item.type === "bonus" || this.idata.meta.cube_log_item.type === "white") {
         this_pot_type = "cube_potential_bonus";
     }
 
@@ -431,7 +414,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
     }
 
     //whether to keep the pot or not
-    if (type !== "black" || force_keep) {
+    if (!["black", "white"].includes(type) || force_keep) {
         if (cube_results.tier_up.upgrade) {
             this.idata.meta[this_pot_type] = curr_pot;
         }
@@ -442,7 +425,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
     }
 
     if (hasDom) {
-        if (type !== "black") {
+        if (!["black", "white"].includes(type)) {
             //set potential
             let crp = dom.find(".cube-result-pot");
             
@@ -461,7 +444,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
         } else {
             //get last kept cube
             let prev_pot = this.idata.meta.cube_meta_data.find(function(a) {
-                return a.keep && a.type === "main";
+                return a.keep && a.type === (type === "black" ? "main" : "bonus");
             });
 
             let prev_pot_check = prev_pot.tier !== undefined;
@@ -716,7 +699,7 @@ cube.get_dropdown_option = function(cube) {
         <option value="epic">Epic</option>
     `;
 
-    if (cube === "occult") {
+    if (cube === "occult" || cube === "bonus_occult") {
         return html;
     }
 
@@ -774,7 +757,7 @@ $(function(){
 
             let con = "";
 
-            if (cube_type === "black") {
+            if (cube_type === "black" || cube_type === "white") {
                 cr = await Item.cube(cube_type, bcc, ()=>{});
 
                 if (cr) {
@@ -856,6 +839,7 @@ $(function(){
     cube_black_results.on("click", function() {
         let _this = $(this);
         let this_id = _this.attr("data-id");
+        let bcc_data = bcc.data(); //get cube window type
 
         let this_pot = Item.idata.meta.cube_meta_data.find(function(a) {
             return a.results.name === this_id;
@@ -869,7 +853,11 @@ $(function(){
         curr_pot.keep = !is_before;
         Item.idata.meta.cube_potential = this_pot.tier;
 
-        Item.idata.boosts.cubes.main = this_pot.results.result;
+        if (bcc_data.cube === "black") {
+            Item.idata.boosts.cubes.main = this_pot.results.result;
+        } else {
+            Item.idata.boosts.cubes.bonus = this_pot.results.result;
+        }
     
         Item.redraw_item_tooltip();
 
@@ -1002,7 +990,7 @@ $(function(){
                         </span>
                     </td>
                     <td>
-                        ${_i_cd.cube === "black" ? (_i_cd.keep ? "Yes" : "No") : ""}
+                        ${_i_cd.cube === "black" || _i_cd.cube === "white" ? (_i_cd.keep ? "Yes" : "No") : ""}
                     </td>
                     ${
                         i_cd.type !== "" ? 
@@ -1404,6 +1392,10 @@ $(function(){
                         background: url(../assets/cube/MysticalCube.png) !important;
                         background-repeat: no-repeat !important;
                     }
+                    .cube-bonus-occult, .cube-bonus_occult {
+                        background: url(../assets/cube/BonusMysticalCube.png) !important;
+                        background-repeat: no-repeat !important;
+                    }
                     .cube-master {
                         background: url(../assets/cube/HardCube.png) !important;
                         background-repeat: no-repeat !important;    
@@ -1411,6 +1403,10 @@ $(function(){
                     }
                     .cube-black {
                         background: url(../assets/cube/BrightCube.png) !important;
+                        background-repeat: no-repeat !important;
+                    }
+                    .cube-white {
+                        background: url(../assets/cube/BonusBrightCube.png) !important;
                         background-repeat: no-repeat !important;
                     }
                     .item-cubes {
@@ -1432,8 +1428,13 @@ $(function(){
                         background: url(../assets/cube/free/Cube.backgrnd.png) !important;
                         background-repeat: no-repeat !important;
                     }
-                    .cube-black-header-reset {
+                    #black_cube_container[data-cube="black"] .cube-black-header-reset {
                         background: url(../assets/cube/black/cube_bright.backgrnd3.png) !important;
+                        background-repeat: no-repeat !important;    
+                        top: 4px;
+                    }
+                    #black_cube_container[data-cube="white"] .cube-black-header-reset {
+                        background: url(../assets/cube/bonus/cube_bonus_bright.backgrnd3.png) !important;
                         background-repeat: no-repeat !important;    
                         top: 4px;
                     }
@@ -1444,7 +1445,11 @@ $(function(){
                     .reset-cube-occult {
                         background: url(../assets/cube/free/cube_mystical.backgrnd3.png) !important;
                         background-repeat: no-repeat !important;
-                    }               
+                    }     
+                    .reset-cube-bonus_occult {
+                        background: url(../assets/cube/free/cube_glowing_mystical.backgrnd3.png) !important;
+                        background-repeat: no-repeat !important;
+                    }          
                     .reset-cube-master {
                         background: url(../assets/cube/free/cube_hard.backgrnd3.png) !important;
                         background-repeat: no-repeat !important;

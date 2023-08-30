@@ -212,7 +212,9 @@ let items_other_data = {
                 bonus: 0,
                 master: 0,
                 meister: 0,
-                occult: 0
+                occult: 0,
+                white: 0,
+                bonus_occult: 0
             }, //number of cubes used. keep track of type
             cubes_total: 0,
             flames_meta_data: [], //flames tier log

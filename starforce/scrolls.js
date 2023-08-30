@@ -190,7 +190,7 @@ item.prototype.set_item_scroll = function(s) {
                 _s.type = "prime_weapon";
             } else if (this.idata.class === "armor" && this.idata.sub_class !== "accessory") {
                 _s.type = "prime_armor";
-            } else if (this.idata.sub_class = "accessory") {
+            } else if (this.idata.sub_class === "accessory") {
                 _s.type = "prime_accessory";
             }
         }
