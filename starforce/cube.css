@@ -1,0 +1,610 @@
+/* tooltip pot */
+.tooltip-label {
+    display: inline-block;
+}
+
+.tooltip-label-rare {
+    color: rgb(102, 255, 255);
+}
+
+.tooltip-rare {
+    background: url(../assets/item/AdditionalOptionTooltip.rare.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:13px;
+    width:13px;
+}
+
+.tooltip-label-epic {
+    color: rgb(153, 102, 255);
+}
+
+.tooltip-epic {
+    background: url(../assets/item/AdditionalOptionTooltip.epic.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:13px;
+    width:13px;
+}
+
+.tooltip-label-unique {
+    color: rgb(255, 204, 0);
+}
+
+.tooltip-unique {
+    background: url(../assets/item/AdditionalOptionTooltip.unique.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:13px;
+    width:13px;
+}
+
+.tooltip-label-legendary {
+    color: rgb(204, 255, 0);
+}
+
+.tooltip-legendary {
+    background: url(../assets/item/AdditionalOptionTooltip.legendary.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:13px;
+    width:13px;
+}
+
+/* cube */
+.cube-red {
+    background: url(../assets/cube/RedCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;
+}
+.cube-black {
+    background: url(../assets/cube/BlackCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;
+}
+.cube-white {
+    background: url(../assets/cube/WhiteCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;
+}
+
+.cube-bonus {
+    background: url(../assets/cube/BonusCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;
+}
+
+.cube-meister {
+    background: url(../assets/cube/MeisterCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;  
+}
+
+.cube-master {
+    background: url(../assets/cube/MasterCraftsmanCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;  
+}
+
+.cube-occult {
+    background: url(../assets/cube/OccultCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;  
+    top: 7px;
+    left: 7px;
+}
+
+.cube-bonus-occult, .cube-bonus_occult {
+    background: url(../assets/cube/BonusOccultCube.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:36px;  
+    top: 7px;
+    left: 7px;
+}
+
+.cube.disabled {
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+.cube-big {
+    transform: scale(2);
+    transform-origin: top;
+    margin-left: 40px;
+    position: relative;
+    cursor: pointer;
+    image-rendering: pixelated;
+}
+
+.cube-tiny {
+    transform: scale(0.8);
+}
+
+.cube-big:hover {
+    animation: MoveUpDown 0.5s forwards 1;
+}
+
+@keyframes MoveUpDown {
+    0% {
+    }
+    100% {
+        height: 45px;
+    }
+}
+
+.cube-menu {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    user-select: none;
+}
+
+/* red/bonus cube */
+.cube-main-red {
+    position: absolute;
+    background: url(../assets/cube/red/Cube_Red.backgrnd.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 195px;
+    height: 286px;
+    user-select: none;
+}
+
+.cube-main-master, .cube-main-meister, .cube-main-occult, .cube-main-bonus_occult {
+    position: absolute;
+    background: url(../assets/cube/free/Cube.backgrnd.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 195px;
+    height: 286px;
+    user-select: none;
+}
+
+.cube-main-header, .cube-black-main-header, .cube-white-main-header {
+    position: absolute;
+    width: 195px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.cube-main-bonus {
+    background: url(../assets/cube/bonus/MiracleCube_Additional.backgrnd.png) !important;
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 195px;
+    height: 286px;
+    user-select: none;  
+}
+
+.cube-main-window {
+    position: relative;
+    background: url(../assets/cube/red/Cube_Red.backgrnd2.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 187px;
+    height: 259px;
+    top: 24px;
+    left: 5px;
+}
+
+.cube-header-reset {
+    position: relative;
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 186px;
+    height: 34px;
+    top: 5px;
+    left: 5px;
+}
+
+.reset-cube-red {
+    background: url(../assets/cube/red/Cube_Red.backgrnd3.png);
+    background-repeat: no-repeat !important;
+}
+
+.reset-cube-bonus {
+    background: url(../assets/cube/bonus/MiracleCube_Additional.backgrnd3.png) !important;
+    background-repeat: no-repeat !important;
+}
+
+.reset-cube-master {
+    background: url(../assets/cube/free/Cube_Master.backgrnd3.png) !important;
+    background-repeat: no-repeat !important;
+}
+
+.reset-cube-meister {
+    background: url(../assets/cube/free/Cube_Meister.backgrnd3.png) !important;
+    background-repeat: no-repeat !important;
+}
+
+.reset-cube-occult {
+    background: url(../assets/cube/free/Cube_Occult.backgrnd3.png) !important;
+    background-repeat: no-repeat !important;
+}
+
+.reset-cube-bonus_occult {
+    background: url(../assets/cube/free/Cube_BonusOccult.backgrnd3.png) !important;
+    background-repeat: no-repeat !important;
+}
+
+.cube-window {
+    position: relative;
+    background: url(../assets/cube/red/Cube_Red.backgrnd4.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 178px;
+    height: 99px;
+    top: 97px;
+    left: 5px;
+}
+
+.cube-remaining {
+    position: absolute;
+    background: url(../assets/cube/red/Cube_Red.remainBackgrnd.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 178px;
+    height: 18px;
+    top: 41px;
+    left: 5px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.cube-remaining-text {
+    position: relative;
+    top: 2px;
+}
+
+.cube-upgrade.cube-use-tier {
+    position: absolute;
+    background: url(../assets/cube/Spritesheet_CubeRedBonusTierUp.png);
+    background-repeat: no-repeat;
+    animation: tier-up-animation 1.5s steps(12) forwards 1;
+    width: 180px;
+    height: 222px;
+    top: 5px;
+    left: 6px;
+}
+
+@keyframes tier-up-animation {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -2664px;
+    }
+}
+
+.cube-upgrade.cube-use-normal {
+    position: absolute;
+    background: url(../assets/cube/Spritesheet_CubeRedBonusUse.png);
+    background-repeat: no-repeat;
+    animation: cube-use-animation 1.5s steps(12) forwards 1;
+    width: 179px;
+    height: 183px;
+    top: 41px;
+    left: 6px;
+}
+
+@keyframes cube-use-animation {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -2196px;
+    }
+}
+
+/* black cube */
+.cube-main-border {
+    position: absolute;
+    display: inline-block;
+    width: 195px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.cube-black-main {
+    position: absolute;
+    background: url(../assets/cube/black/Cube_Black.backgrnd.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 195px;
+    height: 385px;
+    user-select: none;
+}
+
+.cube-black-main-window {
+    position: relative;
+    background: url(../assets/cube/black/Cube_Black.backgrnd2.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 195px;
+    height: 385px;
+    top: 24px;
+    left: 5px;
+}
+
+#black_cube_container[data-cube="black"] .cube-black-header-reset {
+    position: relative;
+    background: url(../assets/cube/black/Cube_Black.backgrnd3.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 186px;
+    height: 34px;
+    top: 5px;
+    left: 5px;
+}
+
+#black_cube_container[data-cube="white"] .cube-black-header-reset {
+    position: relative;
+    background: url(../assets/cube/white/Cube_White.backgrnd3.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 186px;
+    height: 34px;
+    top: 5px;
+    left: 5px;
+}
+
+.cube-black-window-before {
+    position: relative;
+    background: url(../assets/cube/black/Cube_Black.Before.normal.0.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 178px;
+    height: 99px;
+    top: 97px;
+    left: 5px;
+}
+
+.cube-black-window-before:hover {
+    background: url(../assets/cube/black/Cube_Black.Before.mouseOver.0.png);
+}
+
+.cube-black-window-before.disabled {
+    background: url(../assets/cube/black/Cube_Black.Before.disabled.0.png);
+}
+
+.cube-black-window-before:active {
+    background: url(../assets/cube/black/Cube_Black.Before.pressed.0.png);
+}
+
+.cube-black-result-background {
+    position: absolute;
+    background: url(../assets/cube/black/Cube_Black.backgrnd4.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 176px;
+    height: 178px;
+    top: 150px;
+    left: 5px;
+}
+
+.cube-black-window-after {
+    position: relative;
+    background: url(../assets/cube/black/Cube_Black.After.normal.0.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 178px;
+    height: 99px;
+    top: 98px;
+    left: 5px;
+}
+
+.cube-black-window-after:hover {
+    background: url(../assets/cube/black/Cube_Black.After.mouseOver.0.png);
+}
+
+.cube-black-window-after.disabled {
+    background: url(../assets/cube/black/Cube_Black.After.disabled.0.png);
+}
+
+.cube-black-window-after:active {
+    background: url(../assets/cube/black/Cube_Black.After.pressed.0.png);
+}
+
+.btn-one-more-try {
+    position: relative;
+    background: url(../assets/cube/red/Cube_Red.BtOnemore.normal.0.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 135px;
+    height: 18px;
+    top: 103px;
+    left: 5px;
+}
+
+.btn-one-more-try:hover {
+    background: url(../assets/cube/red/Cube_Red.BtOnemore.mouseOver.0.png);
+}
+
+.btn-one-more-try:active {
+    background: url(../assets/cube/red/Cube_Red.BtOnemore.pressed.0.png);
+}
+
+.btn-one-more-try.disabled {
+    background: url(../assets/cube/red/Cube_Red.BtOnemore.disabled.0.png);
+}
+
+.btn-cube-black {
+    top: 103px;
+    left: 28px;
+}
+
+.btn-cube-ok {
+    position: relative;
+    background: url(../assets/cube/red/Cube_Red.BtOk.normal.0.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 48px;
+    height: 18px;
+    top: 85px;
+    left: 140px;
+}
+
+.btn-cube-ok:hover {
+    background: url(../assets/cube/red/Cube_Red.BtOk.mouseOver.0.png);
+}
+
+.btn-cube-ok:active {
+    background: url(../assets/cube/red/Cube_Red.BtOk.pressed.0.png);
+}
+
+.btn-cube-ok.disabled {
+    background: url(../assets/cube/red/Cube_Red.BtOk.disabled.0.png);
+}
+
+.cube-black-upgrade.cube-use-tier {
+    position: absolute;
+    background: url(../assets/cube/SpriteSheet_CubeBlackTierUp.png);
+    background-repeat: no-repeat;
+    animation: tier-up-black-animation 1.5s steps(12) forwards 1;
+    width: 188px;
+    height: 322px;
+    top: 4px;
+}
+
+@keyframes tier-up-black-animation {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -3864px;
+    }
+}
+
+.cube-black-upgrade.cube-use-normal {
+    position: absolute;
+    background: url(../assets/cube/SpriteSheet_CubeBlackUse.png);
+    background-repeat: no-repeat;
+    animation: cube-black-use-animation 1.5s steps(12) forwards 1;
+    width: 179px;
+    height: 283px;
+    top: 41px;
+    left: 5px;
+}
+
+@keyframes cube-black-use-animation {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -3396px;
+    }
+}
+
+/* common */
+.cube-result {
+    position: relative;
+    top: 36px;
+    left: 12px;
+    color: white;
+    font-size: 11.5px;
+    line-height: 1.25em;
+    transform: scaleX(1.05);
+    display: block;
+}
+
+/* line-height too big for firefox */
+@-moz-document url-prefix() {
+    .cube-result {
+        line-height: 1.1em;
+    }
+}
+
+.cube-att-result {
+    color: rgb(153,153,153);
+}
+
+.cube-att-increase {
+    color: rgb(252,235,69);
+}
+
+.cube-att-stat {
+    font-weight: 500;
+    transform: scaleX(1.15);
+    display: inline-block;
+    margin-left: 4px;
+}
+
+.cube-att-decrease {
+    color: rgb(255,51,0);
+}
+
+.cube-pot-label {
+    color: rgb(255,255,17);
+}
+
+.cube-item-window {
+    position: absolute;
+    background: url(../assets/cube/Spritesheet_CubeNormal.png);
+    background-repeat: no-repeat;
+    animation: cube-item-window-animation 1.5s steps(12) infinite;
+    width: 180px;
+    height: 86px;
+    top: 41px;
+    left: 6px;
+}
+
+@keyframes cube-item-window-animation {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -1032px;
+    }
+}
+
+.cube-item {
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    display: block;
+    left: 80px;
+    top: 78px;
+}
+
+.cube-result-line {
+    display: inline-block;
+    width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+}
+
+.cube-result-pot {
+    position: absolute;
+    top: -15px;
+    text-align: center;
+    width: 160px;
+    left: -3px;
+    transform: scaleX(1.1);
+}
+
+/* auto cube */
+.auto-cube {
+    cursor: pointer;
+}
+
+.auto-cube-selected {
+    filter: drop-shadow(2px 2px 10px orange)
+}

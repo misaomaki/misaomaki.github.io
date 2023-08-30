@@ -1,0 +1,1108 @@
+<!--- asset preload-->
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link id="favicon" rel="icon" type="image/png" href="../assets/starforce/ui.starcatch.star.png" />
+<!--
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/jquery-ui-git.css">
+-->
+<link href="./assets/css/jqueryui.css" rel="stylesheet" />
+
+
+<link rel="stylesheet" type="text/css" href="./starforce/starforce.css">
+<link rel="stylesheet" type="text/css" href="./starforce/cube.css">
+<link rel="stylesheet" type="text/css" href="./starforce/flames.css">
+<link rel="stylesheet" type="text/css" href="./starforce/stat_starforce.css">
+
+<!--
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+-->
+<script src="./assets/js/jquery-3.4.1.min.js"></script>
+
+<script src="./starforce/init.js"></script>
+<script src="./starforce/vars.js"></script>
+<!-- sound -->
+<script src="./starforce/starforce_sound.js"></script>
+
+<!-- stolen from w3schools for menu -->
+<style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+    
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 31;
+      top: 0;
+      right: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      opacity: 0.9;
+    }
+    
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+      white-space: nowrap;
+    }
+    
+    .sidebar a:hover {
+      color: #f1f1f1;
+    }
+    
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    .openbtn {
+        font-size: 20px;
+        cursor: pointer;
+        background-color: rgba(0,0,0,0.7);;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        white-space: nowrap;    
+        display: block;
+        margin: 5px 0 5px 0;
+        width: 125px;
+        text-align: left;
+    }
+
+    .openbtn-left {
+        transition: .5s;
+        margin-left: -409px;
+    }
+    
+    .openbtn:hover {
+      background-color: rgba(25,25,25,0.7);
+    }
+    
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+      float: right;
+    }
+    
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidebar {padding-top: 15px;}
+      .sidebar a {font-size: 18px;}
+    }
+
+    table {
+        border-collapse: collapse; 
+    }
+
+    table, td, th  {
+        border: 1px solid black;
+        text-align: center;
+    }
+
+    .sf-stat-breakdown:nth-child(odd) {
+        background-color: #e6e6e6;
+    }
+
+    .sub-table {
+        border: none;
+        border-collapse: separate;
+    }
+
+    .result-success {
+        color: green;
+    }
+
+    .r-sc_success {
+        color: #0072ec !important;
+    }
+
+    .result-fail {
+        color: red;
+    }
+
+    .result-destroy {
+        background-color: grey;
+    }
+
+    .result-destroy2 {
+        color: grey;
+    }
+
+    .result-destroy-text {
+        color: white;
+    }
+</style>
+
+<script>
+    const dev_info = `
+        <div class="dev-info">
+            <hr>
+            Suggestions? Feedback? Comments? Bugs? <br>
+            Reddit: UltimatePowerVaccuum <br> 
+            Discord: ddf1995#4952 <br>
+            Maplestory: <span onclick="congrats_from_maki(true)">MisaoMaki</span> | Bera
+        </div>
+    `;
+    function openNav(type) {
+        let sb = $(".sidebar").css("width", "0");
+        let this_sb = sb.filter(`[data-type=${type}]`).css("width", "300px");
+        if (this_sb.find(".dev-info").length == 0) {
+            this_sb.append(dev_info);
+        }
+        $(".openbtn").addClass("openbtn-left");
+    }
+
+    function closeNav(type) {
+        let main = $("#main");
+        $(".sidebar").filter(`[data-type=${type}]`).css("width", "0");
+        $(".openbtn").removeClass("openbtn-left");
+    }
+</script>
+
+<noscript>
+    <style>
+      /**
+      * Reinstate scrolling for non-JS clients
+      */
+      .simplebar-content-wrapper {
+        overflow: auto;
+      }
+    </style>
+</noscript>
+
+<style id="maple_items">      
+    /*
+        populated dynamically by item_db.js
+    */
+</style>
+
+<style id="variableAnimation">
+    /* populated dynamically from starforce_sound.js */
+</style>
+
+<style>
+    .sidebar .menu-group {
+        color: white;
+        padding: 5px;
+        display: block;
+        white-space: nowrap;
+    }
+
+    .sidebar margin {
+        display: block;
+        width: 100%;
+        padding: 5px;
+    }
+
+    .sidebar .side-bar-item {
+        padding: 3px;
+        display: block;
+    }
+</style>
+
+<div id="sfcon">
+    <div class="cube-menu hidden" id="cube_menu">
+        <div class="cube cube-occult cube-big maple-button cube-option" data-id="occult" id="cube_occult"></div>
+        <div class="cube cube-bonus-occult cube-big maple-button cube-option" data-id="bonus_occult" id="cube_bonus_occult"></div>
+        <div class="cube cube-master cube-big maple-button cube-option" data-id="master" id="cube_master"></div>
+        <div class="cube cube-meister cube-big maple-button cube-option" data-id="meister" id="cube_meister"></div>
+        <div class="cube cube-red cube-big maple-button cube-option" data-id="red" id="cube_red"></div>
+        <div class="cube cube-black cube-big maple-button cube-option" data-id="black" id="cube_black"></div>
+        <div class="cube cube-bonus cube-big maple-button cube-option" data-id="bonus" id="cube_bonus"></div>
+        <div class="cube cube-white cube-big maple-button cube-option" data-id="white" id="cube_white"></div>
+
+        <div class="flame flame-powerful flame-big maple-button flame-option" data-id="powerful" id="powerfulFlame"></div>
+        <div class="flame flame-eternal flame-big maple-button flame-option" data-id="eternal" id="eternalFlame"></div>
+    </div>
+    
+
+
+    <div id="logSideBar" class="sidebar" data-type="log">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav('log')">×</a>
+        <a href="#" id="starforce_log" class="starforce-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-starforce-star"></span>
+            </span> Starforce Log
+        </a>
+        <a href="#" id="cube_log" class="cube-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-cubes"></span>
+            </span> Cube Log
+        </a>
+        <a href="#" id="flames_log" class="flame-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-flames"></span>
+            </span> Flames Log
+        </a>
+        <a href="#" id="reverse_flame_check" class="flame-option" title="Based on the flame stats on the item, check to see what flame types and what tiers there are.
+Custom flame stats may not yield any tiers if the values are inputted arbitrarily.
+
+This is a reverse lookup and the stat flames are the most complicated to resolve, so the more stat flames you have, the longer it takes to determine.
+Some combination of stat flame tiers may overlap with other stat flame tier combinations. It will simply return the first one it finds.
+It will also only try to determine the stat flame tiers up to a maximum of 4 flame stat types. Any more flame stat types will return no tiers.">Check Flame Tier</a> 
+        <span class="margin">&nbsp;</span>
+        <a href="#" id="auto_starforce" class="starforce-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-starforce-star"></span>
+            </span> Auto Starforce
+        </a>
+        <a href="#" id="auto_cube" class="cube-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-cubes"></span>
+            </span> Auto Cube
+        </a>
+        <a href="#" id="auto_flames" class="flame-option">
+            <span style="display:inline-block;width:40px">
+                <span class="item-label-icon item-flames"></span>
+            </span> Auto Flames
+        </a>
+        <span class="margin">&nbsp;</span>
+        <a href="#" id="statistics_starforce" class="starforce-option">Starforce Statistics</a>
+        <span class="margin">&nbsp;</span>
+    </div>
+
+    <div id="eventsSideBar" class="sidebar" data-type="events">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav('events')">×</a>
+        <div class="bottom-menu-items">
+            <div class="menu-group starforce-option">
+                <b>Starforce Events</b>
+                <br>
+                <label class="side-bar-item" for="event_51015">
+                    <input type="checkbox" class="event_cb" id="event_51015" data-bind="_51015"> 5/10/15 100% Success
+                </label>
+                <label class="side-bar-item" for="event_nb15">
+                    <input type="checkbox" class="event_cb" id="event_nb15" data-bind="nb15"> No-Boom Pre 15/8*
+                </label>
+                <label class="side-bar-item" for="event_pre10x2">
+                    <input type="checkbox" class="event_cb" id="event_pre10x2" data-bind="pre10x2"> 2x Stars Pre 10
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div id="optionSidebar" class="sidebar" data-type="options">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav('options')">×</a>
+        <div class="bottom-menu-items">
+            <div class="menu-group starforce-option">
+                <b>Starforce</b>
+                <br>
+                <label class="side-bar-item hidden" for="system_sfrates">
+                    <select id="system_sfrates">
+                        <option value="GMS">GMS</option>
+                        <option value="KMS">KMS</option>
+                    </select> Starforce Cost Type
+                </label>
+                <label class="side-bar-item" for="sf_conf_popup">
+                    <input type="checkbox" class="system_cb" id="sf_conf_popup" data-bind="confirmation_popup" title="Don't show the popup that confirms if you want to starforce." checked> Show Confirmation Popup
+                </label>
+            </div>
+            <div class="menu-group cube-option">
+                <b>Cube Display</b>
+                <br>
+                <label class="side-bar-item" for="system_cube_display">
+                    <select id="system_cube_display">
+                        <option value="GMS">GMS</option>
+                        <option value="KMS" selected>KMS</option>
+                    </select> Cube Type
+                </label>
+            </div>
+            <div class="menu-group cube-option">
+                <b>Item Tooltip Display</b>
+                <br>
+                <label class="side-bar-item" for="itt_kms_new">
+                    <input type="checkbox" class="system_cb" id="itt_kms_new" data-bind="itt_kms_new" data-redraw="2" 
+                        title="Split out starforce and scrolling stat gains from the total (blue stat in parenthesis is separated out to its components). This will become standard once GMS releases it."> 
+                    Show Starforce and Scroll Stats <br> separately.
+                </label>
+            </div>
+            <span class="margin">&nbsp;</span>
+            <div class="menu-group">
+                <div style="display:block"><b>System</b></div>
+                <br>
+                <b>Audio</b> 
+                <label class="side-bar-item" for="sf_sound">
+                    <input id="sf_sound" type="range" min="0" max="100" step="1" value="40"></input> <span id="sf_sound_display">40</span>
+                </label>
+            </div>
+            <div class="menu-group">
+                <b>Animation Speed</b>
+                <label class="side-bar-item" for="sf_playback">
+                    <input id="sf_playback" type="range" min="1" max="10" step="0.1" value="1"></input> <span id="sf_playback_display">1</span>
+                </label>
+            </div>
+            <div class="menu-group">
+                <label class="side-bar-item" for="sf_auto_open_log">
+                    <input type="checkbox" class="system_cb" id="sf_auto_open_log" data-bind="auto_open_log" checked> Open log when autoproc completes
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <!-- menu stuff -->
+    <div id="main">
+        <button class="openbtn" onclick="openNav('log')">☰ Logs</button>  
+        <button class="openbtn" onclick="openNav('events')">☰ Events</button>  
+        <button class="openbtn" onclick="openNav('options')">☰ Options</button>  
+    </div>
+    <div class="sfsc-main-border hidden">
+        <div class="sfsc-main-header"></div>
+        <div class="sfsc-main">
+            <div class="sfsc-description"></div>
+            <div class="sfsc-star-item-container">
+                <span class="sfsc-star-item-status sf-variable-animation"></span>
+            </div>
+            <div class="sf-item-container sf-item-starforce">
+                <span class="sf-item sf-item-big item-arcaneumbradagger"></span>
+            </div>
+            <div class="sfsc-star-game-container">
+                <div class="sfsc-star-container">
+                    <div class="sfsc-star-item sfsc-star-trail sfsc-star-trail-left"></div>
+                    <div class="sfsc-star-item sfsc-star"></div>
+                    <div class="sfsc-star-hitbox"></div>
+                    <div class="sfsc-star-item sfsc-star-trail sfsc-star-trail-right hidden"></div>
+                </div>
+                <div class="sfc-star-road-container">
+                    <span class="sfsc-star-road"></span>
+                </div>
+            </div>
+            <div class="sfsc-button-container">
+                <span class="sfsc-button sf-button-stop disabled"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Star force popup for enhancement result -->
+    <div class="sfi-main-border hidden">
+        <div class="sfi-main-header"></div>
+        <div class="sf-item-container sfi-info-left">
+            <span class="sf-item item-arcaneumbradagger sf-item-small"></span>
+        </div>
+        <div class="sf-item-container sfi-info-right">
+            <span class="sf-item item-arcaneumbradagger sf-item-small"></span>
+        </div>
+        <div class="sfi-description">
+            <div class="sfi-text-container">
+                <div class="sfi-text sfi-text-fail-no-drop hidden">
+                    Enhancement failed. <br>
+                </div>
+                <div class="sfi-text sfi-text-fail hidden">
+                    Enhancement failed! <br>
+                    The enhancement level has dropped.
+                </div>
+                <div class="sfi-text sfi-text-destroyed hidden">
+                    Enhancement failed, <br>
+                    so the equipment was destroyed.
+                </div>
+                <div class="sfi-text sfi-text-success">
+                    Successfully enhanced.
+                </div>
+            </div>
+        </div>
+        <div class="sfi-result-container hidden">
+            <div class="sfi-result sf-variable-animation"></div>
+        </div>
+        <div class="sfi-button-container">
+            <span class="maple-button sfi-button sfi-button-ok" id="sfi_button_ok"></span>
+        </div>
+    </div>
+
+    <!-- Main star force window -->
+    <div class="sf-main-container masteria sf-main-border hidden">
+        <div class="sf-main-header"></div>
+        <div class="sf-main-header-buttons">
+            <div class="sf-header-icon sf-button-x"></div>
+        </div>
+        <div class="sf-main sf-enchant">
+            <div class="sf-main-button-header">
+                <span class="maple-button sf-button-header sf-header-scroll"></span>
+                <span class="maple-button sf-button-header sf-header-starforce active"></span>
+                <span class="maple-button sf-button-header sf-header-transfer"></span>
+            </div>
+            <div class="sf-header-text">
+                <div class="sf-text sf-text-start"></div>
+            </div>
+            <div class="sf-star-chance sf-star-chance-time hidden"></div>
+            <div class="sf-item-container sf-item-main">
+                <span class="sf-item item-arcaneumbradagger"></span>
+            </div>
+            <div class="sf-starforce-data" data-simplebar>
+                <span class="sf-starforce-margin"></span>
+                <span class="sf-starforce-data-description">
+                    Loading...
+                </span>
+            </div>
+            <div class="sf-star-item"></div>
+            <div class="sf-enchant-effects sf-variable-animation"></div>
+            <div class="sf-starcatch sf-checkbox checked"></div>
+            <div class="sf-safeguard sf-checkbox disabled"></div>
+            <div class="sf-main-mesos ">
+                <span class="sf-main-mesos-amount sf-data-meso number-locale"></span>
+                <span class="sf-main-shadowknight-amount sf-data-shadowknight number-locale"></span>
+            </div>
+            <div class="sf-button-container">
+                <span class="maple-button sf-button sf-button-enhance"></span>
+                <span class="maple-button sf-button sf-button-cancel"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Star force "are you sure" popup -->
+    <div class="sfp-main-border hidden">
+        <div class="sfp-main-header"></div>
+        <div class="sfp-data">
+            <span class="sfp-data-margin"></span>
+            <span class="sf-data-meso">0</span> Meso
+
+            <br><br>
+            
+            <span class="sfp-data-description sfp-data-destroyable hidden">
+                Equipment may be destroyed<br>
+                if the enhancement fails.<br>
+            </span>
+
+            <span class="sfp-data-description sfp-data-downgradeable hidden">
+                Enhancement level will drop<br>
+                if the enhancement fails.<br>
+            </span>
+
+            <span class="sfp-data-description sfp-data-bothways hidden">
+                If enhancement fails, the equipment may be<br>
+                destroyed or the enhancement level may drop.<br>
+            </span>
+            Attempt the enhancement?
+        </div>
+        <div class="sfp-button-container">
+            <span class="maple-button sfp-button sfp-button-ok"></span>
+            <span class="maple-button sfp-button sfp-button-cancel"></span>
+        </div>
+    </div>
+
+    <!-- item tooltip -->
+    <div class="item-main-border hidden">
+        <div class="item-drag-header"></div>
+        <div class="item-main-header"></div>
+        <div class="item-main-gloss"></div>
+        <div class="item-main-body">
+            <div class="item-title-description">
+                <div class="item-star-container">
+                    <span class="item-star item-star-1" data-star-id="1"></span>
+                    <span class="item-star item-star-2" data-star-id="2"></span>
+                    <span class="item-star item-star-3" data-star-id="3"></span>
+                    <span class="item-star item-star-4" data-star-id="4"></span>
+                    <span class="item-star item-star-5" data-star-id="5"></span>
+                    <span class="item-star-space item-spacer-1"></span>
+                    <span class="item-star item-star-6" data-star-id="6"></span>
+                    <span class="item-star item-star-7" data-star-id="7"></span>
+                    <span class="item-star item-star-8" data-star-id="8"></span>
+                    <span class="item-star item-star-9" data-star-id="9"></span>
+                    <span class="item-star item-star-10" data-star-id="10"></span>
+                    <span class="item-star-space item-spacer-2"></span>
+                    <span class="item-star item-star-11" data-star-id="11"></span>
+                    <span class="item-star item-star-12" data-star-id="12"></span>
+                    <span class="item-star item-star-13" data-star-id="13"></span>
+                    <span class="item-star item-star-14" data-star-id="14"></span>
+                    <span class="item-star item-star-15" data-star-id="15"></span>
+                    <span class="item-star-break"></span>
+                    <span class="item-star item-star-16 disabled" data-star-id="16"></span>
+                    <span class="item-star item-star-17 disabled" data-star-id="17"></span>
+                    <span class="item-star item-star-18 disabled" data-star-id="18"></span>
+                    <span class="item-star item-star-19 disabled" data-star-id="19"></span>
+                    <span class="item-star item-star-20 disabled" data-star-id="20"></span>
+                    <span class="item-star-space item-spacer-3"></span>
+                    <span class="item-star item-star-21 disabled" data-star-id="21"></span>
+                    <span class="item-star item-star-22 disabled" data-star-id="22"></span>
+                    <span class="item-star item-star-23 disabled" data-star-id="23"></span>
+                    <span class="item-star item-star-24 disabled" data-star-id="24"></span>
+                    <span class="item-star item-star-25 disabled" data-star-id="25"></span>
+                </div>
+                <div class="item-name">
+                    <span class="item-new-item"></span>
+                    <span class="item-current-name">Arcane Umbra Dagger (+10)</span>
+                    <br>
+                    <span class="item-sub-description">
+                        (Legendary Item)
+                    </span>
+                </div>
+            </div>
+            <div class="item-dash-border"></div>
+            <div class="item-pic-container">
+                <div class="item-container">
+                <span class="item-container-gloss"></span>
+                    <span class="item-container-flag"></span>
+                    <span class="item-container-item sf-item item-arcaneumbradagger"></span>
+                </div>
+                <div class="item-requirements-container">
+                    <span class="item-requirements item-requirements-level yellow">
+                        <span class="item-lev-num item-lev-lev-1 req-num-0"></span>
+                        <span class="item-lev-num item-lev-lev-2 req-num-0"></span>
+                        <span class="item-lev-num item-lev-lev-3 req-num-0"></span>
+                        <span class="item-level-num reduced-lvl-requirements" style="margin-left:3px;">
+                            <span class="item-lev-num item-lev-lev-4 req-num-op"></span>
+                            <span class="item-lev-num item-lev-lev-5 req-num-2"></span>
+                            <span class="item-lev-num item-lev-lev-6 req-num-0"></span>
+                            <span class="item-lev-num item-lev-lev-7 req-num-0"></span>
+                            <span class="item-lev-num item-lev-lev-8 req-num-minus"></span>
+                            <span class="item-lev-num item-lev-lev-9 req-num-2"></span>
+                            <span class="item-lev-num item-lev-lev-10 req-num-0"></span>
+                            <span class="item-lev-num item-lev-lev-11 req-num-0"></span>
+                            <span class="item-lev-num item-lev-lev-12 req-num-cp"></span>
+                        </span>
+                    </span>
+                    <span class="item-requirements-col-1">
+                        <span class="item-requirements item-requirements-str">
+                            <span class="item-str-num item-str-num-1 req-num-0"></span>
+                            <span class="item-str-num item-str-num-2 req-num-0"></span>
+                            <span class="item-str-num item-str-num-3 req-num-0"></span>
+                        </span>
+                        <span class="item-requirements item-requirements-dex">
+                            <span class="item-dex-num item-dex-num-1 req-num-0"></span>
+                            <span class="item-dex-num item-dex-num-2 req-num-0"></span>
+                            <span class="item-dex-num item-dex-num-3 req-num-0"></span>
+                        </span>
+                    </span>
+                    <span class="item-requirements-col-2">
+                        <span class="item-requirements item-requirements-luk">
+                            <span class="item-luk-num item-luk-num-1 req-num-0"></span>
+                            <span class="item-luk-num item-luk-num-2 req-num-0"></span>
+                            <span class="item-luk-num item-luk-num-3 req-num-0"></span>
+                        </span>
+                        <span class="item-requirements item-requirements-int">
+                            <span class="item-int-num item-int-num-1 req-num-0"></span>
+                            <span class="item-int-num item-int-num-2 req-num-0"></span>
+                            <span class="item-int-num item-int-num-3 req-num-0"></span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="item-icons">
+                <span class="item-icon-con">
+                    <span class="item-icon-pdd"></span>
+                    <span class="item-icon-zero">
+                        <div class="req-num-0 light-grey"></div>
+                    </span>
+                </span>
+                <span class="item-icon-con">
+                    <span class="item-icon-bdr"></span>
+                    <span class="item-icon-zero">
+                        <div class="req-num-0 light-grey"></div>
+                        <div class="req-num-percent light-grey"></div>
+                    </span>
+                </span>
+                <span class="item-icon-con">
+                    <span class="item-icon-igpddr"></span>
+                    <span class="item-icon-zero">
+                        <div class="req-num-0 light-grey"></div>
+                        <div class="req-num-percent light-grey"></div>
+                    </span>
+                </span>
+            </div>
+            <div class="item-jobs-container">
+                <div class="item-jobs">
+                    <span class="item-job-items item-jobs-beginner hide"></span>
+                    <span class="item-job-items item-jobs-warrior hide"></span>
+                    <span class="item-job-items item-jobs-magician hide"></span>
+                    <span class="item-job-items item-jobs-bowman hide"></span>
+                    <span class="item-job-items item-jobs-thief hide"></span>
+                    <span class="item-job-items item-jobs-pirate hide"></span>
+                </div>
+            </div>
+            <div class="item-dash-border"></div>
+            <div class="item-stats">
+                Type: DAGGER <br>
+                Attack Speed: FAST <br>
+                STR : +0 <br>
+                DEX : +0 <br>
+                INT : +0 <br>
+                LUK : +0 <br>
+                MaxHP: +0 <br>
+                MaxMP: +0 <br>
+                Attack Power: +0 <br>
+                Magic Attack: +0 <br>
+                Boss Damage: +0% <br>
+                Ignore Enemy DEF: +0% <br>
+                Damage: 0% <br>
+                All Stats: 0% <br>
+                Remaining Enhancements: 0% <br>
+                <span class="item-color-recovery">(Available Recoveries: 0)</span> <br>
+                Hammers Applied: 2 (MAX)
+            </div>
+            <div class="item-cube">
+
+            </div>
+            <div class="item-misc">
+
+            </div>
+        </div>
+        <div class="item-main-bottom"></div>
+    </div>
+</div>
+
+<!-- red/bonus cube -->
+<div class="cube-main-border hidden" id="cube_container">
+    <div class="cube-main-header"></div>
+    <div class="cube-main">
+        <div class="cube-main-window">
+            <div class="cube-header-reset"></div>
+            <div class="cube-item-window"></div>
+            <div class="cube-result-background"></div>
+            <div class="cube-window">
+                <span class="cube-result">
+                    <span class="cube-result-pot cube-pot-label">Rare</span>
+                    <span class="cube-result-stats">
+                    ATT: +12% <br>
+                    ATT: +12% <br>
+                    ATT: +12%
+                    </span> <br>
+                    <span class="cube-att-result">ATT Increase:</span> <span class="cube-att-stat cube-att-decrease">-99999999</span>
+                </span>
+            </div>
+            <div class="cube-upgrade hidden"></div>
+            <div class="cube-item"></div>
+            <div class="cube-remaining cube-pot-label">
+                <span class="cube-remaining-text">
+                Remaining: 999
+                </span>
+            </div>
+            <div class="btn-one-more-try maple-button"></div>
+            <div class="btn-cube-ok maple-button"></div>
+        </div>
+    </div>
+</div>
+
+<!-- black cube -->
+<div class="cube-main-border hidden" id="black_cube_container">
+    <div class="cube-black-main-header"></div>
+    <div class="cube-black-main">
+        <div class="cube-black-main-window">
+            <div class="cube-black-header-reset"></div>
+            <div class="cube-item-window"></div>
+            <div class="cube-black-result-background"></div>
+            <div class="cube-black-result cube-black-window-before" data-type="before">
+                <span class="cube-black-before-result maple-button">
+                    <span class="cube-result">
+                        <span class="cube-result-pot cube-result-before-label cube-pot-label">Rare</span>
+                        <span class="cube-result-stats cube-result-before">
+                        DEF: +12% <br>
+                        DEF: +12% <br>
+                        DEF: +12%
+                        </span> <br>
+                        <span class="cube-att-result">ATT Increase:</span> <span class="cube-att-stat cube-att-decrease">-99999999</span>
+                    </span>
+                </span>
+            </div>
+            <div class="cube-black-result cube-black-window-after maple-button" data-type="after">
+                <span class="cube-black-after-result">
+                    <span class="cube-result">
+                        <span class="cube-result-pot cube-result-after-label cube-pot-label">Rare</span>
+                        <span class="cube-result-stats cube-result-after">
+                        ATT: +12% <br>
+                        ATT: +12% <br>
+                        ATT: +12%
+                        </span> <br>
+                        <span class="cube-att-result">ATT Increase:</span> <span class="cube-att-stat cube-att-decrease">-99999999</span>
+                    </span>
+                </span>
+            </div>
+            <div class="cube-black-upgrade hidden"></div>
+            <div class="cube-item"></div>
+            <div class="cube-remaining cube-pot-label ">
+                <span class="cube-remaining-text">
+                    Remaining: 999
+                </span>
+            </div>
+            <div class="btn-one-more-try btn-cube-black maple-button"></div>
+        </div>
+    </div>
+</div>
+
+<!--
+<script
+src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+crossorigin="anonymous"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"
+/>
+-->
+<script src="./assets/js/jqueryUI.1.2.js"></script>
+<link href="./assets/css/simplebar5.2.1.css" rel="stylesheet" />
+
+<!--
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+-->
+<link href="./assets/css/select2.4.1.0.css" rel="stylesheet" />
+<script src="./assets/js/select2.4.1.0.js"></script>
+
+<style>
+    .simplebar-track {
+        border: 1px solid rgba(0,0,0,0.4);
+        border-radius: 10px;
+        width: 4px !important;
+        z-index: 30 !important;
+        margin-top: 4px;
+    }
+
+    .simplebar-scrollbar:before {
+        opacity: 1 !important;
+        background-color: rgba(255,170,0); 
+        border-radius: 8px;
+        left: 0px;
+        width: 4px;
+    }
+</style>
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.2.1/simplebar.min.js"></script>
+-->
+<script src="./assets/js/simplebar5.2.1.js"></script>
+
+<script>
+    var event_options = {
+        _51015: false,
+        nb15: false,
+        pre10x2: false
+    };
+
+    var system = {
+        ddl_with_name: false,
+        auto_open_log: true,
+        confirmation_popup: true,
+        animation_speed: 1,
+        animation_speed_actual: 1,
+        itt_kms_new: false
+    };
+
+    //default animation speeds. can be speed up via the animation controls
+    var css_animation_speed = {
+        "sf-enchant-hyper-start": 1.75,
+        "sfi-success": 1.25,
+        "sfi-fail": 1.25,
+        "sfi-destroy": 1.25,
+        "sfsc-star-begin": 1,
+        "sfsc-star-stop": 1,
+        "sfsc-star-success": 1,
+        "cube-use-normal": 1.5,
+        "cube-use-tier": 1.5
+    };
+</script>
+
+<!-- maplestory item db -->
+<script src="./starforce/item_db.js"></script>
+<script src="./starforce/item_db2.js"></script>
+<script src="./starforce/item_meta.js"></script>
+<!-- item object and support functions -->
+<script src="./starforce/item_prototype.js"></script>
+<script src="./starforce/scrolls.js"></script>
+<!-- star force data set up -->
+<script src="./starforce/starforce.js"></script>
+<!-- cubes functionality -->
+<script src="./starforce/cubes.js"></script>
+<!-- flames -->
+<script src="./starforce/flames.js"></script>
+<script src="./starforce/flames_auto.js"></script>
+<!-- chaos scrolls -->
+<script src="./starforce/cogs.js"></script>
+<!-- ui/dom controls -->
+<script src="./starforce/dom.js"></script>
+<script src="./starforce/dom_menu.js"></script>
+<!-- ui - statistics -->
+<script src="./starforce/stat_starforce.js"></script>
+
+<style>
+    .item-form {
+        display: block;
+        padding: 10px;
+    }
+
+    .item-label {
+        display: inline-block;
+        width: 125px;
+    }
+
+    .flame-form, .scroll-form {
+        width: 50px;
+    }
+
+    .item-flame-label, .item-scroll-label {
+        padding: 5px;
+        display: inline-block;
+        width: 150;
+    }
+
+    .item-flame-form, .item-scroll-form {
+        display: inline-block;
+        width: 335px;
+        vertical-align:top;
+    }
+
+    .item-flame-form {
+        padding: 5px;
+    }
+</style>
+
+<div id="option_box" style="display:none"></div>
+<div id="stat_box" style="display:none"></div>
+
+<div id="item_create" style="display:none">
+    <div id="item_body">
+        <div class="item-form">
+            <span class="item-label">Item:</span> <span id="item_select"></span> <select id="ddl_item_select"></select> 
+            <input type="checkbox" class="system_cb" id="cbDropdownOldStyle" data-bind="ddl_with_name" data-redraw="0"> 
+            <label for="cbDropdownOldStyle">List with Item Name</label>
+            <span title="
+Display items either only by their icon (more compact) or icon and item name.
+
+Advanced Search
+Start your search with the following to change search behavior:
+type:{value} - search items by their item type (example: type:dagger to display daggers only)
+
+Start value with equal sign (=) to make search exact. (example: type:=ring to display only rings rather than rings and earrings)
+            ">[?]</span>
+        </div>
+        <span id="weapon_init" class="hidden"> 
+            <div class="item-form" id="starforce_input_con">
+                <span class="item-label">Stars:</span> <input type="number" min="0" max="25" id="item_starforce" value="0">
+            </div>
+            <div class="item-form scroll-box item-weapon item-not-secondary" title="For weapons, assumes a 25% boss damage nebulite was placed on it. Compensates with 4% more base damage.">
+                <span class="item-label">Nebulite Compensation:</span> <input type="checkbox" id="item_neb_comp"> [?]
+            </div>
+            <div class="item-form item_flame_container" title="Flame advantaged gear have flames go from 3-7 and always have the max of 4 lines (although this is up to you if you want to add 4 flame types). Non-'flame advantaged' gear goes from 1-5 and can have anywhere between 1 and 4 flame types.">
+                <span class="item-label">Flame Advantage?:</span> <span id="item_has_flame_adv"></span> [?]
+            </div>
+
+            <div id="ddlFlameScoreStat_con" class="item-form item-armor" title="Let the simulator know which stat to calculate flame score against.">
+                <span class="item-label">Flame Score:</span>
+                MAIN:
+                <select id="ddlFlameScoreStat">
+                    <option value="str">STR</option>
+                    <option value="int">INT</option>
+                    <option value="dex">DEX</option>
+                    <option value="luk">LUK</option>
+                </select>
+                SECONDARY:
+                <select id="ddlFlameScoreStat2">
+                    <option value="str">STR</option>
+                    <option value="int">INT</option>
+                    <option value="dex">DEX</option>
+                    <option value="luk">LUK</option>
+                </select>
+                [?]
+            </div>
+
+            <div class="item-form" id="item_scroll_container">
+                <div class="item-form">
+                    <span class="item-label">
+                        <span class="item-label-icon item-white-scroll"></span> <b>Scrolls</b>
+                    </span>Max Scrolls:
+                    <span id="item_scroll_amount">
+                        0
+                    </span>
+                    <hr>
+                    <div class="item-scroll-form">
+                        <div class="item-scroll-form" id="scroll_type_box">
+                            <span class="scroll-type-box">
+                                <span class="item-scroll-label">
+                                    Scroll Type:
+                                </span>
+                                <select id="scroll_type" style="width:75px">
+                                    <option value="str" selected>STR</option>
+                                    <option value="dex">DEX</option>
+                                    <option value="int">INT</option>
+                                    <option value="luk">LUK</option>
+                                    <option value="hp">HP</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form" id="scroll_type_box_att">
+                            <span class="scroll-type-box">
+                                <span class="item-scroll-label">
+                                    Scroll Type:
+                                </span>
+                                <select id="scroll_type_att" style="width:120px">
+                                    <option value="watt" selected>Attack Power</option>
+                                    <option value="matt">Magic Attack</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-armor">
+                                <span class="item-scroll-label">
+                                    <span class="item-label-icon item-spell-trace"></span> 100%
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="_100"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-armor">
+                                <span class="item-scroll-label">
+                                    <span class="item-label-icon item-spell-trace"></span> 70%
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="_70"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-armor">
+                                <span class="item-scroll-label">
+                                    <span class="item-label-icon item-spell-trace"></span> 30%
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="_30"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-armor" data-for-armor="gloves,overall,hat,top,bottom,shoes,cape,shoulder,shield">
+                                <span class="item-scroll-label">
+                                    <span class="item-label-icon item-spell-trace"></span> 15%
+                                </span>
+                                <input type="number" id="scrolls_15" class="scroll-form" min="0" value="0" data-id="_15"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-mechanical-heart">
+                                <span class="item-scroll-label">
+                                    <span class="item-label-icon item-evolution-scroll"></span> Evolution
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="evolution"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-weapon item-armor">
+                                <span class="item-scroll-label">
+                                    <span class="item-label-icon item-prime-scroll"></span> Prime
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="prime"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-scroll-form">
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-gollux">
+                                <span class="item-scroll-label">
+                                    <span class="item-label-icon item-gollux-scroll"></span> Basic Gollux
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="basic_gollux"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-gollux">
+                                <span class="item-scroll-label">
+                                    <span class="item-label-icon item-gollux-scroll"></span> Advanced Gollux
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="advanced_gollux"/>
+                            </span>
+                        </div>
+                        <div class="item-scroll-form">
+                            <span class="scroll-box item-chaos-horn-tail">
+                                <span class="item-scroll-label">
+                                    <span class="item-label-icon item-dragon-stone"></span> Dragon Stone
+                                </span>
+                                <input type="number" class="scroll-form" min="0" value="0" data-id="dragon_stone"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-form item_flame_container" id="item_flame_container" style="min-height:375px;">
+                <div class="item-form">
+                    <span class="item-label">
+                        <span class="item-label-icon item-flames"></span> <b>Flames</b>
+                    </span>
+                    <label for="flame_as_tier" style="margin-right:10px" title="
+If checked, then the values for each textbox will correspond to a flame tier value. Flame tiers go from 0-7.
+If unchecked, then you can write whatever flame value you want."
+                    >
+                        <input type="checkbox" id="flame_as_tier" checked> Value is Flame Tiers [?]
+                    </label>
+                    <label for="flame_max_4" title="Limits selection to the maximum allowed in-game. This is only for flame tiers.">
+                        <input type="checkbox" id="flame_max_4" checked> Restrict to 4 Flame Types [?]
+                    </label>
+                    <hr>
+                    <span style="display:block;padding:5px;font-size:0.9em;">
+                        <b>Recommended Flame Tiers:</b> <span id="flame_tier_rec"></span>
+                    </span>
+                    <hr>
+                    <div class="item-flame-form">
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">STR</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="str"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">DEX</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="dex"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">INT</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="int"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">LUK</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="luk"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">STR,DEX</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="str,dex"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">STR,INT</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="str,int"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">STR,LUK</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="str,luk"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">DEX,INT</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="dex,int"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">DEX,LUK</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="dex,luk"/></span>
+                        <span class="flame-box item-weapon item-armor"><span class="item-flame-label">INT,LUK</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="int,luk"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">All Stats</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="all_stat" data-type="%"/><span class="flame-percent hidden">%</span></span>
+                    </div>
+                    <div class="item-flame-form">
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Attack Power</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="watt"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Magic Attack</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="matt"/></span>
+                        <span class="flame-box item-weapon item-custom-flame"><span class="item-flame-label">Damage</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="damage" data-type="%"/><span class="flame-percent hidden">%</span></span>
+                        <span class="flame-box item-weapon item-custom-flame"><span class="item-flame-label">Boss Damage</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="boss_damage" data-type="%"/><span class="flame-percent hidden">%</span></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Req Level</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="reqlvl" data-type="-"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Max HP</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="hp"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Max MP</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="mp"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Defense</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="def"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Jump</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="jump"/></span>
+                        <span class="flame-box item-weapon item-armor item-custom-flame"><span class="item-flame-label">Speed</span> <input type="number" class="flame-form" min="0" max="7" value="0" data-id="speed"/></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-form item_cube_container" id="item_cube_container" style="min-height:375px;">
+                <div class="item-form">
+                    <span class="item-label">
+                        <span class="item-label-icon item-cubes"></span>
+                        <b>Cubes</b>
+                    </span>
+                    <hr>
+                    <div class="item-cube-form cube-main-form">
+                        <label for="cube_select_main">
+                            <span class="item-cube-label">Select Main Potential Tier:</span>
+                            <select id="cube_select_main" class="select-cube-type" data-type="main">
+                                <option value="">No Potential</option>
+                                <option value="rare">Rare</option>
+                                <option value="epic">Epic</option>
+                                <option value="unique">Unique</option>
+                                <option value="legendary">Legendary</option>
+                            </select>
+                        </label>  
+                        <div id="cube_line_con_main" style="padding:5px;">
+                            <!-- populated from dom.js -->
+                        </div>           
+                    </div>
+                    <div class="item-cube-form cube-bonus-form">
+                        <label for="cube_select_main">
+                            <span class="item-cube-label">Select Bonus Potential Tier:</span>
+                            <select id="cube_select_bonus" class="select-cube-type" data-type="bonus">
+                                <option value="">No Potential</option>
+                                <option value="rare">Rare</option>
+                                <option value="epic">Epic</option>
+                                <option value="unique">Unique</option>
+                                <option value="legendary">Legendary</option>
+                            </select>
+                        </label>      
+                        <div id="cube_line_con_bonus" style="padding:5px;">
+                            <!-- populated from dom.js -->
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+
+<div id="img_preloader" style="display:none;position:absolute;"></div>

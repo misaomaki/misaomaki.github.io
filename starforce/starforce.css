@@ -1,0 +1,1997 @@
+.bottom-menu-items {
+    max-height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.item-label-icon {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+
+.item-spell-trace {
+    width: 22px;
+    height: 22px;
+    background: url("../assets/maple_items/etc/SpellTrace.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-starforce-star {
+    background: url("../assets/starforce/ui.starcatch.star.png");
+    background-repeat: no-repeat;
+    background-size: contain;    
+    position: relative;
+    left: 5px;
+}
+
+.item-flames {
+    width: 35px;
+    height: 35px;
+    background: url("../assets/cube/flames.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-cubes {
+    width: 35px;
+    height: 35px;
+    background-image: url("../assets/cube/cubes.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-white-scroll {
+    background: url("../assets/maple_items/etc/WhiteScroll.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-evolution-scroll {
+    background: url("../assets/maple_items/etc/EvolutionScroll.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-gollux-scroll {
+    background: url("../assets/maple_items/etc/GolluxScroll.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-prime-scroll {
+    background: url("../assets/maple_items/etc/PrimeScroll.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item-dragon-stone {
+    width: 22px;
+    height: 22px;
+    background: url("../assets/maple_items/etc/DragonStone.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.job-icon {
+    width: 15px;
+    display: inline-block;
+    height: 15px;
+    position: relative;
+    top: 20px;
+    left: 21px;
+    opacity: 0.7;
+}
+
+.job-warrior {
+    background: url("../assets/job/icon-job-warrior.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.job-magician {
+    background: url("../assets/job/icon-job-magician.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.job-bowman {
+    background: url("../assets/job/icon-job-archer.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.job-thief {
+    background: url("../assets/job/icon-job-thief.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.job-pirate {
+    background: url("../assets/job/icon-job-pirate.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.dev-info {
+    color: white;
+    font-family: Arial;
+    bottom: 0;
+    width: 100%;
+    padding: 5px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    position: absolute;
+    bottom: 63px;
+}
+
+.ui-widget-overlay
+{
+    opacity: .70 !important;
+    background: rgb(50, 50, 50) !important;
+}
+
+* { margin: 0; padding: 0;}
+
+body, html { 
+    height:100%; 
+}
+
+#sfcon {
+    position:absolute;
+    width:100%;
+    height:100%;
+    background: url("../assets/b1.png");
+    background-size: cover;
+    overflow:hidden;
+}
+
+.sf-main-header {
+    position: absolute;
+    display: inline-block;
+    width: 343px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.sf-main-border {
+    position: absolute;
+    background: url("../assets/starforce/enchantUI.main.backgrnd.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 345px;
+    height: 295px;
+}
+
+/* shadowknight coin ui */
+.sf-main-border.masteria {
+    background: url(../assets/starforce/tab_hyper_masteria.backgrnd.png);
+    background-repeat: no-repeat;
+    height: 326px;
+}
+
+.sf-header-scroll {
+    background: url(../assets/starforce/ui.button.scroll.png); 
+}
+
+.sf-header-starforce.active {
+    background: url(../assets/starforce/ui.button.starforce.active.png); 
+}
+
+.sf-header-transfer {
+    background: url(../assets/starforce/ui.button.transfer.png); 
+}
+
+.sf-no-item {
+    background: url(../assets/starforce/enchantUI.main.backgrnd2.png);
+}
+
+.sf-item-guide {
+    background: url(../assets/starforce/enchantUI.item.guide.png);
+}
+
+.sf-enchant {
+    background: url(../assets/starforce/tab_hyper.backgrnd2.png);
+}
+
+/* shadowknight coin ui */
+.masteria > .sf-enchant {
+    background: url(../assets/starforce/tab_hyper.backgrnd_masteria.png);
+    height: 293px;
+}
+
+.sf-star10 {
+    background: url(../assets/starforce/star10.png);
+}
+
+.sf-star15 {
+    background: url(../assets/starforce/star15.png);
+}
+.sf-star20 {
+    background: url(../assets/starforce/star20.png);
+}
+
+.sf-button-enhance {
+    background: url(../assets/starforce/button.enchant.start.png);
+}
+
+.sf-button-enhance:hover {
+    background: url(../assets/starforce/button.enchant.mouseover.png);
+}
+
+.sf-button-enhance:active {
+    background: url(../assets/starforce/button.enchant.press.png);
+}
+
+.sf-button-cancel {
+    background: url(../assets/starforce/button.cancel.start.png);
+}
+
+.sf-button-cancel:hover {
+    background: url(../assets/starforce/button.cancel.mouseover.png);
+}
+
+.sf-button-cancel:active {
+    background: url(../assets/starforce/button.cancel.press.png);
+}
+
+.sf-text-start {
+    background: url(../assets/starforce/text.starforce.start.png);
+}
+
+.sf-text-bothways {
+    background: url(../assets/starforce/text.starforce.bothways.png);
+    left: -16px;
+    width: 300px !important;
+}
+
+.sf-text-destroyable {
+    background: url(../assets/starforce/text.starforce.destroyable.png);
+    left: -51px;
+}
+
+.sf-text-downgradeable {
+    background: url(../assets/starforce/text.starforce.downgradeable.png);
+    left: -16px;
+    width: 300px !important;
+}
+
+.sf-text-moremesos {
+    background: url(../assets/starforce/text.starforce.moremesos.png);
+}
+
+.sf-button-x {
+   background: url(../assets/starforce/ui.button.close.x.png);
+}
+
+.sf-button-x:hover {
+    background: url(../assets/starforce/ui.button.close.x.mouseover.png);
+}
+
+.sf-main-header {
+    z-index: 50;
+}
+
+.sf-checkbox {
+    background: url(../assets/starforce/ui.checkbox.unchecked.png);
+}
+
+.sf-checkbox.disabled {
+    background: url(../assets/starforce/ui.checkbox.unchecked.disabled.png);
+}
+
+.sf-checkbox.checked {
+    background: url(../assets/starforce/ui.checkbox.checked.png);
+}
+
+.sf-checkbox.checked.disabled {
+    background: url(../assets/starforce/ui.checkbox.checked.disabled.png);
+}
+
+.sf-main {
+    background-repeat: no-repeat !important;
+    position: relative;
+    display: inline-block;
+    width: 325px;
+    height: 267px;
+    left: 11px;
+    top: 22px;
+}
+
+.sf-header-icon {
+    background-repeat: no-repeat !important;
+    position: relative;
+    width: 14px;
+    height: 14px;
+    left: 33px;
+    top: 3px;
+    float: right;
+}
+
+.sf-main-button-header {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 34px;
+    left: 6px;
+    top: 6px;
+}
+
+.sf-star-chance {
+    background-repeat: no-repeat !important;
+    position: absolute;
+    height: 146px;
+    width: 386px;
+    top: 30px;
+    left: -2px;
+    animation: sf-key-chance-time 0.7s steps(6) forwards infinite;
+}
+
+.sf-star-chance-time {
+    background: url(../assets/starforce/ui.animations.spritesheet.starforce.chance_time.png);
+}
+
+@keyframes sf-key-chance-time {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -852px;
+    }
+}
+
+.maple-button {
+    cursor: pointer;
+}
+
+.maki {
+    position:fixed;
+    height: 146px;
+    width: 134px;
+    background: url("../assets/maple_items/makiowo.png");
+    background-size: cover;
+    animation:  go-maki 0.7s steps(3) forwards infinite, 
+                owo-maki 2s steps(72) forwards 1;
+    animation-direction: alternate;
+    image-rendering: pixelated;
+    transform: scale(5);
+    z-index: 9999999999;
+    right: -30vw;
+    bottom: 18vh;
+}
+
+.maki-goodbye {
+    animation:  go-maki 1s steps(3) forwards infinite, 
+                bye-maki 3s steps(72) forwards 1 !important;
+    animation-direction: alternate;
+    animation-delay: 1.9s, 0s !important;
+}
+
+@keyframes go-maki {
+    0% {
+        background-position-x: 0px;
+    }
+
+    100% {
+        background-position-x: -390px;
+    }
+}
+
+@keyframes owo-maki {
+    0% {
+    }
+
+    25% {
+        transform: scale(5) rotate(-20deg);
+        right: 8vw;
+    }
+
+    100% {
+        transform: scale(5) rotate(-20deg);
+        right: 8vw;
+    }
+}
+
+@keyframes bye-maki {
+    0% {
+        transform: scale(5) rotate(-20deg);
+        right: 8vw;
+    }
+
+    100% {
+        transform: scale(5) rotate(0);
+        right: -400px;
+    }
+}
+
+.sf-star-item {
+    background-repeat: no-repeat !important;
+    position: absolute;
+    display: inline-block;
+    width: 51px;
+    height: 32px;
+    left: 9px;
+    top: 57px;
+}
+
+.sf-header-text {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    left: 18px;
+    top: 37px;
+}
+
+.sf-text {
+    position: relative;
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 230px;
+    height: 25px;
+}
+
+.sf-main-header-buttons {
+    position: absolute;
+    display: inline-block;
+    width: 304px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.sf-button-header {
+    background-repeat: no-repeat !important;
+    position: relative;
+    display: inline-block;
+    width: 102px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.sf-starforce-data {
+    position: absolute !important;
+    display: inline-block;
+    width: 186px;
+    height: 106px;
+    left: 126px;
+    top: 59px;
+    overflow-x: hidden;
+    color: white;
+    font-family: Arial;
+}
+
+.sf-starforce-margin {
+    display: block;
+    padding: 5px;
+    width: 100%;
+    clear: both;
+}
+
+/*
+.sf-starforce-data::-webkit-scrollbar {
+    width: 7px;
+}
+
+.sf-starforce-data::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.3);
+}
+
+.sf-starforce-data::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(255,170,0); 
+    background-clip: padding-box;
+    height: 5px;
+}
+*/
+
+.sf-button {
+    background-repeat: no-repeat !important;
+    position: relative;
+    display: inline-block;
+    width: 89px;
+    height: 28px;
+    left: 9px;
+    top: 15px;
+    cursor: pointer;
+}
+
+.sf-button-container {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 61px;
+    top: 215px;
+    text-align: center;
+    left: -6px;
+}
+
+/* shadowknight coin ui */
+.masteria > .sf-main > .sf-button-container > .sf-button {
+    top: 44px;
+}
+
+.sf-starcatch {
+    background-repeat: no-repeat !important;
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    left: 138px;
+    top: 178px;
+    cursor: pointer;
+}
+
+.sf-safeguard {
+    background-repeat: no-repeat !important;
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    left: 274px;
+    top: 178px;
+    cursor: pointer;
+}
+
+.sf-main-mesos {
+    position: absolute;
+    top: 207px;
+    font-size: 12px;
+    font-family: Arial;
+    color: white;
+    left: 174px;
+}
+
+.sf-data-shadowknight {
+    position: absolute;
+    top: 30px;
+    font-size: 12px;
+    font-family: Arial;
+    color: white;
+    left: 18px;
+}
+
+.sf-enchant-hyper-start {
+    position: absolute;
+    width: 113px;
+    height: 113px;
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    animation: sf-key-enchant-start 1.75s linear 1;
+    animation-timing-function: steps(1, end);
+    top: 57px;
+    left: 4px;
+}
+
+.sf-enchant-hyper-start-fast {
+    position: absolute;
+    width: 229px;
+    height: 230px;
+    background-image: url(../assets/starforce/hyperEffectFast.png);
+    background-repeat: no-repeat;
+    animation: sf-key-enchant-start-fast 0.8s steps(8) forwards 1;
+    z-index: 200;
+    left: -51px;
+}
+
+@keyframes sf-key-enchant-start-fast {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -1840px;
+    }
+}
+
+@keyframes sf-key-enchant-start {
+    0% {
+        background-image: url(../assets/starforce/hyperEffect1.0.png);
+    }
+    5%{
+        background-image: url(../assets/starforce/hyperEffect1.1.png);
+    }
+    10%{
+        background-image: url(../assets/starforce/hyperEffect1.2.png);
+    }
+    15%{
+        background-image: url(../assets/starforce/hyperEffect1.3.png);
+    }
+    20%{
+        background-image: url(../assets/starforce/hyperEffect1.4.png);
+    }
+    40% {
+        background-image: url(../assets/starforce/hyperEffect1.0.png);
+    }
+    45%{
+        background-image: url(../assets/starforce/hyperEffect1.1.png);
+    }
+    50%{
+        background-image: url(../assets/starforce/hyperEffect1.2.png);
+    }
+    55%{
+        background-image: url(../assets/starforce/hyperEffect1.3.png);
+    }
+    60%{
+        background-image: url(../assets/starforce/hyperEffect1.4.png);
+    }
+    70% {
+        background-image: url(../assets/starforce/hyperEffect2.0.png);
+    }
+    75%{
+        background-image: url(../assets/starforce/hyperEffect2.1.png);
+    }
+    80%{
+        background-image: url(../assets/starforce/hyperEffect2.2.png);
+    }
+    85%{
+        background-image: url(../assets/starforce/hyperEffect2.3.png);
+    }
+    90%{
+        background-image: url(../assets/starforce/hyperEffect2.4.png);
+    }
+    92%{
+        background-image: url(../assets/starforce/hyperEffect2.5.png);
+    }
+    94%{
+        background-image: url(../assets/starforce/hyperEffect2.6.png);
+    }
+    96%{
+        background-image: url(../assets/starforce/hyperEffect2.7.png);
+    }
+    100%{
+        background-image: url(../assets/starforce/hyperEffect2.7.png);
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.hide {
+    visibility: hidden !important;
+}
+
+.sf-main-border, .sfp-main-border {
+        user-select: none;
+}
+
+.sfp-main-border {
+    position: absolute;
+    background: url(../assets/starforce/ui.popup.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 291px;
+    height: 162px;
+    z-index: 55;
+}
+
+.sfp-main-header {
+    position: absolute;
+    display: inline-block;
+    width: 274px;
+    height: 25px;
+    cursor: pointer;
+    top: 14px;
+    left: 15px;
+}
+
+.sfp-button-container, .sfi-button-container, .sfsc-button-container {
+    position: absolute;
+    display: inline-block;
+    width: 279px;
+    height: 60px;
+    top: 115px;
+    text-align: center;
+    left: 10px;
+}
+
+.sfsc-button-container {
+    top: 203px;
+    left: 17px;
+    height: 73px;
+}
+
+.sfp-button, .sfi-button, .sfsc-button {
+    background-repeat: no-repeat !important;
+    position: relative;
+    display: inline-block;
+    width: 84px;
+    height: 26px;
+    left: 4px;
+    top: 15px;
+    cursor: pointer;
+}
+
+.sfi-button {
+    left: 1px;
+}
+
+.sfsc-button {
+    width: 156px;
+    height: 62px;
+    top: 0px;
+}
+
+.sfp-button-ok, .sfi-button-ok {
+    background: url(../assets/starforce/ui.popup.button.ok.png);
+}
+
+.sfp-button-ok:hover, .sfi-button-ok:hover {
+    background: url(../assets/starforce/ui.popup.button.ok.mouseover.png);
+}
+
+.sfp-button-ok:active, .sfi-button-ok:active {
+    background: url(../assets/starforce/ui.popup.button.ok.click.png);
+}
+
+.sfp-button-cancel, .sfi-button-cancel {
+    background: url(../assets/starforce/ui.popup.button.cancel.png);
+}
+
+.sfp-button-cancel:hover, .sfi-button-cancel:hover {
+    background: url(../assets/starforce/ui.popup.button.cancel.mouseover.png);
+}
+
+.sfp-button-cancel:active, .sfi-button-cancel:active {
+    background: url(../assets/starforce/ui.popup.button.cancel.click.png);
+}
+
+.sfp-data-margin {
+    display: block;
+    width: 100%;
+    clear: both;
+    padding: 12px;
+}
+
+.sfp-data {
+    position: absolute;
+    display: inline-block;
+    width: 279px;
+    height: 146px;
+    top: 10px;
+    left: 10px;
+    font-family: Arial;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+}
+
+.sfi-main-border {
+    position: absolute;
+    background: url(../assets/starforce/ui.popup.item.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 297px;
+    height: 170px;
+    z-index: 55;
+}
+
+.sfi-main-header {
+    position: absolute;
+    display: inline-block;
+    width: 416px;
+    height: 25px;
+    cursor: pointer;
+    top: 14px;
+    left: 15px;
+}
+
+.sfi-result-container {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+}
+
+.sfi-info-left {
+    left: 88px;
+    top: 34px;
+    position: absolute;
+}
+
+.sfi-info-right {
+    left: 175px;
+    top: 34px;
+    position: absolute;
+}
+
+.sfi-description {
+    position: absolute;
+    top: 79px;
+    left: 16px;
+    width: 273px;
+    height: 46px;
+    color: white;
+    font-size: 12px;
+}
+
+.sfi-text-container {
+    font-family: Arial;
+    margin-left: 42px;
+    margin-top: 13px;
+}
+
+.sfi-text-success, .sfi-text-fail-no-drop {
+    margin-left: 25px;
+    margin-top: 21px;
+}
+
+.sfi-success {
+    position: absolute;
+    width: 757px;
+    height: 300px;
+    background-image: url(../assets/starforce/ui.animations.spritesheet.success.png);
+    background-repeat: no-repeat;
+    animation: sf-key-result-s 1.25s steps(18) forwards 1;
+    top: -74px;
+    left: -229px;
+    z-index: 200;
+}
+
+.sfi-fail {
+    position: absolute;
+    width: 757px;
+    height: 249px;
+    background-image: url(../assets/starforce/ui.animations.spritesheet.fail.png);
+    background-repeat: no-repeat;
+    animation: sf-key-result-f 1.25s steps(18) forwards 1;
+    top: -45px;
+    left: -229px;
+    z-index: 200;
+}
+
+.sfi-destroy {
+    position: absolute;
+    width: 757px;
+    height: 249px;
+    background-image: url(../assets/starforce/ui.animations.spritesheet.destroy.png);
+    background-repeat: no-repeat;
+    animation: sf-key-result-f 1.25s steps(18) forwards 1;
+    top: -45px;
+    left: -229px;
+    z-index: 200;
+}
+
+@keyframes sf-key-result-s {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -5437px;
+    }
+}
+
+@keyframes sf-key-result-f {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -4518px;
+    }
+}
+
+.sfsc-main-border {
+    position: absolute;
+    background: url(../assets/starforce/ui.starcatch.border.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 266px;
+    height: 270px;
+    z-index: 56;
+}
+
+.sfsc-main-header {
+    position: absolute;
+    display: inline-block;
+    width: 416px;
+    height: 25px;
+    cursor: pointer;
+    top: 5px;
+    left: 5px;
+}
+
+.sfsc-main {
+    position: absolute;
+    background: url(../assets/starforce/ui.starcatch.layer.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 259px;
+    height: 252px;
+    z-index: 55;
+    top: 11px;
+    left: 3px;
+}
+
+.sf-button-stop {
+    background: url(../assets/starforce/ui.popup.button.stop.png);
+}
+
+.sf-button-stop:hover {
+    background: url(../assets/starforce/ui.popup.button.stop.mouseover.png);
+}
+
+.sf-button-stop:active {
+    background: url(../assets/starforce/ui.popup.button.stop.click.png);
+}
+
+.sf-button-stop.disabled {
+    background: url(../assets/starforce/ui.popup.button.stop.disabled.png);
+}
+
+.sfsc-description {
+    background: url(../assets/starforce/ui.starcatch.description.png);
+    width: 190px;
+    height: 38px;
+    background-repeat: inherit;
+    top: 9px;
+    position: absolute;
+    left: 39px;
+}
+
+.sfsc-star {
+    position: absolute;
+    background: url(../assets/starforce/ui.starcatch.star.png);
+    background-repeat: no-repeat;
+    width: 33px;
+    height: 33px;
+}
+
+.sfsc-star-hitbox {
+    position: absolute;
+    width: 2px;
+    height: 30px;
+    left: 22px;
+}
+
+.sfsc-star-trail {
+    position: absolute;
+    background: url(../assets/starforce/ui.animations.spritesheet.starcatch.startrail.png);
+    background-repeat: no-repeat;
+    animation: sf-key-result-startrail 1s steps(6) infinite;
+    width: 50px;
+    height: 50px;
+    top: -10px;
+}
+
+.sfsc-star-trail-left {
+    left: -41px;
+}
+
+.sfsc-star-trail-right {
+    left: 24px;
+    transform: scaleX(-1);
+}
+
+@keyframes sf-key-result-startrail {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -307px;
+    }
+}
+
+/*
+    when star road gets smaller, offset left for container by same amount
+*/
+.sfc-star-road-container {
+    position: absolute;
+    height: 24px;
+    width: 230px;
+    top: 5px;
+    text-align: center;
+}
+
+.sfsc-star-road {
+    background: url(../assets/starforce/ui.starcatch.gauge.inside.png);
+    width: 73px;
+    height: 18px;
+    position: absolute;
+    border: 2px solid;
+    border-image: url(../assets/starforce/ui.starcatch.gauge.border.png) 3;
+    left: 77px;
+}
+
+.sf-sc-star-road-lvl-2 {
+    width: 63px;
+    left: 83px;
+}
+
+.sf-sc-star-road-lvl-3 {
+    width: 53px;
+    left: 89px;
+}
+
+.sf-sc-star-road-lvl-4 {
+    width: 47px;
+    left: 91px;
+}
+
+.sf-sc-star-road-lvl-5 {
+    width: 42px;
+    left: 94px;
+}
+
+.sf-sc-star-road-lvl-6 {
+    width: 35px;
+    left: 96px;
+}
+
+.sfsc-star-game-container {
+    position: absolute;
+    width: 232px;
+    height: 30px;
+    top: 168px;
+    left: 13px;
+}
+
+.sfsc-star-container {
+    position: absolute;
+    z-index: 56;
+}
+
+.sfsc-star-item-container {
+    position: absolute;
+    height: 110px;
+    width: 110px;
+    left: 76px;
+    top: 52px;
+}
+
+.sfsc-star-countdown {
+    position: absolute;
+    background: url(../assets/starforce/ui.animations.spritesheet.starcatch.countdown.png);
+    background-repeat: no-repeat;
+    animation: sf-key-result-countdown 6s steps(6) forwards infinite;
+    width: 70px;
+    height: 70px;
+    top: 19px;
+    left: 17px;
+    z-index: 65;
+}
+
+@keyframes sf-key-result-countdown {
+    from {
+        background-position-x: 0px;
+    }
+    to {
+        background-position-x: -428px;
+    }
+}
+
+.sfsc-star-begin {
+    position: absolute;
+    background: url(../assets/starforce/ui.animations.spritesheet.starcatch.start.png);
+    background-repeat: no-repeat;
+    animation: sf-key-result-begin 1s steps(6) forwards infinite;
+    width: 267px;
+    height: 60px;
+    top: 19px;
+    left: -98px;
+    z-index: 65;
+}
+
+@keyframes sf-key-result-begin {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -371px;
+    }
+}
+
+.sfsc-star-stop {
+    position: absolute;
+    background: url(../assets/starforce/ui.animations.spritesheet.starcatch.stop.png);
+    background-repeat: no-repeat;
+    animation: sf-key-result-stop 1s steps(6) forwards 1;
+    width: 200px;
+    height: 200px;
+    top: -81px;
+    left: -84px;
+    z-index: 65;
+}
+
+@keyframes sf-key-result-stop {
+    from {
+        background-position-x: 0px;
+    }
+    to {
+        background-position-x: -1212px;
+    }
+}
+
+.sfsc-star-success {
+    position: absolute;
+    background: url(../assets/starforce/ui.animations.spritesheet.starcatch.success.png);
+    background-repeat: no-repeat;
+    animation: sf-key-result-success 1s steps(7) forwards 1;
+    width: 250px;
+    height: 40px;
+    top: 43px;
+    left: 1px;
+    z-index: 65;
+}
+
+@keyframes sf-key-result-success {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -294px;
+        top: 1px;
+    }
+}
+
+.sf-crossed-out {
+    position: relative;
+}
+
+.sf-crossed-out::after {
+    border-bottom: 0.2em solid red;
+    content: "";
+    left: 0;
+    margin-top: calc(0.125em / 2 * -1);
+    position: absolute;
+    right: 0;
+    top: 32%;
+}
+
+.sf-item-arrow {
+    background: url(../assets/starforce/ui.popup.arrow.png);
+}
+
+.sf-arrow-description {
+    background-repeat: no-repeat;
+    height: 17px;
+    width: 13px;
+    position: absolute;
+    top: 9px;
+    left: 42px;
+}
+
+.sf-item-container {
+    position: absolute;
+}
+
+.sf-starforce-data-description {
+    font-family: Arial;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.sf-item-desc-attr {
+    display: inline-block;
+    width: 29px;
+}
+
+.sf-item-main {
+    position: relative;
+    top: 87px;
+    left: 32px;
+}
+
+.sf-item-starforce {
+    position: relative;
+    top: 71px;
+    left: 97px;
+}
+
+.sf-item-big {
+    width: 70px !important;
+    height: 70px !important;
+}
+
+.sf-item-boomed {
+    filter: grayscale(90%);
+    opacity: 0.45;
+}
+
+.sf-item {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    image-rendering: pixelated;
+}
+
+.sf-item-small {
+    width: 38px;
+    height: 38px;
+    image-rendering: pixelated;
+}
+
+.item-main-border {
+    user-select: none;
+    position: absolute;
+    width: 262px;
+}
+
+.item-main-gloss {
+    background-image: url(../assets/item/ui.items.frame.cover.png);
+    background-repeat: no-repeat;
+    width: 262px;
+    height: 52px;
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
+
+.item-main-header {
+    background-image: url(../assets/item/ui.items.frame.top.png);
+    background-repeat: no-repeat;
+    width: 262px;
+    height: 12px;
+}
+
+.item-drag-header {
+    position: absolute;
+    width: 262px;
+    height: 12px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.item-dash-border {
+    background-image: url(../assets/item/ui.items.frame.dotline.png);
+    background-repeat: no-repeat;
+    width: 262px;
+    height: 7px;
+    display: block;
+    position: relative;
+    margin: 12px 0 6px 0;
+}
+
+.item-name {
+    position: relative;
+    left: 10px;
+    color: rgb(255,0,102);
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.item-current-name {
+    width: 231px;
+    display: inline-block;
+}
+
+.item-main-body {
+    background-image: url(../assets/item/ui.items.frame.line.png);
+    width: 262px;
+    /*height: 500px;*/
+    font-family: Arial;
+}
+
+.item-main-bottom {
+    background-image: url(../assets/item/ui.items.frame.bottom.png);
+    width: 262px;
+    height: 12px
+}
+
+.item-container {
+    background-image: url(../assets/item/ui.items.base.frame.base.png);
+    background-repeat: no-repeat;
+    width: 82px;
+    height: 82px;
+    position: relative;
+    left: 10px;
+}
+
+.item-pic-container {
+    position: relative;
+    height: 85px;
+}
+
+.item-title-description, .item-sub-description {
+    position: relative;
+    font-family: Arial;
+    font-size: 12px;
+    color: white;
+}
+
+.item-sub-description {
+    text-align: center;
+    display: block;
+    left: -10px;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+.item-container-gloss {
+    background-image: url(../assets/item/ui.items.base.frame.gloss.png);
+    background-repeat: no-repeat;
+    width: 82px;
+    height: 82px;
+    position: absolute;
+    display: block;
+    top: 3px;
+    left: 5px;
+}
+
+.item-container-flag {
+    position: absolute;
+    display: block;
+    left: 2px;
+    top: 1px;
+    width: 90px;
+    height: 82px;
+}
+
+/* border around the item picture in the tooltip - denotes the main cube potential */
+.item-flag-rare {
+    background-image: url(../assets/item/ui.items.base.frame.color_frame.blue.png);
+    background-repeat: no-repeat;
+}
+
+.item-flag-epic {
+    background-image: url(../assets/item/ui.items.base.frame.color_frame.purple.png);
+    background-repeat: no-repeat;
+}
+
+.item-flag-unique {
+    background-image: url(../assets/item/ui.items.base.frame.color_frame.gold.png);
+    background-repeat: no-repeat;
+}
+
+.item-flag-legendary {
+    background-image: url(../assets/item/ui.items.base.frame.color_frame.green.png);
+    background-repeat: no-repeat;
+}
+
+.item-container-item {
+    position: relative;
+    display: block;
+    left: 10px;
+    top: 12px;
+}
+
+.item-new-item {
+    background-image: url(../assets/item/ui.items.base.frame.item_new.png);
+    background-repeat: no-repeat;
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    position: relative;
+    top: -3px;
+    margin-right: 1px;
+}
+
+.item-star-container {        
+    width: 262px;
+    height: 40px;
+    text-align: center;
+}
+
+.item-star {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.star.yellow.png);
+    height: 9px;
+    width: 9px;
+    display: inline-block;
+    margin-left:-2px;
+}
+
+.item-star.disabled {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.star.grey.png);
+}
+
+.item-star-space {
+    margin: 3px;
+}
+
+.item-star-break {
+    display: block;
+    padding: 3px;
+}
+
+.item-sub-description {
+    text-align: center;
+}
+
+.item-requirements-container {
+    position: relative;
+    display: inline-block;
+    top: -36px;
+    right: -97px;
+    width: 157px;
+    height: 41px;
+}   
+
+.item-requirements {
+    width: 165px;
+    height: 10px;
+    display: block;
+    position: relative;
+}
+
+.item-requirements-col-1 {
+    top: 6px;
+    position: relative;
+}
+
+.item-requirements-col-2 {
+    top: -14px;
+    left: 81px;
+    position: relative;
+}
+
+.item-requirements-str {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.reqSTR.png);
+}
+
+.item-requirements-dex {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.reqDEX.png);
+}
+
+.item-requirements-int {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.reqINT.png);
+}
+
+.item-requirements-luk {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.reqLUK.png);
+}
+
+.item-requirements-level {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.reqLEV.png);
+}
+
+.item-requirements-str.required {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.reqSTR.png);
+}
+
+.item-requirements-dex.required {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.reqDEX.png);
+}
+
+.item-requirements-int.required {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.reqINT.png);
+}
+
+.item-requirements-luk.required {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.reqLUK.png);
+}
+
+.item-requirements-level.required {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.reqLEV.png);
+}
+
+.item-requirements-level.yellow {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.reqLEV.png);
+}
+
+.req-num-0 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.0.png)
+}
+.req-num-1 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.1.png);
+    width: 3px !important;
+}
+.req-num-2 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.2.png)
+}
+.req-num-3 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.3.png)
+}
+.req-num-4 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.4.png)
+}
+.req-num-5 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.5.png)
+}
+.req-num-6 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.6.png)
+}
+.req-num-7 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.7.png)
+}
+.req-num-8 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.8.png)
+}
+.req-num-9 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.9.png)
+}
+.req-num-op {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.openingParenthesis.png);
+    width: 2px !important;
+}
+.req-num-cp {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.closingParenthesis.png);
+    width: 2px !important;
+}
+.req-num-minus {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.minus.png);
+    top: -7px !important;
+}
+
+.req-num-0.light-grey {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.light-grey.0.png)
+}
+.req-num-percent.light-grey {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.light-grey.percent.png)
+}
+
+.item-requirements.required .req-num-0, .white.req-num-0 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.0.png) !important;
+}
+.item-requirements.required .req-num-1, .white.req-num-1 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.1.png) !important;
+}
+.item-requirements.required .req-num-2, .white.req-num-2 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.2.png) !important;
+}
+.item-requirements.required .req-num-3, .white.req-num-3 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.3.png) !important;
+}
+.item-requirements.required .req-num-4, .white.req-num-4 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.4.png) !important;
+}
+.item-requirements.required .req-num-5, .white.req-num-5 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.5.png) !important;
+}
+.item-requirements.required .req-num-6, .white.req-num-6 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.6.png) !important;
+}
+.item-requirements.required .req-num-7, .white.req-num-7 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.7.png) !important;
+}
+.item-requirements.required .req-num-8, .white.req-num-8 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.8.png) !important;
+}
+.item-requirements.required .req-num-9, .white.req-num-9 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.9.png) !important;
+}
+.item-requirements.required .req-num-op, .white.req-num-op {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.openingParenthesis.png) !important;
+}
+.item-requirements.required .req-num-cp, .white.req-num-cp {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.closingParenthesis.png) !important;
+}
+.item-requirements.required .req-num-minus, .white.req-num-minus {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.white.minus.png) !important;
+}
+
+.item-requirements.yellow .req-num-0 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.0.png)
+}
+.item-requirements.yellow .req-num-1 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.1.png)
+}
+.item-requirements.yellow .req-num-2 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.2.png)
+}
+.item-requirements.yellow .req-num-3 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.3.png)
+}
+.item-requirements.yellow .req-num-4 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.4.png)
+}
+.item-requirements.yellow .req-num-5 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.5.png)
+}
+.item-requirements.yellow .req-num-6 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.6.png)
+}
+.item-requirements.yellow .req-num-7 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.7.png)
+}
+.item-requirements.yellow .req-num-8 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.8.png)
+}
+.item-requirements.yellow .req-num-9 {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.9.png)
+}
+.item-requirements.yellow .req-num-op {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.openingParenthesis.png)
+}
+.item-requirements.yellow .req-num-cp {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.closingParenthesis.png)
+}
+.item-requirements.yellow .req-num-minus {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.yellow.minus.png)
+}
+
+.item-requirements-str.not-required {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.reqSTR.png);
+}
+
+.item-str-num {
+    position: relative;
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    left: 58px;
+    top: -9px;
+    margin-left: -3px;
+}
+
+.item-dex-num {
+    position: relative;
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    left: 58px;
+    top: -9px;
+    margin-left: -3px;
+}
+
+.item-int-num {
+    position: relative;
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    left: 58px;
+    top: -9px;
+    margin-left: -3px;
+}
+
+.item-luk-num {
+    position: relative;
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    left: 58px;
+    top: -9px;
+    margin-left: -3px;
+}
+
+.item-lev-num {
+    position: relative;
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    left: 58px;
+    top: -9px;
+    margin-left: -3px;
+}
+
+.item-requirements-dex.not-required {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.reqDEX.png);
+}
+
+.item-requirements-int.not-required {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.reqINT.png);
+}
+
+.item-requirements-luk.not-required {
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.reqLUK.png);
+}
+
+.item-jobs-container {
+    position: relative;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.text.grey.reqLUK.png);
+    width: 262px;
+    height: 26px;
+    display: block;
+    left: 10px;
+}
+
+.item-icons {
+    display:block;
+}
+
+.item-jobs {
+    display: block;
+    width: 238px;
+    height: 27px;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.jobs.png);
+}
+
+.item-jobs-beginner {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.jobs.beginner.active.png);
+    display: inline-block;
+    left: 14px;
+    position: relative;
+    top: 7px;
+}
+
+.item-jobs-warrior {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.jobs.warrior.active.png);
+    display: inline-block;
+    left: 32px;
+    position: relative;
+    top: 7px;
+}
+
+.item-jobs-magician {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.jobs.magician.active.png);
+    display: inline-block;
+    left: 46px;
+    position: relative;
+    top: 7px;
+}
+
+.item-jobs-bowman {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.jobs.bowman.active.png);
+    display: inline-block;
+    left: 62px;
+    position: relative;
+    top: 7px;
+}
+
+.item-jobs-thief {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.jobs.thief.active.png);
+    display: inline-block;
+    left: 68px;
+    position: relative;
+    top: 10px;
+}
+
+.item-jobs-pirate {
+    width: 27px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.jobs.pirate.active.png);
+    display: inline-block;
+    left: 76px;
+    position: relative;
+    top: 10px;
+}
+
+.item-icon-con {
+    left: 10px;
+    position: relative;
+    top: 2px;
+    width: 60px;
+    display: inline-block;
+}
+
+.item-icon-pdd {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.frame.icons.pdd.png);
+    display: inline-block;
+}
+
+.item-icon-bdr {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.frame.icons.bdr.png);
+    display: inline-block;
+}
+
+.item-icon-igpddr {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url(../assets/item/ui.items.base.frame.icons.igpddr.png);
+    display: inline-block;
+}
+
+.item-icon-zero {
+    position: relative;
+    display: inline-block;
+    top: -9px;
+    height: 10px;
+    width: 35px;
+    text-align: right;
+}
+
+.item-icon-zero div {
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    position: relative;
+}
+
+.item-stats, .item-extra, .item-potential {
+    display: inline-block;
+    font-family: Arial;
+    font-size: 11px;
+    color: white;
+    left: 10px;
+    width: 262px;
+    position: relative;
+    line-height: 16px;
+    transform: scaleY(1.04);
+    transform-origin: top left;
+    margin-bottom: 5px;
+}
+
+.item-extra {
+    width: 227px;
+}
+
+/* Stick the header to the top of the container */
+#star_force_log > thead th {
+    position: sticky;
+    top: -9px; 
+    background-color: #f2f2f2;
+}
+
+.item-skill {
+    display: inline-block;
+    font-size: 10.5px;
+}
+
+.item-color-base {
+    color: white;
+}
+
+.item-color-recovery, .item-color-job-class {
+    color: rgb(255,204,0);
+}
+
+.item-color-stat-upgrade {
+    color: rgb(102,255,255);
+}
+
+.item-color-flame, .item-color-soul {
+    color: rgb(204,255,0);
+}
+
+.item-color-trade-status, .item-color-skill {
+    color: rgb(255,170,0);
+}
+
+.item-color-starforce {
+    color: rgb(255,204,0);
+}
+
+.item-color-scrolls {
+    color: rgb(170,170,255);
+}
+
+.item-color-negative {
+    color: rgb(255,0,102);
+}
+
+.potential-line {
+    display: block;
+    margin-left: 4px;
+    width: 241px;
+    /*line-height: 14px;*/
+    text-indent: -0.4em;
+    padding-left: 0.4em;
+}
+
+.prng-table {
+    text-align: left;
+}
+
+.cube-rng-row {
+    cursor: pointer;
+}
+
+
+.row-hover {
+    color: red;
+}
+
+.row-hover.row-bonus {
+    color: blue;
+}
+
+#tooltip_item {
+    font-size: 0.5em !important;
+}
+
+.highlight-row {
+    background-color: rgb(255, 140, 140);
+}
+
+.cube-used {
+    display: inline-block;
+    margin: 5px;
+}
+
+.cube-used-count {
+    position: relative;
+    top: -10px;
+    font-weight: bold;
+}
+
+.pot-triple {
+    background-color: rgb(224, 255, 224);
+}
+
+.cube-rng-row {
+    width: 10%;
+}
+
+.select2-results__options {
+    max-height: 500px !important;
+ }
+
+ .item-cube-form {
+    display: block;
+    padding: 10px 0 10px 0;
+ }
+
+ .item-cube-label {
+     width: 250px;
+     display: inline-block;
+ }
+
+ /* generic form stuff */
+ .form-group {
+    padding: 5px;
+    margin-top: 10px;
+ }
+
+ .form-label-group {
+     user-select: none;
+ }
+
+ .form-footer {
+    display: block;
+    font-size: 0.8em;
+    font-style: italic;
+ }
