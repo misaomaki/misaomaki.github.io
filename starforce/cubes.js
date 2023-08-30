@@ -282,7 +282,7 @@ cube.cube = async function(type, dom, cb, o) {
     let cube_type_opposite = "bonus"; //log the current bonus/main pot, if the current is main/bonus 
     let pot_type = "cube_potential";
 
-    if (GLOBAL.cubes.bonus.includes(type)) {
+    if (type === "bonus" || type === "white") {
         cube_type = "bonus";
         cube_type_opposite = "main";
         pot_type = "cube_potential_bonus";
@@ -392,7 +392,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
     let this_pot = "";
     let this_pot_type = "cube_potential";
 
-    if (GLOBAL.cubes.bonus.includes(this.idata.meta.cube_log_item.type)) {
+    if (this.idata.meta.cube_log_item.type === "bonus" || this.idata.meta.cube_log_item.type === "white") {
         this_pot_type = "cube_potential_bonus";
     }
 
