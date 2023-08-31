@@ -5,6 +5,7 @@
 let $ = function() {};
 
 importScripts("init.js");
+importScripts("vars.js");
 importScripts("cubes.js");
 
 /*
