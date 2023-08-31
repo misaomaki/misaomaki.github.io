@@ -601,13 +601,13 @@ item.prototype.redraw_item_tooltip = function() {
                                             ''
                                         }
                                         ${
-                                            sf_gain != 0 && system.itt_kms_new ? `
-                                            <span class="${sf_gain < 0 ? 'item-color-negative' : 'item-color-starforce'}">${sf_gain < 0 ? '' : '+'}${sf_gain}</span>
+                                            other_gain != 0 && system.itt_kms_new ? `
+                                            <span class="${other_gain < 0 ? 'item-color-negative' : 'item-color-scrolls'}">${other_gain < 0 ? '' : '+'}${other_gain}</span>
                                             ` : ""
                                         }
                                         ${
-                                            other_gain != 0 && system.itt_kms_new ? `
-                                            <span class="${other_gain < 0 ? 'item-color-negative' : 'item-color-scrolls'}">${other_gain < 0 ? '' : '+'}${other_gain}</span>
+                                            sf_gain != 0 && system.itt_kms_new ? `
+                                            <span class="${sf_gain < 0 ? 'item-color-negative' : 'item-color-starforce'}">${sf_gain < 0 ? '' : '+'}${sf_gain}</span>
                                             ` : ""
                                         }
                                         [[remove]]<span class="item-color-base">)</span>` 
