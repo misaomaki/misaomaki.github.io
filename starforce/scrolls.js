@@ -247,8 +247,8 @@ item.prototype.set_item_scroll = function(s) {
         }
     }
 
-    /* more than 4 spell traces used = +1 att */
-    if (spell_trace_used >= 4) {
+    /* more than 4 spell traces used = +1 att (except weapons and gloves) */
+    if (this.idata.class === "armor" && this.idata.type !== "gloves" && spell_trace_used >= 4) {
         this.idata.boosts.other_stats[this.idata.att_type] += 1;   
     }
 

@@ -381,10 +381,12 @@ var equip_gain = function(item) {
             add.matt_p += 0.02;
         }
     } else if (item.type === "gloves") {
+        /*
         if (star === 4) {
             add.watt += 1;
             add.matt += 1;
         }
+        */
 
         if ([4,6,8,10,12,13,14].includes(star)) {
             if (item.bstat.watt > 0) {

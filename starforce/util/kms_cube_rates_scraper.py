@@ -81,9 +81,19 @@ enums = {
     }
 }
 
+
+#get the cube type. 1 - main, 2 - bonus
+def cube_type(cubeTypeId):
+    if (cubeTypeId in [enums["cube"]["bonus"],enums["cube"]["bonus_occult"]]):
+        return 2
+    
+    return 1
+
+
 #stat is increased by 1 at 160+ for epic and above tier
 #"str", "dex", "int", "luk", "watt", "matt", "dmg", "allstat"
 STAT_UPGRADES_160 = ["STR", "DEX", "INT", "LUK", "공격력", "마력", "데미지", "올스탯"]
+STAT_UPGRADES_BONUS_160 = ["STR", "DEX", "INT", "LUK", "HP", "공격력", "마력", "데미지", "올스탯"]
 
 translator = Translator()
 translated_cache = {} #already translated, so pull from here
@@ -108,16 +118,19 @@ def request_cube_rates(cubeItemId, partsType, grade, reqLev):
     
     x = r.post(ms["url"], headers=ms["spoofed_headers"], data=data)
 
-    results_data = parse_raw_html(reqLev, x.text)
+    results_data = parse_raw_html(reqLev, cubeItemId, x.text)
     return results_data
 
 #parse the results tables from the returning HTML data
-def parse_raw_html(level, content):
+def parse_raw_html(level, cubeItemId, content):
     #encounter an issue parsing = return no data as the item likely has no lines for that particular level
     try:
         soup = bs(content, features="html.parser")
 
         line_data = []
+        
+        #cube that is bonus or main
+        cubeType = cube_type(cubeItemId)
 
         #line types are in korean, so translate to english (which will give a rough english translation. will have to check against English maple)
         def process_translations(row, data):
@@ -134,11 +147,20 @@ def parse_raw_html(level, content):
             else:
                 line_type_translated = line_type
 
+            #check if the stat from the UPGRADES is the one for the current stat being looked at, and increase its stat by 1 if is
+            def checkUpgradeStat(stat):
+                if line_type_translated.startswith(stat):
+                    line_type_translated = re.sub(r'(\d+)', increase_stat, line_type_translated)
+
             #for 160+ level item tiers, add 1 to stat value based on list of stats
-            if level >= 160:
-                for stat in STAT_UPGRADES_160:
-                    if line_type_translated.startswith(stat):
-                        line_type_translated = re.sub(r'(\d+)', increase_stat, line_type_translated)
+            #up to level 200, as 200+ in KMS gain the same stat tier upgrade as level 151+ items in GMS
+            if level > 150 and level < 201:
+                if cubeType == 1:
+                    for stat in STAT_UPGRADES_160:
+                        checkUpgradeStat(stat)
+                elif cubeType == 2:
+                    for stat in STAT_UPGRADES_BONUS_160:
+                        checkUpgradeStat(stat)
 
             #convert % format to decimal, rounding to 10 decimal places to get rid of floating point imprecision stuff
             line_prob_rate = round(float(line_prob_rate.replace("%", "")) / 100.0, 10) 
@@ -201,7 +223,7 @@ def create_cube_rates_json():
 
         with futures.ThreadPoolExecutor() as e:
             flevel = [
-                e.submit(level_process, cube, cubeId, partsType, partsTypeId, level) for level in range(0,161,10)
+                e.submit(level_process, cube, cubeId, partsType, partsTypeId, level) for level in range(0,251,10)
             ]
 
     #parallel process for LEVEL
@@ -350,7 +372,9 @@ kr_en_lines = {
     "Meso acquisition amount:": "Mesos Obtained:",
     "보스 몬스터 공격 시 Damage:": "Boss Monster Damage:",
     "<Useful Hast> skill available": "Enables the &lt;Decent Haste&gt; skill",
-    "<Useful Haste> skill available": "Enables the &lt;Decent Haste&gt; skill"
+    "<Useful Haste> skill available": "Enables the &lt;Decent Haste&gt; skill",
+    "IN:": "INT:",
+    "Meso Acquisition:": "Mesos Obtained:"
 }
 def convert_kren_to_globalen():
     lines = ""

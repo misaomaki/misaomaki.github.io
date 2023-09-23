@@ -103,7 +103,9 @@ def get_jobs(job):
         return maple_jobs
     
     #plural
-    if (job.endswith("s")):
+    if (job.endsWith("es")):
+        return get_jobs(job[:-2])
+    elif (job.endswith("s")):
         return get_jobs(job[:-1])
     
     return job
