@@ -1230,7 +1230,7 @@ $(function() {
         });
     };
 
-    window.onresize = function() {
+    new ResizeObserver(() => {
         /*
             cannot reposition hidden dom, so when window resizes, check if it was hidden
             unhide then move it then hide it again
@@ -1308,7 +1308,7 @@ $(function() {
         if (bcube_was_hidden) {
             bcc.addClass("hidden");
         }
-    };
+    }).observe(document.body);
 
     var isLoading = false;
 

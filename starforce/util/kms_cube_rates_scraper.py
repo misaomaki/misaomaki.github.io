@@ -10,8 +10,6 @@ import pip._vendor.requests as r
 from bs4 import BeautifulSoup as bs
 from googletrans import Translator
 
-#issue: rate limit hit for googletrans API calls, even with caching
-TRANSLATE_TEXT = False
 TRANSLATE_FROM_LANGUAGE = "ko"
 
 #api-specific variables to call out to maplestory site
@@ -23,24 +21,25 @@ ms = {
         "Accept-Encoding": "gzip, deflate, br",
         "Accept-Language": "en-US,en;q=0.9",
         "Connection": "keep-alive",
-        "Content-Length": "51",
+        "Content-Length": "53",
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         "Host": "maplestory.nexon.com",
         "Origin": "https://maplestory.nexon.com",
         "Referer": "https://maplestory.nexon.com/Guide/OtherProbability/cube/red",
-        "sec-ch-ua": '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": "Windows",
         "Sec-Fetch-Dest": "empty",
         "Sec-Fetch-Mode": "cors",
         "Sec-Fetch-Site": "same-origin",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36',
         "X-Requested-With": "XMLHttpRequest",
+        "sec-ch-ua": '"Google Chrome";v="117", "Not;A=Brand";v="8", "Chromium";v="117"',
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "Windows"
     }
 }
 
 #IDs to send to Maplestory API
 enums = {
+    "level": range(0,251,10),
     "cube": {
         "red": 5062009,
         "black": 5062010,
@@ -48,8 +47,8 @@ enums = {
         "occult": 2711000,
         "master": 2711003,
         "meister": 2711004,
-        "bonus_occult": 2730002,
-        "white": 5062500 #same as bonus
+        "bonus_occult": 2730002
+        #,"white": 5062500 #same as bonus
     },
     "grade": {
         "rare": 1,
@@ -82,9 +81,24 @@ enums = {
 }
 
 
+#IDs to send to Maplestory API
+#DEBUG
+__enums = {
+    "level": [160],
+    "cube": {
+        "red": 5062009
+    },
+    "grade": {
+        "legendary": 4
+    },
+    "partsType": {
+        "weapon": 0
+    }
+}
+
 #get the cube type. 1 - main, 2 - bonus
 def cube_type(cubeTypeId):
-    if (cubeTypeId in [enums["cube"]["bonus"],enums["cube"]["bonus_occult"]]):
+    if (cubeTypeId in [5062500,2730002]):
         return 2
     
     return 1
@@ -93,7 +107,9 @@ def cube_type(cubeTypeId):
 #stat is increased by 1 at 160+ for epic and above tier
 #"str", "dex", "int", "luk", "watt", "matt", "dmg", "allstat"
 STAT_UPGRADES_160 = ["STR", "DEX", "INT", "LUK", "공격력", "마력", "데미지", "올스탯"]
-STAT_UPGRADES_BONUS_160 = ["STR", "DEX", "INT", "LUK", "HP", "공격력", "마력", "데미지", "올스탯"]
+
+#"str", "dex", "int", "luk", "max hp", "max mp", "watt", "matt", "dmg", "allstat"
+STAT_UPGRADES_BONUS_160 = ["STR", "DEX", "INT", "LUK", "최대 HP", "최대 MP", "공격력", "마력", "데미지", "올스탯"]
 
 translator = Translator()
 translated_cache = {} #already translated, so pull from here
@@ -123,79 +139,73 @@ def request_cube_rates(cubeItemId, partsType, grade, reqLev):
 
 #parse the results tables from the returning HTML data
 def parse_raw_html(level, cubeItemId, content):
-    #encounter an issue parsing = return no data as the item likely has no lines for that particular level
-    try:
-        soup = bs(content, features="html.parser")
+    soup = bs(content, features="html.parser")
 
-        line_data = []
-        
-        #cube that is bonus or main
-        cubeType = cube_type(cubeItemId)
+    line_data = []
+    
+    #cube that is bonus or main
+    cubeType = cube_type(cubeItemId)
 
-        #line types are in korean, so translate to english (which will give a rough english translation. will have to check against English maple)
-        def process_translations(row, data):
-            cols = row.find_all("td")
-            [line_type, line_prob_rate] = [ele.text.strip() for ele in cols]
+    #line types are in korean, so translate to english (which will give a rough english translation. will have to check against English maple)
+    def process_translations(row, data):
+        cols = row.find_all("td")
+        [line_type, line_prob_rate] = [ele.text.strip() for ele in cols]
 
-            #pull from translation cache if available
-            if TRANSLATE_TEXT:
-                if line_type in translated_cache.keys():
-                    line_type_translated = translated_cache[line_type]
-                else:
-                    line_type_translated = translator.translate(line_type, src=TRANSLATE_FROM_LANGUAGE).text
-                    translated_cache[line_type] = line_type_translated
+        #pull from translation cache if available
+        line_type_translated = line_type
+
+        #check if the stat from the UPGRADES is the one for the current stat being looked at, and increase its stat by 1 if is
+        def checkUpgradeStat(this_line, stat):
+            if this_line.startswith(stat):
+                this_line = re.sub(r'(\d+)', increase_stat, line_type_translated)
+
+            return this_line
+
+        #for 160+ level item tiers, add 1 to stat value based on list of stats
+        #up to level 200, as 200+ in KMS gain the same stat tier upgrade as level 151+ items in GMS
+        if level > 150 and level < 201:
+            if cubeType == 1:
+                for stat in STAT_UPGRADES_160:
+                    line_type_translated = checkUpgradeStat(line_type_translated, stat)
+            elif cubeType == 2:
+                for stat in STAT_UPGRADES_BONUS_160:
+                    line_type_translated = checkUpgradeStat(line_type_translated, stat)
+
+        #convert % format to decimal, rounding to 10 decimal places to get rid of floating point imprecision stuff
+        line_prob_rate = round(float(line_prob_rate.replace("%", "")) / 100.0, 10) 
+
+        #some lines are duplicated, so the hackiest way to get those lines into the dictionary as a dupe item is to append spaces
+        item_added = False
+        while (item_added == False):
+            if (line_type_translated not in data):
+                data[line_type_translated] = line_prob_rate
+                item_added = True
             else:
-                line_type_translated = line_type
+                line_type_translated = line_type_translated + " "
 
-            #check if the stat from the UPGRADES is the one for the current stat being looked at, and increase its stat by 1 if is
-            def checkUpgradeStat(stat):
-                if line_type_translated.startswith(stat):
-                    line_type_translated = re.sub(r'(\d+)', increase_stat, line_type_translated)
+    #loop through the data tables for results with class _1, ... to denote line
+    for i in [1,2,3]:
+        table = soup.find("table", attrs={
+            "class": f"cube_data _{i}"
+        })
 
-            #for 160+ level item tiers, add 1 to stat value based on list of stats
-            #up to level 200, as 200+ in KMS gain the same stat tier upgrade as level 151+ items in GMS
-            if level > 150 and level < 201:
-                if cubeType == 1:
-                    for stat in STAT_UPGRADES_160:
-                        checkUpgradeStat(stat)
-                elif cubeType == 2:
-                    for stat in STAT_UPGRADES_BONUS_160:
-                        checkUpgradeStat(stat)
+        #usually results from item level not having any lines
+        if not table:
+            continue
 
-            #convert % format to decimal, rounding to 10 decimal places to get rid of floating point imprecision stuff
-            line_prob_rate = round(float(line_prob_rate.replace("%", "")) / 100.0, 10) 
+        #get the data rows
+        rows = table.find("tbody").find_all("tr")
+        data = {}
 
-            #some lines are duplicated, so the hackiest way to get those lines into the dictionary as a dupe item is to append spaces
-            item_added = False
-            while (item_added == False):
-                if (line_type_translated not in data):
-                    data[line_type_translated] = line_prob_rate
-                    item_added = True
-                else:
-                    line_type_translated = line_type_translated + " "
+        #loop through the data rows and get the cube's line (td1) and line's probability rate (td2)
+        with futures.ThreadPoolExecutor() as e:
+            fcol = [
+                e.submit(process_translations, row, data) for row in rows
+            ]
 
-        #loop through the data tables for results with class _1, ... to denote line
-        for i in [1,2,3]:
-            table = soup.find("table", attrs={
-                "class": f"cube_data _{i}"
-            })
+        line_data.append(data)
 
-            #get the data rows
-            rows = table.find("tbody").find_all("tr")
-
-            data = {}
-
-            #loop through the data rows and get the cube's line (td1) and line's probability rate (td2)
-            with futures.ThreadPoolExecutor() as e:
-                fcol = [
-                    e.submit(process_translations, row, data) for row in rows
-                ]
-
-            line_data.append(data)
-
-        return line_data
-    except Exception as e:
-        return []
+    return line_data
 
 
 def create_cube_rates_json():
@@ -223,7 +233,7 @@ def create_cube_rates_json():
 
         with futures.ThreadPoolExecutor() as e:
             flevel = [
-                e.submit(level_process, cube, cubeId, partsType, partsTypeId, level) for level in range(0,251,10)
+                e.submit(level_process, cube, cubeId, partsType, partsTypeId, level) for level in enums["level"]
             ]
 
     #parallel process for LEVEL
@@ -284,11 +294,6 @@ def create_cube_rates_json():
     print("done")
     return master_data
 
-
-#debug
-#request_cube_rates(5062009, 0, 1, 160)
-
-
 path = os.path.realpath(__file__)
 dir = os.path.dirname(path).replace("util", "cube_rates")
 
@@ -296,7 +301,7 @@ dir = os.path.dirname(path).replace("util", "cube_rates")
 def get_translations_from_lines():
     data = {}
     keys = {}
-    with open(f"{dir}\cube_hashes.txt", 'r', encoding="utf-8") as f: 
+    with open(f"cube_hashes.txt", 'r', encoding="utf-8") as f: 
         data = json.loads(f.read())
 
     for d in data:
@@ -312,10 +317,10 @@ def get_translations_from_lines():
 def translate_cube_hash_lines():
     lines = ""
     translations = {}
-    with open(f"{dir}\cube_hashes.txt", 'r', encoding="utf-8") as f: 
+    with open(f"cube_hashes.txt", 'r', encoding="utf-8") as f: 
         lines = f.read()
 
-    with open(f"{dir}\line_translations.txt", 'r', encoding="utf-8") as f: 
+    with open(f"line_translations.txt", 'r', encoding="utf-8") as f: 
         translations = json.loads(f.read())
 
     for kr, en in translations.items():
@@ -338,6 +343,8 @@ kr_en_lines = {
     "LUK :": "LUK:",
     "Attack :": "ATT:",
     "Jump power:": "Jump",
+    "Jumping power:": "Jump",
+    "Jump Power:": "Jump",
     "Movement speed:": "Movement Speed:",
     "Defense:": "DEF:",
     "Ignore monster defense rate:": "Ignored Enemy DEF:",
@@ -363,6 +370,14 @@ kr_en_lines = {
     "캐릭터 기준 10레벨 당 DEX: +2": "DEX per 10 Character Levels: +2",
     "캐릭터 기준 10레벨 당 INT: +2": "INT per 10 Character Levels: +2",
     "캐릭터 기준 10레벨 당 LUK: +2": "LUK per 10 Character Levels: +2",
+    "캐릭터 기준 9레벨 당 STR: +1": "STR per 9 Character Levels: +1",
+    "캐릭터 기준 9레벨 당 DEX: +1": "DEX per 9 Character Levels: +1",
+    "캐릭터 기준 9레벨 당 INT: +1": "INT per 9 Character Levels: +1",
+    "캐릭터 기준 9레벨 당 LUK: +1": "LUK per 9 Character Levels: +1",
+    "캐릭터 기준 9레벨 당 STR: +2": "STR per 9 Character Levels: +2",
+    "캐릭터 기준 9레벨 당 DEX: +2": "DEX per 9 Character Levels: +2",
+    "캐릭터 기준 9레벨 당 INT: +2": "INT per 9 Character Levels: +2",
+    "캐릭터 기준 9레벨 당 LUK: +2": "LUK per 9 Character Levels: +2",
     "크리티컬 Damage:": "Critical Damage:",
     "캐릭터 기준 10레벨 당 Attack power: +1": "ATT per 10 Character Levels: +1",
     "캐릭터 기준 10레벨 당 ATT: +1": "ATT per 10 Character Levels: +1",
@@ -374,11 +389,28 @@ kr_en_lines = {
     "<Useful Hast> skill available": "Enables the &lt;Decent Haste&gt; skill",
     "<Useful Haste> skill available": "Enables the &lt;Decent Haste&gt; skill",
     "IN:": "INT:",
-    "Meso Acquisition:": "Mesos Obtained:"
+    "Meso Acquisition:": "Mesos Obtained:",
+    "ATK:": "ATT:",
+    "Ignore monster defense": "Ignore Monster DEF",
+    "STR per 9 levels per character": "STR per 9 Character Levels",
+    "DEX per 9 levels per character": "DEX per 9 Character Levels",
+    "INT per 9 levels per character": "INT per 9 Character Levels",
+    "LUK per 9 levels per character": "LUK per 9 Character Levels",
+    "Can use <Useful Mystic Door> skill": "Enables the &lt;Decent Mystic Door&gt; skill",
+    "Can use <Useful Sharp Eyes> skill": "Enables the &lt;Decent Sharp Eyes&gt; skill",
+    "<Useful Hyper Body> skill can be used": "Enables the &lt;Decent Hyper Body&gt; skill",
+    "<Useful Haste> skill can be used": "Enables the &lt;Decent Haste&gt; skill",
+    "<Useful Advanced Bless> skill can be used": "Enables the &lt;Decent Advanced Blessing&gt; skill",
+    "<Useful Mystic Door> skill can be used": "Enables the &lt;Decent Mystic Door&gt; skill",
+    "<Useful Wind Booster> skill can be used": "Enables the &lt;Decent Speed Infusion&gt; skill",
+    "<Useful Combat Orders> skill can be used": "Enables the &lt;Decent Combat Orders&gt; skill",
+    "<Useful Sharp Eyes> skill can be used": "Enables the &lt;Decent Sharp Eyes&gt; skill",
+    "Critical probability": "Critical Rate",
+    "Meso Acquisition Amount": "Mesos Obtained"
 }
 def convert_kren_to_globalen():
     lines = ""
-    with open(f"{dir}\cube_hashes_gms.txt", 'r', encoding="utf-8") as f: 
+    with open(f"cube_hashes_english.txt", 'r', encoding="utf-8") as f: 
         lines = f.read()
 
     for kr, en in kr_en_lines.items():
@@ -389,8 +421,9 @@ def convert_kren_to_globalen():
 
 #go!
 #create_cube_rates_json()
+get_translations_from_lines()
+translate_cube_hash_lines()
+convert_kren_to_globalen()
 
-#todo - make this less wonky to use
-#get_translations_from_lines()
-#translate_cube_hash_lines()
-#convert_kren_to_globalen()
+#DEBUG
+#request_cube_rates(5062009, 0, 4, 160)
