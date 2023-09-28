@@ -181,15 +181,14 @@ cube.get_cube_type = async function(level, type, cube_type, cube_tier) {
     let level_tier = cube.get_item_level_tier(level);
     let cube_rates = await cube.resolve_cube_rates(cube_type, type);
          
-    let t = cube_rates[level_tier][cube_tier];
-    return t;
+    return cube_rates[level_tier][cube_tier];
 }
 
 /* from the cube lines and cube rates, resolve into a single object */
 cube.resolve_cube_rates = async function(cube_type, type) {
     /* black/white share same lines */
     if (cube_type === "white") {
-        cube_type === "black";
+        cube_type = "black";
     }
 
     if (`${cube_type}_${type}` in cube_lines) {
