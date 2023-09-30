@@ -146,7 +146,8 @@ def parse_raw_html(level, cubeItemId, content):
     #cube that is bonus or main
     cubeType = cube_type(cubeItemId)
 
-    #line types are in korean, so translate to english (which will give a rough english translation. will have to check against English maple)
+    #line types are in korean, translations used to happen here but the asynchronous nature of this process causes rate-limiting from
+    #the translation service, so we will do translations later in a synchronous fashion after we pull all the korean lines data
     def process_translations(row, data):
         cols = row.find_all("td")
         [line_type, line_prob_rate] = [ele.text.strip() for ele in cols]
@@ -189,9 +190,9 @@ def parse_raw_html(level, cubeItemId, content):
             "class": f"cube_data _{i}"
         })
 
-        #usually results from item level not having any lines
+        #usually results from item level not having any lines, thus having no table of line rates
         if not table:
-            continue
+            break
 
         #get the data rows
         rows = table.find("tbody").find_all("tr")
@@ -406,7 +407,8 @@ kr_en_lines = {
     "<Useful Combat Orders> skill can be used": "Enables the &lt;Decent Combat Orders&gt; skill",
     "<Useful Sharp Eyes> skill can be used": "Enables the &lt;Decent Sharp Eyes&gt; skill",
     "Critical probability": "Critical Rate",
-    "Meso Acquisition Amount": "Mesos Obtained"
+    "Meso Acquisition Amount": "Mesos Obtained",
+    "Damage when attacking boss monster:": "Boss Monster Damage:"
 }
 def convert_kren_to_globalen():
     lines = ""
