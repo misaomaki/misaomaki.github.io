@@ -850,7 +850,7 @@ $(function(){
     cube_black_results.on("click", function() {
         let _this = $(this);
         let this_id = _this.attr("data-id");
-        let bcc_data = bcc.data(); //get cube window type
+        let bcc_cube = bcc.attr("data-cube");
 
         let this_pot = Item.idata.meta.cube_meta_data.find(function(a) {
             return a.results.name === this_id;
@@ -863,7 +863,7 @@ $(function(){
         let curr_pot = Item.idata.meta.cube_meta_data[0];
         curr_pot.keep = !is_before;
 
-        if (bcc_data.cube === "black") {
+        if (bcc_cube === "black") {
             Item.idata.boosts.cubes.main = this_pot.results.result;
             Item.idata.meta.cube_potential = this_pot.tier;
         } else {
