@@ -3,90 +3,92 @@
 //still jittery-ish. real solution is to move all images to a single spritesheet, but way too lazy for that
 $(function() {
     //inline css
-    let s = $("style");
-    let new_style = "";
+    if (false) {
+        let s = $("style");
+        let new_style = "";
 
-    for (let i = 0; i < s.length; ++i) {
-        let i_s = s[i].innerHTML;
+        for (let i = 0; i < s.length; ++i) {
+            let i_s = s[i].innerHTML;
 
-        let i_img_match = i_s.match(/background: url\((.*)\);/gi) || [];
-        let i_img_match2 = i_s.match(/background-image: url\((.*)\);/gi) || [];
-        let i_img_match3 = i_s.match(/border-image: url\((.*)\);/gi) || [];
+            let i_img_match = i_s.match(/background: url\((.*)\);/gi) || [];
+            let i_img_match2 = i_s.match(/background-image: url\((.*)\);/gi) || [];
+            let i_img_match3 = i_s.match(/border-image: url\((.*)\);/gi) || [];
 
-        let i_img_m = [...i_img_match, ...i_img_match2, ...i_img_match3];
-        
-        let i_img_l = i_img_m.length;
-        
-        if (i_img_l === 0) continue;
-
-        for (let j = 0; j < i_img_l; ++j) {
-            let j_img = i_img_m[j].replace("background: url(","").replace("background-image: url(", "").replace("border-image: url(", "").replace(");","");
-
-            new_style += `
-                url(${j_img})
-            `;
-        }
-    }
-
-    /*
-        scour stylesheets from misaomaki github (link tags) and get images to preload. 
-        (
-            does not work locally and will result in CORS errors. only works while on the git site.
-            if local detected, then exit and don't do it
-        )
-    */
-    let ss = document.styleSheets;
-
-    for (let i in ss) {
-        let s = ss[i];
-    
-        if (s.href === undefined || s.href === null || (!s.href.includes("misaomaki") && !s.href.includes(":5500"))) continue; //inline or not from git domain (css from cdns and whatnot)
-
-        //local host detected, so don't even bother trying
-        if (s.href.startsWith("file://")) break;
-
-        let css = s.cssRules;
-    
-        for (let j in css) {
-            let rule = css[j];
-            let cssText = rule.cssText;
-
-            if (cssText === undefined) continue;
+            let i_img_m = [...i_img_match, ...i_img_match2, ...i_img_match3];
             
-            if (
-                !cssText.includes("background-image") &&
-                !cssText.includes("background")
-            ) continue;
-
-            let bimg = cssText.replace(" no-repeat","").match(/url\("(.*)"\);/gi);
-
-            if (bimg == null || bimg === undefined) continue;
+            let i_img_l = i_img_m.length;
             
-            for (let k = 0; k < bimg.length; ++k) {
-                let img = bimg[k].replace('url("', "").replace('");', "");
+            if (i_img_l === 0) continue;
+
+            for (let j = 0; j < i_img_l; ++j) {
+                let j_img = i_img_m[j].replace("background: url(","").replace("background-image: url(", "").replace("border-image: url(", "").replace(");","");
 
                 new_style += `
-                    url(${img})
+                    url(${j_img})
                 `;
             }
         }
-    }
 
-    new_style = `
-        body::after {
-            content: ${new_style};
+        /*
+            scour stylesheets from misaomaki github (link tags) and get images to preload. 
+            (
+                does not work locally and will result in CORS errors. only works while on the git site.
+                if local detected, then exit and don't do it
+            )
+        */
+        let ss = document.styleSheets;
+
+        for (let i in ss) {
+            let s = ss[i];
+        
+            if (s.href === undefined || s.href === null || (!s.href.includes("misaomaki") && !s.href.includes(":5500"))) continue; //inline or not from git domain (css from cdns and whatnot)
+
+            //local host detected, so don't even bother trying
+            if (s.href.startsWith("file://")) break;
+
+            let css = s.cssRules;
+        
+            for (let j in css) {
+                let rule = css[j];
+                let cssText = rule.cssText;
+
+                if (cssText === undefined) continue;
+                
+                if (
+                    !cssText.includes("background-image") &&
+                    !cssText.includes("background")
+                ) continue;
+
+                let bimg = cssText.replace(" no-repeat","").match(/url\("(.*)"\);/gi);
+
+                if (bimg == null || bimg === undefined) continue;
+                
+                for (let k = 0; k < bimg.length; ++k) {
+                    let img = bimg[k].replace('url("', "").replace('");', "");
+
+                    new_style += `
+                        url(${img})
+                    `;
+                }
+            }
         }
-    `;
 
-    $("body").append(`
-        <style id="preload_style">
-        ${new_style}
-        </style>
-    `);
-   
-    setTimeout(()=>{
-        $("#preload_style").remove();
-    },100);
+        new_style = `
+            body::after {
+                content: ${new_style};
+            }
+        `;
+
+        $("body").append(`
+            <style id="preload_style">
+            ${new_style}
+            </style>
+        `);
+    
+        setTimeout(()=>{
+            $("#preload_style").remove();
+        },100);
+    }
 });
 
 //random functions

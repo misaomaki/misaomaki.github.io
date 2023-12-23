@@ -1283,10 +1283,13 @@ $(function() {
             sfsc.addClass("hidden");
         }
 
-        item_create.dialog("option", "position", {my: "center", at: "center", of: window});
+        /* wait for dialog initialization */
+        if (item_create.hasClass("ui-dialog-content")) {
+            item_create.dialog("option", "position", {my: "center", at: "center", of: window});
 
-        if (item_create_was_hidden) {
-            item_create.addClass("hidden");
+            if (item_create_was_hidden) {
+                item_create.addClass("hidden");
+            }
         }
 
         cc.removeClass("hidden").position({

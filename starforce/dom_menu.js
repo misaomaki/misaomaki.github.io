@@ -238,18 +238,18 @@ $(function() {
         if (!item_is_init) {
             //set up drop down with item data. should be alphabetical by item class then by item name
             let items_db = {};
-            for (let i in items_store) {
-                items_db[i] = [];
-                for (let j in items_store[i]) {
-                    let this_item = items_store[i][j];
+            for (let category in items_store) {
+                items_db[category] = [];
+                for (let item in items_store[category]) {
+                    let this_item = items_store[category][item];
 
-                    this_item.value_name = i + ";" + j;
+                    this_item.value_name = category + ";" + item;
 
-                    items_db[i].push(this_item);
+                    items_db[category].push(this_item);
                 }
 
                 /* sort by name */
-                items_db[i].sort((a,b)=>{
+                items_db[category].sort((a,b)=>{
                     if (a.name < b.name) {
                         return -1;
                     } else if (a.name > b.name) {
@@ -365,31 +365,55 @@ $(function() {
                     if (category == null || iclass == null) return null;
                     let this_item = items_store[category][iclass];
 
+                    let this_value = value;
+                    let is_match = false;
+
                     /* check query */
-                    if (query == "type") {
-                        let this_value = value;
-                        let this_type = this_item.type;
-                        let is_match = false;
-
-                        if (!value.startsWith("=")) {
-                            this_value = this_value.replace(/[-\s]/gi, "").toUpperCase();
-                            this_type = this_type.replace(/[-\s]/gi, "").toUpperCase();
-
-                            if (this_type.includes(this_value)) {
-                                is_match = true;
+                    switch (query) {
+                        /* search by item type like earring, ring, etc. */
+                        case "type":
+                            if (!value.startsWith("=")) {
+                                let this_type = this_item.type;
+                                this_value = this_value.replace(/[-\s]/gi, "").toUpperCase();
+                                this_type = this_type.replace(/[-\s]/gi, "").toUpperCase();
+    
+                                if (this_type.includes(this_value)) {
+                                    is_match = true;
+                                }
+                            } else {
+                                this_value = this_value.replace("=", "");
+                                if (this_value === this_type) {
+                                    is_match = true;
+                                }
                             }
-                        } else {
-                            this_value = this_value.replace("=", "");
-                            if (this_value === this_type) {
-                                is_match = true;
+    
+                            if (is_match) {
+                                return data
+                            } else {
+                                return null;
                             }
-                        }
-
-                        if (is_match) {
-                            return data
-                        } else {
-                            return null;
-                        }
+                        /* search for item class like "pitch boss" */
+                        case "category":
+                            if (!value.startsWith("=")) {
+                                this_value = this_value.replace(/[-\s]/gi, "").toUpperCase();
+                                let [item_cat, item_name] = this_item.value_name.split(";");
+                                item_cat = item_cat.replace(/[-\s]/gi, "").toUpperCase();
+    
+                                if (item_cat.includes(this_value)) {
+                                    is_match = true;
+                                }
+                            } else {
+                                this_value = this_value.replace("=", "");
+                                if (this_value === item_cat) {
+                                    is_match = true;
+                                }
+                            }
+    
+                            if (is_match) {
+                                return data
+                            } else {
+                                return null;
+                            }
                     }
 
                     return null;
