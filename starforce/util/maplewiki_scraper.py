@@ -198,7 +198,7 @@ def request_items_page(url):
             continue
 
         item_main_url = f'https://maplestory.fandom.com/{item_main_anchor[0]["href"]}'
-        request_item_page(item_main_url)
+        request_item_page(item_main_url, 1)
 
     
     print("DONE!")
@@ -206,18 +206,14 @@ def request_items_page(url):
 
 
 #get page source data
-def request_item_page(url):    
+#type 1 = parse table of an items page; type 2 - parse table of a categories page
+def request_item_page(url, type):    
     x = r.get(url=url)
-    results_data = parse_raw_html(x.text)
+    soup = bs(x.text, features="html.parser")
+    results_data = parse_item_from_table(soup, type)
     return results_data
 
-#parse the results tables from the returning HTML data
-def parse_raw_html(content):
-    soup = bs(content, features="html.parser")
-
-    parse_item_from_table(soup)
-
-def parse_item_from_table(soup):
+def parse_item_from_table(soup, type):
     item_category = soup.find("span", {"class": "mw-page-title-main"}).get_text().strip().lower().replace(" ", "_")
 
     main_content = soup.find("div", attrs={
@@ -225,7 +221,11 @@ def parse_item_from_table(soup):
     })
 
     item_tables = main_content.find_all("table", {"class": "wikitable"})
-    item_data = extract_item_from_link(soup, item_tables)
+    if type == 1:
+        item_data = extract_item_from_link(soup, item_tables)
+    elif type == 2: 
+        item_data = extract_item_from_table(soup, item_tables)
+
     item_store = f'item_store["{item_category}"] = {json.dumps(item_data)};'
 
     with open('test.txt', 'a') as f:
@@ -233,6 +233,7 @@ def parse_item_from_table(soup):
         f.writelines('\n\n\n')
 
 #from the item table, loop through the rows and get the data
+#ex: https://maplestory.fandom.com/wiki/Hex_Seeker
 def extract_item_from_table(soup, tables):
     for table in tables:
         rows = table.find("tbody").find_all("tr")
@@ -424,7 +425,8 @@ def extract_item_from_table(soup, tables):
     return items
 
 
-#from the item table, get the link to the item from the picture and name column and get the item data there
+#from the item table of a categories page, get the link to the item from the picture and name column and get the item data there
+#ex: https://maplestory.fandom.com/wiki/Category:Canes -> https://maplestory.fandom.com/wiki/AbsoLab_Forked_Cane
 def extract_item_from_link(soup, tables):
     for table in tables:
         rows = table.find("tbody").find_all("tr")
@@ -507,5 +509,5 @@ def extract_item_from_link(soup, tables):
     return items
 
 
-#request_items_page(ms["url"])
-request_item_page('https://maplestory.fandom.com/wiki/Cane#Obtainable')
+request_item_page('https://maplestory.fandom.com/wiki/Hex_Seeker', 2)
+#request_itemS_page('https://maplestory.fandom.com/wiki/Cane#Obtainable')

@@ -9772,3 +9772,208 @@ items_store["secondary: wrist_band"] = {
         "sub_class": "secondary"
     }
 };
+
+items_store["secondary: hex_seeker"] = {
+    "plain_hex_seeker": {
+        "name": "Plain Hex Seeker",
+        "level": 10,
+        "class": "weapon",
+        "type": "hex seeker",
+        "job": ["thief"],
+        "mstat": "luk",
+        "pstat": ["dex", "luk"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "dex": 3,
+            "luk": 3
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "img-plainhexseeker",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "bright_hex_seeker": {
+        "name": "Bright Hex Seeker",
+        "level": 30,
+        "class": "weapon",
+        "type": "hex seeker",
+        "job": ["thief"],
+        "mstat": "luk",
+        "pstat": ["dex", "luk"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "dex": 4,
+            "luk": 4,
+            "watt": 1
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "img-brighthexseeker",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "brilliant_hex_seeker": {
+        "name": "Brilliant Hex Seeker",
+        "level": 60,
+        "class": "weapon",
+        "type": "hex seeker",
+        "job": ["thief"],
+        "mstat": "luk",
+        "pstat": ["dex", "luk"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "dex": 6,
+            "luk": 6,
+            "watt": 2
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "img-brillianthexseeker",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "infinite_hex_seeker": {
+        "name": "Infinite Hex Seeker",
+        "level": 100,
+        "class": "weapon",
+        "type": "hex seeker",
+        "job": ["thief"],
+        "mstat": "luk",
+        "pstat": ["dex", "luk"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "dex": 10,
+            "luk": 10,
+            "watt": 3
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "img-infinitehexseeker",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "frozen_infinite_hex_seeker": {
+        "name": "Frozen Infinite Hex Seeker",
+        "level": 100,
+        "class": "weapon",
+        "type": "hex seeker",
+        "job": ["thief"],
+        "mstat": "luk",
+        "pstat": ["dex", "luk"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "dex": 8,
+            "luk": 8,
+            "watt": 5
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "img-frozeninfinitehexseeker",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "evolving_infinite_hex_seeker": {
+        "name": "Evolving Infinite Hex Seeker",
+        "level": 100,
+        "class": "weapon",
+        "type": "hex seeker",
+        "job": ["thief"],
+        "mstat": "luk",
+        "pstat": ["dex", "luk"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "dex": 10,
+            "luk": 10,
+            "watt": 5
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "img-evolvinginfinitehexseeker",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "immortal_hex_seeker": {
+        "name": "Immortal Hex Seeker",
+        "level": 140,
+        "class": "weapon",
+        "type": "hex seeker",
+        "job": ["thief"],
+        "mstat": "luk",
+        "pstat": ["dex", "luk"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "dex": 14,
+            "luk": 14,
+            "watt": 9
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "img-immortalhexseeker",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    }
+};
