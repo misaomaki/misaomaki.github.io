@@ -1045,7 +1045,7 @@ item.prototype.redraw_sf = function() {
     if ("dex" in nstats) {
         _dex += nstats.dex;
     }
-    if ("str" in nstats) {
+    if ("int" in nstats) {
         _int += nstats.int;
     }
     if ("luk" in nstats) {

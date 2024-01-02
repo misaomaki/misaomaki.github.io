@@ -14,6 +14,33 @@ ms = {
     "url": "https://maplestory.fandom.com/wiki/Category:Secondary_Weapons"
 }
 
+#not a class because the class doesn't like the attribnute class
+def Item() -> object:
+    return {
+        "name": "",
+        "level": 0,
+        "class": "",
+        "type": "",
+        "job": [],
+        "mstat": "", 
+        "pstat": ["str", "dex", "int", "luk"], 
+        "att_type": "att", 
+        "flame_type": 2,
+        "bstat": {},
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": True,
+        "enhanceable": True,
+        "scrollable": True
+    }
+
 upgrades = {
     "overall": 10,
     "top": 7,
@@ -67,7 +94,7 @@ maple_jobs = ["beginner", "warrior", "bowman", "magician", "thief", "pirate"]
 
 job_stats = ["str", "int", "dex", "luk"]
 
-def resolve_stat(stat): 
+def resolve_stat(stat, returnAsEmptyIfNotExist = False) -> str: 
     match stat:
         case "defense":
             return "def"
@@ -86,49 +113,52 @@ def resolve_stat(stat):
         case "ignoredenemydefense":
             return "ied"
         
+    if (returnAsEmptyIfNotExist):
+        return ""
+        
     return stat
 
-def get_jobs(job): 
-    if job in ['aran', 'adele', 'blaster', 'dawn warrior', 'demon avenger', 'demon slayer', 'hayato', 'kaiser', 'mihile', 'warrior', 'hero', 'dark knight', 'paladin', 'zero']:
+def get_jobs(job) -> list[str]: 
+    if job in ['warrior', 'aran', 'adele', 'blaster', 'dawn warrior', 'demon avenger', 'demon slayer', 'hayato', 'kaiser', 'mihile', 'warrior', 'hero', 'dark knight', 'paladin', 'zero']:
         return ["warrior"]
     elif job in ['bowman', 'bowmaster', 'marksman', 'kain', 'mercedes', 'pathfinder', 'wild hunter', 'wind archer']:
         return ["bowman"]
-    elif job in ['battle mage', 'beast tamer', 'blaze wizard', 'evan', 'illium', 'kanna', 'kinesis', 'lara', 'luminous', 'magician', 'magician (fire, poison)', 'magician (ice, lightning)', 'bishop']:
+    elif job in ['magician', 'battle mage', 'beast tamer', 'blaze wizard', 'evan', 'illium', 'kanna', 'kinesis', 'lara', 'luminous', 'magician', 'magician (fire, poison)', 'magician (ice, lightning)', 'bishop']:
         return ["magician"]
-    elif job in ['dual blade', 'night walker', 'phantom', 'thief', 'shadower', 'night lord', 'xenon', 'cadena', 'hoyoung', 'khali']:
+    elif job in ['thief', 'dual blade', 'night walker', 'phantom', 'thief', 'shadower', 'night lord', 'xenon', 'cadena', 'hoyoung', 'khali']:
         return ["thief"]
-    elif job in ['angelic buster', 'cannoneer', 'jett', 'mechanic', 'pirate', 'buccaneer', 'corsair', 'shade', 'thunder breaker', 'ark', 'mo xuan']:
+    elif job in ['pirate', 'angelic buster', 'cannoneer', 'jett', 'mechanic', 'pirate', 'buccaneer', 'corsair', 'shade', 'thunder breaker', 'ark', 'mo xuan']:
         return ["pirate"]
-    elif job in ['cygnus knight', 'explorer']:
+    elif job in ['none', 'any', 'n/a', 'cygnus knight', 'explorer']:
         return maple_jobs
     
     #plural
-    if (job.endsWith("es")):
+    if (job.endswith("es")):
         return get_jobs(job[:-2])
     elif (job.endswith("s")):
         return get_jobs(job[:-1])
     
     return job
 
-def is_armor(type):
+def is_armor(type) -> str:
     if type in ["overall", "top", "bottom", "hat","boots","gloves","cape", "belt", "pendant", "face accessory", "eye accessory", "mechanical heart", "android heart", "earrings", "shoulder", "ring", "shield", "totem", "badge", "pocket item"]:
         return "armor"
     
     return "weapon"
 
 
-def clean_req_type(type):
+def clean_req_type(type) -> str:
     type = type.replace(":", "").strip().lower()
     return type
 
-def clean_stat_type(type):
+def clean_stat_type(type) -> str:
     type = type.replace(":", "").replace(" ", "").strip().lower()
     type = resolve_stat(type)
     return type
 
 
 #check starforce, scrollability, and cube status
-def set_enhancements(item):
+def set_enhancements(item) -> object:
     this_enhance = {}
 
     if (item["type"] in item_enhancibility):
@@ -173,47 +203,52 @@ item_enhancibility = {
     }
 }
 
+#convert +30% value to .30 or +400 to 400
+def convertStringToInt(value):
+    value = value.replace(",","")
+    if ("%" in value):
+        return int(value.replace("%", "")) / 100
+
+    return int(value)
+
 #categories page
-def request_items_page(url):
+def request_items_page(url) -> None:
     x = r.get(url=url)
 
     soup = bs(x.text, features="html.parser")
-    page_subtitle = soup.find("div", {"class": "page-header__page-subtitle"}).get_text().strip().lower()
     
+    page_subtitle = soup.find("div", {"class": "page-header__page-subtitle"}).get_text().strip().lower()
+
     if page_subtitle != "category page":
         print("Not a category page.")
         return
     
+    item_links_listing = soup.select_one('div.category-page__members')
+    
     #get all links that link to an item page
-    item_anchors = soup.select('a.category-page__member-link[title*="Category:"]')
+    item_anchors = item_links_listing.select('a.category-page__member-link')
 
     #get the anchor href link and go to it
-    for anchors in item_anchors:
-        category_link = f'https://maplestory.fandom.com/{anchors["href"]}'
-        y = r.get(url=category_link)
-        soup2 = bs(y.text, features="html.parser").find("div", {"class": "mw-parser-output"})
-        item_main_anchor = soup2.select('a[href*="/wiki/"]')
+    for anchors in item_anchors:  
+        item_link = f'https://maplestory.fandom.com/{anchors["href"]}'
+        y = r.get(url=item_link)  
 
-        if (len(item_main_anchor) == 0):
-            continue
+        soup2 = bs(y.text, features="html.parser").select_one("div.mw-parser-output")
 
-        item_main_url = f'https://maplestory.fandom.com/{item_main_anchor[0]["href"]}'
-        request_item_page(item_main_url, 1)
+        extract_item_from_link(soup, soup2)
+        return
 
     
     print("DONE!")
 
-
-
 #get page source data
 #type 1 = parse table of an items page; type 2 - parse table of a categories page
-def request_item_page(url, type):    
+def request_item_page(url) -> None:    
     x = r.get(url=url)
     soup = bs(x.text, features="html.parser")
-    results_data = parse_item_from_table(soup, type)
-    return results_data
+    parse_item_from_table(soup)
 
-def parse_item_from_table(soup, type):
+def parse_item_from_table(soup):
     item_category = soup.find("span", {"class": "mw-page-title-main"}).get_text().strip().lower().replace(" ", "_")
 
     main_content = soup.find("div", attrs={
@@ -221,10 +256,8 @@ def parse_item_from_table(soup, type):
     })
 
     item_tables = main_content.find_all("table", {"class": "wikitable"})
-    if type == 1:
-        item_data = extract_item_from_link(soup, item_tables)
-    elif type == 2: 
-        item_data = extract_item_from_table(soup, item_tables)
+
+    item_data = extract_item_from_table(soup, item_tables)
 
     item_store = f'item_store["{item_category}"] = {json.dumps(item_data)};'
 
@@ -234,7 +267,7 @@ def parse_item_from_table(soup, type):
 
 #from the item table, loop through the rows and get the data
 #ex: https://maplestory.fandom.com/wiki/Hex_Seeker
-def extract_item_from_table(soup, tables):
+def extract_item_from_table(soup, tables) -> None:
     for table in tables:
         rows = table.find("tbody").find_all("tr")
 
@@ -274,30 +307,7 @@ def extract_item_from_table(soup, tables):
             #get item row data
             cells = row.find_all("td")
 
-            item = {
-                "name": "",
-                "level": 0,
-                "class": "",
-                "type": "",
-                "job": [],
-                "mstat": "", 
-                "pstat": ["str", "dex", "int", "luk"], 
-                "att_type": "att", 
-                "flame_type": 2,
-                "bstat": {},
-                "req": {
-                    "str": 0,
-                    "dex": 0,
-                    "int": 0,
-                    "luk": 0
-                },
-                "img": "",
-                "upgrades": 0,
-                "hammers_added": 0,
-                "starforce": True,
-                "enhanceable": True,
-                "scrollable": True
-            }
+            item = Item()
 
             #PICTURE AND NAME
             cell0 = cells[cell_enums["pictureandname"]]
@@ -370,7 +380,7 @@ def extract_item_from_table(soup, tables):
                         item["bstat"][st_type] = int(st_value.replace(",",""))
                     else:
                         #is percent value
-                        item["bstat"][f"p_{st_type}"] = int(st_value.replace(",","").replace("%", "")) / 100
+                        item["bstat"][f"p_{st_type}"] = convertStringToInt(st_value)
 
                 if (st_type == "allstats"):
                     for job_stat in job_stats:
@@ -427,87 +437,74 @@ def extract_item_from_table(soup, tables):
 
 #from the item table of a categories page, get the link to the item from the picture and name column and get the item data there
 #ex: https://maplestory.fandom.com/wiki/Category:Canes -> https://maplestory.fandom.com/wiki/AbsoLab_Forked_Cane
-def extract_item_from_link(soup, tables):
-    for table in tables:
-        rows = table.find("tbody").find_all("tr")
+#TO-DO
+def extract_item_from_link(soup, table) -> None:
+    item_category = soup.select_one('div.mw-parser-output a[href*="/wiki/"]').get_text().strip().lower()
+    item_pre = parse_table(table)
+    item = Item()
+    item["type"] = item_category
+    if (is_armor(item_category)):
+        item["class"] = "armor"
+    else:
+        item["class"] = "weapon"
+    map_pre_to_item(item_pre, item)
+    return
 
-        items = {}
+            
 
-        delimiter = "#####"
-        
-        #loop through the rows
-        for row in rows:
-            #check if header row
-            header = row.find_all("th")
+    return item
 
-            lHeader = len(header)
+#take the items from the parsed table and convert it to the Item pseudoclass keys
+#TO-DO
+def map_pre_to_item(item_pre, item) -> None:
+    for key, value in item_pre.items():
+        key = key.strip().lower()
+        value = value.strip().lower()
 
-            if lHeader > 0:
-                if header[0].get_text().upper().strip() != "PICTURE AND NAME":
-                    break
+        print(f"{key} - {value}")
 
+        if (key == "req level"):
+            item["level"] = convertStringToInt(value)
+        elif (key == "req job"):
+            item["job"] = get_jobs(value)
+        elif (key.startswith("number of upgrades")):
+            item["upgrades"] = convertStringToInt(value)
+        elif (key.startswith("req")):
+            [req, stat] = key.split(" ")
+            item["req"][stat] = convertStringToInt(value)
+        else:
+            this_stat = resolve_stat(key.replace(" ", ""), True)
+            if (this_stat == ""):
                 continue
 
-            #get item row data
-            cells = row.find_all("td")
+            item["bstat"][this_stat] = convertStringToInt(value)
 
-            item = {
-                "name": "",
-                "level": 0,
-                "class": "",
-                "type": "",
-                "job": [],
-                "mstat": "", 
-                "pstat": ["str", "dex", "int", "luk"], 
-                "att_type": "att", 
-                "flame_type": 2,
-                "bstat": {},
-                "req": {
-                    "str": 0,
-                    "dex": 0,
-                    "int": 0,
-                    "luk": 0
-                },
-                "img": "",
-                "upgrades": 0,
-                "hammers_added": 0,
-                "starforce": True,
-                "enhanceable": True,
-                "scrollable": True
-            }
+    
+    
+    print(item)
+    return
 
-            #PICTURE AND NAME
-            cell0 = cells[0]
-            item["name"] = cell0.get_text().strip()
+#chatGPT generated, from a table in page https://maplestory.fandom.com/wiki/AbsoLab_Forked_Cane,
+#parse the data in the table, output the key as the first col and value as second col
+def parse_table(soup) -> object:
+    # Find the table
+    table = soup.find('table')
 
-            if (False):
-                #save image to disk
-                img_url = cell0.find("a", {"class": "image"})["href"]
+    # Initialize an empty dictionary to store the data
+    data_dict = {}
 
-                img_data_name = re.sub(r'\W+', '', item["name"])
-                item["img"] = f"img-{img_data_name.lower()}"
-                
-                img_data = r.get(img_url).content
-                #save image as name of item, removing any special characters
-                with open(f'{img_data_name}.png', 'wb') as handler:
-                    handler.write(img_data)
+    # Iterate through rows in the table
+    for row in table.find_all('tr'):
+        # Extract the columns
+        columns = row.find_all(['th', 'td'])
+        if len(columns) == 2:
+            key = columns[0].get_text(strip=True)
+            value = columns[1].get_text(strip=True)
+            data_dict[key] = value
 
-            item_anchor = cell0.select("a")[1]
-            item_link = f'https://maplestory.fandom.com/{item_anchor["href"]}'
-            y = r.get(url=item_link)
-            soup2 = bs(y.text, features="html.parser").find("div", {"class": "mw-parser-output"})
-            item_tables = soup2.select("table")
-
-            for item_table in item_tables:
-                item_row = item_table.select("tbody tr")
-                print(item_row)
-                return
-            
-            #get url data
-            
-
-    return items
+    return data_dict
 
 
-request_item_page('https://maplestory.fandom.com/wiki/Hex_Seeker', 2)
-#request_itemS_page('https://maplestory.fandom.com/wiki/Cane#Obtainable')
+
+#request_item_page('https://maplestory.fandom.com/wiki/Hex_Seeker')
+request_items_page('https://maplestory.fandom.com/wiki/Category:Canes')
