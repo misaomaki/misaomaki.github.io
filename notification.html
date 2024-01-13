@@ -28,6 +28,8 @@
     <button type="button" onclick="decrementTime()" class="btn btn-danger">-</button>
     <button type="button" onclick="getCurrentTime()" class="btn btn-secondary">Get Now</button>
     <button type="button" onclick="incrementTime()" class="btn btn-success">+</button>
+    |
+    <button type="button" onclick="requestNotificationPermission()" class="btn btn-info">Enable Notifications</button>
 </form>
 
 <!-- Table to display queued notifications -->
@@ -246,6 +248,16 @@ function decrementTime() {
         const formattedTime = currentTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
         document.getElementById('timeInput').value = formattedTime;
     }
+}
+
+function requestNotificationPermission() {
+    Notification.requestPermission().then(function (permission) {
+        if (permission === 'granted') {
+            alert('Notifications are enabled!');
+        } else if (permission === 'denied') {
+            alert('Notifications are blocked. Please enable them in your browser settings.');
+        }
+    });
 }
 </script>
 
