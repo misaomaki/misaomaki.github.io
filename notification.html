@@ -25,9 +25,11 @@
 
     <button type="button" onclick="scheduleNotification()" class="btn btn-primary">Add Notification</button>
     |
-    <button type="button" onclick="decrementTime()" class="btn btn-danger">-</button>
+    <button type="button" onclick="decrementTime(5)" class="btn btn-danger">-5</button>
+    <button type="button" onclick="decrementTime(1)" class="btn btn-danger">-</button>
     <button type="button" onclick="getCurrentTime()" class="btn btn-secondary">Get Now</button>
-    <button type="button" onclick="incrementTime()" class="btn btn-success">+</button>
+    <button type="button" onclick="incrementTime(1)" class="btn btn-success">+</button>
+    <button type="button" onclick="incrementTime(5)" class="btn btn-success">+5</button>
     |
     <button type="button" onclick="requestNotificationPermission()" class="btn btn-info">Enable Notifications</button>
 </form>
@@ -202,7 +204,7 @@ function getCurrentTime() {
     document.getElementById('timeInput').value = formattedTime;
 }
 
-function incrementTime() {
+function incrementTime(step = 1) {
     // Get the value of the input element
     const currentTimeString = document.getElementById('timeInput').value;
 
@@ -218,7 +220,7 @@ function incrementTime() {
         const currentTime = new Date('2000-01-01 ' + currentTimeString);
 
         // Increment the time by 1 minute
-        currentTime.setMinutes(currentTime.getMinutes() + 1);
+        currentTime.setMinutes(currentTime.getMinutes() + step);
 
         // Format the incremented time and set the value of the input element
         const formattedTime = currentTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
@@ -226,7 +228,7 @@ function incrementTime() {
     }
 }
 
-function decrementTime() {
+function decrementTime(step = 1) {
     // Get the value of the input element
     const currentTimeString = document.getElementById('timeInput').value;
 
@@ -242,7 +244,7 @@ function decrementTime() {
         const currentTime = new Date('2000-01-01 ' + currentTimeString);
 
         // Decrement the time by 1 minute
-        currentTime.setMinutes(currentTime.getMinutes() - 1);
+        currentTime.setMinutes(currentTime.getMinutes() - step);
 
         // Format the decremented time and set the value of the input element
         const formattedTime = currentTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
