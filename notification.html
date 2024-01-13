@@ -150,7 +150,7 @@ function updateNotificationTable() {
 
 function isValidTimeFormat(time) {
     // Regular expression for validating time format (HH:mm AM/PM or MM/DD/YYYY HH:mm AM/PM or MM/DD/YYYY HH:mm:ss AM/PM)
-    var regex = /^((1[0-2]|0?[1-9]):([0-5][0-9]) ?([APap][Mm])|(\d{1,2}\/\d{1,2}\/\d{4} )?(1[0-2]|0?[1-9]):([0-5][0-9]) ?([APap][Mm]))$/;
+    var regex = /^((1[0-2]|0?[1-9]):([0-5][0-9])(:([0-5][0-9]))? ?([APap][Mm])|(\d{1,2}\/\d{1,2}\/\d{4} )?(1[0-2]|0?[1-9]):([0-5][0-9]) ?([APap][Mm]))$/;
     return regex.test(time);
 }
 
@@ -170,6 +170,7 @@ function calculateDelayFromNow(time) {
     var day = datePart[1];
     var hours = parseInt(hoursMinutes[0]);
     var minutes = parseInt(hoursMinutes[1]);
+    var seconds = +(hoursMinutes[2] ?? 0);
     var period = splitTime[2];
 
     if (period) {
@@ -181,7 +182,7 @@ function calculateDelayFromNow(time) {
         }
     }
 
-    var notificationTime = new Date(year, month, day, hours, minutes);
+    var notificationTime = new Date(year, month, day, hours, minutes, seconds);
 
     // If the notification time is equal to or earlier than the current time, throw an alert error
     if (notificationTime <= now) {
