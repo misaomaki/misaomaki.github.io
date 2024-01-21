@@ -27,7 +27,7 @@
         <textarea id="textInput" class="form-control" name="text" rows="4" cols="50"></textarea>
     </div>
 
-    <div class="mt-3">
+    <div class="mb-3">
         <!-- Collapsible Section -->
         <div class="accordion" id="channelPickerAccordion">
           <div class="accordion-item">
@@ -53,13 +53,38 @@
         <input type="text" id="timeInput" class="form-control" name="time" placeholder="Enter time (e.g., 12:00 PM or 1/31/2024 12:00 PM)">
     </div>
 
-    <button type="button" onclick="stepTime(-5, 'minutes')" class="btn btn-danger">-5m</button>
-    <button type="button" onclick="stepTime(-1, 'minutes')" class="btn btn-danger">-1m</button>
-    <button type="button" onclick="stepTime(-15, 'seconds')" class="btn btn-danger">-15s</button>
-    <button type="button" onclick="getCurrentTime()" class="btn btn-secondary">Get Now</button>
-    <button type="button" onclick="stepTime(15, 'seconds')" class="btn btn-success">+15s</button>
-    <button type="button" onclick="stepTime(1, 'minutes')" class="btn btn-success">+1m</button>
-    <button type="button" onclick="stepTime(5, 'minutes')" class="btn btn-success">+5m</button>    
+    <!--
+    <div class="mb-3">
+        <div class="card">
+            <div class="card-header" id="hotkeysHeader">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#hotkeysCollapse" aria-expanded="true" aria-controls="hotkeysCollapse">
+                    Hotkeys
+                </button>
+            </div>
+            <div id="hotkeysCollapse" class="collapse show" aria-labelledby="hotkeysHeader">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item"><kbd>Key 2</kbd> - -5m</li>
+                        <li class="list-group-item"><kbd>Key 3</kbd> - -1m</li>
+                        <li class="list-group-item"><kbd>Key 4</kbd> - -15s</li>
+                        <li class="list-group-item"><kbd>Key 5</kbd> - Get Now</li>
+                        <li class="list-group-item"><kbd>Key 6</kbd> - +15s</li>
+                        <li class="list-group-item"><kbd>Key 7</kbd> - +1m</li>
+                        <li class="list-group-item"><kbd>Key 8</kbd> - +5m</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <button type="button" data-key="2" onclick="stepTime(-5, 'minutes')" class="btn btn-danger">-5m</button>
+    <button type="button" data-key="3" onclick="stepTime(-1, 'minutes')" class="btn btn-danger">-1m</button>
+    <button type="button" data-key="4" onclick="stepTime(-15, 'seconds')" class="btn btn-danger">-15s</button>
+    <button type="button" data-key="5" onclick="getCurrentTime()" class="btn btn-secondary">Get Now</button>
+    <button type="button" data-key="6" onclick="stepTime(15, 'seconds')" class="btn btn-success">+15s</button>
+    <button type="button" data-key="7" onclick="stepTime(1, 'minutes')" class="btn btn-success">+1m</button>
+    <button type="button" data-key="8" onclick="stepTime(5, 'minutes')" class="btn btn-success">+5m</button>    
     |
     <button type="button" onclick="scheduleNotification()" class="btn btn-primary">Add Notification</button>
 </form>
@@ -359,6 +384,19 @@ function requestNotificationPermission() {
 
   // Call the function to populate the table on page load
   populateTable();
+</script>
+
+<script>
+    document.addEventListener('keydown', function(event) {
+        // Check if any text input is focused
+        var isTextInputFocused = ['text', 'textarea'].includes((document.activeElement?.type ?? "").toLowerCase());
+
+        // Check if no text input is focused
+        if (!isTextInputFocused) {
+            const btn = document.querySelector(`button[data-key="${event.key}"]`);
+            btn.click();
+        }
+    });
 </script>
 
 <!-- Add Bootstrap JS and Popper.js scripts -->

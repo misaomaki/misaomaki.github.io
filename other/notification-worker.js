@@ -2,17 +2,19 @@ const intervalMap = {};
 
 self.addEventListener('message', (e) => {
   let event = e.data;
-
-  event.data.intervalIds = [event.data.id];
+  let intervalId = event.data.id;
 
   if (event.type === "update") {
     // Start intervals in the Web Worker
-    event.data.intervalIds.forEach((intervalId) => {
-      intervalMap[intervalId] = setInterval(() => {
-        event.data.timeInSeconds -= 1;
-        self.postMessage({ data: event, type: event.type });
-      }, 1000); 
-    });
+    intervalMap[intervalId] = setInterval(() => {
+      event.data.timeInSeconds -= 1;
+      self.postMessage({ data: event, type: event.type });
+
+      /* fail safe */
+      if (event.data.timeInSeconds < 0) {
+        clearInterval(intervalMap[intervalId]);
+      }
+    }, 1000); 
   } else if (event.type === "cancel") {
     // Cancel a specific interval
     const { intervalId } = event.data;
