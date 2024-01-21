@@ -80,6 +80,43 @@
 </table>
 
 <script>
+    const worker = new Worker('/other/notification-worker.js');
+
+    worker.addEventListener('message', (e) => {
+        let event = e.data;
+        if (event.type === "update") {
+            let notification = event.data.data;
+
+            // If time is zero, clear the interval and show the notification
+            if (notification.timeInSeconds === 0) {
+                clearInterval(notification);
+                document.querySelector(`#r${notification.id}`).remove();
+                showNotification(notification);
+            }
+
+            document.querySelector(`#i${notification.id}`).innerHTML = notification.timeInSeconds;
+        }
+    });
+
+    function setIntervalWorker(notification, interval = 1000) {
+        worker.postMessage({
+            type: "update",
+            data: notification,
+            interval: interval
+        });
+
+        return "n" + notification.id;
+    }
+
+    function clearIntervalWorker(notification) {
+        worker.postMessage({
+            type: "cancel",
+            data: notification
+        });
+    }
+</script>
+
+<script>
 let notificationQueue = [];
 
 function scheduleNotification() {
@@ -113,18 +150,7 @@ function scheduleNotification() {
     notificationQueue.push(notification);
     updateNotificationTable();
 
-    notification.intervalId = setInterval(function() {
-        notification.timeInSeconds -= 1;
-
-        // If time is zero, clear the interval and show the notification
-        if (notification.timeInSeconds === 0) {
-            clearInterval(notification.intervalId);
-            document.querySelector(`#r${notification.id}`).remove();
-            showNotification(notification);
-        }
-
-        document.querySelector(`#i${notification.id}`).innerHTML = notification.timeInSeconds;
-    }, 1000);
+    notification.intervalId = setIntervalWorker(notification, 1000);
 }
 
 function showNotification(notification) {
@@ -147,7 +173,7 @@ function cancelNotification(id) {
     const canceledNotification = notificationQueue.find(item => item.id === id);
 
     // Clear the interval associated with the countdown
-    clearInterval(canceledNotification.intervalId);
+    clearIntervalWorker(canceledNotification);
 
     // Remove the notification from the queue
     notificationQueue = notificationQueue.filter(item => item.id !== id);
