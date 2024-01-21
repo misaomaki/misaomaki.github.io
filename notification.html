@@ -49,11 +49,13 @@
         <input type="text" id="timeInput" class="form-control" name="time" placeholder="Enter time (e.g., 12:00 PM or 1/31/2024 12:00 PM)">
     </div>
 
-    <button type="button" onclick="stepTime(-5)" class="btn btn-danger">-5</button>
-    <button type="button" onclick="stepTime(-1)" class="btn btn-danger">-</button>
+    <button type="button" onclick="stepTime(-5, 'minutes')" class="btn btn-danger">-5m</button>
+    <button type="button" onclick="stepTime(-1, 'minutes')" class="btn btn-danger">-1m</button>
+    <button type="button" onclick="stepTime(-15, 'seconds')" class="btn btn-danger">-15s</button>
     <button type="button" onclick="getCurrentTime()" class="btn btn-secondary">Get Now</button>
-    <button type="button" onclick="stepTime(1)" class="btn btn-success">+</button>
-    <button type="button" onclick="stepTime(5)" class="btn btn-success">+5</button>    
+    <button type="button" onclick="stepTime(15, 'seconds')" class="btn btn-success">+15s</button>
+    <button type="button" onclick="stepTime(1, 'minutes')" class="btn btn-success">+1m</button>
+    <button type="button" onclick="stepTime(5, 'minutes')" class="btn btn-success">+5m</button>    
     |
     <button type="button" onclick="scheduleNotification()" class="btn btn-primary">Add Notification</button>
     |
@@ -241,7 +243,7 @@ function getCurrentTime() {
     document.getElementById('timeInput').value = formattedTime;
 }
 
-function stepTime(step = 1) {
+function stepTime(step = 1, unit = 'minutes') {
     // Get the value of the input element
     const currentTimeString = document.getElementById('timeInput').value;
 
@@ -256,11 +258,24 @@ function stepTime(step = 1) {
         // Parse the time string to a Date object
         const currentTime = new Date('2000-01-01 ' + currentTimeString);
 
-        // Increment the time by 1 minute
-        currentTime.setMinutes(currentTime.getMinutes() + step);
+        let timeOption = { hour: 'numeric', minute: '2-digit', hour12: true };
+        let timeSeconds = currentTime.getSeconds();
+
+        // Increment the time
+        if (unit === 'minutes') {
+            currentTime.setMinutes(currentTime.getMinutes() + step);
+
+            if (timeSeconds > 0) {
+                timeOption.second = "2-digit";
+            }
+        } else if (unit === 'seconds') {
+            timeOption.second = "2-digit";
+            currentTime.setSeconds(timeSeconds + step);
+        }
+        
 
         // Format the incremented time and set the value of the input element
-        const formattedTime = currentTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+        const formattedTime = currentTime.toLocaleTimeString('en-US', timeOption);
         document.getElementById('timeInput').value = formattedTime;
     }
 }
