@@ -186,9 +186,9 @@ cube.get_cube_type = async function(level, type, cube_type, cube_tier) {
 
 /* from the cube lines and cube rates, resolve into a single object */
 cube.resolve_cube_rates = async function(cube_type, type) {
-    /* black/white share same lines */
+    /* bonus/white share same lines */
     if (cube_type === "white") {
-        cube_type = "black";
+        cube_type = "bonus";
     }
 
     if (`${cube_type}_${type}` in cube_lines) {

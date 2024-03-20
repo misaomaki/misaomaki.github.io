@@ -17,7 +17,7 @@ self.addEventListener('message', (e) => {
     }, 1000); 
   } else if (event.type === "cancel") {
     // Cancel a specific interval
-    const { intervalId } = event.data;
+    const intervalId = event.data.id;
     if (intervalMap[intervalId]) {
       clearInterval(intervalMap[intervalId]);
       delete intervalMap[intervalId];

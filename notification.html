@@ -51,6 +51,8 @@
     <div class="mb-3">
         <label for="timeInput" class="form-label">Time:</label>
         <input type="text" id="timeInput" class="form-control" name="time" placeholder="Enter time (e.g., 12:00 PM or 1/31/2024 12:00 PM)">
+        <label for="cbRepeat" class="form-label">Repeat:</label> 
+        <!-- <input type="checkbox" id="cbRepeat"> -->
     </div>
 
     <!--
@@ -114,9 +116,15 @@
 
             // If time is zero, clear the interval and show the notification
             if (notification.timeInSeconds === 0) {
-                clearInterval(notification);
+                clearIntervalWorker(notification);
                 document.querySelector(`#r${notification.id}`).remove();
                 showNotification(notification);
+
+                // If notification is repeated, add a new notification with the same time interval
+                if (notification.repeat) {
+                    stepTime(notification._timeInSeconds, 'seconds');
+                    scheduleNotification();
+                }
             }
 
             document.querySelector(`#i${notification.id}`).innerHTML = notification.timeInSeconds;
@@ -144,7 +152,7 @@
 <script>
 let notificationQueue = [];
 
-function scheduleNotification() {
+function scheduleNotification(timeInSeconds, unit) {
     var text = document.getElementById('textInput').value;
     var timeInput = document.getElementById('timeInput').value;
 
@@ -169,6 +177,8 @@ function scheduleNotification() {
         text: text,
         time: timeInput,
         timeInSeconds: delayInSeconds,
+        _timeInSeconds: delayInSeconds,
+        repeat: document.getElementById("cbRepeat").checked,
         id: new Date().getTime() // Unique ID for each notification
     };
 
@@ -297,40 +307,42 @@ function getCurrentTime() {
 }
 
 function stepTime(step = 1, unit = 'minutes') {
+    const timeInput = document.getElementById('timeInput');
     // Get the value of the input element
-    const currentTimeString = document.getElementById('timeInput').value;
+    let currentTimeString = timeInput.value;
 
     // Check if the input is empty
     if (currentTimeString.trim() === '') {
         // If empty, set the current date and time
         const now = new Date();
         const formattedTime = now.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', hour12: true });
-        document.getElementById('timeInput').value = formattedTime;
-    } else {
-        // If not empty, proceed with incrementing the time
-        // Parse the time string to a Date object
-        const currentTime = new Date('2000-01-01 ' + currentTimeString);
-
-        let timeOption = { hour: 'numeric', minute: '2-digit', hour12: true };
-        let timeSeconds = currentTime.getSeconds();
-
-        // Increment the time
-        if (unit === 'minutes') {
-            currentTime.setMinutes(currentTime.getMinutes() + step);
-
-            if (timeSeconds > 0) {
-                timeOption.second = "2-digit";
-            }
-        } else if (unit === 'seconds') {
-            timeOption.second = "2-digit";
-            currentTime.setSeconds(timeSeconds + step);
-        }
-        
-
-        // Format the incremented time and set the value of the input element
-        const formattedTime = currentTime.toLocaleTimeString(undefined, timeOption);
-        document.getElementById('timeInput').value = formattedTime;
+        timeInput.value = formattedTime;
+        currentTimeString = timeInput.value;
     }
+    
+    // If not empty, proceed with incrementing the time
+    // Parse the time string to a Date object
+    const currentTime = new Date('2000-01-01 ' + currentTimeString);
+
+    let timeOption = { hour: 'numeric', minute: '2-digit', hour12: true };
+    let timeSeconds = currentTime.getSeconds();
+
+    // Increment the time
+    if (unit === 'minutes') {
+        currentTime.setMinutes(currentTime.getMinutes() + step);
+
+        if (timeSeconds > 0) {
+            timeOption.second = "2-digit";
+        }
+    } else if (unit === 'seconds') {
+        timeOption.second = "2-digit";
+        currentTime.setSeconds(timeSeconds + step);
+    }
+    
+
+    // Format the incremented time and set the value of the input element
+    const formattedTime = currentTime.toLocaleTimeString(undefined, timeOption);
+    document.getElementById('timeInput').value = formattedTime;
 }
 
 
@@ -394,7 +406,9 @@ function requestNotificationPermission() {
         // Check if no text input is focused
         if (!isTextInputFocused) {
             const btn = document.querySelector(`button[data-key="${event.key}"]`);
-            btn.click();
+            if (btn != null) {
+                btn.click();
+            }
         }
     });
 </script>
