@@ -834,8 +834,8 @@ $(function(){
         let _this = $(this);
 
         if (_this.hasClass("btn-cube-black")) {
-            let bccData = bcc.data();
-            if (bccData.cube === "black") {
+            let bccData = bcc.attr("data-cube");
+            if (bccData === "black") {
                 cube_black_go.trigger("click");
             } else {
                 cube_white_go.trigger("click");
