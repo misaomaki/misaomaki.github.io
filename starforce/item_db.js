@@ -397,7 +397,7 @@ var items_store = {
             "att_type": "watt",
             "flame_type": 2,
             "bstat": {
-                "str": 80,
+                "luk": 80,
                 "dex": 80,
                 "watt": 10,
                 "def": 750,
@@ -429,7 +429,7 @@ var items_store = {
             "att_type": "watt",
             "flame_type": 2,
             "bstat": {
-                "str": 50,
+                "luk": 50,
                 "dex": 50,
                 "watt": 6,
                 "def": 325,
@@ -461,7 +461,7 @@ var items_store = {
             "att_type": "watt",
             "flame_type": 2,
             "bstat": {
-                "str": 50,
+                "luk": 50,
                 "dex": 50,
                 "watt": 6,
                 "def": 325,
