@@ -173,9 +173,9 @@ item.prototype.set_item_scroll = function(s) {
         /* chaos scroll */
         if (cogs.types.includes(_s.type)) {
             for (let k = 0; k < scr_amount; ++k) {
+                if (curr_scrolls >= max_scrolls) break;
                 cogs.scroll.call(this, _s.type);
-                curr_scrolls += 1;
-                continue;
+                ++curr_scrolls;
             }
             continue;
         }
@@ -249,7 +249,7 @@ item.prototype.set_item_scroll = function(s) {
         for (let k = 0; k < scr_amount; ++k) {
             if (curr_scrolls >= max_scrolls) break;
             this.idata.boosts.scroll_data.push(this_stat);
-            curr_scrolls += 1;
+            ++curr_scrolls;
         }
     }
 
