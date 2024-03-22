@@ -282,7 +282,7 @@ item.prototype.starforce = function(starcatch = false) {
 }
 
 /*
-    calcualte the stats of the item from the various sources (flames, starforce, scrolls, etc)
+    calculate the stats of the item from the various sources (flames, starforce, scrolls, etc)
     return the values, as well as the breakdown from each source
 */
 item.prototype.get_final_stats = function() {
@@ -569,21 +569,26 @@ item.prototype.redraw_item_tooltip = function() {
                 let a_type = a.type || "";
                 let a_symbol = a.symbol || "";
 
+                let bval = item_stats.base[a.value];
+                let fval = item_stats.final[a.value];
+                let flval = item_stats.flame[a.value];
+                let oval = item_stats.other[a.value];
+
                 /* if a percentage value, convert the decimal to percentage */
                 if (a_type === "%") {
-                    item_stats.base[a.value] = Math.round(item_stats.base[a.value] * 100);
-                    item_stats.final[a.value] = Math.round(item_stats.final[a.value] * 100);
-                    item_stats.flame[a.value] = Math.round(item_stats.flame[a.value] * 100);
-                    item_stats.other[a.value] = Math.round(item_stats.other[a.value] * 100);
+                    bval = Math.round(bval * 100);
+                    fval = Math.round(fval * 100);
+                    flval = Math.round(flval * 100);
+                    oval = Math.round(oval * 100);
                 }
 
                 /* get gain from all sources */
-                let tot_gain = item_stats.starforce[a.value] + item_stats.scroll[a.value] + item_stats.other[a.value];
+                let tot_gain = item_stats.starforce[a.value] + item_stats.scroll[a.value] + oval;
 
                 /* get gain from sf only - to show as separate value */
                 let sf_gain = item_stats.starforce[a.value];
                 /* get gain from scrolls and other sources - to show as separate value */
-                let other_gain = item_stats.scroll[a.value] + item_stats.other[a.value];
+                let other_gain = item_stats.scroll[a.value] + oval;
 
                 /* if percentage-based value, then get the values as separate to show separately */
                 if (["watt", "matt", "def"].includes(a.value)) {
@@ -593,7 +598,7 @@ item.prototype.redraw_item_tooltip = function() {
 
                 //for matt, if all sources have no matt, then don't display matt on the tooltip
                 if (a.value === "matt") {
-                    if (this.idata.class === "weapon" && item_stats.percent.matt + item_stats.flame.matt + item_stats.base.matt + item_stats.other[a.value] === 0) {
+                    if (this.idata.class === "weapon" && item_stats.percent.matt + item_stats.flame.matt + item_stats.base.matt + oval === 0) {
                         return b;
                     } 
                 }
@@ -601,20 +606,20 @@ item.prototype.redraw_item_tooltip = function() {
                 b += `
                     ${a.value === "reqlvl" ? `
                         ${
-                            item_stats.final[a.value] !== 0 ?
-                            `${a.name} : ${item_stats.final[a.value]}${a_symbol} <br>`
+                            fval !== 0 ?
+                            `${a.name} : ${fval}${a_symbol} <br>`
                             :
                             ``
                         }
                     ` : `
-                        ${ item_stats.final[a.value] > 0 ?
+                        ${ fval > 0 ?
                             `<span class="${item_stats.final[a.value + "_upgrade"] ? "item-color-stat-upgrade" : ""}">
-                                ${a.name}: ${a_type !== "raw" ? "+" : ""}${item_stats.final[a.value]}${a_symbol}
+                                ${a.name}: ${a_type !== "raw" ? "+" : ""}${fval}${a_symbol}
                                 ${item_stats.final[a.value + "_upgrade"] ?
-                                    `<span class="item-color-base">(${item_stats.base[a.value]}${a_symbol}</span>
+                                    `<span class="item-color-base">(${bval}${a_symbol}</span>
                                         ${
-                                            item_stats.flame[a.value] > 0 ?
-                                            `<span class="item-color-flame">+${item_stats.flame[a.value]}${a_symbol}</span></span>` : '' 
+                                            flval > 0 ?
+                                            `<span class="item-color-flame">+${flval}${a_symbol}</span></span>` : '' 
                                         }
                                         ${
                                             tot_gain != 0 && !system.itt_kms_new ?
