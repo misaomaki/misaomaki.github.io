@@ -10059,8 +10059,8 @@ var items_store = {
             flame_type: 2,
             bstat: {
                 matt: 9,
-                str: 40,
-                dex: 40,
+                int: 40,
+                luk: 40,
                 def: 250
             },
             req: {
@@ -10203,8 +10203,8 @@ var items_store = {
             flame_type: 2,
             bstat: {
                 matt: 9,
-                str: 40,
-                dex: 40,
+                int: 40,
+                luk: 40,
                 def: 250,
                 speed: 10,
                 jump: 7
