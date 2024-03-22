@@ -1146,6 +1146,7 @@ $(function(){
         `;
 
         let option_box = $("#option_box");
+        let option_box2 = $("#option_sub_box");
 
         option_box.html(html).dialog({
             position: {my: "center", at: "top center", of: window},
@@ -1158,13 +1159,6 @@ $(function(){
             width: "100%",
             height: 850,
             buttons: [{
-                text: "Back",
-                class: "hidden",
-                id: "btn_cube_log_back2",
-                click: function() {
-                    $("#btn_cube_log_back").trigger("click");
-                }
-            },{
                 text: "Close",
                 click: function() {
                     option_box.html("");
@@ -1350,21 +1344,32 @@ $(function(){
                 </div>
             `;
 
-            cube_log_prng.removeClass("hidden");
-            cube_log_prng.html(dom2);
-
-            btn_cube_log_back2.removeClass("hidden");
+            option_box2.html(dom2);
+            option_box2.dialog({            
+                position: {my: "center", at: "top center", of: window},
+                title: "Cube Log - PRNG Info",
+                position: {
+                    my: "center top",
+                    at: "center top",
+                    of: window
+                },
+                width: "100%",
+                height: 850,
+                buttons: [{
+                    text: "Close",
+                    click: function() {
+                        option_box2.html("");
+                        option_box2.dialog("close");
+                    }
+                }]
+            }).dialog("open");
 
             //return from viewing the prng info for a cube run
             $("#btn_cube_log_back").on("click", function() {
-                cube_log_prng.addClass("hidden");
-                cube_log_table.removeClass("hidden");
-                btn_cube_log_back2.addClass("hidden");
+                option_box2.dialog("close");
             });
 
-            cube_log_table.addClass("hidden");
-
-            option_box.scrollTop(0);
+            option_box2.scrollTop(0);
         });
 
         return false;

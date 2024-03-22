@@ -48,6 +48,12 @@
     background-size: contain;
 }
 
+.item-chaos-scroll {
+    background: url("../assets/maple_items/etc/ChaosScroll.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .item-evolution-scroll {
     background: url("../assets/maple_items/etc/EvolutionScroll.png");
     background-repeat: no-repeat;

@@ -1,7 +1,6 @@
 /*
     chaos scrolls
 */
-
 const cogs = {
     rates: {
         "cog": { /* chaos scroll of goodness */
@@ -20,7 +19,7 @@ const cogs = {
             "4": 0.0494,
             "6": 0.0593
         },
-        "c": { /* chaos scroll */
+        "chaos": { /* chaos scroll */
             "-5": 0.0494,
             "-4": 0.0297,
             "-3": 0.0365,
@@ -57,18 +56,19 @@ const cogs = {
         apply chaos scroll. loop through the item's stat list and if it is in cogs.stats, then
         run cog probability and apply the stat
     */
-    scroll: function(type, redraw = false) {
+    scroll: function(type) {
         let scroll = cogs.rates[type];
 
         let stats_modified = Object.assign({
             stat_success: true
         }, stats);
 
+
         /* 
             loop through the base stats and see if it will be modified 
             chaos scrolls do not affect stats that were added by other means. only base stats
         */
-        for (stat in this.idata.bstat) {
+        for (let stat in this.idata.bstat) {
             /* stat is not chaos-able or base stat value is 0 */
             if (!cogs.stats.includes(stat) || this.idata.bstat[stat] === 0) continue;
             /* once a chaos scroll causes the stat to negative, it can't be brought back */
@@ -86,10 +86,8 @@ const cogs = {
         }
 
         this.idata.boosts.scroll_data.push(stats_modified);
-
-        if (redraw) {
-            this.redraw_item_tooltip();
-        }
+        /* recalculate stats */
+        this.get_final_stats();
     }
 };
 

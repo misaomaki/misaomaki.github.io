@@ -156,15 +156,27 @@ item.prototype.set_item_scroll = function(s) {
 
     this.idata.boosts.scroll_data = [];
 
+    /*
+        loop through the scroll types and then apply the appropriate scroll type
+        once the max limit is hit, stop, even if the user specified more
+    */
     for (let i = 0; i < s.length; ++i) {
         if (curr_scrolls >= max_scrolls) break;
 
         let _s = s[i];
+        let scr_amount = _s.amount;
+
+        if (scr_amount === "max") {
+            scr_amount = max_scrolls;
+        }
 
         /* chaos scroll */
         if (cogs.types.includes(_s.type)) {
-            cogs.scroll.call(this, _s.type, false);
-            curr_scrolls += 1;
+            for (let k = 0; k < scr_amount; ++k) {
+                cogs.scroll.call(this, _s.type);
+                curr_scrolls += 1;
+                continue;
+            }
             continue;
         }
 
@@ -200,12 +212,6 @@ item.prototype.set_item_scroll = function(s) {
         }
 
         let scr_type = this.cache.scroll[_s.type];
-
-        let scr_amount = _s.amount;
-
-        if (scr_amount === "max") {
-            scr_amount = max_scrolls;
-        }
 
         let this_stat = Object.assign({}, stats);
 

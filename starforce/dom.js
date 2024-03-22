@@ -98,7 +98,12 @@ $(function() {
     });
 
     //MENU STUFF
-    let optionbox = $("#option_box").dialog({
+    const optionbox = $("#option_box").dialog({
+        autoOpen: false,
+        modal: false
+    });
+
+    const optionbox2 = $("#option_sub_box").dialog({
         autoOpen: false,
         modal: false
     });
