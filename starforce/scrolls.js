@@ -283,7 +283,7 @@ $(function() {
         option_box2 = $("#option_sub_box");
 
         const scroll = Item.idata.boosts.scroll_data;
-        const scroll_rng = Item.idata.meta.scroll_log;
+        const stat_keys = Object.keys(stats).sort();
 
         let html = `
             <table style="width:100%;height:100%;">
@@ -323,7 +323,7 @@ $(function() {
                                             </thead>
                                             <tbody>
                                                 ${ 
-                                                    Object.keys(stats).reduce((x,y)=> {
+                                                    stat_keys.reduce((x,y)=> {
                                                         let stat = b[y] ?? 0;
 
                                                         if (stat == 0) return x;
