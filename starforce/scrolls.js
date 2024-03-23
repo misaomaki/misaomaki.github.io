@@ -214,6 +214,7 @@ item.prototype.set_item_scroll = function(s) {
         let scr_type = this.cache.scroll[_s.type];
 
         let this_stat = Object.assign({}, stats);
+        this_stat._scroll = _s.type;
 
         this_stat.stat_success = true; //can replace with false if scrolling functionality is added. false will not add the stats of that scroll
 
@@ -260,3 +261,110 @@ item.prototype.set_item_scroll = function(s) {
 
     return true;
 };
+
+/*
+    scroll log
+*/
+$(function() {
+    const scroll_img = {
+        "trace": "item-spell-trace",
+        "prime": "item-prime-scroll",
+        "chaos": "item-chaos-scroll",
+        "cog": "item-chaos-scroll",
+        "icog": "item-chaos-scroll",
+        "evolution": "item-evolution-scroll",
+        "basic_gollux": "item-gollux-scroll",
+        "advanced_gollux": "item-gollux-scroll",
+        "dragon_stone": "item-dragon-stone"
+    };
+
+    $("#scroll_log").on("click", function() {
+        option_box = $("#option_box");
+        option_box2 = $("#option_sub_box");
+
+        const scroll = Item.idata.boosts.scroll_data;
+        const scroll_rng = Item.idata.meta.scroll_log;
+
+        let html = `
+            <table style="width:100%;height:100%;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Scroll</th>
+                        <th>Stats</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${
+                        scroll.reduce((a,b,c)=>{
+                            let type = b._scroll;
+
+                            if (type.startsWith("_")) {
+                                type = "trace";
+                            } else if (type.startsWith("prime")) {
+                                type = "prime";
+                            }
+
+                            let scroll_icon = scroll_img[type];
+
+                            a += `
+                                <tr>
+                                    <td style="width:5%">${c+1}</td>
+                                    <td style="width:25%">
+                                        <span class="item-label-icon ${scroll_icon}"></span> ${type}
+                                    </td>
+                                    <td style="width:70%">
+                                        <table style="width:100%;height:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Stat</th>
+                                                    <th>Value</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                ${ 
+                                                    Object.keys(stats).reduce((x,y)=> {
+                                                        let stat = b[y] ?? 0;
+
+                                                        if (stat == 0) return x;
+
+                                                        x += `
+                                                            <tr>
+                                                                <td style="width:20%;">
+                                                                    ${y}
+                                                                </td>
+                                                                <td style="width:80%;color:${stat < 0 ? "red" : "initial"};">
+                                                                    ${stat}
+                                                                </td>
+                                                            </tr>
+                                                        `;
+
+                                                        return x;
+                                                    }, '') 
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            `;
+
+                            return a;
+                        }, "")
+                    }
+                </tbody>
+            </table>
+        `;
+        
+        option_box.html(html).dialog({
+            title: "Scroll Log",
+            width: 750,
+            height: 800,
+            buttons: [{
+                text: "Close",
+                click: function() {
+                    option_box.dialog("close");
+                }
+            }]
+        }).dialog("open");
+    });
+})

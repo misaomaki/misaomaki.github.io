@@ -63,16 +63,19 @@ const cogs = {
             stat_success: true
         }, stats);
 
+        stats_modified._scroll = type;
+
 
         /* 
             loop through the base stats and see if it will be modified 
             chaos scrolls do not affect stats that were added by other means. only base stats
         */
+        let log_boosts = [];
         for (let stat in this.idata.bstat) {
             /* stat is not chaos-able or base stat value is 0 */
             if (!cogs.stats.includes(stat) || this.idata.bstat[stat] === 0) continue;
             /* once a chaos scroll causes the stat to negative, it can't be brought back */
-            if (Item.idata.meta.final_stats[stat] <= 0) continue; 
+            if (this.idata.meta.final_stats[stat] <= 0) continue; 
 
             let cog_rng = {};
         
@@ -83,9 +86,19 @@ const cogs = {
             });
 
             stats_modified[stat] = +tier_result;
+            
+            /* log item */
+            log_boosts.push({
+                rng: cog_rng,
+                stat: stat,
+                value: stats_modified[stat]
+            });
         }
 
         this.idata.boosts.scroll_data.push(stats_modified);
+        this.idata.meta.scroll_log.push(log_boosts);
+
+        
         /* recalculate stats */
         this.get_final_stats();
     }

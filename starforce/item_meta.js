@@ -206,6 +206,7 @@ let items_other_data = {
             sf_meta_data: [], //starforce cost and other related data
             cube_log_item: {}, //current data to be worked on for cube stats. it will be pushed to the cube_meta_data
             cube_meta_data: [], //cube data
+            scroll_log: [],
             cubes_used: {
                 red: 0,
                 black: 0,
