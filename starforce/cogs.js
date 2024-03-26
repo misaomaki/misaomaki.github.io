@@ -85,7 +85,13 @@ const cogs = {
                 cog_rng.tier_prng = a;
             });
 
+
             stats_modified[stat] = +tier_result;
+
+            /* hp/mp value multipled by 10 */
+            if (["hp", "mp"].includes(stat)) {
+                stats_modified[stat] = stats_modified[stat] * 10;
+            }
             
             /* log item */
             log_boosts.push({
