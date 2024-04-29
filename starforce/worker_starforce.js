@@ -80,7 +80,7 @@ let process_star = function(item, o = {}) {
     let ld = Object.assign({}, sf_log); //new instance of log data item
 
     ld.id = log_data.length + 1;
-    ld.starcatch = data.starcatch.includes(star);
+    ld.starcatch = data.events.starcatch ? true : data.starcatch.includes(star);
 
     ld.is_safeguard = data.safeguard.includes(star);
 

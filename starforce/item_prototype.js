@@ -185,6 +185,11 @@ item.prototype.starforce_att_percent = function(att = 0, bwatt = 0, p_arr = []) 
 
 /* get the starforce results */
 item.prototype.starforce_result = function(starcatch = false) {
+    /* automatically starforce without having to do the starcatching minigame */
+    if (event_options.starcatch) {
+        starcatch = true;
+    }
+
     //generate log item
     this.idata.meta.sf_log_item =  Object.assign({}, this.cache.sf_meta_data);
     this.idata.meta.sf_log_item.id = this.idata.meta.sf_meta_data.length + 1; 
