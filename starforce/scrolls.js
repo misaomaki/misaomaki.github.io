@@ -285,6 +285,8 @@ $(function() {
         const scroll = Item.idata.boosts.scroll_data;
         const stat_keys = Object.keys(stats).sort();
 
+        const stats_total = {};
+
         let html = `
             <table style="width:100%;height:100%;">
                 <thead>
@@ -326,6 +328,12 @@ $(function() {
                                                     stat_keys.reduce((x,y)=> {
                                                         let stat = b[y] ?? 0;
 
+                                                        if (!(y in stats_total)) {
+                                                            stats_total[y] = 0;
+                                                        }
+
+                                                        stats_total[y] += stat;
+
                                                         if (stat == 0) return x;
 
                                                         x += `
@@ -352,6 +360,46 @@ $(function() {
                         }, "")
                     }
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td style="width:5%"></td>
+                        <td style="width:25%">
+                            TOTAL
+                        </td>
+                        <td style="width:70%">
+                            <table style="width:100%;height:100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Stat</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${ 
+                                        Object.keys(stats_total).sort().reduce((x,y)=> {
+                                            let stat = stats_total[y] ?? 0;
+
+                                            if (stat == 0) return x;
+
+                                            x += `
+                                                <tr>
+                                                    <td style="width:20%;">
+                                                        ${y}
+                                                    </td>
+                                                    <td style="width:80%;color:${stat < 0 ? "red" : "initial"};">
+                                                        ${stat}
+                                                    </td>
+                                                </tr>
+                                            `;
+
+                                            return x;
+                                        }, '') 
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>      
+                </tfoot>
             </table>
         `;
         
