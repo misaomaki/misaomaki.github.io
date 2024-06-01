@@ -1201,7 +1201,7 @@ item.prototype.redraw_sf = function() {
     }
 
     let safeguard_multiplier = 1;
-    let is_safeguardable = !this.idata.superior && this_star >= GLOBAL.starforce.safeguard_stars.min && this_star <= GLOBAL.starforce.safeguard_stars.max;
+    let is_safeguardable = !this.idata.superior && this_star >= GLOBAL.starforce.safeguard_stars.min && this_star < GLOBAL.starforce.safeguard_stars.max;
     if (is_safeguardable) {
         safeguard.removeClass("disabled");
         safeguard.trigger("click", true);
