@@ -2,30 +2,69 @@
 item.prototype.flame_lookup = {};
 
 //stat and def related flame tiers
-//l refers to the "step" in min and max levels. different stat types have different steps
+//l refers to the "step" in min and max levels. 
+//l = 1 - single stat flame (luk), l = 2 - double stat flame (luk,int)
 item.prototype.flame_lookup.linear_lookup = function(l = 1, level = 0) {
+    
     let _lt = [];
+    let incr = 0;
 
-    for (let i = 1; i <= 14 / l; ++i) {
-        let dt = {
-            from: (i - 1) * 20 * l,
-            to: i * 20 * l - 1,
-            tier: []
-        };
+    if (l == 2) {
+        /* step 2 almost follows a pattern, but doesn't, so just hard code it */
+        const tiers2 = [
+            [0,39],
+            [40,79],
+            [80,119],
+            [120,159],
+            [160,199],
+            [200,249],
+            [250,300]
+        ];
 
-        for (let j = 1; j <= 7; ++j) {
-            dt.tier.push(j * i);
+        incr = 0;
+        for (let i = 0; i < tiers2.length; ++i) {
+            ++incr;
+
+            const flame_data = {
+                from: 0,
+                to: 0,
+                tier: []
+            };
+
+            [flame_data.from, flame_data.to] = tiers2[i];
+
+            for (let j = 1; j <= 7; ++j) {
+                flame_data.tier.push(incr * j);
+            }
+
+            _lt.push(flame_data);
         }
+    } else {
+        const max_tier_level = 230;
+        let step = 20;
 
-        _lt.push(dt);
+        incr = 0;
+        for (let i = step - 1; i <= max_tier_level + step; i += step) {
+            ++incr;
+
+            const flame_data = {
+                from: i - step + 1,
+                to: i,
+                tier: []
+            };
+
+            for (let j = 1; j <= 7; ++j) {
+                flame_data.tier.push(incr * j);
+            }
+
+            _lt.push(flame_data);
+        }
     }
 
-    if (level !== 0) {
-        for (let i = 0; i < _lt.length; ++i) {
-            if (_lt[i].from <= level && _lt[i].to >= level) {
-                return _lt[i].tier;
-            }
-        }
+    if (level != 0) {
+        _lt = _lt.find((a)=>{
+            return level >= a.from && level <= a.to;
+        }).tier;
     }
 
     return _lt;

@@ -5851,7 +5851,7 @@ var items_store = {
         },
         cursed_red_spellbook: {
             name: "Cursed Red Spellbook",
-            level: 200,
+            level: 160,
             class: "armor",
             type: "pocket item",
             speed: "",
@@ -5885,7 +5885,7 @@ var items_store = {
         },
         cursed_blue_spellbook: {
             name: "Cursed Blue Spellbook",
-            level: 200,
+            level: 160,
             class: "armor",
             type: "pocket item",
             speed: "",
@@ -5919,7 +5919,7 @@ var items_store = {
         },
         cursed_green_spellbook: {
             name: "Cursed Green Spellbook",
-            level: 200,
+            level: 160,
             class: "armor",
             type: "pocket item",
             speed: "",
@@ -5953,7 +5953,7 @@ var items_store = {
         },
         cursed_yellow_spellbook: {
             name: "Cursed Yellow Spellbook",
-            level: 200,
+            level: 160,
             class: "armor",
             type: "pocket item",
             speed: "",
