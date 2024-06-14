@@ -292,7 +292,7 @@ $(function() {
 
     //auto cube
     //TODO: move to own file
-    $("#auto_cube").on("click", function() {
+    $("#auto_cube").on("click", async function() {
         let user_cube_option = cube.user[Item.idata.name] ?? {
             selected_cube: "none",
             cube_type: "none",
@@ -303,6 +303,8 @@ $(function() {
                 line_2: 0
             }
         };
+
+        let cube_lines = await cube.cube_line_as_int_stats;
         
         let html = `
             <b>Automatically cube to the desired lines. This will generate cube log data.</b>
@@ -362,7 +364,7 @@ $(function() {
                     <input type="checkbox" id="auto_cube_gt" checked> 
                     <label for="auto_cube_gt">
                         Get stats greater than or equal to desired lines 
-                        <span title="Return lines with value greater than or equal to desired values for the following stats:\r\n${cube_line_as_int_stats.join("\r\n")}">[?]</span>
+                        <span title="Return lines with value greater than or equal to desired values for the following stats:\r\n${cube_lines.join("\r\n")}">[?]</span>
                     </label>
                 </div>
             </div>

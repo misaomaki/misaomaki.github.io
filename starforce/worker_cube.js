@@ -57,12 +57,15 @@ let arrayCompare = function(_a, _b, c = false) {
         value: 0.13
     }
 */
-let resolve_stat_lines = (a,b)=>{
+let resolve_stat_lines = function(a,b) {
     if (b == -1) {
         return a;
     }
 
-    let item = cube.cube_line_stats[b] ?? {
+    /*
+        get statline in a grouped format, so STR: 3%, STR: 6%, STR: 9%, STR: 12% all are grouped as STR% line.
+    */
+    let item = this.stat_lines[b] ?? {
         id: b,
         value: 0,
         is_percent: false
@@ -79,7 +82,7 @@ let resolve_stat_lines = (a,b)=>{
     /*
         if true, then for all_stat line, add each primary attribute value to the returned data
     */
-    if (this) {
+    if (this.all_stats) {
         if (item.id.includes("All Stats")) {
             for (let stats = ["STR", "INT", "DEX", "LUK"], i = 0; i < stats.length; ++i) {
                 let stat = stats[i];
@@ -104,8 +107,11 @@ let resolve_stat_lines = (a,b)=>{
 /*
     compare overall stats from current lines to the desired lines
 */
-let stat_compare = function(desired_lines, current_lines_unprocessed) {
-    let current_lines = current_lines_unprocessed.reduce(resolve_stat_lines.bind(true),{});
+let stat_compare = function(desired_lines, current_lines_unprocessed, stat_lines) {
+    let current_lines = current_lines_unprocessed.reduce(resolve_stat_lines.bind({
+        all_stats: true,
+        stat_lines: stat_lines
+    }),{});
     let has_any_desired = true;
     
     for (desired_line in desired_lines) {
@@ -163,10 +169,15 @@ onmessage = async function(o) {
     }
 
     if (d.allow_gt) {
-        let desired_lines = d.cube_lines.reduce(resolve_stat_lines.bind(false),{});
+        const cube_stat_lines = await cube.cube_line_stats;
+
+        let desired_lines = d.cube_lines.reduce(resolve_stat_lines.bind({
+            all_stats: false,
+            stat_lines: cube_stat_lines
+        }),{});
 
         search = function() {
-            return stat_compare(desired_lines, lines);
+            return stat_compare(desired_lines, lines, cube_stat_lines);
         }
     }
     
