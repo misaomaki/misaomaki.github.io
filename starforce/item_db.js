@@ -480,7 +480,162 @@ var items_store = {
             "enhanceable": true,
             "scrollable": true,
             "img_type": "png"
-        }
+        },
+        "warrior_shoulder": {
+            "name": "Eternal Knight Shoulder",
+            "override_image": "EternalShoulder",
+            "level": 250,
+            "class": "armor",
+            "type": "shoulder",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+                "watt": 28,
+                "matt": 28,
+                "str": 51,
+                "dex": 51,
+                "int": 51,
+                "luk": 51,
+                "def": 450
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalshoulder",
+            "upgrades": 1,
+            "hammers_added": 2
+        },
+        "mage_shoulder": {
+            "name": "Eternal Mage Shoulder",
+            "override_image": "EternalShoulder",
+            "level": 250,
+            "class": "armor",
+            "type": "shoulder",
+            "speed": "",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 0,
+            "bstat": {
+                "watt": 28,
+                "matt": 28,
+                "str": 51,
+                "dex": 51,
+                "int": 51,
+                "luk": 51,
+                "def": 450
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalshoulder",
+            "upgrades": 1,
+            "hammers_added": 2
+        },
+        "bowman_shoulder": {
+            "name": "Eternal Archer Shoulder",
+            "override_image": "EternalShoulder",
+            "level": 250,
+            "class": "armor",
+            "type": "shoulder",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["dex", "str"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+                "watt": 28,
+                "matt": 28,
+                "str": 51,
+                "dex": 51,
+                "int": 51,
+                "luk": 51,
+                "def": 450
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalshoulder",
+            "upgrades": 1,
+            "hammers_added": 2
+        },
+        "thief_shoulder": {
+            "name": "Eternal Thief Shoulder",
+            "override_image": "EternalShoulder",
+            "level": 250,
+            "class": "armor",
+            "type": "shoulder",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+                "watt": 28,
+                "matt": 28,
+                "str": 51,
+                "dex": 51,
+                "int": 51,
+                "luk": 51,
+                "def": 450
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalshoulder",
+            "upgrades": 1,
+            "hammers_added": 2
+        },
+        "pirate_shoulder": {
+            "name": "Eternal Pirate Shoulder",
+            "override_image": "EternalShoulder",
+            "level": 250,
+            "class": "armor",
+            "type": "shoulder",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+                "watt": 28,
+                "matt": 28,
+                "str": 51,
+                "dex": 51,
+                "int": 51,
+                "luk": 51,
+                "def": 450
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalshoulder",
+            "upgrades": 1,
+            "hammers_added": 2
+        },
     },
     pensalir: {
         "warrior_hat": {
