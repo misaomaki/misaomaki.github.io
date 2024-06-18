@@ -184,6 +184,7 @@ let items_other_data = {
     skill: "", //orange text at the bottom denoting a skill
     flavor: "", //flavor text in white at the bottom
     shadowknight: false, //use shadowknight coins
+    exceptional_applied: false, /* only if the item has the exceptional key as part of its item data and if the user applies it */
     meta: {
             final_stats: {}, /* keep track of the final calculated stats from the drawn tooltip. mostly used for chaos scrolls */
             fsstat: "", /* flame score MAIN stat. defaults to mstat parameter, but can be overridden */
@@ -306,7 +307,6 @@ $(function() {
 
             //github is case sensitive for url
             img_name = img_name.replace("AbsoLab","Absolab").replace(/[\s-:\(\)'<>]/gi,"");
-
             istore.meta.img_name = `./assets/maple_items/${img_name}.${img_ext}`;
 
             if (append_style) {
@@ -317,6 +317,28 @@ $(function() {
                         background-size: contain;
                     }
                 `;   
+            }
+
+            /* check for exceptional enhancement parts and append its image */
+            let ep_img_name = "";
+            let ep_img_text = "png";
+
+            if ("exceptional" in istore) {
+                ep_img_name = istore.exceptional.name.replace(/[\s-:\(\)'<>]/gi,"");
+
+                if (istore.exceptional.img_type !== undefined) {
+                    ep_img_text = istore.exceptional.img_type;
+                }
+
+                istore.exceptional.img_name = `./assets/maple_items/etc/${ep_img_name}.${ep_img_text}`;
+
+                style_items += `
+                    .${istore.exceptional.img} {
+                        background: url(${istore.exceptional.img_name});
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                `;
             }
         }
     }

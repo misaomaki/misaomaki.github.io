@@ -6169,7 +6169,16 @@ var items_store = {
             },
             img: "item-commandingforceearrings",
             upgrades: 6,
-            hammers_added: 2
+            hammers_added: 2,
+            exceptional: {
+                name: "Helmet of Loyalty",
+                img: "item-exceptional-hol",
+                stat: {
+                    all_stats: 20,
+                    hp_mp: 1000,
+                    all_att: 15
+                }
+            }
         },
         endless_terror: {
             name: "Endless Terror",
@@ -6231,7 +6240,16 @@ var items_store = {
             },
             img: "item-magiceyepatch",
             upgrades: 3,
-            hammers_added: 2
+            hammers_added: 2,
+            exceptional: {
+                name: "Mark of Destruction",
+                img: "item-exceptional-mod",
+                stat: {
+                    all_stats: 15,
+                    hp_mp: 750,
+                    all_att: 10
+                }
+            }
         },
         berserked: {
             name: "Berserked",
@@ -6262,7 +6280,15 @@ var items_store = {
             },
             img: "item-berserked",
             upgrades: 5,
-            hammers_added: 2
+            hammers_added: 2,
+            exceptional: {
+                name: "Gravity Module",
+                img: "item-exceptional-gm",
+                stat: {
+                    all_stats: 15,
+                    all_att: 10
+                }
+            }
         },
         source_of_suffering: {
             name: "Source of Suffering",
@@ -6326,7 +6352,16 @@ var items_store = {
             },
             img: "item-dreamybelt",
             upgrades: 3,
-            hammers_added: 2
+            hammers_added: 2,
+            exceptional: {
+                name: "Nightmare Fragment",
+                img: "item-exceptional-fm",
+                stat: {
+                    all_stats: 20,
+                    hp_mp: 1000,
+                    all_att: 15
+                }
+            }
         }
     },
     breath_of_divinity: {

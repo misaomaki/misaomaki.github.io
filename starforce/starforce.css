@@ -1986,6 +1986,18 @@ body, html {
      display: inline-block;
  }
 
+ .tooltip-label-exceptional {
+    color: red;
+ }
+
+ .tooltip-exceptional {
+    background: url(../assets/item/AdditionalOptionTooltip.exceptional.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height: 13px;
+    width: 19px;
+ }
+
  /* generic form stuff */
  .form-group {
     padding: 5px;

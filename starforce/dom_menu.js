@@ -36,6 +36,7 @@ $(function() {
     const flame_max_4 = $("#flame_max_4");
     const flame_tier_rec = $("#flame_tier_rec");
     const i_con = $(".item-main-border");
+    const i_exceptional = $("#item_exceptional_container");
 
     const cube_select_main = $("#cube_select_main");
     const cube_select_bonus = $("#cube_select_bonus");
@@ -170,6 +171,10 @@ $(function() {
                         fsstat2: ddl_flame_score2.val()
                     });
 
+                    //set exceptional parts
+                    const has_exceptional_part = $("#cbApplyExceptional").prop("checked") ?? false;
+                    Item.set_exceptional_part(has_exceptional_part);
+                    
                     //set cube stuff
                     let cube_main_pot = cube_select_main.val();
                     if (cube_main_pot !== "") {
@@ -392,7 +397,7 @@ $(function() {
                             } else {
                                 return null;
                             }
-                        /* search for item class like "pitch boss" */
+                        /* search for item class like "pitched boss" */
                         case "category":
                             if (!value.startsWith("=")) {
                                 this_value = this_value.replace(/[-\s]/gi, "").toUpperCase();
@@ -616,6 +621,29 @@ $(function() {
                 /* auto select scroll based on main stat */
                 if (this_item.meta.fsstat != "") {
                     scroll_type.val(this_item.meta.fsstat);
+                }
+
+                /* check exceptional item status and display it */
+                if ("exceptional" in this_item) {
+                    let exceptional_html = `
+                        <div class="item-form">                    
+                            <span class="item-label" style="width:100%">
+                                <span class="item-label-icon ${this_item.exceptional.img}"></span> <b>Exceptional Part</b>
+                            </span>
+                            <hr>
+                            <label for="cbApplyExceptional">
+                                <span style="width:250px">
+                                     Apply ${this_item.exceptional.name}
+                                </span>
+                                
+                                <input type="checkbox" id="cbApplyExceptional">
+                            </label>
+                        </div>
+                    `;
+
+                    i_exceptional.removeClass("hidden").html(exceptional_html);
+                } else {
+                    i_exceptional.addClass("hidden").html("");
                 }
             });
 

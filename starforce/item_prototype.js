@@ -460,6 +460,9 @@ item.prototype.redraw_item_tooltip = function() {
     let icube = this.check_cache(()=>{
         return i_con.find(".item-cube");
     }, "dom", "icube");   
+    let iexceptional = this.check_cache(()=>{
+        return i_con.find(".item-exceptional");
+    }, "dom", "iexceptional");   
     let imisc = this.check_cache(()=>{
         return i_con.find(".item-misc");
     }, "dom", "imisc");   
@@ -730,6 +733,55 @@ item.prototype.redraw_item_tooltip = function() {
     }
 
     icube.html(cube_html);
+
+    /* exceptional part */
+    if (this.idata.meta.exceptional_applied){
+        const exceptional_order = [{
+            id: "all_stats",
+            name: "All Stats"
+        }, {
+            id: "hp_mp",
+            name: "MaxHP / MaxMP"
+        }, {
+            id: "all_att",
+            name: "Attack Power & Magic ATT"
+        }];
+
+        const _this = this;
+
+        iexceptional.html(`
+            <div class="item-dash-border" style="margin-bottom:0px"></div>
+            <div class="item-potential item-main-potential">
+                <span style="margin-top:5px;margin-botton:5px;">
+                    <div class="tooltip-exceptional"></div> <div class="tooltip-label tooltip-label-exceptional">Exceptional</div>
+                </span>
+                ${
+                    exceptional_order.reduce((a,b)=>{
+                        const i_exc_stat = _this.idata.exceptional.stat[b.id];
+
+                        if (i_exc_stat == undefined) return a;
+
+                        a += `
+                            <span class="potential-line potential-line-main">
+                                ${b.name} : <span style="margin-left:6px">+${i_exc_stat}</span>
+                            </span>
+                        `;
+
+                        return a;
+                    }, '')
+                }
+                <span class="potential-line potential-line-main">
+                    Apply Exceptional Enhancement 1 times
+                </span>                
+                <span class="potential-line potential-line-main">
+                    <span style="margin:5px"></span>(Can be enhanced up to 1 times.)
+                </span>
+                 
+            </div>
+        `);
+    } else {
+        iexceptional.html("");
+    }
 
     if (this.idata.flavor !== "" || this.idata.skill !== ""){
         imisc.html(`
@@ -1271,4 +1323,8 @@ item.prototype.redraw_sf = function() {
    
     this.idata.meta.sf_log_item = {};
     return true;
+};
+
+item.prototype.set_exceptional_part = function(enable_exceptional = false) {
+    this.idata.meta.exceptional_applied = enable_exceptional;
 };
