@@ -6140,8 +6140,8 @@ var items_store = {
             scrollable: false,
             enhanceable: false
         },
-        commanding_force_earrings: {
-            name: "Commanding Force Earrings",
+        commanding_force_earring: {
+            name: "Commanding Force Earring",
             level: 200,
             class: "armor",
             type: "earrings",
@@ -6167,7 +6167,7 @@ var items_store = {
                 int: 0,
                 luk: 0
             },
-            img: "item-commandingforceearrings",
+            img: "item-commandingforceearring",
             upgrades: 6,
             hammers_added: 2,
             exceptional: {
