@@ -40,12 +40,18 @@ item.prototype.flame_lookup.linear_lookup = function(l = 1, level = 0) {
             _lt.push(flame_data);
         }
     } else {
-        const max_tier_level = 230;
+        const max_tier_level = 250;      
+        const max_tier = 12;  
         let step = 20;
 
         incr = 0;
         for (let i = step - 1; i <= max_tier_level + step; i += step) {
             ++incr;
+
+            /* max tiers */
+            if (incr > max_tier) {
+                incr = max_tier;
+            }
 
             const flame_data = {
                 from: i - step + 1,
