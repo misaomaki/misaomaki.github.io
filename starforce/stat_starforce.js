@@ -1,6 +1,14 @@
 $(function() {
     var key_label = {};
 
+    /* range cost of item in multiples of 10 billion */
+    const cost_range_stat = {};
+    const max_cost_range_tier = 30;
+
+    for (let i = 1; i <= max_cost_range_tier; ++i) {
+        cost_range_stat[`cost_under_${i}`] = 0;
+    }
+
     /* 
         worker for starforcing. faster than using the Item.starforce() method
         because it only writes necessary log data
@@ -62,6 +70,7 @@ $(function() {
         /* get log data from worker and write to analysis object. then rerun*/
         worker.onmessage = function(d) {
             let anal_sf = analyze_starforce(d.data.data);
+
             sf_analysis_items.push(anal_sf.g); 
 
             /* update ui stats */
@@ -186,6 +195,16 @@ $(function() {
             "max_boom": "Most Booms"
         };
 
+        for (let range in cost_range_stat) {
+            let key = range.split("_");
+            let rtier = +key[2];
+            if (rtier != max_cost_range_tier) {
+                key_label[range] = `${(rtier - 1) * 10} - ${rtier * 10}b mesos`;
+            } else {
+                key_label[range] = `${(rtier - 1) * 10}+b mesos`;
+            }
+        }
+
         /* remove shadowknight coin from table if not needed */
         if (!Item.idata.shadowknight) {
             delete key_label["sk_cost"];
@@ -295,15 +314,43 @@ $(function() {
 
         let stat_html = '';
 
+
+        const label_added = {
+            price_range: false
+        };
+
         for (let i in key_label) {
+            let add_price_range_label = false;
+            let sub_row = false;
+
+            let is_cost_under = i.startsWith("cost_under");
+            if (!label_added.price_range && is_cost_under) {
+                label_added.price_range = true;
+                add_price_range_label = true;
+            }
+
+            if (is_cost_under) {
+                sub_row = true;
+            }
+
             /* 
                 append stat item based on its label.
                 cost has its own manual due to the struct not properly ordering
                 all other ones will order
+
+                this is really wonky
             */
             stat_html += `
+                ${
+                    add_price_range_label ?
+                    `
+                        <tr>
+                            <td class="data-label-row" colspan="100%">Item Starforce Price Range:</td>
+                        </tr>
+                    ` : ''
+                }
                 <tr>
-                    <td class="data-label-row">${key_label[i]}:</td> 
+                    <td class="data-label-row ${sub_row ? ' data-sub-row' : ''}">${key_label[i]}:</td> 
                     <td class="data-number-row">
                         ${
                             typeof avg_data[i] === 'object' ?
@@ -407,6 +454,8 @@ $(function() {
 
         /* get the avg totals for each item in the analysis data */
         let total_avg_data = part_data.reduce((a,b,c)=>{
+            b = $.extend(true,{},b);
+
             for (let i in b) {
                 /* keep track of min and max cost per part */
                 if (i === "cost") {
@@ -454,6 +503,26 @@ $(function() {
         total_avg_data.max_boom = sf_minmax[part].highest_boom;
         total_avg_data.min_boom = sf_minmax[part].lowest_boom;
 
+        /* keep track of item cost in its range 
+            example - if an item cost 35 billion mesos to starforce, it counts up the "30-40 billion range" key
+        */
+        for (let i = 1; i <= max_cost_range_tier; ++i) {
+            total_avg_data[`cost_under_${i}`] = 0;
+        }
+
+        for (let i = 0; i < part_data.length; ++i) {
+            let cost = part_data[i].cost["1.0"];
+            let tier = Math.floor(cost / 1e10);
+
+            if (tier > max_cost_range_tier) {
+                tier = max_cost_range_tier;
+            } else if (tier === 0) {
+                tier = 1;
+            }
+
+            ++total_avg_data[`cost_under_${tier}`];
+        }
+  
         return total_avg_data;
     };
 });
