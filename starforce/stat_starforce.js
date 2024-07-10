@@ -5,7 +5,7 @@ $(function() {
     const cost_range_stat = {};
     const max_cost_range_tier = 30;
 
-    for (let i = 1; i <= max_cost_range_tier; ++i) {
+    for (let i = 0; i <= max_cost_range_tier; ++i) {
         cost_range_stat[`cost_under_${i}`] = 0;
     }
 
@@ -199,9 +199,9 @@ $(function() {
             let key = range.split("_");
             let rtier = +key[2];
             if (rtier != max_cost_range_tier) {
-                key_label[range] = `${(rtier - 1) * 10} - ${rtier * 10}b mesos`;
+                key_label[range] = `${rtier * 10} - ${rtier + 1 * 10}b mesos`;
             } else {
-                key_label[range] = `${(rtier - 1) * 10}+b mesos`;
+                key_label[range] = `${rtier * 10}+b mesos`;
             }
         }
 
@@ -506,7 +506,7 @@ $(function() {
         /* keep track of item cost in its range 
             example - if an item cost 35 billion mesos to starforce, it counts up the "30-40 billion range" key
         */
-        for (let i = 1; i <= max_cost_range_tier; ++i) {
+        for (let i = 0; i <= max_cost_range_tier; ++i) {
             total_avg_data[`cost_under_${i}`] = 0;
         }
 
@@ -516,8 +516,6 @@ $(function() {
 
             if (tier > max_cost_range_tier) {
                 tier = max_cost_range_tier;
-            } else if (tier === 0) {
-                tier = 1;
             }
 
             ++total_avg_data[`cost_under_${tier}`];
