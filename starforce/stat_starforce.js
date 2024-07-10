@@ -199,7 +199,7 @@ $(function() {
             let key = range.split("_");
             let rtier = +key[2];
             if (rtier != max_cost_range_tier) {
-                key_label[range] = `${rtier * 10} - ${rtier + 1 * 10}b mesos`;
+                key_label[range] = `${rtier * 10} - ${(rtier + 1) * 10}b mesos`;
             } else {
                 key_label[range] = `${rtier * 10}+b mesos`;
             }
