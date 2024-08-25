@@ -18699,7 +18699,7 @@ var items_store = {
                 "luk": 0
             },
             "img": "item-dawnguardianangelring",
-            "upgrades": 3,
+            "upgrades": 2,
             "hammers_added": 2,
             "starforce": true,
             "scrollable": true,
