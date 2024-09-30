@@ -6362,6 +6362,38 @@ var items_store = {
                     all_att: 15
                 }
             }
+        },
+        total_control: {
+            name: "Total Control",
+            level: 200,
+            class: "armor",
+            type: "mechanical heart",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "",
+            pstat: ["str", "dex", "int", "luk"],
+            att_type: "att",
+            flame_type: 0,
+            bstat: {
+                watt: 15,
+                matt: 15,
+                str: 25,
+                dex: 25,
+                int: 25,
+                luk: 25,
+                hp: 1250,
+                rank: 5,
+                ied: 0.30
+            },
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-totalcontrol",
+            upgrades: 9,
+            hammers_added: 2
         }
     },
     breath_of_divinity: {
