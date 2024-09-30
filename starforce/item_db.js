@@ -11338,7 +11338,7 @@ var items_store = {
                 boss_damage: 0.3,
                 ied: 0.2,
                 int: 150,
-                luk: 6150
+                luk: 150
             },
             req: {
                 str: 0,
@@ -11648,8 +11648,8 @@ var items_store = {
                 matt: 406,
                 boss_damage: 0.3,
                 ied: 0.2,
-                int: 100,
-                luk: 100
+                int: 150,
+                luk: 150
             },
             req: {
                 str: 0,
