@@ -1882,6 +1882,10 @@ body, html {
     background-color: #f2f2f2;
 }
 
+#star_force_log_body tr:hover {
+    background: #dddbff
+ }
+
 .item-skill {
     display: inline-block;
     font-size: 10.5px;
