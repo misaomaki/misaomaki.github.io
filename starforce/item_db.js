@@ -15267,7 +15267,7 @@ var items_store = {
         "thief_shoes": {
             "name": "Tsukuyomi's Shoes",
             "level": 150,
-            "class": "weapon",
+            "class": "armor",
             "type": "shoes",
             "speed": "",
             "job": ["thief"],
@@ -15893,7 +15893,7 @@ var items_store = {
         "magician_shoes": {
             "name": "Ame-no-Uzume's Shoes",
             "level": 150,
-            "class": "weapon",
+            "class": "armor",
             "type": "shoes",
             "speed": "",
             "job": ["magician"],
@@ -16570,7 +16570,7 @@ var items_store = {
         "pirate_shoes": {
             "name": "Susano-o's Shoes",
             "level": 150,
-            "class": "weapon",
+            "class": "armor",
             "type": "shoes",
             "speed": "",
             "job": ["pirate"],
@@ -17111,7 +17111,7 @@ var items_store = {
         "warrior_shoes": {
             "name": "Amaterasu's Shoes",
             "level": 150,
-            "class": "weapon",
+            "class": "armor",
             "type": "shoes",
             "speed": "",
             "job": ["warrior"],
@@ -18083,7 +18083,7 @@ var items_store = {
         "bowman_shoes": {
             "name": "Oyamatsumi's Shoes",
             "level": 150,
-            "class": "weapon",
+            "class": "armor",
             "type": "shoes",
             "speed": "",
             "job": ["bowman"],
