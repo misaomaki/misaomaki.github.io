@@ -636,6 +636,451 @@ var items_store = {
             "upgrades": 1,
             "hammers_added": 2
         },
+        "warrior_gloves": {
+            "name": "Eternal Knight Gloves",
+            "override_image": "EternalGloves",
+            "level": 250,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 12,
+                "str": 55,
+                "dex": 55,
+                "def": 325
+            },
+            "req": {
+                "str": 750,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalgloves",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "warrior_shoes": {
+            "name": "Eternal Knight Shoes",
+            "override_image": "EternalShoes",
+            "level": 250,
+            "class": "armor",
+            "type": "shoes",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 12,
+                "str": 55,
+                "dex": 55,
+                "def": 325,
+                "speed": 10,
+                "jump": 7
+            },
+            "req": {
+                "str": 750,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalshoes",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "warrior_cape": {
+            "name": "Eternal Knight Cape",
+            "override_image": "EternalCape",
+            "level": 250,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 9,
+                "matt": 9,
+                "str": 50,
+                "dex": 50,
+                "int": 50,
+                "luk": 50,
+                "def": 600
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalcape",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "mage_gloves": {
+            "name": "Eternal Mage Gloves",
+            "override_image": "EternalGloves",
+            "level": 250,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["mage"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "matt": 12,
+                "int": 55,
+                "luk": 55,
+                "def": 325
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 750,
+                "luk": 0
+            },
+            "img": "item-eternalgloves",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "mage_shoes": {
+            "name": "Eternal Mage Shoes",
+            "override_image": "EternalShoes",
+            "level": 250,
+            "class": "armor",
+            "type": "shoes",
+            "speed": "",
+            "job": ["mage"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "matt": 12,
+                "int": 55,
+                "luk": 55,
+                "def": 325,
+                "speed": 10,
+                "jump": 7
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 750,
+                "luk": 0
+            },
+            "img": "item-eternalshoes",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "mage_cape": {
+            "name": "Eternal Mage Cape",
+            "override_image": "EternalCape",
+            "level": 250,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["mage"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 9,
+                "matt": 9,
+                "str": 50,
+                "dex": 50,
+                "int": 50,
+                "luk": 50,
+                "def": 600
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalcape",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "bowman_gloves": {
+            "name": "Eternal Archer Gloves",
+            "override_image": "EternalGloves",
+            "level": 250,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["dex", "str"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 12,
+                "str": 55,
+                "dex": 55,
+                "def": 325
+            },
+            "req": {
+                "str": 0,
+                "dex": 750,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalgloves",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "bowman_shoes": {
+            "name": "Eternal Archer Shoes",
+            "override_image": "EternalShoes",
+            "level": 250,
+            "class": "armor",
+            "type": "shoes",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["dex", "str"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 12,
+                "str": 55,
+                "dex": 55,
+                "def": 325,
+                "speed": 10,
+                "jump": 7
+            },
+            "req": {
+                "str": 0,
+                "dex": 750,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalshoes",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "bowman_cape": {
+            "name": "Eternal Archer Cape",
+            "override_image": "EternalCape",
+            "level": 250,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["bowman"],
+            "mstat": "dex",
+            "pstat": ["dex", "str"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 9,
+                "matt": 9,
+                "str": 50,
+                "dex": 50,
+                "int": 50,
+                "luk": 50,
+                "def": 600
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalcape",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "thief_gloves": {
+            "name": "Eternal Thief Gloves",
+            "override_image": "EternalGloves",
+            "level": 250,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 12,
+                "luk": 55,
+                "dex": 55,
+                "def": 325
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 750
+            },
+            "img": "item-eternalgloves",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "thief_shoes": {
+            "name": "Eternal Thief Shoes",
+            "override_image": "EternalShoes",
+            "level": 250,
+            "class": "armor",
+            "type": "shoes",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 12,
+                "luk": 55,
+                "dex": 55,
+                "def": 325,
+                "speed": 10,
+                "jump": 7
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 750
+            },
+            "img": "item-eternalshoes",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "thief_cape": {
+            "name": "Eternal Thief Cape",
+            "override_image": "EternalCape",
+            "level": 250,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["thief"],
+            "mstat": "luk",
+            "pstat": ["dex", "luk"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 9,
+                "matt": 9,
+                "str": 50,
+                "dex": 50,
+                "int": 50,
+                "luk": 50,
+                "def": 600
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalcape",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "pirate_gloves": {
+            "name": "Eternal Pirate Gloves",
+            "override_image": "EternalGloves",
+            "level": 250,
+            "class": "armor",
+            "type": "gloves",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 12,
+                "str": 55,
+                "dex": 55,
+                "def": 325
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalgloves",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "pirate_shoes": {
+            "name": "Eternal Pirate Shoes",
+            "override_image": "EternalShoes",
+            "level": 250,
+            "class": "armor",
+            "type": "shoes",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 12,
+                "str": 55,
+                "dex": 55,
+                "def": 325,
+                "speed": 10,
+                "jump": 7
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalshoes",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
+        "pirate_cape": {
+            "name": "Eternal Pirate Cape",
+            "override_image": "EternalCape",
+            "level": 250,
+            "class": "armor",
+            "type": "cape",
+            "speed": "",
+            "job": ["pirate"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 9,
+                "matt": 9,
+                "str": 50,
+                "dex": 50,
+                "int": 50,
+                "luk": 50,
+                "def": 600
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-eternalcape",
+            "upgrades": 7,
+            "hammers_added": 2
+        },
     },
     pensalir: {
         "warrior_hat": {
@@ -20438,5 +20883,38 @@ var items_store = {
                 "max_stars": 22
             }
         }
+    },
+    "brilliant_boss": {
+        "whisper_of_the_source": {
+            "name": "Whisper of the Source",
+            "level": 250,
+            "class": "armor",
+            "type": "ring",
+            "speed": "",
+            "job": ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            "mstat": "", 
+            "pstat": ["str", "dex", "int", "luk"], 
+            "att_type": "att", 
+            "flame_type": 0,
+            "bstat": {
+                "watt": 5,
+                "matt": 5,
+                "str": 10,
+                "dex": 10,
+                "int": 10,
+                "luk": 10,
+                "hp": 500,
+                "mp": 500
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-whisperofthesource",
+            "upgrades": 3,
+            "hammers_added": 2
+        },
     }
 }
