@@ -6616,8 +6616,8 @@ var items_store = {
             upgrades: 6,
             hammers_added: 2,
             exceptional: {
-                name: "Helmet of Loyalty",
-                img: "item-exceptional-hol",
+                name: "Exceptional Hammer (Earrings)",
+                img: "item-exceptional-earrings",
                 stat: {
                     all_stats: 20,
                     hp_mp: 1000,
@@ -6687,8 +6687,8 @@ var items_store = {
             upgrades: 3,
             hammers_added: 2,
             exceptional: {
-                name: "Mark of Destruction",
-                img: "item-exceptional-mod",
+                name: "Exceptional Hammer (Eye Acc)",
+                img: "item-exceptional-eye",
                 stat: {
                     all_stats: 15,
                     hp_mp: 750,
@@ -6727,8 +6727,8 @@ var items_store = {
             upgrades: 5,
             hammers_added: 2,
             exceptional: {
-                name: "Gravity Module",
-                img: "item-exceptional-gm",
+                name: "Exceptional Hammer (Face Acc)",
+                img: "item-exceptional-face",
                 stat: {
                     all_stats: 15,
                     all_att: 10
@@ -6799,8 +6799,8 @@ var items_store = {
             upgrades: 3,
             hammers_added: 2,
             exceptional: {
-                name: "Nightmare Fragment",
-                img: "item-exceptional-fm",
+                name: "Exceptional Hammer (Belt)",
+                img: "item-exceptional-belt",
                 stat: {
                     all_stats: 20,
                     hp_mp: 1000,
