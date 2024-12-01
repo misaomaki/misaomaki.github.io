@@ -628,7 +628,7 @@ $(function() {
                     let exceptional_html = `
                         <div class="item-form">                    
                             <span class="item-label" style="width:100%">
-                                <span class="item-label-icon ${this_item.exceptional.img}"></span> <b>Exceptional Part</b>
+                                <span class="item-label-icon ${this_item.exceptional.img}"></span> <b>Exceptional Hammer</b>
                             </span>
                             <hr>
                             <label for="cbApplyExceptional">
