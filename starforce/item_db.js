@@ -20887,6 +20887,7 @@ var items_store = {
     "brilliant_boss": {
         "whisper_of_the_source": {
             "name": "Whisper of the Source",
+            "override_image": "WhisperOfTheSource",
             "level": 250,
             "class": "armor",
             "type": "ring",
