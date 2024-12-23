@@ -485,83 +485,6 @@ item.prototype.redraw_item_tooltip = function() {
         return i_con.find(".item-sub-description");
     }, "dom", "isub");
 
-    //item tooltip stats in order of how Maplestory shows it
-    let order = [{
-        name: "Rank",
-        value: "rank",
-        type: "raw" //no +
-    }, {
-        name: "STR",
-        value: "str"
-    },{
-        name: "DEX",
-        value: "dex"
-    },{
-        name: "INT",
-        value: "int"
-    },{
-        name: "LUK",
-        value: "luk"
-    },{
-        name: "MaxHP",
-        value: "hp"
-    },{
-        name: "MaxHP",
-        value: "p_hp",
-        type: "%",
-        symbol: "%"
-    },{
-        name: "MaxMP",
-        value: "mp"
-    },{
-        name: "MaxMP",
-        value: "p_mp",
-        type: "%",
-        symbol: "%"
-    },{
-        name: "Attack Power",
-        value: "watt"
-    },{
-        name: "Magic Attack",
-        value: "matt"
-    },{
-        name: "Defense",
-        value: "def"
-    },{
-        name: "Required Level",
-        value: "reqlvl"
-    },{
-        name: "Speed",
-        value: "speed"
-    },{
-        name: "Jump",
-        value: "jump"
-    },{
-        name: "Knockback Chance",
-        value: "knockback",
-        type: "%",
-        symbol: "%"
-    },{
-        name: "Boss Damage",
-        value: "boss_damage",
-        type: "%",
-        symbol: "%"
-    },{
-        name: "Ignored Enemy DEF",
-        value: "ied",
-        type: "%",
-        symbol: "%"
-    },{
-        name: "Damage",
-        value: "damage",
-        type: "%",
-        symbol: "%"
-    },{
-        name: "All Stats",
-        value: "all_stat",
-        type: "%",
-        symbol: "%"
-    }];
 
     let item_stats = this.get_final_stats();
     let scroll_count = this.idata.boosts.scroll_data.length;
@@ -573,7 +496,7 @@ item.prototype.redraw_item_tooltip = function() {
             Attack Speed: ${item_meta.enum.attack_speed[this.idata.weapon_data.speed]} (Stage ${this.idata.weapon_data.speed}) <br>
         ` : ''}
         ${
-            order.reduce((b, a)=>{
+            GLOBAL.item_stat_order.reduce((b, a)=>{
                 let a_type = a.type || "";
                 let a_symbol = a.symbol || "";
 

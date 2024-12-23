@@ -33,6 +33,8 @@ const stats = {
     reqlvl: 0 //negative level requirements
 };
 
+
+
 const GLOBAL = {
     starforce: {
         max_stars: 25,
@@ -52,3 +54,81 @@ GLOBAL.starforce.safeguardable_stars = [];
 for (let i = GLOBAL.starforce.safeguard_stars.min; i < GLOBAL.starforce.safeguard_stars.max; ++i) {
     GLOBAL.starforce.safeguardable_stars.push(i);
 }
+
+//item tooltip stats in order of how Maplestory shows it
+GLOBAL.item_stat_order = [{
+    name: "Rank",
+    value: "rank",
+    type: "raw" //no +
+}, {
+    name: "STR",
+    value: "str"
+},{
+    name: "DEX",
+    value: "dex"
+},{
+    name: "INT",
+    value: "int"
+},{
+    name: "LUK",
+    value: "luk"
+},{
+    name: "MaxHP",
+    value: "hp"
+},{
+    name: "MaxHP",
+    value: "p_hp",
+    type: "%",
+    symbol: "%"
+},{
+    name: "MaxMP",
+    value: "mp"
+},{
+    name: "MaxMP",
+    value: "p_mp",
+    type: "%",
+    symbol: "%"
+},{
+    name: "Attack Power",
+    value: "watt"
+},{
+    name: "Magic Attack",
+    value: "matt"
+},{
+    name: "Defense",
+    value: "def"
+},{
+    name: "Required Level",
+    value: "reqlvl"
+},{
+    name: "Speed",
+    value: "speed"
+},{
+    name: "Jump",
+    value: "jump"
+},{
+    name: "Knockback Chance",
+    value: "knockback",
+    type: "%",
+    symbol: "%"
+},{
+    name: "Boss Damage",
+    value: "boss_damage",
+    type: "%",
+    symbol: "%"
+},{
+    name: "Ignored Enemy DEF",
+    value: "ied",
+    type: "%",
+    symbol: "%"
+},{
+    name: "Damage",
+    value: "damage",
+    type: "%",
+    symbol: "%"
+},{
+    name: "All Stats",
+    value: "all_stat",
+    type: "%",
+    symbol: "%"
+}];
