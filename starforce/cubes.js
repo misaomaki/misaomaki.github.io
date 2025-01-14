@@ -100,7 +100,8 @@ cube.cube_line_as_int_stats = [
     "Critical Chance", 
     "Item Drop Rate", 
     "Mesos Obtained",
-    "HP Recovery Items and Skills"
+    "HP Recovery Items and Skills",
+    "Cooldown"
 ];
 
 cube.get_cube_line_as_int_value = async function() {
@@ -117,17 +118,38 @@ cube.get_cube_line_as_int_value = async function() {
             if (!has_line) continue;
             if (line in cube_lines) continue;
 
-            let int_value = line.match(/\d+%?/)[0] ?? "";
+            let int_value = "";
             let is_percent = false;
 
-            if (int_value == "") continue;
+            /*
+                match as
+                (description) -2 (description)
+            */
+            if (line.includes("Cooldown")) {
+                int_value = line.match(/\-(\d)/)[0] ?? "";
 
-            if (int_value.includes("%")) {
-                int_value = +int_value.replace("%", "") / 100;
-                line_id += "_p";
-                is_percent = true;
+                if (int_value == "") continue;
+                
+                int_value = +int_value * -1;
+
+            /* 
+                match as 
+                (description): +5
+                (description): +30%
+            */
             } else {
-                int_value = +int_value;
+                int_value = line.match(/\d+%?/)[0] ?? "";
+                is_percent = false;
+
+                if (int_value == "") continue;
+
+                if (int_value.includes("%")) {
+                    int_value = +int_value.replace("%", "") / 100;
+                    line_id += "_p";
+                    is_percent = true;
+                } else {
+                    int_value = +int_value;
+                }
             }
 
             cube_lines[line] = {
