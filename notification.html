@@ -87,6 +87,8 @@
     <button type="button" data-key="6" onclick="stepTime(15, 'seconds')" class="btn btn-success">+15s</button>
     <button type="button" data-key="7" onclick="stepTime(1, 'minutes')" class="btn btn-success">+1m</button>
     <button type="button" data-key="8" onclick="stepTime(5, 'minutes')" class="btn btn-success">+5m</button>    
+
+    <button type="button" data-key="9" onclick="removeSeconds()" class="btn btn-primary">Remove Seconds</button>    
     |
     <button type="button" data-key="Enter" onclick="scheduleNotification()" class="btn btn-primary">Add Notification</button>
 </form>
@@ -151,6 +153,7 @@
 
 <script>
 let notificationQueue = [];
+let userInput = false;
 
 function scheduleNotification(timeInSeconds, unit) {
     var text = document.getElementById('textInput').value;
@@ -300,16 +303,19 @@ function getCurrentTime() {
     const now = new Date();
 
     // Format the time as "12:00 AM" or "01:30 PM"
-    const formattedTime = now.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', hour12: true });
+    const formattedTime = now.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
 
     // Set the value of the input element
     document.getElementById('timeInput').value = formattedTime;
+
+    userInput = false;
 }
 
 function stepTime(step = 1, unit = 'minutes') {
     const timeInput = document.getElementById('timeInput');
     // Get the value of the input element
     let currentTimeString = timeInput.value;
+    userInput = true;
 
     // Check if the input is empty
     if (currentTimeString.trim() === '') {
@@ -339,12 +345,31 @@ function stepTime(step = 1, unit = 'minutes') {
         currentTime.setSeconds(timeSeconds + step);
     }
     
-
     // Format the incremented time and set the value of the input element
     const formattedTime = currentTime.toLocaleTimeString(undefined, timeOption);
     document.getElementById('timeInput').value = formattedTime;
 }
 
+function removeSeconds() {
+    let timeString = document.getElementById('timeInput').value;
+
+    // Split the time string into parts: ["11", "00", "05 AM"]
+    const timeParts = timeString.split(':');
+    
+    // Get hours and minutes from the first two parts, and keep the AM/PM part
+    const hours = timeParts[0];
+    const minutes = timeParts[1];
+    const ampm = timeParts[2].slice(-2); // Get the last two characters (AM or PM)
+
+    // Reconstruct the time string without seconds
+    let time =  `${hours}:${minutes} ${ampm}`;
+    
+    document.getElementById('timeInput').value = time;
+
+    userInput = true;
+    
+    return time;
+}
 
 function requestNotificationPermission() {
     Notification.requestPermission().then(function (permission) {
@@ -394,6 +419,28 @@ function requestNotificationPermission() {
     }
   }
 
+
+    function updateTime() {
+        if (!userInput || timeInput.value === '') {
+            getCurrentTime();
+        }
+    }
+
+    // Event listener to track user input
+    document.getElementById('timeInput').addEventListener('input', function () {
+        const timeInput = this;
+        if (timeInput.value === '') {
+            // If input is cleared, resume ticking
+            userInput = false;
+        } else {
+            // If user types something, stop updating the time
+            userInput = true;
+        }
+    });
+
+    setInterval(updateTime, 1000); // Tick every second
+    updateTime(); // Initialize right away
+    
   // Call the function to populate the table on page load
   populateTable();
 </script>
