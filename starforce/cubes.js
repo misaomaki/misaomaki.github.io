@@ -252,7 +252,8 @@ cube.rates.tier_up_region = {
     }
 }
 
-cube.rates.tier_up = cube.rates.tier_up_region[system.cube];
+//hardcode for now
+cube.rates.tier_up = cube.rates.tier_up_region["GMS"];
 
 let stats_affected = ["STR", "DEX", "INT", "LUK", "ATT", "Magic ATT", "All Stats", "Max HP", "Max MP", "Damage"];
 cube.rates.cube_stat_increase = function(stat) {
