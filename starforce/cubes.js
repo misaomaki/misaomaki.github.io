@@ -164,47 +164,109 @@ cube.get_cube_line_as_int_value = async function() {
 }
 
 //tier up rate
-cube.rates.tier_up = {
-    red: {
-        epic: 0.06,
-        unique: 0.018,
-        legendary: 0.003
+cube.rates.tier_up_region = {
+    KMS: {
+        red: {
+            epic: 0.06,
+            unique: 0.018,
+            legendary: 0.003
+        },
+        black: {
+            epic: 0.15,
+            unique: 0.035,
+            legendary: 0.01
+        },
+        bonus: {
+            epic: 0.047619,
+            unique: 0.019608,
+            legendary: 0.007
+        },
+        white: {
+            epic: 0.047619,
+            unique: 0.019608,
+            legendary: 0.007
+        },
+        occult: {
+            epic: 0.009901,
+            unique: 0,
+            legendary: 0
+        },
+        bonus_occult: {
+            epic: 0.004,
+            unique: 0,
+            legendary: 0
+        },
+        master: {
+            epic: 0.047619,
+            unique: 0.011858,
+            legendary: 0
+        },
+        meister: {
+            epic: 0.079994,
+            unique: 0.016959,
+            legendary: 0.001996
+        }
     },
-    black: {
-        epic: 0.15,
-        unique: 0.035,
-        legendary: 0.01
-    },
-    bonus: {
-        epic: 0.047619,
-        unique: 0.019608,
-        legendary: 0.007
-    },
-    white: {
-        epic: 0.047619,
-        unique: 0.019608,
-        legendary: 0.007
-    },
-    occult: {
-        epic: 0.009901,
-        unique: 0,
-        legendary: 0
-    },
-    bonus_occult: {
-        epic: 0.004,
-        unique: 0,
-        legendary: 0
-    },
-    master: {
-        epic: 0.047619,
-        unique: 0.011858,
-        legendary: 0
-    },
-    meister: {
-        epic: 0.079994,
-        unique: 0.016959,
-        legendary: 0.001996
+    /* from maple wiki */
+    GMS: {
+        red: {
+            epic: 0.141,
+            unique: 0.06,
+            legendary: 0.024
+        },
+        black: {
+            epic: 0.16,
+            unique: 0.11,
+            legendary: 0.047
+        },
+        bonus: {
+            epic: 0.047619,
+            unique: 0.019608,
+            legendary: 0.007
+        },
+        white: {
+            epic: 0.047619,
+            unique: 0.019608,
+            legendary: 0.007
+        },
+        occult: {
+            epic: 0.01,
+            unique: 0,
+            legendary: 0
+        },
+        bonus_occult: {
+            epic: 0.004,
+            unique: 0,
+            legendary: 0
+        },
+        master: {
+            epic: 0.118,
+            unique: 0.038,
+            legendary: 0
+        },
+        meister: {
+            epic: 0.141,
+            unique: 0.06,
+            legendary: 0.024
+        }
     }
+}
+
+cube.rates.tier_up = cube.rates.tier_up_region[system.cube];
+
+let stats_affected = ["STR", "DEX", "INT", "LUK", "ATT", "Magic ATT", "All Stats", "Max HP", "Max MP", "Damage"];
+cube.rates.cube_stat_increase = function(stat) {
+    let stat_check = stat.split(":");
+
+    if (!stats_affected.includes(stat_check[0])) {
+        return stat;
+    } 
+
+    let new_stat = stat.replace(/(\d+)/, (match) => {
+        return parseInt(match) + 1;
+    });
+
+    return new_stat;
 }
 
 //tier in order
@@ -312,9 +374,24 @@ cube.resolve_cube_rates = async function(cube_type, type) {
     for (let level in clines) {
         r_cube_lines[level] = {};
 
+        /*
+            GMS - for level 150+ items, add 1 to specific stats
+        */
         for (let tier in clines[level]) {
             r_cube_lines[level][tier] = clines[level][tier].map((a)=>{
-                return crates[a];
+                /* cube lines of item based on its level and potential */
+                let this_cube_lines = {};
+
+                if (level > 150) {
+                    for (let cl in crates[a]) {
+                        let new_stat = cube.rates.cube_stat_increase(cl);
+                        this_cube_lines[new_stat] = this_cube_lines[cl];
+                    }
+                } else {
+                    this_cube_lines = crates[a];
+                }
+                
+                return this_cube_lines;
             });
         }
     }
@@ -1598,7 +1675,10 @@ $(function(){
 
     /* change display. does not change rates */
     $("#system_cube_display").on("change", function() {
-        change_cube_visual($(this).val());
+        system.cube = $(this).val();
+        change_cube_visual(system.cube);
+
+        cube.rates.tier_up = cube.rates.tier_up_region[system.cube];
     });
 });
 

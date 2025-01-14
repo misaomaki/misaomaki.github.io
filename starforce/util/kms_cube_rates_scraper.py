@@ -164,7 +164,8 @@ def parse_raw_html(level, cubeItemId, content):
 
         #for 160+ level item tiers, add 1 to stat value based on list of stats
         #up to level 200, as 200+ in KMS gain the same stat tier upgrade as level 151+ items in GMS
-        if level > 150 and level < 201:
+        #handle this later. get the raw as is
+        if False and level > 150 and level < 201:
             if cubeType == 1:
                 for stat in STAT_UPGRADES_160:
                     line_type_translated = checkUpgradeStat(line_type_translated, stat)
@@ -402,6 +403,7 @@ kr_en_lines = {
     "<Useful Hyper Body> skill can be used": "Enables the &lt;Decent Hyper Body&gt; skill",
     "<Useful Haste> skill can be used": "Enables the &lt;Decent Haste&gt; skill",
     "<Useful Advanced Bless> skill can be used": "Enables the &lt;Decent Advanced Blessing&gt; skill",
+    "<Useful Advanced Blessing> skill can be used": "Enables the &lt;Decent Advanced Blessing&gt; skill",
     "<Useful Mystic Door> skill can be used": "Enables the &lt;Decent Mystic Door&gt; skill",
     "<Useful Wind Booster> skill can be used": "Enables the &lt;Decent Speed Infusion&gt; skill",
     "<Useful Combat Orders> skill can be used": "Enables the &lt;Decent Combat Orders&gt; skill",
@@ -422,7 +424,7 @@ def convert_kren_to_globalen():
         f.write(lines)
 
 #go!
-#create_cube_rates_json()
+create_cube_rates_json()
 get_translations_from_lines()
 translate_cube_hash_lines()
 convert_kren_to_globalen()
