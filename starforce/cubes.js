@@ -330,16 +330,25 @@ cube.try_tier_up = function(c, r, o) {
 */
 cube_lines = {};
 cube_rates = {};
+
+/* some item types share cubing data, so we point to that one */
+cube.equivalents = {
+    cape: ["cape", "belt", "shoulder"],
+    face_accessory: ["face_accessory", "accessory", "eye_accessory", "earrings", "ring", "pendant"],
+    mechanical_heart: ["mechanical_heart", "badge"],
+    weapon: ["weapon", "secondary"]
+};
+
 cube.get_cube_type = async function(level, type, cube_type, cube_tier) {
     /* these types share the same cube potential rates and lines with the type it is set to */
     type = type.replace(/\s/gi, "_");
-    if (["belt", "shoulder"].includes(type)) {
+    if (cube.equivalents.cape.includes(type)) {
         type = "cape";
-    } else if (["accessory", "eye_accessory", "earrings", "ring", "pendant"].includes(type)) {
+    } else if (cube.equivalents.face_accessory.includes(type)) {
         type = "face_accessory";
-    } else if (["badge"].includes(type)) {
+    } else if (cube.equivalents.mechanical_heart.includes(type)) {
         type = "mechanical_heart";
-    } else if (["secondary"].includes(type)) {
+    } else if (cube.equivalents.weapon.includes(type)) {
         type = "weapon";
     }
 
@@ -371,6 +380,9 @@ cube.resolve_cube_rates = async function(cube_type, type) {
 
     let r_cube_lines = {};
 
+    /* item type with "_" */
+    let type_check = type.replace(/\s/gi, "_");
+
     for (let level in clines) {
         r_cube_lines[level] = {};
 
@@ -382,7 +394,8 @@ cube.resolve_cube_rates = async function(cube_type, type) {
                 /* cube lines of item based on its level and potential */
                 let this_cube_lines = {};
 
-                if (level > 150) {
+                /* face accessory equivalents seem to have their tier stats already included in the data, so don't append another tier to it */
+                if (level > 150 && !cube.equivalents.face_accessory.includes(type_check)) {
                     for (let cl in crates[a]) {
                         let new_stat = cube.rates.cube_stat_increase(cl);
                         this_cube_lines[new_stat] = this_cube_lines[cl];
