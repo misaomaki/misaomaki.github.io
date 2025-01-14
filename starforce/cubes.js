@@ -398,12 +398,12 @@ cube.resolve_cube_rates = async function(cube_type, type) {
                 if (level > 150 && !cube.equivalents.face_accessory.includes(type_check)) {
                     for (let cl in crates[a]) {
                         let new_stat = cube.rates.cube_stat_increase(cl);
-                        this_cube_lines[new_stat] = this_cube_lines[cl];
+                        this_cube_lines[new_stat] = crates[a][cl];
                     }
                 } else {
                     this_cube_lines = crates[a];
                 }
-                
+
                 return this_cube_lines;
             });
         }
