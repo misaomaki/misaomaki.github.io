@@ -579,7 +579,7 @@ $(function() {
   });
 
   $("#btnPrizes").on("click", async function() {
-      let r = await fetch("/marvel2/marvel_prizeList.html");
+      let r = await fetch("/marvel2/marvel_prizelist.html");
       let html = await r.text();
       
       $("body").append(html);
