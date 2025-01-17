@@ -1,0 +1,255 @@
+.mavel-machine-prizes[data-v-c4c80a03] {
+    color: var(--marvel-accent);
+    font-family: maplestory-light
+}
+
+.mavel-machine-prizes__title[data-v-c4c80a03] {
+    font-size: 26px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: maplestory-bold
+}
+
+.mavel-machine-prizes__sub-title[data-v-c4c80a03] {
+    font-size: 22px;
+    padding-left: 20px;
+    margin-bottom: 14px
+}
+
+.mavel-machine-prizes__sub-title a[data-v-c4c80a03] {
+    text-decoration: underline
+}
+
+.mavel-machine-prizes-list__wrapper[data-v-c4c80a03] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 20px;
+    gap: 20px
+}
+
+.mavel-machine-prizes-list__each[data-v-c4c80a03] {
+    -webkit-box-flex: 33%;
+    -ms-flex: 33%;
+    flex: 33%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap
+}
+
+.mavel-machine-prizes-list__img-boxy[data-v-c4c80a03] {
+    margin-bottom: 20px
+}
+
+.mavel-machine-prizes-list__item-detail[data-v-c4c80a03] {
+    width: 100%;
+    height: 200px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    overflow: hidden
+}
+
+.mavel-machine-prizes-list__item-detail-text[data-v-c4c80a03] {
+    font-size: 16px;
+    line-height: 1.4em;
+    letter-spacing: -.07em;
+    font-weight: 700;
+    margin-top: -13px;
+    margin-bottom: 15px;
+    max-width: 90%;
+    text-align: center;
+    text-transform: capitalize
+}
+
+.mavel-machine-prizes-list__item-detail-img[data-v-c4c80a03] {
+    width: 120px;
+    height: 120px;
+    background: no-repeat center center/90% 90%
+}
+
+.mavel-machine-prizes-list__items[data-v-c4c80a03] {
+    height: 200px;
+    overflow-y: scroll;
+    text-transform: capitalize
+}
+
+.mavel-machine-prizes-list__items[data-v-c4c80a03]::-webkit-scrollbar {
+    width: 11px;
+    background: #85899c
+}
+
+.mavel-machine-prizes-list__items[data-v-c4c80a03]::-webkit-scrollbar-thumb {
+    background-color: #f4fafc;
+    border-radius: 3px
+}
+
+.mavel-machine-prizes-list__item[data-v-c4c80a03] {
+    font-size: 16px;
+    letter-spacing: -.07em;
+    line-height: 1em;
+    margin-bottom: 8px;
+    font-weight: 700;
+    cursor: pointer
+}
+
+@media only screen and (max-width: 1124px) {
+    .mavel-machine-prizes-list__item-detail-text[data-v-c4c80a03],.mavel-machine-prizes-list__item[data-v-c4c80a03] {
+        font-size:15px
+    }
+
+    .mavel-machine-prizes[data-v-c4c80a03] {
+        text-align: center
+    }
+
+    .mavel-machine-prizes__title[data-v-c4c80a03] {
+        font-size: 4.2vw;
+        font-weight: 700
+    }
+
+    .mavel-machine-prizes__sub-title[data-v-c4c80a03] {
+        margin-bottom: 3vw
+    }
+
+    .mavel-machine-prizes-mobile[data-v-c4c80a03] {
+        position: relative;
+        padding-top: 6vw
+    }
+
+    .mavel-machine-prizes-mobile__slot-tabs[data-v-c4c80a03] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 6vw;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        gap: 2vw
+    }
+
+    .mavel-machine-prizes-mobile__slot-tabs[data-v-c4c80a03]:after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: #645b7f;
+        left: 0;
+        bottom: 0;
+        position: absolute
+    }
+
+    .mavel-machine-prizes-mobile__slot-tab[data-v-c4c80a03] {
+        text-transform: uppercase;
+        background: gray;
+        padding-top: .9vw;
+        font-size: 2.8vw;
+        height: 6vw;
+        -webkit-box-flex: 30%;
+        -ms-flex: 30%;
+        flex: 30%;
+        font-weight: 700;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        font-family: maplestory-bold;
+        cursor: pointer;
+        background: no-repeat center 1px/100% 100%;
+        -webkit-transition: background .3s;
+        transition: background .3s
+    }
+
+    .mavel-machine-prizes-mobile__slot-tab.active[data-v-c4c80a03] {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANAAAAAgCAMAAABU6AZfAAAAMFBMVEVHcExkW39kW39kW3/+9NP77cz35sPy3rnt1a7ozKTjw5vEwc2yrr+WkKh8dJJkW3/XlI0EAAAABHRSTlMAP5DWglU5zAAAAslJREFUeNrV2I1O6zAMhmHa0rTd2vX+7xYnmfcqcdxKCBh1cnb42SCP7C8gPkx1fT/sl6ih77uPswJzFdQxR57y2Nb1fola1+0hB/ZJ3SAcMNdACWnoPA+cS5EcUSftuae6ubXocmqWnR7mtI8rP2eR7dRNl1v3VNKklkj642hcwKyEw7NPeeWa465d+A6AjiyLhlMPmshJJhBqWE4Usv3KTq8WXXAclSPqc36aHCwQzOnzhuBUqFHQpvZU4vJF68PcdftuPFiglIaTHgTZcQWK97DVQv3aJm2UFe27aRAeOBlTOOYTAIKK0nQZlQECK1C1iBa1G7RYjR2noP9kOQBqjEsqjL7Sa1sZNkx+izoa1NBggcLxjwim+BAyT+egFkhli7pi4jYFoWlifMeYlhGgMIXsCKecVK3hy6CtmLlhX8WzUPISNK6lIIS0/eN/yk5LdinmRaHW6SzLolGF6ZZMceaGIkJi5B6oYmMx6uDRU+iSXSxYrWlUGyxLEhEkOb6GiAiVo1a0Bs/J6XmIWzHs50djgaQaxHaq6tucEBGhhFm83oAJjkM15fGrglMsutZGKcsfvVeIiFD0WA2WJuVpqJowcnA+gY63ihfDsihILZGsV4iIEJqWp+IwVRC+V1bujaJFcesRIiLkNUd7g4Rvaiij+b9VAOzTRkyRpK5QiUJFeoWICOEpWyMLC4wfLCvEZG957r3I0dnTEBGhbDGcWmOT8JM42y07f/aGmON6hogIzWjwwCG+DPsvlZ1HQxrt5D1DRIRMciju1r8rMIhkI6pNOURE6G6zoxxEf6viskdFIZKdQRIiIhQ1jebQm7cUFi4+CpKsKYWICMExyTHpf7et+avRlEJEhExz4LwdY38RoUeMnoZIQJuC0hPerznXQeLSyyHSO2HiZ47h/CsKcQKVGzElkP45geRwT/vB+U9ZYvLyHxa+ACqBrXBe9OhQAAAAAElFTkSuQmCC);
+        z-index: 1
+    }
+
+    .mavel-machine-prizes-mobile__slot-tab--slotA[data-v-c4c80a03] {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANAAAAAgCAMAAABU6AZfAAAAOVBMVEVHcExqgFpqgFpqgFrGzsCyva806t437Ms269E26tUz5eeButQy2+cx0OYvx+YwwOUtueaJmn1qgFpP91GZAAAABHRSTlMAP4fD6gtZsQAAA5dJREFUeNrVmNFyqzAMRAuEgCFgyv9/7EUyyolwuJ0CfcjCW6cmZ1a72HxlKsqqmj9CVVUWXz+pnD9M5c8433V9+wjV9ff/kYpKaG4fJWGqih0ecD4NqdjjuYn6fhgei7pF96TwqhY1f6IWhVfdk7pFj0XD0Pc30Q5RlXj6QSQ8iWhhChC1cqGG6zwGF5LHwRME5y48nQCJ+kRU7fLEYRQetUhxVAkJHhx63ieZ2tcbvfIkh+BRojHuEJXKU8dxTA6ZRYoU3MwZTHKI+5w8T/POIcWRSycu8YxjlNznXTfPtfgTx0VGZDwQOY8aSC6TOU2E4AnPievgWYCiODHPmUHKI0Rp6BKRIYXAzAV42gasCx0yovQ0cFYgeNQhJfrGIgzqJ+HBok4lOHJ5h5TgSpeAWicZh4iQ8OQOTT0WUdli0LRaxMwxdAEiFbUk95UGMXSbSgjW2aLVoLhoipqiwlecGDQJz0LkZ85qDqXQ+h9xCRML5pVgCRI9DYqjAKlFruhWg6Y4+VagFwIpwiOozos42sqtCxARouJEChRt5hzQJH/BocHNHDkCqKW4L2OyVb0/8Jg/D+EZ1CH53Tpz8BRp4kRRefAIIhcjgIzoHBJLsLQSgUPFCRATN4l66bnCl3avDols6ES7RZemgrG/LkHsfUitplh5IFoHTpPS++KupLQTagJi5rDIEcnNg8/x4K4s+t4gtchVNjyiSCsQIakELBJRdB1EfrfgKvx8fJDSmJTGJUiBohlEiDYRYuZGs4jqdkT2UObuqleq22hbgNhnZwZtQ0SEVLxcXdHlTRdatBK153DYkIreNRwG2UvVRo4QESFwXC90mx0dFgWAznccbaAKGHTfDBwVZwZFQuQihEVZdSsRJuEQVKToAA7u2IqG8yy4hNPBY0QqQuQjRM9FeCCStam6lSlQDScMottSW4NDwZlBD3jUAR8iHyF6zg+dLwZqwZgaLDpaCAiH4MGgFCDnECEiQji0CZGPUYDJTUg4HiQKm2gKTMbjNwkeh/0pEdqxyJrOkGg6ii7QDcf8YZGERL/l/pAgkAiRRagGFYv4XMJZTxXC3legI3KD5vpahT/sSjEI1RoiIgSPItF0buhohrf9HX5rEenJcUKWH2/QOGlpZyEqiRBTh0WDt8jOr7gE0uFjhP2/4iDnT34MgsaHaBagCW0teoC0OUtQ4BYAC8XvtnAh/8TDNwTjwR4awTOlQ94/3+vg8XOcUQAAAAAASUVORK5CYII=)
+    }
+
+    .mavel-machine-prizes-mobile__slot-tab--slotB[data-v-c4c80a03] {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANAAAAAgCAMAAABU6AZfAAAARVBMVEVHcExkW39kW39kW3/Ewc6SvN0V8P8g6v4I9f8p4/4z3P020/ynorZoteo1yfwmz/5LtfMxwPwvt/wur/wtqPyAeJZkW3/4VWacAAAABHRSTlMAPIjGH78PqAAABCpJREFUeNrVmN1yqzAMhBsopSINNuDm/R/16AdJuILTTshNVnZykYbhm9Uqpm9Bl6Zt7y+htm0ub7+pub+Ymt9xvr/eX0Rf3/9HurRO80pM7eWAR3FeD+lyxPNO6m5jUoGoh171Yfp8nj5MvQpUw1bXVSPr1r2TDoha4emUBpAmUfUMBIJDJTj6dh6HL7LyYBENltKA0yAP7ZFqVSdE7SHPOKUpmSClnsuIHGm9D72h00xGRFJ3CKkGuiZcAjOR8gFRwzzdhNoS9SsRLTcJpUzPgcHl/jgQuwOOIzIa3KSOiMKsu99pHkzTnJAIXyoiQB7awSND+jjdc5U/VOIPmD1SSfptwiU8M3v0db/vGZTnaSac/a5Dm4wIl2dI9uM0imP+eIIgtNuYxCDlQWWxKBrUIQ//SdK2A34Rns2wcxyuJzvkOLU/a79dCYcKxQ7MSxcsurBBMylhVS6BMNECWmHanXWonghOpDg+rhO3m3UbwcxZLapGdysGrUq4EMkEUqQw7D55P8MhB3IeMB5CEhwjykhEWlaL2gqIE8SacCVcWFskXj0cjG8x6my/1R3nOCjncX9ECyorkHUcAS2LOkTb2m5wItFKpBYp1TmDoj/bhhsY55qcZ8ZiHKql4O3rccEi1C30oeaIkPY8gjpIlUdPihCwnEY17voj6uoQNRShG6HOpjTh4rqiSbhggHC0066z+X3WIOeBON+ch2KR1R9UuVHPNT8itGyIEi05NYxIxFA8Rj1IziM4DyFx9DRDosBjON5vPg5IMUQSIZQhLUTEQOPISHhdRhrAREQV0zMmnA44qHGoSDqtK56yFAnRjwgVJpo1SPi91SJkQtHlkQkGoQk5Eo9OHBN2Gs7jE3AYxXiKhcgjVMrCmn16ixJ7RE2He+AwrWKiMBwecag/4Bkqe8YNj/pTaBcLkf+sZvqgRhIivA4qXVHcBChBqs6qj/Gws+4PWIDieMvmj+CYCktD5BEq6pBEKRCN15XpCkmjFJ5juYUeS5AB+Tyw/LBWnLzlKSoLkUeokMijaNIoQCPxUA3AVZ8aHsgRw9Q8pBpHlKuzjuNIgIqFyB8dbvQplw47JWIpEDGh1CM3SQxSphOH7MEazg/XWaa1p8d5TDcCajRCDKRItUnedY4kEh4IQfojj+Lv9tsmO/y2upPNHmJxHJ0KbRUhlEPRF8WiOkiOBLiYCPafkv7AozgMFHh0vGVrNotPcaIYIo+Q9qTNu23XCc82Sf6TZB45j7z8/QgX4yPR8WE9ZaYRlSAPUeNARiVB0igZkXvERDWTe/TryU49DDxMVM028UfMCdMgAjX+s1rzFPNoIaBDJB8NIDy94MQH83g8CAcEs8f9yfpc6jxyi6YYojsBlVo/ZkNWIu27OBwqi4THKrij9tQPQQMrHHXyHGf1ruQfC/8AmRAPuYfL5V8AAAAASUVORK5CYII=)
+    }
+
+    .mavel-machine-prizes-mobile__slot-tab--slotC[data-v-c4c80a03] {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANAAAAAgCAMAAABU6AZfAAAAMFBMVEVHcExkW39kW39kW3/Ewc75qyu6r7n2pSrYnXj0nSvxlivujizrhSzqfCqDfJlkW3+h3SIIAAAABHRSTlMAK3rGIFw5YgAAA3hJREFUeNrVmNtugzAQREsAh/gS/v9vm/Wlx8tSqsITY9T0IRU6mp2x3S+j4TGO6y00jo/h6y891pvp8SfO++3cdAs5934fIg3jBweYW8h9kMbhFx5w7oY0/MYziZYlFHnRq+p5rPmynsd6VXlRKFqWSQSRnrfCs8SPQsxAQYB8xmmraJalnrn+PEHGn+vnB6UtwclAIRNF0ZKJmDpUeFyAJ/jCI2os8gET6/NAcwJpd/HCigORqCAFV4hsv0l+XKwKyqGGpGkU1HVpFFTeK+/XPDErxegkR6br1jXzJPkKFokUDTOHSUUnsRg2y4X0xPnQIxWidTUGSX5SEp5G5Bk6mKrqmDPwlw0yHs3AbCrBY1D6PJIjLMIg4WlAOFSJsufglId1ySQc0rOM5OXNoeAzT0USoLRgkTIo9kBRHAraIZjUqxXL80TDwcJS4wYPlRABitM0rc0iKk4MAqkLUUXSDimDKN7TbcCv/BDZjgte8YiWVnQAuWoQPGxFhQiHDM2lxgbLRAh/5PGKJxQcLMpAHBKmyQkqSKFrBYbuh2neYarPpa2VxS50PHFZTmZuAKibuMYjSw0dBvVE9Ny5CCkY6kBHSO2pteNCw2HmCNEDoJ6oM+l1WAzz80rJ6QiBRGVnJK/PcdWfaICIUMNh5vRWRHXbmTtrESz1MRa96LhuE2o8TVGKe1QRmlKT3VwFqRFh0axdkk/Q/gXVYHb3VN1wJAiDRFMNERFy4LC3QsTMocvHOewBBncq0rYRfDFIlJBj5oiQtUgdF8zYgXP+FIRBdt5qq8LDwGWVeNgQESEyhEeGqIxBoVFUp8881iB4mDdb2WgTIiKEikMlRQEikLAIIpL0X+3ZQ2d7U9kYpEJkIkSI0tYhTkAgQcTmegYCgzb5waHeIHi2IRpUhOBRQweTvenpugPqBJc9v9FvJKjhaIMIERECqN+KbHVbphmao9Le+gc3OLbg9u7dARwTIhMhkLCIGHmqTt9eu1BbjyA4tsceeMCx99SkkNoVwkYIh7gX4ZEqb5Ag2kcxZ6P+u+AAs78B4Y+JEOdTEyGoIMIjTYRNNIQ6xhgYa5U9jNpxEx3zECIbIe4QejPalndZtho6DJBUbsxpB22uqJxIKThhSmQIoBailW1Vi15Q7V2YnjAhAgGC8kwEDl9HDBz1tm2ElImMyj8WvgHMt8Nnt7vkcQAAAABJRU5ErkJggg==)
+    }
+
+    .mavel-machine-prizes-mobile__items[data-v-c4c80a03] {
+        text-align: center;
+        font-size: 3vw;
+        overflow-y: scroll;
+        height: 700px;
+        background: #fff;
+        padding-top: 3vw;
+        text-transform: capitalize
+    }
+
+    .mavel-machine-prizes-mobile__item[data-v-c4c80a03] {
+        font-size: 3vw;
+        -webkit-transition: font-size .3s;
+        transition: font-size .3s
+    }
+
+    .mavel-machine-prizes-mobile__item.active[data-v-c4c80a03] {
+        font-family: maplestory-bold;
+        font-size: 3.2vw
+    }
+
+    .mavel-machine-prizes-mobile__item-detail-img[data-v-c4c80a03] {
+        width: 15vw;
+        height: 15vw;
+        background: no-repeat center center/100% 100%;
+        margin: 0 auto;
+        -webkit-transition: background .3s;
+        transition: background .3s
+    }
+
+    .mavel-machine-prizes-mobile__item-detail-wrapper[data-v-c4c80a03] {
+        padding: 3.5vw;
+        background: #fef4d4;
+        border-bottom: 3px solid #dac9b8
+    }
+
+    .mavel-machine-prizes-mobile__item-detail-boxy[data-v-c4c80a03] {
+        width: 55vw;
+        height: 32vw;
+        margin: 0 auto
+    }
+
+    .mavel-machine-prizes-mobile__item-detail[data-v-c4c80a03] {
+        padding: 3.4vw
+    }
+
+    .mavel-machine-prizes-mobile__item-detail-title[data-v-c4c80a03] {
+        font-family: maplestory-bold;
+        font-size: 3vw;
+        line-height: 1.2em;
+        margin-bottom: 2.5vw;
+        text-transform: capitalize
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .mavel-machine-prizes__sub-title[data-v-c4c80a03] {
+        padding:0 2vw;
+        font-size: 3.5vw
+    }
+}

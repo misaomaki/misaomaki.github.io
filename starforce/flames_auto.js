@@ -242,6 +242,10 @@ $(function(){
                     ` : ""
                 } 
             </div>
+            <button id="btnAddNewFlame">Add Flame Combo</button>
+            <hr>
+            <div id="conFlameOptions>
+            </div>
             <span id="flame_msg" style="color:red"></span>
         `;
 
@@ -315,6 +319,17 @@ $(function(){
             }
 
             flame_textbox.val(0);
+        });
+
+        /* add flame options to a list of flame lists you want to  */
+        $("#btnAddNewFlame").on("click", function() {
+            const selected_flame_tiers = Array.from(document.querySelectorAll("input.flame-form")).reduce((a,b)=>{
+                if (b.value == 0) return a;
+                
+                a[b.getAttribute("data-id")] = +b.value;
+            
+                return a;
+            }, {});
         });
 
         let auto_flame_flames = $("#auto_flame_container .auto-flame-flame");

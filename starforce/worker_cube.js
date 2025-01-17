@@ -4,6 +4,10 @@
 //recreation of starforcing process without dom update and jquery usage. webworkers do be like that
 let $ = function() {};
 
+let system = {
+    cube: "GMS"
+};
+
 importScripts("init.js");
 importScripts("vars.js");
 importScripts("cubes.js");
