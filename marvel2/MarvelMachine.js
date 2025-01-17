@@ -181,12 +181,11 @@ const MarvelCustom = {
         doubleItem.classList.add('doubled', 'show-double-animation');
         doubleItem.querySelector(".marvel-machine-result-item__item-code2").classList.remove("hidden");
         doubleItem.querySelector(".couponCode2").innerHTML = new_item.couponCode;
-        
-        setTimeout(()=>{
-          MarvelCustom.NXUsageInfo();
-          doubleItem.classList.remove('show-double-animation');
-        }, 5000);
       }, 10);
+      setTimeout(()=>{
+        MarvelCustom.NXUsageInfo();
+        doubleItem.classList.remove('show-double-animation');
+      }, 5000);
     }, 700);
 
     MarvelMachine.game.resultItemsAll.unshift(new_item);
