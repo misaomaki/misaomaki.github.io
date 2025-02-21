@@ -108,18 +108,21 @@ cube.get_cube_line_as_int_value = async function() {
     const cube_lines = {};
     let data = await cube.fetch_cube_rates();
     
-
     for (let hash in data) {
         for (let line in data[hash]) {
-            let line_id = cube.cube_line_as_int_stats.find(a => line.startsWith(a));
+            let base_line_id = cube.cube_line_as_int_stats.find(a => line.startsWith(a));
 
-            let has_line = line_id != null;
+            let has_line = base_line_id != null;
 
             if (!has_line) continue;
             if (line in cube_lines) continue;
 
+            line = line.trim();
+
+            let orig_int_value = "";
             let int_value = "";
             let is_percent = false;
+            let line_id = base_line_id;
 
             /*
                 match as
@@ -139,12 +142,14 @@ cube.get_cube_line_as_int_value = async function() {
             */
             } else {
                 int_value = line.match(/\d+%?/)[0] ?? "";
+                orig_int_value = int_value;
                 is_percent = false;
 
                 if (int_value == "") continue;
 
                 if (int_value.includes("%")) {
-                    int_value = +int_value.replace("%", "") / 100;
+                    orig_int_value = +int_value.replace("%", "");
+                    int_value = orig_int_value / 100;
                     line_id += "_p";
                     is_percent = true;
                 } else {
@@ -155,6 +160,14 @@ cube.get_cube_line_as_int_value = async function() {
             cube_lines[line] = {
                 id: line_id,
                 value: int_value,
+                is_percent: is_percent
+            };
+
+            //+1 for next tier
+            let new_line = `${base_line_id}: +${orig_int_value + 1}${is_percent ? "%" : ""}`;
+            cube_lines[new_line] = {
+                id: new_line,
+                value: int_value + 0.01,
                 is_percent: is_percent
             };
         }

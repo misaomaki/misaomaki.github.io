@@ -125,7 +125,7 @@ let stat_compare = function(desired_lines, current_lines_unprocessed, stat_lines
             return false;
         }
     }
-
+    
     return has_any_desired;
 }
 

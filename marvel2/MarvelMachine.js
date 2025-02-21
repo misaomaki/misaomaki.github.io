@@ -190,7 +190,7 @@ const MarvelCustom = {
 
     MarvelMachine.game.resultItemsAll.unshift(new_item);
 
-    return await new_item;
+    return await {data: new_item};
   },
   playSound() {
     if (MarvelMachine.game.revealItemsAnimation === true) {
