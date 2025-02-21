@@ -242,7 +242,7 @@ $(function(){
                     ` : ""
                 } 
             </div>
-            <button id="btnAddNewFlame">Add Flame Combo</button>
+            <button id="btnAddNewFlame" class="hidden">Add Flame Combo</button>
             <hr>
             <div id="conFlameOptions>
             </div>
