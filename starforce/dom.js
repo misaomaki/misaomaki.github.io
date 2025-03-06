@@ -323,6 +323,7 @@ $(function() {
                         <div class="cube auto-cube cube-black maple-button ${ user_cube_option.selected_cube == "black" ? "auto-cube-selected" : ""}" data-id="black" data-type="main"></div>
                         <div class="cube auto-cube cube-bonus maple-button ${ user_cube_option.selected_cube == "bonus" ? "auto-cube-selected" : ""}" data-id="bonus" data-type="bonus"></div>
                         <div class="cube auto-cube cube-white maple-button ${ user_cube_option.selected_cube == "white" ? "auto-cube-selected" : ""}" data-id="white" data-type="bonus"></div>
+                        <div class="cube auto-cube cube-equality maple-button ${ user_cube_option.selected_cube == "equality" ? "auto-cube-selected" : ""}" data-id="equality" data-type="main"></div>
                     </div>
                 </label>
             </div>
@@ -333,7 +334,7 @@ $(function() {
                 <div id="auto_cube_lines" class="hidden">
                     <div class="item-cube-form cube-main-form" id="auto_cube_form_main">
                         <label for="auto_cube_select_main">
-                            <span class="item-cube-label">Select Main Potential Tier:</span>
+                            <span class="item-cube-label">Select Main Potential Tier:</span> 
                             <select id="auto_cube_select_main" class="auto_cube_select auto-select-cube-type" data-type="main">
                                 <option value="">No Potential</option>
                                 <option value="rare">Rare</option>
@@ -433,7 +434,9 @@ $(function() {
                         cube_type: cube_type,
                         cube: cube_name,
                         pot_tier: pot_tier,
-                        allow_gt: $("#auto_cube_gt").prop("checked")
+                        allow_gt: $("#auto_cube_gt").prop("checked"),
+                        stat_restriction_map: cube.stat_restriction_map,
+                        cube_line_stats: cube.cube_line_stats
                     };
             
                     //post data to worker to calculate cubes

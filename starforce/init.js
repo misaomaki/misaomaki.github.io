@@ -278,3 +278,27 @@ var HtmlEncode = function(s) {
   s = el.innerHTML;
   return s;
 }
+
+/* 
+    remove percent items from a list of probabilities then recalculate those probabilities in portion to each other 
+    example: {a: 25, b: 25, c: 50} -> remove c -> {a: 50, b: 50} -> remove b -> {a: 33, c: 67 }
+*/
+function redistributePercentages(obj, removedKeys = []) {
+    let entries = Object.entries(obj);
+
+    // Filter out removed keys
+    let remainingEntries = removedKeys.length > 0 ? entries.filter(([key]) => !removedKeys.includes(key)) : entries;
+
+    // Calculate the remaining total
+    let remainingTotal = remainingEntries.reduce((sum, [, value]) => sum + value, 0);
+
+    // Compute expansion factor
+    let expansionFactor = 1 / remainingTotal;
+
+    // Apply expansion factor to redistribute values
+    let newPercentages = Object.fromEntries(
+        remainingEntries.map(([key, value]) => [key, value * expansionFactor])
+    );
+
+    return newPercentages;
+}

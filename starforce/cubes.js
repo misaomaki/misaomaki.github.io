@@ -168,7 +168,8 @@ cube.get_cube_line_as_int_value = async function() {
             cube_lines[new_line] = {
                 id: new_line,
                 value: int_value + 0.01,
-                is_percent: is_percent
+                is_percent: is_percent,
+                category: base_line_id
             };
         }
     }
@@ -218,6 +219,28 @@ cube.rates.tier_up_region = {
             epic: 0.079994,
             unique: 0.016959,
             legendary: 0.001996
+        },
+
+        /* 
+            there is no information on these rates, 
+            so using red cube rates as a placeholder.
+            violet is known as having terrible tier-up rates,
+            so using meister cube rates for it.
+        */
+        violet: {
+            epic: 0.079994,
+            unique: 0.016959,
+            legendary: 0.001996
+        },
+        uni: {
+            epic: 0.06,
+            unique: 0.018,
+            legendary: 0.003
+        },
+        equality: {
+            epic: 0.06,
+            unique: 0.018,
+            legendary: 0.003
         }
     },
     /* from maple wiki */
@@ -261,6 +284,28 @@ cube.rates.tier_up_region = {
             epic: 0.141,
             unique: 0.06,
             legendary: 0.024
+        },
+        
+        /* 
+            there is no information on these rates, 
+            so using red cube rates as a placeholder.
+            violet is known as having terrible tier-up rates,
+            so using meister cube rates for it.
+        */
+        violet: {
+            epic: 0.079994,
+            unique: 0.016959,
+            legendary: 0.001996
+        },
+        uni: {
+            epic: 0.06,
+            unique: 0.018,
+            legendary: 0.003
+        },
+        equality: {
+            epic: 0.06,
+            unique: 0.018,
+            legendary: 0.003
         }
     }
 }
@@ -275,6 +320,9 @@ cube.rates.cube_stat_increase = function(stat) {
     if (!stats_affected.includes(stat_check[0])) {
         return stat;
     } 
+
+    /* non-percentage max HP/MP */
+    if (stat.startsWith("Max") && !stat.includes("%")) return stat;
 
     let new_stat = stat.replace(/(\d+)/, (match) => {
         return parseInt(match) + 1;
@@ -378,13 +426,23 @@ cube.get_cube_type = async function(level, type, cube_type, cube_tier) {
 
 /* from the cube lines and cube rates, resolve into a single object */
 cube.resolve_cube_rates = async function(cube_type, type) {
+    let cube_type_original = cube_type;
+
     /* bonus/white share same lines */
     if (cube_type === "white") {
         cube_type = "bonus";
+
+    /* 
+        if equality cubes, set cube to red and then set all the line items to the first line (all prime) 
+        if violet, set cube to red and then set the 6 lines as per TMS prime rates
+        if uni, set cube to red and use those lines as the basis for rates (15%/85% prime/nonprime)
+    */
+    } else if (["equality", "violet", "uni"].includes(cube_type)) {
+        cube_type = "red";
     }
 
-    if (`${cube_type}_${type}` in cube_lines) {
-        return cube_lines[`${cube_type}_${type}`];
+    if (`${cube_type_original}_${type}` in cube_lines) {
+        return cube_lines[`${cube_type_original}_${type}`];
     }
     
     let [crates, clines] = await Promise.all([
@@ -399,6 +457,16 @@ cube.resolve_cube_rates = async function(cube_type, type) {
 
     for (let level in clines) {
         r_cube_lines[level] = {};
+
+        /* if equality, set the lines for each grade to line #1 (100% prime) */
+        if (cube_type_original === "equality") {
+            for (let tier in clines[level]) {
+                if (clines[level][tier].length === 3) {
+                    clines[level][tier][1] = clines[level][tier][0];
+                    clines[level][tier][2] = clines[level][tier][0];
+                }
+            }
+        }
 
         /*
             GMS - for level 150+ items, add 1 to specific stats
@@ -423,13 +491,138 @@ cube.resolve_cube_rates = async function(cube_type, type) {
         }
     }
 
-    cube_lines[`${cube_type}_${type}`] = r_cube_lines;
+    /* recalculate for violet */
+    if (cube_type_original === "violet") {
+        r_cube_lines = cube.recalculate_rates_for_violet(r_cube_lines);
+    } else if (cube_type_original === "uni") {
+        r_cube_lines = cube.recalculate_rates_for_uni(r_cube_lines);
+    }
 
-    return cube_lines[`${cube_type}_${type}`];
+    cube_lines[`${cube_type_original}_${type}`] = r_cube_lines;
+
+    return cube_lines[`${cube_type_original}_${type}`];
+}
+
+/*
+    official GMS rates unknown. using the following logic from TMS (using MapleSEA rates), lazified so i don't have to reinput the rates:
+    general assumption ->
+    100% -> line 1 of red cube
+    10% -> line 2 of red cube
+    1% -> line 3 of red cube
+
+    line 1: 100% prime 
+    line 2: 10% prime 
+    line 3: 1% prime 
+    line 4: 1% prime 
+    line 5: 10% prime 
+    line 6: 1% prime 
+*/
+cube.recalculate_rates_for_violet = function(r_cube_lines) {
+    for (let level in r_cube_lines ) {
+        for (let grade in r_cube_lines[level]) {
+            const lines = r_cube_lines[level][grade];
+
+            if (lines.lenghth === 0) continue;
+
+            let new_lines = [];
+            
+            new_lines.push(lines[0]);
+            new_lines.push(lines[1]);
+            new_lines.push(lines[2]);
+            new_lines.push(lines[2]);
+            new_lines.push(lines[1]);
+            new_lines.push(lines[1]);
+
+            r_cube_lines[level][grade] = new_lines;
+        }
+    }
+
+    return r_cube_lines;
+}
+
+/*
+    official GMS rates unknown. using the following logic from TMS:
+    prime -> 15%
+    non-prime -> 85%
+
+    we use red cube line #3 and use odds scaling to determine what line is prime vs. non-prime. the prime lines
+    will eat the share of 15% and the non-prime will eat the share of 85%
+
+    all 3 lines of the unicube share this 15/85 split. first line is not guaranteed prime like other cubes.
+*/
+cube.recalculate_rates_for_uni = function(r_cube_lines) {
+    for (let level in r_cube_lines ) {
+        for (let grade in r_cube_lines[level]) {
+            const lines = r_cube_lines[level][grade];
+
+            if (lines.length === 0) continue;
+
+            let new_lines = [];
+            
+            /* determining lines are prime or not */
+            let base_line = lines[2];
+            let prime_lines = {};
+            let non_prime_lines = {};
+
+            /* 
+                get their odds scaling to visualize prime vs. nonprime. prime lines will have very low odds scaling and non-prime will have very large values  
+                (this is not necessary but i can't deal with decimals right now)
+            */
+            const prime_tester = cube.odds_scaler(base_line);
+            
+            /* assume an odds scaling of greater than 10 is nonprime */
+            for (let stat in prime_tester) {
+                if (prime_tester[stat] < 10) {
+                    prime_lines[stat] = 0.15;
+                } else {
+                    non_prime_lines[stat] = 0.85;
+                }
+            }
+
+            let prime_length = Object.keys(prime_lines).length;
+            let nonprime_length = Object.keys(non_prime_lines).length;
+
+            /* loop through prime and non prime and divide their baser value by the number of items in their class */
+            for (let stat in prime_lines) {
+                prime_lines[stat] = prime_lines[stat] / prime_length;
+            }
+            for (let stat in non_prime_lines) {
+                non_prime_lines[stat] = non_prime_lines[stat] / nonprime_length;
+            }
+
+            /* 
+                combine them. this should add up to 1, or close to it 
+                check at: Object.entries(unicube_lines).reduce((a,b)=>{ a += b[1]; return a; }, 0);
+            */
+            let unicube_lines = {...prime_lines, ...non_prime_lines};
+
+            new_lines.push(unicube_lines);
+            new_lines.push(unicube_lines);
+            new_lines.push(unicube_lines);
+
+            r_cube_lines[level][grade] = new_lines;
+        }
+    }
+
+    return r_cube_lines;
+}
+
+cube.odds_scaler = function(inputObject) {
+    // Get the smallest value from the object
+    const values = Object.values(inputObject);
+    const smallestValue = Math.min(...values);
+
+    // Create a new object with values divided by the smallest value
+    const scaledObject = {};
+    for (const [key, value] of Object.entries(inputObject)) {
+        scaledObject[key] = value / smallestValue;
+    }
+
+    return scaledObject;
 }
 
 /* get the cube line hash data that points to cube line data */
-cube.fetch_cube_rates = async function() {
+cube.fetch_cube_rates = async function() { 
     if (!("hash" in cube_rates)) {
         let response = await fetch(`/starforce/cube_rates/cube_hashes_gms.txt`);
         cube_rates["hash"] = response.json();
@@ -444,12 +637,14 @@ cube.fetch_cube_lines = async function(cube_type, type) {
     return response.json();
 }
 
+cube.init_cube_data = async function() {
+    /* map the line to a common type */
+    cube.stat_restriction_map = await cube.calculate_restriction_type();
+    /* select cube line's raw int value */
+    cube.cube_line_stats = await cube.get_cube_line_as_int_value();
+}
 
-/* map the line to a common type */
-cube.stat_restriction_map = cube.calculate_restriction_type();
-/* select cube line's raw int value */
-cube.cube_line_stats = cube.get_cube_line_as_int_value();
-
+cube.init_cube_data();
 
 /*
     get what tier the cubing stats belong to
@@ -469,6 +664,7 @@ cube.get_item_level_tier = function(level) {
     return l + "";
 }
 
+//type = cube_type
 //cube item, type is cube type; dom is the active cubing window
 //cb is callback passed to the cube_draw function
 //o is any additional options
@@ -525,8 +721,10 @@ cube.cube = async function(type, dom, cb, o) {
             for a first black run where the item has no potential, we need an initial pot, so
             we force a red cube run with no chance of tier up to initiallity set a potential,
             then do the black cube
+
+            uni cube also needs an inital potential
         */
-        if (type === "black") {
+        if (type === "black" || type === "uni") {
             await cube.cube.call(this, "red", [], ()=>{}, {
                 no_tier_up: true
             });
@@ -541,6 +739,7 @@ cube.cube = async function(type, dom, cb, o) {
         this.idata.meta[pot_type] = cube_pot;
     }
 
+    //get new cube potentials
     let cube_results = await cube.stats.main(item_type, cube_pot, type, cube_type, this.idata.level, o);
 
     //get the last item that is opposite of the cube type
@@ -563,6 +762,25 @@ cube.cube = async function(type, dom, cb, o) {
         other: opposite_current_pot, //current bonus/main depending on if current type is main/bonus
         run: this.idata.meta.cubes_total
     };
+
+    /* unicube highlights one item first */
+    if (type === "uni") {
+        let uni_select_line = {
+            "0": 0.33333,
+            "1": 0.33333,
+            "2": 0.33333
+        };
+
+        let uni_prng = {};
+        this.idata.meta.cube_log_item.unicube_proceed = false;
+        this.idata.meta.cube_log_item.unicube_this_line = +get_random_result(uni_select_line, (a) => {
+            uni_prng.r_map = a;
+        }, (a)=>{
+            uni_prng.tier_prng = a;
+        });
+
+        this.idata.meta.cube_log_item.uni_prng = uni_prng;
+    }
 
     //post-processing and update cube window
     cube.cube_draw.call(this, cube_results, dom, type, cb, o);
@@ -599,6 +817,7 @@ if (typeof item != 'undefined') {
     };
 }
 
+//type = cube_type
 //redraw the cube window, as well as update the item tooltip
 //cb is callback if tooltip is to be drawn later or other things need to happen
 //o for any other options
@@ -611,6 +830,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
 
     let hasDom = dom.length !== 0;
 
+    let prevResults = this.idata.boosts.cubes.main;
     let results = cube_results.result;
     let this_pot = "";
     let this_pot_type = "cube_potential";
@@ -642,28 +862,59 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
             this.idata.meta[this_pot_type] = curr_pot;
         }
 
-        this.idata.boosts.cubes[this.idata.meta.cube_log_item.type] = results;
+        if (type !== "uni") {
+            this.idata.boosts.cubes[this.idata.meta.cube_log_item.type] = results;
+        } else {
+            /* unicube - store the results of its lines in a separate variable for recordkeeping */
+            this.idata.meta.cube_log_item.results.result_uni = [...this.idata.meta.cube_log_item.results.result];
+            /* store the current results for record keeping */
+            this.idata.meta.cube_log_item.results.prev_results = prevResults;
+            /* the results are the old results, but with the selected uni line appended with the new item */
+            this.idata.meta.cube_log_item.results.result = [...prevResults];
+        }
     } else {
         this.idata.meta.cube_log_item.keep = false;
     }
 
     if (hasDom) {
+        const cubeResults = dom.find(".cube-result");
+        const allResults = 'result-rare result-epic result-unique result-legendary';
+        cubeResults.addClass("hidden");
+
         if (!["black", "white"].includes(type)) {
             //set potential
+            /*
             let crp = dom.find(".cube-result-pot");
             
             if (crp.attr("data-pot") != curr_pot) {
                 crp.attr("data-pot", curr_pot);
                 crp.html(curr_pot.capitalize());
             }
+            */
+
+            let display_results = results;
+
+            /* for unicodes, we display the current potentials */
+            if (type === "uni") {
+                display_results = this.idata.meta.cube_log_item.results.prev_results;
+            }
+
+            dom.find(".cube-result-background").removeClass(allResults).addClass(`result-${curr_pot}`);
 
             dom.find(".cube-result-stats").html(
-                results.map(function(a) {
+                display_results.map(function(a) {
                     return `
                         <span class="cube-result-line" title="${a.display}" data-id="${a.id}">${a.display}</span>
                     `
-                }).join("<br>")
+                }).join("")
             );
+
+            /* highlight line */
+            if (type === "uni") {
+                const these_lines = $("#cube_container .cube-result-line");
+                $("#uniResultLine").remove();
+                these_lines.eq(this.idata.meta.cube_log_item.unicube_this_line).prepend(`<div id="uniResultLine" class="uni-result-line-active"></div>`);
+            }
         } else {
             //get last kept cube
             let prev_pot = this.idata.meta.cube_meta_data.find(function(a) {
@@ -673,24 +924,36 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
             let prev_pot_check = prev_pot.tier !== undefined;
 
             //set before and after pot tier label
+            /*
             let crpbl = dom.find(".cube-result-before-label");
             let crpal = dom.find(".cube-result-after-label");
+            */
             let before_window = dom.find(".cube-black-window-before");
             let after_window = dom.find(".cube-black-window-after");
+            const before_result = dom.find(".cube-before-result");
+            const after_result = dom.find(".cube-after-result");
 
             if (prev_pot_check) {
                 let prev_pot_label = this_pot;
 
+                /*
                 if (crpbl.attr("data-pot") != prev_pot_label) {
                     crpbl.attr("data-pot", prev_pot_label);
                     crpbl.html(prev_pot_label.capitalize());
                 }
+                */
+
+                before_result.removeClass(allResults).addClass(`result-${prev_pot_label}`);
             }
 
+            /*
             if (crpal.attr("data-pot") != curr_pot) {
                 crpal.attr("data-pot", curr_pot);
                 crpal.html(curr_pot.capitalize());
             }
+            */
+        
+            after_result.removeClass(allResults).addClass(`result-${curr_pot}`);
 
             //set before and after pot
             let crpb = dom.find(".cube-result-before");
@@ -699,12 +962,15 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
             if (prev_pot_check) {
                 before_window.attr("data-id", prev_pot.results.name);
 
+                const prev_pot_idx = prev_pot.selected_idx ?? [0,1,2];
+                const prev_results = prev_pot_idx.map(a=>prev_pot.results.result[a]);
+
                 crpb.html(
-                    prev_pot.results.result.map(function(a) {
+                    prev_results.map(function(a) {
                         return `
                             <span class="cube-result-line" title="${a.display}" data-id="${a.id}">${a.display}</span>
                         `
-                    }).join("<br>")
+                    }).join("")
                 );
             }
 
@@ -715,9 +981,10 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
                     return `
                         <span class="cube-result-line" title="${a.display}" data-id="${a.id}">${a.display}</span>
                     `
-                }).join("<br>")
+                }).join("")
             );
         }
+        cubeResults.removeClass("hidden");
     }
 
     //log cube results
@@ -966,90 +1233,133 @@ $(function(){
             return false;
         }
 
-        /* run cube function in async while keeping button event sync */
-        let run_cube = async function(){
-            if (!Item.idata.enhanceable) {
-                return false;
+        let cube_type = _this.attr("data-id");
+        const cube_main = $("#cube_container .cube-main");
+        const btnProceed = $("#cube_container .btn-proceed");
+        btnProceed.addClass("hidden");
+
+        /* 
+            violet cube lines must be used, so if the user navigates away from the cube, we select lines for them 
+            they must select 3, so whatever they didn't select selects from the first line in order
+        */
+        /* leaving the violet cube window open and not selecting anything. select top 3 lines */
+        if (cube_main.hasClass("cube-main-violet")) {
+            /* if moved to final already, then ignore the processing and run cube like normal */
+            if (!cube_main.hasClass("cube-main-violet-final")) {
+                confirm_violet_cube_use({
+                    force_use: true
+                });
             }
 
-            let cube_type = _this.attr("data-id");
-
-            cube_loading = true;
-            let cr = false; //cube upgrade
-            let cube_animation = "cube-use-normal";
-            let main_con = cc.find(".cube-main");
-
-            let con = "";
-
-            if (cube_type === "black" || cube_type === "white") {
-                cr = await Item.cube(cube_type, bcc, ()=>{});
-
-                if (cr) {
-                    cube_animation = "cube-use-tier"; //tier up animation
-                }
-
-                bcc.removeClass("hidden");
-                cc.addClass("hidden");
-                con = bcc;
-
-                let bcc_play = bcc.find(".cube-black-upgrade").removeClass("hidden").addClass(cube_animation);
-                let bcc_button = bcc.find(".btn-one-more-try").addClass("disabled");
-
-                setTimeout(function() {
-                    bcc_play.addClass("hidden").removeClass(cube_animation);
-                    bcc_button.removeClass("disabled");
-                    cube_loading = false;
-                    Item.redraw_item_tooltip(["cube"]);
-                    cube.update_cube_menu.call(Item, $("#cube_menu"));
-                }, 1500 * system.animation_speed_actual);
-            } else {
-                cr = await Item.cube(cube_type, cc, ()=>{});
-
-                if (cr) {
-                    cube_animation = "cube-use-tier";
-                }
-
-                con = cc;
-
-                main_con.removeClass(function (index, className) {
-                    return (className.match(/cube-main-(.*)/g) || []).join(' ');
-                }).addClass(`cube-main-${cube_type}`);
-
-                main_con.find(".cube-header-reset").removeClass(function (index, className) {
-                    return (className.match(/reset-cube-(.*)/g) || []).join(' ');
-                }).addClass(`reset-cube-${cube_type}`);
-
-                bcc.addClass("hidden");
-                cc.removeClass("hidden");
-
-                let cc_play = cc.find(".cube-upgrade").removeClass("hidden").addClass(cube_animation);
-                let cc_button = cc.find(".btn-one-more-try").addClass("disabled");
-                let cc_ok = cc.find(".btn-cube-ok").addClass("disabled");
-
-                setTimeout(function() {
-                    cc_play.addClass("hidden").removeClass(cube_animation);
-                    cc_button.removeClass("disabled");
-                    cc_ok.removeClass("disabled");
-                    cube_loading = false;
-                    Item.redraw_item_tooltip(["cube"]);
-                    cube.update_cube_menu.call(Item, $("#cube_menu"));
-                }, 1500 * system.animation_speed_actual);
-            }
-
-            con.attr("data-cube", cube_type);
+            cube_main.removeClass(function (index, className) {
+                return (className.match(/cube-main-(.*)/g) || []).join(' ');
+            });    
+        } 
+        
+        if (cube_type === "uni") {
+            btnProceed.removeClass("hidden");
         }
 
-        run_cube();
+        run_cube.call(_this, cube_type);
     });
+
+    /* run cube function */
+    async function run_cube(cube_type) {
+        if (!Item.idata.enhanceable) {
+            return false;
+        }
+
+        cube_loading = true;
+        let cr = false; //cube upgrade
+        let cube_animation = "cube-use-normal";
+        let main_con = cc.find(".cube-main");
+
+        let con = "";
+
+        if (cube_type === "black" || cube_type === "white") {
+            cr = await Item.cube(cube_type, bcc, ()=>{});
+
+            if (cr) {
+                cube_animation = "cube-use-tier"; //tier up animation
+            }
+
+            bcc.removeClass("hidden");
+            cc.addClass("hidden");
+            con = bcc;
+
+            let bcc_play = bcc.find(".cube-black-upgrade").removeClass("hidden").addClass(cube_animation);
+            let bcc_button = bcc.find(".btn-one-more-try").addClass("disabled");
+
+            setTimeout(function() {
+                bcc_play.addClass("hidden").removeClass(cube_animation);
+                bcc_button.removeClass("disabled");
+                cube_loading = false;
+                Item.redraw_item_tooltip(["cube"]);
+                cube.update_cube_menu.call(Item, $("#cube_menu"));
+            }, 1500 * system.animation_speed_actual);
+        } else {
+            cr = await Item.cube(cube_type, cc, ()=>{}, {});
+
+            if (cr) {
+                cube_animation = "cube-use-tier";
+            }
+
+            con = cc;
+
+            main_con.removeClass(function (index, className) {
+                return (className.match(/cube-main-(.*)/g) || []).join(' ');
+            }).addClass(`cube-main-${cube_type}`);
+
+            main_con.find(".cube-header-reset").removeClass(function (index, className) {
+                return (className.match(/reset-cube-(.*)/g) || []).join(' ');
+            }).addClass(`reset-cube-${cube_type}`);
+
+            bcc.addClass("hidden");
+            cc.removeClass("hidden");
+
+            let base_animation = 1500;
+
+            /* violet cube - remove cancel button on first pass, set animation faster */
+            if (cube_type === "violet") {
+                $("#cube_container .btn-cube-ok").addClass("hidden");
+                base_animation = 500;
+            } else if (cube_type === "uni") {
+                base_animation = 1000;
+            }
+
+            let cc_play = cc.find(".cube-upgrade").removeClass("hidden").addClass(cube_animation);
+            let cube_buttons = $(".btn-cube-action").addClass("disabled");
+
+            setTimeout(function() {
+                cc_play.addClass("hidden").removeClass(cube_animation);
+                cube_buttons.removeClass("disabled");
+                cube_loading = false;
+                if (!["violet"].includes(cube_type)) {
+                    Item.redraw_item_tooltip(["cube"]);
+                }
+                cube.update_cube_menu.call(Item, $("#cube_menu"));
+            }, base_animation * system.animation_speed_actual);
+        }
+
+        con.attr("data-cube", cube_type);
+    }
 
     //close cube window
     $(".btn-cube-ok").on("click", function() {
+        const cube_main = $("#cube_container .cube-main");
+        let cube_type = cc.attr("data-cube");
+        cube_main.removeClass(function (index, className) {
+            return (className.match(/cube-main-(.*)/g) || []).join(' ');
+        });
+
         cc.addClass("hidden");
     });
 
     //one more try
     $(".btn-one-more-try").on("click", function() {
         let _this = $(this);
+        let current_cube = cc.attr("data-cube");
+        let type = cc.attr("data-cube");
 
         if (_this.hasClass("btn-cube-black")) {
             let bccData = bcc.attr("data-cube");
@@ -1058,10 +1368,115 @@ $(function(){
             } else {
                 cube_white_go.trigger("click");
             }
+        } else if (current_cube === "violet") {
+            const cube_main = $("#cube_container .cube-main");
+            if (cube_main.hasClass("cube-main-violet-final")) {
+                /* if hit use button, rerun violet */
+                cube_main.removeClass("cube-main-violet-final cube-main-violet");
+                $(`#cube_${type}`).trigger("click");
+            } else {
+                /* selecting from 6 lines and confirm 3 of the lines to item */
+                confirm_violet_cube_use();
+            }
         } else {
-            let type = cc.attr("data-cube");
             $(`#cube_${type}`).trigger("click");
         }
+    });
+
+    /* select 3 lines from violet cube and commit */
+    function confirm_violet_cube_use(o) {
+        const def = {
+            force_use: false
+        };
+
+        o = {...def, ...o};
+
+        /* get the selected violet lines */
+        let results_selected = $("#cube_container .violet-result-line-active");
+        if (results_selected.length != 3) {
+            if (!o.force_use) {
+                return false;
+            }
+        }
+        
+        /* show cancel button */
+        $("#cube_container .btn-cube-ok").removeClass("hidden");
+
+        /* prep violet cube to second screen */
+        const cube_main = $("#cube_container .cube-main");
+        cube_main.addClass("cube-main-violet-final");
+
+        /* get unselected lines */
+        let results_no = $("#cube_container .cube-result-line:not(.violet-result-line-active)");
+
+        /* if forced to use, make sure at least 3 lines are selected */
+        if (o.force_use) {
+            let num_lines_left = 3 - results_selected.length;
+
+            for (let i = 0; i < num_lines_left; ++i) {
+                results_no.eq(i).addClass("violet-result-line-active");
+            }
+
+            /* regrab the unselected and selected lines */
+            results_no = $("#cube_container .cube-result-line:not(.violet-result-line-active)");
+            results_selected = $("#cube_container .violet-result-line-active");
+        }
+
+        results_no.addClass("hidden");
+
+        results_selected.removeClass("violet-result-line-active").addClass("violet-result-line-final");
+
+        process_violet_cube_use();
+        return true;
+    }
+
+    /* commit violet cube lines to item */
+    function process_violet_cube_use() {
+        /*
+            get the index of the selected violet cube lines
+        */
+        const cubes_lines = document.querySelectorAll('#cube_container .cube-result-line');
+        const active_idx_lines = [...cubes_lines].map((cube, index) => 
+           cube.classList.contains('violet-result-line-final') ? index : -1
+       ).filter(index => index !== -1);
+
+       /* write the active index selection to the cube log item */
+       Item.idata.meta.cube_meta_data[0].selected_idx = active_idx_lines;
+       /* from the 6 lines stored in the item pot, keep the ones selected */
+       Item.idata.boosts.cubes.main = active_idx_lines.map(index => Item.idata.boosts.cubes.main[index]);
+
+       /* redraw */
+       Item.redraw_item_tooltip(["cube"]);
+    }
+
+    /* unicube has selected a line to reroll, so we prep the reroll */
+    $(".btn-proceed").on("click", function() {
+        let uniResultLine = $("#uniResultLine");
+
+        if (uniResultLine.length === 0) return;
+        let cube_buttons = $(".btn-cube-action").addClass("disabled");
+
+        sfa.play("_BtMouseClick");
+        sfa.play("_CubeEnchantSuccess");
+        let cc_play = cc.find(".cube-upgrade").removeClass("hidden").addClass("cube-use-normal");
+        let selected_line = uniResultLine.closest(".cube-result-line");
+
+        /* get the changed line for unicube. mark the cube as proceeded by user */
+        let uni_line_idx = Item.idata.meta.cube_meta_data[0].unicube_this_line;
+        Item.idata.meta.cube_meta_data[0].unicube_proceed = true;
+
+        /* get the line data associated with uni line and append it to the item cube pot */
+        let this_line = Item.idata.meta.cube_meta_data[0].results.result_uni[uni_line_idx];
+        Item.idata.boosts.cubes.main[uni_line_idx] = this_line;
+        Item.idata.meta.cube_meta_data[0].results.result[uni_line_idx] = this_line;
+        selected_line.html(`<div id="uniResultLine2" class="uni-result-line-active"></div>${this_line.display}`);
+
+        setTimeout(()=>{
+            $("#uniResultLine2").remove();
+            cube_buttons.removeClass("disabled");
+            cc_play.addClass("hidden").removeClass("cube-use-normal");
+            Item.redraw_item_tooltip(["cube"]);
+        }, 1000 * system.animation_speed_actual);
     });
 
     //apply before stats
@@ -1187,22 +1602,39 @@ $(function(){
             let lucky3 = false;
             let luckyb3 = false;
 
+            /*
             if (i_cd.type !== "") {
-                //remove the identifier digit from the stat type id. this allows us to check to see if all 3 lines are the same. if it is, highlight it as noteworthy
-                let i1 = i_results[0].id.replace(/\d+$/, "");
-                let i2 = i_results[1].id.replace(/\d+$/, "");
-                let i3 = i_results[2].id.replace(/\d+$/, "");
-
-                lucky3 = i1 === i2 && i2 === i3; //three in a row
+                lucky3 = get_lucky(i_results);
             }
 
             if (i_cd_b.type !== "") {
                 //bpot
-                let ib1 = i_results_b[0].id.replace(/\d+$/, "");
-                let ib2 = i_results_b[1].id.replace(/\d+$/, "");
-                let ib3 = i_results_b[2].id.replace(/\d+$/, "");
+                try {
+                    let ib1 =  cube.cube_line_stats[i_results_b[0]].category;
+                    let ib2 =  cube.cube_line_stats[i_results_b[1]].category;
+                    let ib3 =  cube.cube_line_stats[i_results_b[2]].category;
 
-                luckyb3 = ib1 === ib2 && ib2 === ib3; 
+                    luckyb3 = ib1 === ib2 && ib2 === ib3;                 
+                } catch {
+                    luckyb3 = false;
+                }
+            }
+            */
+
+            let keep_status = "";
+
+            if (_i_cd.cube === "black" || _i_cd.cube === "white") {
+                if (_i_cd.keep) {
+                    keep_status = `<span style="color:green">After</span>`;
+                } else {
+                    keep_status = `<span style="color:red">Before</span>`;
+                }
+            } else if (_i_cd.cube === "uni") {
+                if (_i_cd.unicube_proceed) {
+                    keep_status = `<span style="color:green">Proceeded, #${_i_cd.unicube_this_line+1}</span>`;
+                } else {
+                    keep_status = `<span style="color:red">Skipped, #${_i_cd.unicube_this_line+1}</span>`;
+                }
             }
 
             t_body += `
@@ -1220,7 +1652,7 @@ $(function(){
                         </span>
                     </td>
                     <td>
-                        ${_i_cd.cube === "black" || _i_cd.cube === "white" ? (_i_cd.keep ? "Yes" : "No") : ""}
+                        ${keep_status}
                     </td>
                     ${
                         i_cd.type !== "" ? 
@@ -1307,7 +1739,7 @@ $(function(){
         if (cube_data.length === 0) {
             t_body = `
                 <tr>
-                    <td colspan="20" style="text-align:center">No Records Found</td>
+                    <td colspan="100%" style="text-align:center">No Records Found</td>
                 </tr>
             `;
 
@@ -1337,7 +1769,7 @@ $(function(){
                             <th>Run</th>
                             <th>Cube</th>
                             <th>Potential</th>
-                            <th>Keep?</th>
+                            <th>Status</th>
                             <th>Line #1</th>
                             <th>Line #2</th>
                             <th>Line #3</th>
@@ -1437,7 +1869,11 @@ $(function(){
                 return a.results.name === id;
             });
 
-            let cube_line = [0,1,2];
+            /* get number of lines */
+            let cube_line = cube_object.results.result.reduce((a,b,c)=>{a.push(c); return a;},[]);
+
+            /* violet cube - chosen lines. */
+            let chosen_lines = cube_object.selected_idx ?? [];
 
             //get the cube maps for each line and add it to an array. also add the length to a different array
             let cube_lines_length = [];
@@ -1454,12 +1890,11 @@ $(function(){
             let cube_log_item = cube_object.results.tier_up.cube_log_item;
             
             let tier_rng = "";
-            let tier_map = "";
             let html_tier = "";
             
             if (cube_log_item != undefined) {
                 tier_rng = cube_object.results.tier_up.cube_log_item.tier_prng;
-                tier_map = cube_object.results.tier_up.cube_log_item.r_map;
+                let tier_map = cube_object.results.tier_up.cube_log_item.r_map;
 
                 html_tier = mapToDisplayHtml(tier_map, (a)=>{
                     return `
@@ -1469,6 +1904,28 @@ $(function(){
                         </tr>
                     `
                 });
+            }
+
+            let line_selection_rng = "";
+            let html_uniSelection = "";
+
+            /*
+                for unicube, show the prng info for choosing a line to reroll
+            */
+            if (cube === "uni") {
+                line_selection_rng = cube_object.uni_prng.tier_prng;
+                let line_selection_map = cube_object.uni_prng.r_map;
+
+                html_uniSelection = mapToDisplayHtml(line_selection_map, (a)=>{
+                    return `
+                        <tr class="${line_selection_rng >= a.from && line_selection_rng < a.to ? 'highlight-row' : ''}">
+                            <td>Cube Line #${+a.name + 1}</td>
+                            <td>${a.from} - ${a.to}</td>
+                        </tr>
+                    `
+                });
+
+                chosen_lines = [cube_object.unicube_this_line];
             }
 
             //get the maximum size of the result maps
@@ -1506,18 +1963,46 @@ $(function(){
                     </div>
                 ` : ''
                 }
+                ${
+                    html_uniSelection !== "" ? `
+                        <h2>Unicube Line Selection</h2>
+                        <div class="tooltip-item" id="tooltip_tier" style="width:100%;display:block;">
+                            <table style="width:100%;font-size:11px;">
+                                <thead>
+                                    <tr>
+                                        <th>Selected Line</th>
+                                        <th>Range</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <b>${line_selection_rng}</b>
+                                        </td>
+                                    </tr>
+                                    ${html_uniSelection}
+                                </tbody>
+                            </table>
+                        </div>
+                    ` : ``
+                }
                 <h2>Stat Determination</h2>
                 <div class="tooltip-item" id="tooltip_item" style="width:100%;height:90%;display:block;">
                     <table style="width:100%;height:100%;font-size:11px;">
                         <thead>
                             <tr>
                             ${
-                                cube_line.map(function(a,b) {
-                                    return `
-                                        <th>Line #${b+1}</th>
-                                        <th>Range</th>
+                                cube_line.reduce(function(a,b,c) {
+                                    let chosen = chosen_lines.includes(c);
+
+                                    a += `
+                                        <th class="${chosen ? "violet-cube-chosen" : ""}">Line #${c+1}</th>
+                                        <th class="${chosen ? "violet-cube-chosen" : ""}">Range</th>
+                                        <th class="${chosen ? "violet-cube-chosen" : ""}">Chance</th>
                                     `;
-                                }).join("")
+
+                                    return a;
+                                }, "")
                             }
                             </tr>
                         </thead>
@@ -1526,7 +2011,7 @@ $(function(){
                                 cube_object.results.result.map(function(x) {
                                     chosen_row.push(x.prng);
                                     return `
-                                        <td colspan="2" style="text-align:center" title="The pseudo-random number used to check against the probability map.">
+                                        <td colspan="3" style="text-align:center" title="The pseudo-random number used to check against the probability map.">
                                             <b>${x.prng}</b>
                                         </td>
                                     `
@@ -1542,16 +2027,19 @@ $(function(){
                                                 return `
                                                     <td></td>
                                                     <td></td>
+                                                    <td></td>
                                                 `;
                                             }
 
 
                                             let _chosen = chosen_row[y];
                                             let isChosen = _chosen >= _a.from && _chosen < _a.to;
+                                            let probability = (_a.chance * 100).toFixed(4);
 
                                             return `
-                                                <td ${isChosen ? `class="highlight-row"` : ""} title="${(_a.chance * 100).toFixed(4)}% chance" data-id="${_a.id}">${_a.display}</td>
+                                                <td ${isChosen ? `class="highlight-row"` : ""} title="${probability}% chance" data-id="${_a.id}">${_a.display}</td>
                                                 <td ${isChosen ? `class="highlight-row"` : ""}>${_a.from.toFixed(7)} - ${_a.to.toFixed(7)}</td>
+                                                <td ${isChosen ? `class="highlight-row"` : ""}>${probability}%</td>
                                             `;
                                         }).join("")
                                     }</tr>`
@@ -1602,7 +2090,7 @@ $(function(){
         black cube - bright cube, 02439878
     */
     function change_cube_visual(type = "GMS") {
-        if (type === "GMS" && $("#css_cube_override").length === 0) {
+        //if (type === "GMS" && $("#css_cube_override").length === 0) {
             $("body").append(`
                 <style id="css_cube_override">
                     .cube-red {
@@ -1658,11 +2146,107 @@ $(function(){
                         background: url(../assets/cube/red/cube_glowing.backgrnd3.png) !important;
                         background-repeat: no-repeat !important;    
                         top: 4px;
-                    }
-                    .cube-main-red {
-                        background: url(../assets/cube/free/Cube.backgrnd.png) !important;
+                    }                    
+
+                    .cube-main-red,.cube-main-master,.cube-main-meister,.cube-main-occult,.cube-main-bonus_occult,.cube-main-bonus,.cube-main-equality,
+                    .cube-main-uni {
+                        background: url(../assets/cube/glowing/Cube_Glowing.backgrnd.png) !important;
                         background-repeat: no-repeat !important;
+                        height: 300px;
                     }
+
+                    .cube-result {
+                        margin-top: 2px;
+                    }
+
+                    .cube-main-window {
+                        position: relative;
+                        background: url(../assets/cube/glowing/Cube_Glowing.backgrnd2.png);
+                        background-repeat: no-repeat !important;
+                        display: inline-block;
+                        width: 187px;
+                        height: 273px;
+                        top: 24px;
+                        left: 5px;
+                    }
+
+                    .cube-window {
+                        position: relative;
+                        background: url(../assets/cube/glowing/Cube_Glowing.result.png);
+                        background-repeat: no-repeat !important;
+                        display: inline-block;
+                        width: 178px;
+                        height: 116px;
+                        top: 97px;
+                        left: 5px;
+                    }
+
+                    .btn-one-more-try {
+                        top:100px;
+                    }
+                    .btn-cube-ok {
+                        top: 82px;
+                    }
+
+                    .cube-upgrade.cube-use-normal {
+                        position: absolute;
+                        background: url(../assets/cube/glowing/Cube_Glowing.Effect.Use.png);
+                        background-repeat: no-repeat;
+                        animation: cube-use-animation 1.5s steps(11) forwards 1;
+                        width: 179px;
+                        height: 197px;
+                        top: 41px;
+                        left: 5px;
+                    }
+                    .cube-upgrade.cube-use-tier {
+                        position: absolute;
+                        background: url(../assets/cube/glowing/Cube_Glowing.Effect.GradeUp.png);
+                        background-repeat: no-repeat;
+                        animation: tier-up-animation 1.5s steps(11) forwards 1;
+                        width: 180px;
+                        height: 237px;
+                        top: 6px;
+                        left: 5px;
+                    }
+
+                    .cube-item-window {
+                        position: absolute;
+                        background: url(../assets/cube/glowing/Cube_Glowing.Effect.Normal.png);
+                        background-repeat: no-repeat;
+                        animation: cube-item-window-animation 1.8s steps(11) infinite;
+                        width: 180px;
+                        height: 86px;
+                        top: 41px;
+                        left: 5px;
+                    }
+
+                    @keyframes cube-item-window-animation {
+                        from {
+                            background-position-y: 0px;
+                        }
+                        to {
+                            background-position-y: -946px;
+                        }
+                    }
+
+                    @keyframes cube-use-animation {
+                        from {
+                            background-position-y: 0px;
+                        }
+                        to {
+                            background-position-y: -2167px
+                        }
+                    }
+
+                    @keyframes tier-up-animation {
+                        from {
+                            background-position-y: 0px;
+                        }
+                        to {
+                            background-position-y: -2607px;
+                        }
+                    }
+
                     #black_cube_container[data-cube="black"] .cube-black-header-reset {
                         background: url(../assets/cube/black/cube_bright.backgrnd3.png) !important;
                         background-repeat: no-repeat !important;    
@@ -1673,10 +2257,102 @@ $(function(){
                         background-repeat: no-repeat !important;    
                         top: 4px;
                     }
+                        
                     .cube-black-main {
-                        background: url(../assets/cube/black/cube_bright.backgrnd2.png) !important;
+                        height: 416px;
+                        background: url(../assets/cube/bright/cube_bright.backgrnd.png) !important;
                         background-repeat: no-repeat !important;
-                    }                   
+                    }           
+                    
+                    .cube-black-main-window {
+                        background: url(../assets/cube/bright/Cube_Bright.backgrnd2.png);
+                    }
+
+                    .cube-black-window-before {
+                        background: url(../assets/cube/bright/Cube_Bright.Before.normal.0.png);
+                        height: 114px;
+                    }
+
+                    .cube-black-window-before:hover {
+                        background: url(../assets/cube/bright/Cube_Bright.Before.mouseOver.0.png);
+                        height: 114px;
+                    }
+
+
+                    .cube-black-window-before:active {
+                        background: url(../assets/cube/bright/Cube_Bright.Before.pressed.0.png);
+                        height: 114px;
+                    }
+
+                    .cube-black-window-after {
+                        background: url(../assets/cube/bright/Cube_Bright.After.normal.0.png);
+                        height: 114px;
+                        top: 97px;
+                    }
+
+                    .cube-black-window-after:hover {
+                        background: url(../assets/cube/bright/Cube_Bright.After.mouseOver.0.png);
+                        height: 114px;
+                    }
+
+
+                    .cube-black-window-after:active {
+                        background: url(../assets/cube/bright/Cube_Bright.After.pressed.0.png);
+                        height: 114px;
+                    }
+
+                    .cube-black-upgrade.cube-use-normal {
+                        background: url(../assets/cube/bright/Cube_Bright.Effect.Use.png);
+                        animation: cube-black-use-animation 1.8s steps(12) forwards 1;
+                        width: 179px;
+                        height: 312px;
+                        top: 41px;
+                        left: 5px;
+                    }
+
+                    .cube-black-upgrade.cube-use-tier {
+                        position: absolute;
+                        background: url(../assets/cube/bright/Cube_Bright.Effect.GradeUp.png);
+                        animation: tier-up-black-animation 1.5s steps(11) forwards 1;
+                        width: 188px;
+                        height: 352px;
+                        top: 5px;
+                        left: -4px;
+                    }
+
+                    .cube-black-main-window > .cube-before-result {
+                        height: 90px;
+                        width: 173px;
+                        left: 8px;
+                        top: 150px;
+                    }
+
+                    .cube-black-main-window > .cube-after-result {
+                        height: 90px;
+                        width: 173px;
+                        left: 8px;
+                        top: 263px;
+                    }
+
+                    @keyframes cube-black-use-animation {
+                        from {
+                            background-position-y: 0px;
+                        }
+                        to {
+                            background-position-y: -3744px;
+                        }
+                    }
+
+                    @keyframes tier-up-black-animation {
+                        from {
+                            background-position-y: 0px;
+                        }
+                        to {
+                            background-position-y: -3872px;
+                        }
+                    }
+                    
+
                     .reset-cube-occult {
                         background: url(../assets/cube/free/cube_mystical.backgrnd3.png) !important;
                         background-repeat: no-repeat !important;
@@ -1693,12 +2369,305 @@ $(function(){
                         background: url(../assets/cube/free/cube_solid.backgrnd3.png) !important;
                         background-repeat: no-repeat !important;
                     }
+
+
+                    .cube-main-violet {
+                        background: url(../assets/cube/violet/backgrnd.png);
+                        background-repeat: no-repeat;
+                        height: 300px;
+                        width: 210px;
+                    }
+
+                    .cube-main-violet > .cube-main-window {
+                        background: url(../assets/cube/violet/backgrnd2.png);
+                        background-repeat: no-repeat;
+                        height: 274px;
+                        width: 199px;
+                    }
+
+                    .cube-main-violet .cube-item-window {
+                        background: url(../assets/cube/violet/Cube_Violet.Effect.Normal.png);
+                        background-repeat: no-repeat;
+                        animation: cube-item-window-animation 1.8s steps(11) infinite;
+                        width: 196px;
+                        height: 86px;
+                        top: 41px;
+                        left: 2px;
+                    }
+
+                    .cube-main-violet .cube-window {
+                        background: none;
+                    }
+
+                    .cube-main-violet .cube-result {
+                        margin-top: -7px;
+                        line-height: 1em;
+                    }
+
+                    .cube-main-violet .cube-result-background {
+                        background-repeat: no-repeat;
+                        top: 131px;
+                        left: 6px;
+                        width: 191px;
+                        height: 115px;
+                    }
+
+                    .cube-main-violet .cube-result-background.result-rare {
+                        background: url(../assets/cube/violet/Rare.png);  
+                    }
+                    .cube-main-violet .cube-result-background.result-epic {
+                        background: url(../assets/cube/violet/Epic.png);  
+                    }
+                    .cube-main-violet .cube-result-background.result-unique {
+                        background: url(../assets/cube/violet/Unique.png);  
+                    }
+                    .cube-main-violet .cube-result-background.result-legendary {
+                        background: url(../assets/cube/violet/Legendary.png);  
+                    }
+
+                    .cube-main-violet .cube-item {
+                        left: 86px;
+                        top: 70px;
+                    }
+
+                    .cube-main-violet .btn-one-more-try {
+                        position: relative;
+                        background: url(../assets/cube/violet/BtConfirm.normal.0.png);
+                        background-repeat: no-repeat !important;
+                        display: inline-block;
+                        width: 40px;
+                        height: 16px;
+                        top: 104px;
+                        left: 82px;
+                    }
+
+                    .cube-main-violet .btn-one-more-try:hover {
+                        background: url(../assets/cube/violet/BtConfirm.mouseOver.0.png);
+                    }
+
+                    .cube-main-violet .btn-one-more-try:active {
+                        background: url(../assets/cube/violet/BtConfirm.pressed.0.png);
+                    }
+
+                    .cube-main-violet.cube-main-violet-final .btn-one-more-try {
+                        position: relative;
+                        background: url(../assets/cube/violet/BtOk.normal.0.png);
+                        background-repeat: no-repeat !important;
+                        display: inline-block;
+                        width: 37px;
+                        height: 16px;
+                        top: 104px;
+                        left: 65px;
+                    }
+
+                    .cube-main-violet.cube-main-violet-final .btn-one-more-try:hover {
+                        background: url(../assets/cube/violet/BtOk.mouseOver.0.png);
+                    }
+
+                    .cube-main-violet.cube-main-violet-final .btn-one-more-try:active {
+                        background: url(../assets/cube/violet/BtOk.pressed.0.png);
+                    }
+
+                    .cube-main-violet .btn-cube-ok {
+                        display: inline-block;
+                        position: relative;
+                        background: url(../assets/cube/violet/BtCancel.normal.0.png);
+                        background-repeat: no-repeat !important;
+                        width: 37px;
+                        height: 16px;
+                        top: 104px;
+                        left: 64px;
+                    }
+
+                    .cube-main-violet .cube-att-result {
+                        display: none;
+                    }
+
+                    .cube-main-violet .cube-upgrade.cube-use-normal,.cube-main-violet .cube-upgrade.cube-use-tier {
+                        position: absolute;
+                        background: url(../assets/cube/violet/backgrnd4.png);
+                        background-repeat: no-repeat;
+                        animation: none;
+                        width: 191px;
+                        height: 115px;
+                        top: 131px;
+                        left: 6px;
+                    }
+
+                    .reset-cube-violet {
+                        background: url(../assets/cube/violet/backgrnd3.png) !important;
+                        background-repeat: no-repeat !important;
+                        height: 33px;
+                        width: 199px;
+                    }
+
+                    .reset-cube-uni {
+                        background: url(../assets/cube/uni/uni_backgrnd3.png) !important;
+                        background-repeat: no-repeat !important;    
+                        top: 0px;
+                        left: 0px;
+                        height: 47px;
+                    }
+
+                    .cube-main-uni .cube-window {
+                        top: 82px;
+                    }
+                    .cube-main-uni .cube-result-background {
+                        top: 147px;
+                    }
+                    .cube-main-uni .cube-use-normal, .cube-main-uni .cube-use-tier {
+                        position: absolute;
+                        background: url(../assets/cube/uni/UseEffect.Timeline.spritesheet.png);
+                        animation: tier-up-uni-animation 1.5s steps(11) forwards 1;
+                        width: 178px;
+                        height: 86px;
+                        top: 41px;
+                        left: 5px;
+                    }
+
+                    @keyframes tier-up-uni-animation {
+                        from {
+                            background-position-y: 0px;
+                        }
+                        to {
+                            background-position-y: -946px;
+                        }
+                    }
+                    
+
+                    .cube-main-uni .btn-one-more-try {
+                        position: relative;
+                        background: url(../assets/cube/uni/BtOnemore1.normal.0.png);
+                        background-repeat: no-repeat !important;
+                        display: inline-block;
+                        width: 86px;
+                        height: 16px;
+                        top: 88px;
+                        left: 5px;
+                    }
+                    .cube-main-uni .btn-one-more-try:hover {
+                        background: url(../assets/cube/uni/BtOnemore1.mouseOver.0.png);
+                    }
+                    .cube-main-uni .btn-one-more-try:active {
+                        background: url(../assets/cube/uni/BtOnemore1.pressed.0.png);
+                    }
+                    .cube-main-uni .btn-one-more-try.disabled {
+                        background: url(../assets/cube/uni/BtOnemore1.disabled.0.png);
+                    }
+
+                    .cube-main-uni .btn-proceed {
+                        position: relative;
+                        background: url(../assets/cube/uni/BtOk.normal.0.png);
+                        background-repeat: no-repeat !important;
+                        display: inline-block;
+                        width: 86px;
+                        height: 16px;
+                        top: 88px;
+                        left: 2px;
+                    }
+                    .cube-main-uni .btn-proceed:hover {
+                        background: url(../assets/cube/uni/BtOk.mouseOver.0.png);
+                    }
+                    .cube-main-uni .btn-proceed:active {
+                        background: url(../assets/cube/uni/BtOk.pressed.0.png);
+                    }
+                    .cube-main-uni .btn-proceed.disabled {
+                        background: url(../assets/cube/uni/BtOk.disabled.0.png);
+                    }
+
+                    .cube-main-uni .btn-cube-ok {
+                        display: inline-block;
+                        position: relative;
+                        background: url(../assets/cube/uni/BtCancel.normal.0.png);
+                        background-repeat: no-repeat !important;
+                        width: 43px;
+                        height: 16px;
+                        top: 68px;
+                        left: 138px;
+                    }
+                    .cube-main-uni .btn-cube-ok:hover {
+                        background: url(../assets/cube/uni/BtCancel.mouseOver.0.png);
+                    }
+                    .cube-main-uni .btn-cube-ok:active {
+                        background: url(../assets/cube/uni/BtCancel.pressed.0.png);
+                    }
+                    .cube-main-uni .btn-cube-ok.disabled {
+                        background: url(../assets/cube/uni/BtCancel.disabled.0.png);
+                    }
+
+                    #uniResultLine {
+                        background: url(../assets/cube/uni/uni_highlight.png);
+                        background-repeat: no-repeat !important;
+                        animation: expandFadeBackground 1s steps(8) forwards infinite;
+                        width: 157px;
+                        height: 12px;
+                        position: absolute;
+                        background-position: center;
+                    }
+
+                    @keyframes expandFadeBackground {
+                    0% {
+                        background-size: 50% 100%;
+                        opacity: 0;
+                        animation-delay: 250ms;
+                    }
+                    16.666% {
+                        background-size: 60% 100%;
+                        opacity: 0.16666;
+                    }
+                    33.333% {
+                        background-size: 65% 100%;
+                        opacity: 0.33333;
+                    }
+                    50% {
+                        background-size: 70% 100%;
+                        opacity: 0.5;
+                    }
+                    66.666% {
+                        background-size: 75% 100%;
+                        opacity: 0.66666;
+                    }
+                    83.333% {
+                        background-size: 78% 100%;
+                        opacity: 0.83333;
+                    }
+                    100% {
+                        background-size: 100% 100%;
+                        opacity: 1;
+                    }
+                    }
+
+
+                    #uniResultLine2 {
+                        background: url(../assets/cube/uni/OptionalBlindEffect.Timeline.spritesheet.png);
+                        background-repeat: no-repeat !important;
+                        animation: unifadeInExpand 1s steps(6) forwards 1;
+                        width: 157px;
+                        height: 12px;
+                        position: absolute;
+                    }
+
+                    @keyframes unifadeInExpand {
+                        0% {
+                            background-position-y: 0px;
+                        }
+                        90% {
+                            background-position-y: 0px; /* Keep the first frame for 70% of the time */
+                        }
+                        100% {
+                            background-position-y: -72px; /* Quickly cycle through the rest */
+                        }
+                    }
                 </style>
             `);
+            /*
         } else {
             $("#css_cube_override").remove();
         }
+            */
     }
+
+    change_cube_visual();
 
     /* change display. does not change rates */
     $("#system_cube_display").on("change", function() {
@@ -1707,6 +2676,23 @@ $(function(){
 
         cube.rates.tier_up = cube.rates.tier_up_region[system.cube];
     });
+
+    /*
+        violet cube lines to select
+    */
+   $("body").on("click", ".cube-main-violet .cube-result-line", function() {    
+        sfa.play("_BtMouseClick");
+        const _this = $(this);
+
+        if (_this.hasClass("violet-result-line-active")) {
+            _this.removeClass("violet-result-line-active");
+        } else {
+            const violet_active = $("#cube_container .violet-result-line-active");
+            if (violet_active.length >= 3) return false;
+
+            _this.addClass("violet-result-line-active");
+        }
+   });
 });
 
 /* cube menu stuff */
@@ -1732,6 +2718,7 @@ var cube_pot_dropdown_html = async function(this_item, type, pot_tier, o) {
 
     //generate dropdowns for each line with the available stats
     let idx = 0;
+    let uuid = generateUUID();
     for (let i in stats) {
         ++idx;
 
@@ -1769,13 +2756,54 @@ var cube_pot_dropdown_html = async function(this_item, type, pot_tier, o) {
                     <span class="tooltip-label-${pot_tier}" style="font-size:1.3em">•</span>
                     Line ${idx}:
                 </span>
-                <select id="cube_stat_line_${type}_${idx}" class="select-cube-line-${type}" data-id="${idx}" style="width:100%"pi>
+                <select id="cube_stat_line_${type}_${idx}" data-id="${uuid}" class="select-cube-line-${type}" data-id="${idx}" style="width:100%"pi>
                     ${stat_options}
                 </select>
             </div>
         `;
     }
 
-    return tier_html;
+    return `
+        <button id="btnCube_${uuid}_random" class="btn-cube-dropdown-random" data-for="${uuid}">Randomize</button> 
+        <button id="btnCube_${uuid}_match" class="btn-cube-dropdown-match" data-for="${uuid}">Match Line #1</button> 
+        ${tier_html}`;
 };
+
+$(function() {
+    /*
+        for the cube line selector, randomize the lines for #1,2,3
+    */
+    const body = $("body").on("click", ".btn-cube-dropdown-random", function() {
+        let _this = $(this);
+        let uuid = _this.attr("data-for");
+
+        const cubeSelects = $(`select[data-id=${uuid}]`);
+
+        for (let i = 0; i < cubeSelects.length; ++i) {
+            let cubeSelect = cubeSelects.eq(i);
+            let cubeOption = cubeSelect.find("option");
+            var randomIndex = Math.floor(Math.random() * cubeOption.length); // Generate random index
+            cubeOption.eq(randomIndex).prop("selected", true); // Select the random option
+            cubeSelect.trigger("change");
+
+            /* force any select2 select events */
+            if (i === cubeSelects.length - 1) {
+                cubeSelect.trigger({type: "select2:select"});
+            }
+        }
+    });
+
+    body.on("click", ".btn-cube-dropdown-match", function() {
+        let _this = $(this);
+        let uuid = _this.attr("data-for");
+
+        const cubeSelects = $(`select[data-id=${uuid}]`);
+
+        let line1 = cubeSelects.eq(0).val();
+        cubeSelects.eq(1).val(line1).trigger("change");
+        cubeSelects.eq(2).val(line1).trigger("change").trigger({type: "select2:select"});
+    });
+});
+
+
 

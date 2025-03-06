@@ -137,7 +137,9 @@ onmessage = async function(o) {
         cube: "red",
         item: {},
         enforce_order: false,
-        allow_gt: true
+        allow_gt: true,
+        stat_restriction_map: {},
+        cube_line_stats: {}
     }, o.data);
 
     let lines = [];
@@ -146,7 +148,7 @@ onmessage = async function(o) {
         check if pot lines have stat lines that go over the restriction limit.
     */
     let lines_check = d.cube_lines.map((a)=>{
-        return cube.stat_restriction_map[a]; /* resolve line into common type to check against (e.g., boss damage 40%/35%/30% becomes boss_dmg) */
+        return d.stat_restriction_map[a]; /* resolve line into common type to check against (e.g., boss damage 40%/35%/30% becomes boss_dmg) */
     }).reduce((a,b)=>{
         if (b in a) {
             ++a[b]
@@ -173,7 +175,7 @@ onmessage = async function(o) {
     }
 
     if (d.allow_gt) {
-        const cube_stat_lines = await cube.cube_line_stats;
+        const cube_stat_lines = d.cube_line_stats;
 
         let desired_lines = d.cube_lines.reduce(resolve_stat_lines.bind({
             all_stats: false,

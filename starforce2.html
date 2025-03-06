@@ -222,6 +222,9 @@
         <div class="cube cube-black cube-big maple-button cube-option" data-id="black" id="cube_black"></div>
         <div class="cube cube-bonus cube-big maple-button cube-option" data-id="bonus" id="cube_bonus"></div>
         <div class="cube cube-white cube-big maple-button cube-option" data-id="white" id="cube_white"></div>
+        <div class="cube cube-violet cube-big maple-button cube-option" data-id="violet" id="cube_violet" title="Violet Cube"></div>
+        <div class="cube cube-uni cube-big maple-button cube-option" data-id="uni" id="cube_uni" title="Uni Cube"></div>
+        <div class="cube cube-equality cube-big maple-button cube-option" data-id="equality" id="cube_equality" title="Equality Cube"></div>
 
         <div class="flame flame-powerful flame-big maple-button flame-option" data-id="powerful" id="powerfulFlame"></div>
         <div class="flame flame-eternal flame-big maple-button flame-option" data-id="eternal" id="eternalFlame"></div>
@@ -316,6 +319,8 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                     <input type="checkbox" class="system_cb" id="sf_conf_popup" data-bind="confirmation_popup" title="Don't show the popup that confirms if you want to starforce." checked> Show Confirmation Popup
                 </label>
             </div>
+            <!-- doesn't work anymore with GMS UI updates -->
+            <!--
             <div class="menu-group cube-option">
                 <b>Cube Display</b>
                 <br>
@@ -326,6 +331,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                     </select> Cube Type
                 </label>
             </div>
+            -->
             <div class="menu-group cube-option">
                 <b>Item Tooltip Display</b>
                 <br>
@@ -666,17 +672,18 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
     <div class="cube-main">
         <div class="cube-main-window">
             <div class="cube-header-reset"></div>
+            <span class="cube-result-background"></span>
             <div class="cube-item-window"></div>
-            <div class="cube-result-background"></div>
             <div class="cube-window">
                 <span class="cube-result">
-                    <span class="cube-result-pot cube-pot-label">Rare</span>
+                    <!--<span class="cube-result-pot cube-pot-label">Rare</span>-->
                     <span class="cube-result-stats">
                     ATT: +12% <br>
                     ATT: +12% <br>
                     ATT: +12%
                     </span> <br>
-                    <span class="cube-att-result">ATT Increase:</span> <span class="cube-att-stat cube-att-decrease">-99999999</span>
+                    <div class="cube-att-result">ATT Increase:</span> <span class="cube-att-stat cube-att-increase">0</div>
+                    <div class="cube-att-result">Combat Power:</span> <span class="cube-att-stat cube-att-increase">0</div>
                 </span>
             </div>
             <div class="cube-upgrade hidden"></div>
@@ -686,8 +693,9 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                 Owned: x9999
                 </span>
             </div>
-            <div class="btn-one-more-try maple-button"></div>
-            <div class="btn-cube-ok maple-button"></div>
+            <div class="btn-one-more-try maple-button btn-cube-action"></div>
+            <div class="btn-proceed maple-button hidden btn-cube-action"></div>
+            <div class="btn-cube-ok maple-button btn-cube-action"></div>
         </div>
     </div>
 </div>
@@ -700,29 +708,38 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
             <div class="cube-black-header-reset"></div>
             <div class="cube-item-window"></div>
             <div class="cube-black-result-background"></div>
+            <span class="cube-result-background cube-before-result"></span>
             <div class="cube-black-result cube-black-window-before" data-type="before">
                 <span class="cube-black-before-result maple-button">
                     <span class="cube-result">
+                        <!--
                         <span class="cube-result-pot cube-result-before-label cube-pot-label">Rare</span>
+                        -->
                         <span class="cube-result-stats cube-result-before">
                         DEF: +12% <br>
                         DEF: +12% <br>
                         DEF: +12%
                         </span> <br>
-                        <span class="cube-att-result">ATT Increase:</span> <span class="cube-att-stat cube-att-decrease">-99999999</span>
+                        <div class="cube-att-result">ATT Increase:</span> <span class="cube-att-stat cube-att-increase">0</div>
+                        <div class="cube-att-result">Combat Power:</span> <span class="cube-att-stat cube-att-increase">0</div>
                     </span>
                 </span>
             </div>
+            <span class="cube-result-background cube-after-result"></span>
             <div class="cube-black-result cube-black-window-after maple-button" data-type="after">
                 <span class="cube-black-after-result">
                     <span class="cube-result">
+                        <span class="cube-result-background"></span>
+                        <!--
                         <span class="cube-result-pot cube-result-after-label cube-pot-label">Rare</span>
+                        -->
                         <span class="cube-result-stats cube-result-after">
                         ATT: +12% <br>
                         ATT: +12% <br>
                         ATT: +12%
                         </span> <br>
-                        <span class="cube-att-result">ATT Increase:</span> <span class="cube-att-stat cube-att-decrease">-99999999</span>
+                        <div class="cube-att-result">ATT Increase:</span> <span class="cube-att-stat cube-att-increase">0</div>
+                        <div class="cube-att-result">Combat Power:</span> <span class="cube-att-stat cube-att-increase">0</div>
                     </span>
                 </span>
             </div>

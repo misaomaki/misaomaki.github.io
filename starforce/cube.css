@@ -73,6 +73,30 @@
     height:36px;
     width:36px;
 }
+.cube-violet {
+    background: url(../assets/cube/VioletCube.png);
+    background-repeat: no-repeat !important;
+    background-size: contain;
+    display: inline-block;
+    height:29px;
+    width:29px;
+}
+.cube-uni {
+    background: url(../assets/cube/UniCube.png);
+    background-repeat: no-repeat !important;
+    background-size: contain;
+    display: inline-block;
+    height:36px;
+    width:36px;
+}
+.cube-equality {
+    background: url(../assets/cube/EqualityCube.png);
+    background-repeat: no-repeat !important;
+    background-size: contain;
+    display: inline-block;
+    height:36px;
+    width:36px;
+}
 
 .cube-bonus {
     background: url(../assets/cube/BonusCube.png);
@@ -176,6 +200,18 @@
     user-select: none;
 }
 
+/*
+.cube-main-equality {
+    position: absolute;
+    background: url(../assets/cube/equality/equality_cube.backgrnd11.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    width: 196px;
+    height: 300px;
+    user-select: none;
+}
+*/
+
 .cube-main-header, .cube-black-main-header, .cube-white-main-header {
     position: absolute;
     width: 195px;
@@ -193,9 +229,10 @@
     user-select: none;  
 }
 
-.cube-main-window {
+/*
+.cube-main-equality > .cube-main-window {
     position: relative;
-    background: url(../assets/cube/red/Cube_Red.backgrnd2.png);
+    background: url(../assets/cube/equality/backgrnd2.png);
     background-repeat: no-repeat !important;
     display: inline-block;
     width: 187px;
@@ -203,6 +240,7 @@
     top: 24px;
     left: 5px;
 }
+*/
 
 .cube-header-reset {
     position: relative;
@@ -244,6 +282,15 @@
     background-repeat: no-repeat !important;
 }
 
+.reset-cube-equality {
+    background: url(../assets/cube/equality/equality_cube.backgrnd3.png);
+    background-repeat: no-repeat !important;
+    /* temporary */
+    width: 177px;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
 .cube-window {
     position: relative;
     background: url(../assets/cube/red/Cube_Red.backgrnd4.png);
@@ -272,6 +319,36 @@
     position: relative;
     top: 2px;
 }
+
+.cube-result-background {
+    position: absolute;
+    background-repeat: repeat;
+    background-repeat: no-repeat;
+    width: 169px;
+    height: 93px;
+    position: absolute;
+    left: 8px;
+    top: 150px;
+}
+
+.cube-result-background.result-rare {
+    background: url(../assets/cube/rare.png);
+}
+.cube-result-background.result-epic {
+    background: url(../assets/cube/epic.png);
+}
+.cube-result-background.result-unique {
+    background: url(../assets/cube/unique.png);
+}
+.cube-result-background.result-legendary {
+    background: url(../assets/cube/legendary.png);
+}
+
+.violet-result-line-active {
+    background: url(../assets/cube/violet/textHighlight.png);
+    background-repeat: no-repeat;
+}
+
 
 .cube-upgrade.cube-use-tier {
     position: absolute;
@@ -607,4 +684,8 @@
 
 .auto-cube-selected {
     filter: drop-shadow(2px 2px 10px orange)
+}
+
+.violet-cube-chosen {
+    background: #00abff;
 }
