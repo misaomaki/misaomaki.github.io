@@ -788,6 +788,11 @@
 .btn-one-more-try {
     top:100px;
 }
+
+.cube-black-main .btn-one-more-try {
+    top:103px;
+}
+
 .btn-cube-ok {
     top: 82px;
 }
