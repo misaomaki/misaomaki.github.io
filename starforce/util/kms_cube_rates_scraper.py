@@ -337,6 +337,7 @@ kr_en_lines = {
     "All stats:": "All Stats:",
     "Horsepower:": "Magic ATT",
     "Magic:": "Magic ATT:",
+    "ATT +": "ATT: +",
     "Attack power:": "ATT:",
     "Attack Power:": "ATT:",
     "STR :": "STR:",
