@@ -1140,6 +1140,15 @@
     top: 101px;
     left: 64px;
 }
+.cube-main-violet .btn-cube-ok:hover {
+    background: url(../assets/cube/violet/BtCancel.mouseOver.0.png);
+}
+.cube-main-violet .btn-cube-ok:active {
+    background: url(../assets/cube/violet/BtCancel.pressed.0.png);
+}
+.cube-main-violet .btn-cube-ok.disabled {
+    background: url(../assets/cube/violet/BtCancel.disabled.0.png);
+}
 
 .cube-main-violet.cube-main-violet-final .btn-cube-ok {
     display: inline-block;
