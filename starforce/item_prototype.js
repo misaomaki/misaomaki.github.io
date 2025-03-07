@@ -464,6 +464,7 @@ item.prototype.redraw_update_list = [
 item.prototype.redraw_item_tooltip = function(
     update = []
 ) {
+    /* if nothing is passed, then assume update everything */
     if (update.length === 0) {
         update = this.redraw_update_list;
     }

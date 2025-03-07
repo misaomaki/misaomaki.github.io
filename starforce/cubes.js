@@ -1324,7 +1324,6 @@ $(function(){
 
             /* violet cube - remove cancel button on first pass, set animation faster */
             if (cube_type === "violet") {
-                $("#cube_container .btn-cube-ok").addClass("hidden");
                 base_animation = 500;
             } else if (cube_type === "uni") {
                 base_animation = 1000;
@@ -1411,9 +1410,6 @@ $(function(){
                 return false;
             }
         }
-        
-        /* show cancel button */
-        $("#cube_container .btn-cube-ok").removeClass("hidden");
 
         /* prep violet cube to second screen */
         const cube_main = $("#cube_container .cube-main");

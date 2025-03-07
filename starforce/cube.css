@@ -1131,7 +1131,7 @@
 
 
 .cube-main-violet .btn-cube-ok {
-    display: inline-block;
+    display: none;
     position: relative;
     background: url(../assets/cube/violet/BtCancel.normal.0.png);
     background-repeat: no-repeat !important;
@@ -1139,6 +1139,10 @@
     height: 16px;
     top: 101px;
     left: 64px;
+}
+
+.cube-main-violet.cube-main-violet-final .btn-cube-ok {
+    display: inline-block;
 }
 
 .cube-main-violet .cube-att-result {
