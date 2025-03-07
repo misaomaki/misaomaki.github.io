@@ -984,6 +984,9 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
                 }).join("")
             );
         }
+        /* update cube owned text to display cubes used */
+        let cubeUsed = dom.find(".cube-remaining-text");
+        cubeUsed.html(`Owned: ${Item.idata.meta.cubes_used[type]}`);
         cubeResults.removeClass("hidden");
     }
 
@@ -1726,14 +1729,18 @@ $(function(){
 
         let cube_type_html = "";
 
-        for (let i in Item.idata.meta.cubes_used) {
-            let cube_count = Item.idata.meta.cubes_used[i];
-            cube_type_html += `
+        /* sort cube usage by cubes used descending */
+        let cubeEntries = Object.entries(Item.idata.meta.cubes_used).sort((a, b) => b[1] - a[1]);
+
+        cube_type_html += cubeEntries.reduce((a, [cube_type, cubes_used])=>{
+            a += `
                 <div class="cube-used">
-                    <div class="cube cube-${i} cube-small"></div> <span class="cube-used-count">${cube_count}</span>
+                    <div class="cube cube-${cube_type} cube-small"></div> <span class="cube-used-count">${cubes_used}</span>
                 </div>
             `;
-        }
+
+            return a;
+        }, "");
 
         let t_body = "";
         if (cube_data.length === 0) {
