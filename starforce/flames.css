@@ -55,3 +55,41 @@
 .form-disabled {
     opacity: 0.3;
 }
+
+.item-form {
+    display: block;
+    padding: 10px;
+}
+
+.item-label {
+    display: inline-block;
+    width: 125px;
+}
+
+/*
+    flame form
+*/
+.flame-form, .scroll-form {
+    width: 50px;
+}
+
+.item-flame-label, .item-scroll-label {
+    padding: 5px;
+    display: inline-block;
+    width: 150px;
+}
+
+.item-flame-form, .item-scroll-form {
+    display: inline-block;
+    width: 335px;
+    vertical-align:top;
+}
+
+.item-flame-form {
+    padding: 5px;
+}
+
+.flame-box {
+    display: inline-block;
+    width: 100%;
+}

@@ -214,7 +214,7 @@
 
 .cube-main-header, .cube-black-main-header, .cube-white-main-header {
     position: absolute;
-    width: 195px;
+    width: 175px;
     height: 25px;
     cursor: pointer;
     z-index: 100;
@@ -596,7 +596,7 @@
     left: 12px;
     color: white;
     font-size: 11.5px;
-    line-height: 1.25em;
+    line-height: 1em;
     transform: scaleX(1.05);
     display: block;
 }
@@ -693,9 +693,54 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
         GMS OVERRIDE
 */
+.cube-header-icon {
+    background-repeat: no-repeat !important;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    left: 176px;
+    top: 7px;
+    float: right;
+}
+
+.cube-main-violet .cube-header-icon {
+    left: 189px;
+    top: 7px;
+}
+
+.cube-button-x {
+    background: url(../assets/starforce/ui.button.close.x.png);
+ }
+ 
+.cube-button-x:hover {
+    background: url(../assets/starforce/ui.button.close.x.mouseover.png);
+}
+
+.cube-button-x:active {
+    background: url(../assets/starforce/ui.button.close.x.pressed.png);
+}
 
 .cube-red {
     background: url(../assets/cube/GlowingCube.png) !important;
@@ -781,20 +826,20 @@
     display: inline-block;
     width: 178px;
     height: 116px;
-    top: 97px;
+    top: 94px;
     left: 5px;
 }
 
 .btn-one-more-try {
-    top:100px;
+    top:97px;
 }
 
 .cube-black-main .btn-one-more-try {
-    top:103px;
+    top:100px;
 }
 
 .btn-cube-ok {
-    top: 82px;
+    top: 75px;
 }
 
 .cube-upgrade.cube-use-normal {
@@ -880,6 +925,7 @@
 .cube-black-window-before {
     background: url(../assets/cube/bright/Cube_Bright.Before.normal.0.png);
     height: 114px;
+    top: 93px;
 }
 
 .cube-black-window-before:hover {
@@ -896,7 +942,7 @@
 .cube-black-window-after {
     background: url(../assets/cube/bright/Cube_Bright.After.normal.0.png);
     height: 114px;
-    top: 97px;
+    top: 93px;
 }
 
 .cube-black-window-after:hover {
@@ -933,7 +979,7 @@
     height: 90px;
     width: 173px;
     left: 8px;
-    top: 150px;
+    top: 148px;
 }
 
 .cube-black-main-window > .cube-after-result {
@@ -1046,7 +1092,7 @@
     display: inline-block;
     width: 40px;
     height: 16px;
-    top: 104px;
+    top: 101px;
     left: 82px;
 }
 
@@ -1057,6 +1103,9 @@
 .cube-main-violet .btn-one-more-try:active {
     background: url(../assets/cube/violet/BtConfirm.pressed.0.png);
 }
+.cube-main-violet .btn-one-more-try.disabled {
+    background: url(../assets/cube/violet/BtConfirm.disabled.0.png);
+}
 
 .cube-main-violet.cube-main-violet-final .btn-one-more-try {
     position: relative;
@@ -1065,7 +1114,7 @@
     display: inline-block;
     width: 37px;
     height: 16px;
-    top: 104px;
+    top: 101px;
     left: 65px;
 }
 
@@ -1076,6 +1125,10 @@
 .cube-main-violet.cube-main-violet-final .btn-one-more-try:active {
     background: url(../assets/cube/violet/BtOk.pressed.0.png);
 }
+.cube-main-violet.cube-main-violet-final .btn-one-more-try.disabled {
+    background: url(../assets/cube/violet/BtOk.disabled.0.png);
+}
+
 
 .cube-main-violet .btn-cube-ok {
     display: inline-block;
@@ -1084,7 +1137,7 @@
     background-repeat: no-repeat !important;
     width: 37px;
     height: 16px;
-    top: 104px;
+    top: 101px;
     left: 64px;
 }
 
@@ -1119,10 +1172,10 @@
 }
 
 .cube-main-uni .cube-window {
-    top: 82px;
+    top: 80px;
 }
 .cube-main-uni .cube-result-background {
-    top: 147px;
+    top: 148px;
 }
 .cube-main-uni .cube-use-normal, .cube-main-uni .cube-use-tier {
     position: absolute;
@@ -1151,7 +1204,7 @@
     display: inline-block;
     width: 86px;
     height: 16px;
-    top: 88px;
+    top: 84px;
     left: 5px;
 }
 .cube-main-uni .btn-one-more-try:hover {
@@ -1171,7 +1224,7 @@
     display: inline-block;
     width: 86px;
     height: 16px;
-    top: 88px;
+    top: 84px;
     left: 2px;
 }
 .cube-main-uni .btn-proceed:hover {
@@ -1191,7 +1244,7 @@
     background-repeat: no-repeat !important;
     width: 43px;
     height: 16px;
-    top: 68px;
+    top: 64px;
     left: 138px;
 }
 .cube-main-uni .btn-cube-ok:hover {

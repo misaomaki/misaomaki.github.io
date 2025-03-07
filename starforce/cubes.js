@@ -1348,7 +1348,7 @@ $(function(){
     }
 
     //close cube window
-    $(".btn-cube-ok").on("click", function() {
+    $(".btn-cube-ok,#btnCubeMainClose").on("click", function() {
         const cube_main = $("#cube_container .cube-main");
         let cube_type = cc.attr("data-cube");
         cube_main.removeClass(function (index, className) {
@@ -1356,6 +1356,16 @@ $(function(){
         });
 
         cc.addClass("hidden");
+    });
+
+    $("#btnCubeBlackClose").on("click", function() {
+        const cube_main = $("#black_cube_container .cube-main");
+        let cube_type = bcc.attr("data-cube");
+        cube_main.removeClass(function (index, className) {
+            return (className.match(/cube-main-(.*)/g) || []).join(' ');
+        });
+
+        bcc.addClass("hidden");
     });
 
     //one more try

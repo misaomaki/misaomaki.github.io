@@ -1,4 +1,5 @@
 <!--- asset preload-->
+<!DOCTYPE html>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link id="favicon" rel="icon" type="image/png" href="../assets/starforce/ui.starcatch.star.png" />
 <!--
@@ -670,6 +671,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
 <div class="cube-main-border hidden" id="cube_container">
     <div class="cube-main-header"></div>
     <div class="cube-main">
+        <div class="cube-header-icon cube-button-x maple-button" id="btnCubeMainClose"></div>
         <div class="cube-main-window">
             <div class="cube-header-reset"></div>
             <span class="cube-result-background"></span>
@@ -704,6 +706,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
 <div class="cube-main-border hidden" id="black_cube_container">
     <div class="cube-black-main-header"></div>
     <div class="cube-black-main">
+        <div class="cube-header-icon cube-button-x maple-button" id="btnCubeBlackClose"></div>
         <div class="cube-black-main-window">
             <div class="cube-black-header-reset"></div>
             <div class="cube-item-window"></div>
@@ -850,38 +853,6 @@ crossorigin="anonymous"></script>
 <script src="./starforce/dom_menu.js"></script>
 <!-- ui - statistics -->
 <script src="./starforce/stat_starforce.js"></script>
-
-<style>
-    .item-form {
-        display: block;
-        padding: 10px;
-    }
-
-    .item-label {
-        display: inline-block;
-        width: 125px;
-    }
-
-    .flame-form, .scroll-form {
-        width: 50px;
-    }
-
-    .item-flame-label, .item-scroll-label {
-        padding: 5px;
-        display: inline-block;
-        width: 150;
-    }
-
-    .item-flame-form, .item-scroll-form {
-        display: inline-block;
-        width: 335px;
-        vertical-align:top;
-    }
-
-    .item-flame-form {
-        padding: 5px;
-    }
-</style>
 
 <!--- modal dialogs -->
 <div id="option_box" style="display:none"></div>
