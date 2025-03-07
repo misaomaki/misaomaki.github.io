@@ -1350,6 +1350,16 @@ $(function(){
     $(".btn-cube-ok,#btnCubeMainClose").on("click", function() {
         const cube_main = $("#cube_container .cube-main");
         let cube_type = cc.attr("data-cube");
+
+        if (cube_type === "violet") {
+            /* if moved to final already, then ignore the processing and run cube like normal */
+            if (!cube_main.hasClass("cube-main-violet-final")) {
+                confirm_violet_cube_use({
+                    force_use: true
+                });
+            }
+        }
+
         cube_main.removeClass(function (index, className) {
             return (className.match(/cube-main-(.*)/g) || []).join(' ');
         });
