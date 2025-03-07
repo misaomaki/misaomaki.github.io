@@ -1203,7 +1203,7 @@ item.prototype.redraw_sf = function() {
                 `
                 }
             `}
-            <span style="display:block;padding:15px;"></span>
+            <span style="display:block;padding-top:38px;"></span>
             ${ _str !== 0 ?
                 `<span class="sf-item-desc-attr">STR</span>: +${_str}<br>` : ''
             }

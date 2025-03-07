@@ -372,13 +372,13 @@ $(function() {
 
                     let this_value = value;
                     let is_match = false;
+                    let this_type = this_item.type;
 
                     /* check query */
                     switch (query) {
                         /* search by item type like earring, ring, etc. */
                         case "type":
                             if (!value.startsWith("=")) {
-                                let this_type = this_item.type;
                                 this_value = this_value.replace(/[-\s]/gi, "").toUpperCase();
                                 this_type = this_type.replace(/[-\s]/gi, "").toUpperCase();
     
