@@ -162,7 +162,7 @@ item.prototype.xgrade_item = function(type = 0) {
     this.idata.meta.sf_log_item.star = this.idata.meta.stars + additional_stars;
     this.idata.meta.stars += additional_stars;
 
-    this.redraw();
+    this.redraw(["starforce"]);
 };
 
 
@@ -449,47 +449,90 @@ item.prototype.get_final_stats = function() {
 
 //update item stats on tooltip screen
 //pass parts to update specific parts of the tooltip
-item.prototype.redraw_item_tooltip = function() {
+item.prototype.redraw_update_list = [
+    "name",
+    "stats",
+    "flames",
+    "job_req",
+    "stars",
+    "level",
+    "cube",
+    "exceptional",
+    "flavor_skill"
+];
+
+item.prototype.redraw_item_tooltip = function(
+    update = []
+) {
+    if (update.length === 0) {
+        update = this.redraw_update_list;
+    }
+
+    /* special types */
+    if (update.includes("flames")) {
+        update.push(...["stats", "level"]);
+    } else if (update.includes("starforce")) {
+        update.push(...["stats", "stars"]);
+    }
+
     //dom cache
-    let i_con = this.check_cache(()=>{
+    let i_con = this.check_cache(() => {
         return $(".item-main-border");
     }, "dom", "i_con");   
-    let istats = this.check_cache(()=>{
-        return i_con.find(".item-stats");
-    }, "dom", "istats");   
-    let icube = this.check_cache(()=>{
-        return i_con.find(".item-cube");
-    }, "dom", "icube");   
-    let iexceptional = this.check_cache(()=>{
-        return i_con.find(".item-exceptional");
-    }, "dom", "iexceptional");   
-    let imisc = this.check_cache(()=>{
-        return i_con.find(".item-misc");
-    }, "dom", "imisc");   
+
+    if (update.includes("name")) {
+        this.update_item_tooltip_name(i_con);
+    }
+    if (update.includes("stats")) {
+        this.update_item_tooltip_stats(i_con);
+    }
+    if (update.includes("job_req")) {
+        this.update_item_tooltip_job_req(i_con);
+    }
+    if (update.includes("stars")) {
+        this.update_item_tooltip_stars(i_con);
+    }
+    if (update.includes("level")) {
+        this.update_item_tooltip_level(i_con);
+    }
+    if (update.includes("cube")) {
+        this.update_item_tooltip_cube(i_con);
+    }
+    if (update.includes("exceptional")) {
+        this.update_item_tooltip_exceptional(i_con);
+    }
+    if (update.includes("flavor_skill")) {
+        this.update_item_tooltip_flavor_skill(i_con);
+    }
+
+    return true;
+};
+
+/* update item name */
+item.prototype.update_item_tooltip_name = function(i_con) {
     let iname = this.check_cache(()=>{
         return i_con.find(".item-current-name");
     }, "dom", "iname");   
-    let istar = this.check_cache(()=>{
-        return i_con.find(".item-star");
-    }, "dom", "istar");   
-    let ipic = this.check_cache(()=>{
-        return i_con.find(".item-container-item");
-    }, "dom", "ipic");   
-    let istar_con = this.check_cache(()=>{
-        return i_con.find(".item-star-container");
-    }, "dom", "istar_con");
-    let iflag = this.check_cache(()=>{
-        return i_con.find(".item-container-flag");
-    }, "dom", "iflag");    
-    let isub = this.check_cache(()=>{
-        return i_con.find(".item-sub-description");
-    }, "dom", "isub");
 
+    let item_name = this.idata.name;
+    let scroll_count = this.idata.boosts.scroll_data.length;
+
+    iname.html(`
+        ${item_name} 
+        ${
+            scroll_count > 0 ? `(+${scroll_count})` : ""
+        }
+    `);
+}
+
+/* update stat portion */
+item.prototype.update_item_tooltip_stats = function(i_con) {
+    let istats = this.check_cache(()=>{
+        return i_con.find(".item-stats");
+    }, "dom", "istats");   
 
     let item_stats = this.get_final_stats();
-    let scroll_count = this.idata.boosts.scroll_data.length;
-    let item_name = this.idata.name;
-    
+
     let html = `
         Type: ${this.idata.type.capitalize()} <br>
         ${this.idata.class === "weapon" && this.idata.sub_class !== "secondary" ? `
@@ -588,6 +631,19 @@ item.prototype.redraw_item_tooltip = function() {
     `;
 
     istats.html(html);
+}
+
+/* update cube portion of tooltip */
+item.prototype.update_item_tooltip_cube = function(i_con) {
+    let iflag = this.check_cache(()=>{
+        return i_con.find(".item-container-flag");
+    }, "dom", "iflag");    
+    let icube = this.check_cache(()=>{
+        return i_con.find(".item-cube");
+    }, "dom", "icube");   
+    let isub = this.check_cache(()=>{
+        return i_con.find(".item-sub-description");
+    }, "dom", "isub");
 
     iflag.attr("class", "item-container-flag"); /* reset flag status to nothing */
 
@@ -656,6 +712,13 @@ item.prototype.redraw_item_tooltip = function() {
     }
 
     icube.html(cube_html);
+}
+
+/* update exceptional part */
+item.prototype.update_item_tooltip_exceptional = function(i_con) {
+    let iexceptional = this.check_cache(()=>{
+        return i_con.find(".item-exceptional");
+    }, "dom", "iexceptional");   
 
     /* exceptional part */
     if (this.idata.meta.exceptional_applied){
@@ -705,6 +768,13 @@ item.prototype.redraw_item_tooltip = function() {
     } else {
         iexceptional.html("");
     }
+}
+
+/* update flavor and skill */
+item.prototype.update_item_tooltip_flavor_skill = function(i_con) {
+    let imisc = this.check_cache(()=>{
+        return i_con.find(".item-misc");
+    }, "dom", "imisc");   
 
     if (this.idata.flavor !== "" || this.idata.skill !== ""){
         imisc.html(`
@@ -723,16 +793,36 @@ item.prototype.redraw_item_tooltip = function() {
     } else {
         imisc.html("");
     }
+}
 
-    iname.html(`
-        ${item_name} 
-        ${
-            scroll_count > 0 ? `(+${scroll_count})` : ""
-        }
-    `);
+/* update stars */
+item.prototype.update_item_tooltip_stars = function(i_con) {
+    let istar = this.check_cache(()=>{
+        return i_con.find(".item-star");
+    }, "dom", "istar");   
+    let istar_con = this.check_cache(()=>{
+        return i_con.find(".item-star-container");
+    }, "dom", "istar_con");
 
     istar.addClass("disabled");
     istar.slice(0, this.idata.meta.stars).removeClass("disabled");
+
+    istar.removeClass("hidden");
+    /* don't show stars at top of tooltip if not starforceable */
+    if (!this.idata.starforce) {
+        istar_con.addClass("hidden");
+    } else {
+        istar_con.removeClass("hidden");
+        //remove stars based on max stars allowed
+        for (let i = 25; i > this.idata.meta.max_stars; --i) {
+            istar.filter(".item-star-" + i).addClass("hidden");
+        } 
+    }
+}
+
+/* update level include flame reduction level */
+item.prototype.update_item_tooltip_level = function(i_con) {
+    let item_stats = {final: this.idata.meta.final_stats};
 
     //required level for item
     //if flame has reduced level requirements, change the required level to display
@@ -769,6 +859,7 @@ item.prototype.redraw_item_tooltip = function() {
     for (let i = 0; i < 3; ++i) {
         i_levelreq.eq(i).addClass("req-num-" + lvl_split[i]);
     }
+
 
     //shows the (200-25) portion in the item tooltip
     if (item_stats.final.reqlvl !== 0) {
@@ -813,6 +904,13 @@ item.prototype.redraw_item_tooltip = function() {
 
         i_levelreq.eq(11).addClass("req-num-cp white");
     }
+}
+
+/* update job and stat requirements and pic */
+item.prototype.update_item_tooltip_job_req = function(i_con) {
+    let ipic = this.check_cache(()=>{
+        return i_con.find(".item-container-item");
+    }, "dom", "ipic");   
 
     let item_attr = this.idata.req;
 
@@ -866,20 +964,6 @@ item.prototype.redraw_item_tooltip = function() {
         ipic.attr("class", "item-container-item sf-item");
         ipic.addClass(this.idata.img);
     }
-
-    istar.removeClass("hidden");
-    /* don't show stars at top of tooltip if not starforceable */
-    if (!this.idata.starforce) {
-        istar_con.addClass("hidden");
-    } else {
-        istar_con.removeClass("hidden");
-        //remove stars based on max stars allowed
-        for (let i = 25; i > this.idata.meta.max_stars; --i) {
-            istar.filter(".item-star-" + i).addClass("hidden");
-        } 
-    }
-    
-    return true;
 }
 
 //cache function
@@ -906,9 +990,9 @@ item.prototype.check_cache = function(data_call = ()=>{return null;}, cache_name
 };
 
 //redraw item tooltip and starforce screen
-item.prototype.redraw = function() {
+item.prototype.redraw = function(update = []) {
     this.redraw_sf();
-    this.redraw_item_tooltip();
+    this.redraw_item_tooltip(update);
 };
 
 //log the cost, including discounts

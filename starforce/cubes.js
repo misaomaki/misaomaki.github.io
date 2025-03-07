@@ -1002,7 +1002,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
         cb();
     } else {
         if (o.update_dom) {
-            this.redraw_item_tooltip();
+            this.redraw_item_tooltip(["cube"]);
         }
     }
 };
@@ -1517,7 +1517,7 @@ $(function(){
             Item.idata.meta.cube_potential_bonus = this_pot.tier;
         }
     
-        Item.redraw_item_tooltip();
+        Item.redraw_item_tooltip(["cube"]);
 
         bcc.addClass("hidden");
     });
@@ -2125,6 +2125,9 @@ $(function(){
         violet cube lines to select
     */
    $("body").on("click", ".cube-main-violet .cube-result-line", function() {    
+        /* on final screen. don't allow clicking of cube lines */
+        if ($("#cube_container .cube-main").hasClass("cube-main-violet-final")) return false;
+
         sfa.play("_BtMouseClick");
         const _this = $(this);
 

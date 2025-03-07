@@ -273,7 +273,7 @@ $(function() {
 
                         Item.set_item_level(d.data.stars_to);
                         Item.idata.meta.sf_meta_data = d.data.data;
-                        Item.redraw();
+                        Item.redraw(["starforce"]);
                         sfa.play("EnchantSuccess", {playbackRate: 1});
                         optionbox.dialog("close");
 

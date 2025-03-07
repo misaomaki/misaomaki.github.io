@@ -933,7 +933,7 @@ var flames = {
         this.idata.meta.flames_meta_data.unshift(flames_log);
         
         if (o.update_dom) {
-            this.redraw_item_tooltip();
+            this.redraw_item_tooltip(["flames"]);
         }
     }
 };
