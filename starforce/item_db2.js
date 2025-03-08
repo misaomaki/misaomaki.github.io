@@ -8018,7 +8018,10 @@ items_store["secondary: shield"] = {
         },
         img: "item-dragonkhanjar",
         upgrades: 7,
-        hammers_added: 2
+        hammers_added: 2,            
+        "override_meta": {
+            "max_stars": 15
+        }
     },
     terminus_defender: {
         name: "Terminus Defender",

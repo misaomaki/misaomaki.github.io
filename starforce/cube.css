@@ -1093,7 +1093,7 @@
     display: inline-block;
     width: 40px;
     height: 16px;
-    top: 101px;
+    top: 100px;
     left: 82px;
 }
 
@@ -1115,7 +1115,7 @@
     display: inline-block;
     width: 37px;
     height: 16px;
-    top: 101px;
+    top: 100px;
     left: 65px;
 }
 
@@ -1138,7 +1138,7 @@
     background-repeat: no-repeat !important;
     width: 37px;
     height: 16px;
-    top: 101px;
+    top: 100px;
     left: 64px;
 }
 .cube-main-violet .btn-cube-ok:hover {
@@ -1239,7 +1239,7 @@
     width: 86px;
     height: 16px;
     top: 84px;
-    left: 2px;
+    left: 1px;
 }
 .cube-main-uni .btn-proceed:hover {
     background: url(../assets/cube/uni/BtOk.mouseOver.0.png);

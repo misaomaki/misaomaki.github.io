@@ -841,12 +841,6 @@ item.prototype.update_item_tooltip_level = function(i_con) {
         effective_level = "0" + effective_level;
     }
 
-    let i_levelreq_con = this.check_cache(()=>{
-        return i_con.find(".item-requirements-str, .item-requirements-dex, .item-requirements-int, .item-requirements-luk");
-    }, "dom", "i_levelreq_con");  
-    
-    i_levelreq_con.removeClass("required");
-
     let i_levelreq = this.check_cache(()=>{
         return i_con.find(".item-lev-num");
     }, "dom", "i_levelreq");   
@@ -914,7 +908,13 @@ item.prototype.update_item_tooltip_job_req = function(i_con) {
     }, "dom", "ipic");   
 
     let item_attr = this.idata.req;
-
+    
+    let i_levelreq_con = this.check_cache(()=>{
+        return i_con.find(".item-requirements-str, .item-requirements-dex, .item-requirements-int, .item-requirements-luk");
+    }, "dom", "i_levelreq_con");  
+    
+    i_levelreq_con.removeClass("required");
+    
     //required stats for item
     for (let i in item_attr) {
         let ia = item_attr[i];
