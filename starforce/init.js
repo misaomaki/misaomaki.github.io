@@ -1,9 +1,8 @@
-//scour the stylesheets and append them to the body with style tag. remove style immediately afterwards
+//scour the stylesheets and append them to the body with link as image tag
 //this is to force the preloading of images so that the images don't just jitter on the screen when they're first shown because they didn't load until they were called
-//still jittery-ish. real solution is to move all images to a single spritesheet, but way too lazy for that
 $(function() {
     //inline css
-    if (false) {
+    if (true) {
         let s = $("style");
         let new_style = "";
 
@@ -67,27 +66,13 @@ $(function() {
                     let img = bimg[k].replace('url("', "").replace('");', "");
 
                     new_style += `
-                        url(${img})
+                        <link rel="preload" href="${img}" as="image">
                     `;
                 }
             }
         }
 
-        new_style = `
-            body::after {
-                content: ${new_style};
-            }
-        `;
-
-        $("body").append(`
-            <style id="preload_style">
-            ${new_style}
-            </style>
-        `);
-    
-        setTimeout(()=>{
-            $("#preload_style").remove();
-        },100);
+        $("body").prepend(new_style);
     }
 });
 
