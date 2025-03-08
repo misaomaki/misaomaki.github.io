@@ -1304,7 +1304,7 @@ $(function() {
 
         cc.removeClass("hidden").position({
             my: "center",
-            at: "center",
+            at: "center top+35%",
             of: sfcon
         });
 
@@ -1314,7 +1314,7 @@ $(function() {
 
         bcc.removeClass("hidden").position({
             my: "center",
-            at: "center",
+            at: "center top+35%",
             of: sfcon
         });
 
