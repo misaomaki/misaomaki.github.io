@@ -731,15 +731,16 @@
 }
 
 .cube-button-x {
-    background: url(../assets/starforce/ui.button.close.x.png);
+    background: url(../assets/starforce/BtClose3.normal.0.png);
  }
- 
 .cube-button-x:hover {
-    background: url(../assets/starforce/ui.button.close.x.mouseover.png);
+    background: url(../assets/starforce/BtClose3.mouseOver.0.png);
 }
-
 .cube-button-x:active {
-    background: url(../assets/starforce/ui.button.close.x.pressed.png);
+    background: url(../assets/starforce/BtClose3.pressed.0.png);
+}
+.cube-button-x.disabled {
+    background: url(../assets/starforce/BtClose3.disabled.0.png);
 }
 
 .cube-red {
@@ -1281,35 +1282,35 @@
 }
 
 @keyframes expandFadeBackground {
-0% {
-    background-size: 50% 100%;
-    opacity: 0;
-    animation-delay: 250ms;
-}
-16.666% {
-    background-size: 60% 100%;
-    opacity: 0.16666;
-}
-33.333% {
-    background-size: 65% 100%;
-    opacity: 0.33333;
-}
-50% {
-    background-size: 70% 100%;
-    opacity: 0.5;
-}
-66.666% {
-    background-size: 75% 100%;
-    opacity: 0.66666;
-}
-83.333% {
-    background-size: 78% 100%;
-    opacity: 0.83333;
-}
-100% {
-    background-size: 100% 100%;
-    opacity: 1;
-}
+    0% {
+        background-size: 50% 100%;
+        opacity: 0;
+        animation-delay: 250ms;
+    }
+    16.666% {
+        background-size: 60% 100%;
+        opacity: 0.16666;
+    }
+    33.333% {
+        background-size: 65% 100%;
+        opacity: 0.33333;
+    }
+    50% {
+        background-size: 70% 100%;
+        opacity: 0.5;
+    }
+    66.666% {
+        background-size: 75% 100%;
+        opacity: 0.66666;
+    }
+    83.333% {
+        background-size: 78% 100%;
+        opacity: 0.83333;
+    }
+    100% {
+        background-size: 100% 100%;
+        opacity: 1;
+    }
 }
 
 

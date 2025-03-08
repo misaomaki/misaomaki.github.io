@@ -268,11 +268,16 @@ body, html {
 }
 
 .sf-button-x {
-   background: url(../assets/starforce/ui.button.close.x.png);
-}
-
+    background: url(../assets/starforce/BtClose3.normal.0.png);
+ }
 .sf-button-x:hover {
-    background: url(../assets/starforce/ui.button.close.x.mouseover.png);
+    background: url(../assets/starforce/BtClose3.mouseOver.0.png);
+}
+.sf-button-x:active {
+    background: url(../assets/starforce/BtClose3.pressed.0.png);
+}
+.sf-button-x.disabled {
+    background: url(../assets/starforce/BtClose3.disabled.0.png);
 }
 
 .sf-main-header {

@@ -8062,7 +8062,7 @@ items_store["secondary: shield"] = {
             "luk": 0
         },
         "img": "item-stolenfence",
-        "upgrades": 10,
+        "upgrades": 7,
         "hammers_added": 2,
         "starforce": true,
         "enhanceable": true,
@@ -8089,11 +8089,11 @@ items_store["secondary: shield"] = {
             "luk": 0
         },
         "img": "item-panlid",
-        "upgrades": 10,
+        "upgrades": 7,
         "hammers_added": 2,
         "starforce": true,
         "enhanceable": true,
-        "scrollable": false,
+        "scrollable": true,
         "sub_class": "secondary"
     },
     "maple_shield": {
@@ -8116,11 +8116,11 @@ items_store["secondary: shield"] = {
             "luk": 0
         },
         "img": "item-mapleshield",
-        "upgrades": 10,
+        "upgrades": 7,
         "hammers_added": 2,
         "starforce": true,
         "enhanceable": true,
-        "scrollable": false,
+        "scrollable": true,
         "sub_class": "secondary"
     },
     "black_phoenix_shield": {
@@ -8143,11 +8143,11 @@ items_store["secondary: shield"] = {
             "luk": 0
         },
         "img": "item-blackphoenixshield",
-        "upgrades": 10,
+        "upgrades": 7,
         "hammers_added": 2,
         "starforce": true,
         "enhanceable": true,
-        "scrollable": false,
+        "scrollable": true,
         "sub_class": "secondary"
     },
     "palette": {
@@ -8171,11 +8171,11 @@ items_store["secondary: shield"] = {
             "luk": 0
         },
         "img": "item-palette",
-        "upgrades": 10,
+        "upgrades": 7,
         "hammers_added": 2,
         "starforce": true,
         "enhanceable": true,
-        "scrollable": false,
+        "scrollable": true,
         "sub_class": "secondary"
     },
     "cokeplay_shield": {
@@ -8198,11 +8198,11 @@ items_store["secondary: shield"] = {
             "luk": 0
         },
         "img": "item-cokeplayshield",
-        "upgrades": 10,
+        "upgrades": 7,
         "hammers_added": 2,
         "starforce": true,
         "enhanceable": true,
-        "scrollable": false,
+        "scrollable": true,
         "sub_class": "secondary"
     },
     "stone_shield": {
@@ -8227,11 +8227,11 @@ items_store["secondary: shield"] = {
             "luk": 0
         },
         "img": "item-stoneshield",
-        "upgrades": 10,
+        "upgrades": 7,
         "hammers_added": 2,
         "starforce": true,
         "enhanceable": true,
-        "scrollable": false,
+        "scrollable": true,
         "sub_class": "secondary"
     }
 };
