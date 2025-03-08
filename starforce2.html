@@ -2,6 +2,22 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simulate Maplestory Items with stats, starforce, cube potential, flames, scrolls, and whatever else.">
+
+    <!-- meta tags -->
+    <meta property="og:title" content="Maplestory Item Simulator">
+    <meta property="og:description" content="Simulate Maplestory Items">
+    <meta property="og:image" content="../assets/starforce/ui.starcatch.star.png">
+    <meta property="og:url" content="https://misaomaki.github.io/starforce2">
+    <meta property="og:type" content="website">
+
+    <!-- twitter tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Maplestory Item Simulator">
+    <meta name="twitter:description" content="Simulate Maplestory Items">
+    <meta name="twitter:image" content="../assets/starforce/ui.starcatch.star.png">
+
     <link id="favicon" rel="icon" type="image/png" href="../assets/starforce/ui.starcatch.star.png" />
     <!--
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/jquery-ui-git.css">
@@ -13,6 +29,156 @@
     <link rel="stylesheet" type="text/css" href="./starforce/cube.css">
     <link rel="stylesheet" type="text/css" href="./starforce/flames.css">
     <link rel="stylesheet" type="text/css" href="./starforce/stat_starforce.css">
+
+    <!-- stolen from w3schools for menu -->
+    <style>
+        body {
+        font-family: "Lato", sans-serif;
+        }
+        
+        .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 31;
+        top: 0;
+        right: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        opacity: 0.9;
+        }
+        
+        .sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+        white-space: nowrap;
+        }
+        
+        .sidebar a:hover {
+        color: #f1f1f1;
+        }
+        
+        .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        }
+        
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: rgba(0,0,0,0.7);;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            white-space: nowrap;    
+            display: block;
+            margin: 5px 0 5px 0;
+            width: 125px;
+            text-align: left;
+        }
+
+        .openbtn-left {
+            transition: .5s;
+            margin-left: -409px;
+        }
+        
+        .openbtn:hover {
+        background-color: rgba(25,25,25,0.7);
+        }
+        
+        #main {
+        transition: margin-left .5s;
+        padding: 16px;
+        float: right;
+        }
+        
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+        .sidebar {padding-top: 15px;}
+        .sidebar a {font-size: 18px;}
+        }
+
+        table {
+            border-collapse: collapse; 
+        }
+
+        table, td, th  {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        .sf-stat-breakdown:nth-child(odd) {
+            background-color: #e6e6e6;
+        }
+
+        .sub-table {
+            border: none;
+            border-collapse: separate;
+        }
+
+        .result-success {
+            color: green;
+        }
+
+        .r-sc_success {
+            color: #0072ec !important;
+        }
+
+        .result-fail {
+            color: red;
+        }
+
+        .result-destroy {
+            background-color: grey;
+        }
+
+        .result-destroy2 {
+            color: grey;
+        }
+
+        .result-destroy-text {
+            color: white;
+        }
+    </style>
+
+    <style id="maple_items">      
+        /*
+            populated dynamically by item_db.js
+        */
+    </style>
+
+    <style id="variableAnimation">
+        /* populated dynamically from starforce_sound.js */
+    </style>
+
+    <style>
+        .sidebar .menu-group {
+            color: white;
+            padding: 5px;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .sidebar margin {
+            display: block;
+            width: 100%;
+            padding: 5px;
+        }
+
+        .sidebar .side-bar-item {
+            padding: 3px;
+            display: block;
+        }
+    </style>
 </head>
 <!--
 <script
@@ -27,125 +193,6 @@
 <!-- sound -->
 <script src="./starforce/starforce_sound.js"></script>
 
-<!-- stolen from w3schools for menu -->
-<style>
-    body {
-      font-family: "Lato", sans-serif;
-    }
-    
-    .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 31;
-      top: 0;
-      right: 0;
-      background-color: #111;
-      overflow-x: hidden;
-      transition: 0.5s;
-      padding-top: 60px;
-      opacity: 0.9;
-    }
-    
-    .sidebar a {
-      padding: 8px 8px 8px 32px;
-      text-decoration: none;
-      font-size: 25px;
-      color: #818181;
-      display: block;
-      transition: 0.3s;
-      white-space: nowrap;
-    }
-    
-    .sidebar a:hover {
-      color: #f1f1f1;
-    }
-    
-    .sidebar .closebtn {
-      position: absolute;
-      top: 0;
-      right: 25px;
-      font-size: 36px;
-      margin-left: 50px;
-    }
-    
-    .openbtn {
-        font-size: 20px;
-        cursor: pointer;
-        background-color: rgba(0,0,0,0.7);;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        white-space: nowrap;    
-        display: block;
-        margin: 5px 0 5px 0;
-        width: 125px;
-        text-align: left;
-    }
-
-    .openbtn-left {
-        transition: .5s;
-        margin-left: -409px;
-    }
-    
-    .openbtn:hover {
-      background-color: rgba(25,25,25,0.7);
-    }
-    
-    #main {
-      transition: margin-left .5s;
-      padding: 16px;
-      float: right;
-    }
-    
-    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-    @media screen and (max-height: 450px) {
-      .sidebar {padding-top: 15px;}
-      .sidebar a {font-size: 18px;}
-    }
-
-    table {
-        border-collapse: collapse; 
-    }
-
-    table, td, th  {
-        border: 1px solid black;
-        text-align: center;
-    }
-
-    .sf-stat-breakdown:nth-child(odd) {
-        background-color: #e6e6e6;
-    }
-
-    .sub-table {
-        border: none;
-        border-collapse: separate;
-    }
-
-    .result-success {
-        color: green;
-    }
-
-    .r-sc_success {
-        color: #0072ec !important;
-    }
-
-    .result-fail {
-        color: red;
-    }
-
-    .result-destroy {
-        background-color: grey;
-    }
-
-    .result-destroy2 {
-        color: grey;
-    }
-
-    .result-destroy-text {
-        color: white;
-    }
-</style>
 
 <script>
     const dev_info = `
@@ -183,36 +230,6 @@
       }
     </style>
 </noscript>
-
-<style id="maple_items">      
-    /*
-        populated dynamically by item_db.js
-    */
-</style>
-
-<style id="variableAnimation">
-    /* populated dynamically from starforce_sound.js */
-</style>
-
-<style>
-    .sidebar .menu-group {
-        color: white;
-        padding: 5px;
-        display: block;
-        white-space: nowrap;
-    }
-
-    .sidebar margin {
-        display: block;
-        width: 100%;
-        padding: 5px;
-    }
-
-    .sidebar .side-bar-item {
-        padding: 3px;
-        display: block;
-    }
-</style>
 
 <div id="sfcon">
     <div class="cube-menu hidden" id="cube_menu">
