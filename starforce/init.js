@@ -42,7 +42,7 @@ $(function() {
             let s = ss[i];
         
             if (s.href === undefined || s.href === null || (!s.href.includes("misaomaki") && !s.href.includes(":5500"))) continue; //inline or not from git domain (css from cdns and whatnot)
-
+            if (s.href.includes("/css/")) continue; /* not a core css file for starforcing */
             //local host detected, so don't even bother trying
             if (s.href.startsWith("file://")) break;
 
@@ -59,21 +59,23 @@ $(function() {
                     !cssText.includes("background")
                 ) continue;
 
-                let bimg = cssText.replace(" no-repeat","").match(/url\("(.*)"\);/gi);
+                /* get the url in the background CSS url style */
+                let bimg_match = cssText.match(/url\(["']?([^"')]+)["']?\)/);
 
-                if (bimg == null || bimg === undefined) continue;
+                if (bimg_match == null || bimg_match === undefined || bimg_match.length < 1) continue;
+
+                let bimg = bimg_match[1];
                 
-                for (let k = 0; k < bimg.length; ++k) {
-                    let img = bimg[k].replace('url("', "").replace('");', "");
+                /* ignore any data images */
+                if (bimg.includes("data:image")) continue;
 
-                    new_style += `
-                        <link rel="preload" href="${img}" as="image" media="(min-width: 600px)">
-                    `;
+                new_style += `
+                    <link rel="preload" href="${bimg}" as="image" media="(min-width: 600px)">
+                `;
 
-                    new_image += `
-                        url(${img})
-                    `;
-                }
+                new_image += `
+                    url(${bimg})
+                `;
             }
         }
 
