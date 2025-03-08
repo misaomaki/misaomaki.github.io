@@ -5,6 +5,7 @@ $(function() {
     if (true) {
         let s = $("style");
         let new_style = "";
+        let new_image = "";
 
         for (let i = 0; i < s.length; ++i) {
             let i_s = s[i].innerHTML;
@@ -66,15 +67,41 @@ $(function() {
                     let img = bimg[k].replace('url("', "").replace('");', "");
 
                     new_style += `
-                        <link rel="preload" href="${img}" as="image">
+                        <link rel="preload" href="${img}" as="image" media="(min-width: 600px)">
+                    `;
+
+                    new_image += `
+                        url(${img})
                     `;
                 }
             }
         }
 
+        /* prepend preloaded images to head */
         $("head").prepend(new_style);
-    }
+
+        /* stop chrome from complaining that preloaded images are not used right away */
+        new_image = `
+            body::after {
+                content: ${new_image};
+            }
+        `;
+        $("body").append(`
+            <style id="preload_style">
+            ${new_image}
+            </style>
+        `);
+        setTimeout(()=>{
+            $("#preload_style").remove();
+        },100);
+     }
 });
+
+
+
+
+
+
 
 //random functions
 //Durstenfeld shuffle

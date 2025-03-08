@@ -5541,7 +5541,8 @@ items_store["secondary: magic_arrow"] = {
 
 items_store["secondary: magic_book"] = {
     "white_gold_book_<strophe>": {
-        "name": "White Gold Book <Strophe>",
+        "name": "White Gold Book &lt;Strophe&gt;",
+        "override_image": "White Gold Book <Strophe>",
         "level": 30,
         "class": "weapon",
         "type": "magic book",
@@ -5569,7 +5570,8 @@ items_store["secondary: magic_book"] = {
         "scrollable": true
     },
     "white_gold_book_<antistrophe>": {
-        "name": "White Gold Book <Antistrophe>",
+        "name": "White Gold Book &lt;Antistrophe&gt;",
+        "override_image": "White Gold Book <Antistrophe>",
         "level": 60,
         "class": "weapon",
         "type": "magic book",
@@ -5597,7 +5599,8 @@ items_store["secondary: magic_book"] = {
         "scrollable": true
     },
     "white_gold_book_<epode>": {
-        "name": "White Gold Book <Epode>",
+        "name": "White Gold Book &lt;Epode&gt;",
+        "override_image": "White Gold Book <Epode>",
         "level": 100,
         "class": "weapon",
         "type": "magic book",
@@ -5625,7 +5628,8 @@ items_store["secondary: magic_book"] = {
         "scrollable": true
     },
     "evolving_white_gold_book_<epode>": {
-        "name": "Evolving White Gold Book <Epode>",
+        "name": "Evolving White Gold Book &lt;Epode&gt;",
+        "override_image": "Evolving White Gold Book <Epode>",
         "level": 100,
         "class": "weapon",
         "type": "magic book",

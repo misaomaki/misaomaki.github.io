@@ -108,7 +108,7 @@ $(function() {
                     sfmain.removeClass("hidden");
                     cube_menu.removeClass("hidden");
 
-                    let item_type = item_val.split(";");
+                    let item_type = item_val.split("|||");
 
                     let flame_options = {};
                     let scroll_options = [];
@@ -248,7 +248,7 @@ $(function() {
                 for (let item in items_store[category]) {
                     let this_item = items_store[category][item];
 
-                    this_item.value_name = category + ";" + item;
+                    this_item.value_name = category + "|||" + item;
 
                     items_db[category].push(this_item);
                 }
@@ -366,7 +366,7 @@ $(function() {
                     }
 
                     /* get item data */
-                    let [category, iclass] = data.id.split(";");
+                    let [category, iclass] = data.id.split("|||");
                     if (category == null || iclass == null) return null;
                     let this_item = items_store[category][iclass];
 
@@ -401,7 +401,7 @@ $(function() {
                         case "category":
                             if (!value.startsWith("=")) {
                                 this_value = this_value.replace(/[-\s]/gi, "").toUpperCase();
-                                let [item_cat, item_name] = this_item.value_name.split(";");
+                                let [item_cat, item_name] = this_item.value_name.split("|||");
                                 item_cat = item_cat.replace(/[-\s]/gi, "").toUpperCase();
     
                                 if (item_cat.includes(this_value)) {
@@ -424,9 +424,10 @@ $(function() {
                     return null;
                 },
                 templateResult: function(a) {
-                    if (a.id === undefined || !a.id.includes(";")) return a.text;
+                    if (a.id === undefined || !a.id.includes("|||")) return a.text;
 
-                    let item_type = a.id.split(";");
+                    let item_type = a.id.split("|||");
+
                     let this_item = items_store[item_type[0]][item_type[1]];
 
                     let specific_job = this_item.job.length === 1 ? this_item.job[0] : "";
@@ -480,7 +481,7 @@ $(function() {
                     return false;
                 }
 
-                let item_type = val.split(";");
+                let item_type = val.split("|||");
                 let this_item = items_store[item_type[0]][item_type[1]];
 
                 item_sel.html(`
@@ -674,7 +675,7 @@ $(function() {
 
         let pot_tier = _this.val();
 
-        let _item = ddl_item.val().split(";");
+        let _item = ddl_item.val().split("|||");
         let this_item = items_store[_item[0]][_item[1]];
 
         if (!this_item.enhanceable) {
