@@ -1931,10 +1931,10 @@ body, html {
 .potential-line {
     display: block;
     margin-left: 4px;
-    width: 241px;
-    /*line-height: 14px;*/
+    width: 226px;
     text-indent: -0.4em;
     padding-left: 0.4em;
+    text-align: justify;
 }
 
 .prng-table {
