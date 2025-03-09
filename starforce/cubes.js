@@ -97,7 +97,7 @@ cube.cube_line_as_int_stats = [
     "Max HP", 
     "Max MP", 
     "Critical Damage", 
-    "Critical Chance", 
+    "Critical Rate", 
     "Item Drop Rate", 
     "Mesos Obtained",
     "HP Recovery Items and Skills",
@@ -105,6 +105,10 @@ cube.cube_line_as_int_stats = [
 ];
 
 cube.get_cube_line_as_int_value = async function() {
+    if ("cube_line_stats" in cube) {
+        return cube.cube_line_stats;
+    }
+
     const cube_lines = {};
     let data = await cube.fetch_cube_rates();
     
@@ -123,6 +127,7 @@ cube.get_cube_line_as_int_value = async function() {
             let int_value = "";
             let is_percent = false;
             let line_id = base_line_id;
+            let real_line_id = base_line_id;
 
             /*
                 match as
@@ -160,16 +165,19 @@ cube.get_cube_line_as_int_value = async function() {
             cube_lines[line] = {
                 id: line_id,
                 value: int_value,
-                is_percent: is_percent
+                is_percent: is_percent,
+                category: real_line_id,
+                ident: `${real_line_id}${is_percent ? '' : 'f'}`
             };
 
             //+1 for next tier
-            let new_line = `${base_line_id}: +${orig_int_value + 1}${is_percent ? "%" : ""}`;
+            let new_line = `${real_line_id}: +${orig_int_value + 1}${is_percent ? "%" : ""}`;
             cube_lines[new_line] = {
                 id: new_line,
                 value: int_value + 0.01,
                 is_percent: is_percent,
-                category: base_line_id
+                category: real_line_id,
+                ident: `${real_line_id}${is_percent ? '' : 'f'}`
             };
         }
     }
@@ -1571,6 +1579,34 @@ $(function(){
         return html;
     };
 
+    function get_lucky(arr) {
+        const countMap = {};
+    
+        // Iterate through the array of objects
+        for (let obj of arr) {
+            const id = obj.id;
+            
+            // If the id is "All Stats", treat it as STR, DEX, INT, or LUK
+            if (id === "All Stats") {
+                // Add counts for STR, DEX, INT, LUK
+                ["STR", "DEX", "INT", "LUK"].forEach(validId => {
+                    countMap[validId] = (countMap[validId] || 0) + 1;
+                });
+            } else {
+                // Regular id, increment count
+                countMap[id] = (countMap[id] || 0) + 1;
+            }
+    
+            // Check if we have 3 same ids
+            if (countMap[id] === 3) {
+                return id;
+            }
+        }
+        
+        // If no ids with count 3 found
+        return null;
+    }
+
     //generate cube log rows.
     var generate_cube_log_table = function(cube_data) {
         let cdl = cube_data.length;
@@ -1620,25 +1656,39 @@ $(function(){
 
             let lucky3 = false;
             let luckyb3 = false;
-
-            /*
+            
             if (i_cd.type !== "") {
-                lucky3 = get_lucky(i_results);
+                let cube_line_ids = [];
+                
+                for (let i = 0; i < i_results.length; ++i) {
+                    let cube_item_ident =  cube.cube_line_stats[i_results[i].id]?.ident;
+
+                    if (cube_item_ident == undefined) break;
+
+                    cube_line_ids.push({id: cube_item_ident});
+                }
+
+                if (cube_line_ids.length === 3) {
+                    lucky3 = get_lucky(cube_line_ids);
+                }
             }
 
             if (i_cd_b.type !== "") {
                 //bpot
-                try {
-                    let ib1 =  cube.cube_line_stats[i_results_b[0]].category;
-                    let ib2 =  cube.cube_line_stats[i_results_b[1]].category;
-                    let ib3 =  cube.cube_line_stats[i_results_b[2]].category;
+                let cube_line_ids = [];
+                
+                for (let i = 0; i < i_results_b.length; ++i) {
+                    let cube_item_ident =  cube.cube_line_stats[i_results_b[i].id]?.ident;
 
-                    luckyb3 = ib1 === ib2 && ib2 === ib3;                 
-                } catch {
-                    luckyb3 = false;
+                    if (cube_item_ident == undefined) break;
+
+                    cube_line_ids.push({id: cube_item_ident});
+                }
+
+                if (cube_line_ids.length === 3) {
+                    luckyb3 = get_lucky(cube_line_ids);
                 }
             }
-            */
 
             let keep_status = "";
 
@@ -1989,7 +2039,7 @@ $(function(){
                 ${
                     html_uniSelection !== "" ? `
                         <h2>Unicube Line Selection</h2>
-                        <div class="tooltip-item" id="tooltip_tier" style="width:100%;display:block;">
+                        <div class="tooltip-item" id="tooltip_uniSelection" style="width:100%;display:block;">
                             <table style="width:100%;font-size:11px;">
                                 <thead>
                                     <tr>
