@@ -4435,7 +4435,7 @@ var items_store = {
             name: "AbsoLab Scepter",
             level: 160,
             class: "weapon",
-            type: "beast tamer scepter",
+            type: "memorial staff",
             speed: "normal",
             job: ["magician"],
             mstat: "int", 
@@ -5261,7 +5261,7 @@ var items_store = {
             name: "Sweetwater Tigress Scepter",
             level: 160,
             class: "weapon",
-            type: "beast tamer scepter",
+            type: "memorial staff",
             speed: "normal",
             job: ["magician"],
             mstat: "int", 
@@ -6890,7 +6890,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "watt", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 21,
                 dex: 21,
                 int: 21,
@@ -6898,7 +6898,7 @@ var items_store = {
                 p_hp: 0.1,
                 p_mp: 0.1,
                 def: 180
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -6921,12 +6921,11 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 watt: 4,
                 hp: 120,
                 def: 43
-                //mdef: 48
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -9039,7 +9038,7 @@ var items_store = {
             name: "Fafnir Scepter",
             level: 150,
             class: "weapon",
-            type: "beast tamer scepter",
+            type: "memorial staff",
             speed: "normal",
             job: ["magician"],
             mstat: "int", 
@@ -9890,7 +9889,7 @@ var items_store = {
             name: "Arcane Umbra Scepter",
             level: 200,
             class: "weapon",
-            type: "beast tamer scepter",
+            type: "memorial staff",
             speed: "normal",
             job: ["magician"],
             mstat: "int", 
@@ -11772,7 +11771,7 @@ var items_store = {
             name: "Genesis Scepter",
             level: 200,
             class: "weapon",
-            type: "beast tamer scepter",
+            type: "memorial staff",
             speed: "normal",
             job: ["magician"],
             mstat: "int", 
@@ -15504,7 +15503,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"],
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 50,
                 dex: 50,
                 luk: 50,
@@ -15512,7 +15511,7 @@ var items_store = {
                 hp: 300,
                 mp: 300,
                 def: 200
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -15535,14 +15534,14 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"],
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 20,
                 dex: 20,
                 luk: 20,
                 int: 20,
                 mp: 60,
                 def: 45
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -15565,7 +15564,7 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 0,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 10,
                 dex: 10,
                 int: 10,
@@ -15573,7 +15572,7 @@ var items_store = {
                 hp: 250,
                 mp: 250,
                 def: 60
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -15596,13 +15595,13 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"], 
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 25,
                 dex: 25,
                 int: 25,
                 luk: 25,
                 def: 100
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,
@@ -15625,13 +15624,13 @@ var items_store = {
             pstat: ["str", "dex", "int", "luk"],
             att_type: "att", 
             flame_type: 1,
-            bstat: Object.assign({}, stats, {
+            bstat: {
                 str: 15,
                 dex: 15,
                 luk: 15,
                 int: 15,
                 def: 150
-            }),
+            },
             req: {
                 str: 0,
                 dex: 0,

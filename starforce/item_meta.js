@@ -96,6 +96,10 @@ const item_meta = {
                 class: "Zero",
                 speed: 4
             },
+            "memorial staff": {
+                class: "Lara",
+                speed: 4
+            },
             "one-handed axe": {
                 class: "",
                 speed: 5
