@@ -274,7 +274,7 @@ var congrats_from_maki = function(owo = false) {
 
     let id = generateUUID();
 
-    $("body").append(`
+    $("#OwOContainmentField").append(`
         <div id="${id}" class="maki"></div>
     `);
 
@@ -285,6 +285,13 @@ var congrats_from_maki = function(owo = false) {
         },3300);
     },4000);
 }
+$(function() {
+    $("#OwOContainmentField").on("click", ".maki", function() {
+        const _this = $(this);
+        if (_this.hasClass("maki-goodbye")) return false;
+        _this.addClass("maki-goodbye");
+    });
+});
 
 var HtmlEncode = function(s) {
   var el = document.createElement("div");
@@ -292,6 +299,8 @@ var HtmlEncode = function(s) {
   s = el.innerHTML;
   return s;
 }
+
+
 
 /* 
     remove percent items from a list of probabilities then recalculate those probabilities in portion to each other 

@@ -47,6 +47,18 @@ $(function() {
     const ddl_flame_score2 = $("#ddlFlameScoreStat2");
     const ddl_flame_score_con = $("#ddlFlameScoreStat_con");
 
+    /* auto set the secondary stat if the primary stat is changed */
+    ddl_flame_score.on("change", function() {
+        let stat = $(this).val();
+        if (stat === "dex") {
+            ddl_flame_score2.val("str");
+        } else if (stat === "int") {
+            ddl_flame_score2.val("luk");
+        } else {
+            ddl_flame_score2.val("dex");
+        }
+    });
+
     /* only show starforce/cube/flame options if the item allows it */
     const starforce_options = $(".starforce-option");
     const cube_options = $(".cube-option");
