@@ -13,48 +13,6 @@ importScripts("vars.js");
 importScripts("cubes.js");
 
 /*
-    check if array a and b contain the same values.
-    a = array 1
-    b = array 2
-    c = enforce array order. [1,2,3] and [3,2,1] will be considered the same if this is false
-
-    -1 is treated as a wildcard value, so [-1,2,3] is treated as equal to [4,2,3]
-
-    DEPRECATE SOON
-*/
-let arrayCompare = function(_a, _b, c = false) {   
-    if (!c) {
-        //copy array
-        let a = _a.concat();
-        let b = _b.concat();
-
-        //get count of lines in struct format
-        a = a.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
-        b = b.reduce((x,y)=>{if (y in x) {++x[y];} else {x[y] = 1}; return x;},{});
-        
-        //check if key from a exists in b, then compare the count of a and b. if wildcard value, ignore
-        for (let i in a) {
-            if (i == -1) continue;
-
-            if (b[i] !== a[i]) {
-                return false;
-            }
-        }
-    } else {
-        //if order is enforced, then compare array lines index to index. if wildcard value, ignore
-        for (let i = 0; i < _a.length; ++i) {
-            if (a[i] == -1 || b[i] == -1) continue;
-
-            if (a[i] !== b[i]) {
-                return false;
-            }
-        }
-    }
-
-    return true;
-}
-
-/*
     callback for REDUCE function. used to resolve cube lines into their stats
     e.g., STR: 13% -> {
         id: "STR",
@@ -136,8 +94,6 @@ onmessage = async function(o) {
         pot_tier: "legendary",
         cube: "red",
         item: {},
-        enforce_order: false,
-        allow_gt: true,
         stat_restriction_map: {},
         cube_line_stats: {}
     }, o.data);
@@ -170,21 +126,15 @@ onmessage = async function(o) {
         }
     }
 
+    const cube_stat_lines = d.cube_line_stats;
+
+    let desired_lines = d.cube_lines.reduce(resolve_stat_lines.bind({
+        all_stats: false,
+        stat_lines: cube_stat_lines
+    }),{});
+
     let search = function() {
-        return arrayCompare(d.cube_lines, lines, d.enforce_order);
-    }
-
-    if (d.allow_gt) {
-        const cube_stat_lines = d.cube_line_stats;
-
-        let desired_lines = d.cube_lines.reduce(resolve_stat_lines.bind({
-            all_stats: false,
-            stat_lines: cube_stat_lines
-        }),{});
-
-        search = function() {
-            return stat_compare(desired_lines, lines, cube_stat_lines);
-        }
+        return stat_compare(desired_lines, lines, cube_stat_lines);
     }
     
     let same_tier = false; //desired tier is equal to item tier
@@ -238,5 +188,5 @@ onmessage = async function(o) {
     //once process exits, mark the last record as keep
     d.item.idata.meta.cube_meta_data[0].keep = true;
 
-    postMessage({done: true, code: 1, message: "", data: d.item, pot: lines});
+    postMessage({done: true, code: 1, message: "", data: d.item, pot: lines, cube: d.cube});
 }

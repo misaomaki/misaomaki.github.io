@@ -300,12 +300,13 @@ $(function() {
             cube_selected: {
                 line_0: 0,
                 line_1: 0,
-                line_2: 0
+                line_2: 0,
+                line_3: 0,
+                line_4: 0,
+                line_5: 0
             }
         };
 
-        let cube_lines = await cube.cube_line_as_int_stats;
-        
         let html = `
             <b>Automatically cube to the desired lines. This will generate cube log data.</b>
             <hr>
@@ -323,6 +324,7 @@ $(function() {
                         <div class="cube auto-cube cube-black maple-button ${ user_cube_option.selected_cube == "black" ? "auto-cube-selected" : ""}" data-id="black" data-type="main"></div>
                         <div class="cube auto-cube cube-bonus maple-button ${ user_cube_option.selected_cube == "bonus" ? "auto-cube-selected" : ""}" data-id="bonus" data-type="bonus"></div>
                         <div class="cube auto-cube cube-white maple-button ${ user_cube_option.selected_cube == "white" ? "auto-cube-selected" : ""}" data-id="white" data-type="bonus"></div>
+                        <div class="cube auto-cube cube-violet maple-button ${ user_cube_option.selected_cube == "violet" ? "auto-cube-selected" : ""}" data-id="violet" data-type="main" style="top:-3px;position: relative;"></div>
                         <div class="cube auto-cube cube-equality maple-button ${ user_cube_option.selected_cube == "equality" ? "auto-cube-selected" : ""}" data-id="equality" data-type="main"></div>
                     </div>
                 </label>
@@ -361,18 +363,20 @@ $(function() {
                         </div>  
                     </div>
                 </div>
-                <div>
-                    <input type="checkbox" id="auto_cube_gt" checked> 
-                    <label for="auto_cube_gt">
-                        Get stats greater than or equal to desired lines 
-                        <span title="Return lines with value greater than or equal to desired values for the following stats:\r\n${cube_lines.join("\r\n")}">[?]</span>
-                    </label>
-                </div>
             </div>
             <span id="cube_msg2" class="hidden">
                 <span style="color:blue;display:block;padding-bottom:15px;">
-                    Estimated cubes to use (based on line probability for the specific line): <span id="cube_expected">1</span>
-                    <span style="font-size:0.6em;display:block;">Excludes cubes needed to get to desired tier. Probability is based on lines selected in exact order (number of cubes can be less due to permutations of the lines which is not accounted for).</span>
+                    Estimated cubes to use (binomial probablity): <span id="cube_expected">1</span>
+                    <span style="font-size:0.6em;display:block;">
+                        Excludes cubes needed to get to desired tier.
+                        <div id="autoCubeMsgViolet" class="hidden">
+                            <div class="cube cube-violet" data-id="violet" style="width:20px;height:20px;"></div>
+                            <span style="position:relative;top:-6px;">
+                                Select up to 3 lines to view the probability of the item getting those lines. 
+                                Selecting more lines will give you probability of those lines appearing among the 6 lines for the violet cubing process.
+                            </span>
+                        </div>
+                    </span>
                 </span>
             </span>
             <span id="cube_msg" style="color:red"></span>
@@ -415,6 +419,9 @@ $(function() {
                     let line_1 = $("#cube_stat_line_" + cube_name + "_1").val();
                     let line_2 = $("#cube_stat_line_" + cube_name + "_2").val();
                     let line_3 = $("#cube_stat_line_" + cube_name + "_3").val();
+                    let line_4 = $("#cube_stat_line_" + cube_name + "_1").val();
+                    let line_5 = $("#cube_stat_line_" + cube_name + "_2").val();
+                    let line_6 = $("#cube_stat_line_" + cube_name + "_3").val();
 
                     let pot_tier = $("#option_box #auto_cube_select_" + cube_type).val();
 
@@ -434,7 +441,6 @@ $(function() {
                         cube_type: cube_type,
                         cube: cube_name,
                         pot_tier: pot_tier,
-                        allow_gt: $("#auto_cube_gt").prop("checked"),
                         stat_restriction_map: cube.stat_restriction_map,
                         cube_line_stats: cube.cube_line_stats
                     };
@@ -454,7 +460,10 @@ $(function() {
                         selected_lines: {
                             line_0: line_1,
                             line_1: line_2,
-                            line_2: line_3
+                            line_2: line_3,
+                            line_3: line_4,
+                            line_4: line_5,
+                            line_5: line_6
                         }
                     };
 
@@ -493,6 +502,26 @@ $(function() {
                         Item.idata.meta.cube_meta_data = cube_log_data;
                         Item.idata.meta.cubes_used = data_cubes_used;
                         Item.idata.meta.cubes_total = d.data.data.idata.meta.cubes_total;
+
+                        /* if violet cube, we open up the violet cube ui instead with the items for them to select */
+                        if (d.data.cube === "violet") {     
+                            await Item.set_cube(cube_name, pot_tier, {
+                                line_0: line_1,
+                                line_1: line_2,
+                                line_2: line_3,
+                                line_3: line_4,
+                                line_4: line_5,
+                                line_5: line_6
+                            }, {
+                                write_log_record: false,
+                                force_keep: true
+                            });             
+                            _this.dialog("close");
+                            $("#cube_menu .cube[data-id=violet]").trigger("click", {
+                                process_as: "worker_violet"
+                            });
+                            return;
+                        }
 
                         await Item.set_cube(cube_name, pot_tier, {
                             line_0: line_1,
@@ -540,6 +569,12 @@ $(function() {
             
             cube_msg2.addClass("hidden");
             $(`#auto_cube_line_con_${type}`).addClass("hidden");
+
+            if (cube_type === "violet") {
+                $("#autoCubeMsgViolet").removeClass("hidden");
+            } else {
+                $("#autoCubeMsgViolet").addClass("hidden");
+            }
         });
 
         let cube_msg2 = $("#cube_msg2");
@@ -550,6 +585,13 @@ $(function() {
             let type = _this.attr("data-type");
             let cube_type = $("#cube_select .auto-cube.auto-cube-selected").attr("data-id");
             let pot_tier = _this.val();
+
+            const lineCon = $("#auto_cube_line_con_" + type);
+
+            if (pot_tier === "") {
+                lineCon.html("");
+                return;
+            }
             
             cube_msg2.removeClass("hidden");
             cube_expected.html(1); /* changing tier sets cube lines back to any, so probability is always 1 */
@@ -558,23 +600,22 @@ $(function() {
                 wildcard: true
             });
         
-            $("#auto_cube_line_con_" + type).html(tier_html);
+            lineCon.html(tier_html);
             
             var cube_select = $(".select-cube-line-" + cube_type).select2();
-            $(`#auto_cube_line_con_${type}`).removeClass("hidden");
+            lineCon.removeClass("hidden");
             /* calculate probabilities based on lines chosen */
             cube_select.on("select2:select", async function(e) {
                 let c_cube = $("#cube_select .auto-cube-selected");
                 let cube_type = c_cube.attr("data-type");
                 let cube_name = c_cube.attr("data-id");
 
-                let line_1 = $("#cube_stat_line_" + cube_name + "_1").val();
-                let line_2 = $("#cube_stat_line_" + cube_name + "_2").val();
-                let line_3 = $("#cube_stat_line_" + cube_name + "_3").val();
-                let lines = [line_1, line_2, line_3];
+                let lines = $("#auto_cube_lines .cube-selector-auto:visible").map(function(){ return $(this).val()}).get();
 
                 /* estimated cubes to use to desired lines */
-                let expected_cubes = parseInt(1 / await cube.stats.get_probability.call(Item, lines, cube_name, pot_tier)).toNumber();
+                //let expected_cubes = parseInt(1 / await cube.stats.get_probability.call(Item, lines, cube_name, pot_tier)).toNumber();
+                let expected_cubes = parseInt(1 / await cube.stats.calculateProbability.call(Item, cube_name, pot_tier, lines)).toNumber();
+                
                 cube_expected.html(expected_cubes);
             });
         });

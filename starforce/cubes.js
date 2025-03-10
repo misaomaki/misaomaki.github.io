@@ -685,7 +685,13 @@ cube.cube = async function(type, dom, cb, o) {
         force_tier: false,
         tier: {},
         update_dom: true,
-        write_log_record: true
+        write_log_record: true,
+        /*
+            if current_lines, then show the lines already ran for. this is for
+            worker_cube.js processing that wants to display the lines to the user
+            in the cube window
+        */
+        display_as: "new_lines"
     }, o);
 
     //no cube window passed means the function is used progranmatically
@@ -748,7 +754,10 @@ cube.cube = async function(type, dom, cb, o) {
     }
 
     //get new cube potentials
-    let cube_results = await cube.stats.main(item_type, cube_pot, type, cube_type, this.idata.level, o);
+    let cube_results = o.display_as === "new_lines" ? 
+        await cube.stats.main(item_type, cube_pot, type, cube_type, this.idata.level, o) :
+        Item.idata.meta.cube_meta_data[0].results
+    ;
 
     //get the last item that is opposite of the cube type
     let opposite_current_pot = this.idata.meta.cube_meta_data.find((a)=>{
@@ -1017,39 +1026,70 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
 
 //stat percentage map for cube based on potential and item type
 cube.stats = {
+    /* chatgpt understands binomial probability. i don't */
     /*
-        get the expected probabilities for warning purposes
-        this = item
-        a = ex: ["lukp12", "lukp12", "lukp12"]
-        b = cube type "main" or "bonus"
-        c = cube (red, black, bonus)
-        d = cube tier (rare, epic...)
+        cube_type - red, black, etc
+        pot_tier - rare, epic, etc
+        choice - desired rolls = format ["Boss Monster Damage: +40%", "Boss Monster Damage: +40%", "Boss Monster Damage: +40%"]
     */
-    get_probability: async function(a, c, d) {
-        let type = this.idata.sub_class;
+    async calculateProbability(cube_type, pot_tier, choices) {
+        if (choices.length === 0) {
+            return 1;
+        }
 
-        if (this.idata.class == "weapon") {
-            type = this.idata.class;
-        } else if (type === "") {
-            type = this.idata.type;
+        let this_item = Item.idata;
+        //get item type, with sub class taking priority (copied from cube.js)
+        let item_type = this_item.sub_class;
+
+        if (this_item.class == "weapon") {
+            item_type = this_item.class;
+        } else if (item_type === "") {
+            item_type = this_item.type;
         } 
 
-        type = type.replace(/\s/gi, "_");
-
-        let rates = await cube.get_cube_type(Item.idata.level, type, c, d);
+        /* remove wildcard values */
+        choices = choices.filter(a=>a !== "-1");
         
-        let item_prob = 1;
-
-        for (let i = 0; i < a.length; ++i) {
-            let i_stat = a[i];
-
-            if (i_stat == -1) continue;
-
-            let this_prob = rates[i][i_stat];
-            item_prob *= this_prob;
+        if (choices.length === 0) {
+            return 1;
         }
-  
-        return item_prob;
+
+        item_type = item_type.replace(/\s/gi, "_");
+
+        const probabilities = await cube.get_cube_type(this_item.level, item_type, cube_type, pot_tier);
+
+        function calculate_probability(ratesArray, choices) {
+            const indices = Array.from({ length: ratesArray.length }, (_, i) => i);
+            const combinations = getCombinations(indices, choices.length);
+            let totalProbability = 0;
+            
+            for (const combination of combinations) {
+                let probability = 1;
+                for (let i = 0; i < choices.length; i++) {
+                    probability *= ratesArray[combination[i]][choices[i]] || 0;
+                }
+                totalProbability += probability;
+            }
+            
+            return totalProbability;
+        }
+        
+        function getCombinations(arr, size) {
+            if (size > arr.length) return [];
+            if (size === 1) return arr.map(el => [el]);
+            
+            let result = [];
+            arr.forEach((current, index) => {
+                const smallerCombinations = getCombinations(arr.slice(index + 1), size - 1);
+                smallerCombinations.forEach(combination => {
+                    result.push([current, ...combination]);
+                });
+            });
+            
+            return result;
+        }
+        
+        return calculate_probability(probabilities, choices);
     },
     //get the rates based on black or red probabilities
     /*
@@ -1236,8 +1276,18 @@ $(function(){
     let cube_loading = false;
 
     //cubes at the bottom left
-    $("#cube_menu .cube").on("click", function() {
+    $("#cube_menu .cube").on("click", function(e, o) {
         if (cube_loading) return false;
+
+        const def = {
+            /*
+                if process_as - "worker_violet" - we open up the violet cube window after getting the lines from the worker_cube.js autocube run
+            */
+            process_as: "standard"
+        };
+
+        o = {...def, ...o};
+
         let _this = $(this);
 
         if (_this.hasClass("disabled")) {
@@ -1271,11 +1321,11 @@ $(function(){
             btnProceed.removeClass("hidden");
         }
 
-        run_cube.call(_this, cube_type);
+        run_cube(cube_type, o);
     });
 
     /* run cube function */
-    async function run_cube(cube_type) {
+    async function run_cube(cube_type, o) {
         if (!Item.idata.enhanceable) {
             return false;
         }
@@ -1309,7 +1359,21 @@ $(function(){
                 cube.update_cube_menu.call(Item, $("#cube_menu"));
             }, 1500 * system.animation_speed_actual);
         } else {
-            cr = await Item.cube(cube_type, cc, ()=>{}, {});
+            let cube_options = {};
+
+            /*
+                if worker_cube is used for processing violet, we are taking
+                lines already processed and displayin the results with the desired
+                lines to the user to choose from
+            */
+            if (o.process_as === "worker_violet") {
+              cube_options = {
+                display_as: "current_lines",
+                write_log_record: false
+              };  
+            } 
+
+            cr = await Item.cube(cube_type, cc, ()=>{}, cube_options);
 
             if (cr) {
                 cube_animation = "cube-use-tier";
@@ -1633,12 +1697,23 @@ $(function(){
             let i_cd_other = _i_cd.other || {
                 type: ""
             };
+
+            let selected_main_idx = [0,1,2];
             
             //check to see which is the main pot and bonus pot since the log logs the current main and bpot
             if (_i_cd.type === "main") {
                 i_cd = _i_cd;
                 i_cd_b = i_cd_other;
                 i_results = _i_cd.results.result;
+
+                //violet cube usage if exists
+                if ("selected_idx" in _i_cd) {
+                    selected_main_idx = _i_cd.selected_idx;
+
+                    i_results = selected_main_idx.map((a)=>{
+                        return _i_cd.results.result[a];
+                    });
+                }
                 
                 if (i_cd_other.type !== "") {
                     i_results_b = i_cd_other.results.result;
@@ -2259,7 +2334,7 @@ var cube_pot_dropdown_html = async function(this_item, type, pot_tier, o) {
                     <span class="tooltip-label-${pot_tier}" style="font-size:1.3em">•</span>
                     Line ${idx}:
                 </span>
-                <select id="cube_stat_line_${type}_${idx}" data-id="${uuid}" class="select-cube-line-${type}" data-id="${idx}" style="width:100%"pi>
+                <select id="cube_stat_line_${type}_${idx}" data-id="${uuid}" class="select-cube-line-${type} cube-selector-auto" data-id="${idx}" style="width:100%"pi>
                     ${stat_options}
                 </select>
             </div>
@@ -2303,8 +2378,14 @@ $(function() {
         const cubeSelects = $(`select[data-id=${uuid}]`);
 
         let line1 = cubeSelects.eq(0).val();
-        cubeSelects.eq(1).val(line1).trigger("change");
-        cubeSelects.eq(2).val(line1).trigger("change").trigger({type: "select2:select"});
+
+        for (let i = 1; i < cubeSelects.length; ++i) {
+            const cs = cubeSelects.eq(i).val(line1).trigger("change");
+
+            if (i === cubeSelects.length - 1) {
+                cs.trigger({type: "select2:select"});
+            }
+        }
     });
 });
 
