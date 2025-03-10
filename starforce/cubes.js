@@ -1030,7 +1030,7 @@ cube.stats = {
     /*
         cube_type - red, black, etc
         pot_tier - rare, epic, etc
-        choice - desired rolls = format ["Boss Monster Damage: +40%", "Boss Monster Damage: +40%", "Boss Monster Damage: +40%"]
+        choice - desired rolls = format ["ATT: 13%", "ATT: 10%", "ATT: 10%"]
     */
     async calculateProbability(cube_type, pot_tier, choices) {
         if (choices.length === 0) {
@@ -1088,8 +1088,41 @@ cube.stats = {
             
             return result;
         }
+
+        function getPermutations(arr) {
+            let result = [];
+            const seen = new Set(); // This will store unique permutations as strings
+            
+            // Sort the array to group identical elements together
+            arr.sort();
         
-        return calculate_probability(probabilities, choices);
+            if (arr.length === 1) return [arr]; // Return a single element array if there's only one element
+        
+            arr.forEach((value, index) => {
+                let rest = arr.slice(0, index).concat(arr.slice(index + 1)); // Get the rest of the array
+                let restPermutations = getPermutations(rest); // Get permutations of the rest
+                
+                restPermutations.forEach(permutation => {
+                    const permStr = JSON.stringify([value, ...permutation]); // Convert the permutation to a string
+                    if (!seen.has(permStr)) {
+                        seen.add(permStr); // Mark this permutation as seen
+                        result.push([value, ...permutation]); // Add the unique permutation to the result
+                    }
+                });
+            });
+        
+            return result;
+        }
+
+        let choices_all = getPermutations(choices);
+        
+        let total_probability = 0;
+        
+        for (let i = 0; i < choices_all.length; ++i) {
+            total_probability += calculate_probability(probabilities, choices_all[i]);
+        }
+
+        return total_probability;
     },
     //get the rates based on black or red probabilities
     /*
