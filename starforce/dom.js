@@ -636,7 +636,7 @@ $(function() {
                     s = $(`#cube_stat_line_${user_cube_option.selected_cube}_${i+1}`).val(user_cube_option.selected_lines[`line_${i}`]).trigger("change");
                 }
 
-                if (s.instaceOf(jQuery)) {
+                if (s instanceof jQuery) {
                     s.trigger({type: "select2:select"}); /* update probability */
                 }
             },0);
