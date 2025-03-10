@@ -229,9 +229,9 @@ $(function(){
                             <label style="font-size:0.9em">
                                 Run until a desired flame score or greater is reached. Flame score is calculated by:<br>
                                 PRIMARY STAT: +1 score per stat<br>
-                                SECONDARY STAT: +0.125 score per stat<br>
-                                WATT/MATT: +4 score per value<br>
-                                ALL STAT: +8 score per value<br>
+                                SECONDARY STAT: +0.083 (1/12) score per stat<br>
+                                WATT/MATT: +3 score per value<br>
+                                ALL STAT: +10 score per value<br>
                             </label>
                             <hr>
                             <span class="flame-box flame-score-box item-armor">

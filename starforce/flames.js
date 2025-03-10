@@ -742,7 +742,7 @@ item.prototype.get_flame_score = function() {
     let s = this.idata.meta.fsstat2; /* secondary stat */
     let a = m === "int" ? "matt" : "watt";
 
-    let score = this.idata.boosts.flames[m] + this.idata.boosts.flames[a] * 4 + this.idata.boosts.flames.all_stat * 800 + this.idata.boosts.flames[s]/8;
+    let score = this.idata.boosts.flames[m] + this.idata.boosts.flames[a] * 3 + this.idata.boosts.flames.all_stat * 1000 + this.idata.boosts.flames[s]/12;
 
     return score;
 }
