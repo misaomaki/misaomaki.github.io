@@ -1114,10 +1114,12 @@ cube.stats = {
             return result;
         }
 
+        /*
+            we want to make sure all lines are considered
+            eg: 13 10 10, 10 13 10, 10 10 13
+        */
         let choices_all = getPermutations(choices);
-        
         let total_probability = 0;
-        
         for (let i = 0; i < choices_all.length; ++i) {
             total_probability += calculate_probability(probabilities, choices_all[i]);
         }
@@ -2377,6 +2379,11 @@ var cube_pot_dropdown_html = async function(this_item, type, pot_tier, o) {
     return `
         <button id="btnCube_${uuid}_random" class="btn-cube-dropdown-random" data-for="${uuid}">Randomize</button> 
         <button id="btnCube_${uuid}_match" class="btn-cube-dropdown-match" data-for="${uuid}">Match Line #1</button> 
+        ${
+            o.wildcard ? `
+        <button id="btnCube_${uuid}_reset" class="btn-cube-dropdown-reset" data-for="${uuid}" style="min-width:100px">Reset</button> 
+            ` : ""
+        }
         ${tier_html}`;
 };
 
@@ -2404,6 +2411,9 @@ $(function() {
         }
     });
 
+    /*
+        match all line dropdowns to the first one
+    */
     body.on("click", ".btn-cube-dropdown-match", function() {
         let _this = $(this);
         let uuid = _this.attr("data-for");
@@ -2414,6 +2424,27 @@ $(function() {
 
         for (let i = 1; i < cubeSelects.length; ++i) {
             const cs = cubeSelects.eq(i).val(line1).trigger("change");
+
+            if (i === cubeSelects.length - 1) {
+                cs.trigger({type: "select2:select"});
+            }
+        }
+    });
+
+    /*
+        when wildcard is active, show the reset button to reset to wildcard value
+    */
+    body.on("click", ".btn-cube-dropdown-reset", function() {
+        let _this = $(this);
+        let uuid = _this.attr("data-for");
+
+        const cubeSelects = $(`select[data-id=${uuid}]`);
+
+        for (let i = 0; i < cubeSelects.length; ++i) {
+            const cs = cubeSelects.eq(i);
+            
+            cs.find("option:first").prop("selected", true);
+            cs.trigger("change");
 
             if (i === cubeSelects.length - 1) {
                 cs.trigger({type: "select2:select"});

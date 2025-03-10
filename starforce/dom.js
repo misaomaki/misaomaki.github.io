@@ -588,14 +588,13 @@ $(function() {
 
             const lineCon = $("#auto_cube_line_con_" + type);
 
+            cube_msg2.removeClass("hidden");
+            cube_expected.html(1); /* changing tier sets cube lines back to any, so probability is always 1 */
+
             if (pot_tier === "") {
                 lineCon.html("");
                 return;
             }
-            
-            cube_msg2.removeClass("hidden");
-            cube_expected.html(1); /* changing tier sets cube lines back to any, so probability is always 1 */
-
             let tier_html = await cube_pot_dropdown_html(Item.idata, cube_type, pot_tier, {
                 wildcard: true
             });
@@ -613,7 +612,6 @@ $(function() {
                 let lines = $("#auto_cube_lines .cube-selector-auto:visible").map(function(){ return $(this).val()}).get();
 
                 /* estimated cubes to use to desired lines */
-                //let expected_cubes = parseInt(1 / await cube.stats.get_probability.call(Item, lines, cube_name, pot_tier)).toNumber();
                 let expected_cubes = parseInt(1 / await cube.stats.calculateProbability.call(Item, cube_name, pot_tier, lines)).toNumber();
                 
                 cube_expected.html(expected_cubes);
