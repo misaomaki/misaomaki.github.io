@@ -691,7 +691,8 @@ cube.cube = async function(type, dom, cb, o) {
             worker_cube.js processing that wants to display the lines to the user
             in the cube window
         */
-        display_as: "new_lines"
+        display_as: "new_lines",
+        auto_select: false /* violet cube */
     }, o);
 
     //no cube window passed means the function is used progranmatically
@@ -770,7 +771,7 @@ cube.cube = async function(type, dom, cb, o) {
     }
 
     //log cube results
-    this.idata.meta.cube_log_item = {
+    let log_item = {
         cube: type,
         type: cube_type,
         tier: cube_results.tier_up.upgrade ? cube_results.tier_up.next_tier : cube_pot,
@@ -789,15 +790,22 @@ cube.cube = async function(type, dom, cb, o) {
         };
 
         let uni_prng = {};
-        this.idata.meta.cube_log_item.unicube_proceed = false;
-        this.idata.meta.cube_log_item.unicube_this_line = +get_random_result(uni_select_line, (a) => {
+        log_item.unicube_proceed = false;
+        log_item.unicube_this_line = +get_random_result(uni_select_line, (a) => {
             uni_prng.r_map = a;
         }, (a)=>{
             uni_prng.tier_prng = a;
         });
 
-        this.idata.meta.cube_log_item.uni_prng = uni_prng;
+        log_item.uni_prng = uni_prng;
     }
+
+    /* for violet cubes, auto select these lines - used when programmatically calling violet cubes */
+    if (o.auto_select) {
+        log_item.selected_idx = [0,1,2];
+    }
+
+    this.idata.meta.cube_log_item = log_item;
 
     //post-processing and update cube window
     cube.cube_draw.call(this, cube_results, dom, type, cb, o);

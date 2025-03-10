@@ -150,7 +150,8 @@ onmessage = async function(o) {
             ++idx;
 
             await cube.cube.call(d.item, d.cube, [], ()=>{}, {
-                update_dom: false
+                update_dom: false,
+                auto_select: true
             });
             
             let cr = d.item.idata.meta.cube_log_item;
