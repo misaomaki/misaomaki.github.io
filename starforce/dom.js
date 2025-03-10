@@ -419,9 +419,9 @@ $(function() {
                     let line_1 = $("#cube_stat_line_" + cube_name + "_1").val();
                     let line_2 = $("#cube_stat_line_" + cube_name + "_2").val();
                     let line_3 = $("#cube_stat_line_" + cube_name + "_3").val();
-                    let line_4 = $("#cube_stat_line_" + cube_name + "_1").val();
-                    let line_5 = $("#cube_stat_line_" + cube_name + "_2").val();
-                    let line_6 = $("#cube_stat_line_" + cube_name + "_3").val();
+                    let line_4 = $("#cube_stat_line_" + cube_name + "_4").val();
+                    let line_5 = $("#cube_stat_line_" + cube_name + "_5").val();
+                    let line_6 = $("#cube_stat_line_" + cube_name + "_6").val();
 
                     let pot_tier = $("#option_box #auto_cube_select_" + cube_type).val();
 
@@ -433,7 +433,7 @@ $(function() {
                         return false;
                     }
 
-                    let lines = [line_1, line_2, line_3];
+                    let lines = $("#auto_cube_lines .cube-selector-auto:visible").map(function(){ return $(this).val()}).get();
 
                     let data = {
                         item: Item,
@@ -630,10 +630,15 @@ $(function() {
         
             /* select the lines */
             setTimeout(()=>{
-                $(`#cube_stat_line_${user_cube_option.selected_cube}_1`).val(user_cube_option.selected_lines.line_0).trigger("change");
-                $(`#cube_stat_line_${user_cube_option.selected_cube}_2`).val(user_cube_option.selected_lines.line_1).trigger("change");
-                let s3 = $(`#cube_stat_line_${user_cube_option.selected_cube}_3`).val(user_cube_option.selected_lines.line_2).trigger("change");
-                s3.trigger({type: "select2:select"}); /* update probability */
+                let selectedLines = Object.keys(user_cube_option.selected_lines);
+                let s = {};
+                for (let i = 0; i < selectedLines.length; ++i) {
+                    s = $(`#cube_stat_line_${user_cube_option.selected_cube}_${i+1}`).val(user_cube_option.selected_lines[`line_${i}`]).trigger("change");
+                }
+
+                if (s.instaceOf(jQuery)) {
+                    s.trigger({type: "select2:select"}); /* update probability */
+                }
             },0);
         }
     });
