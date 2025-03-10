@@ -888,12 +888,12 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
         }
 
         if (type !== "uni") {
-            this.idata.boosts.cubes[this.idata.meta.cube_log_item.type] = results;
+            this.idata.boosts.cubes[this.idata.meta.cube_log_item.type] = [...results];
         } else {
             /* unicube - store the results of its lines in a separate variable for recordkeeping */
             this.idata.meta.cube_log_item.results.result_uni = [...this.idata.meta.cube_log_item.results.result];
             /* store the current results for record keeping */
-            this.idata.meta.cube_log_item.results.prev_results = prevResults;
+            this.idata.meta.cube_log_item.results.prev_results = [...prevResults];
             /* the results are the old results, but with the selected uni line appended with the new item */
             this.idata.meta.cube_log_item.results.result = [...prevResults];
         }
