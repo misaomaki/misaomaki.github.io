@@ -633,7 +633,11 @@ $(function() {
                 let selectedLines = Object.keys(user_cube_option.selected_lines);
                 let s = {};
                 for (let i = 0; i < selectedLines.length; ++i) {
-                    s = $(`#cube_stat_line_${user_cube_option.selected_cube}_${i+1}`).val(user_cube_option.selected_lines[`line_${i}`]).trigger("change");
+                    let option = user_cube_option.selected_lines[`line_${i}`];
+
+                    if (option == null) break;
+
+                    s = $(`#cube_stat_line_${user_cube_option.selected_cube}_${i+1}`).val(option).trigger("change");
                 }
 
                 if (s instanceof jQuery) {
