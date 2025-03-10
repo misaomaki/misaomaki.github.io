@@ -539,7 +539,7 @@ cube.recalculate_rates_for_violet = function(r_cube_lines) {
             new_lines.push(lines[2]);
             new_lines.push(lines[2]);
             new_lines.push(lines[1]);
-            new_lines.push(lines[1]);
+            new_lines.push(lines[2]);
 
             r_cube_lines[level][grade] = new_lines;
         }
