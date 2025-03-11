@@ -1318,7 +1318,7 @@
     background: url(../assets/cube/uni/OptionalBlindEffect.Timeline.spritesheet.png);
     background-repeat: no-repeat !important;
     animation: unifadeInExpand 1s steps(6) forwards 1;
-    width: 157px;
+    width: 156px;
     height: 12px;
     position: absolute;
 }
@@ -1328,7 +1328,7 @@
         background-position-y: 0px;
     }
     90% {
-        background-position-y: 0px; /* Keep the first frame for 70% of the time */
+        background-position-y: 0px; /* Keep the first frame for 90% of the time */
     }
     100% {
         background-position-y: -72px; /* Quickly cycle through the rest */
