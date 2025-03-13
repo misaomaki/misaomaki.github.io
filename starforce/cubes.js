@@ -1585,6 +1585,7 @@ $(function(){
 
     /* unicube has selected a line to reroll, so we prep the reroll */
     $(".btn-proceed").on("click", function() {
+        cc.find(".cube-main").addClass("cube-main-uni-again");
         let uniResultLine = $("#uniResultLine");
 
         if (uniResultLine.length === 0) return;

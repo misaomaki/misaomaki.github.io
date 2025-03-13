@@ -1231,6 +1231,21 @@
     background: url(../assets/cube/uni/BtOnemore1.disabled.0.png);
 }
 
+.cube-main-uni.cube-main-uni-again .btn-one-more-try {
+    background: url(../assets/cube/uni/BtOnemore2.normal.0.png);
+    width: 133px;
+    height: 16px;
+}
+.cube-main-uni.cube-main-uni-again .btn-one-more-try:hover {
+    background: url(../assets/cube/uni/BtOnemore2.mouseOver.0.png);
+}
+.cube-main-uni.cube-main-uni-again .btn-one-more-try:active {
+    background: url(../assets/cube/uni/BtOnemore2.pressed.0.png);
+}
+.cube-main-uni.cube-main-uni-again .btn-one-more-try.disabled {
+    background: url(../assets/cube/uni/BtOnemore2.disabled.0.png);
+}
+
 .cube-main-uni .btn-proceed {
     position: relative;
     background: url(../assets/cube/uni/BtOk.normal.0.png);
@@ -1251,6 +1266,11 @@
     background: url(../assets/cube/uni/BtOk.disabled.0.png);
 }
 
+/* hidden when try again is shown */
+.cube-main-uni.cube-main-uni-again .btn-proceed {
+    display: none;
+}
+
 .cube-main-uni .btn-cube-ok {
     display: inline-block;
     position: relative;
@@ -1269,6 +1289,11 @@
 }
 .cube-main-uni .btn-cube-ok.disabled {
     background: url(../assets/cube/uni/BtCancel.disabled.0.png);
+}
+
+.cube-main-uni.cube-main-uni-again .btn-cube-ok {
+    top: 84px;
+    left: 2px;
 }
 
 #uniResultLine {
