@@ -76,95 +76,7 @@ item.prototype.set_meta_options = function(o) {
     for (let i in o) {
         this.idata.meta[i] = o[i];
     }
-};
-
-//add or remove star
-//type: 0 - increase star, 1 - drop star, 2 - destroy
-item.prototype.xgrade_item = function(type = 0) {
-    let level = this.idata.level;
-    let current_star = this.idata.meta.stars;
-
-    let is_droppable = this.is_droppable(current_star);
-
-    //commit log item
-    //don't log on item initialization
-    if (this.idata.meta.sf_log_item.id != null) {
-        let cb_safeguard = this.check_cache(()=>{
-            return sfcon.find(".sf-safeguard");
-        }, "dom", "sf_safeguard");
-
-        let is_safeguardable = !this.idata.superior && current_star >= GLOBAL.starforce.safeguard_stars.min && current_star < GLOBAL.starforce.safeguard_stars.max;
-        let is_safeguard = !cb_safeguard.hasClass("disabled") && cb_safeguard.hasClass("checked");
-
-        let safeguard_multiplier = is_safeguardable && is_safeguard && !this.idata.meta.chance_time ? 2 : 1;
-
-        //get the log data for the previous run, as we start off with showing the next star cost
-        let cache_name_lvl_star = "_" + level + current_star + "_" + this.idata.superior;
-
-        let sc_type = star_cost_type(this.idata.type);
-
-        let this_star_cost_prev = this.check_cache(()=>{
-            return star_cost(level, current_star, this.idata.meta.starforce_type, this.idata.superior, sc_type);
-        }, "sc", cache_name_lvl_star + "_" + this.idata.meta.starforce_type + "_" + sc_type);
-
-        let this_star_cost_prev_effective = this_star_cost_prev * safeguard_multiplier;
-
-        let cost_chart = this.log_starforce_cost(is_safeguardable && is_safeguard, this_star_cost_prev, this_star_cost_prev_effective, current_star);
-
-        this.idata.meta.sf_log_item.star_cost_discount = cost_chart;
-        this.idata.meta.sf_log_item.star_cost = this_star_cost_prev * safeguard_multiplier;
-        this.idata.meta.sf_log_item.sk_coin_cost = this.idata.shadowknight ? shadowknight_coin_cost(current_star) : 0;
-
-        //cumulative sf cost
-        if (this.idata.meta.sf_meta_data.length === 0) {
-            this.idata.meta.sf_log_item.sf_cost = this_star_cost_prev * safeguard_multiplier;
-            this.idata.meta.sf_log_item.sf_cost_discount = cost_chart;
-            this.idata.meta.sf_log_item.sk_cost = this.idata.meta.sf_log_item.sk_coin_cost;
-        } else {
-            let prev_item = this.idata.meta.sf_meta_data[0];
-            let prev_sf_cost_discount = Object.assign({}, this.idata.meta.sf_meta_data[0].sf_cost_discount);
-            this.idata.meta.sf_log_item.sf_cost = prev_item.sf_cost + (this_star_cost_prev * safeguard_multiplier);
-            this.idata.meta.sf_log_item.sk_cost += prev_item.sk_cost + this.idata.meta.sf_log_item.sk_coin_cost;
-
-            for (let i in cost_chart) {
-                prev_sf_cost_discount[i] += cost_chart[i];
-            }
-
-            this.idata.meta.sf_log_item.sf_cost_discount = prev_sf_cost_discount;
-        }
-
-        this.idata.meta.sf_meta_data.unshift(this.idata.meta.sf_log_item);
-    }
-
-    if (type === 0) {
-        let stat_add = this.cache.eg["_" + level + current_star + "_" + this.idata.superior];
-        this.idata.boosts.sf_data.push(stat_add);
-
-        this.idata.meta.stars += 1;
-    } else if (type === 1) {
-        if (is_droppable) {
-            this.idata.boosts.sf_data.pop();
-            this.idata.meta.stars -= 1;
-        }
-    } else {
-        let d_star = 0;
-        
-        if (!this.idata.superior) {
-            d_star = 12;
-        }
-
-        this.set_item_level(d_star);
-        this.idata.meta.stars = d_star;
-    }
-
-    this.idata.meta.sf_log_item.events = Object.assign({}, event_options);
-    let additional_stars = (type === 0 && this.idata.meta.stars <= 11 && event_options.pre10x2 ? 1 : 0);
-    this.idata.meta.sf_log_item.star = this.idata.meta.stars + additional_stars;
-    this.idata.meta.stars += additional_stars;
-
-    this.redraw(["starforce"]);
-};
-
+}
 
 //base att + att from scrolls
 //def works, too
@@ -181,88 +93,6 @@ item.prototype.starforce_att_percent = function(att = 0, bwatt = 0, p_arr = []) 
     }
 
     return curr_att - att;
-};
-
-/* get the starforce results */
-item.prototype.starforce_result = function(starcatch = false) {
-    /* automatically starforce without having to do the starcatching minigame */
-    if (event_options.starcatch) {
-        starcatch = true;
-    }
-
-    //generate log item
-    this.idata.meta.sf_log_item =  Object.assign({}, this.cache.sf_meta_data);
-    this.idata.meta.sf_log_item.id = this.idata.meta.sf_meta_data.length + 1; 
-
-    //generate random number to compare against
-    let pval = 0;
-    
-    let level = this.idata.level;
-    let current_star = this.idata.meta.stars;
-    
-    //generate a result map to compare the prng value to
-    let sr_catch = this.cache.sr["_" + level + current_star + "_" + this.idata.superior];
-
-    let prn_map = {};
-    let r_type = get_random_result(sr_catch, (a)=>{
-        prn_map = a;
-    }, (a)=>{
-        pval = a;
-    });
-
-    this.idata.meta.sf_log_item.prn_map = prn_map;
-    this.idata.meta.sf_log_item.prn = pval;
-
-    //5/10/15 100% event
-    if (!this.idata.superior && event_options._51015 && [5,10,15].includes(current_star)) {
-        r_type = "success";
-    } 
-
-    let cb_safeguard = this.check_cache(()=>{
-        return mcon.find(".sf-safeguard");
-    }, "dom", "sf_safeguard"); 
-    
-    let safeguard = cb_safeguard.hasClass("checked") && !cb_safeguard.hasClass("disabled");
-
-    //no boom pre-15 event
-    if (r_type === "destroy" && event_options.nb15) {
-        if (!this.idata.superior && current_star < 15) {
-            r_type = "fail-safeguard";
-        } else if (this.idata.superior && current_star < 8) {
-            r_type = "fail-safeguard";
-        }
-    } 
-
-    if (this.idata.meta.chance_time) {
-        r_type = "chance_time_success";
-
-        this.idata.meta.chance_count = 0;
-        this.idata.meta.chance_time = false;
-    }
-
-    if (r_type !== "chance_time_success") {
-        if (r_type === "fail" || (r_type === "sc_success" && !starcatch)) {
-            if (r_type === "sc_success" && !starcatch) {
-                r_type = "sc_fail";
-            }
-            let is_droppable = this.is_droppable(current_star);
-            if (is_droppable) {
-                this.idata.meta.chance_count += 1;
-
-                if (this.idata.meta.chance_count == 2) {
-                    this.idata.meta.chance_time = true;
-                }
-            }
-        } else if (r_type === "success" || r_type === "sc_success") {
-            this.idata.meta.chance_count = 0;
-            this.idata.meta.chance_time = false;
-        } else if (r_type === "destroy" && safeguard) {
-            r_type = "fail-safeguard";
-        }
-    }
-
-    this.idata.meta.sf_log_item.result = r_type;
-    return r_type;
 };
 
 /* get starforce result and update the item's stars */
@@ -285,6 +115,156 @@ item.prototype.starforce = function(starcatch = false) {
 
     return result;
 }
+
+// calculate the starforce outcome and apply any of the events
+item.prototype.starforce_result = function(starcatch = false) {
+    if (event_options.starcatch) {
+        starcatch = true;
+    }
+
+    let pval = 0;
+    let level = this.idata.level;
+    let current_star = this.idata.meta.stars;
+
+    let sr_catch = this.cache.sr[`_${level}${current_star}_${this.idata.superior}`];
+    let prn_map = {};
+    let r_type = get_random_result(sr_catch, (a) => { prn_map = a; }, (a) => { pval = a; });
+
+    // 5/10/15 100% success event
+    if (!this.idata.superior && event_options._51015 && [5, 10, 15].includes(current_star)) {
+        r_type = "success";
+    }
+
+    let cb_safeguard = this.check_cache(() => mcon.find(".sf-safeguard"), "dom", "sf_safeguard");
+    let safeguard = cb_safeguard.hasClass("checked") && !cb_safeguard.hasClass("disabled");
+
+    // No boom pre-15 event
+    if (r_type === "destroy" && event_options.nb15) {
+        if ((!this.idata.superior && current_star < 15) || (this.idata.superior && current_star < 8)) {
+            r_type = "fail-safeguard";
+        }
+    }
+
+    // Chance time logic
+    if (this.idata.meta.chance_time) {
+        r_type = "chance_time_success";
+        this.idata.meta.chance_count = 0;
+        this.idata.meta.chance_time = false;
+    }
+
+    if (r_type !== "chance_time_success") {
+        if (r_type === "fail" || (r_type === "sc_success" && !starcatch)) {
+            if (r_type === "sc_success" && !starcatch) {
+                r_type = "sc_fail";
+            }
+            if (this.is_droppable(current_star)) {
+                this.idata.meta.chance_count += 1;
+                if (this.idata.meta.chance_count === 2) {
+                    this.idata.meta.chance_time = true;
+                }
+            }
+        } else if (r_type === "success" || r_type === "sc_success") {
+            this.idata.meta.chance_count = 0;
+            this.idata.meta.chance_time = false;
+        } else if (r_type === "destroy" && safeguard) {
+            r_type = "fail-safeguard";
+        }
+    }
+
+    // Call the extracted logging function
+    this.init_starforce_result_log(pval, prn_map, r_type);
+
+    return r_type;
+};
+
+// increase, decrease, or reset the star level of the item, depending on starforce outcome
+item.prototype.xgrade_item = function(type = 0) {
+    let level = this.idata.level;
+    let current_star = this.idata.meta.stars;
+    let is_droppable = this.is_droppable(current_star);
+    
+    if (type === 0) {
+        let stat_add = this.cache.eg[`_${level}${current_star}_${this.idata.superior}`];
+        this.idata.boosts.sf_data.push(stat_add);
+        this.idata.meta.stars += 1;
+    } else if (type === 1 && is_droppable) {
+        this.idata.boosts.sf_data.pop();
+        this.idata.meta.stars -= 1;
+    } else if (type === 2) {
+        let d_star = this.idata.superior ? 0 : 12;
+        this.set_item_level(d_star);
+        this.idata.meta.stars = d_star;
+    }
+
+    /* 2x before 10 stars  */
+    let additional_stars = (type === 0 && this.idata.meta.stars <= 11 && event_options.pre10x2) ? 1 : 0;
+    this.idata.meta.stars += additional_stars;
+
+    this.complete_starforce_result_log(current_star, level);
+    this.redraw(["starforce"]);
+};
+
+// Init the starforcing logic dealing with the outcome of the starforce attempt (success, fail, destroy, etc.)
+item.prototype.init_starforce_result_log = function(pval, prn_map, result) {
+    this.idata.meta.sf_log_item = Object.assign({}, this.cache.sf_meta_data);
+    this.idata.meta.sf_log_item.id = this.idata.meta.sf_meta_data.length + 1;
+    this.idata.meta.sf_log_item.prn_map = prn_map;
+    this.idata.meta.sf_log_item.prn = pval;
+    this.idata.meta.sf_log_item.result = result;
+};
+
+// complete the starforce log off with the details of the starforce attempt, including the star cost and any events that occurred during the process
+item.prototype.complete_starforce_result_log = function(current_star, level) {
+    if (this.idata.meta.sf_log_item.id != null) {
+        /* get the starforce-related options related to safeguard */
+        let cb_safeguard = this.check_cache(() => sfcon.find(".sf-safeguard"), "dom", "sf_safeguard");
+        let is_safeguardable = !this.idata.superior && current_star >= GLOBAL.starforce.safeguard_stars.min && current_star < GLOBAL.starforce.safeguard_stars.max;
+        let is_safeguard = !cb_safeguard.hasClass("disabled") && cb_safeguard.hasClass("checked");
+        let safeguard_multiplier = (is_safeguardable && is_safeguard && !this.idata.meta.chance_time) ? 2 : 1;
+        
+        /* get the cost information for the current star level */
+        let cache_name_lvl_star = `_${level}${current_star}_${this.idata.superior}`;
+        let sc_type = star_cost_type(this.idata.type);
+        let this_star_cost_prev = this.check_cache(() => star_cost(level, current_star, this.idata.meta.starforce_type, this.idata.superior, sc_type), "sc", `${cache_name_lvl_star}_${this.idata.meta.starforce_type}_${sc_type}`);
+        let this_star_cost_prev_effective = this_star_cost_prev * safeguard_multiplier;
+        let cost_chart = this.log_starforce_cost(is_safeguardable && is_safeguard, this_star_cost_prev, this_star_cost_prev_effective, current_star);
+
+        /* update the star cost info */
+        let sf_log = this.idata.meta.sf_log_item;
+        sf_log.star_cost_discount = cost_chart;
+        sf_log.star_cost = this_star_cost_prev * safeguard_multiplier;
+        sf_log.sk_coin_cost = this.idata.shadowknight ? shadowknight_coin_cost(current_star) : 0;
+
+        /*
+            If this is the first entry in the sf_meta_data, initialize it with the current values.
+            Else if there are previous entries, calculate the new values based on the previous entry.   
+        */
+        if (this.idata.meta.sf_meta_data.length === 0) {
+            sf_log.sf_cost = this_star_cost_prev * safeguard_multiplier;
+            sf_log.sf_cost_discount = cost_chart;
+            sf_log.sk_cost = sf_log.sk_coin_cost;
+        } else {
+            let prev_item = this.idata.meta.sf_meta_data[0];
+            let prev_sf_cost_discount = { ...prev_item.sf_cost_discount };
+            sf_log.sf_cost = prev_item.sf_cost + (this_star_cost_prev * safeguard_multiplier);
+            sf_log.sk_cost = prev_item.sk_cost + sf_log.sk_coin_cost;
+
+            for (let i in cost_chart) {
+                prev_sf_cost_discount[i] += cost_chart[i];
+            }
+            sf_log.sf_cost_discount = prev_sf_cost_discount;
+        }
+
+        /* handle any events and relog the stars if the 2x was applied */
+        this.idata.meta.sf_log_item.events = { ...event_options };
+        this.idata.meta.sf_log_item.star = this.idata.meta.stars;
+
+        /* Update the safeguard status in the log */
+        this.idata.meta.sf_meta_data.unshift(sf_log);
+
+        this.idata.meta.sf_log_item = {}; // reset the log item
+    }
+};
 
 /*
     calculate the stats of the item from the various sources (flames, starforce, scrolls, etc)
