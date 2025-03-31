@@ -235,11 +235,12 @@ item.prototype.update_star = function(type = 0) {
 
 // Init the starforcing logic dealing with the outcome of the starforce attempt (success, fail, destroy, etc.)
 item.prototype.init_starforce_result_log = function(pval, prn_map, result) {
-    this.idata.meta.sf_log_item = Object.assign({}, this.cache.sf_meta_data);
-    this.idata.meta.sf_log_item.id = this.idata.meta.sf_meta_data.length + 1;
-    this.idata.meta.sf_log_item.prn_map = prn_map;
-    this.idata.meta.sf_log_item.prn = pval;
-    this.idata.meta.sf_log_item.result = result;
+    this.idata.meta.sf_log_item = Object.assign({}, this.cache.sf_meta_data, {
+        id: this.idata.meta.sf_meta_data.length + 1,
+        prn_map: prn_map,
+        prn: pval,
+        result: result
+    });
 };
 
 // complete the starforce log off with the details of the starforce attempt, including the star cost and any events that occurred during the process
