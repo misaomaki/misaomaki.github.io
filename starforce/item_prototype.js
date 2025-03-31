@@ -116,7 +116,7 @@ item.prototype.starforce = function(starcatch = false) {
     let result = this.starforce_result(starcatch);
 
     /* success */
-    if (GLOBAL.starforce_enums.SUCCESS_GROUP.includes(result)) {
+    if (GLOBAL.starforce_enums.__SUCCESS.includes(result)) {
         this.update_star(0);
         this.idata.meta.starcatch.count += 1;
 
@@ -126,7 +126,7 @@ item.prototype.starforce = function(starcatch = false) {
         }
     
     /* fail */
-    } else if (GLOBAL.starforce_enums.FAIL_GROUP.includes(result)) {
+    } else if (GLOBAL.starforce_enums.__FAIL.includes(result)) {
         this.update_star(1);
 
     /* destroy */

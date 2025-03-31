@@ -69,7 +69,7 @@ $(function() {
 
         /* get log data from worker and write to analysis object. then rerun*/
         worker.onmessage = function(d) {
-            let anal_sf = analyze_starforce(d.data.data);
+            let anal_sf = analyze_starforce(d.data.item.idata.meta.sf_meta_data);
 
             sf_analysis_items.push(anal_sf.g); 
 
@@ -180,9 +180,9 @@ $(function() {
         key_label = {
             "runs": "Runs",
             "tot_success": "Success",
-            "sc_success": "Success (Star Catch)",
+            [GLOBAL.starforce_enums.SC_SUCCESS]: "Success (Star Catch)",
             "tot_fail": "Fails",
-            "sc_fail": "Fails (Star Catch)",
+            [GLOBAL.starforce_enums.SC_FAIL]: "Fails (Star Catch)",
             "cost": "Cost",
             "sk_cost": "Shadowknight Coins",
             "tot_safeguards": "Total Safeguards",
@@ -222,9 +222,11 @@ $(function() {
         init_worker();
         
         //set up worker data
-        sf_data.item = Item.idata;
+        sf_data.item = Item;
         sf_data.from = +stat_from.val();
         sf_data.to = +stat_to.val();
+        sf_data.user_settings = user_settings,
+        sf_data.event_options = event_options,
         sf_data.safeguard = $("#stat_options .stat_checkbox_sg:checked").map(function(a,b) {return +$(b).val()}).get();
         sf_data.starcatch = get_starcatch();
         sf_data.sys_type = $("#stat_sfrates").val();

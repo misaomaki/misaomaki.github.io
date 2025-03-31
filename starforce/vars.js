@@ -53,8 +53,12 @@ const GLOBAL = {
         SC_FAIL: 4, /* starcatch fail */
         DESTROY: 5,
         FAIL_SAFEGUARD: 6,
-        FAIL_GROUP: [2, 4, 6],
-        SUCCESS_GROUP: [0, 1, 3]
+
+        /*
+            starforce results that can be grouped into general success or fails
+        */
+        __FAIL: [2, 4, 6],
+        __SUCCESS: [0, 1, 3]
     },
     starforce_labels: {
         0: "success",

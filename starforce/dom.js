@@ -442,11 +442,11 @@ $(function() {
 
             sfi_info_right.removeClass("sf-item-boomed");
 
-            if (GLOBAL.starforce_enums.SUCCESS_GROUP.includes(result)) {
+            if (GLOBAL.starforce_enums.__SUCCESS.includes(result)) {
                 sfa.play("EnchantSuccess", {playbackRate: system.animation_speed});
                 r_type = "sfi-success";
                 sfi_text.filter(".sfi-text-success").removeClass("hidden");
-            } else if (GLOBAL.starforce_enums.FAIL_GROUP.includes(result)) {
+            } else if (GLOBAL.starforce_enums.__FAIL.includes(result)) {
                 sfa.play("EnchantFail", {playbackRate: system.animation_speed});
                 r_type = "sfi-fail";
                 sfi_text.filter(".sfi-text-fail").removeClass("hidden");
