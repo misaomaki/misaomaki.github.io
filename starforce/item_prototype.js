@@ -1,10 +1,26 @@
-var item = function(it) {
-    if (typeof structuredClone != undefined) {
-        this.idata = structuredClone(it);
-    } else {
-        this.idata = JSON.parse(JSON.stringify(it));
+/*
+    it = item object from the item_db files with the meta data applied from item_meta
+*/
+class item {
+    constructor(it, o = {}) {
+        if (typeof structuredClone !== 'undefined') {
+            this.idata = structuredClone(it);
+        } else {
+            this.idata = JSON.parse(JSON.stringify(it));
+        }
+
+        // set meta options related to the item class as a concept
+        let meta_data = {
+            virtual: false, // if true, then virtual items do not update the DOM in its prototype functions (used in worker-initialized items)
+            ...o
+        };
+
+        for (let meta_item in meta_data) {
+            this[meta_item] = meta_data[meta_item];
+        }
     }
-};
+}
+
 
 item.prototype.cache = {
     dom: {}, //ui
@@ -100,17 +116,17 @@ item.prototype.starforce = function(starcatch = false) {
     let result = this.starforce_result(starcatch);
 
     if (result.includes("success")) {
-        Item.xgrade_item(0);
-        Item.idata.meta.starcatch.count += 1;
+        this.xgrade_item(0);
+        this.idata.meta.starcatch.count += 1;
 
         /* ??? */
-        if (Item.idata.meta.stars >= 22) {
+        if (!this.virtual && this.idata.meta.stars >= 22) {
             congrats_from_maki();
         }
     } else if (result.includes("fail")) {
-        Item.xgrade_item(1);
+        this.xgrade_item(1);
     } else {
-        Item.xgrade_item(2);
+        this.xgrade_item(2);
     }
 
     return result;
@@ -126,7 +142,10 @@ item.prototype.starforce_result = function(starcatch = false) {
     let level = this.idata.level;
     let current_star = this.idata.meta.stars;
 
-    let sr_catch = this.cache.sr[`_${level}${current_star}_${this.idata.superior}`];
+    let sr_catch = this.check_cache(()=>{
+        return star_success_rate(current_star, this.idata.superior);
+    }, "sr", `_${level}${current_star}_${this.idata.superior}`);
+
     let prn_map = {};
     let r_type = get_random_result(sr_catch, (a) => { prn_map = a; }, (a) => { pval = a; });
 
@@ -135,11 +154,10 @@ item.prototype.starforce_result = function(starcatch = false) {
         r_type = "success";
     }
 
-    let cb_safeguard = this.check_cache(() => mcon.find(".sf-safeguard"), "dom", "sf_safeguard");
-    let safeguard = cb_safeguard.hasClass("checked") && !cb_safeguard.hasClass("disabled");
+    let safeguard = user_settings.starforce.safeguard;
 
     // No boom pre-15 event
-    if (r_type === "destroy" && event_options.nb15) {
+    if (r_type === "destroy") {
         if ((!this.idata.superior && current_star < 15) || (this.idata.superior && current_star < 8)) {
             r_type = "fail-safeguard";
         }
@@ -184,7 +202,9 @@ item.prototype.xgrade_item = function(type = 0) {
     let is_droppable = this.is_droppable(current_star);
     
     if (type === 0) {
-        let stat_add = this.cache.eg[`_${level}${current_star}_${this.idata.superior}`];
+        let stat_add = this.check_cache(()=>{
+            return equip_gain(this.idata);
+        }, "eg", `_${level}${current_star}_${this.idata.superior}`);
         this.idata.boosts.sf_data.push(stat_add);
         this.idata.meta.stars += 1;
     } else if (type === 1 && is_droppable) {
@@ -201,6 +221,7 @@ item.prototype.xgrade_item = function(type = 0) {
     this.idata.meta.stars += additional_stars;
 
     this.complete_starforce_result_log(current_star, level);
+
     this.redraw(["starforce"]);
 };
 
@@ -217,9 +238,8 @@ item.prototype.init_starforce_result_log = function(pval, prn_map, result) {
 item.prototype.complete_starforce_result_log = function(current_star, level) {
     if (this.idata.meta.sf_log_item.id != null) {
         /* get the starforce-related options related to safeguard */
-        let cb_safeguard = this.check_cache(() => sfcon.find(".sf-safeguard"), "dom", "sf_safeguard");
         let is_safeguardable = !this.idata.superior && current_star >= GLOBAL.starforce.safeguard_stars.min && current_star < GLOBAL.starforce.safeguard_stars.max;
-        let is_safeguard = !cb_safeguard.hasClass("disabled") && cb_safeguard.hasClass("checked");
+        let is_safeguard = user_settings.starforce.safeguard;
         let safeguard_multiplier = (is_safeguardable && is_safeguard && !this.idata.meta.chance_time) ? 2 : 1;
         
         /* get the cost information for the current star level */
@@ -256,8 +276,8 @@ item.prototype.complete_starforce_result_log = function(current_star, level) {
         }
 
         /* handle any events and relog the stars if the 2x was applied */
-        this.idata.meta.sf_log_item.events = { ...event_options };
-        this.idata.meta.sf_log_item.star = this.idata.meta.stars;
+        sf_log.events = { ...event_options };
+        sf_log.star = this.idata.meta.stars;
 
         /* Update the safeguard status in the log */
         this.idata.meta.sf_meta_data.unshift(sf_log);
@@ -444,6 +464,8 @@ item.prototype.redraw_update_list = [
 item.prototype.redraw_item_tooltip = function(
     update = []
 ) {
+    if (this.virtual) return;
+
     /* if nothing is passed, then assume update everything */
     if (update.length === 0) {
         update = this.redraw_update_list;
@@ -953,14 +975,14 @@ item.prototype.check_cache = function(data_call = ()=>{return null;}, cache_name
     let c_item = this.cache[cache_name][identifier];
     if (typeof c_item == 'undefined') {
         item = data_call();
-        if (["string","number"].includes(typeof item) || item instanceof jQuery) {
+        if (["string","number"].includes(typeof item) || item instanceof $) {
             this.cache[cache_name][identifier] = item;
         } else {
             this.cache[cache_name][identifier] = Object.assign({}, item);
         }
     } else {
        
-        if (["string","number"].includes(typeof c_item) || c_item instanceof jQuery) {
+        if (["string","number"].includes(typeof c_item) || c_item instanceof $) {
             item = c_item;
         } else {
             item = Object.assign({}, c_item);
@@ -972,6 +994,7 @@ item.prototype.check_cache = function(data_call = ()=>{return null;}, cache_name
 
 //redraw item tooltip and starforce screen
 item.prototype.redraw = function(update = []) {
+    if (this.virtual) return;
     this.redraw_sf();
     this.redraw_item_tooltip(update);
 };
@@ -1001,6 +1024,7 @@ item.prototype.log_starforce_cost = function(sg, base_cost, cost, level) {
 
 //update starforce screen
 item.prototype.redraw_sf = function() {
+    if (this.virtual) return;
     //dom cache
     let mcon = this.check_cache(()=>{
         return $(".sf-main-container");
@@ -1128,14 +1152,6 @@ item.prototype.redraw_sf = function() {
 
     let is_event_droppable = false;
     
-    if (event_options.nb15) {
-        if (!this.idata.superior && this_star < 15) {
-            is_event_droppable = true;
-        } else if (this.idata.superior && this_star < 8) {
-            is_event_droppable = true;
-        }
-    }
-
     let is_2x = false;
 
     if (!this.idata.superior && event_options.pre10x2 && this_star <= 10) {

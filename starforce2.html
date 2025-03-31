@@ -308,9 +308,6 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                 <label class="side-bar-item" for="event_51015">
                     <input type="checkbox" class="event_cb" id="event_51015" data-bind="_51015"> 5/10/15 100% Success
                 </label>
-                <label class="side-bar-item" for="event_nb15">
-                    <input type="checkbox" class="event_cb" id="event_nb15" data-bind="nb15"> No-Boom Pre 15/8*
-                </label>
                 <label class="side-bar-item" for="event_pre10x2">
                     <input type="checkbox" class="event_cb" id="event_pre10x2" data-bind="pre10x2"> 2x Stars Pre 10
                 </label>
@@ -451,7 +448,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
     </div>
 
     <!-- Main star force window -->
-    <div class="sf-main-container masteria sf-main-border hidden">
+    <div class="sf-main-container masteria sf-main-border hidden" id="sfContainer">
         <div class="sf-main-header"></div>
         <div class="sf-main-header-buttons">
             <div class="sf-header-icon sf-button-x"></div>
@@ -477,8 +474,8 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
             </div>
             <div class="sf-star-item"></div>
             <div class="sf-enchant-effects sf-variable-animation"></div>
-            <div class="sf-starcatch sf-checkbox checked"></div>
-            <div class="sf-safeguard sf-checkbox disabled"></div>
+            <div class="sf-starcatch sf-checkbox checked sf-system" data-id="starcatch"></div>
+            <div class="sf-safeguard sf-checkbox disabled sf-system" data-id="safeguard"></div>
             <div class="sf-main-mesos ">
                 <span class="sf-main-mesos-amount sf-data-meso number-locale"></span>
                 <span class="sf-main-shadowknight-amount sf-data-shadowknight number-locale"></span>
@@ -818,25 +815,25 @@ crossorigin="anonymous"></script>
 <script src="./assets/js/simplebar5.2.1.js"></script>
 
 <script>
-    var event_options = {
+    const event_options = {
         _51015: false,
-        nb15: false,
         pre10x2: false,
         starcatch: false
     };
 
-    var system = {
+    const system = {
         cube: "GMS",
         ddl_with_name: false, /* item dropdown in main menu shows icons or names */
         auto_open_log: true, /* after an auto run is done, open the log for it */
         confirmation_popup: true, /* starforce confirmation window */
         animation_speed: 1, /* animation speed. the real animation speed is multiplied by this value */
         animation_speed_actual: 1, /* default animation speed */
-        itt_kms_new: true /* color coding of item stats broken dowm by its source (flames, scrolls, etc.) */
+        itt_kms_new: true, /* color coding of item stats broken dowm by its source (flames, scrolls, etc.) */
+        star30: true /* show star 30 rate */
     };
 
     //default animation speeds. can be speed up via the animation controls
-    var css_animation_speed = {
+    const css_animation_speed = {
         "sf-enchant-hyper-start": 1.75,
         "sfi-success": 1.25,
         "sfi-fail": 1.25,
@@ -847,6 +844,16 @@ crossorigin="anonymous"></script>
         "cube-use-normal": 1.5,
         "cube-use-tier": 1.5
     };
+
+    //user-related settings
+    const user_settings = {
+        starforce: {
+            starcatch: false,
+            safeguard: false
+        },
+         /* save user options (for auto cube) for each item type (saves lines selected and cube type) */
+        cube: {}
+    }
 </script>
 
 <!-- maplestory item db -->
@@ -858,18 +865,20 @@ crossorigin="anonymous"></script>
 <script src="./starforce/scrolls.js"></script>
 <!-- star force data set up -->
 <script src="./starforce/starforce.js"></script>
+<script src="./starforce/starforce_auto.js" async></script>
 <!-- cubes functionality -->
 <script src="./starforce/cubes.js"></script>
+<script src="./starforce/cubes_auto.js" async></script>
 <!-- flames -->
 <script src="./starforce/flames.js"></script>
-<script src="./starforce/flames_auto.js"></script>
+<script src="./starforce/flames_auto.js" async></script>
 <!-- chaos scrolls -->
-<script src="./starforce/cogs.js"></script>
+<script src="./starforce/cogs.js" async></script>
 <!-- ui/dom controls -->
 <script src="./starforce/dom.js"></script>
 <script src="./starforce/dom_menu.js"></script>
 <!-- ui - statistics -->
-<script src="./starforce/stat_starforce.js"></script>
+<script src="./starforce/stat_starforce.js" async></script>
 
 <!--- modal dialogs -->
 <div id="option_box" style="display:none"></div>

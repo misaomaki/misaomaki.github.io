@@ -33,8 +33,6 @@ const stats = {
     reqlvl: 0 //negative level requirements
 };
 
-
-
 const GLOBAL = {
     starforce: {
         max_stars: 25,

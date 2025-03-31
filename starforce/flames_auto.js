@@ -122,6 +122,7 @@ $(function(){
         modal: false
     });
 
+//#region AUTO FLAMES
     $("#auto_flames").on("click", function() {
         generate_flame_html(2);
     });
@@ -450,4 +451,68 @@ $(function(){
 
         return true;
     };
+//#endregion
+
+    
+//#region REVERSE FLAME CHECK
+    $("#reverse_flame_check").on("click", function() {
+        let b = Item.reverse_flame_lookup();
+        let score = Item.get_flame_score();
+        
+        let html = '';
+        for (let a in b) {
+            let val = b[a];
+
+            if (val == 0) continue;
+
+            html += `
+                <tr>
+                    <td>${a}</td>
+                    <td>${val}</td>
+                <tr>
+            `;
+        }
+
+        let no_flame = false;
+        let table = "";
+
+        if (html === "") {
+            no_flame = true;
+            table = "Item has no flames or the flames applied do not correspond to any tiers.";
+        } else {
+            table = `
+                <table id="flame_stat_table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Flame Stat</th>
+                            <th>Tier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${html}
+                    </tbody>
+                </table>
+                <br><br>
+                ${score !== -1 ? `
+                Your flame score is:<br> ${score}
+                ` : ""}
+                
+            `;
+        }
+
+        optionbox.html(table).dialog({
+            title: "Tiers",
+            width: no_flame ? 600 : 200,
+            height: "auto",
+            buttons: [{
+                text: "Close",
+                click: function() {
+                    $(this).dialog("close");
+                }
+            }]
+        }).dialog("open");
+
+        return false;
+    });
+//#endregion
 });

@@ -95,6 +95,120 @@ var star_success_rate = function(star, superior = false) {
     };
 };
 
+//TODO - NEED STATS FOR 30 STARS
+var star_success_rate_30 = function(star, superior = false) {
+    
+    /*
+    //debugging
+    return {
+        success: 0,
+        fail: 1,
+        destroy: 0
+    };
+    */
+    let starcatch_rate = 0.045; //starcatch assumption
+    
+    let base_success_rate = 1;
+    let success_rate = 0;
+    let destroy_rate = 0;
+    let fail_rate = 0;
+    let sc_rate = 0;
+
+    if (superior) {
+        //success, destroy
+        let sup = [
+            [0.5,0],
+            [0.5,0],
+            [0.45,0],
+            [0.4,0],
+            [0.4,0],
+            [0.4,0.018],
+            [0.4,0.03],
+            [0.4,0.042],
+            [0.4,0.06],
+            [0.37,0.0945],
+            [0.35,0.13],
+            [0.35,0.1625],
+            [0.03,0.485],
+            [0.02,0.49],
+            [0.01,0.495]
+        ];
+
+        let this_rate = sup[star];
+        
+        success_rate = this_rate[0];
+        destroy_rate = this_rate[1];
+        fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
+        sc_rate = success_rate * starcatch_rate;
+        
+        
+        return {
+            success: success_rate,
+            fail: fail_rate - sc_rate,
+            destroy: destroy_rate,
+            sc_success: sc_rate
+        };
+    }
+
+    let sdiff = 0;
+
+    if (star < 15) {
+        sdiff = (star + 1);
+        
+        if (star > 2 ) sdiff -= 1;
+
+        sdiff = sdiff * 0.05;
+    }
+
+    if (star < 15) {
+        success_rate = 0.3;
+        destroy_rate = 0;
+    } else if (star <= 16) {
+        success_rate = 0.3;
+        destroy_rate = 0.021;
+    } else if (star <= 18) {
+        success_rate = 0.15;
+        destroy_rate = 0.028;
+    } else if (star === 19) {
+        success_rate = 0.15;
+        destroy_rate = 0.085;
+    } else if (star === 20) {
+        success_rate = 0.3;
+        destroy_rate = 0.105;
+    } else if (star === 21) {
+        success_rate = 0.15;
+        destroy_rate = 0.1275;
+    } else if (star === 22) {
+        success_rate = 0.15;
+        destroy_rate = 0.17;
+    } else if (star <= 25) {
+        success_rate = 0.1;
+        destroy_rate = 0.18;
+    } else if (star === 26) {
+        success_rate = 0.07;
+        destroy_rate = 0.186;
+    } else if (star === 27) {
+        success_rate = 0.05;
+        destroy_rate = 0.19;
+    } else if (star === 28) {
+        success_rate = 0.03;
+        destroy_rate = 0.194;
+    } else if (star === 29) {
+        success_rate = 0.01;
+        destroy_rate = 0.198;
+    } 
+
+    fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
+    sc_rate = success_rate * starcatch_rate; //starcatch assumption
+
+    return {
+        success: success_rate,
+        fail: fail_rate - sc_rate,
+        destroy: destroy_rate,
+        sc_success: sc_rate
+    };
+};
+
 //zero weapons cost caps at level 150
 var star_cost_type = function(item_type) {
     if (item_type === "Long Sword" || item_type === "Heavy Sword") {
@@ -468,7 +582,7 @@ var equip_gain = function(item) {
             },{
                 bonus_stat: 17,
                 bonus_att: [14,15,16,17,18,19,21,23,25,27],
-                bonus_att_weapon: [] /* CURRENTLY UNKNOWN */
+                bonus_att_weapon: [17, 17, 18, 18, 19, 20, 21, 38, 39, 40] /* CURRENTLY UNKNOWN, EDUCATED GUESS VIA CHATGPT */
             }
         ];
 
