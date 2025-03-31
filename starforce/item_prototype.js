@@ -158,15 +158,6 @@ item.prototype.starforce_result = function(starcatch = false) {
         r_type = "success";
     }
 
-    let safeguard = user_settings.starforce.safeguard;
-
-    // No boom pre-15 event
-    if (r_type === "destroy") {
-        if ((!this.idata.superior && current_star < 15) || (this.idata.superior && current_star < 8)) {
-            r_type = "fail-safeguard";
-        }
-    }
-
     // Chance time logic
     if (this.idata.meta.chance_time) {
         r_type = "chance_time_success";
@@ -175,6 +166,8 @@ item.prototype.starforce_result = function(starcatch = false) {
     }
 
     if (r_type !== "chance_time_success") {
+        let safeguard = user_settings.starforce.safeguard;
+
         if (r_type === "fail" || (r_type === "sc_success" && !starcatch)) {
             if (r_type === "sc_success" && !starcatch) {
                 r_type = "sc_fail";
