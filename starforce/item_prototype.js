@@ -116,7 +116,7 @@ item.prototype.starforce = function(starcatch = false) {
     let result = this.starforce_result(starcatch);
 
     if (result.includes("success")) {
-        this.xgrade_item(0);
+        this.update_star(0);
         this.idata.meta.starcatch.count += 1;
 
         /* ??? */
@@ -124,9 +124,13 @@ item.prototype.starforce = function(starcatch = false) {
             congrats_from_maki();
         }
     } else if (result.includes("fail")) {
-        this.xgrade_item(1);
+        this.update_star(1);
     } else {
-        this.xgrade_item(2);
+        this.update_star(2);
+    }
+
+    if (!this.virtual) {
+        this.redraw(["starforce"]);
     }
 
     return result;
@@ -196,20 +200,26 @@ item.prototype.starforce_result = function(starcatch = false) {
 };
 
 // increase, decrease, or reset the star level of the item, depending on starforce outcome
-item.prototype.xgrade_item = function(type = 0) {
+// type enums: 0 - increase star, 1 - decrease star, 2 - destroy item (reset star to 12 for non-superior items, or 0 for superior items)
+item.prototype.update_star = function(type = 0) {
     let level = this.idata.level;
     let current_star = this.idata.meta.stars;
     let is_droppable = this.is_droppable(current_star);
     
+    //success
     if (type === 0) {
         let stat_add = this.check_cache(()=>{
             return equip_gain(this.idata);
         }, "eg", `_${level}${current_star}_${this.idata.superior}`);
         this.idata.boosts.sf_data.push(stat_add);
         this.idata.meta.stars += 1;
+
+    //fail
     } else if (type === 1 && is_droppable) {
         this.idata.boosts.sf_data.pop();
         this.idata.meta.stars -= 1;
+
+    //destroy
     } else if (type === 2) {
         let d_star = this.idata.superior ? 0 : 12;
         this.set_item_level(d_star);
@@ -221,8 +231,6 @@ item.prototype.xgrade_item = function(type = 0) {
     this.idata.meta.stars += additional_stars;
 
     this.complete_starforce_result_log(current_star, level);
-
-    this.redraw(["starforce"]);
 };
 
 // Init the starforcing logic dealing with the outcome of the starforce attempt (success, fail, destroy, etc.)
