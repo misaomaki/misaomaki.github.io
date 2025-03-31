@@ -45,6 +45,7 @@ onmessage = function(d) {
 
     while (Item.idata.meta.stars < end_star) {
         let starcatch = data.starcatch.includes(Item.idata.meta.stars);
+        user_settings.starforce.safeguard = data.safeguard.includes(Item.idata.meta.stars); //safeguard for this star level
         Item.starforce(starcatch);
     }
 
