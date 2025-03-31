@@ -1,6 +1,8 @@
 $(function() {
     var key_label = {};
 
+    var key_order = [];
+
     /* range cost of item in multiples of 10 billion */
     const cost_range_stat = {};
     const max_cost_range_tier = 30;
@@ -180,9 +182,9 @@ $(function() {
         key_label = {
             "runs": "Runs",
             "tot_success": "Success",
-            [GLOBAL.starforce_enums.SC_SUCCESS]: "Success (Star Catch)",
+            [GLOBAL.starforce_enums.SC_SUCCESS + ""]: "Success (Star Catch)",
             "tot_fail": "Fails",
-            [GLOBAL.starforce_enums.SC_FAIL]: "Fails (Star Catch)",
+            [GLOBAL.starforce_enums.SC_FAIL + ""]: "Fails (Star Catch)",
             "cost": "Cost",
             "sk_cost": "Shadowknight Coins",
             "tot_safeguards": "Total Safeguards",
@@ -194,6 +196,24 @@ $(function() {
             "min_boom": "Least Booms",
             "max_boom": "Most Booms"
         };
+    
+        key_order = [
+            "runs",
+            "tot_success",
+            GLOBAL.starforce_enums.SC_SUCCESS + "",
+            "tot_fail",
+            GLOBAL.starforce_enums.SC_FAIL + "",
+            "cost",
+            "sk_cost",
+            "tot_safeguards",
+            "safeguards",
+            "tot_booms",
+            "booms",
+            "min_cost",
+            "max_cost",
+            "min_boom",
+            "max_boom"
+        ];
 
         for (let range in cost_range_stat) {
             let key = range.split("_");
@@ -203,11 +223,13 @@ $(function() {
             } else {
                 key_label[range] = `${rtier * 10}+b mesos`;
             }
+            key_order.push(range);
         }
 
         /* remove shadowknight coin from table if not needed */
         if (!Item.idata.shadowknight) {
             delete key_label["sk_cost"];
+            key_order = key_order.filter(e => e !== "sk_cost");
         }
 
         _this.addClass("hidden");
@@ -321,7 +343,8 @@ $(function() {
             price_range: false
         };
 
-        for (let i in key_label) {
+        for (let idx = 0; idx < key_order.length; ++idx) {
+            let i = key_order[idx];
             let add_price_range_label = false;
             let sub_row = false;
 
