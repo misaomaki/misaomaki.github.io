@@ -844,7 +844,6 @@ var flames = {
     */
     apply: function(flame, o) {
         o = Object.assign({
-            update_dom: true,
             idx: -1 /* for processes that dump data, idx has to be tallied from an outside process and cannot use the meta log length */
         }, o);
 
@@ -932,7 +931,7 @@ var flames = {
         /* log run */
         this.idata.meta.flames_meta_data.unshift(flames_log);
         
-        if (o.update_dom) {
+        if (!this.virtual) {
             this.redraw_item_tooltip(["flames"]);
         }
     }

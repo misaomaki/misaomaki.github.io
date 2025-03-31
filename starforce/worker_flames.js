@@ -75,7 +75,10 @@ var compare_flames = function(is_tier, item_flame, desired_flame, desired_flame_
 }
 
 onmessage = function(o) {
-    let this_item = new item(o.data.item.idata);
+    let this_item = new item(o.data.item.idata, {
+        virtual: true
+    });
+
     let current_tiers = {};
     let idx = 0; 
     log_cache = [];
@@ -84,6 +87,7 @@ onmessage = function(o) {
         return compare_flames(o.data.is_tier, current_tiers, o.data.flame_options, o.data.flame_options_search);
     }
 
+    /* flame score comparison */
     if (o.data.calc_type == 2) {
         search = function() {
             return compare_score(current_tiers.score, o.data.flame_score);
@@ -93,7 +97,6 @@ onmessage = function(o) {
     do {
         idx += 1;
         flames.apply.call(this_item, o.data.flame, {
-            update_dom: false,
             idx: idx
         });
 
@@ -112,11 +115,7 @@ onmessage = function(o) {
 
     postMessage({
         done: true, 
-        data: {
-            flame_log: this_item.idata.meta.flames_meta_data,
-            flame_used: this_item.idata.meta.flames_total,
-            flame_stats: this_item.idata.boosts.flames
-        }, 
+        item: this_item,
         code: 1
     });
 };

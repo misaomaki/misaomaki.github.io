@@ -437,9 +437,7 @@ $(function(){
                 return false;
             }
 
-            Item.idata.meta.flames_meta_data.unshift(...d.data.data.flame_log);
-            Item.idata.meta.flames_total = d.data.data.flame_used;
-            Item.idata.boosts.flames = d.data.data.flame_stats;
+            Item = new item(d.data.item.idata);
 
             Item.redraw_item_tooltip(["flames"]);
             sfa.play("_CubeEnchantSuccess");

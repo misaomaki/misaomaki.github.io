@@ -191,41 +191,16 @@ $(function() {
                             cube_msg.html(d.data.message);
                             return false;
                         }
-
-                        let cube_log_data = d.data.data.idata.meta.cube_meta_data;
-
-                        let data_cubes_used = d.data.data.idata.meta.cubes_used;
+                        
+                        Item = new item(d.data.data.idata); 
 
                         //if item tier passed the desired tier, then exit and return the latest cube lines
                         if (d.data.code === 2) {
                             alert(d.data.message);
-
-                            let last_result = cube_log_data[0];
-                            let last_result_lines = last_result.results.result.map(a=>a.id);
-                            pot_tier = last_result.tier;
-
-                            [line_1, line_2, line_3] = last_result_lines;
-                        } else {
-                            [line_1, line_2, line_3] = d.data.pot;
-                        }
-
-                        Item.idata.meta.cube_meta_data = cube_log_data;
-                        Item.idata.meta.cubes_used = data_cubes_used;
-                        Item.idata.meta.cubes_total = d.data.data.idata.meta.cubes_total;
+                        } 
 
                         /* if violet cube, we open up the violet cube ui instead with the items for them to select */
-                        if (d.data.cube === "violet") {     
-                            await Item.set_cube(cube_name, pot_tier, {
-                                line_0: line_1,
-                                line_1: line_2,
-                                line_2: line_3,
-                                line_3: line_4,
-                                line_4: line_5,
-                                line_5: line_6
-                            }, {
-                                write_log_record: false,
-                                force_keep: true
-                            });             
+                        if (d.data.cube === "violet") {             
                             _this.dialog("close");
                             $("#cube_menu .cube[data-id=violet]").trigger("click", {
                                 process_as: "worker_violet"
@@ -233,17 +208,8 @@ $(function() {
                             return;
                         }
 
-                        await Item.set_cube(cube_name, pot_tier, {
-                            line_0: line_1,
-                            line_1: line_2,
-                            line_2: line_3
-                        }, {
-                            write_log_record: false,
-                            force_keep: true
-                        });
-
                         cube.update_cube_menu.call(Item, $("#cube_menu"));
-                        Item.redraw_item_tooltip();
+                        Item.redraw_item_tooltip(["cube"]);
                         sfa.play("_CubeEnchantSuccess");
 
                         _this.dialog("close");

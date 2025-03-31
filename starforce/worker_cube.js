@@ -10,6 +10,7 @@ let system = {
 
 importScripts("init.js");
 importScripts("vars.js");
+importScripts("item_prototype.js");
 importScripts("cubes.js");
 
 /*
@@ -100,6 +101,10 @@ onmessage = async function(o) {
 
     let lines = [];
 
+    let Item = new item(d.item.idata, {
+        virtual: true
+    });
+
     /*
         check if pot lines have stat lines that go over the restriction limit.
     */
@@ -149,12 +154,12 @@ onmessage = async function(o) {
         do {
             ++idx;
 
-            await cube.cube.call(d.item, d.cube, [], ()=>{}, {
+            await cube.cube.call(Item, d.cube, [], ()=>{}, {
                 update_dom: false,
                 auto_select: true
             });
             
-            let cr = d.item.idata.meta.cube_log_item;
+            let cr = Item.idata.meta.cube_log_item;
 
             /*
                 end the cubing if the item tiers up passed the desire tier, as those lines will never be hit.
@@ -165,7 +170,7 @@ onmessage = async function(o) {
             }
             if (d.pot_tier !== "legendary") {
                 if (cube.rarity_enum[d.pot_tier] < cube.rarity_enum[cr.tier || ""]) {
-                    postMessage({done: false, code: 2, message: "Item tiered passed the desired potential.", data: d.item});
+                    postMessage({done: false, code: 2, message: "Item tiered passed the desired potential.", data: Item});
                     return false;
                 }
             }
@@ -177,7 +182,7 @@ onmessage = async function(o) {
             if (idx !== 1 && idx % 1000 === 0) {
                 let return_message = `Cubing process is still running. ${idx} cubes have been used... <br><br> Every 2000 records, data is dumped to prevent browser crash.`;
                 if (idx % 2000 === 0) {
-                    d.item.idata.meta.cube_meta_data = [d.item.idata.meta.cube_meta_data[1]];
+                    Item.idata.meta.cube_meta_data = [Item.idata.meta.cube_meta_data[1]];
                 }
 
                 postMessage({done: false, code: 16, message: return_message});
@@ -187,7 +192,7 @@ onmessage = async function(o) {
     }
 
     //once process exits, mark the last record as keep
-    d.item.idata.meta.cube_meta_data[0].keep = true;
+    Item.idata.meta.cube_meta_data[0].keep = true;
 
-    postMessage({done: true, code: 1, message: "", data: d.item, pot: lines, cube: d.cube});
+    postMessage({done: true, code: 1, message: "", data: Item, cube: d.cube});
 }
