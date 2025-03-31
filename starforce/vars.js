@@ -44,6 +44,23 @@ const GLOBAL = {
     },
     cubes: {
         bonus: ["bonus", "bonus_occult", "white"]
+    },
+    starforce_enums: {
+        SUCCESS: 0,
+        CHANCE_TIME_SUCCESS: 1,
+        FAIL: 2,
+        SC_SUCCESS: 3, /* starcatch success */
+        SC_FAIL: 4, /* starcatch fail */
+        DESTROY: 5,
+        FAIL_SAFEGUARD: 6,
+        FAIL_GROUP: [2, 4, 6],
+        SUCCESS_GROUP: [0, 1, 3]
+    },
+    starforce_labels: {
+        0: "success",
+        2: "fail",
+        3: "sc_success",
+        5: "destroy"
     }
 };
 

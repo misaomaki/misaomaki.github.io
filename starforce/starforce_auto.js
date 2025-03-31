@@ -213,8 +213,8 @@ $(function() {
                 <td>${s.highest_star}</td>
                 <td>${s.tot_success}</td>
                 <td>${s.tot_fail}</td>
-                <td>${s.sc_success}</td>
-                <td>${s.sc_fail}</td>
+                <td>${s[GLOBAL.starforce_enums.SC_SUCCESS]}</td>
+                <td>${s[GLOBAL.starforce_enums.SC_FAIL]}</td>
                 <td>${s.tot_safeguards}</td>
                 ${
                     has_boom ?
@@ -427,16 +427,19 @@ $(function() {
                     let map = sp.data;
                     let j2 = j;
 
-                    if (j2 === "sc_success") {
-                        j2 = "success";
+                    if (j2 === GLOBAL.starforce_enums.SC_SUCCESS) {
+                        j2 = GLOBAL.starforce_enums.SUCCESS;
                     }
 
                     let row_selected = _tl.prn >= map[0] && _tl.prn < map[1];
 
+                    let j_label = GLOBAL.starforce_labels[j];
+                    let j2_label = GLOBAL.starforce_labels[j2];
+
                     prn_map_html += `
                         <span style="display:inline-block;width:100%" class="${row_selected ? 'highlight-row' : ''}">
-                            <span class="result-${j2}${j2 === "destroy" ? "2" : ""} r-${j}" style="display:inline-block;width:100px;text-align:left;">
-                                ${j}:
+                            <span class="result-${j2_label}${j2_label === "destroy" ? "2" : ""} r-${j_label}" style="display:inline-block;width:100px;text-align:left;">
+                                ${j_label}:
                             </span> 
                             ${map[0].toFixed(5)} - ${map[1].toFixed(5)} 
                         </span>
@@ -449,37 +452,37 @@ $(function() {
                 let result_type = "";
 
                 switch (this_result) {
-                    case "success":
+                    case GLOBAL.starforce_enums.SUCCESS:
                         result = "Success!";
                         result_type = "result-success";
                         break;
-                    case "fail":
+                    case GLOBAL.starforce_enums.FAIL:
                         result = "Failed";
                         result_type = "result-fail";
                         break;
-                    case "chance_time_success":
+                    case GLOBAL.starforce_enums.CHANCE_TIME_SUCCESS:
                         result = "Success! (Chance Time)";
                         result_type = "result-success";
                         break;
-                    case "sc_fail":
+                    case GLOBAL.starforce_enums.SC_FAIL:
                         result = "Failed (Star Catch)";
                         result_type = "result-fail";
                         break;
-                    case "sc_success":
+                    case GLOBAL.starforce_enums.SC_SUCCESS:
                         result = "Success! (Star Catch)";
                         result_type = "result-success r-sc_success";
                         break;
-                    case "destroy":
+                    case GLOBAL.starforce_enums.DESTROY:
                         result = "Destroyed!";
                         result_type = "result-destroy-text";
                         break;
-                    case "fail-safeguard":
+                    case GLOBAL.starforce_enums.FAIL_SAFEGUARD:
                         result = "Safeguard!";
                         result_type = "result-destroy-text";
                         break;
                 }
 
-                let is_destroyed = ["destroy", "fail-safeguard"].includes(this_result);
+                let is_destroyed = [GLOBAL.starforce_enums.DESTROY, GLOBAL.starforce_enums.FAIL_SAFEGUARD].includes(this_result);
 
                 let bgColor = "none";
                 let color = "black";

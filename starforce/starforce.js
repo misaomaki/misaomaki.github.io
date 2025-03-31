@@ -88,10 +88,10 @@ var star_success_rate = function(star, superior = false) {
     sc_rate = success_rate * starcatch_rate; //starcatch assumption
 
     return {
-        success: success_rate,
-        fail: fail_rate - sc_rate,
-        destroy: destroy_rate,
-        sc_success: sc_rate
+        [GLOBAL.starforce_enums.SUCCESS]: success_rate,
+        [GLOBAL.starforce_enums.FAIL]: fail_rate - sc_rate,
+        [GLOBAL.starforce_enums.DESTROY]: destroy_rate,
+        [GLOBAL.starforce_enums.SC_SUCCESS]: sc_rate
     };
 };
 
@@ -202,10 +202,10 @@ var star_success_rate_30 = function(star, superior = false) {
     sc_rate = success_rate * starcatch_rate; //starcatch assumption
 
     return {
-        success: success_rate,
-        fail: fail_rate - sc_rate,
-        destroy: destroy_rate,
-        sc_success: sc_rate
+        [GLOBAL.starforce_enums.SUCCESS]: success_rate,
+        [GLOBAL.starforce_enums.FAIL]: fail_rate - sc_rate,
+        [GLOBAL.starforce_enums.DESTROY]: destroy_rate,
+        [GLOBAL.starforce_enums.SC_SUCCESS]: sc_rate
     };
 };
 
@@ -225,6 +225,9 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
         return Math.round(Math.pow(level,3.56)/100)*100;
     }
 
+    /*
+        specific items like zero weapons have their cost capped at level 150
+    */
     if (sc_type === 2) {
         if (level > 150) {
             level = 150;
@@ -638,11 +641,11 @@ let analyze_starforce = function(d) {
             runs: d.length,
             highest_star: 0,
             final_star: 0,
-            success: 0,
-            chance_time_success: 0,
-            fail: 0,
-            sc_success: 0,
-            sc_fail: 0,
+            [GLOBAL.starforce_enums.SUCCESS]: 0,
+            [GLOBAL.starforce_enums.CHANCE_TIME_SUCCESS]: 0,
+            [GLOBAL.starforce_enums.FAIL]: 0,
+            [GLOBAL.starforce_enums.SC_SUCCESS]: 0,
+            [GLOBAL.starforce_enums.SC_FAIL]: 0,
             booms: {}, //broken down by level
             safeguards: {}, //broken down by level
             tot_safeguards: 0,
@@ -671,11 +674,11 @@ let analyze_starforce = function(d) {
         highest_star: 0,
         final_star: 0,
         total_cost: 0,
-        success: 0,
-        chance_time_success: 0,
-        fail: 0,
-        sc_success: 0,
-        sc_fail: 0,
+        [GLOBAL.starforce_enums.SUCCESS]: 0,
+        [GLOBAL.starforce_enums.CHANCE_TIME_SUCCESS]: 0,
+        [GLOBAL.starforce_enums.FAIL]: 0,
+        [GLOBAL.starforce_enums.SC_SUCCESS]: 0,
+        [GLOBAL.starforce_enums.SC_FAIL]: 0,
         safeguards: {},
         total_cost: 0,
         tot_safeguards: 0,
@@ -735,8 +738,8 @@ let analyze_starforce = function(d) {
         }
 
         //increment result count
-        if (result !== 'destroy') {
-            if (result === "fail-safeguard") {
+        if (result !== GLOBAL.starforce_enums.DESTROY) {
+            if (result === GLOBAL.starforce_enums.FAIL_SAFEGUARD) {
                 let _pd = d[i+1];
 
                 if (_pd == undefined) continue;
@@ -770,11 +773,11 @@ let analyze_starforce = function(d) {
         //if item boomed, then commit item to s item store and init a new log item
         //if no booms, then the final run is the same as total cost, so don't show it
         if (is_new_item || (i === 0 && s.g.tot_booms > 0)) {
-            sd.tot_success = sd.success + sd.chance_time_success + sd.sc_success;
-            sd.tot_fail = sd.fail + sd.sc_fail;
+            sd.tot_success = sd[GLOBAL.starforce_enums.SUCCESS] + sd[GLOBAL.starforce_enums.CHANCE_TIME_SUCCESS] + sd[GLOBAL.starforce_enums.SC_SUCCESS];
+            sd.tot_fail = sd[GLOBAL.starforce_enums.FAIL] + sd[GLOBAL.starforce_enums.SC_FAIL];
 
             if (i === 0) {
-                sd.final_star = _d.star;
+            sd.final_star = _d.star;
             }
 
             s.i.push(sd);
@@ -783,8 +786,8 @@ let analyze_starforce = function(d) {
         }
     }
 
-    s.g.tot_success = s.g.success + s.g.chance_time_success + s.g.sc_success;
-    s.g.tot_fail = s.g.fail + s.g.sc_fail;
+    s.g.tot_success = s.g[GLOBAL.starforce_enums.SUCCESS] + s.g[GLOBAL.starforce_enums.CHANCE_TIME_SUCCESS] + s.g[GLOBAL.starforce_enums.SC_SUCCESS];
+    s.g.tot_fail = s.g[GLOBAL.starforce_enums.FAIL] + s.g[GLOBAL.starforce_enums.SC_FAIL];
     s.g.final_star = d[0].star;
 
     return s;

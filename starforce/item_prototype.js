@@ -115,7 +115,8 @@ item.prototype.starforce_att_percent = function(att = 0, bwatt = 0, p_arr = []) 
 item.prototype.starforce = function(starcatch = false) {
     let result = this.starforce_result(starcatch);
 
-    if (result.includes("success")) {
+    /* success */
+    if (GLOBAL.starforce_enums.SUCCESS_GROUP.includes(result)) {
         this.update_star(0);
         this.idata.meta.starcatch.count += 1;
 
@@ -123,8 +124,12 @@ item.prototype.starforce = function(starcatch = false) {
         if (!this.virtual && this.idata.meta.stars >= 22) {
             congrats_from_maki();
         }
-    } else if (result.includes("fail")) {
+    
+    /* fail */
+    } else if (GLOBAL.starforce_enums.FAIL_GROUP.includes(result)) {
         this.update_star(1);
+
+    /* destroy */
     } else {
         this.update_star(2);
     }
@@ -151,26 +156,25 @@ item.prototype.starforce_result = function(starcatch = false) {
     }, "sr", `_${level}${current_star}_${this.idata.superior}`);
 
     let prn_map = {};
-    let r_type = get_random_result(sr_catch, (a) => { prn_map = a; }, (a) => { pval = a; });
+    let r_type = +get_random_result(sr_catch, (a) => { prn_map = a; }, (a) => { pval = a; });
 
     // 5/10/15 100% success event
     if (!this.idata.superior && event_options._51015 && [5, 10, 15].includes(current_star)) {
-        r_type = "success";
+        r_type = GLOBAL.starforce_enums.SUCCESS;
     }
-
     // Chance time logic
     if (this.idata.meta.chance_time) {
-        r_type = "chance_time_success";
+        r_type = GLOBAL.starforce_enums.CHANCE_TIME_SUCCESS;
         this.idata.meta.chance_count = 0;
         this.idata.meta.chance_time = false;
     }
 
-    if (r_type !== "chance_time_success") {
+    if (r_type !== GLOBAL.starforce_enums.CHANCE_TIME_SUCCESS) {
         let safeguard = user_settings.starforce.safeguard;
 
-        if (r_type === "fail" || (r_type === "sc_success" && !starcatch)) {
-            if (r_type === "sc_success" && !starcatch) {
-                r_type = "sc_fail";
+        if (r_type === GLOBAL.starforce_enums.FAIL || (r_type === GLOBAL.starforce_enums.SC_SUCCESS && !starcatch)) {
+            if (r_type === GLOBAL.starforce_enums.SC_SUCCESS && !starcatch) {
+                r_type = GLOBAL.starforce_enums.SC_FAIL;
             }
             if (this.is_droppable(current_star)) {
                 this.idata.meta.chance_count += 1;
@@ -178,11 +182,11 @@ item.prototype.starforce_result = function(starcatch = false) {
                     this.idata.meta.chance_time = true;
                 }
             }
-        } else if (r_type === "success" || r_type === "sc_success") {
+        } else if (r_type === GLOBAL.starforce_enums.SUCCESS || r_type === GLOBAL.starforce_enums.SC_SUCCESS) {
             this.idata.meta.chance_count = 0;
             this.idata.meta.chance_time = false;
-        } else if (r_type === "destroy" && safeguard) {
-            r_type = "fail-safeguard";
+        } else if (r_type === GLOBAL.starforce_enums.DESTROY && safeguard) {
+            r_type = GLOBAL.starforce_enums.FAIL_SAFEGUARD;
         }
     }
 
@@ -1176,25 +1180,25 @@ item.prototype.redraw_sf = function() {
                 ${!this.idata.superior && event_options._51015 && [5,10,15].includes(this_star) ?
                 `
                 Success Chance: <span class="sf-crossed-out">
-                    ${(srate.success * 100).toFixed(1)}%
+                    ${(srate[GLOBAL.starforce_enums.SUCCESS] * 100).toFixed(1)}%
                 </span> 100% <br>
                 `
                 :
 
                 `
-                    Success Chance: ${(srate.success * 100).toFixed(1)}% <br>
+                    Success Chance: ${(srate[GLOBAL.starforce_enums.SUCCESS] * 100).toFixed(1)}% <br>
                     <span style="transform: scale(0.95,1);display: inline-block;margin-left: -3px;">Failure (${is_droppable ? "Drop" : "Keep"}) Chance:</span> 
                     <span style="display:inline-block;margin-left: -5px;">
-                        ${((srate.fail + srate.sc_success + (is_event_droppable ? srate.destroy : 0)) * 100).toFixed(1)}%
+                        ${((srate[GLOBAL.starforce_enums.FAIL] + srate[GLOBAL.starforce_enums.SC_SUCCESS] + (is_event_droppable ? srate[GLOBAL.starforce_enums.DESTROY] : 0)) * 100).toFixed(1)}%
                     </span> <br>
                     ${
-                        !is_event_droppable && srate.destroy !== 0 ?
+                        !is_event_droppable && srate[GLOBAL.starforce_enums.DESTROY] !== 0 ?
                         `
                             Chance of item destruction: 
                             ${
-                                srate.destroy > 0.1 ? "<br>" + (srate.destroy * 100).toFixed(1) 
+                                srate[GLOBAL.starforce_enums.DESTROY] > 0.1 ? "<br>" + (srate[GLOBAL.starforce_enums.DESTROY] * 100).toFixed(1) 
                                 : 
-                                ((srate.destroy * 100).toFixed(1) + '').replace(".", ".<br>")
+                                ((srate[GLOBAL.starforce_enums.DESTROY] * 100).toFixed(1) + '').replace(".", ".<br>")
                             }%
                         ` : ''
                     }
