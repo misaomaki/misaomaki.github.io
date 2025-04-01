@@ -193,6 +193,7 @@ onmessage = async function(o) {
 
     //once process exits, mark the last record as keep
     Item.idata.meta.cube_meta_data[0].keep = true;
+    Item.idata.boosts.cubes.main = Item.idata.meta.cube_meta_data[0].results.result;
 
     postMessage({done: true, code: 1, message: "", data: Item, cube: d.cube});
 }

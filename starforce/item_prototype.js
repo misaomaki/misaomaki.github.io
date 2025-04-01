@@ -94,23 +94,6 @@ item.prototype.set_meta_options = function(o) {
     }
 }
 
-//base att + att from scrolls
-//def works, too
-item.prototype.starforce_att_percent = function(att = 0, bwatt = 0, p_arr = []) {
-    if (att === 0) return 0;
-
-    let curr_att = att;
-
-    for (let i = 0; i < p_arr.length; ++i) {
-        if (p_arr[i] === 0) continue;
-
-        let att_gain = 1 + Math.floor(curr_att * p_arr[i]);
-        curr_att += att_gain;
-    }
-
-    return curr_att - att;
-};
-
 /* get starforce result and update the item's stars */
 item.prototype.starforce = function(starcatch = false) {
     let result = this.starforce_result(starcatch);
@@ -453,6 +436,7 @@ item.prototype.get_final_stats = function() {
     };
 }
 
+//#region Item Tooltip Update
 //update item stats on tooltip screen
 //pass parts to update specific parts of the tooltip
 item.prototype.redraw_update_list = [
@@ -517,6 +501,7 @@ item.prototype.redraw_item_tooltip = function(
     return true;
 };
 
+//#region Tooltip Update Functions
 /* update item name */
 item.prototype.update_item_tooltip_name = function(i_con) {
     let iname = this.check_cache(()=>{
@@ -974,60 +959,10 @@ item.prototype.update_item_tooltip_job_req = function(i_con) {
         ipic.addClass(this.idata.img);
     }
 }
+//#endregion
+//#endregion
 
-//cache function
-item.prototype.check_cache = function(data_call = ()=>{return null;}, cache_name, identifier) {
-    let item = {};
-    let c_item = this.cache[cache_name][identifier];
-    if (typeof c_item == 'undefined') {
-        item = data_call();
-        if (["string","number"].includes(typeof item) || item instanceof $) {
-            this.cache[cache_name][identifier] = item;
-        } else {
-            this.cache[cache_name][identifier] = Object.assign({}, item);
-        }
-    } else {
-       
-        if (["string","number"].includes(typeof c_item) || c_item instanceof $) {
-            item = c_item;
-        } else {
-            item = Object.assign({}, c_item);
-        }
-    }
-
-    return item;
-};
-
-//redraw item tooltip and starforce screen
-item.prototype.redraw = function(update = []) {
-    if (this.virtual) return;
-    this.redraw_sf();
-    this.redraw_item_tooltip(update);
-};
-
-//log the cost, including discounts
-item.prototype.log_starforce_cost = function(sg, base_cost, cost, level) {
-    //each index stacks with the other
-    let discount_mvp = [0.03,0.05,0.1];
-    let discount_event_30 = 0.30;
-
-    let cost_chart = {};
-    let event_30 = base_cost * discount_event_30;
-
-    for (let i = 0; i < discount_mvp.length; ++i) {
-        let i_d = discount_mvp[i];
-
-        let i_mvp = base_cost * (level > 16 ? 0 : i_d);
-        
-        cost_chart[i_d] = cost - i_mvp; 
-        cost_chart[i_d + ",0.3"] = cost - i_mvp - event_30;
-    }
-
-    cost_chart["0.3"] = cost - event_30;
-
-    return cost_chart;
-};
-
+//#region Starforce Window 
 //update starforce screen
 item.prototype.redraw_sf = function() {
     if (this.virtual) return;
@@ -1334,7 +1269,81 @@ item.prototype.redraw_sf = function() {
     this.idata.meta.sf_log_item = {};
     return true;
 };
+//#endregion
 
 item.prototype.set_exceptional_part = function(enable_exceptional = false) {
     this.idata.meta.exceptional_applied = enable_exceptional;
+};
+
+
+
+//base att + att from scrolls
+//def works, too
+item.prototype.starforce_att_percent = function(att = 0, bwatt = 0, p_arr = []) {
+    if (att === 0) return 0;
+
+    let curr_att = att;
+
+    for (let i = 0; i < p_arr.length; ++i) {
+        if (p_arr[i] === 0) continue;
+
+        let att_gain = 1 + Math.floor(curr_att * p_arr[i]);
+        curr_att += att_gain;
+    }
+
+    return curr_att - att;
+};
+
+
+//cache function
+item.prototype.check_cache = function(data_call = ()=>{return null;}, cache_name, identifier) {
+    let item = {};
+    let c_item = this.cache[cache_name][identifier];
+    if (typeof c_item == 'undefined') {
+        item = data_call();
+        if (["string","number"].includes(typeof item) || item instanceof $) {
+            this.cache[cache_name][identifier] = item;
+        } else {
+            this.cache[cache_name][identifier] = Object.assign({}, item);
+        }
+    } else {
+       
+        if (["string","number"].includes(typeof c_item) || c_item instanceof $) {
+            item = c_item;
+        } else {
+            item = Object.assign({}, c_item);
+        }
+    }
+
+    return item;
+};
+
+//redraw item tooltip and starforce screen
+item.prototype.redraw = function(update = []) {
+    if (this.virtual) return;
+    this.redraw_sf();
+    this.redraw_item_tooltip(update);
+};
+
+//log the cost, including discounts
+item.prototype.log_starforce_cost = function(sg, base_cost, cost, level) {
+    //each index stacks with the other
+    let discount_mvp = [0.03,0.05,0.1];
+    let discount_event_30 = 0.30;
+
+    let cost_chart = {};
+    let event_30 = base_cost * discount_event_30;
+
+    for (let i = 0; i < discount_mvp.length; ++i) {
+        let i_d = discount_mvp[i];
+
+        let i_mvp = base_cost * (level > 16 ? 0 : i_d);
+        
+        cost_chart[i_d] = cost - i_mvp; 
+        cost_chart[i_d + ",0.3"] = cost - i_mvp - event_30;
+    }
+
+    cost_chart["0.3"] = cost - event_30;
+
+    return cost_chart;
 };
