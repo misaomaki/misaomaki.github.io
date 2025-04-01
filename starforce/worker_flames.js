@@ -118,4 +118,5 @@ onmessage = function(o) {
         item: this_item,
         code: 1
     });
+    self.close();
 };

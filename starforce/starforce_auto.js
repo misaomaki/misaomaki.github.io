@@ -59,23 +59,6 @@ $(function() {
                 </div>
                 <span id="h_update"></span>
             </div>
-            <div class="form-group hidden">
-                <div class="form-label-group">
-                    <span class="form-label">
-                        Budget:
-                    </span>
-                    <hr>
-                    <span style="display: inline-block; padding: 5px;">
-                        Stop the starforcing if it exceeds the meso budget or number of spare items.
-                    </span>
-                    <span style="display: inline-block; padding: 5px;">
-                        I have <input type="number" id="asf_budget_items" style="width:50px" min="-1" value="-1"> item(s) and 
-                        <input type="number" id="asf_budget_mesos" min="-1" value="-1"> mesos.
-                        <span style="display:inline-block;padding:5px;font-size:0.6em">-1 for no limit.</span>
-                    </span>
-                </div>
-                <span id="h_update"></span>
-            </div>
         `;
 
         let w_sf = {terminate:()=>{}}; //starforce worker
@@ -149,6 +132,11 @@ $(function() {
             
                     let h_update = $("#h_update");
                     w_sf.onmessage = function(d) {
+                        if (d.data.code === 16) {
+                            h_update.html(`<span style="color:red">${d.data.message}</span>`);
+                            return false;
+                        }
+
                         if (d.data.type === 2) {
                             h_update.html(d.data.message);
                             return false;

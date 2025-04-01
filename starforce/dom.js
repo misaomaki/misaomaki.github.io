@@ -303,12 +303,12 @@ $(function() {
     });
 
     let begin_starforce_pre = function() {
-        //don't do starcatch if it's on chance time
-        if (user_settings.starforce.starcatch && !Item.idata.meta.chance_time) {
+        //don't do starcatch if it's on chance time or you're in the enhancement altar
+        if (!event_options.starcatch && user_settings.starforce.starcatch && !Item.idata.meta.chance_time) {
             begin_star_catch();
             sfpop.addClass("hidden");
         } else {
-            begin_starforce(false);
+            begin_starforce(event_options.starcatch);
         }
     };
 
