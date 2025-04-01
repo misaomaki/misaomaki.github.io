@@ -196,5 +196,4 @@ onmessage = async function(o) {
     Item.idata.boosts.cubes.main = Item.idata.meta.cube_meta_data[0].results.result;
 
     postMessage({done: true, code: 1, message: "", data: Item, cube: d.cube});
-    self.close();
 }

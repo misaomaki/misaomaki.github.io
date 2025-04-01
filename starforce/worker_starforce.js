@@ -50,8 +50,6 @@ onmessage = function(d) {
             type: 2, //heuristic run update
         });
 
-        
-        self.close();
         return;
     }
 
@@ -70,7 +68,6 @@ onmessage = function(d) {
     //return data from worker with the starforce log data
     //type - 1: complete log; type - 2: heuristic run update
     postMessage({done: true, item: Item, stars_to: end_star, type: 1, code: 1});
-    self.close();
 }
 
 

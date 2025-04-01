@@ -182,9 +182,9 @@ $(function() {
         key_label = {
             "runs": "Runs",
             "tot_success": "Success",
-            [GLOBAL.starforce_enums.SC_SUCCESS + ""]: "Success (Star Catch)",
+            [GLOBAL.starforce_enums.SC_SUCCESS.toString()]: "Success (Star Catch)",
             "tot_fail": "Fails",
-            [GLOBAL.starforce_enums.SC_FAIL + ""]: "Fails (Star Catch)",
+            [GLOBAL.starforce_enums.SC_FAIL.toString()]: "Fails (Star Catch)",
             "cost": "Cost",
             "sk_cost": "Shadowknight Coins",
             "tot_safeguards": "Total Safeguards",
