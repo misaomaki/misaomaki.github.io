@@ -989,7 +989,8 @@ $(function(){
 
     let get_flame_rows = function(this_flames) {
         let t_body = this_flames.reduce((a,b)=>{
-            let [fs_tier, fs_color, fs_title] = flames.flame_score_tier(b.score);
+            let [fs_tier, fs_color] = flames.flame_score_tier(b.score);
+            let score = Math.round(b.score * 1000) / 1000;
 
             a += `
                 <tr data-id="${b.run}" class="flame-data-row">
@@ -1048,8 +1049,8 @@ $(function(){
                     ${
                         Item.idata.class === "armor" ?
                         `
-                            <td style="background-color:${fs_color};max-width:30px;font-size:20px;" title="${fs_title}">
-                                ${Math.round(b.score * 1000) / 1000}
+                            <td class="data-row-flames" style="background-color:${fs_color};max-width:30px;font-size:20px;" data-tier="${fs_tier}">
+                                ${score}
                             </td>
                         ` : ""
                     }
@@ -1160,6 +1161,16 @@ $(function(){
                 }
             }]
         }).dialog("open");
+
+        /* append title detailing the flame score's relative boss level */
+        $("#flames_body").on("mouseover", ".data-row-flames", function() {
+            const _this = $(this);
+            let tier = +_this.attr("data-tier");
+            let this_tier = FLAME_SCORE_TIER_DEF[tier - 1];
+            _this.attr("title", this_tier ? this_tier[3] : "Unknown Tier");
+        }).on("mouseout", ".data-row-flames", function() {
+            $(this).removeAttr("title");
+        });
 
         flame_show_more(true);
 
