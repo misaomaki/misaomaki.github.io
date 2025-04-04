@@ -181,7 +181,14 @@ item.prototype.starforce_result = function(starcatch = false) {
 
 // increase, decrease, or reset the star level of the item, depending on starforce outcome
 // type enums: 0 - increase star, 1 - decrease star, 2 - destroy item (reset star to 12 for non-superior items, or 0 for superior items)
-item.prototype.update_star = function(type = 0) {
+item.prototype.update_star = function(type = 0, o = {}) {
+    const def = {
+        log_run: true, // log the results of the run
+        is2x: false // flag to indicate if this is a 2x starforce run
+    };
+
+    o = {...def, ...o};
+
     let level = this.idata.level;
     let current_star = this.idata.meta.stars;
     let is_droppable = this.is_droppable(current_star);
@@ -207,12 +214,21 @@ item.prototype.update_star = function(type = 0) {
     }
 
     /* 2x before 10 stars  */
-    let additional_stars = (type === 0 && this.idata.meta.stars <= 11 && event_options.pre10x2) ? 1 : 0;
-    this.idata.meta.stars += additional_stars;
+    let additional_stars = (type === 0 && this.idata.meta.stars <= 11 && event_options.pre10x2);
 
-    this.complete_starforce_result_log(current_star, level);
+    if (!o.is2x && additional_stars) {
+        this.update_star(0, {
+            log_run: false,
+            is2x: true
+        });
+    }
+
+    if (o.log_run) {
+        this.complete_starforce_result_log(current_star, level);
+    }
 };
 
+//#region STARFORCE LOGGING
 // Init the starforcing logic dealing with the outcome of the starforce attempt (success, fail, destroy, etc.)
 item.prototype.init_starforce_result_log = function(pval, prn_map, result) {
     this.idata.meta.sf_log_item = Object.assign({}, this.cache.sf_meta_data, {
@@ -274,6 +290,7 @@ item.prototype.complete_starforce_result_log = function(current_star, level) {
         this.idata.meta.sf_log_item = {}; // reset the log item
     }
 };
+//
 
 /*
     calculate the stats of the item from the various sources (flames, starforce, scrolls, etc)

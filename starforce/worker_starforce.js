@@ -87,16 +87,7 @@ function heuristic_run(end_star) {
     const heuristic_log_data = {};
     const heuristic_data = {
         booms: 0,    
-        sf_cost: 0,
-        sf_cost_discount: {
-            "0.03": 0,
-            "0.03,0.3": 0,
-            "0.05": 0,
-            "0.05,0.3": 0,
-            "0.1": 0,
-            "0.1,0.3": 0,
-            "0.3": 0,
-        }
+        last_cost_data: {}
     };
 
     let item_completed = false;
@@ -113,6 +104,13 @@ function heuristic_run(end_star) {
 
     function run_starforcing(this_item, starting_star, end_star) {
         this_item.set_item_level(starting_star);
+
+        let first_run = this_item.starforce(starcatch);
+
+        if (first_run === GLOBAL.starforce_enums.DESTROY) {
+            reset_boomed(this_item, starting_star)
+            return false; //not completed yet
+        }
     
         while (this_item.idata.meta.stars < end_star) {
             let starcatch = data.starcatch.includes(this_item.idata.meta.stars);
@@ -120,13 +118,18 @@ function heuristic_run(end_star) {
             let result = this_item.starforce(starcatch);
     
             if (result === GLOBAL.starforce_enums.DESTROY) {
-                heuristic_log_data[starting_star].push(this_item.idata.meta.sf_meta_data); 
-                this_item.clear_sf_history();
-                ++heuristic_data.booms;
-                this_item.set_item_level(starting_star);
+                reset_boomed(this_item, starting_star);
+                return false; //not completed yet
             }
         }
     
         return true;
+    }
+
+    function reset_boomed(this_item, starting_star) {
+        heuristic_log_data[starting_star].push(this_item.idata.meta.sf_meta_data); 
+        this_item.clear_sf_history();
+        ++heuristic_data.booms;
+        this_item.set_item_level(starting_star); //reset to starting star level
     }
 }
