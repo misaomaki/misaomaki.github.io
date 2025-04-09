@@ -1251,5 +1251,65 @@ If unchecked, then you can write whatever flame value you want."
     </div>
 </div>
 
+<div class="info-container hidden">
+    <div class="info-header">
+        <div class="info-close-button">X</div>
+    </div>
+    <div class="info-body">
+        💡 To create a new item, click "Cancel" in the Star Force window.
+    </div>
+</div>
+
+<style>
+    .info-container {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.75);
+        color: white;
+        padding: 20px;
+        border-radius: 5px;
+        z-index: 100;
+        width: 50%;
+        max-width: 600px;
+        text-align: center;
+    }
+
+    .info-header {
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+    .info-close-button {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        cursor: pointer;
+        font-size: 20px;
+        color: white;
+        background-color: rgba(50,50,50,0.75);
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+    }
+
+    .info-body {
+        font-size: 16px;
+    }
+</style>
+
+<script>
+    $(document).ready(function(){
+        $(".info-close-button").click(function(){
+            $(".info-container").addClass("hidden");
+        });
+
+        /* by default, show this info box */
+        $(".info-container").removeClass("hidden");
+    });
+</script>
+
 <div id="OwOContainmentField"></div>
 <div id="img_preloader" style="display:none;position:absolute;"></div>
