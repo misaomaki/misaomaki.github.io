@@ -191,9 +191,11 @@ onmessage = async function(o) {
         while (!(same_tier && search()));
     }
 
+    let this_record = Item.idata.meta.cube_meta_data[0];
+
     //once process exits, mark the last record as keep
-    Item.idata.meta.cube_meta_data[0].keep = true;
-    Item.idata.boosts.cubes.main = Item.idata.meta.cube_meta_data[0].results.result;
+    this_record.keep = true;
+    Item.idata.boosts.cubes[this_record.type] = Item.idata.meta.cube_meta_data[0].results.result;
 
     postMessage({done: true, code: 1, message: "", data: Item, cube: d.cube});
 }
