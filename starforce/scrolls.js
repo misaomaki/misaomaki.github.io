@@ -284,6 +284,7 @@ $(function() {
 
         const scroll = Item.idata.boosts.scroll_data;
         const stat_keys = Object.keys(stats).sort();
+        let has_scrolls = scroll.length;
 
         const stats_total = {};
 
@@ -297,7 +298,14 @@ $(function() {
                     </tr>
                 </thead>
                 <tbody>
-                    ${
+                    ${                                                
+                        has_scrolls === 0 ? `
+                            <tr>
+                                <td colspan="100%" style="text-align:center;">
+                                    No Scrolls Applied
+                                </td>
+                            </tr>
+                        ` :
                         scroll.reduce((a,b,c)=>{
                             let type = b._scroll;
 
@@ -308,7 +316,6 @@ $(function() {
                             }
 
                             let scroll_icon = scroll_img[type];
-
                             a += `
                                 <tr>
                                     <td style="width:5%">${c+1}</td>
@@ -360,53 +367,57 @@ $(function() {
                         }, "")
                     }
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td style="width:5%"></td>
-                        <td style="width:25%">
-                            TOTAL
-                        </td>
-                        <td style="width:70%">
-                            <table style="width:100%;height:100%;">
-                                <thead>
-                                    <tr>
-                                        <th>Stat</th>
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${ 
-                                        Object.keys(stats_total).sort().reduce((x,y)=> {
-                                            let stat = stats_total[y] ?? 0;
+                ${
+                    has_scrolls ? `
+                        <tfoot>
+                            <tr>
+                                <td style="width:5%"></td>
+                                <td style="width:25%">
+                                    TOTAL
+                                </td>
+                                <td style="width:70%">
+                                    <table style="width:100%;height:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Stat</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            ${ 
+                                                Object.keys(stats_total).sort().reduce((x,y)=> {
+                                                    let stat = stats_total[y] ?? 0;
 
-                                            if (stat == 0) return x;
+                                                    if (stat == 0) return x;
 
-                                            x += `
-                                                <tr>
-                                                    <td style="width:20%;">
-                                                        ${y}
-                                                    </td>
-                                                    <td style="width:80%;color:${stat < 0 ? "red" : "initial"};">
-                                                        ${stat}
-                                                    </td>
-                                                </tr>
-                                            `;
+                                                    x += `
+                                                        <tr>
+                                                            <td style="width:20%;">
+                                                                ${y}
+                                                            </td>
+                                                            <td style="width:80%;color:${stat < 0 ? "red" : "initial"};">
+                                                                ${stat}
+                                                            </td>
+                                                        </tr>
+                                                    `;
 
-                                            return x;
-                                        }, '') 
-                                    }
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>      
-                </tfoot>
+                                                    return x;
+                                                }, '') 
+                                            }
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>      
+                        </tfoot>
+                    ` : ""
+                }
             </table>
         `;
         
         option_box.html(html).dialog({
             title: "Scroll Log",
             width: 750,
-            height: 800,
+            height: has_scrolls === 0 ? 250 : 800,
             buttons: [{
                 text: "Close",
                 click: function() {
