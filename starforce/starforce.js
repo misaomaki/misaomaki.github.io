@@ -42,50 +42,42 @@ var star_success_rate = function(star, superior = false) {
         destroy_rate = this_rate[1];
         fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
         sc_rate = success_rate * starcatch_rate;
-        
-        
-        return {
-            success: success_rate,
-            fail: fail_rate - sc_rate,
-            destroy: destroy_rate,
-            sc_success: sc_rate
-        };
+    } else {
+        let sdiff = 0;
+
+        if (star < 15) {
+            sdiff = (star + 1);
+            
+            if (star > 2 ) sdiff -= 1;
+
+            sdiff = sdiff * 0.05;
+        } else if (star < 22) {
+            sdiff = 0.7;
+        } else if (star < 25) {
+            sdiff = (75 + star) / 100;
+        }
+
+        if (star < 15) {
+            destroy_rate = 0;
+        } else if (star < 18) {
+            destroy_rate = 0.021;
+        } else if (star < 20) {
+            destroy_rate = 0.028;
+        } else if (star < 22) {
+            destroy_rate = 0.07;
+        } else if (star === 22) {
+            destroy_rate = 0.194;
+        } else if (star === 23) {
+            destroy_rate = 0.294;
+        } else if (star === 24) {
+            destroy_rate = 0.396;
+        }
+
+        success_rate = +(base_success_rate - sdiff).toFixed(2);
+        fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
+
+        sc_rate = success_rate * starcatch_rate; //starcatch assumption
     }
-
-    let sdiff = 0;
-
-    if (star < 15) {
-        sdiff = (star + 1);
-        
-        if (star > 2 ) sdiff -= 1;
-
-        sdiff = sdiff * 0.05;
-    } else if (star < 22) {
-        sdiff = 0.7;
-    } else if (star < 25) {
-        sdiff = (75 + star) / 100;
-    }
-
-    if (star < 15) {
-        destroy_rate = 0;
-    } else if (star < 18) {
-        destroy_rate = 0.021;
-    } else if (star < 20) {
-        destroy_rate = 0.028;
-    } else if (star < 22) {
-        destroy_rate = 0.07;
-    } else if (star === 22) {
-        destroy_rate = 0.194;
-    } else if (star === 23) {
-        destroy_rate = 0.294;
-    } else if (star === 24) {
-        destroy_rate = 0.396;
-    }
-
-    success_rate = +(base_success_rate - sdiff).toFixed(2);
-    fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
-
-    sc_rate = success_rate * starcatch_rate; //starcatch assumption
 
     return {
         [GLOBAL.starforce_enums.SUCCESS]: success_rate,
