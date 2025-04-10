@@ -178,19 +178,45 @@ const MarvelCustom = {
       });    
       
       setTimeout(()=>{
-        doubleItem.classList.add('doubled', 'show-double-animation');
+        doubleItem.classList.add('doubled');
+        //doubleItem.classList.add('show-double-animation');
+        MarvelCustom.showDoubleAnimation(doubleItem);
         doubleItem.querySelector(".marvel-machine-result-item__item-code2").classList.remove("hidden");
         doubleItem.querySelector(".couponCode2").innerHTML = new_item.couponCode;
       }, 10);
       setTimeout(()=>{
         MarvelCustom.NXUsageInfo();
-        doubleItem.classList.remove('show-double-animation');
+        //doubleItem.classList.remove('show-double-animation');
+        document.querySelector("#imgAnimationDoubleUp").remove();
       }, 5000);
     }, 700);
 
     MarvelMachine.game.resultItemsAll.unshift(new_item);
 
     return await {data: new_item};
+  },
+  /*
+    nexon's implementation of adding the double-up animation class to the container, 
+    causes the double up animation gif to be cached, causing a desync in the sound and also the animation when doubling up happens in quick
+    succession, as the cached animation starts off where the class was removed. 
+    to stop this, we employ an img with a cache buster source so that the gif is always fresh.
+
+    might just be a problem with this hack of the vue component and not the way nexon implemented it, though.
+  */
+  showDoubleAnimation(doubleItem) {
+      const container = doubleItem;
+    
+      // Remove any previous gif img
+      const existing = container.querySelector('img.gif-overlay');
+      if (existing) existing.remove();
+    
+      // Create new gif img
+      const gif = document.createElement('img');
+      gif.id = "imgAnimationDoubleUp";
+      gif.src = "/marvel2/assets/img/doubled-animation-09400c28.png?t=" + new Date().getTime(); // Cache buster
+      gif.className = "gif-overlay";
+      
+      container.appendChild(gif);
   },
   playSound() {
     if (MarvelMachine.game.revealItemsAnimation === true) {

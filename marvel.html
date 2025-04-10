@@ -15,10 +15,22 @@
     <link rel="stylesheet" href="//web.nxfs.nexon.com/maplestory/assets/OverlayCta-7242a878.css">
     <link rel="stylesheet" href="/marvel2/assets/css/marvel_popup.css">
     <link rel="stylesheet" href="/marvel2/assets/css/marvel_prizelist.css">
-
+    <link rel="preload" href="/marvel2/assets/img/doubled-animation-09400c28.png" as="image">
+    
     <style>
       .hidden { 
         display: none !important;
+      }
+
+      .gif-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;  /* Keep aspect ratio, or use 'fill' if you want stretching */
+        pointer-events: none; /* So it doesn't block clicks if that's important */
+        z-index: 2; /* ensure it's on top of background */
       }
 
       /*
