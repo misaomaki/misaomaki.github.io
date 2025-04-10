@@ -178,12 +178,13 @@ onmessage = async function(o) {
             //get the raw lines to check against the desired lines
             lines = cr.results.result.map((a)=>{return a.id});
 
+            if (Item.idata.meta.cube_meta_data.length > 2000) {
+                Item.idata.meta.cube_meta_data.pop();
+            }
+
             //let user know the page didn't freeze and the process is still running
             if (idx !== 1 && idx % 1000 === 0) {
-                let return_message = `Cubing process is still running. ${idx} cubes have been used... <br><br> Every 2000 records, data is dumped to prevent browser crash.`;
-                if (idx % 2000 === 0) {
-                    Item.idata.meta.cube_meta_data = [Item.idata.meta.cube_meta_data[1]];
-                }
+                let return_message = `Cubing process is still running. ${idx} cubes have been used... <br><br> Keeping only the last 2000 records to prevent browser crash.`;
 
                 postMessage({done: false, code: 16, message: return_message});
             }

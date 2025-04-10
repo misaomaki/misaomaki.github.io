@@ -102,12 +102,12 @@ onmessage = function(o) {
 
         current_tiers = this_item.idata.meta.flames_meta_data[0];
 
-        if (idx !== 1 && idx % 1000 === 0) {
-            let return_message = `Flaming process is still running. ${idx} flames have been used... <br><br> Every 2000 records, data is dumped to prevent browser crash.`;
+        if (this_item.idata.meta.flames_meta_data.length > 2000) {
+            this_item.idata.meta.flames_meta_data.pop();
+        }
 
-            if (idx % 2000 === 0) {
-                this_item.idata.meta.flames_meta_data = [this_item.idata.meta.flames_meta_data[1]];
-            }
+        if (idx % 1000 === 0) {
+            let return_message = `Flaming process is still running. ${idx} flames have been used... <br><br> Keeping only the last 2000 records to prevent browser crash.`;
 
             postMessage({done: false, code: 16, message: return_message});
         }
