@@ -1529,7 +1529,13 @@ $(function(){
 
         /* get the selected violet lines */
         let results_selected = $("#cube_container .violet-result-line-active");
-        if (results_selected.length != 3) {
+
+        /* if no lines selected, then allow the user to bypass and move on, selecting the top 3 lines */
+        if (results_selected.length === 0) {
+            o.force_use = true;
+
+        /* else we enforce selecting 3 lines, unless force use is true */
+        } else if (results_selected.length < 3) {
             if (!o.force_use) {
                 return false;
             }

@@ -176,18 +176,20 @@ const MarvelCustom = {
       items.forEach(item => {
         item.classList.remove('doubleRunning');
       });    
+
+      let doubleUpId = "";
       
       setTimeout(()=>{
         doubleItem.classList.add('doubled');
         //doubleItem.classList.add('show-double-animation');
-        MarvelCustom.showDoubleAnimation(doubleItem);
+        doubleUpId = MarvelCustom.showDoubleAnimation(doubleItem);
         doubleItem.querySelector(".marvel-machine-result-item__item-code2").classList.remove("hidden");
         doubleItem.querySelector(".couponCode2").innerHTML = new_item.couponCode;
       }, 10);
       setTimeout(()=>{
         MarvelCustom.NXUsageInfo();
         //doubleItem.classList.remove('show-double-animation');
-        document.querySelector("#imgAnimationDoubleUp").remove();
+        document.querySelector(`#${doubleUpId}`)?.remove();
       }, 5000);
     }, 700);
 
@@ -196,9 +198,9 @@ const MarvelCustom = {
     return await {data: new_item};
   },
   /*
-    nexon's implementation of adding the double-up animation class to the container, 
-    causes the double up animation gif to be cached, causing a desync in the sound and also the animation when doubling up happens in quick
-    succession, as the cached animation starts off where the class was removed. 
+    nexon's implementation of adding the double-up animation class to the container caches the double up animation gif, 
+    causing a desync in the sound and also the animation when doubling up happens in quick succession, 
+    and the cached animation starts off where the class was removed. 
     to stop this, we employ an img with a cache buster source so that the gif is always fresh.
 
     might just be a problem with this hack of the vue component and not the way nexon implemented it, though.
@@ -212,11 +214,14 @@ const MarvelCustom = {
     
       // Create new gif img
       const gif = document.createElement('img');
-      gif.id = "imgAnimationDoubleUp";
+      let rng = MarvelCustom.generateUUID();
+      gif.id = `imgAnimationDoubleUp-${rng}`;
       gif.src = "/marvel2/assets/img/doubled-animation-09400c28.png?t=" + new Date().getTime(); // Cache buster
       gif.className = "gif-overlay";
       
       container.appendChild(gif);
+
+      return gif.id;
   },
   playSound() {
     if (MarvelMachine.game.revealItemsAnimation === true) {
@@ -441,7 +446,21 @@ const MarvelCustom = {
   get_item_url_name(item_name) {
     return encodeURIComponent(item_name.replace(/\s/gi,"-")).replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/'/g, '%27');
   },
-
+  generateUUID() { // Public Domain/MIT
+    var d = new Date().getTime();//Timestamp
+    var d2 = (performance && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16;//random number between 0 and 16
+        if(d > 0){//Use timestamp until depleted
+            r = (d + r)%16 | 0;
+            d = Math.floor(d/16);
+        } else {//Use microseconds since page-load if supported
+            r = (d2 + r)%16 | 0;
+            d2 = Math.floor(d2/16);
+        }
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+  },
   /* copied from starforce init for RANDOM picker */
   //generate a pseudo-random number
   prng() {
