@@ -33,6 +33,25 @@
         z-index: 2; /* ensure it's on top of background */
       }
 
+      .mavel-machine-robot__main-logo-simulator {
+        width: calc(178px * var(--marvel-desktopRatio));
+        height: calc(137px * var(--marvel-desktopRatio));
+        top: calc(75px * var(--marvel-desktopRatio));
+        background: url(/marvel2/assets/img/simulatorLogoSmall.png) no-repeat center center / 100% auto;
+        z-index: 2;
+        position: relative;
+        left: calc(72px * var(--marvel-desktopRatio));
+      }
+
+      @media only screen and (max-width: 900px) {
+        .mavel-machine-robot__main-logo-simulator {
+          width: 21vw;
+          height: 16vw;
+          top: 10vw;
+          left: 11vw;
+        }
+      }
+
       /*
       .marvel-machine-result-item[data-v-3c112324]:before {
           content: "";
@@ -102,7 +121,9 @@
               -->
             </div>
             <div data-v-7d995dd0="" class="mavel-machine-robot__main-top-gear"></div>
-            <div data-v-7d995dd0="" class="mavel-machine-robot__main-logo"></div>
+            <div data-v-7d995dd0="" class="mavel-machine-robot__main-logo">
+              <div data-v-7d995dd0="" class="mavel-machine-robot__main-logo-simulator"></div>
+            </div>
             <div data-v-7d995dd0="" class="mavel-machine-robot__main-jar"></div>
             <div data-v-7d995dd0="" class="mavel-machine-robot__main-base"></div>
             <div data-v-7d995dd0="" class="mavel-machine-robot__main-face"></div>

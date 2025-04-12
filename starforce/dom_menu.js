@@ -63,10 +63,12 @@ $(function() {
     const starforce_options = $(".starforce-option");
     const cube_options = $(".cube-option");
     const flames_options = $(".flame-option");
+    const scrolls_options = $(".scroll-option");
     const show_relevant_enhancements = function() {
         starforce_options.addClass("hidden");
         cube_options.addClass("hidden");
         flames_options.addClass("hidden");
+        scrolls_options.addClass("hidden");
         
         if (Item.idata.enhanceable) {
             cube_options.removeClass("hidden");
@@ -77,10 +79,12 @@ $(function() {
         if (Item.idata.starforce) {
             starforce_options.removeClass("hidden");
         }
+        if (Item.idata.scrollable) {
+            scrolls_options.removeClass("hidden");
+        }
     };
 
     const init_item = function() {
-        scroll_options = [];
         item_create.dialog({
             closeOnEscape: false,
             open: function(event, ui) {
