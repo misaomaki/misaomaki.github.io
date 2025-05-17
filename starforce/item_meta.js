@@ -96,6 +96,10 @@ const item_meta = {
                 class: "Zero",
                 speed: 4
             },
+            "martial brace": {
+                class: "Mo Xuan",
+                speed: 4
+            },
             "memorial staff": {
                 class: "Lara",
                 speed: 4

@@ -1386,6 +1386,34 @@ var items_store = {
             "enhanceable": true,
             "scrollable": true
         },
+        "martial_brace": {
+            "name": "Utgard Martial Brace",
+            "level": 140,
+            "class": "weapon",
+            "type": "martial brace",
+            "speed": "fast",
+            "job": ["pirate"],
+            "mstat": "dex",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 90
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-utgardmartialbrace",
+            "img_type": "webp",
+            "upgrades": 8,
+            "hammers_added": 2,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true
+        },
         "warrior_two_handed_sword": {
             "name": "Utgard Two-handed Sword",
             "level": 140,
@@ -3891,6 +3919,35 @@ var items_store = {
             upgrades: 8,
             hammers_added: 2 
         },
+        martial_brace: {
+            name: "AbsoLab Martial Brace",
+            level: 160,
+            class: "weapon",
+            type: "martial brace",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "dex", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: {
+                watt: 154,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 60,
+                dex: 60
+            },
+            req: {
+                str: 0,
+                dex: 480,
+                int: 0,
+                luk: 0
+            },
+            img: "item-absolabmartialbrace",
+            upgrades: 8,
+            "img_type": "webp",
+            hammers_added: 2
+        },
         energy_chain_str: {
             name: "AbsoLab Whip Blade",
             alt_name: "AbsoLab Whip Blade (STR)",
@@ -5114,6 +5171,35 @@ var items_store = {
             },
             img: "item-sweetwaterenergychain",
             upgrades: 8,
+            hammers_added: 2
+        },
+        martialbrace: {
+            name: "Sweetwater Martial Brace",
+            level: 160,
+            class: "weapon",
+            type: "martial brace",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "dex", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 1,
+            bstat: {
+                watt: 154,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 45,
+                dex: 45
+            },
+            req: {
+                str: 0,
+                dex: 480,
+                int: 0,
+                luk: 0
+            },
+            img: "item-sweetwatermartialbrace",
+            upgrades: 8,
+            img_type: "webp",
             hammers_added: 2
         },
         chain: {
@@ -8494,6 +8580,35 @@ var items_store = {
             upgrades: 8,
             hammers_added: 2 
         },
+        martial_brace: {
+            name: "Fafnir Martial Brace",
+            level: 150,
+            class: "weapon",
+            type: "martial brace",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "dex", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: {
+                watt: 128,
+                boss_damage: 0.3,
+                ied: 0.1,
+                str: 40,
+                dex: 40
+            },
+            req: {
+                str: 0,
+                dex: 450,
+                int: 0,
+                luk: 0
+            },
+            img: "item-fafnirmartialbrace",
+            upgrades: 8,
+            "img_type": "webp",
+            hammers_added: 2
+        },
         energy_chain_str: {
             name: "Fafnir Split Edge",
             alt_name: "Fafnir Split Edge (STR)",
@@ -9683,6 +9798,35 @@ var items_store = {
             img: "item-arcanekatara",
             upgrades: 7,
             hammers_added: 2 
+        },
+        martial_brace: {
+            name: "Arcane Umbra Martial Brace",
+            level: 200,
+            class: "weapon",
+            type: "martial brace",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "dex", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: {
+                watt: 221,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 100,
+                dex: 100
+            },
+            req: {
+                str: 0,
+                dex: 600,
+                int: 0,
+                luk: 0
+            },
+            img: "item-arcaneumbramartialbrace",
+            upgrades: 8,
+            "img_type": "webp",
+            hammers_added: 2
         },
         energy_chain_luk: {
             name: "Arcane Umbra Energy Chain",
@@ -11592,6 +11736,35 @@ var items_store = {
             },
             img: "item-genesisbladecaster",
             upgrades: 8,
+            hammers_added: 0
+        },
+        martialbrace: {
+            name: "Genesis Martial Brace",
+            level: 200,
+            class: "weapon",
+            type: "martial brace",
+            speed: "fast",
+            job: ["pirate"],
+            mstat: "dex", 
+            pstat: ["str", "dex"], 
+            att_type: "watt", 
+            flame_type: 2,
+            bstat: {
+                watt: 255,
+                boss_damage: 0.3,
+                ied: 0.2,
+                str: 150,
+                dex: 150
+            },
+            req: {
+                str: 0,
+                dex: 600,
+                int: 0,
+                luk: 0
+            },
+            img: "item-genesismartialbrace",
+            upgrades: 8,
+            "img_type": "webp",
             hammers_added: 0
         },
         lapis: {
