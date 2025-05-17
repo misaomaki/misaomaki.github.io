@@ -9984,3 +9984,245 @@ items_store["secondary: hex_seeker"] = {
         "sub_class": "secondary"
     }
 };
+
+items_store["secondary: brace band"] = {
+  "worn_brace_band": {
+    "name": "Worn Brace Band",
+    "level": 10,
+    "class": "weapon",
+    "type": "brace band",
+    "job": ["pirate"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 3,
+      "dex": 3
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    "img": "item-Worn_Brace_Band",
+    "upgrades": 0,
+    "hammers_added": 0,
+    "starforce": false,
+    "enhanceable": true,
+    "scrollable": false,
+    "sub_class": "secondary"
+  },
+  
+  "disciples_brace_band": {
+    "name": "Disciple's Brace Band",
+    "level": 30,
+    "class": "weapon",
+    "type": "brace band",
+    "job": ["pirate"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 4,
+      "dex": 4,
+      "watt": 1
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    "img": "item-Disciple_Brace_Band",
+    "upgrades": 0,
+    "hammers_added": 0,
+    "starforce": false,
+    "enhanceable": true,
+    "scrollable": false,
+    "sub_class": "secondary"
+  },
+  
+  "warriors_brace_band": {
+    "name": "Warrior's Brace Band",
+    "level": 60,
+    "class": "weapon",
+    "type": "brace band",
+    "job": ["pirate"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 6,
+      "dex": 6,
+      "watt": 2
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    "img": "item-Warrior_Brace_Band",
+    "upgrades": 0,
+    "hammers_added": 0,
+    "starforce": false,
+    "enhanceable": true,
+    "scrollable": false,
+    "sub_class": "secondary"
+  },
+  
+  "boundless_brace_band": {
+    "name": "Boundless Brace Band",
+    "level": 100,
+    "class": "weapon",
+    "type": "brace band",
+    "job": ["pirate"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 10,
+      "dex": 10,
+      "watt": 3
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    "img": "item-Boundless_Brace_Band",
+    "upgrades": 0,
+    "hammers_added": 0,
+    "starforce": false,
+    "enhanceable": true,
+    "scrollable": false,
+    "sub_class": "secondary"
+  },
+  
+  "frozen_brace_band": {
+    "name": "Frozen Brace Band",
+    "level": 100,
+    "class": "weapon",
+    "type": "brace band",
+    "job": ["pirate"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 8,
+      "dex": 8,
+      "watt": 5
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    "img": "item-Frozen_Brace_Band",
+    "upgrades": 0,
+    "hammers_added": 0,
+    "starforce": false,
+    "enhanceable": true,
+    "scrollable": false,
+    "sub_class": "secondary"
+  },
+  
+  "onyx_maple_brace_band": {
+    "name": "Onyx Maple Brace Band",
+    "override_image": "Frozen Brace Band",
+    "level": 100,
+    "class": "weapon",
+    "type": "brace band",
+    "job": ["pirate"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 8,
+      "dex": 8,
+      "watt": 5
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    "img": "item-Frozen_Brace_Band",
+    "upgrades": 0,
+    "hammers_added": 0,
+    "starforce": false,
+    "enhanceable": true,
+    "scrollable": false,
+    "sub_class": "secondary"
+  },
+  
+  "adaptive_brace_band": {
+    "name": "Adaptive Brace Band",
+    "level": 100,
+    "class": "weapon",
+    "type": "brace band",
+    "job": ["pirate"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 10,
+      "dex": 10,
+      "watt": 5
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    "img": "item-Boundless_Brace_Band",
+    "upgrades": 0,
+    "hammers_added": 0,
+    "starforce": false,
+    "enhanceable": true,
+    "scrollable": false,
+    "sub_class": "secondary"
+  },
+  
+  "princess_nos_brace_band": {
+    "name": "Princess No's Brace Band",
+    "level": 140,
+    "class": "weapon",
+    "type": "brace band",
+    "job": ["pirate"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 14,
+      "dex": 14,
+      "watt": 9
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    "img": "item-Princess_No_Brace_Band",
+    "upgrades": 0,
+    "hammers_added": 0,
+    "starforce": false,
+    "enhanceable": true,
+    "scrollable": false,
+    "sub_class": "secondary"
+  }
+}
