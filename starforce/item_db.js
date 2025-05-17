@@ -21089,5 +21089,37 @@ var items_store = {
             "upgrades": 3,
             "hammers_added": 2
         },
+        "oath_of_death": {
+            "name": "Oath of Death",
+            "level": 250,
+            "class": "armor",
+            "sub_class": "accessory",
+            "type": "pendant",
+            "speed": "",
+            "job": ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            "mstat": "", 
+            "pstat": ["str", "dex", "int", "luk"], 
+            "att_type": "att", 
+            "flame_type": 0,
+            "bstat": {
+                "watt": 5,
+                "matt": 5,
+                "str": 15,
+                "dex": 15,
+                "int": 15,
+                "luk": 15,
+                "p_hp": 0.05,
+                "def": 300
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-oathofdeath",
+            "upgrades": 6,
+            "hammers_added": 5
+        },
     }
 }
