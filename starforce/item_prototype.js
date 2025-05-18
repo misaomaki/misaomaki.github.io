@@ -63,7 +63,7 @@ item.prototype.set_item_level = function(star = 0) {
     if (this.idata.stars !== -1) {
         max_star = this.idata.stars;
     } else {
-        max_star = star_max(this.idata.level, this.idata.superior);
+        max_star = star_max(this.idata.effective_level, this.idata.superior);
     }
 
     if (max_star < star) {
@@ -73,7 +73,7 @@ item.prototype.set_item_level = function(star = 0) {
     for (let i = 0; i < star; ++i) {
         let sf = this.check_cache(()=>{
             return equip_gain(this.idata);
-        }, "eg", "_" + this.idata.level + i + this.idata.superior);
+        }, "eg", "_" + this.idata.effective_level + i + this.idata.superior);
 
         sf_data.push(sf);
         this.idata.meta.stars += 1;
@@ -131,7 +131,7 @@ item.prototype.starforce_result = function(starcatch = false) {
     }
 
     let pval = 0;
-    let level = this.idata.level;
+    let level = this.idata.effective_level;
     let current_star = this.idata.meta.stars;
 
     let sr_catch = this.check_cache(()=>{
@@ -189,7 +189,7 @@ item.prototype.update_star = function(type = 0, o = {}) {
 
     o = {...def, ...o};
 
-    let level = this.idata.level;
+    let level = this.idata.effective_level;
     let current_star = this.idata.meta.stars;
     let is_droppable = this.is_droppable(current_star);
     
@@ -801,6 +801,8 @@ item.prototype.update_item_tooltip_flavor_skill = function(i_con) {
                 </div>
             </div>
         `);
+    } else if (this.idata.custom_flavor !== "") {
+        imisc.html(this.idata.custom_flavor);
     } else {
         imisc.html("");
     }
@@ -1048,7 +1050,7 @@ item.prototype.redraw_sf = function() {
 
     lvl_flag.removeClass("sf-star10 sf-star15 sf-star20");
 
-    let level = this.idata.level;
+    let level = this.idata.effective_level;
 
     let this_star = this.idata.meta.stars;
 

@@ -755,7 +755,7 @@ cube.cube = async function(type, dom, cb, o) {
 
     //get new cube potentials
     let cube_results = o.display_as === "new_lines" ? 
-        await cube.stats.main(item_type, cube_pot, type, cube_type, this.idata.level, o) :
+        await cube.stats.main(item_type, cube_pot, type, cube_type, this.idata.effective_level, o) :
         Item.idata.meta.cube_meta_data[0].results
     ;
 
@@ -1063,7 +1063,7 @@ cube.stats = {
 
         item_type = item_type.replace(/\s/gi, "_");
 
-        const probabilities = await cube.get_cube_type(this_item.level, item_type, cube_type, pot_tier);
+        const probabilities = await cube.get_cube_type(this_item.effective_level, item_type, cube_type, pot_tier);
 
         function calculate_probability(ratesArray, choices) {
             const indices = Array.from({ length: ratesArray.length }, (_, i) => i);
@@ -1711,7 +1711,7 @@ var cube_pot_dropdown_html = async function(this_item, type, pot_tier, o) {
     item_type = item_type.replace(/\s/gi, "_");
 
     //get the stats available for the main/bonus pot by its tier and item type
-    let stats = await cube.get_cube_type(this_item.level, item_type, type, pot_tier);
+    let stats = await cube.get_cube_type(this_item.effective_level, item_type, type, pot_tier);
     let tier_html = "";
 
     //generate dropdowns for each line with the available stats

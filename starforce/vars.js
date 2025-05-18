@@ -117,9 +117,6 @@ GLOBAL.item_stat_order = [{
     name: "Defense",
     value: "def"
 },{
-    name: "Required Level",
-    value: "reqlvl"
-},{
     name: "Speed",
     value: "speed"
 },{
@@ -150,4 +147,7 @@ GLOBAL.item_stat_order = [{
     value: "all_stat",
     type: "%",
     symbol: "%"
+}, {
+    name: "Required Level",
+    value: "reqlvl"
 }];

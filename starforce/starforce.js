@@ -356,7 +356,7 @@ var equip_gain = function(item) {
         star = 1;
     }
 
-    let item_star_tier = star_tier(item.level, item.superior);
+    let item_star_tier = star_tier(item.effective_level, item.superior);
 
     //superior equipment max 15 follow different rules
     if (item.superior) {
@@ -584,7 +584,7 @@ var equip_gain = function(item) {
         let base_visible_stat = 0;
         let idx = star - 15;
 
-        let _tier = tier[item_star_tier - 1];
+        let _tier = tier[item_star_tier - 1];;
 
         if (star < 22) {
             base_visible_stat += _tier.bonus_stat;

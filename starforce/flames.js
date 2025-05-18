@@ -193,7 +193,7 @@ item.prototype.flame_tier_list = function(t, type) {
         for (let i = 0; i < lookup_table.length; ++i) {
             let att_table = lookup_table[i];
 
-            if (this.idata.level >= att_table.from  && this.idata.level < att_table.to) {
+            if (this.idata.effective_level >= att_table.from  && this.idata.effective_level < att_table.to) {
                 stat_increase = Math.ceil(att_table.tier[t] * this.idata.bstat[type]);
                 break;
             }
@@ -237,7 +237,7 @@ item.prototype.flame_tier_list = function(t, type) {
         for (let i = 0; i < lookup_table.length; ++i) {
             let stat_table = lookup_table[i];
 
-            if (this.idata.level >= stat_table.from  && this.idata.level < stat_table.to) {
+            if (this.idata.effective_level >= stat_table.from  && this.idata.effective_level < stat_table.to) {
                 stat_increase = stat_table.tier[t];
                 break;
             }
@@ -283,7 +283,7 @@ item.prototype.reverse_flame_lookup = function() {
         crf[i] = f;
     }
 
-    let level = this.idata.level;
+    let level = this.idata.effective_level;
 
     //get the tiers relevant to the item level
     let lookup1_lvl = this.flame_lookup.linear_lookup(1, level);
@@ -674,7 +674,7 @@ item.prototype.set_item_flame_tier = function(s) {
         if (i === "all_stat" || i === "damage") {
             s[i] = 0.01 * s[i];
         } else if (i === "boss_damage") {
-            if (this.idata.level >= 90) {
+            if (this.idata.effective_level >= 90) {
                 s[i] = 0.02 * s[i];
             } else {
                 s[i] = 0;
@@ -682,7 +682,7 @@ item.prototype.set_item_flame_tier = function(s) {
         } else if (!wmatt_done && (i === "watt" || i === "matt")) { 
             //non-weapons get atk based on its tier, but only for level 70+
             if (this.idata.class !== "weapon") {
-                if (this.idata.level >= 70) {
+                if (this.idata.effective_level >= 70) {
                     s[i] = 1 * s[i];
                 } else {
                     s[i] = 0;

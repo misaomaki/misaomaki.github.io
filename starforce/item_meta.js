@@ -98,7 +98,7 @@ const item_meta = {
             },
             "martial brace": {
                 class: "Mo Xuan",
-                speed: 4
+                speed: 6
             },
             "memorial staff": {
                 class: "Lara",
@@ -179,8 +179,9 @@ const item_meta = {
 //metadata that is tacked onto every item in items_store
 /* TODO: only tack on when item is created. no need to put this object on EVERY object */
 let items_other_data = {
+    effective_level: -1, //the "real" level of the item, for use when determining item tier. if -1, then use the item level
     hidden: false, /* don't show item */
-    stars: -1, //some items are hardcapped at a certain max star despite their item tier
+    stars: -1, //some items are hardcapped at a certain max star despite their item tier. -1 signifies to calculate the max star based on item level
     sub_class: "", //differentiate between armor classes for scrolling purposes
     max_hammers: 2, //number of hammers appliable,
     superior: false, //tyrant-related stuff
@@ -191,6 +192,7 @@ let items_other_data = {
     flame_always_max_lines: false, /* whether using flames guarantees 4 lines. automatically set as true for flame_type = 2, but can be overriden */
     skill: "", //orange text at the bottom denoting a skill
     flavor: "", //flavor text in white at the bottom
+    custom_flavor: "", /* custom flavor/skill text. does not trigger if skill or flavor are added. can take HTML */
     shadowknight: false, //use shadowknight coins
     exceptional_applied: false, /* only if the item has the exceptional key as part of its item data and if the user applies it */
     meta: {
@@ -268,7 +270,7 @@ $(function() {
             let iod = $.extend(true, {}, items_other_data); /* copy of the default data */
 
             iod.meta.max_stars = iod.stars !== -1 ? iod.stars : star_max(istore.level, istore.superior);
-
+         
             /* set the always_max flag for boss flames for default. can be overriden by actual item */
             if ("flame_always_max_lines" in istore) {
                 iod.meta.flame_always_max_lines = istore.flame_always_max_lines;
@@ -284,6 +286,9 @@ $(function() {
             items_store[i][j] = {...iod, ...istore_override, ...istore};
             
             istore = items_store[i][j];
+            
+            /* set the effective level to the item level unless specified */
+            istore.effective_level = istore.effective_level === -1 ? istore.level : istore.effective_level; 
 
             /* get job info and speed */
             if (istore.class === "weapon") {

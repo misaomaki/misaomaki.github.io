@@ -127,7 +127,7 @@ item.prototype.cache.scroll = {
 
 /* different equipment types have different level "tiers". this is used to get the index of stats to use for the spell trace */
 item.prototype.get_item_scroll_tier = function() {
-    let level = this.idata.level;
+    let level = this.idata.effective_level;
 
     if (this.idata.type === "gloves") {
         if (level <= 74) {

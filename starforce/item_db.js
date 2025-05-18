@@ -6965,6 +6965,78 @@ var items_store = {
         }
     },
     misc: {
+        wings_of_fate: {
+            name: "Wings of Fate",
+            level: 150,
+            effective_level: 150, /* item is treated as a level 100 item for purposes of enhancing and cubing. maybe. that doesn't actually work. revisit later. */
+            class: "armor",
+            type: "cape",
+            speed: "",
+            job: ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            mstat: "str", 
+            pstat: ["str", "dex", "int", "luk"], 
+            att_type: "att", 
+            flame_type: 1,
+            bstat: {
+                str: 25,
+                dex: 25,
+                int: 25,
+                luk: 25,
+                watt: 8,
+                matt: 8,
+                def: 190,
+                speed: 10,
+                reqlvl: -50
+            },
+            req: {
+                str: 0,
+                dex: 0,
+                int: 0,
+                luk: 0
+            },
+            img: "item-wingsoffate",
+            upgrades: 0,
+            hammers_added: 0,
+            scrollable: false,
+            stars: GLOBAL.starforce.max_stars,
+            override_meta: {
+                max_stars: GLOBAL.starforce.max_stars
+            },
+            custom_flavor: `      
+                <div class="item-dash-border" style="margin-bottom:0px"></div>
+                <div class="item-extra">
+                    <div class="item-skill">
+                        <div class="item-color-job-class" style="width: 103%;text-indent:-0.9em;padding-left:0.4em;text-align: justify;">
+                            Stats increased with Character Level (Up to Lv. 150)
+                        </div>
+                        <div class="item-color-job-class" style="max-width: 80%;margin-left: 0.4em;text-align: justify; padding: 4px 4px 2px 0;">
+                            Attack Power: +20 (0.4 x 50)
+                        </div>
+                        <div class="item-color-job-class" style="max-width: 80%;margin-left: 0.4em;text-align: justify; padding: 4px 4px 2px 0;">
+                            Magic Attack: +20 (0.4 x 50)
+                        </div>
+                        <div class="item-color-grey" style="width: 103%;margin-left: 0.4em;text-align: justify;">
+                            When upgrading or enhancing, it will be viewed as
+                        </div>
+                    </div>
+                </div>
+                <div class="item-dash-border" style="margin-bottom:0px;margin-top: 4px;"></div>
+                <div class="item-extra">
+                    <div class="item-skill">
+                        <div class="item-color-flavor" style="width: 87%;text-indent:-0.4em;padding-left:0.4em;text-align: justify;">
+                            A pair of wings said to have power over fate itself
+                        </div>
+                        <div class="item-color-skill" style="max-width: 80%;margin-left: 0.4em;text-align: justify;">
+                            You can get another one from Tengu if you lose it.
+                        </div>
+                        <div class="item-color-flavor" style="text-indent:-0.4em;padding-left:0.4em;text-align: justify;">
+                            This item does not show in some situations, <br>
+                            such as in the <span class="item-color-skill">Character Info window.</span>
+                        </div>
+                    </div>
+                </div>
+            `
+        },
         chaos_zakum_helmet: {
             name: "Chaos Zakum Helmet",
             level: 100,

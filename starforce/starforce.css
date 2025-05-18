@@ -1928,6 +1928,10 @@ body, html {
     color: rgb(255,0,102);
 }
 
+.item-color-grey {
+    color: rgb(119,119,119);
+}
+
 .potential-line {
     display: block;
     margin-left: 4px;
