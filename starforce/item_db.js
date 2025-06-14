@@ -1274,6 +1274,31 @@ var items_store = {
             "enhanceable": true,
             "scrollable": true
         },
+        "utgard_celestial_light": {
+            "name": "Utgard Celestial Light",
+            "level": 140,
+            "class": "weapon",
+            "type": "celestial light",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+            "watt": 93,
+            "matt": 153
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 415,
+            "luk": 0
+            },
+            "img": "item-utgardcelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         "warrior_desperado": {
             "name": "Utgard Desperado",
             "level": 140,
@@ -2957,6 +2982,35 @@ var items_store = {
         }
     },
     absolab: {
+        "absolab_celestial_light": {
+            "name": "AbsoLab Celestial Light",
+            "level": 160,
+            "class": "weapon",
+            "type": "celestial light",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+            "watt": 143,
+            "matt": 241,
+            "int": 60,
+            "luk": 60,
+            "boss_damage": 0.3,
+            "ied": 0.1
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 480,
+            "luk": 0
+            },
+            "img": "item-absolabcelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         thief_boots: {
             name: "AbsoLab Bandit Shoes",
             override_image: "AbsolabShoes",
@@ -5000,6 +5054,35 @@ var items_store = {
         }
     },
     sweetwater: {
+        "sweetwater_celestial_light": {
+            "name": "Sweetwater Celestial Light",
+            "level": 160,
+            "class": "weapon",
+            "type": "celestial light",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+            "watt": 126,
+            "matt": 208,
+            "int": 45,
+            "luk": 45,
+            "boss_damage": 0.3,
+            "ied": 0.1
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 475,
+            "luk": 0
+            },
+            "img": "item-sweetwatercelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         pendant: {
             name: "Sweetwater Pendant",
             level: 160,
@@ -8681,6 +8764,35 @@ var items_store = {
             "img_type": "webp",
             hammers_added: 2
         },
+        "fafnir_celestial_light": {
+            "name": "Fafnir Celestial Light",
+            "level": 150,
+            "class": "weapon",
+            "type": "celestial light",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+            "watt": 119,
+            "matt": 201,
+            "int": 40,
+            "luk": 40,
+            "boss_damage": 0.3,
+            "ied": 0.1
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 450,
+            "luk": 0
+            },
+            "img": "item-fafnircelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         energy_chain_str: {
             name: "Fafnir Split Edge",
             alt_name: "Fafnir Split Edge (STR)",
@@ -9733,6 +9845,35 @@ var items_store = {
         }
     },
     arcane_umbra: {
+        "arcane_umbra_celestial_light": {
+            "name": "Arcane Umbra Celestial Light",
+            "level": 200,
+            "class": "weapon",
+            "type": "celestial light",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+            "watt": 206,
+            "matt": 347,
+            "int": 100,
+            "luk": 100,
+            "boss_damage": 0.3,
+            "ied": 0.2
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 600,
+            "luk": 0
+            },
+            "img": "item-arcanecelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         dagger: {
             name: "Arcane Umbra Dagger",
             level: 200,
@@ -11753,6 +11894,35 @@ var items_store = {
         }
     },
     genesis: {
+        "genesis_celestial_light": {
+            "name": "Genesis Celestial Light",
+            "level": 200,
+            "class": "weapon",
+            "type": "celestial light",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+            "watt": 237,
+            "matt": 400,
+            "int": 150,
+            "luk": 150,
+            "boss_damage": 0.3,
+            "ied": 0.2
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 600,
+            "luk": 0
+            },
+            "img": "item-genesiscelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         shining_rod: {
             name: "Genesis Shining Rod",
             level: 200,
@@ -16515,6 +16685,62 @@ var items_store = {
         }
     },
     "ame-no-uzume": {
+        "ame_no_uzumes_celestial_light": {
+            "name": "Ame-no-Uzume's Celestial Light",
+            "level": 150,
+            "class": "weapon",
+            "type": "celestial light",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+            "watt": 109,
+            "matt": 185,
+            "int": 53,
+            "luk": 30
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 480,
+            "luk": 0
+            },
+            "img": "item-amenouzumescelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
+        "ame_no_uzumes_lupine_celestial_light": {
+            "name": "Ame-no-Uzume's Lupine Celestial Light",
+            "level": 160,
+            "class": "weapon",
+            "type": "celestial light",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+            "watt": 143,
+            "matt": 241,
+            "int": 60,
+            "luk": 60,
+            "boss_damage": 0.3,
+            "ied": 0.1
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 480,
+            "luk": 0
+            },
+            "img": "item-amenouzumeslupinecelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         "magician_hat": {
             "name": "Ame-no-Uzume's Helm",
             "level": 150,

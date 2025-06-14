@@ -36,6 +36,10 @@ const item_meta = {
                 class: "",
                 speed: 5
             },
+            "celestial light": {
+                class: "Sia",
+                speed: 4
+            },
             "hand cannon": {
                 class: "Cannoneer",
                 speed: 2
