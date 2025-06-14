@@ -15556,6 +15556,33 @@ var items_store = {
                 "def": 200
             }
         },
+        "dragon_tail_celestial_light": {
+            "name": "Dragon Tail Celestial Light",
+            "level": 140,
+            "class": "weapon",
+            "type": "celestial light",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+            "watt": 95,
+            "matt": 161,
+            "int": 36,
+            "luk": 20
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 420,
+            "luk": 0
+            },
+            "img": "item-dragontailcelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         "magician_shoes": {
             "name": "Dragon Tail Mage Shoes",
             "level": 140,

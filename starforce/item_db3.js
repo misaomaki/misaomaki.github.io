@@ -231,31 +231,6 @@ item_misc["celestial_light"] = {
         "upgrades": 8,
         "hammers_added": 2
     },
-    "dragon_celestial_light": {
-        "name": "Dragon Celestial Light",
-        "level": 110,
-        "class": "weapon",
-        "type": "celestial light",
-        "speed": "average",
-        "job": ["magician"],
-        "mstat": "int",
-        "pstat": ["int"],
-        "att_type": "matt",
-        "flame_type": 2,
-        "bstat": {
-        "watt": 75,
-        "matt": 123
-        },
-        "req": {
-        "str": 0,
-        "dex": 0,
-        "int": 325,
-        "luk": 0
-        },
-        "img": "Eqp_Dragon_Celestial_Light",
-        "upgrades": 8,
-        "hammers_added": 2
-    },
     "zakums_poisonic_celestial_light": {
         "name": "Zakum's Poisonic Celestial Light",
         "level": 110,
