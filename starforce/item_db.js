@@ -21425,7 +21425,7 @@ var items_store = {
             "mstat": "", 
             "pstat": ["str", "dex", "int", "luk"], 
             "att_type": "att", 
-            "flame_type": 0,
+            "flame_type": 2,
             "bstat": {
                 "watt": 5,
                 "matt": 5,
