@@ -273,6 +273,10 @@ $(function() {
             
             let iod = $.extend(true, {}, items_other_data); /* copy of the default data */
 
+            if (!("img" in iod)) {
+                iod.img = "item-" + generateUUID() + generateUUID(); //generate a unique image name if none is specified;
+            }
+
             iod.meta.max_stars = iod.stars !== -1 ? iod.stars : star_max(istore.level, istore.superior);
          
             /* set the always_max flag for boss flames for default. can be overriden by actual item */

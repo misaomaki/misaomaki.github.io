@@ -610,7 +610,7 @@ $(function() {
                 }
 
                 //prefill genesis weapon stats, but not enforced
-                if (item_type[0] === "genesis") {
+                if (["genesis", "destiny"].includes(item_type[0])) {
                     $("#item_starforce").val(22);
                     $("#scrolls_15").val(8);
                 } else {
