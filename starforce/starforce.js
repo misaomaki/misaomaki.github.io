@@ -143,6 +143,25 @@ var star_success_rate = function(star, superior = false) {
         };
     }
 
+    /*
+    Enhancement Level	Success Chance	Maintain Chance	Destruction Chance
+    15	30.00%	67.90%	2.10%
+    16	30.00%	67.90%	2.10%
+    17	15.00%	78.20%	6.80%
+    18	15.00%	78.20%	6.80%
+    19	15.00%	76.50%	8.50%
+    20	30.00%	59.50%	10.50%
+    21	15.00%	72.25%	12.75%
+    22	15.00%	68.00%	17.00%
+    23	10.00%	72.00%	18.00%
+    24	10.00%	72.00%	18.00%
+    25	10.00%	72.00%	18.00%
+    26	7.00%	74.40%	18.60%
+    27	5.00%	76.00%	19.00%
+    28	3.00%	77.60%	19.40%
+    29	1.00%	79.20%	19.80%
+    */
+
     let sdiff = 0;
 
     if (star < 15) {
@@ -151,17 +170,14 @@ var star_success_rate = function(star, superior = false) {
         if (star > 2 ) sdiff -= 1;
 
         sdiff = sdiff * 0.05;
-    }
-
-    if (star < 15) {
-        success_rate = 0.3;
-        destroy_rate = 0;
-    } else if (star <= 16) {
+    } 
+    
+    if (star === 15 || star === 16) {
         success_rate = 0.3;
         destroy_rate = 0.021;
-    } else if (star <= 18) {
+    } else if (star === 17 || star === 18) {
         success_rate = 0.15;
-        destroy_rate = 0.028;
+        destroy_rate = 0.068;
     } else if (star === 19) {
         success_rate = 0.15;
         destroy_rate = 0.085;
@@ -174,7 +190,7 @@ var star_success_rate = function(star, superior = false) {
     } else if (star === 22) {
         success_rate = 0.15;
         destroy_rate = 0.17;
-    } else if (star <= 25) {
+    } else if (star === 23 || star === 24 || star === 25) {
         success_rate = 0.1;
         destroy_rate = 0.18;
     } else if (star === 26) {
@@ -189,8 +205,9 @@ var star_success_rate = function(star, superior = false) {
     } else if (star === 29) {
         success_rate = 0.01;
         destroy_rate = 0.198;
-    } 
+    }
 
+    success_rate = success_rate === 0 ? +(base_success_rate - sdiff).toFixed(2) : success_rate;
     fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
     sc_rate = success_rate * starcatch_rate; //starcatch assumption
 
