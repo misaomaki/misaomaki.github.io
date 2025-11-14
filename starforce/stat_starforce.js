@@ -4,11 +4,35 @@ $(function() {
     var key_order = [];
 
     /* range cost of item in multiples of 10 billion */
-    const cost_range_stat = {};
-    const max_cost_range_tier = 30;
+    var cost_range_stat = {};
+    var cost_range_key = [];
+    var cost_range_steps = 1;
+    var max_cost_range_tier = 30;
 
-    for (let i = 0; i <= max_cost_range_tier; ++i) {
-        cost_range_stat[`cost_under_${i}`] = 0;
+    function initialize_cost_ranges(star) {
+        let step = 1;
+        cost_range_stat = {};
+        cost_range_key = [];
+
+        if (star <= 22) {
+            max_cost_range_tier = 30;
+        } else if (star <= 25) {
+            step = 5;
+            max_cost_range_tier = 100;
+        } else if (star <= 30) {
+            step = 50;
+            max_cost_range_tier = 1000;
+        }
+
+        cost_range_steps = step;
+
+        let i = 0;
+        let idx = 0;
+        for (; i <= max_cost_range_tier; i += step) {
+            cost_range_stat[`cost_under_${i}`] = 0;
+            cost_range_key.push(`cost_under_${i}`);
+            idx += 1;
+        }
     }
 
     /* 
@@ -215,15 +239,25 @@ $(function() {
             "max_boom"
         ];
 
-        for (let range in cost_range_stat) {
-            let key = range.split("_");
+        let stat_from = $("#stat_from");
+        let stat_to = $("#stat_to");
+
+        //set up worker data
+        sf_data.item = Item;
+        sf_data.from = +stat_from.val();
+        sf_data.to = +stat_to.val();
+
+        initialize_cost_ranges(sf_data.to);
+
+        for (let i = 0; i < cost_range_key.length; ++i) {
+            let key = cost_range_key[i].split("_");
             let rtier = +key[2];
             if (rtier != max_cost_range_tier) {
-                key_label[range] = `${rtier * 10} - ${(rtier + 1) * 10}b mesos`;
+                key_label[cost_range_key[i]] = `${rtier * 10} - ${(rtier + cost_range_steps) * 10}b mesos`;
             } else {
-                key_label[range] = `${rtier * 10}+b mesos`;
+                key_label[cost_range_key[i]] = `${rtier * 10}+b mesos`;
             }
-            key_order.push(range);
+            key_order.push(cost_range_key[i]);
         }
 
         /* remove shadowknight coin from table if not needed */
@@ -236,17 +270,11 @@ $(function() {
         $("#stop_sf_statistics").removeClass("hidden");
         $("#reset_sf_statistics").prop("disabled", true);
         $("#stat_options_container").addClass("hidden");
-        let stat_from = $("#stat_from");
-        let stat_to = $("#stat_to");
         stat_from.prop("disabled", true);
         stat_to.prop("disabled", true);
         stat_processing = true;
         init_worker();
         
-        //set up worker data
-        sf_data.item = Item;
-        sf_data.from = +stat_from.val();
-        sf_data.to = +stat_to.val();
         sf_data.user_settings = user_settings,
         sf_data.event_options = event_options,
         sf_data.safeguard = $("#stat_options .stat_checkbox_sg:checked").map(function(a,b) {return +$(b).val()}).get();
@@ -531,6 +559,7 @@ $(function() {
         /* keep track of item cost in its range 
             example - if an item cost 35 billion mesos to starforce, it counts up the "30-40 billion range" key
         */
+       /*
         for (let i = 0; i <= max_cost_range_tier; ++i) {
             total_avg_data[`cost_under_${i}`] = 0;
         }
@@ -544,6 +573,27 @@ $(function() {
             }
 
             ++total_avg_data[`cost_under_${tier}`];
+        }
+  
+        return total_avg_data;
+        };
+        */
+
+        for (let i = 0; i < cost_range_key.length; ++i) {
+            let key = cost_range_key[i];
+
+            total_avg_data[key] = 0;
+        }
+
+        for (let i = 0; i < part_data.length; ++i) {
+            let cost = part_data[i].cost["1.0"];
+            let tier = Math.floor(cost / (1e10 * cost_range_steps));
+
+            if (tier >= cost_range_key.length) {
+                tier = cost_range_key.length - 1;
+            }
+
+            ++total_avg_data[cost_range_key[tier]];
         }
   
         return total_avg_data;
