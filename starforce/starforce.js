@@ -134,13 +134,12 @@ var star_success_rate = function(star, superior = false) {
         fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
         sc_rate = success_rate * starcatch_rate;
         
-        
         return {
-            success: success_rate,
-            fail: fail_rate - sc_rate,
-            destroy: destroy_rate,
-            sc_success: sc_rate
-        };
+            [GLOBAL.starforce_enums.SUCCESS]: success_rate,
+            [GLOBAL.starforce_enums.FAIL]: fail_rate - sc_rate,
+            [GLOBAL.starforce_enums.DESTROY]: destroy_rate,
+            [GLOBAL.starforce_enums.SC_SUCCESS]: sc_rate    
+        }
     }
 
     /*
