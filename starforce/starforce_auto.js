@@ -19,7 +19,7 @@ $(function() {
                     <span class="form-label">
                         Star To:
                     </span>
-                    <input type="number" id="asf_star_to" value="22" min="${Item.idata.meta.stars}" style="width:75px">
+                    <input type="number" id="asf_star_to" value="25" min="${Item.idata.meta.stars}" style="width:75px">
                 </label>
             </div>
             <div class="form-group">
@@ -490,6 +490,26 @@ $(function() {
                     case 25:
                         bgColor = "#00f70a";
                         color = "white";
+                        break;
+                    case 26:
+                        bgColor = "#e5cc80";
+                        color = "black";
+                        break;
+                    case 27:
+                        bgColor = "#ff0000";
+                        color = "white";
+                        break;
+                    case 28:
+                        bgColor = "#00cccc";
+                        color = "black";
+                        break;
+                    case 29:
+                        bgColor = "#ff66ff";
+                        color = "black";
+                        break;
+                    case 30:
+                        bgColor = "#ffff00";
+                        color = "black";
                         break;
                 }
 

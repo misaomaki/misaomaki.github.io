@@ -107,7 +107,7 @@ $(function() {
                     <span class="form-label">
                         Star To:
                     </span>
-                    <input type="number" class="stat-input" id="stat_to" value="${Item.idata.superior ? '12' : '22'}" min="0" style="width:75px">
+                    <input type="number" class="stat-input" id="stat_to" value="${Item.idata.superior ? '12' : '25'}" min="0" style="width:75px">
                 </label>
                 <button id="begin_sf_statistics" style="width:100px">Analyze</button>  
                 <button id="stop_sf_statistics" class="hidden" style="width:100px">Stop</button>

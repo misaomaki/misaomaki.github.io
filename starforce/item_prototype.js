@@ -208,7 +208,7 @@ item.prototype.update_star = function(type = 0, o = {}) {
 
     //destroy
     } else if (type === 2) {
-        let d_star = this.idata.superior ? 0 : 12;
+        let d_star = boom_starting_star(this.idata.superior, current_star);
         this.set_item_level(d_star);
         this.idata.meta.stars = d_star;
     }
@@ -827,7 +827,7 @@ item.prototype.update_item_tooltip_stars = function(i_con) {
     } else {
         istar_con.removeClass("hidden");
         //remove stars based on max stars allowed
-        for (let i = 25; i > this.idata.meta.max_stars; --i) {
+        for (let i = GLOBAL.starforce.max_stars; i > this.idata.meta.max_stars; --i) {
             istar.filter(".item-star-" + i).addClass("hidden");
         } 
     }

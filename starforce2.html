@@ -555,6 +555,12 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                     <span class="item-star item-star-23 disabled" data-star-id="23"></span>
                     <span class="item-star item-star-24 disabled" data-star-id="24"></span>
                     <span class="item-star item-star-25 disabled" data-star-id="25"></span>
+                    <span class="item-star-space item-spacer-4"></span>
+                    <span class="item-star item-star-26 disabled" data-star-id="26"></span>
+                    <span class="item-star item-star-27 disabled" data-star-id="27"></span>
+                    <span class="item-star item-star-28 disabled" data-star-id="28"></span>
+                    <span class="item-star item-star-29 disabled" data-star-id="29"></span>
+                    <span class="item-star item-star-30 disabled" data-star-id="30"></span>
                 </div>
                 <div class="item-name">
                     <span class="item-new-item"></span>
@@ -1256,9 +1262,152 @@ If unchecked, then you can write whatever flame value you want."
     <div class="info-header">
         <div class="info-close-button">X</div>
     </div>
+
+    <!-- arrows positioned at the sides of the tooltip panel -->
+    <button class="info-prev" aria-label="Previous"
+        style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:white;font-size:24px;cursor:pointer;padding:6px;z-index:200;">
+        ‹
+    </button>
+    <button class="info-next" aria-label="Next"
+        style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:white;font-size:24px;cursor:pointer;padding:6px;z-index:200;">
+        ›
+    </button>
     <div class="info-body">
-        💡 To create a new item, click "Cancel" in the Star Force window.
+        <div class="info-carousel" style="position:relative;min-height:48px;">
+            <div class="info-slide" data-index="0" data-auto-slide="6000">💫 30 Star is in beta. Stats may be totally wrong.</div>
+            <div class="info-slide" data-index="1" data-auto-slide="6000">💡 To create a new item, click "Cancel" in the Star Force window.</div>
+            <div class="info-slide" data-index="2" data-auto-slide="15000">
+                <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center;align-items:center;">
+                    <div style="flex-basis:100%;width:100%;text-align:center;">
+                        <div style="display:inline-block;margin-bottom:8px;font-weight:700;color:#fff;font-size:1.05em;">Hot Keys:</div>
+                    </div>
+
+
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <kbd style="background:#111;color:#ffd166;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">1</kbd>
+                        <div style="text-align:left">
+                            <div style="font-weight:700;color:#fff;">Starforce Log <span style="margin-left:6px;">🎯</span></div>
+                            <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">Open enhancement history</div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <kbd style="background:#0b1226;color:#80d0ff;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">2</kbd>
+                        <div style="text-align:left">
+                            <div style="font-weight:700;color:#fff;">Cube Log <span style="margin-left:6px;">🎲</span></div>
+                            <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">Inspect potential/cube outcomes</div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <kbd style="background:#2a1207;color:#ff9b85;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">3</kbd>
+                        <div style="text-align:left">
+                            <div style="font-weight:700;color:#fff;">Flames Log <span style="margin-left:6px;">🔥</span></div>
+                            <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">See flame changes and tiers</div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <kbd style="background:#16221f;color:#b8ffd1;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">4</kbd>
+                        <div style="text-align:left">
+                            <div style="font-weight:700;color:#fff;">Scrolls Log <span style="margin-left:6px;">📜</span></div>
+                            <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">Review scroll / trace history</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-dots" style="margin-top:8px;text-align:center;">
+            <!-- dots populated by script -->
+        </div>
     </div>
+
+    <style>
+        .info-slide { transition: opacity .3s ease; display:block; }
+        .info-slide.hidden { display:none; opacity:0; }
+        .info-dot { display:inline-block;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.35);margin:0 4px;cursor:pointer; }
+        .info-dot.active { background:rgba(255,255,255,0.95); }
+        .info-prev:focus, .info-next:focus { outline:none; }
+    </style>
+    <script>
+        (function(){
+            const $container = $(".info-container");
+            const $slides = $container.find(".info-slide");
+            const $dotsCon = $container.find(".info-dots");
+            const total = $slides.length;
+            let idx = 0;
+            let timer = null;
+            const DEFAULT_ROTATE_MS = 6000;
+
+            function renderDots() {
+                $dotsCon.empty();
+                for (let i=0;i<total;i++){
+                    const $d = $("<span/>").addClass("info-dot").attr("data-dot", i);
+                    if (i===idx) $d.addClass("active");
+                    $dotsCon.append($d);
+                }
+            }
+
+            function showIndex(i) {
+                i = (i + total) % total;
+                idx = i;
+                $slides.addClass("hidden").attr("aria-hidden","true");
+                $slides.filter(`[data-index=${i}]`).removeClass("hidden").attr("aria-hidden","false");
+                $dotsCon.find(".info-dot").removeClass("active").filter(`[data-dot=${i}]`).addClass("active");
+            }
+
+            function next() { showIndex(idx+1); }
+            function prev() { showIndex(idx-1); }
+
+            function getDelayForIndex(i) {
+                const $s = $slides.filter(`[data-index=${i}]`);
+                const attr = $s.attr("data-auto-slide");
+                if (typeof attr === "undefined") return DEFAULT_ROTATE_MS;
+                const n = parseInt(attr, 10);
+                return isNaN(n) ? DEFAULT_ROTATE_MS : n;
+            }
+
+            function startAuto() {
+                stopAuto();
+                // Use recursive timeouts so each slide can specify its own delay via data-auto-slide
+                function tick() {
+                    next();
+                    stopAuto();
+                    const delay = getDelayForIndex(idx);
+                    timer = setTimeout(tick, delay);
+                }
+                const initialDelay = getDelayForIndex(idx);
+                timer = setTimeout(tick, initialDelay);
+            }
+            function stopAuto(){
+                if (timer) { clearTimeout(timer); timer = null; }
+            }
+
+            // init
+            renderDots();
+            showIndex(0);
+            startAuto();
+
+            // controls
+            $container.on("click", ".info-next", function(e){ e.preventDefault(); next(); startAuto(); });
+            $container.on("click", ".info-prev", function(e){ e.preventDefault(); prev(); startAuto(); });
+            $container.on("click", ".info-dot", function(){ showIndex(parseInt($(this).attr("data-dot"),10)); startAuto(); });
+
+            // pause on hover
+            $container.on("mouseenter", function(){ stopAuto(); }).on("mouseleave", function(){ startAuto(); });
+
+            // keyboard left/right when visible
+            $(document).on("keydown.infoCarousel", function(e){
+                if ($container.hasClass("hidden")) return;
+                if (e.key === "ArrowRight") { next(); startAuto(); }
+                if (e.key === "ArrowLeft") { prev(); startAuto(); }
+            });
+
+            // ensure close button still hides container (existing handler exists, this keeps behavior consistent)
+            $container.find(".info-close-button").off("click").on("click", function(){ $container.addClass("hidden"); });
+
+        })();
+    </script>
 </div>
 
 <style>
@@ -1280,6 +1429,9 @@ If unchecked, then you can write whatever flame value you want."
     .info-header {
         position: relative;
         margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .info-close-button {

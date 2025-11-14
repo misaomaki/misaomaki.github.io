@@ -1,4 +1,5 @@
-var star_success_rate = function(star, superior = false) {
+//previous rates for 25 star
+var star_success_rate_25 = function(star, superior = false) {
     
     /*
     //debugging
@@ -53,7 +54,7 @@ var star_success_rate = function(star, superior = false) {
             sdiff = sdiff * 0.05;
         } else if (star < 22) {
             sdiff = 0.7;
-        } else if (star < 25) {
+        } else if (star < 30) {
             sdiff = (75 + star) / 100;
         }
 
@@ -87,8 +88,8 @@ var star_success_rate = function(star, superior = false) {
     };
 };
 
-//TODO - NEED STATS FOR 30 STARS
-var star_success_rate_30 = function(star, superior = false) {
+//current rates for 30 star
+var star_success_rate = function(star, superior = false) {
     
     /*
     //debugging
@@ -245,7 +246,7 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
         divisor = 11000;
     } else if (star < 15) {
         divisor = 7500;
-    } else if (star < 25) {
+    } else if (star < GLOBAL.starforce.max_stars) {
         divisor = 20000;
     }
 
@@ -279,7 +280,7 @@ var star_max = function(level, superior = false) {
             [108,117,10],
             [118,127,15],
             [128,137,20],
-            [138,275,25]
+            [138,275,GLOBAL.starforce.max_stars]
         ];
     }
 
@@ -552,32 +553,47 @@ var equip_gain = function(item) {
         add.job_stats += 2;
     } else if (star < 15) {
         add.job_stats += 3;
-    } else if (star <= 25) {
+    } else if (star <= 30) {
         /* starts at 16+ */
-        let tier = [{
+        /*
+            26->30 stars (inside the spreaded array) unsure of stats
+        */
+        let tier = [
+            /* level 128-137 */
+            {
                 bonus_stat: 7,
                 bonus_att: [7,8,9,10,11],
                 bonus_att_weapon: [6,7,7,8,9]
-            },{
+            },
+            /* level 138-149 */
+            {
                 bonus_stat: 9,
-                bonus_att: [8,9,10,11,12,13,15,17,19,21],
-                bonus_att_weapon: [7,8,8,9,10,11,12,30,31,32]
-            },{
+                bonus_att: [8,9,10,11,12,13,15,17,19,21, ...[22,23,24,25,26] ],
+                bonus_att_weapon: [7,8,8,9,10,11,12,30,31,32, ...[33,34,35,36,37]]
+            },
+            /* level 150-159 */
+            {
                 bonus_stat: 11,
-                bonus_att: [9,10,11,12,13,14,16,18,20,22],
-                bonus_att_weapon: [8,9,9,10,11,12,13,31,32,33]
-            },{
+                bonus_att: [9,10,11,12,13,14,16,18,20,22, ...[23,24,25,26,27] ],
+                bonus_att_weapon: [8,9,9,10,11,12,13,31,32,33, ...[34,35,36,37,38] ]
+            },
+            /* level 160-199 */
+            {
                 bonus_stat: 13,
-                bonus_att: [10,11,12,13,14,15,17,19,21,23],
-                bonus_att_weapon: [9,9,10,11,12,13,14,32,33,34]
-            },{
+                bonus_att: [10,11,12,13,14,15,17,19,21,23, ...[24,25,26,27,28] ],
+                bonus_att_weapon: [9,9,10,11,12,13,14,32,33,34, ...[35,36,37,38,39] ]
+            },
+            /* level 200-249 */    
+            {
                 bonus_stat: 15,
-                bonus_att: [12,13,14,15,16,17,19,21,23,25],
-                bonus_att_weapon: [13,13,14,14,15,16,17,34,35,36]
-            },{
+                bonus_att: [12,13,14,15,16,17,19,21,23,25, ...[26,27,28,29,30]],
+                bonus_att_weapon: [13,13,14,14,15,16,17,34,35,36, ...[37,38,39,40,41]]
+            },
+            /* level 250-300 */
+            {
                 bonus_stat: 17,
-                bonus_att: [14,15,16,17,18,19,21,23,25,27],
-                bonus_att_weapon: [17, 17, 18, 18, 19, 20, 21, 38, 39, 40] /* CURRENTLY UNKNOWN, EDUCATED GUESS VIA CHATGPT */
+                bonus_att: [14,15,16,17,18,19,21,23,25,27, ...[28,29,30,31,32]],
+                bonus_att_weapon: [17, 17, 18, 18, 19, 20, 21, 38, 39, 40, ...[41,42,43,44,45]] /* CURRENTLY UNKNOWN, EDUCATED GUESS VIA CHATGPT */
             }
         ];
 
@@ -624,6 +640,28 @@ var equip_gain_total = function(sa = []) {
 
     return tot;
 };  
+
+var boom_starting_star = function(superior = false, star = 0) {
+    if (superior) {
+        return 0;
+    }
+
+    if (GLOBAL.starforce.boom_type === 1) {
+        return 12;
+    } else {
+        if (star >= 15 && star <= 19) {
+            return 12;
+        } else if (star === 20) {
+            return 15;
+        } else if (star >= 21 && star <= 22) {
+            return 17;
+        } else if (star >= 23 && star <= 25) {
+            return 19;
+        } else {
+            return 20;
+        }
+    }
+}
 
 //generate html after analyzing item log data for starforce
 //pass in Item.idata.meta.sf_meta_data
@@ -688,9 +726,9 @@ let analyze_starforce = function(d) {
     };
 
     //init boom count for each level to 0
-    for (let i = GLOBAL.starforce.safeguard_stars.min; i <= 25; ++i) {
+    for (let i = GLOBAL.starforce.safeguard_stars.min; i <= GLOBAL.starforce.max_stars; ++i) {
         s.g.booms["b" + i] = 0;
-        if (i < 17) {
+        if (i < GLOBAL.starforce.safeguard_stars.max) {
             s.g.safeguards["sg" + i] = 0;
             _sd.safeguards["sg" + i] = 0;
         }

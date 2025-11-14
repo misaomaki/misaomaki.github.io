@@ -40,7 +40,8 @@ const GLOBAL = {
             min: 15,
             max: 17
         },
-        min_droppable_star: 15
+        min_droppable_star: 15,
+        boom_type: 1
     },
     cubes: {
         bonus: ["bonus", "bonus_occult", "white"]
@@ -66,6 +67,17 @@ const GLOBAL = {
         3: "sc_success",
         5: "destroy"
     }
+};
+
+/* 30 star update */
+GLOBAL.starforce =  {
+    max_stars: 30,
+    safeguard_stars: {
+        min: 15,
+        max: 18
+    },
+    min_droppable_star: 30,
+    boom_type: 2
 };
 
 GLOBAL.starforce.safeguardable_stars = [];
