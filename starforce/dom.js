@@ -555,71 +555,75 @@ $(function() {
         $("#system_cube_display").val("GMS").trigger("change");
     }
 
-    (function(){
-        const logSelectors = {
-            starforce: [
-                '#starforce_log', '#sf_log', '.sf-log', '[data-log="starforce"]',
-                '.open-log-starforce', '#log_starforce', '.starforce-log'
-            ],
-            cube: [
-                '#cube_log', '.cube-log', '[data-log="cube"]', '.open-log-cube',
-                '#log_cube', '.cube-log-btn'
-            ],
-            flame: [
-                '#flames_log', '.flame-log', '[data-log="flame"]', '.open-log-flame',
-                '#log_flame', '.flame-log-btn'
-            ],
-            scroll: [
-                '#scroll_log', '.scroll-log', '[data-log="scroll"]', '.open-log-scroll',
-                '#log_scroll', '.scroll-log-btn'
-            ]
-        };
+    /* hot keys to open various forms */
+    const logSelectors = {
+        starforce: [
+            '#starforce_log'
+        ],
+        cube: [
+            '#cube_log'
+        ],
+        flame: [
+            '#flames_log'
+        ],
+        scroll: [
+            '#scroll_log'
+        ],
+        starforce_auto: [
+            '#auto_starforce'
+        ],
+        cube_auto: [
+            '#auto_cube'
+        ],
+        flame_auto: [
+            '#auto_flames'
+        ]
+    };
 
-        function tryOpenFromSelectors(selectors){
-            for (let sel of selectors){
-                let $el = $(sel).first();
-                if (!$el.length) continue;
+    function tryOpenFromSelectors(selectors){
+        for (let sel of selectors){
+            let $el = $(sel).first();
+            if (!$el.length) continue;
 
-                // jQuery UI dialog content
-                if ($el.hasClass('ui-dialog-content')){
-                    try { $el.dialog('open'); } catch(e){ /* ignore */ }
-                    return true;
-                }
-
-                // clickable element or role=button
-                if ($el.is('a,button,input') || $el.attr('role') === 'button'){
-                    $el.trigger('click');
-                    return true;
-                }
-
-                // try internal buttons/links
-                let $btn = $el.find('button,a,input,[role="button"]').first();
-                if ($btn.length){
-                    $btn.trigger('click');
-                    return true;
-                }
-
-                // fallback: unhide if hidden
-                if ($el.hasClass('hidden')){
-                    $el.removeClass('hidden');
-                    return true;
-                }
-
-                // if element exists but nothing else matches, consider it "opened"
+            // jQuery UI dialog content
+            if ($el.hasClass('ui-dialog-content')){
+                try { $el.dialog('open'); } catch(e){ /* ignore */ }
                 return true;
             }
-            return false;
+
+            // clickable element or role=button
+            if ($el.is('a,button,input') || $el.attr('role') === 'button'){
+                $el.trigger('click');
+                return true;
+            }
+
+            // try internal buttons/links
+            let $btn = $el.find('button,a,input,[role="button"]').first();
+            if ($btn.length){
+                $btn.trigger('click');
+                return true;
+            }
+
+            // fallback: unhide if hidden
+            if ($el.hasClass('hidden')){
+                $el.removeClass('hidden');
+                return true;
+            }
+
+            // if element exists but nothing else matches, consider it "opened"
+            return true;
         }
+        return false;
+    }
 
-        $(document).on('keydown', function(e){
-            // ignore when typing in inputs, textareas or contenteditable
-            if ($(e.target).is('input, textarea, [contenteditable]')) return;
+    $(document).on('keydown', function(e){
+        // ignore when typing in inputs, textareas or contenteditable
+        if ($(e.target).is('input, textarea, [contenteditable]')) return;
 
-            const map = { '1': 'starforce', '2': 'cube', '3': 'flame', '4': 'scroll' };
-            if (!map[e.key]) return;
+        const map = { '1': 'starforce', '2': 'cube', '3': 'flame', '4': 'scroll', '5': 'starforce_auto', '6': 'cube_auto', '7': 'flame_auto' };
+        if (!map[e.key]) return;
 
-            e.preventDefault();
-            tryOpenFromSelectors(logSelectors[map[e.key]]);
-        });
-    })();
+        e.preventDefault();
+        tryOpenFromSelectors(logSelectors[map[e.key]]);
+    });
 });

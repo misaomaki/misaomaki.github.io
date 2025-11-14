@@ -1272,46 +1272,69 @@ If unchecked, then you can write whatever flame value you want."
         style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:white;font-size:24px;cursor:pointer;padding:6px;z-index:200;">
         ›
     </button>
-    <div class="info-body">
-        <div class="info-carousel" style="position:relative;min-height:48px;">
-            <div class="info-slide" data-index="0" data-auto-slide="6000">💫 30 Star is in beta. Stats may be totally wrong.</div>
-            <div class="info-slide" data-index="1" data-auto-slide="6000">💡 To create a new item, click "Cancel" in the Star Force window.</div>
-            <div class="info-slide" data-index="2" data-auto-slide="15000">
-                <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center;align-items:center;">
-                    <div style="flex-basis:100%;width:100%;text-align:center;">
-                        <div style="display:inline-block;margin-bottom:8px;font-weight:700;color:#fff;font-size:1.05em;">Hot Keys:</div>
-                    </div>
+    <div class="info-carousel" style="position:relative;min-height:48px;">
+        <div class="info-slide" data-index="0" data-auto-slide="6000">💫 30 Star is in beta. Stats may be totally wrong.</div>
+        <div class="info-slide" data-index="1" data-auto-slide="6000">💡 To create a new item, click "Cancel" in the Star Force window.</div>
+        <div class="info-slide" data-index="2" data-auto-slide="15000">
+            <div style="display:flex;flex-direction:column;gap:12px;align-items:center;">
+                <div style="font-weight:700;color:#fff;font-size:1.05em;">Hot Keys:</div>
 
-
-                    <div style="display:flex;align-items:center;gap:10px;">
+                <div class="hotkeys-grid" style="display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:12px;width:100%;max-width:560px;">
+                    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px;">
                         <kbd style="background:#111;color:#ffd166;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">1</kbd>
-                        <div style="text-align:left">
+                        <div style="text-align:left;">
                             <div style="font-weight:700;color:#fff;">Starforce Log <span style="margin-left:6px;">🎯</span></div>
                             <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">Open enhancement history</div>
                         </div>
                     </div>
 
-                    <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px;">
                         <kbd style="background:#0b1226;color:#80d0ff;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">2</kbd>
-                        <div style="text-align:left">
+                        <div style="text-align:left;">
                             <div style="font-weight:700;color:#fff;">Cube Log <span style="margin-left:6px;">🎲</span></div>
-                            <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">Inspect potential/cube outcomes</div>
+                            <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">Inspect potential / cube outcomes</div>
                         </div>
                     </div>
 
-                    <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px;">
                         <kbd style="background:#2a1207;color:#ff9b85;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">3</kbd>
-                        <div style="text-align:left">
+                        <div style="text-align:left;">
                             <div style="font-weight:700;color:#fff;">Flames Log <span style="margin-left:6px;">🔥</span></div>
                             <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">See flame changes and tiers</div>
                         </div>
                     </div>
 
-                    <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px;">
                         <kbd style="background:#16221f;color:#b8ffd1;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">4</kbd>
-                        <div style="text-align:left">
+                        <div style="text-align:left;">
                             <div style="font-weight:700;color:#fff;">Scrolls Log <span style="margin-left:6px;">📜</span></div>
                             <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">Review scroll / trace history</div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px;">
+                        <kbd style="background:#0f3b0f;color:#9ff3a7;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">5</kbd>
+                        <div style="text-align:left;">
+                            <div style="font-weight:700;color:#fff;">Auto Starforce <span style="margin-left:6px;">⏱️</span></div>
+                            <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">Run enhancement attempts automatically until stopped or target reached</div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px;">
+                        <kbd style="background:#2b0f3b;color:#dfb7ff;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">6</kbd>
+                        <div style="text-align:left;">
+                            <div style="font-weight:700;color:#fff;">Auto Cube <span style="margin-left:6px;">🎲</span></div>
+                            <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">Automatically cube items using the selected cube settings</div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px;">
+                        <div style="display:flex;align-items:center;gap:10px;">
+                            <kbd style="background:#3b1f06;color:#ffd9a3;border-radius:8px;padding:8px 12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,0.4);">7</kbd>
+                            <div style="text-align:left">
+                                <div style="font-weight:700;color:#fff;">Auto Flames <span style="margin-left:6px;">🔥</span></div>
+                                <div style="font-size:0.85em;color:rgba(255,255,255,0.8);">Apply flames automatically according to flame options</div>
+                            </div>
                         </div>
                     </div>
                 </div>
