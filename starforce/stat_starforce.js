@@ -7,7 +7,7 @@ $(function() {
     var cost_range_stat = {};
     var cost_range_key = [];
     var cost_range_steps = 1;
-    var max_cost_range_tier = 30; /* maximum tier of cost range */
+    var max_cost_range_tier = 30; /* maximum tier of cost range (max_cost_range_tier * mesos_per_step) */
     var mesos_per_step = 1e09; /* 1 billion mesos per step */
     var meso_legend = "b mesos"; /* legend. m = million, b = billion */
     var step_multiplier = 10; /* multiple mesos by step for range display */
@@ -60,6 +60,12 @@ $(function() {
             max_cost_range_tier = 25;
             mesos_per_step = 1e09;
             meso_legend = "b mesos";
+
+        /* maximum 150 billion mesos in increments of 5 billion */
+        } else if (star <= 22) {
+            step_multiplier = 5;
+            cost_range_steps = 1;
+            max_cost_range_tier = 30;
             
         /* maximum 300 billion mesos in increments of 10 billion */
         } else if (star <= 23) {
