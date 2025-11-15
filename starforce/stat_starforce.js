@@ -7,28 +7,78 @@ $(function() {
     var cost_range_stat = {};
     var cost_range_key = [];
     var cost_range_steps = 1;
-    var max_cost_range_tier = 30;
+    var max_cost_range_tier = 30; /* maximum tier of cost range */
+    var mesos_per_step = 1e09; /* 1 billion mesos per step */
+    var meso_legend = "b mesos"; /* legend. m = million, b = billion */
+    var step_multiplier = 10; /* multiple mesos by step for range display */
 
     function initialize_cost_ranges(star) {
-        let step = 1;
+        /* reinit defaults */
+        cost_range_steps = 1;
         cost_range_stat = {};
         cost_range_key = [];
+        step_multiplier = 10;
+        mesos_per_step = 1e09;
+        meso_legend = "b mesos";
+        max_cost_range_tier = 30;
 
-        if (star <= 22) {
+        /* maximum 10 million mesos in increments of 1 million */
+        if (star <= 5) {
+            step_multiplier = 1;
+            mesos_per_step = 1e06;
+            meso_legend = "m mesos";
+            max_cost_range_tier = 10;
+        }
+        /* maximum 50 million mesos in increments of 5 million */
+        else if (star <= 10) {
+            step_multiplier = 1;
+            cost_range_steps = 5;
+            mesos_per_step = 1e06;
+            meso_legend = "m mesos";
+            max_cost_range_tier = 50;
+
+        /* maximum 4 billion mesos in increments of 500 million */
+        } else if (star <= 15) {
+            step_multiplier = 1;
+            cost_range_steps = 0.5;
+            max_cost_range_tier = 4;
+            mesos_per_step = 1e09;
+            meso_legend = "b mesos";
+
+        /* maximum 10 billion mesos in increments of 1 billion */
+        } else if (star <= 17) {
+            step_multiplier = 1;
+            cost_range_steps = 1;
+            max_cost_range_tier = 10;
+            mesos_per_step = 1e09;
+            meso_legend = "b mesos";
+
+        /* maximum 25 billion mesos in increments of 1 billion */
+        } else if (star <= 20) {
+            step_multiplier = 1;
+            cost_range_steps = 1;
+            max_cost_range_tier = 25;
+            mesos_per_step = 1e09;
+            meso_legend = "b mesos";
+            
+        /* maximum 300 billion mesos in increments of 10 billion */
+        } else if (star <= 23) {
             max_cost_range_tier = 30;
+
+        /* maximum 1 trillion mesos in increments of 50 billion */
         } else if (star <= 25) {
-            step = 5;
+            cost_range_steps = 5;
             max_cost_range_tier = 100;
+
+        /* maximum 10 trillion mesos in increments of 500 billion */
         } else if (star <= 30) {
-            step = 50;
+            cost_range_steps = 50;
             max_cost_range_tier = 1000;
         }
 
-        cost_range_steps = step;
-
         let i = 0;
         let idx = 0;
-        for (; i <= max_cost_range_tier; i += step) {
+        for (; i <= max_cost_range_tier; i += cost_range_steps) {
             cost_range_stat[`cost_under_${i}`] = 0;
             cost_range_key.push(`cost_under_${i}`);
             idx += 1;
@@ -253,9 +303,9 @@ $(function() {
             let key = cost_range_key[i].split("_");
             let rtier = +key[2];
             if (rtier != max_cost_range_tier) {
-                key_label[cost_range_key[i]] = `${rtier * 10} - ${(rtier + cost_range_steps) * 10}b mesos`;
+                key_label[cost_range_key[i]] = `${rtier * step_multiplier} - ${(rtier + cost_range_steps) * step_multiplier}${meso_legend}`;
             } else {
-                key_label[cost_range_key[i]] = `${rtier * 10}+b mesos`;
+                key_label[cost_range_key[i]] = `${rtier * step_multiplier}+${meso_legend}`;
             }
             key_order.push(cost_range_key[i]);
         }
@@ -585,9 +635,11 @@ $(function() {
             total_avg_data[key] = 0;
         }
 
+        /* put the costs into their respective ranges */
+        let meso_divide = mesos_per_step * step_multiplier;
         for (let i = 0; i < part_data.length; ++i) {
             let cost = part_data[i].cost["1.0"];
-            let tier = Math.floor(cost / (1e10 * cost_range_steps));
+            let tier = Math.floor(cost / (meso_divide * cost_range_steps));
 
             if (tier >= cost_range_key.length) {
                 tier = cost_range_key.length - 1;
