@@ -577,6 +577,9 @@ $(function() {
         ],
         flame_auto: [
             '#auto_flames'
+        ],
+        item_create: [
+            '.sf-button-cancel'
         ]
     };
 
@@ -604,6 +607,12 @@ $(function() {
                 return true;
             }
 
+            // try div,span
+            if ($el.is('span,div')){
+                $el.trigger('click');
+                return true;
+            }
+
             // fallback: unhide if hidden
             if ($el.hasClass('hidden')){
                 $el.removeClass('hidden');
@@ -617,10 +626,23 @@ $(function() {
     }
 
     $(document).on('keydown', function(e){
+        let create_box_open = $("#item_create:visible").length > 0;
+        if (create_box_open) return; // don't interfere when item create box is open
+
         // ignore when typing in inputs, textareas or contenteditable
         if ($(e.target).is('input, textarea, [contenteditable]')) return;
 
-        const map = { '1': 'starforce', '2': 'cube', '3': 'flame', '4': 'scroll', '5': 'starforce_auto', '6': 'cube_auto', '7': 'flame_auto' };
+        const map = { 
+            '1': 'starforce', 
+            '2': 'cube', 
+            '3': 'flame', 
+            '4': 'scroll', 
+            '5': 'starforce_auto', 
+            '6': 'cube_auto', 
+            '7': 'flame_auto', 
+            'Escape': 'item_create' 
+        };
+
         if (!map[e.key]) return;
 
         e.preventDefault();

@@ -37,11 +37,19 @@ $(function() {
             meso_legend = "m mesos";
             max_cost_range_tier = 50;
 
+        /* maximum 1 billion mesos in increments of 100 million */
+        } else if (star <= 14) {
+            step_multiplier = 1;
+            cost_range_steps = 100;
+            max_cost_range_tier = 1000;
+            mesos_per_step = 1e06;
+            meso_legend = "m mesos";
+
         /* maximum 4 billion mesos in increments of 500 million */
         } else if (star <= 15) {
             step_multiplier = 1;
             cost_range_steps = 0.5;
-            max_cost_range_tier = 4;
+            max_cost_range_tier = 1;
             mesos_per_step = 1e09;
             meso_legend = "b mesos";
 
