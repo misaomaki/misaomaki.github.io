@@ -134,9 +134,14 @@ item.prototype.starforce_result = function(starcatch = false) {
     let level = this.idata.effective_level;
     let current_star = this.idata.meta.stars;
 
+    let boom_reduction = 0;
+    if (event_options.m30boom) {
+        boom_reduction = 0.3;
+    }
+
     let sr_catch = this.check_cache(()=>{
-        return star_success_rate(current_star, this.idata.superior);
-    }, "sr", `_${level}${current_star}_${this.idata.superior}`);
+        return star_success_rate(current_star, this.idata.superior, boom_reduction);
+    }, "sr", `_${level}${current_star}_${this.idata.superior}_${boom_reduction}`);
 
     let prn_map = {};
     let r_type = +get_random_result(sr_catch, (a) => { prn_map = a; }, (a) => { pval = a; });
@@ -1058,8 +1063,15 @@ item.prototype.redraw_sf = function() {
         this_star = 1;
     }
 
+
+    let boom_reduction = 0;
+    debugger;
+    if (event_options.m30boom) {
+        boom_reduction = 0.3;
+    }
+
     let next_star = this_star + 1;
-    let cache_name_lvl_star = "_" + level + this_star + "_" + this.idata.superior;
+    let cache_name_lvl_star = "_" + level + this_star + "_" + this.idata.superior + "_" + boom_reduction;
     
     //total stats from all sources: flames, scrolls, and stars
     let nstats = this.check_cache(()=>{
@@ -1067,7 +1079,7 @@ item.prototype.redraw_sf = function() {
     }, "eg", cache_name_lvl_star);
 
     let srate = this.check_cache(()=>{
-        return star_success_rate(this_star, this.idata.superior);
+        return star_success_rate(this_star, this.idata.superior, boom_reduction);
     }, "sr", cache_name_lvl_star);
 
     let sc_type = star_cost_type(this.idata.type);
@@ -1118,6 +1130,25 @@ item.prototype.redraw_sf = function() {
         is_2x = true;
     }
 
+    let boom_chance = (srate[GLOBAL.starforce_enums.DESTROY] * 100).toFixed(1);
+    let boom_html = srate[GLOBAL.starforce_enums.DESTROY] > 0.1 && !event_options.m30boom ? + boom_chance 
+                    : 
+                    (boom_chance + '').replace(".", ".<br>");
+        ;
+
+    if (event_options.m30boom) {
+        boom_html = `
+            ${srate[GLOBAL.starforce_enums.DESTROY] > 0 ? `
+                ${ srate.__real_destroy_rate > 0.1 ? `<br>` : ``}
+                <span class="sf-crossed-out">
+                    ${(srate.__real_destroy_rate * 100).toFixed(1)}%
+                </span> ${boom_chance}%
+            ` : `<br> ${boom_html}%`}
+        `;
+    } else {
+        boom_html += "%";
+    }
+
     let html = `
         <span class="sf-item-desc-current-stars">
             <span style="display: inline-block;width: 48px;">${this_star} Star</span>
@@ -1149,11 +1180,7 @@ item.prototype.redraw_sf = function() {
                         !is_event_droppable && srate[GLOBAL.starforce_enums.DESTROY] !== 0 ?
                         `
                             Chance of item destruction: 
-                            ${
-                                srate[GLOBAL.starforce_enums.DESTROY] > 0.1 ? "<br>" + (srate[GLOBAL.starforce_enums.DESTROY] * 100).toFixed(1) 
-                                : 
-                                ((srate[GLOBAL.starforce_enums.DESTROY] * 100).toFixed(1) + '').replace(".", ".<br>")
-                            }%
+                            ${boom_html}
                         ` : ''
                     }
                 `

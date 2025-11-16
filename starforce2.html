@@ -311,6 +311,9 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
                 <label class="side-bar-item" for="event_pre10x2">
                     <input type="checkbox" class="event_cb" id="event_pre10x2" data-bind="pre10x2"> 2x Stars Pre 10
                 </label>
+                <label class="side-bar-item" for="event_m30boom">
+                    <input type="checkbox" class="event_cb" id="event_m30boom" data-bind="m30boom"> -30% Boom Chance
+                </label>
                 <label class="side-bar-item" for="event_starcatch">
                     <input type="checkbox" class="event_cb" id="event_starcatch" data-bind="starcatch"> Enhancement Altar (Auto Starcatch)
                 </label>
@@ -824,7 +827,8 @@ crossorigin="anonymous"></script>
     const event_options = {
         _51015: false,
         pre10x2: false,
-        starcatch: false
+        starcatch: false,
+        m30boom: false
     };
 
     const system = {

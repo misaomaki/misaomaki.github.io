@@ -89,7 +89,7 @@ var star_success_rate_25 = function(star, superior = false) {
 };
 
 //current rates for 30 star
-var star_success_rate = function(star, superior = false) {
+var star_success_rate = function(star, superior = false, boom_reduction = 0) {
     
     /*
     //debugging
@@ -131,8 +131,8 @@ var star_success_rate = function(star, superior = false) {
         
         success_rate = this_rate[0];
         destroy_rate = this_rate[1];
-        fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
         sc_rate = success_rate * starcatch_rate;
+        fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
         
         return {
             [GLOBAL.starforce_enums.SUCCESS]: success_rate,
@@ -169,9 +169,7 @@ var star_success_rate = function(star, superior = false) {
         if (star > 2 ) sdiff -= 1;
 
         sdiff = sdiff * 0.05;
-    } 
-    
-    if (star === 15 || star === 16) {
+    } else if (star === 15 || star === 16) {
         success_rate = 0.3;
         destroy_rate = 0.021;
     } else if (star === 17 || star === 18) {
@@ -207,14 +205,23 @@ var star_success_rate = function(star, superior = false) {
     }
 
     success_rate = success_rate === 0 ? +(base_success_rate - sdiff).toFixed(2) : success_rate;
-    fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
     sc_rate = success_rate * starcatch_rate; //starcatch assumption
+    let real_destroy_rate = destroy_rate; /* keep track of real in case of reduction */
+
+
+    /* apply boom reduction if present, it is mulitplicative, so take it from the boom and add it to the fail rate */
+    if (boom_reduction) {
+        destroy_rate = +(destroy_rate * (1 - boom_reduction)).toFixed(4);
+    }
+
+    fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
 
     return {
         [GLOBAL.starforce_enums.SUCCESS]: success_rate,
         [GLOBAL.starforce_enums.FAIL]: fail_rate - sc_rate,
         [GLOBAL.starforce_enums.DESTROY]: destroy_rate,
-        [GLOBAL.starforce_enums.SC_SUCCESS]: sc_rate
+        [GLOBAL.starforce_enums.SC_SUCCESS]: sc_rate,
+        __real_destroy_rate: real_destroy_rate
     };
 };
 

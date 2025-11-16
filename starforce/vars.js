@@ -74,7 +74,7 @@ GLOBAL.starforce =  {
     max_stars: 30,
     safeguard_stars: {
         min: 15,
-        max: 18
+        max: 19
     },
     min_droppable_star: 30,
     boom_type: 2
