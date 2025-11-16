@@ -1131,7 +1131,7 @@ item.prototype.redraw_sf = function() {
     }
 
     let boom_chance = (srate[GLOBAL.starforce_enums.DESTROY] * 100).toFixed(1);
-    let boom_html = srate[GLOBAL.starforce_enums.DESTROY] > 0.1 && !event_options.m30boom ? + boom_chance 
+    let boom_html = srate[GLOBAL.starforce_enums.DESTROY] > 0.1 && event_options.m30boom ? + boom_chance 
                     : 
                     (boom_chance + '').replace(".", ".<br>");
         ;
