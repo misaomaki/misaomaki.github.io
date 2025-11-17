@@ -139,7 +139,7 @@ item.prototype.starforce_result = function(starcatch = false) {
         boom_reduction = 0.3;
     }
 
-    let sr_catch = this.check_cache(()=>{
+    let [sr_catch, sr_catch_meta] = this.check_cache(()=>{
         return star_success_rate(current_star, this.idata.superior, boom_reduction);
     }, "sr", `_${level}${current_star}_${this.idata.superior}_${boom_reduction}`);
 
@@ -1065,7 +1065,6 @@ item.prototype.redraw_sf = function() {
 
 
     let boom_reduction = 0;
-    debugger;
     if (event_options.m30boom) {
         boom_reduction = 0.3;
     }
@@ -1078,7 +1077,7 @@ item.prototype.redraw_sf = function() {
         return equip_gain(this.idata);
     }, "eg", cache_name_lvl_star);
 
-    let srate = this.check_cache(()=>{
+    let [srate, srate_meta] = this.check_cache(()=>{
         return star_success_rate(this_star, this.idata.superior, boom_reduction);
     }, "sr", cache_name_lvl_star);
 
@@ -1139,9 +1138,9 @@ item.prototype.redraw_sf = function() {
     if (event_options.m30boom) {
         boom_html = `
             ${srate[GLOBAL.starforce_enums.DESTROY] > 0 ? `
-                ${ srate.__real_destroy_rate > 0.1 ? `<br>` : ``}
+                ${ srate_meta.real_destroy_rate > 0.1 ? `<br>` : ``}
                 <span class="sf-crossed-out">
-                    ${(srate.__real_destroy_rate * 100).toFixed(1)}%
+                    ${(srate_meta.real_destroy_rate * 100).toFixed(1)}%
                 </span> ${boom_chance}%
             ` : `<br> ${boom_html}%`}
         `;
@@ -1343,25 +1342,50 @@ item.prototype.starforce_att_percent = function(att = 0, bwatt = 0, p_arr = []) 
 
 //cache function
 item.prototype.check_cache = function(data_call = ()=>{return null;}, cache_name, identifier) {
-    let item = {};
-    let c_item = this.cache[cache_name][identifier];
-    if (typeof c_item == 'undefined') {
-        item = data_call();
-        if (["string","number"].includes(typeof item) || item instanceof $) {
-            this.cache[cache_name][identifier] = item;
-        } else {
-            this.cache[cache_name][identifier] = Object.assign({}, item);
-        }
-    } else {
-       
-        if (["string","number"].includes(typeof c_item) || c_item instanceof $) {
-            item = c_item;
-        } else {
-            item = Object.assign({}, c_item);
-        }
-    }
+    // ensure cache bucket exists
+    if (!this.cache[cache_name]) this.cache[cache_name] = {};
 
-    return item;
+    let c_item = this.cache[cache_name][identifier];
+
+    // helper to detect jQuery objects if $ is present
+    const isJq = (v) => (typeof $ !== 'undefined' && v instanceof $);
+
+    // deep-clone helper (prefer structuredClone if available)
+    const deepClone = (v) => {
+        if (typeof structuredClone !== 'undefined') return structuredClone(v);
+        return JSON.parse(JSON.stringify(v));
+    };
+
+    if (typeof c_item === 'undefined') {
+        let val = data_call();
+
+        // store primitives and jQuery objects as-is
+        if (val == null || ["string","number","boolean"].includes(typeof val) || isJq(val)) {
+            this.cache[cache_name][identifier] = val;
+            return val;
+        }
+
+        // handle arrays (store a shallow copy, return a shallow copy)
+        if (Array.isArray(val)) {
+            this.cache[cache_name][identifier] = val.slice();
+            return this.cache[cache_name][identifier].slice();
+        }
+
+        // objects: store a deep clone to avoid external mutation
+        this.cache[cache_name][identifier] = deepClone(val);
+        return deepClone(this.cache[cache_name][identifier]);
+    } else {
+        // return cached value (cloned where appropriate to avoid mutation)
+        if (c_item == null || ["string","number","boolean"].includes(typeof c_item) || isJq(c_item)) {
+            return c_item;
+        }
+
+        if (Array.isArray(c_item)) {
+            return c_item.slice();
+        }
+
+        return deepClone(c_item);
+    }
 };
 
 //redraw item tooltip and starforce screen

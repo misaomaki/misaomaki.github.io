@@ -134,12 +134,14 @@ var star_success_rate = function(star, superior = false, boom_reduction = 0) {
         sc_rate = success_rate * starcatch_rate;
         fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
         
-        return {
+        return [{
             [GLOBAL.starforce_enums.SUCCESS]: success_rate,
             [GLOBAL.starforce_enums.FAIL]: fail_rate - sc_rate,
             [GLOBAL.starforce_enums.DESTROY]: destroy_rate,
             [GLOBAL.starforce_enums.SC_SUCCESS]: sc_rate    
-        }
+        }, {
+            real_destroy_rate: destroy_rate
+        }]
     }
 
     /*
@@ -216,13 +218,14 @@ var star_success_rate = function(star, superior = false, boom_reduction = 0) {
 
     fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
 
-    return {
+    return [{
         [GLOBAL.starforce_enums.SUCCESS]: success_rate,
         [GLOBAL.starforce_enums.FAIL]: fail_rate - sc_rate,
         [GLOBAL.starforce_enums.DESTROY]: destroy_rate,
-        [GLOBAL.starforce_enums.SC_SUCCESS]: sc_rate,
-        __real_destroy_rate: real_destroy_rate
-    };
+        [GLOBAL.starforce_enums.SC_SUCCESS]: sc_rate
+    }, {
+        real_destroy_rate: real_destroy_rate
+    }];
 };
 
 //zero weapons cost caps at level 150
