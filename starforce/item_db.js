@@ -18177,6 +18177,7 @@ var items_store = {
     "amaterasu": {
         "amaterasus_sun_sword": {
             "name": "Amaterasu's Sun Sword",
+            "override_image": "AmaterasusSunSword",
             "level": 150,
             "class": "weapon",
             "type": "sword",
@@ -18207,6 +18208,7 @@ var items_store = {
         },
         "amaterasus_lupine_sun_sword": {
             "name": "Amaterasu's Lupine Sun Sword",
+            "override_image": "AmaterasusLupineSunSword",
             "level": 160,
             "class": "weapon",
             "type": "sword",
