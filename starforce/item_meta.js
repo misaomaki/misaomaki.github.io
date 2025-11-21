@@ -152,6 +152,10 @@ const item_meta = {
                 class: "",
                 speed: 2
             },
+            sword: {
+                class: "Ren",
+                speed: 6
+            },
             "two-handed axe": {
                 class: "",
                 speed: 4

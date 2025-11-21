@@ -29,7 +29,7 @@ item_misc["celestial_light"] = {
         "int": 0,
         "luk": 0
         },
-        "img": "Eqp_Stardust_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -57,7 +57,7 @@ item_misc["celestial_light"] = {
         "int": 0,
         "luk": 0
         },
-        "img": "Eqp_Shining_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -85,7 +85,7 @@ item_misc["celestial_light"] = {
         "int": 85,
         "luk": 0
         },
-        "img": "Eqp_Starry_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -113,7 +113,7 @@ item_misc["celestial_light"] = {
         "int": 145,
         "luk": 0
         },
-        "img": "Eqp_Ignited_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -141,7 +141,7 @@ item_misc["celestial_light"] = {
         "int": 175,
         "luk": 0
         },
-        "img": "Eqp_Sol_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -169,7 +169,7 @@ item_misc["celestial_light"] = {
         "int": 205,
         "luk": 0
         },
-        "img": "Eqp_Lux_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -197,7 +197,7 @@ item_misc["celestial_light"] = {
         "int": 235,
         "luk": 0
         },
-        "img": "Eqp_Stellar_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -226,7 +226,7 @@ item_misc["celestial_light"] = {
         "int": 265,
         "luk": 0
         },
-        "img": "Eqp_Bright_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -254,7 +254,7 @@ item_misc["celestial_light"] = {
         "int": 295,
         "luk": 0
         },
-        "img": "Eqp_Lightning_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -283,7 +283,7 @@ item_misc["celestial_light"] = {
         "int": 325,
         "luk": 0
         },
-        "img": "Eqp_Zakum's_Poisonic_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -310,7 +310,7 @@ item_misc["celestial_light"] = {
         "int": 355,
         "luk": 0
         },
-        "img": "Eqp_Briser_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -338,7 +338,7 @@ item_misc["celestial_light"] = {
         "int": 355,
         "luk": 0
         },
-        "img": "Eqp_Necro_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -366,7 +366,7 @@ item_misc["celestial_light"] = {
         "int": 385,
         "luk": 0
         },
-        "img": "Eqp_Jaihin_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -395,7 +395,7 @@ item_misc["celestial_light"] = {
         "int": 355,
         "luk": 0
         },
-        "img": "Eqp_Royal_Von_Leon_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -425,7 +425,7 @@ item_misc["celestial_light"] = {
         "int": 420,
         "luk": 0
         },
-        "img": "Eqp_Dragon_Tail_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -457,7 +457,7 @@ item_misc["celestial_light"] = {
         "int": 420,
         "luk": 0
         },
-        "img": "Eqp_Meister_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -485,7 +485,7 @@ item_misc["celestial_light"] = {
         "int": 445,
         "luk": 0
         },
-        "img": "Eqp_Lightning_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -517,7 +517,7 @@ item_misc["celestial_light"] = {
         "int": 490,
         "luk": 0
         },
-        "img": "Eqp_Terminus_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     }
@@ -554,7 +554,7 @@ item_misc["celestial_light"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "Eqp_Stardust_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -582,7 +582,7 @@ item_misc["celestial_light"] = {
             "int": 0,
             "luk": 0
         },
-        "img": "Eqp_Shining_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -610,7 +610,7 @@ item_misc["celestial_light"] = {
             "int": 85,
             "luk": 0
         },
-        "img": "Eqp_Starry_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -638,7 +638,7 @@ item_misc["celestial_light"] = {
             "int": 145,
             "luk": 0
         },
-        "img": "Eqp_Ignited_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -666,7 +666,7 @@ item_misc["celestial_light"] = {
             "int": 175,
             "luk": 0
         },
-        "img": "Eqp_Sol_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -694,7 +694,7 @@ item_misc["celestial_light"] = {
             "int": 205,
             "luk": 0
         },
-        "img": "Eqp_Lux_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -722,7 +722,7 @@ item_misc["celestial_light"] = {
             "int": 235,
             "luk": 0
         },
-        "img": "Eqp_Stellar_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -751,7 +751,7 @@ item_misc["celestial_light"] = {
             "int": 265,
             "luk": 0
         },
-        "img": "Eqp_Bright_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -779,7 +779,7 @@ item_misc["celestial_light"] = {
             "int": 295,
             "luk": 0
         },
-        "img": "Eqp_Lightning_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -808,7 +808,7 @@ item_misc["celestial_light"] = {
             "int": 325,
             "luk": 0
         },
-        "img": "Eqp_Zakum's_Poisonic_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -835,7 +835,7 @@ item_misc["celestial_light"] = {
             "int": 355,
             "luk": 0
         },
-        "img": "Eqp_Briser_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -863,7 +863,7 @@ item_misc["celestial_light"] = {
             "int": 355,
             "luk": 0
         },
-        "img": "Eqp_Necro_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -891,7 +891,7 @@ item_misc["celestial_light"] = {
             "int": 385,
             "luk": 0
         },
-        "img": "Eqp_Jaihin_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -920,7 +920,7 @@ item_misc["celestial_light"] = {
             "int": 355,
             "luk": 0
         },
-        "img": "Eqp_Royal_Von_Leon_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -950,7 +950,7 @@ item_misc["celestial_light"] = {
             "int": 420,
             "luk": 0
         },
-        "img": "Eqp_Dragon_Tail_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -982,7 +982,7 @@ item_misc["celestial_light"] = {
             "int": 420,
             "luk": 0
         },
-        "img": "Eqp_Meister_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -1010,7 +1010,7 @@ item_misc["celestial_light"] = {
             "int": 445,
             "luk": 0
         },
-        "img": "Eqp_Lightning_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     },
@@ -1042,11 +1042,592 @@ item_misc["celestial_light"] = {
             "int": 490,
             "luk": 0
         },
-        "img": "Eqp_Terminus_Celestial_Light",
+        
         "upgrades": 8,
         "hammers_added": 2
     }
 };
+
+
+item_misc["ren_sword"] = {
+  "sword_lvl_1": {
+    "name": "Sword",
+    "level": 1,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 15
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "sword_lvl_10": {
+    "name": "Sword",
+    "level": 10,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 28
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "honed_sword": {
+    "name": "Honed Sword",
+    "level": 30,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 50
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "bronzed_sword": {
+    "name": "Bronzed Sword",
+    "level": 50,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 70
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "black_gale_sword": {
+    "name": "Black Gale Sword",
+    "level": 60,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 80
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "ebony_hilt_sword": {
+    "name": "Ebony-Hilt Sword",
+    "level": 70,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 85
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "darklight_sword": {
+    "name": "Darklight Sword",
+    "level": 80,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 90
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "soul_raising_sword": {
+    "name": "Soul-Raising Sword",
+    "level": 90,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 95
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "songbird_sword": {
+    "name": "Songbird Sword",
+    "level": 100,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 100
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "dragonheart_sword": {
+    "name": "Dragonheart Sword",
+    "level": 110,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 105
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "zakums_poisonic_sword": {
+    "name": "Zakum's Poisonic Sword",
+    "level": 110,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 107,
+      "boss": 0.1
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "briser_swift_sword": {
+    "name": "Briser Swift Sword",
+    "level": 120,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 109
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "necro_soul_sword": {
+    "name": "Necro Soul Sword",
+    "level": 120,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 110
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "jaihin_brave_sword": {
+    "name": "Jaihin Brave Sword",
+    "level": 130,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 116
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "royal_von_leon_lion_sword": {
+    "name": "Royal Von Leon Lion Sword",
+    "level": 130,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 6,
+      "watt": 120
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "lionheart_dream_sword": {
+    "name": "Lionheart Dream Sword",
+    "level": 140,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 35,
+      "dex": 20,
+      "watt": 137
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "meister_star_sword": {
+    "name": "Meister Star Sword",
+    "level": 145,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 40,
+      "dex": 25,
+      "watt": 159,
+      "ied": 0.05,
+      "damage": 0.15
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "commerci_sword": {
+    "name": "Commerci Sword",
+    "level": 150,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Very Fast (Stage 7)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "watt": 140
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "terminus_sword": {
+    "name": "Terminus Sword",
+    "level": 160,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 64,
+      "dex": 40,
+      "watt": 180,
+      "boss": 0.3,
+      "ied": 0.1
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  },
+  "sealed_genesis_sword": {
+    "name": "Sealed Genesis Sword",
+    "level": 200,
+    "class": "weapon",
+    "type": "sword",
+    "speed": "Fast (Stage 6)",
+    "job": ["warrior"],
+    "mstat": "str",
+    "pstat": ["str", "dex"],
+    "att_type": "watt",
+    "flame_type": 0,
+    "bstat": {
+      "str": 150,
+      "dex": 150,
+      "watt": 340,
+      "boss": 0.3,
+      "ied": 0.2
+    },
+    "req": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "luk": 0
+    },
+    
+    "upgrades": 8,
+    "hammers_added": 0,
+    "starforce": true,
+    "enhanceable": true,
+    "scrollable": true,
+    "img_type": "png"
+  }
+};
+
 
 items_store["destiny"] = {
     "destiny_bladecaster": {
@@ -1070,6 +1651,38 @@ items_store["destiny"] = {
             "boss_damage": 0.3,
             "ied": 0.2
         }
+    },
+    "destiny_sword": {
+        "name": "Destiny Sword",
+        "level": 250,
+        "class": "weapon",
+        "type": "sword",
+        "speed": "Fast (Stage 6)",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+        "str": 190,
+        "dex": 190,
+        "watt": 373,
+        "boss": 0.3,
+        "ied": 0.2
+        },
+        "req": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "luk": 0
+        },
+        
+        "upgrades": 8,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
     },
     "destiny_desperado": {
         "name": "Destiny Desperado",

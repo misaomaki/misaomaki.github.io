@@ -49,7 +49,7 @@ $(function() {
         } else if (star <= 15) {
             step_multiplier = 1;
             cost_range_steps = 0.5;
-            max_cost_range_tier = 1;
+            max_cost_range_tier = 4;
             mesos_per_step = 1e09;
             meso_legend = "b mesos";
 

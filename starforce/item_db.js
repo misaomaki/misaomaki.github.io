@@ -1246,6 +1246,34 @@ var items_store = {
             "enhanceable": true,
             "scrollable": true
         },
+        "utgard_giantslayer_sword": {
+            "name": "Utgard Giantslayer Sword",
+            "level": 140,
+            "class": "weapon",
+            "type": "sword",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+            "watt": 122
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+            },
+            
+            "upgrades": 8,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "warrior_bladecaster": {
             "name": "Utgard Restraint",
             "level": 140,
@@ -2982,6 +3010,38 @@ var items_store = {
         }
     },
     absolab: {
+        "absolab_furious_sword": {
+            "name": "AbsoLab Furious Sword",
+            "level": 160,
+            "class": "weapon",
+            "type": "sword",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+            "str": 60,
+            "dex": 60,
+            "watt": 205,
+            "boss": 0.3,
+            "ied": 0.1
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+            },
+            
+            "upgrades": 8,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "absolab_celestial_light": {
             "name": "AbsoLab Celestial Light",
             "level": 160,
@@ -5054,6 +5114,39 @@ var items_store = {
         }
     },
     sweetwater: {
+        "sweetwater_sword": {
+            "name": "Sweetwater Sword",
+            "override_image": "SweetwaterSwordRen",
+            "level": 160,
+            "class": "weapon",
+            "type": "sword",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+            "str": 45,
+            "dex": 45,
+            "watt": 165,
+            "boss": 0.3,
+            "ied": 0.1
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+            },
+            
+            "upgrades": 8,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "sweetwater_celestial_light": {
             "name": "Sweetwater Celestial Light",
             "level": 160,
@@ -8195,6 +8288,38 @@ var items_store = {
         }
     },
     crimson_root_abyss: {
+        "fafnir_soaring_sword": {
+            "name": "Fafnir Soaring Sword",
+            "level": 150,
+            "class": "weapon",
+            "type": "sword",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+            "str": 40,
+            "dex": 40,
+            "watt": 171,
+            "boss": 0.3,
+            "ied": 0.1
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+            },
+            
+            "upgrades": 8,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         thief_hat: {
             name: "Royal Assassin Hood",
             level: 150,
@@ -9845,6 +9970,38 @@ var items_store = {
         }
     },
     arcane_umbra: {
+        "arcane_umbra_illusory_sword": {
+            "name": "Arcane Umbra Illusory Sword",
+            "level": 200,
+            "class": "weapon",
+            "type": "sword",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+            "str": 100,
+            "dex": 100,
+            "watt": 295,
+            "boss": 0.3,
+            "ied": 0.2
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+            },
+            
+            "upgrades": 8,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "arcane_umbra_celestial_light": {
             "name": "Arcane Umbra Celestial Light",
             "level": 200,
@@ -11894,6 +12051,38 @@ var items_store = {
         }
     },
     genesis: {
+        "genesis_sword": {
+            "name": "Genesis Sword",
+            "level": 200,
+            "class": "weapon",
+            "type": "sword",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+            "str": 150,
+            "dex": 150,
+            "watt": 340,
+            "boss": 0.3,
+            "ied": 0.2
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+            },
+            
+            "upgrades": 8,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "genesis_celestial_light": {
             "name": "Genesis Celestial Light",
             "level": 200,
@@ -17986,6 +18175,68 @@ var items_store = {
         }
     },
     "amaterasu": {
+        "amaterasus_sun_sword": {
+            "name": "Amaterasu's Sun Sword",
+            "level": 150,
+            "class": "weapon",
+            "type": "sword",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+            "str": 53,
+            "dex": 30,
+            "watt": 150
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+            },
+            
+            "upgrades": 8,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "amaterasus_lupine_sun_sword": {
+            "name": "Amaterasu's Lupine Sun Sword",
+            "level": 160,
+            "class": "weapon",
+            "type": "sword",
+            "speed": "fast",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 0,
+            "bstat": {
+            "str": 60,
+            "dex": 60,
+            "watt": 205,
+            "boss": 0.3,
+            "ied": 0.1
+            },
+            "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+            },
+            
+            "upgrades": 8,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "warrior_hat": {
             "name": "Amaterasu's Helm",
             "level": 150,
