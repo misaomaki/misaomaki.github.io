@@ -667,6 +667,15 @@ var equip_gain_total = function(sa = []) {
     return tot;
 };  
 
+/*
+    when an item booms, get the starting star.
+
+    superior items always start at 0
+
+    boom_type:
+    1: pre-30 star patch (starts at 12)
+    2: post-30 star patch, starts at 12 unless using trace restore.
+*/
 var boom_starting_star = function(superior = false, star = 0) {
     if (superior) {
         return 0;
@@ -675,6 +684,10 @@ var boom_starting_star = function(superior = false, star = 0) {
     if (GLOBAL.starforce.boom_type === 1) {
         return 12;
     } else {
+        if (!event_options.tracerestore) {
+            return 12;
+        }
+
         if (star >= 15 && star <= 19) {
             return 12;
         } else if (star === 20) {
