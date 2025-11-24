@@ -1053,7 +1053,7 @@ item.prototype.redraw_sf = function() {
     sf_img.addClass(this.idata.img);
 
 
-    lvl_flag.removeClass("sf-star10 sf-star15 sf-star20");
+    lvl_flag.removeClass("sf-star10 sf-star15 sf-star20 sf-star25");
 
     let level = this.idata.effective_level;
 
@@ -1238,8 +1238,10 @@ item.prototype.redraw_sf = function() {
         lvl_flag.addClass("sf-star10");
     } else if (next_star <= 20) {
         lvl_flag.addClass("sf-star15");
-    } else if (next_star <= 26) {
+    } else if (next_star <= 25) {
         lvl_flag.addClass("sf-star20");
+    } else {
+        lvl_flag.addClass("sf-star25");
     }
 
     let safeguard_multiplier = 1;

@@ -217,6 +217,9 @@ body, html {
 .sf-star20 {
     background: url(../assets/starforce/star20.png);
 }
+.sf-star25 {
+    background: url(../assets/starforce/star25.png);
+}
 
 .sf-button-enhance {
     background: url(../assets/starforce/button.enchant.start.png);
