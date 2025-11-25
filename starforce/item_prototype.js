@@ -1129,13 +1129,15 @@ item.prototype.redraw_sf = function() {
         is_2x = true;
     }
 
+    let m30boom = event_options.m30boom && this_star <= 21;
+
     let boom_chance = (srate[GLOBAL.starforce_enums.DESTROY] * 100).toFixed(1);
-    let boom_html = srate[GLOBAL.starforce_enums.DESTROY] > 0.1 && event_options.m30boom ? + boom_chance 
+    let boom_html = srate[GLOBAL.starforce_enums.DESTROY] > 0.1 && m30boom ? + boom_chance 
                     : 
                     (boom_chance + '').replace(".", ".<br>");
         ;
 
-    if (event_options.m30boom) {
+    if (m30boom) {
         boom_html = `
             ${srate[GLOBAL.starforce_enums.DESTROY] > 0 ? `
                 ${ srate_meta.real_destroy_rate > 0.1 ? `<br>` : ``}

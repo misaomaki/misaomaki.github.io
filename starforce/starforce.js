@@ -212,7 +212,8 @@ var star_success_rate = function(star, superior = false, boom_reduction = 0) {
 
 
     /* apply boom reduction if present, it is mulitplicative, so take it from the boom and add it to the fail rate */
-    if (boom_reduction) {
+    /* only for 21 star and below */
+    if (boom_reduction && star <= 21) {
         destroy_rate = +(destroy_rate * (1 - boom_reduction)).toFixed(4);
     }
 
