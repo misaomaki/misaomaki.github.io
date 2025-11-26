@@ -1343,7 +1343,7 @@ item_misc["ren_sword"] = {
     "flame_type": 2,
     "bstat": {
       "watt": 107,
-      "boss": 0.1
+      "boss_damage": 0.1
     },
     "req": {
       "str": 0,
@@ -1577,7 +1577,7 @@ item_misc["ren_sword"] = {
       "str": 64,
       "dex": 40,
       "watt": 180,
-      "boss": 0.3,
+      "boss_damage": 0.3,
       "ied": 0.1
     },
     "req": {
@@ -1609,7 +1609,7 @@ item_misc["ren_sword"] = {
       "str": 150,
       "dex": 150,
       "watt": 340,
-      "boss": 0.3,
+      "boss_damage": 0.3,
       "ied": 0.2
     },
     "req": {
@@ -1667,7 +1667,7 @@ items_store["destiny"] = {
         "str": 190,
         "dex": 190,
         "watt": 373,
-        "boss": 0.3,
+        "boss_damage": 0.3,
         "ied": 0.2
         },
         "req": {

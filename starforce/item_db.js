@@ -3025,7 +3025,7 @@ var items_store = {
             "str": 60,
             "dex": 60,
             "watt": 205,
-            "boss": 0.3,
+            "boss_damage": 0.3,
             "ied": 0.1
             },
             "req": {
@@ -5130,7 +5130,7 @@ var items_store = {
             "str": 45,
             "dex": 45,
             "watt": 165,
-            "boss": 0.3,
+            "boss_damage": 0.3,
             "ied": 0.1
             },
             "req": {
@@ -8303,7 +8303,7 @@ var items_store = {
             "str": 40,
             "dex": 40,
             "watt": 171,
-            "boss": 0.3,
+            "boss_damage": 0.3,
             "ied": 0.1
             },
             "req": {
@@ -9985,7 +9985,7 @@ var items_store = {
             "str": 100,
             "dex": 100,
             "watt": 295,
-            "boss": 0.3,
+            "boss_damage": 0.3,
             "ied": 0.2
             },
             "req": {
@@ -12066,7 +12066,7 @@ var items_store = {
             "str": 150,
             "dex": 150,
             "watt": 340,
-            "boss": 0.3,
+            "boss_damage": 0.3,
             "ied": 0.2
             },
             "req": {
@@ -18222,7 +18222,7 @@ var items_store = {
             "str": 60,
             "dex": 60,
             "watt": 205,
-            "boss": 0.3,
+            "boss_damage": 0.3,
             "ied": 0.1
             },
             "req": {
