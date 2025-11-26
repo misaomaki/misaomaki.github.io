@@ -305,20 +305,20 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
             <div class="menu-group starforce-option">
                 <b>Starforce Events</b>
                 <br>
-                <label class="side-bar-item" for="event_51015">
+                <label class="side-bar-item" for="event_51015" title="Does not affect superior.">
                     <input type="checkbox" class="event_cb" id="event_51015" data-bind="_51015"> 5/10/15 100% Success
                 </label>
                 <label class="side-bar-item" for="event_pre10x2">
                     <input type="checkbox" class="event_cb" id="event_pre10x2" data-bind="pre10x2"> 2x Stars Pre 10
                 </label>
-                <label class="side-bar-item" for="event_m30boom">
-                    <input type="checkbox" class="event_cb" id="event_m30boom" data-bind="m30boom"> -30% Boom Chance
+                <label class="side-bar-item" for="event_m30boom" title="Applies up to 21 stars. Does not affect superior.">
+                    <input type="checkbox" class="event_cb" id="event_m30boom" data-bind="m30boom"> -30% Boom Chance (Pre-22 Star)
                 </label>
                 <label class="side-bar-item" for="event_starcatch">
                     <input type="checkbox" class="event_cb" id="event_starcatch" data-bind="starcatch"> Enhancement Altar (Auto Starcatch)
                 </label>
-                <label class="side-bar-item" for="event_tracerestore">
-                    <input type="checkbox" class="event_cb" id="event_tracerestore" data-bind="tracerestore" title="Booms drop to 12. Trace Restore: <=20->12, <=22->17, <=25->19, <=30->20" checked> Trace Restore
+                <label class="side-bar-item" for="event_tracerestore" title="Regular boom: <=30->12. Trace Restore: <=20->12, <=22->17, <=25->19, <=30->20. Does not affect superior.">
+                    <input type="checkbox" class="event_cb" id="event_tracerestore" data-bind="tracerestore" checked> Trace Restore
                 </label>
                 <label class="side-bar-item" for="event_discount">
                     <input type="checkbox" class="event_cb" id="event_discount" data-bind="discount" disabled checked> See Starforce Log for discount details

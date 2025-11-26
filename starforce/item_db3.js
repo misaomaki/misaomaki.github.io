@@ -1060,7 +1060,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 15
     },
@@ -1088,7 +1088,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 28
     },
@@ -1116,7 +1116,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 50
     },
@@ -1144,7 +1144,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 70
     },
@@ -1172,7 +1172,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 80
     },
@@ -1200,7 +1200,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 85
     },
@@ -1228,7 +1228,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 90
     },
@@ -1256,7 +1256,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 95
     },
@@ -1284,7 +1284,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 100
     },
@@ -1312,7 +1312,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 105
     },
@@ -1340,7 +1340,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 107,
       "boss": 0.1
@@ -1369,7 +1369,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 109
     },
@@ -1397,7 +1397,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 110
     },
@@ -1425,7 +1425,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 116
     },
@@ -1453,7 +1453,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "str": 6,
       "watt": 120
@@ -1482,7 +1482,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "str": 35,
       "dex": 20,
@@ -1512,7 +1512,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "str": 40,
       "dex": 25,
@@ -1544,7 +1544,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "watt": 140
     },
@@ -1572,7 +1572,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "str": 64,
       "dex": 40,
@@ -1604,7 +1604,7 @@ item_misc["ren_sword"] = {
     "mstat": "str",
     "pstat": ["str", "dex"],
     "att_type": "watt",
-    "flame_type": 0,
+    "flame_type": 2,
     "bstat": {
       "str": 150,
       "dex": 150,

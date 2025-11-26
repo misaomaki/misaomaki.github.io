@@ -18186,7 +18186,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 0,
+            "flame_type": 2,
             "bstat": {
             "str": 53,
             "dex": 30,
@@ -18217,7 +18217,7 @@ var items_store = {
             "mstat": "str",
             "pstat": ["str", "dex"],
             "att_type": "watt",
-            "flame_type": 0,
+            "flame_type": 2,
             "bstat": {
             "str": 60,
             "dex": 60,
