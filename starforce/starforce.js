@@ -239,7 +239,8 @@ var star_cost_type = function(item_type) {
 };
 
 /* type is deprecated. GMS and KMS have same calculations now */
-var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
+/* 25 star */
+var star_cost_OLD = function(level, star, type = "GMS", superior = false, sc_type) {
     //superior equipment have a fixed cost
     if (superior) {
         return Math.round(Math.pow(level,3.56)/100)*100;
@@ -283,6 +284,91 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
 
     return cost;
 };
+
+/* type is deprecated. GMS and KMS have same calculations now */
+var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
+    //superior equipment have a fixed cost
+    if (superior) {
+        return Math.round(Math.pow(level,3.56)/100)*100;
+    }
+
+    /*
+        specific items like zero weapons have their cost capped at level 150
+    */
+    if (sc_type === 2) {
+        if (level > 150) {
+            level = 150;
+        }
+    }
+
+    let rlevel = parseInt(level/10,10) * 10;
+    let divisor = 0;
+    let power = 2.7;
+    let cost = 0;
+
+    if (type === "GMS") {
+        if (star < 10) {
+            // 0 -> 10 stars: $1000 + \lfloor \frac{L^3 \times (S + 1)}{25} \rfloor$
+            divisor = 25;
+            power = 1;
+        } else {
+            // Formula for $10\star \to 30\star$: $1000 + \lfloor \frac{L^3 \times (S + 1)^{2.7}}{divisor} \rfloor$
+            power = 2.7;
+            // Star 10 to 29 (The star is the current star, S)
+            switch (star) {
+                case 10: divisor = 400; break;
+                case 11: divisor = 220; break;
+                case 12: divisor = 150; break;
+                case 13: divisor = 110; break;
+                case 14: divisor = 75; break;
+                case 15: divisor = 200; break; // 15 -> 16
+                case 16: divisor = 200; break; // 16 -> 17
+                case 17: divisor = 150; break; // 17 -> 18
+                case 18: divisor = 70; break; // 18 -> 19
+                case 19: divisor = 45; break; // 19 -> 20
+                case 20: divisor = 200; break; // 20 -> 21
+                case 21: divisor = 125; break; // 21 -> 22
+                case 22:
+                case 23:
+                case 24:
+                case 25:
+                case 26:
+                case 27:
+                case 28:
+                case 29:
+                    divisor = 200; // 22 -> 30*
+                    break;
+                default:
+                    divisor = 200;
+            }
+        };
+    } else if (type === "KMS") {
+        if (star < 10) {
+            divisor = 36;
+            power = 1;
+        } else if (star < 15) {
+            power = 2.7;
+
+            switch (star) {
+                case 10: divisor = 571; break;
+                case 11: divisor = 314; break;
+                case 12: divisor = 214; break;
+                case 13: divisor = 157; break;
+                case 14: divisor = 107; break;
+            }
+        } else {
+            divisor = 107;
+        }
+    }
+        
+    // This calculates the term inside the Math.round() * 100 from your original snippet:
+    cost = 1000 + Math.floor(
+        ((rlevel ** 3) * (star + 1) ** power) / divisor
+    );
+
+    // Final adjustment
+    return cost;
+}
 
 /*
     get the max stars for an item, based on its level

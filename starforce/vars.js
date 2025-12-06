@@ -35,6 +35,7 @@ const stats = {
 
 const GLOBAL = {
     starforce: {
+        safeguard_multiplier: 3,
         max_stars: 25,
         safeguard_stars: {
             min: 15,
@@ -70,14 +71,16 @@ const GLOBAL = {
 };
 
 /* 30 star update */
-GLOBAL.starforce =  {
-    max_stars: 30,
-    safeguard_stars: {
-        min: 15,
-        max: 19
-    },
-    min_droppable_star: 30,
-    boom_type: 2
+GLOBAL.starforce =  {...GLOBAL.starforce,...
+    {
+        max_stars: 30,
+        safeguard_stars: {
+            min: 15,
+            max: 18
+        },
+        min_droppable_star: 30,
+        boom_type: 2
+    }
 };
 
 GLOBAL.starforce.safeguardable_stars = [];

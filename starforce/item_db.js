@@ -6866,7 +6866,8 @@ var items_store = {
                 int: 7,
                 luk: 7,
                 hp: 500,
-                mp: 500
+                mp: 500,
+                def: 100
             },
             req: {
                 str: 0,
@@ -7783,7 +7784,7 @@ var items_store = {
                 'int': 0,
                 'luk': 0
             },
-            'img': 'img-reinforcedgolluxearrings',
+            'img': 'item-reinforcedgolluxearrings',
             'upgrades': 7,
             'hammers_added': 2,
             'starforce': true,
@@ -7818,7 +7819,7 @@ var items_store = {
                 'int': 0,
                 'luk': 0
             },
-            'img': 'img-reinforcedgolluxring',
+            'img': 'item-reinforcedgolluxring',
             'upgrades': 4,
             'hammers_added': 2,
             'starforce': true,
@@ -7852,7 +7853,7 @@ var items_store = {
                 'int': 0,
                 'luk': 0
             },
-            'img': 'img-reinforcedengravedgolluxpendant',
+            'img': 'item-reinforcedengravedgolluxpendant',
             'upgrades': 5,
             'hammers_added': 2,
             'starforce': true,
@@ -7886,7 +7887,7 @@ var items_store = {
                 'int': 0,
                 'luk': 0
             },
-            'img': 'img-reinforcedengravedgolluxbelt',
+            'img': 'item-reinforcedengravedgolluxbelt',
             'upgrades': 3,
             'hammers_added': 2,
             'starforce': true,

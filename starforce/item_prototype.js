@@ -250,7 +250,7 @@ item.prototype.complete_starforce_result_log = function(current_star, level) {
         /* get the starforce-related options related to safeguard */
         let is_safeguardable = !this.idata.superior && current_star >= GLOBAL.starforce.safeguard_stars.min && current_star < GLOBAL.starforce.safeguard_stars.max;
         let is_safeguard = user_settings.starforce.safeguard;
-        let safeguard_multiplier = (is_safeguardable && is_safeguard && !this.idata.meta.chance_time) ? 2 : 1;
+        let safeguard_multiplier = (is_safeguardable && is_safeguard && !this.idata.meta.chance_time) ? GLOBAL.starforce.safeguard_multiplier : 1;
         
         /* get the cost information for the current star level */
         let cache_name_lvl_star = `_${level}${current_star}_${this.idata.superior}`;
@@ -1295,7 +1295,7 @@ item.prototype.redraw_sf = function() {
 
     if (is_safeguardable && is_safeguard && !this.idata.meta.chance_time) {
         this.idata.meta.sf_log_item.is_safeguard = true;
-        safeguard_multiplier = 2;
+        safeguard_multiplier = GLOBAL.starforce.safeguard_multiplier;
     }
 
     //displayed starforce cost
