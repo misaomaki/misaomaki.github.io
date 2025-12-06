@@ -309,7 +309,7 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
     if (type === "GMS") {
         if (star < 10) {
             // 0 -> 10 stars: $1000 + \lfloor \frac{L^3 \times (S + 1)}{25} \rfloor$
-            divisor = 25;
+            divisor = 2500;
             power = 1;
         } else {
             // Formula for $10\star \to 30\star$: $1000 + \lfloor \frac{L^3 \times (S + 1)^{2.7}}{divisor} \rfloor$
@@ -336,28 +336,28 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
                 case 27:
                 case 28:
                 case 29:
-                    divisor = 200; // 22 -> 30*
+                    divisor = 20000; // 22 -> 30*
                     break;
                 default:
-                    divisor = 200;
+                    divisor = 20000;
             }
         };
     } else if (type === "KMS") {
         if (star < 10) {
-            divisor = 36;
+            divisor = 3600;
             power = 1;
         } else if (star < 15) {
             power = 2.7;
 
             switch (star) {
-                case 10: divisor = 571; break;
-                case 11: divisor = 314; break;
-                case 12: divisor = 214; break;
-                case 13: divisor = 157; break;
-                case 14: divisor = 107; break;
+                case 10: divisor = 57100; break;
+                case 11: divisor = 31400; break;
+                case 12: divisor = 21400; break;
+                case 13: divisor = 15700; break;
+                case 14: divisor = 10700; break;
             }
         } else {
-            divisor = 107;
+            divisor = 10700;
         }
     }
         
