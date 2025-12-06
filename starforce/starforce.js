@@ -316,18 +316,18 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
             power = 2.7;
             // Star 10 to 29 (The star is the current star, S)
             switch (star) {
-                case 10: divisor = 400; break;
-                case 11: divisor = 220; break;
-                case 12: divisor = 150; break;
-                case 13: divisor = 110; break;
-                case 14: divisor = 75; break;
-                case 15: divisor = 200; break; // 15 -> 16
-                case 16: divisor = 200; break; // 16 -> 17
-                case 17: divisor = 150; break; // 17 -> 18
-                case 18: divisor = 70; break; // 18 -> 19
-                case 19: divisor = 45; break; // 19 -> 20
-                case 20: divisor = 200; break; // 20 -> 21
-                case 21: divisor = 125; break; // 21 -> 22
+                case 10: divisor = 40000; break;
+                case 11: divisor = 22000; break;
+                case 12: divisor = 15000; break;
+                case 13: divisor = 11000; break;
+                case 14: divisor = 7500; break;
+                case 15: divisor = 20000; break; // 15 -> 16
+                case 16: divisor = 20000; break; // 16 -> 17
+                case 17: divisor = 15000; break; // 17 -> 18
+                case 18: divisor = 7000; break; // 18 -> 19
+                case 19: divisor = 4500; break; // 19 -> 20
+                case 20: divisor = 20000; break; // 20 -> 21
+                case 21: divisor = 12500; break; // 21 -> 22
                 case 22:
                 case 23:
                 case 24:
@@ -367,7 +367,7 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
     );
 
     // Final adjustment
-    return cost;
+    return cost * 100;
 }
 
 /*
