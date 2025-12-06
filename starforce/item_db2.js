@@ -10226,3 +10226,209 @@ items_store["secondary: brace band"] = {
     "sub_class": "secondary"
   }
 }
+
+items_store["secondary: imugi gem"] = {
+    "green_imugi_gem": {
+      "name": "Green Imugi Gem",
+      "level": 10,
+      "class": "accessory",
+      "type": "imugi gem",
+      "job": [
+        "warrior"
+      ],
+      "mstat": "str",
+      "pstat": [
+        "str",
+        "dex"
+      ],
+      "att_type": "watt",
+      "flame_type": 0,
+      "bstat": {
+        "str": 3,
+        "dex": 3
+      },
+      "req": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "luk": 0
+      },
+      
+      "upgrades": 0,
+      "hammers_added": 0,
+      "starforce": false,
+      "enhanceable": true,
+      "scrollable": false,
+      "sub_class": "secondary"
+    },
+    "cerulean_imugi_gem": {
+      "name": "Cerulean Imugi Gem",
+      "level": 30,
+      "class": "accessory",
+      "type": "imugi gem",
+      "job": [
+        "warrior"
+      ],
+      "mstat": "str",
+      "pstat": [
+        "str",
+        "dex"
+      ],
+      "att_type": "watt",
+      "flame_type": 0,
+      "bstat": {
+        "str": 4,
+        "dex": 4,
+        "watt": 1
+      },
+      "req": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "luk": 0
+      },
+      
+      "upgrades": 0,
+      "hammers_added": 0,
+      "starforce": false,
+      "enhanceable": true,
+      "scrollable": false,
+      "sub_class": "secondary"
+    },
+    "crimson_imugi_gem": {
+      "name": "Crimson Imugi Gem",
+      "level": 60,
+      "class": "accessory",
+      "type": "imugi gem",
+      "job": [
+        "warrior"
+      ],
+      "mstat": "str",
+      "pstat": [
+        "str",
+        "dex"
+      ],
+      "att_type": "watt",
+      "flame_type": 0,
+      "bstat": {
+        "str": 6,
+        "dex": 6,
+        "watt": 2
+      },
+      "req": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "luk": 0
+      },
+      
+      "upgrades": 0,
+      "hammers_added": 0,
+      "starforce": false,
+      "enhanceable": true,
+      "scrollable": false,
+      "sub_class": "secondary"
+    },
+    "violet_imugi_gem": {
+      "name": "Violet Imugi Gem",
+      "level": 100,
+      "class": "accessory",
+      "type": "imugi gem",
+      "job": [
+        "warrior"
+      ],
+      "mstat": "str",
+      "pstat": [
+        "str",
+        "dex"
+      ],
+      "att_type": "watt",
+      "flame_type": 0,
+      "bstat": {
+        "str": 10,
+        "dex": 10,
+        "watt": 3
+      },
+      "req": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "luk": 0
+      },
+      
+      "upgrades": 0,
+      "hammers_added": 0,
+      "starforce": false,
+      "enhanceable": true,
+      "scrollable": false,
+      "sub_class": "secondary"
+    },
+    "evolving_violet_imugi_gem": {
+      "name": "Evolving Violet Imugi Gem",
+      "level": 100,
+      "class": "accessory",
+      "type": "imugi gem",
+      "job": [
+        "warrior"
+      ],
+      "mstat": "str",
+      "pstat": [
+        "str",
+        "dex"
+      ],
+      "att_type": "watt",
+      "flame_type": 0,
+      "bstat": {
+        "str": 10,
+        "dex": 10,
+        "watt": 5
+      },
+      "req": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "luk": 0
+      },
+      
+      "upgrades": 0,
+      "hammers_added": 0,
+      "starforce": false,
+      "enhanceable": true,
+      "scrollable": false,
+      "sub_class": "secondary"
+    },
+    "princess_no's_imugi_gem": {
+      "name": "Princess No's Imugi Gem",
+      "level": 140,
+      "class": "accessory",
+      "type": "imugi gem",
+      "job": [
+        "warrior"
+      ],
+      "mstat": "str",
+      "pstat": [
+        "str",
+        "dex"
+      ],
+      "att_type": "watt",
+      "flame_type": 0,
+      "bstat": {
+        "str": 14,
+        "dex": 14,
+        "watt": 9
+      },
+      "req": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "luk": 0
+      },
+      
+      "upgrades": 0,
+      "hammers_added": 0,
+      "starforce": false,
+      "enhanceable": true,
+      "scrollable": false,
+      "sub_class": "secondary"
+    }
+}

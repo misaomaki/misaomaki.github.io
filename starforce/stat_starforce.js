@@ -79,10 +79,10 @@ $(function() {
         } else if (star <= 23) {
             max_cost_range_tier = 30;
 
-        /* maximum 1 trillion mesos in increments of 50 billion */
+        /* maximum 5 trillion mesos in increments of 500 billion */
         } else if (star <= 25) {
-            cost_range_steps = 5;
-            max_cost_range_tier = 100;
+            cost_range_steps = 50;
+            max_cost_range_tier = 500;
 
         /* maximum 10 trillion mesos in increments of 500 billion */
         } else if (star <= 30) {
