@@ -21636,6 +21636,42 @@ var items_store = {
         }
     },
     "brilliant_boss": {
+        "immortal_legacy": {
+            "name": "Immortal Legacy",
+            "level": 250,
+            "class": "accessory",
+            "type": "medal",
+            "speed": "",
+            "job": ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            "mstat": "",
+            "pstat": ["str", "dex", "int", "luk"],
+            "att_type": "att",
+            "flame_type": 0,
+            "bstat": {
+                "watt": 10,
+                "matt": 10,
+                "str": 10,
+                "dex": 10,
+                "int": 10,
+                "luk": 10,
+                "hp": 500,
+                "mp": 500,
+                "boss_damage": 0.1
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-immortallegacy",
+            "upgrades": 0,
+            "hammers_added": 0,
+            "enhanceable": false,
+            "scrollable": false,
+            "starforce": false,
+            "exceptional_upgrades": 3
+        },
         "whisper_of_the_source": {
             "name": "Whisper of the Source",
             "override_image": "WhisperOfTheSource",
