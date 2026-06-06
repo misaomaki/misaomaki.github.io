@@ -8396,7 +8396,7 @@ var items_store = {
                 watt: 2,
                 dex: 40,
                 str: 40,
-                def: 300,
+                def: 390,
                 ied: 0.10,
                 hp: 360,
                 mp: 360
@@ -21735,6 +21735,78 @@ var items_store = {
             "img": "item-oathofdeath",
             "upgrades": 6,
             "hammers_added": 5
+        },
+        "blissful_nightmare": {
+            "name": "Blissful Nightmare",
+            "override_image": "BlissfulNightmare",
+            "level": 250,
+            "class": "armor",
+            "type": "ring",
+            "speed": "",
+            "job": ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            "mstat": "", 
+            "pstat": ["str", "dex", "int", "luk"], 
+            "att_type": "att",
+            "flame_type": 0,
+            "bstat": {
+                "watt": 5,
+                "matt": 5,
+                "str": 10,
+                "dex": 10,
+                "int": 10,
+                "luk": 10,
+                "hp": 500,
+                "mp": 500
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-blissfulnightmare",
+            "upgrades": 3,
+            "hammers_added": 2
+        },
+        "original_sin_of_pride": {
+            "name": "Original Sin of Pride",
+            "override_image": "OriginalSinOfPride",
+            "level": 250,
+            "class": "armor",
+            "sub_class": "accessory",
+            "type": "face accessory",
+            "speed": "",
+            "job": ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
+            "mstat": "", 
+            "pstat": ["str", "dex", "int", "luk"], 
+            "att_type": "att",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 15,
+                "matt": 15,
+                "str": 15,
+                "dex": 15,
+                "int": 15,
+                "luk": 15,
+                "def": 300
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
+            },
+            "img": "item-originalsinofpride",
+            "upgrades": 5,
+            "hammers_added": 2,
+             "exceptional": {
+                "name": "Exceptional Hammer (Face Acc)",
+                "img": "item-exceptional-face",
+                "stat": {
+                    "all_stats": 15,
+                    "all_att": 10
+                }
+            }
         },
     }
 }
