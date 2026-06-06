@@ -21797,7 +21797,7 @@ var items_store = {
                 "luk": 0
             },
             "img": "item-originalsinofpride",
-            "upgrades": 5,
+            "upgrades": 6,
             "hammers_added": 2,
              "exceptional": {
                 "name": "Exceptional Hammer (Face Acc)",
