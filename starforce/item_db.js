@@ -21670,6 +21670,7 @@ var items_store = {
             "enhanceable": false,
             "scrollable": false,
             "starforce": false,
+            "flame_type": 2,
             "exceptional_upgrades": 3,
             "exceptional": {
                 name: "Exceptional Hammer (Medal)",
