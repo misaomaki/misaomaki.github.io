@@ -188,8 +188,14 @@ $(function() {
                     });
 
                     //set exceptional parts
-                    const has_exceptional_part = $("#cbApplyExceptional").prop("checked") ?? false;
-                    Item.set_exceptional_part(has_exceptional_part);
+                    const num_exceptional_part = +$("#txtApplyExceptional").val();
+
+                    // limit to max exceptional upgrades allowed for the item
+                    if (num_exceptional_part > Item.idata.exceptional_upgrades) {
+                        num_exceptional_part = Item.idata.exceptional_upgrades;
+                    }
+
+                    Item.set_exceptional_part(num_exceptional_part);
                     
                     //set cube stuff
                     let cube_main_pot = cube_select_main.val();
@@ -648,12 +654,13 @@ $(function() {
                                 <span class="item-label-icon ${this_item.exceptional.img}"></span> <b>Exceptional Hammer</b>
                             </span>
                             <hr>
-                            <label for="cbApplyExceptional">
+                            <label for="txtApplyExceptional">
                                 <span style="width:250px">
-                                     Apply ${this_item.exceptional.name}
+                                     Apply ${this_item.exceptional.name} (Max: ${this_item.exceptional_upgrades} times)
                                 </span>
                                 
-                                <input type="checkbox" id="cbApplyExceptional">
+                                <input type="number" id="txtApplyExceptional" max="${this_item.exceptional_upgrades}" min="0" value="0" 
+                                style="width:50px;margin-right:10px;">
                             </label>
                         </div>
                     `;

@@ -21670,7 +21670,16 @@ var items_store = {
             "enhanceable": false,
             "scrollable": false,
             "starforce": false,
-            "exceptional_upgrades": 3
+            "exceptional_upgrades": 3,
+            "exceptional": {
+                name: "Exceptional Hammer (Medal)",
+                img: "item-exceptional-medal",
+                stat: {
+                    all_stats: 20,
+                    all_att: 15,
+                    hp_mp: 1000
+                }
+            }
         },
         "whisper_of_the_source": {
             "name": "Whisper of the Source",

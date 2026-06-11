@@ -202,7 +202,7 @@ let items_other_data = {
     flavor: "", //flavor text in white at the bottom
     custom_flavor: "", /* custom flavor/skill text. does not trigger if skill or flavor are added. can take HTML */
     shadowknight: false, //use shadowknight coins
-    exceptional_applied: false, /* only if the item has the exceptional key as part of its item data and if the user applies it */
+    exceptional_applied: 0, /* number of times exceptional has been applied. 0 means not applied */
     meta: {
             final_stats: {}, /* keep track of the final calculated stats from the drawn tooltip. mostly used for chaos scrolls */
             fsstat: "", /* flame score MAIN stat. defaults to mstat parameter, but can be overridden */
@@ -353,6 +353,11 @@ $(function() {
 
             if ("exceptional" in istore) {
                 ep_img_name = istore.exceptional.name.replace(/[\s-:\(\)'<>]/gi,"");
+
+                /* if not specified, assume only 1 is allowed */
+                if (!("exceptional_upgrades" in istore)) {
+                    istore.exceptional_upgrades = 1;
+                }
 
                 if (istore.exceptional.img_type !== undefined) {
                     ep_img_text = istore.exceptional.img_type;

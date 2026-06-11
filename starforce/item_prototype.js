@@ -737,7 +737,7 @@ item.prototype.update_item_tooltip_exceptional = function(i_con) {
     }, "dom", "iexceptional");   
 
     /* exceptional part */
-    if (this.idata.meta.exceptional_applied){
+    if (this.idata.meta.exceptional_applied > 0){
         const exceptional_order = [{
             id: "all_stats",
             name: "All Stats"
@@ -763,9 +763,12 @@ item.prototype.update_item_tooltip_exceptional = function(i_con) {
 
                         if (i_exc_stat == undefined) return a;
 
+                        /* multiply the exceptional stats by the number of enhancements */
+                        let display_stat = +i_exc_stat * _this.idata.meta.exceptional_applied;
+
                         a += `
                             <span class="potential-line potential-line-main">
-                                ${b.name} : <span style="margin-left:6px">+${i_exc_stat}</span>
+                                ${b.name} : <span style="margin-left:6px">+${display_stat}</span>
                             </span>
                         `;
 
@@ -773,10 +776,10 @@ item.prototype.update_item_tooltip_exceptional = function(i_con) {
                     }, '')
                 }
                 <span class="potential-line potential-line-main">
-                    Apply Exceptional Enhancement 1 times
+                    Apply Exceptional Enhancement ${this.idata.meta.exceptional_applied} times
                 </span>                
                 <span class="potential-line potential-line-main">
-                    <span style="margin:5px"></span>(Can be enhanced up to 1 times.)
+                    <span style="margin:5px"></span>(Can be enhanced up to ${this.idata.exceptional_upgrades} times.)
                 </span>
                  
             </div>
@@ -1320,8 +1323,12 @@ item.prototype.redraw_sf = function() {
 };
 //#endregion
 
-item.prototype.set_exceptional_part = function(enable_exceptional = false) {
-    this.idata.meta.exceptional_applied = enable_exceptional;
+/*
+    number of exceptional enhancements applied to the item. 
+    this is used to calculate the stats from exceptional enhancement and show it on the tooltip
+*/
+item.prototype.set_exceptional_part = function(number_expcetional = 0) {
+    this.idata.meta.exceptional_applied = number_expcetional;
 };
 
 
