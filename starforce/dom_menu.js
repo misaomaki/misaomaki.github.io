@@ -587,7 +587,7 @@ $(function() {
                         
                         return self.hasClass(`item-weapon`);
                     }).removeClass("hidden");
-                } else if (this_item.class === "armor") {
+                } else if (this_item.class === "armor" || this_item.class === "accessory") {
                     all_box.filter(function() {
                         let __this = $(this);
                         let data = __this.data();
