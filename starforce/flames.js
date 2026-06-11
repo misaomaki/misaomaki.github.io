@@ -770,7 +770,7 @@ var flames = {
     /* 
         get rates of flame tier 1-5
 
-        flame = 1 - powerful rebirth, 2 - eternal rebirth
+        flame = 1 - powerful rebirth, 2 - eternal rebirth, 3 - abyssal rebirth
     */
     tier_rates: function(flame) {
         let tiers = [];
@@ -789,6 +789,16 @@ var flames = {
                 0.45,
                 0.25,
                 0.01
+            ];
+
+        /* rates from Gemini who claimed it got it from some community model. Who am I to argue? (will update if this ever actually beocmes known) */
+        } else if (flame === 3) {
+            tiers = [
+                0,
+                0,
+                0.75,
+                0.21,
+                0.04
             ];
         }
 
@@ -950,6 +960,11 @@ $(function(){
         flames.apply.call(Item, 2);
     });
 
+    $("#abyssalFlame").on("click", function(){
+        sfa.play("_CubeEnchantSuccess");
+        flames.apply.call(Item, 3);
+    });
+
     let flame_log_default = {
         start: 0,
         end: 25
@@ -992,11 +1007,14 @@ $(function(){
             let [fs_tier, fs_color] = flames.flame_score_tier(b.score);
             let score = Math.round(b.score * 1000) / 1000;
 
+            let flame = b.flame_type === 1 ? "Powerful Rebirth" : b.flame_type === 2 ? "Eternal Rebirth" : "Abyssal Rebirth";  
+            let flame_class = b.flame_type === 1 ? "powerful" : b.flame_type === 2 ? "eternal" : "abyssal";
+
             a += `
                 <tr data-id="${b.run}" class="flame-data-row">
                     <td>${b.run}</td>
                     <td>
-                        <div class="flame flame-${b.flame_type === 2 ? "eternal" : "powerful"} flame-small"></div>
+                        <div class="flame flame-${flame_class} flame-small"></div>
                     </td>
                     <td>
                         <div class="flames-sub-table-container">
@@ -1069,6 +1087,8 @@ $(function(){
                 <div class="flame flame-powerful flame-small"></div> x${Item.idata.meta.flames_total["1"]}
                 &nbsp;
                 <div class="flame flame-eternal flame-small"></div> x${Item.idata.meta.flames_total["2"]}
+                &nbsp;
+                <div class="flame flame-abyssal flame-small"></div> x${Item.idata.meta.flames_total["3"]}
             </div>
             <div id="flames_log_rng_map" class="hidden"></div>
             <div id="flames_log_information">
@@ -1197,11 +1217,13 @@ $(function(){
 
         let log_keys = Object.keys(log).sort();
         let tier_keys = Object.keys(log[log_keys[0]].log_result.random_map);
+
+        let flame_class = log_item.flame_type === 1 ? "powerful" : log_item.flame_type === 2 ? "eternal" : "abyssal";
         
         let html = `
             <div style="width:95%">
                 <h2>
-                    Run #${id}, Flame: <div class="flame flame-${log_item.flame_type === 2 ? "eternal" : "powerful"} flame-small"></div>
+                    Run #${id}, Flame: <div class="flame flame-${flame_class} flame-small"></div>
                 </h2>
                 <hr>
                 ${

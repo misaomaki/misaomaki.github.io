@@ -180,6 +180,7 @@ $(function(){
                 <br>
                 <div class="flame flame-powerful flame-small maple-button auto-flame-flame ${flame_type === 1 ? "auto-cube-selected" : ""}" style="padding:5px" data-val="1"></div>
                 <div class="flame flame-eternal flame-small maple-button auto-flame-flame ${flame_type === 2 ? "auto-cube-selected" : ""}" style="padding:5px" data-val="2"></div>
+                <div class="flame flame-abyssal flame-small maple-button auto-flame-flame ${flame_type === 3 ? "auto-cube-selected" : ""}" style="padding:5px" data-val="3"></div>
                 <hr>
                 <span class="item-form item-label">                
                     ${
@@ -353,7 +354,7 @@ $(function(){
         var data = {
             item: Item,
             calc_type: flame_calc_type,
-            flame: +$("#auto_flame_container .auto-flame-flame.auto-cube-selected").attr("data-val") /* powerful or eternal flame */
+            flame: +$("#auto_flame_container .auto-flame-flame.auto-cube-selected").attr("data-val") /* powerful, eternal, abyssal flame */
         }
 
         if (flame_calc_type == 1) {

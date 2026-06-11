@@ -244,8 +244,9 @@ let items_other_data = {
             flames_meta_data: [], //flames tier log
             flames_total: {
                 "1": 0,
-                "2": 0
-            } //count flames 1 - powerful 2 -rebirth
+                "2": 0,
+                "3": 0
+            } //count flames 1 - powerful 2 -rebirth 3 - abyssal
         },
         boosts: {
             sf_data: [], //starforce data

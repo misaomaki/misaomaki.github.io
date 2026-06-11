@@ -16,6 +16,15 @@
     top: -5px
 }
 
+.flame-abyssal {
+    background: url(../assets/cube/AbyssalRebirthFlame.png);
+    background-repeat: no-repeat !important;
+    display: inline-block;
+    height:36px;
+    width:28px;
+    top: -5px
+}
+
 .flame-big {
     transform: scale(2);
     transform-origin: top;
