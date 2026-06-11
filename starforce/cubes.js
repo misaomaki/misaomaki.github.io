@@ -500,8 +500,7 @@ cube.resolve_cube_rates = async function(cube_type, type) {
                 /* cube lines of item based on its level and potential */
                 let this_cube_lines = {};
 
-                /* face accessory equivalents seem to have their tier stats already included in the data, so don't append another tier to it */
-                if (level > 150 && !cube.equivalents.face_accessory.includes(type_check)) {
+                if (level > 150) {
                     for (let cl in crates[a]) {
                         let new_stat = cube.rates.cube_stat_increase(cl);
                         this_cube_lines[new_stat] = crates[a][cl];
