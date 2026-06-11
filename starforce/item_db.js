@@ -21639,7 +21639,7 @@ var items_store = {
         "immortal_legacy": {
             "name": "Immortal Legacy",
             "level": 250,
-            "class": "accessory",
+            "class": "armor",
             "type": "medal",
             "speed": "",
             "job": ["beginner", "warrior", "magician", "bowman", "thief", "pirate"],
