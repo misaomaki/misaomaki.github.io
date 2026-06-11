@@ -45,7 +45,7 @@ const GLOBAL = {
         boom_type: 1
     },
     cubes: {
-        bonus: ["bonus", "bonus_occult", "white"]
+        bonus: ["bonus", "bonus_occult", "white", "bonus_uni"]
     },
     starforce_enums: {
         SUCCESS: 0,

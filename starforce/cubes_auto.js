@@ -497,7 +497,7 @@ $(function() {
                 } else {
                     keep_status = `<span style="color:red">Before</span>`;
                 }
-            } else if (_i_cd.cube === "uni") {
+            } else if (_i_cd.cube === "uni" || _i_cd.cube === "bonus_uni") {
                 if (_i_cd.unicube_proceed) {
                     keep_status = `<span style="color:green">Proceeded, #${_i_cd.unicube_this_line+1}</span>`;
                 } else {

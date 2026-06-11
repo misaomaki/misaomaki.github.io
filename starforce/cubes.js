@@ -248,6 +248,12 @@ cube.rates.tier_up_region = {
             epic: 0.06,
             unique: 0.018,
             legendary: 0.003
+        },
+        /* bonus uni same rates as bonus */
+        "bonus_uni": {
+            epic: 0.047619,
+            unique: 0.019608,
+            legendary: 0.007
         }
     },
     /* from maple wiki */
@@ -313,6 +319,12 @@ cube.rates.tier_up_region = {
             epic: 0.06,
             unique: 0.018,
             legendary: 0.003
+        },
+        /* bonus uni same rates as bonus */
+        "bonus_uni": {
+            epic: 0.047619,
+            unique: 0.019608,
+            legendary: 0.007
         }
     }
 }
@@ -446,6 +458,11 @@ cube.resolve_cube_rates = async function(cube_type, type) {
     */
     } else if (["equality", "violet", "uni"].includes(cube_type)) {
         cube_type = "red";
+    /*
+        for bonus cubes, use bonus cube lines.
+    */
+    } else if (cube_type === "bonus_uni") {
+        cube_type = "bonus";
     }
 
     if (`${cube_type_original}_${type}` in cube_lines) {
@@ -501,7 +518,7 @@ cube.resolve_cube_rates = async function(cube_type, type) {
     /* recalculate for violet */
     if (cube_type_original === "violet") {
         r_cube_lines = cube.recalculate_rates_for_violet(r_cube_lines);
-    } else if (cube_type_original === "uni") {
+    } else if (cube_type_original === "uni" || cube_type_original === "bonus_uni") {
         r_cube_lines = cube.recalculate_rates_for_uni(r_cube_lines);
     }
 
@@ -742,7 +759,7 @@ cube.cube = async function(type, dom, cb, o) {
             await cube.cube.call(this, "red", [], ()=>{}, {
                 no_tier_up: true
             });
-        } else if (type === "white") {
+        } else if (type === "white" || type === "bonus_uni") {
             await cube.cube.call(this, "bonus", [], ()=>{}, {
                 no_tier_up: true
             });
@@ -781,7 +798,7 @@ cube.cube = async function(type, dom, cb, o) {
     };
 
     /* unicube highlights one item first */
-    if (type === "uni") {
+    if (type === "uni" || type === "bonus_uni") {
         let uni_select_line = {
             "0": 0.33333,
             "1": 0.33333,
@@ -854,6 +871,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
 
     let hasDom = dom.length !== 0;
 
+    let is_bonus = GLOBAL.cubes.bonus.includes(this.idata.meta.cube_log_item.type);
     let prevResults = this.idata.boosts.cubes.main;
     let results = cube_results.result;
     let this_pot = "";
@@ -861,6 +879,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
 
     if (GLOBAL.cubes.bonus.includes(this.idata.meta.cube_log_item.type)) {
         this_pot_type = "cube_potential_bonus";
+        prevResults = this.idata.boosts.cubes.bonus;
     }
 
     this_pot = this.idata.meta[this_pot_type];
@@ -886,7 +905,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
             this.idata.meta[this_pot_type] = curr_pot;
         }
 
-        if (type !== "uni") {
+        if (type !== "uni" && type !== "bonus_uni") {
             this.idata.boosts.cubes[this.idata.meta.cube_log_item.type] = [...results];
         } else {
             /* unicube - store the results of its lines in a separate variable for recordkeeping */
@@ -919,7 +938,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
             let display_results = results;
 
             /* for unicodes, we display the current potentials */
-            if (type === "uni") {
+            if (type === "uni" || type === "bonus_uni") {
                 display_results = this.idata.meta.cube_log_item.results.prev_results;
             }
 
@@ -934,7 +953,7 @@ cube.cube_draw = function(cube_results, dom, type, cb, o) {
             );
 
             /* highlight line */
-            if (type === "uni") {
+            if (type === "uni" || type === "bonus_uni") {
                 const these_lines = $("#cube_container .cube-result-line");
                 $("#uniResultLine").remove();
                 these_lines.eq(this.idata.meta.cube_log_item.unicube_this_line).prepend(`<div id="uniResultLine" class="uni-result-line-active"></div>`);
@@ -1359,7 +1378,7 @@ $(function(){
             });    
         } 
         
-        if (cube_type === "uni") {
+        if (cube_type === "uni" || cube_type === "bonus_uni") {
             btnProceed.removeClass("hidden");
         }
 
@@ -1439,7 +1458,7 @@ $(function(){
             /* violet cube - remove cancel button on first pass, set animation faster */
             if (cube_type === "violet") {
                 base_animation = 500;
-            } else if (cube_type === "uni") {
+            } else if (cube_type === "uni" || cube_type === "bonus_uni") {
                 base_animation = 1000;
             }
 
@@ -1601,13 +1620,15 @@ $(function(){
         let cc_play = cc.find(".cube-upgrade").removeClass("hidden").addClass("cube-use-normal");
         let selected_line = uniResultLine.closest(".cube-result-line");
 
+        let cube_type = $(this).closest(".cube-main").hasClass("cube-main-bonus_uni") ? "bonus" : "main";
+
         /* get the changed line for unicube. mark the cube as proceeded by user */
         let uni_line_idx = Item.idata.meta.cube_meta_data[0].unicube_this_line;
         Item.idata.meta.cube_meta_data[0].unicube_proceed = true;
 
         /* get the line data associated with uni line and append it to the item cube pot */
         let this_line = Item.idata.meta.cube_meta_data[0].results.result_uni[uni_line_idx];
-        Item.idata.boosts.cubes.main[uni_line_idx] = this_line;
+        Item.idata.boosts.cubes[cube_type][uni_line_idx] = this_line;
         Item.idata.meta.cube_meta_data[0].results.result[uni_line_idx] = this_line;
         selected_line.html(`<div id="uniResultLine2" class="uni-result-line-active"></div>${this_line.display}`);
 
