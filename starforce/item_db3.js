@@ -1695,7 +1695,6 @@ items_store["destiny"] = {
         "pstat": ["str", "hp"],
         "att_type": "watt",
         "flame_type": 2,
-
         "upgrades": 8,
         "hammers_added": 2,
         "bstat": {
@@ -1705,6 +1704,32 @@ items_store["destiny"] = {
             "boss_damage": 0.3,
             "ied": 0.2
         }
+    },
+    "destiny_gram": {
+        "name": "Destiny Gram",
+        "level": 250,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 2,
+        "bstat": {
+            "str": 190,
+            "dex": 190,
+            "watt": 373,
+            "boss_damage": 0.30,
+            "ied": 0.20
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 8,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
     },
     "destiny_saber": {
         "name": "Destiny Saber",
@@ -1717,7 +1742,6 @@ items_store["destiny"] = {
         "pstat": ["str", "dex"],
         "att_type": "watt",
         "flame_type": 2,
-
         "upgrades": 8,
         "hammers_added": 2,
         "bstat": {
@@ -2588,3 +2612,412 @@ items_store["destiny"] = {
         }
     }
 }
+
+item_misc["gram"] = {
+    "stardust_gram": {
+        "name": "Stardust Gram",
+        "level": 1,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 17
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "shining_gram": {
+        "name": "Shining Gram",
+        "level": 10,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 32
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "starry_gram": {
+        "name": "Starry Gram",
+        "level": 30,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 52
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "ignited_gram": {
+        "name": "Ignited Gram",
+        "level": 50,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 72
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "sol_gram": {
+        "name": "Sol Gram",
+        "level": 60,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 82
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "lux_gram": {
+        "name": "Lux Gram",
+        "level": 70,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 87
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "stellar_gram": {
+        "name": "Stellar Gram",
+        "level": 80,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 92
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "bright_gram": {
+        "name": "Bright Gram",
+        "level": 90,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 97
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "lightning_gram": {
+        "name": "Lightning Gram",
+        "level": 100,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 102
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "dragon_gram": {
+        "name": "Dragon Gram",
+        "level": 110,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 107
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "zakums_poisonic_gram": {
+        "name": "Zakum's Poisonic Gram",
+        "level": 110,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 109,
+            "boss_damage": 0.10
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "briser_gram": {
+        "name": "Briser Gram",
+        "level": 120,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 112
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "necro_gram": {
+        "name": "Necro Gram",
+        "level": 120,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 112
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "jaihin_gram": {
+        "name": "Jaihin Gram",
+        "level": 130,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 118
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "royal_von_leon_gram": {
+        "name": "Royal Von Leon Gram",
+        "level": 130,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 2,
+        "bstat": {
+            "str": 6,
+            "watt": 120
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "meister_gram": {
+        "name": "Meister Gram",
+        "level": 145,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 2,
+        "bstat": {
+            "str": 40,
+            "dex": 25,
+            "watt": 159,
+            "ied": 0.05,
+            "damage": 0.15
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "commerci_gram": {
+        "name": "Commerci Gram",
+        "level": 150,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 1,
+        "bstat": {
+            "watt": 142
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
+    "sealed_genesis_gram": {
+        "name": "Sealed Genesis Gram",
+        "level": 200,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 2,
+        "bstat": {
+            "str": 150,
+            "dex": 150,
+            "watt": 340,
+            "boss_damage": 0.30,
+            "ied": 0.20
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 8,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    }
+};

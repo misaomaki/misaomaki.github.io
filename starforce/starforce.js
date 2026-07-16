@@ -1,93 +1,3 @@
-//previous rates for 25 star
-var star_success_rate_25 = function(star, superior = false) {
-    
-    /*
-    //debugging
-    return {
-        success: 0,
-        fail: 1,
-        destroy: 0
-    };
-    */
-    let starcatch_rate = 0.045; //starcatch assumption
-    
-    let base_success_rate = 1;
-    let success_rate = 0;
-    let destroy_rate = 0;
-    let fail_rate = 0;
-    let sc_rate = 0;
-
-    if (superior) {
-        //success, destroy
-        let sup = [
-            [0.5,0],
-            [0.5,0],
-            [0.45,0],
-            [0.4,0],
-            [0.4,0],
-            [0.4,0.018],
-            [0.4,0.03],
-            [0.4,0.042],
-            [0.4,0.06],
-            [0.37,0.0945],
-            [0.35,0.13],
-            [0.35,0.1625],
-            [0.03,0.485],
-            [0.02,0.49],
-            [0.01,0.495]
-        ];
-
-        let this_rate = sup[star];
-        
-        success_rate = this_rate[0];
-        destroy_rate = this_rate[1];
-        fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
-        sc_rate = success_rate * starcatch_rate;
-    } else {
-        let sdiff = 0;
-
-        if (star < 15) {
-            sdiff = (star + 1);
-            
-            if (star > 2 ) sdiff -= 1;
-
-            sdiff = sdiff * 0.05;
-        } else if (star < 22) {
-            sdiff = 0.7;
-        } else if (star < 30) {
-            sdiff = (75 + star) / 100;
-        }
-
-        if (star < 15) {
-            destroy_rate = 0;
-        } else if (star < 18) {
-            destroy_rate = 0.021;
-        } else if (star < 20) {
-            destroy_rate = 0.028;
-        } else if (star < 22) {
-            destroy_rate = 0.07;
-        } else if (star === 22) {
-            destroy_rate = 0.194;
-        } else if (star === 23) {
-            destroy_rate = 0.294;
-        } else if (star === 24) {
-            destroy_rate = 0.396;
-        }
-
-        success_rate = +(base_success_rate - sdiff).toFixed(2);
-        fail_rate = +(base_success_rate - success_rate - destroy_rate).toFixed(4);
-
-        sc_rate = success_rate * starcatch_rate; //starcatch assumption
-    }
-
-    return {
-        [GLOBAL.starforce_enums.SUCCESS]: success_rate,
-        [GLOBAL.starforce_enums.FAIL]: fail_rate - sc_rate,
-        [GLOBAL.starforce_enums.DESTROY]: destroy_rate,
-        [GLOBAL.starforce_enums.SC_SUCCESS]: sc_rate
-    };
-};
-
 //current rates for 30 star
 var star_success_rate = function(star, superior = false, boom_reduction = 0) {
     
@@ -163,6 +73,18 @@ var star_success_rate = function(star, superior = false, boom_reduction = 0) {
     29	1.00%	79.20%	19.80%
     */
 
+    /*
+        for safeguard between 18-22 stars
+        enhancement is per star, ranging from 1 to 4, 
+        Stage:
+        success/destroy
+        Star Force	Mode 1 Success/Destroy	Mode 2 Success/Destroy	Mode 3 Success/Destroy	Mode 4 Success
+        18 -> 19	15.75% / 4.718%	12.6% / 3.059%	10.5% / 1.253%	8.4%
+        19 -> 20	15.75% / 5.8975%	12.6% / 4.2826%	10.5% / 2.506%	8.4%
+        20 -> 21	31.5% / 7.1925%	26.25% / 5.1625%	21% / 2.765%	15.75%
+        21 -> 22	15.75% / 8.84625%	12.6% / 6.118%	10.5% / 3.1325%	8.4%
+    */
+
     let sdiff = 0;
 
     if (star < 15) {
@@ -236,53 +158,6 @@ var star_cost_type = function(item_type) {
     }
 
     return 1;
-};
-
-/* type is deprecated. GMS and KMS have same calculations now */
-/* 25 star */
-var star_cost_OLD = function(level, star, type = "GMS", superior = false, sc_type) {
-    //superior equipment have a fixed cost
-    if (superior) {
-        return Math.round(Math.pow(level,3.56)/100)*100;
-    }
-
-    /*
-        specific items like zero weapons have their cost capped at level 150
-    */
-    if (sc_type === 2) {
-        if (level > 150) {
-            level = 150;
-        }
-    }
-
-    let rlevel = parseInt(level/10,10) * 10;
-    let divisor = 0;
-    let power = 2.7;
-    let cost = 0;
-    let multiplier = 1;
-
-    if (star < 10) {
-        divisor = 2500;
-        power = 1;
-    } else if (star < 11) {
-        divisor = 40000;
-    } else if (star < 12) {
-        divisor = 22000;
-    } else if (star < 13) {
-        divisor = 15000;
-    } else if (star < 14) {
-        divisor = 11000;
-    } else if (star < 15) {
-        divisor = 7500;
-    } else if (star < GLOBAL.starforce.max_stars) {
-        divisor = 20000;
-    }
-
-    cost = Math.round(( 
-        multiplier * Math.pow(rlevel, 3) * (Math.pow(star + 1, power) / divisor)
-    ) + 10) * 100;
-
-    return cost;
 };
 
 /* type is deprecated. GMS and KMS have same calculations now */

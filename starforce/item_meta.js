@@ -76,6 +76,10 @@ const item_meta = {
                 class: "Illium",
                 speed: 5
             },
+            gram: {
+                class: "Erel",
+                speed: 4
+            },
             gun: {
                 class: "",
                 speed: 5

@@ -8023,6 +8023,32 @@ items_store["secondary: shield"] = {
             "max_stars": 15
         }
     },
+    "terminus_gram": {
+        "name": "Terminus Gram",
+        "level": 160,
+        "class": "weapon",
+        "type": "gram",
+        "speed": "average",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 2,
+        "bstat": {
+            "str": 64,
+            "dex": 40,
+            "watt": 180,
+            "boss_damage": 0.30,
+            "ied": 0.10
+        },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "upgrades": 7,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": true,
+        "img_type": "png"
+    },
     terminus_defender: {
         name: "Terminus Defender",
         level: 160,

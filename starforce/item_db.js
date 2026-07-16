@@ -1246,6 +1246,28 @@ var items_store = {
             "enhanceable": true,
             "scrollable": true
         },
+        "utgard_gram": {
+            "name": "Utgard Gram",
+            "level": 140,
+            "class": "weapon",
+            "type": "gram",
+            "speed": "average",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 1,
+            "bstat": {
+                "watt": 124
+            },
+            "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+            "upgrades": 7,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "utgard_giantslayer_sword": {
             "name": "Utgard Giantslayer Sword",
             "level": 140,
@@ -3010,6 +3032,32 @@ var items_store = {
         }
     },
     absolab: {
+        "absolab_gram": {
+            "name": "AbsoLab Gram",
+            "level": 160,
+            "class": "weapon",
+            "type": "gram",
+            "speed": "average",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 60,
+                "dex": 60,
+                "watt": 205,
+                "boss_damage": 0.30,
+                "ied": 0.10
+            },
+            "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+            "upgrades": 7,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "absolab_furious_sword": {
             "name": "AbsoLab Furious Sword",
             "level": 160,
@@ -5114,6 +5162,32 @@ var items_store = {
         }
     },
     sweetwater: {
+        "sweetwater_gram": {
+            "name": "Sweetwater Gram",
+            "level": 160,
+            "class": "weapon",
+            "type": "gram",
+            "speed": "average",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 45,
+                "dex": 45,
+                "watt": 182,
+                "boss_damage": 0.30,
+                "ied": 0.10
+            },
+            "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+            "upgrades": 7,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "sweetwater_sword": {
             "name": "Sweetwater Sword",
             "override_image": "SweetwaterSwordRen",
@@ -8289,6 +8363,32 @@ var items_store = {
         }
     },
     crimson_root_abyss: {
+        "fafnir_gram": {
+            "name": "Fafnir Gram",
+            "level": 150,
+            "class": "weapon",
+            "type": "gram",
+            "speed": "average",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 40,
+                "dex": 40,
+                "watt": 171,
+                "boss_damage": 0.30,
+                "ied": 0.10
+            },
+            "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+            "upgrades": 7,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "fafnir_soaring_sword": {
             "name": "Fafnir Soaring Sword",
             "level": 150,
@@ -9971,6 +10071,32 @@ var items_store = {
         }
     },
     arcane_umbra: {
+        "arcane_umbra_gram": {
+            "name": "Arcane Umbra Gram",
+            "level": 200,
+            "class": "weapon",
+            "type": "gram",
+            "speed": "average",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 100,
+                "dex": 100,
+                "watt": 295,
+                "boss_damage": 0.30,
+                "ied": 0.20
+            },
+            "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+            "upgrades": 8,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "arcane_umbra_illusory_sword": {
             "name": "Arcane Umbra Illusory Sword",
             "level": 200,
@@ -9990,12 +10116,11 @@ var items_store = {
             "ied": 0.2
             },
             "req": {
-            "str": 0,
-            "dex": 0,
-            "int": 0,
-            "luk": 0
+                "str": 0,
+                "dex": 0,
+                "int": 0,
+                "luk": 0
             },
-            
             "upgrades": 8,
             "hammers_added": 0,
             "starforce": true,
@@ -12052,6 +12177,32 @@ var items_store = {
         }
     },
     genesis: {
+        "genesis_gram": {
+            "name": "Genesis Gram",
+            "level": 200,
+            "class": "weapon",
+            "type": "gram",
+            "speed": "average",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 150,
+                "dex": 150,
+                "watt": 340,
+                "boss_damage": 0.30,
+                "ied": 0.20
+            },
+            "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+            "upgrades": 8,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "genesis_sword": {
             "name": "Genesis Sword",
             "level": 200,
@@ -15126,6 +15277,30 @@ var items_store = {
                 "knockback": 0.75
             }
         },        
+        "lionheart_gram": {
+            "name": "Lionheart Gram",
+            "level": 140,
+            "class": "weapon",
+            "type": "gram",
+            "speed": "average",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 35,
+                "dex": 20,
+                "watt": 137
+            },
+            "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+            "upgrades": 7,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "warrior_hat": {
             "name": "Lionheart Battle Helm",
             "level": 140,
@@ -18176,6 +18351,56 @@ var items_store = {
         }
     },
     "amaterasu": {
+        "amaterasus_lupine_gram": {
+            "name": "Amaterasu's Lupine Gram",
+            "level": 160,
+            "class": "weapon",
+            "type": "gram",
+            "speed": "average",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 60,
+                "dex": 60,
+                "watt": 205,
+                "boss_damage": 0.30,
+                "ied": 0.10
+            },
+            "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+            "upgrades": 7,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
+        "amaterasus_gram": {
+            "name": "Amaterasu's Gram",
+            "level": 150,
+            "class": "weapon",
+            "type": "gram",
+            "speed": "average",
+            "job": ["warrior"],
+            "mstat": "str",
+            "pstat": ["str", "dex"],
+            "att_type": "watt",
+            "flame_type": 2,
+            "bstat": {
+                "str": 53,
+                "dex": 30,
+                "watt": 157
+            },
+            "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+            "upgrades": 7,
+            "hammers_added": 0,
+            "starforce": true,
+            "enhanceable": true,
+            "scrollable": true,
+            "img_type": "png"
+        },
         "amaterasus_sun_sword": {
             "name": "Amaterasu's Sun Sword",
             "override_image": "AmaterasusSunSword",
