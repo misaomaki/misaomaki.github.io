@@ -18379,6 +18379,7 @@ var items_store = {
         },
         "amaterasus_gram": {
             "name": "Amaterasu's Gram",
+            "override_image": "AmaterasuGram",
             "level": 150,
             "class": "weapon",
             "type": "gram",

@@ -30,6 +30,7 @@ const stats = {
     luk: 0,
     damage: 0,
     all_stat: 0,
+    df: 0, /* demon fury */
     reqlvl: 0 //negative level requirements
 };
 
@@ -122,6 +123,9 @@ GLOBAL.item_stat_order = [{
     value: "p_mp",
     type: "%",
     symbol: "%"
+},{
+    name: "MaxDF", /* demon fury */
+    value: "df"
 },{
     name: "Attack Power",
     value: "watt"
