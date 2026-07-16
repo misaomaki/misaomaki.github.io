@@ -10787,7 +10787,7 @@ items_store["astra"] = {
         "sub_class": "secondary"
     },
     "astra_bulls_eye": {
-        "name": "Astra Bull's Eye",
+        "name": "Astra Bullseye",
         "level": 200,
         "class": "weapon",
         "type": "quiver",
@@ -11307,7 +11307,7 @@ items_store["astra"] = {
         "sub_class": "secondary"
     },
     "astra_decacore_controller": {
-        "name": "Astra Decacore Controller",
+        "name": "Astra Deca Core Controller",
         "level": 200,
         "class": "weapon",
         "type": "controller",
@@ -11487,7 +11487,7 @@ items_store["astra"] = {
         "sub_class": "secondary"
     },
     "astra_hexseeker": {
-        "name": "Astra Hexseeker",
+        "name": "Astra Hex Seeker",
         "level": 200,
         "class": "weapon",
         "type": "hex seeker",
@@ -11547,7 +11547,7 @@ items_store["astra"] = {
         "sub_class": "secondary"
     },
     "astra_four_jade_ornament": {
-        "name": "Astra Four-jade Ornament",
+        "name": "Astra Four-Jade Ornament",
         "level": 200,
         "class": "weapon",
         "type": "ornament",
