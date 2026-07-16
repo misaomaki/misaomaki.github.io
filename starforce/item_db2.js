@@ -10458,3 +10458,179 @@ items_store["secondary: imugi gem"] = {
       "sub_class": "secondary"
     }
 }
+
+items_store["secondary: keir"] = {
+    "keir": {
+        "name": "Keir",
+        "level": 10,
+        "class": "weapon",
+        "type": "kier",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "str": 3,
+            "dex": 3
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-keir",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "light_keir": {
+        "name": "Light Keir",
+        "level": 30,
+        "class": "weapon",
+        "type": "kier",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "str": 4,
+            "dex": 4,
+            "watt": 1
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-lightkeir",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "cardinal_keir": {
+        "name": "Cardinal Keir",
+        "level": 60,
+        "class": "weapon",
+        "type": "kier",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "str": 6,
+            "dex": 6,
+            "watt": 2
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-cardinalkeir",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "imper_keir": {
+        "name": "Imper Keir",
+        "level": 100,
+        "class": "weapon",
+        "type": "kier",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "str": 10,
+            "dex": 10,
+            "watt": 3
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-imperkeir",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "evolving_keir": {
+        "name": "Evolving Keir",
+        "level": 100,
+        "class": "weapon",
+        "type": "kier",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "str": 10,
+            "dex": 10,
+            "watt": 5
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-evolvingkeir",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "princess_nos_keir": {
+        "name": "Princess No's Keir",
+        "level": 140,
+        "class": "weapon",
+        "type": "kier",
+        "job": ["warrior"],
+        "mstat": "str",
+        "pstat": ["str", "dex"],
+        "att_type": "watt",
+        "flame_type": 0,
+        "bstat": {
+            "str": 14,
+            "dex": 14,
+            "watt": 9
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-princessnoskeir",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    }
+};

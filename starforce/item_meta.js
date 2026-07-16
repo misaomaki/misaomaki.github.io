@@ -77,7 +77,7 @@ const item_meta = {
                 speed: 5
             },
             gram: {
-                class: "Erel",
+                class: "Erel Light",
                 speed: 4
             },
             gun: {
