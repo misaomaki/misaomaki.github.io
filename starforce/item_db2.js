@@ -10661,7 +10661,7 @@ items_store["astra"] = {
         "img": "item-astrakeir",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10681,7 +10681,7 @@ items_store["astra"] = {
         "img": "item-astramedal",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10701,7 +10701,7 @@ items_store["astra"] = {
         "img": "item-astrasacredaegis",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10721,7 +10721,7 @@ items_store["astra"] = {
         "img": "item-astrarosario",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10741,7 +10741,7 @@ items_store["astra"] = {
         "img": "item-astrachain",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10761,7 +10761,7 @@ items_store["astra"] = {
         "img": "item-astraarcaneshield",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10781,7 +10781,7 @@ items_store["astra"] = {
         "img": "item-astrafeather",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10801,7 +10801,7 @@ items_store["astra"] = {
         "img": "item-astrabullseye",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10821,7 +10821,7 @@ items_store["astra"] = {
         "img": "item-astrarelic",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10841,7 +10841,7 @@ items_store["astra"] = {
         "img": "item-astratalisman-nightlord",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10861,7 +10861,7 @@ items_store["astra"] = {
         "img": "item-astrabaneshield",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10881,7 +10881,7 @@ items_store["astra"] = {
         "img": "item-astrakatara",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10901,7 +10901,7 @@ items_store["astra"] = {
         "img": "item-astrawristband",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10921,7 +10921,7 @@ items_store["astra"] = {
         "img": "item-astraraveneye",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10941,7 +10941,7 @@ items_store["astra"] = {
         "img": "item-astrarimless",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10961,7 +10961,7 @@ items_store["astra"] = {
         "img": "item-astratopazaegis",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -10981,7 +10981,7 @@ items_store["astra"] = {
         "img": "item-astratopaz",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11001,7 +11001,7 @@ items_store["astra"] = {
         "img": "item-astrarubyshield",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11021,7 +11021,7 @@ items_store["astra"] = {
         "img": "item-astraemerald",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11041,7 +11041,7 @@ items_store["astra"] = {
         "img": "item-astraobsidian",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11061,7 +11061,7 @@ items_store["astra"] = {
         "img": "item-astrasapphire",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11081,7 +11081,7 @@ items_store["astra"] = {
         "img": "item-astrasoulshield",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11101,7 +11101,7 @@ items_store["astra"] = {
         "img": "item-astrawhitetigerornament",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11121,7 +11121,7 @@ items_store["astra"] = {
         "img": "item-astraprominentshield",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11141,7 +11141,7 @@ items_store["astra"] = {
         "img": "item-astramagicarrow",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11161,7 +11161,7 @@ items_store["astra"] = {
         "img": "item-astracarte",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11181,7 +11181,7 @@ items_store["astra"] = {
         "img": "item-astrafoxmarble",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11201,7 +11201,7 @@ items_store["astra"] = {
         "img": "item-astraorb",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11221,7 +11221,7 @@ items_store["astra"] = {
         "img": "item-astraexplosivepill",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11241,7 +11241,7 @@ items_store["astra"] = {
         "img": "item-astraumbralshield",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11261,7 +11261,7 @@ items_store["astra"] = {
         "img": "item-astrawildtusk",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11281,7 +11281,7 @@ items_store["astra"] = {
         "img": "item-astramagnum",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11301,7 +11301,7 @@ items_store["astra"] = {
         "img": "item-astraforceshield",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11321,7 +11321,7 @@ items_store["astra"] = {
         "img": "item-astradecacorecontroller",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11341,7 +11341,7 @@ items_store["astra"] = {
         "img": "item-astranovasessence",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11361,7 +11361,7 @@ items_store["astra"] = {
         "img": "item-astraweaponbelt",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11381,7 +11381,7 @@ items_store["astra"] = {
         "img": "item-astratransmitter",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11401,7 +11401,7 @@ items_store["astra"] = {
         "img": "item-astrasoulring",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11421,7 +11421,7 @@ items_store["astra"] = {
         "img": "item-astrahourglass",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11441,7 +11441,7 @@ items_store["astra"] = {
         "img": "item-astrachesspieceking",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11461,7 +11461,7 @@ items_store["astra"] = {
         "img": "item-astrabracelet",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11481,7 +11481,7 @@ items_store["astra"] = {
         "img": "item-astramagicwing",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11501,7 +11501,7 @@ items_store["astra"] = {
         "img": "item-astrahexseeker",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11521,7 +11521,7 @@ items_store["astra"] = {
         "img": "item-astrapass",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11541,7 +11541,7 @@ items_store["astra"] = {
         "img": "item-astrasacredorb",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11561,7 +11561,7 @@ items_store["astra"] = {
         "img": "item-astrafourjadeornament",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11581,7 +11581,7 @@ items_store["astra"] = {
         "img": "item-astraadamantineornament",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11601,7 +11601,7 @@ items_store["astra"] = {
         "img": "item-astrasheath",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11621,7 +11621,7 @@ items_store["astra"] = {
         "img": "item-astratalisman-kanna",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
@@ -11641,16 +11641,16 @@ items_store["astra"] = {
         "img": "item-astraknuckles",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
     },
     "astra_leaf_shield": {
-        "name": "Astra Leaf",
+        "name": "Astra Leaf Shield",
         "level": 200,
         "class": "weapon",
-        "type": "astra",
+        "type": "leaf shield",
         "job": ["magician"],
         "mstat": "int",
         "pstat": ["int", "luk"],
@@ -11661,7 +11661,7 @@ items_store["astra"] = {
         "img": "item-astraleafshield",
         "upgrades": 0,
         "hammers_added": 0,
-        "starforce": false,
+        "starforce": true,
         "enhanceable": true,
         "scrollable": false,
         "sub_class": "secondary"
