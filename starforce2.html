@@ -459,7 +459,7 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
     </div>
 
     <!-- Main star force window -->
-    <div class="sf-main-container masteria sf-main-border hidden" id="sfContainer">
+    <div class="sf-main-container masteria sf-main-border sf-has-enhance-mode hidden" id="sfContainer">
         <div class="sf-main-header"></div>
         <div class="sf-main-header-buttons">
             <div class="sf-header-icon sf-button-x"></div>
@@ -487,6 +487,14 @@ It will also only try to determine the stat flame tiers up to a maximum of 4 fla
             <div class="sf-enchant-effects sf-variable-animation"></div>
             <div class="sf-starcatch sf-checkbox checked sf-system" data-id="starcatch"></div>
             <div class="sf-safeguard sf-checkbox disabled sf-system" data-id="safeguard"></div>
+            <!-- enhancement mode: 15-21 stars. higher levels cost more but lower the destroy rate -->
+            <div class="sf-enhance-mode disabled" title="Enhancement Mode (15-21 stars)&#10;Higher levels cost more but lower the destroy rate. Level 4 cannot be destroyed.&#10;15-17 stars: x1 / x1.5 / x2.5 (level 4 is the same as Safeguard)&#10;18-21 stars: x1 / x2 / x3.5 / x6.5 (levels 2-4 also lower the success rate)&#10;Turning on Safeguard resets the level to 1.">
+                <span class="sf-enhance-mode-tick"></span>
+                <span class="sf-enhance-mode-tick"></span>
+                <span class="sf-enhance-mode-tick"></span>
+                <span class="sf-enhance-mode-tick"></span>
+                <input type="range" class="sf-enhance-mode-range" min="1" max="4" step="1" value="1" disabled>
+            </div>
             <div class="sf-main-mesos ">
                 <span class="sf-main-mesos-amount sf-data-meso number-locale"></span>
                 <span class="sf-main-shadowknight-amount sf-data-shadowknight number-locale"></span>
@@ -868,7 +876,8 @@ crossorigin="anonymous"></script>
     const user_settings = {
         starforce: {
             starcatch: false,
-            safeguard: false
+            safeguard: false,
+            enhance_mode: 1 /* enhancement mode level 1-4 */
         },
          /* save user options (for auto cube) for each item type (saves lines selected and cube type) */
         cube: {}
@@ -885,6 +894,7 @@ crossorigin="anonymous"></script>
 <script src="./starforce/scrolls.js"></script>
 <!-- star force data set up -->
 <script src="./starforce/starforce.js"></script>
+<script src="./starforce/star_picker.js"></script>
 <script src="./starforce/starforce_auto.js" async></script>
 <!-- cubes functionality -->
 <script src="./starforce/cubes.js"></script>

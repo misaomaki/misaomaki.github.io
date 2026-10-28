@@ -124,6 +124,11 @@ item.prototype.starforce = function(starcatch = false) {
     return result;
 }
 
+// enhancement mode level that applies at the star, based on the selected level and safeguard
+item.prototype.get_enhance_level = function(star) {
+    return star_enhance_level(star, user_settings.starforce.enhance_mode, this.idata.superior, user_settings.starforce.safeguard);
+};
+
 // calculate the starforce outcome and apply any of the events
 item.prototype.starforce_result = function(starcatch = false) {
     if (event_options.starcatch) {
@@ -139,9 +144,11 @@ item.prototype.starforce_result = function(starcatch = false) {
         boom_reduction = 0.3;
     }
 
+    let enhance_level = this.get_enhance_level(current_star);
+
     let [sr_catch, sr_catch_meta] = this.check_cache(()=>{
-        return star_success_rate(current_star, this.idata.superior, boom_reduction);
-    }, "sr", `_${level}${current_star}_${this.idata.superior}_${boom_reduction}`);
+        return star_success_rate(current_star, this.idata.superior, boom_reduction, enhance_level);
+    }, "sr", `_${level}${current_star}_${this.idata.superior}_${boom_reduction}_${enhance_level}`);
 
     let prn_map = {};
     let r_type = +get_random_result(sr_catch, (a) => { prn_map = a; }, (a) => { pval = a; });
@@ -255,7 +262,8 @@ item.prototype.complete_starforce_result_log = function(current_star, level) {
         /* get the cost information for the current star level */
         let cache_name_lvl_star = `_${level}${current_star}_${this.idata.superior}`;
         let sc_type = star_cost_type(this.idata.type);
-        let this_star_cost_prev = this.check_cache(() => star_cost(level, current_star, this.idata.meta.starforce_type, this.idata.superior, sc_type), "sc", `${cache_name_lvl_star}_${this.idata.meta.starforce_type}_${sc_type}`);
+        let enhance_level = this.get_enhance_level(current_star);
+        let this_star_cost_prev = this.check_cache(() => star_cost(level, current_star, this.idata.meta.starforce_type, this.idata.superior, sc_type, enhance_level), "sc", `${cache_name_lvl_star}_${this.idata.meta.starforce_type}_${sc_type}_${enhance_level}`);
         let this_star_cost_prev_effective = this_star_cost_prev * safeguard_multiplier;
         let cost_chart = this.log_starforce_cost(is_safeguardable && is_safeguard, this_star_cost_prev, this_star_cost_prev_effective, current_star);
 
@@ -1011,7 +1019,10 @@ item.prototype.redraw_sf = function() {
     }, "dom", "lvl_flag");        
     let safeguard = this.check_cache(()=>{
         return mcon.find(".sf-safeguard");
-    }, "dom", "sf_safeguard");        
+    }, "dom", "sf_safeguard");
+    let enhance_mode_ui = this.check_cache(()=>{
+        return mcon.find(".sf-enhance-mode");
+    }, "dom", "sf_enhance_mode");
     let current_meso = this.check_cache(()=>{
         return sfcon.find(".sf-data-meso");
     }, "dom", "current_meso");
@@ -1074,21 +1085,46 @@ item.prototype.redraw_sf = function() {
 
     let next_star = this_star + 1;
     let cache_name_lvl_star = "_" + level + this_star + "_" + this.idata.superior + "_" + boom_reduction;
-    
+
+    let safeguard_multiplier = 1;
+    let is_safeguardable = !this.idata.superior && this_star >= GLOBAL.starforce.safeguard_stars.min && this_star < GLOBAL.starforce.safeguard_stars.max;
+    if (is_safeguardable) {
+        safeguard.removeClass("disabled");
+        safeguard.trigger("click", true);
+    } else {
+        safeguard.addClass("disabled");
+        safeguard.trigger("click", true);
+    }
+
+    let is_safeguard = !safeguard.hasClass("disabled") && safeguard.hasClass("checked");
+
+    //safeguard can't be used with enhancement levels 2-3. turning on safeguard resets the level to 1
+    if (is_safeguard) {
+        user_settings.starforce.enhance_mode = 1;
+    }
+
+    let enhance_level = this.get_enhance_level(this_star);
+
+    //enhancement mode slider is only for 15-21 stars. level 4 isn't available at 15-17 stars
+    let enhance_modes = this.idata.superior ? null : star_enhance_modes[this_star];
+    enhance_mode_ui.toggleClass("disabled", !enhance_modes)
+        .toggleClass("sf-enhance-mode-no4", !!enhance_modes && !enhance_modes[4])
+        .find(".sf-enhance-mode-range").prop("disabled", !enhance_modes).val(enhance_level);
+
     //total stats from all sources: flames, scrolls, and stars
     let nstats = this.check_cache(()=>{
         return equip_gain(this.idata);
     }, "eg", cache_name_lvl_star);
 
     let [srate, srate_meta] = this.check_cache(()=>{
-        return star_success_rate(this_star, this.idata.superior, boom_reduction);
-    }, "sr", cache_name_lvl_star);
+        return star_success_rate(this_star, this.idata.superior, boom_reduction, enhance_level);
+    }, "sr", cache_name_lvl_star + "_" + enhance_level);
 
     let sc_type = star_cost_type(this.idata.type);
 
     let this_star_cost = this.check_cache(()=>{
-        return star_cost(level, this_star, this.idata.meta.starforce_type, this.idata.superior, sc_type);
-    }, "sc", cache_name_lvl_star + "_" + this.idata.meta.starforce_type + "_" + sc_type);
+        return star_cost(level, this_star, this.idata.meta.starforce_type, this.idata.superior, sc_type, enhance_level);
+    }, "sc", cache_name_lvl_star + "_" + this.idata.meta.starforce_type + "_" + sc_type + "_" + enhance_level);
 
     if (nstats.watt_p !== 0 || nstats.matt_p !== 0 || nstats !== 0) {
         let flame_gain = this.idata.boosts.flames;
@@ -1248,18 +1284,6 @@ item.prototype.redraw_sf = function() {
     } else {
         lvl_flag.addClass("sf-star25");
     }
-
-    let safeguard_multiplier = 1;
-    let is_safeguardable = !this.idata.superior && this_star >= GLOBAL.starforce.safeguard_stars.min && this_star < GLOBAL.starforce.safeguard_stars.max;
-    if (is_safeguardable) {
-        safeguard.removeClass("disabled");
-        safeguard.trigger("click", true);
-    } else {
-        safeguard.addClass("disabled");
-        safeguard.trigger("click", true);
-    }
-
-    let is_safeguard = !safeguard.hasClass("disabled") && safeguard.hasClass("checked");
 
     //text description in starforce screen
     //this part is wonky. fix later

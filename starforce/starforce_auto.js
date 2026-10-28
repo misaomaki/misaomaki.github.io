@@ -23,16 +23,13 @@ $(function() {
                 </label>
             </div>
             <div class="form-group">
-                <label class="form-label-group">
+                <div class="form-label-group">
                     <span class="form-label">
                         Starcatch at stars:
                     </span>
                     <hr>
-                    <textarea id="asf_starcatch" 
-                        style="width:100%;height:50px"
-                        placeholder="Add stars to starcatch in a comma-delimited list here (ex. '14,20,21'). You can specify a range by using '-' (ex. '1-5'). This can be mixed and matched (ex. '10-15,20,21'). Leave blank to not starcatch."
-                    ></textarea>
-                </label>
+                    ${star_picker.html("asf_starcatch", Item.idata.meta.max_stars)}
+                </div>
             </div>
             <div class="form-group">
                 <div class="form-label-group">
@@ -50,13 +47,28 @@ $(function() {
                             return `
                             <span style="display: inline-block; padding: 5px;">
                                 <label for="asf_cb_${b}">
-                                    <input type="checkbox" class="asf_checkbox" id="asf_cb_${b}" value="${a}"> ${a}
+                                    <input type="checkbox" class="asf_checkbox" id="asf_cb_${b}" value="${a}" data-enhance-picker="asf_enhance_mode"> ${a}
                                 </label>
                             </span>
                             `
                         }).join("")
                     }
                 </div>
+            </div>
+            ${
+                !Item.idata.superior ? `
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <span class="form-label">
+                                Enhancement Mode at stars:
+                            </span>
+                            <hr>
+                            ${enhance_mode_picker.html("asf_enhance_mode")}
+                        </div>
+                    </div>
+                ` : ""
+            }
+            <div class="form-group">
                 <span id="h_update"></span>
             </div>
         `;
@@ -88,27 +100,7 @@ $(function() {
                     btn.prop("disabled", true);
                     btn.html("Processing starforce...");
 
-                    let starcatch_val = $("#asf_starcatch").val();
-                    let starcatch = [];
-
-                    if (starcatch_val !== '') {
-                        let starcatch_a = starcatch_val.split(",");
-
-                        //get the starcatch stars from textarea
-                        for (let i = 0; i < starcatch_a.length; ++i) {
-                            let _i = starcatch_a[i];
-
-                            if (_i.includes("-")) {
-                                let i_range = _i.split("-");
-
-                                for (let j = i_range[0]; j <= i_range[1]; ++j) {
-                                    starcatch.push(+j);
-                                }
-                            } else {
-                                starcatch.push(+_i);
-                            }
-                        }
-                    }
+                    let starcatch = star_picker.get("asf_starcatch");
 
                     //get the safeguard stars from the checkbox list
                     let safeguard = $("#option_box .asf_checkbox:checked").map(function(a,b) {return +$(b).val()}).get();
@@ -122,6 +114,8 @@ $(function() {
                         user_settings: user_settings,
                         event_options: event_options,
                         safeguard: safeguard,
+                        enhance_mode: enhance_mode_picker.get("asf_enhance_mode"),
+                        starcatch: starcatch,
                         heuristic: false
                     };
             
@@ -157,8 +151,9 @@ $(function() {
             }]
         }).dialog("open");
 
+        /* trigger change so the enhancement mode picker resets those stars */
         $("#asf_cb_all").on("click", function(e) {
-            $("#option_box .asf_checkbox").prop("checked", e.target.checked);
+            $("#option_box .asf_checkbox").prop("checked", e.target.checked).trigger("change");
         });
     });
 //#endregion

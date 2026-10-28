@@ -1,5 +1,50 @@
+/*
+    Enhancement Mode (GMS v.269), 15 to 21 stars, levels 1 to 4.
+    level 1 is the standard rate and cost. higher levels cost more but boom less, and level 4 cannot boom.
+    level 4 is not offered at 15-17 stars since it is the same as safeguard (3x cost, no boom).
+    turning on safeguard resets level 2 or 3 back to level 1.
+
+    star: {level: [success, destroy, cost multiplier]}
+    rates are before star catching. the destroy rate is a fixed share of the non-success chance per level:
+        15-16: 3% / 2% / 1% / 0%
+        17-18: 8% / 5% / 2% / 0%
+        19:    10% / 7% / 4% / 0%
+        20-21: 15% / 10% / 5% / 0%
+*/
+var star_enhance_modes = {
+    15: {2: [0.3, 0.014, 1.5], 3: [0.3, 0.007, 2.5]},
+    16: {2: [0.3, 0.014, 1.5], 3: [0.3, 0.007, 2.5]},
+    17: {2: [0.15, 0.0425, 1.5], 3: [0.15, 0.017, 2.5]},
+    18: {2: [0.12, 0.044, 2], 3: [0.1, 0.018, 3.5], 4: [0.08, 0, 6.5]},
+    19: {2: [0.12, 0.0616, 2], 3: [0.1, 0.036, 3.5], 4: [0.08, 0, 6.5]},
+    20: {2: [0.25, 0.075, 2], 3: [0.2, 0.04, 3.5], 4: [0.15, 0, 6.5]},
+    21: {2: [0.12, 0.088, 2], 3: [0.1, 0.045, 3.5], 4: [0.08, 0, 6.5]}
+};
+
+/*
+    get the enhancement mode level that applies at this star.
+    safeguarding uses level 1, otherwise use the highest level available at or below the selected level
+*/
+var star_enhance_level = function(star, level = 1, superior = false, safeguard = false) {
+    let modes = star_enhance_modes[star];
+
+    if (superior || !modes || level <= 1) {
+        return 1;
+    }
+
+    if (safeguard && GLOBAL.starforce.safeguardable_stars.includes(star)) {
+        return 1;
+    }
+
+    while (level > 1 && !modes[level]) {
+        --level;
+    }
+
+    return level;
+};
+
 //current rates for 30 star
-var star_success_rate = function(star, superior = false, boom_reduction = 0) {
+var star_success_rate = function(star, superior = false, boom_reduction = 0, enhance_level = 1) {
     
     /*
     //debugging
@@ -73,18 +118,6 @@ var star_success_rate = function(star, superior = false, boom_reduction = 0) {
     29	1.00%	79.20%	19.80%
     */
 
-    /*
-        for safeguard between 18-22 stars
-        enhancement is per star, ranging from 1 to 4, 
-        Stage:
-        success/destroy
-        Star Force	Mode 1 Success/Destroy	Mode 2 Success/Destroy	Mode 3 Success/Destroy	Mode 4 Success
-        18 -> 19	15.75% / 4.718%	12.6% / 3.059%	10.5% / 1.253%	8.4%
-        19 -> 20	15.75% / 5.8975%	12.6% / 4.2826%	10.5% / 2.506%	8.4%
-        20 -> 21	31.5% / 7.1925%	26.25% / 5.1625%	21% / 2.765%	15.75%
-        21 -> 22	15.75% / 8.84625%	12.6% / 6.118%	10.5% / 3.1325%	8.4%
-    */
-
     let sdiff = 0;
 
     if (star < 15) {
@@ -128,6 +161,13 @@ var star_success_rate = function(star, superior = false, boom_reduction = 0) {
         destroy_rate = 0.198;
     }
 
+    /* enhancement mode levels 2-4 replace the standard rates between 15-21 stars */
+    let enhance_mode = star_enhance_modes[star] && star_enhance_modes[star][enhance_level];
+    if (enhance_mode) {
+        success_rate = enhance_mode[0];
+        destroy_rate = enhance_mode[1];
+    }
+
     success_rate = success_rate === 0 ? +(base_success_rate - sdiff).toFixed(2) : success_rate;
     sc_rate = success_rate * starcatch_rate; //starcatch assumption
     let real_destroy_rate = destroy_rate; /* keep track of real in case of reduction */
@@ -161,7 +201,7 @@ var star_cost_type = function(item_type) {
 };
 
 /* type is deprecated. GMS and KMS have same calculations now */
-var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
+var star_cost = function(level, star, type = "GMS", superior = false, sc_type, enhance_level = 1) {
     //superior equipment have a fixed cost
     if (superior) {
         return Math.round(Math.pow(level,3.56)/100)*100;
@@ -236,13 +276,18 @@ var star_cost = function(level, star, type = "GMS", superior = false, sc_type) {
         }
     }
         
-    // This calculates the term inside the Math.round() * 100 from your original snippet:
-    cost = 1000 + Math.floor(
+    // 1000 + the level/star term rounded to the nearest 100. ex: level 200 at 20 stars is 148,612,400
+    cost = 1000 + Math.round(
         ((rlevel ** 3) * (star + 1) ** power) / divisor
-    );
+    ) * 100;
 
-    // Final adjustment
-    return cost * 100;
+    // enhancement mode levels 2-4 multiply the cost. discounts are applied on top of this
+    let enhance_mode = star_enhance_modes[star] && star_enhance_modes[star][enhance_level];
+    if (enhance_mode) {
+        cost *= enhance_mode[2];
+    }
+
+    return cost;
 }
 
 /*

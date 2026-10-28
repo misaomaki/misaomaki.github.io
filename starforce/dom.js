@@ -375,6 +375,25 @@ $(function() {
         }
     });
 
+    //enhancement mode slider. snaps to the levels available at the star, and levels 2+ turn off safeguard
+    sfmain.on("input", ".sf-enhance-mode-range", e=>{
+        let level = star_enhance_level(Item.idata.meta.stars, +e.target.value, Item.idata.superior);
+        e.target.value = level;
+
+        if (level === user_settings.starforce.enhance_mode) {
+            return;
+        }
+
+        sfa.play("_BtMouseClick");
+        user_settings.starforce.enhance_mode = level;
+
+        if (level > 1) {
+            sf_safeguard.removeClass("checked");
+        }
+
+        Item.redraw_sf();
+    });
+
     var starcatch_auto_timeout = 0;
     sfsc.on("click", ".sf-button-stop", e=>{
         if (sfsc_star_start.hasClass("disabled")) {

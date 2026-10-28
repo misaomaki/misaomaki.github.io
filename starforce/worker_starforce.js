@@ -27,6 +27,7 @@ onmessage = function(d) {
         user_settings: {},
         event_options: {},
         safeguard: [],
+        enhance_mode: null, /* {star: level}. if not set, uses the level in user_settings */
         starcatch: [],
         heuristic: false
     }, data);
@@ -62,6 +63,9 @@ onmessage = function(d) {
     while (Item.idata.meta.stars < end_star) {
         let starcatch = data.starcatch.includes(Item.idata.meta.stars);
         user_settings.starforce.safeguard = data.safeguard.includes(Item.idata.meta.stars); //safeguard for this star level
+        if (data.enhance_mode) {
+            user_settings.starforce.enhance_mode = data.enhance_mode[Item.idata.meta.stars] || 1; //enhancement mode for this star level
+        }
         Item.starforce(starcatch);
     }
 
@@ -115,6 +119,9 @@ function heuristic_run(end_star) {
         while (this_item.idata.meta.stars < end_star) {
             let starcatch = data.starcatch.includes(this_item.idata.meta.stars);
             user_settings.starforce.safeguard = data.safeguard.includes(this_item.idata.meta.stars); //safeguard for this star level
+            if (data.enhance_mode) {
+                user_settings.starforce.enhance_mode = data.enhance_mode[this_item.idata.meta.stars] || 1; //enhancement mode for this star level
+            }
             let result = this_item.starforce(starcatch);
     
             if (result === GLOBAL.starforce_enums.DESTROY) {

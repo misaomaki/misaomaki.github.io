@@ -566,6 +566,141 @@ body, html {
     left: 18px;
 }
 
+/* enhancement mode ui: adds a row under star catching and safeguard, pushing the mesos row and buttons down 27px */
+.sf-main-border.sf-has-enhance-mode {
+    background-image: url(../assets/starforce/enchantUI.main.backgrnd_enhance.png);
+    height: 322px;
+}
+
+/* shadowknight coin ui */
+.sf-main-border.sf-has-enhance-mode.masteria {
+    background-image: url(../assets/starforce/tab_hyper_masteria.backgrnd_enhance.png);
+    height: 353px;
+}
+
+.sf-has-enhance-mode > .sf-enchant {
+    background-image: url(../assets/starforce/tab_hyper.backgrnd2_enhance.png);
+    height: 294px;
+}
+
+/* shadowknight coin ui */
+.sf-has-enhance-mode.masteria > .sf-enchant {
+    background-image: url(../assets/starforce/tab_hyper.backgrnd_masteria_enhance.png);
+    height: 320px;
+}
+
+.sf-has-enhance-mode .sf-main-mesos {
+    top: 234px;
+}
+
+.sf-has-enhance-mode .sf-button-container {
+    top: 242px;
+}
+
+/*
+    slider between the "1" and "4" in the background.
+    the 14px thumb travels 42px per level, so the ticks are at 7px + 42px * (level - 1)
+*/
+.sf-enhance-mode {
+    position: absolute;
+    width: 140px;
+    height: 23px;
+    left: 156px;
+    top: 200px;
+}
+
+.sf-enhance-mode.disabled {
+    opacity: 0.35;
+}
+
+.sf-enhance-mode::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    right: 7px;
+    top: 11px;
+    height: 1px;
+    background: #887766;
+}
+
+.sf-enhance-mode-tick {
+    position: absolute;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+    border-radius: 50%;
+    background: #bbaa99;
+}
+
+.sf-enhance-mode-tick:nth-child(1) {
+    left: 7px;
+}
+
+.sf-enhance-mode-tick:nth-child(2) {
+    left: 49px;
+}
+
+.sf-enhance-mode-tick:nth-child(3) {
+    left: 91px;
+}
+
+.sf-enhance-mode-tick:nth-child(4) {
+    left: 133px;
+}
+
+/* level 4 isn't available at 15-17 stars */
+.sf-enhance-mode-no4 .sf-enhance-mode-tick:nth-child(4) {
+    opacity: 0.3;
+}
+
+.sf-enhance-mode-range {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    width: 140px;
+    height: 23px;
+    left: 0;
+    top: 0;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.sf-enhance-mode-range:focus {
+    outline: none;
+}
+
+.sf-enhance-mode-range:disabled {
+    cursor: default;
+}
+
+.sf-enhance-mode-range::-webkit-slider-runnable-track {
+    height: 23px;
+    background: transparent;
+}
+
+.sf-enhance-mode-range::-moz-range-track {
+    background: transparent;
+}
+
+.sf-enhance-mode-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    margin-top: 4.5px;
+    border: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,1.8 14.9,8.6 22.2,9.2 16.6,14 18.3,21.2 12,17.4 5.7,21.2 7.4,14 1.8,9.2 9.1,8.6' fill='%23ffd23f' stroke='%236b4c00' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.sf-enhance-mode-range::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: 0;
+    border-radius: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,1.8 14.9,8.6 22.2,9.2 16.6,14 18.3,21.2 12,17.4 5.7,21.2 7.4,14 1.8,9.2 9.1,8.6' fill='%23ffd23f' stroke='%236b4c00' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
 .sf-enchant-hyper-start {
     position: absolute;
     width: 113px;
@@ -2012,6 +2147,36 @@ body, html {
     display: inline-block;
     height: 13px;
     width: 19px;
+ }
+
+ /* star picker checkboxes (ex. starcatch at stars) */
+ .star-picker {
+    padding: 5px 0;
+    user-select: none;
+ }
+
+ .star-picker-all {
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+ }
+
+ .star-picker-hint {
+    font-size: 0.8em;
+    font-style: italic;
+    margin-left: 10px;
+ }
+
+ .star-picker-star {
+    display: inline-block;
+    width: 44px;
+    padding: 5px;
+    cursor: pointer;
+ }
+
+ .enhance-mode-picker-label {
+    display: inline-block;
+    padding: 5px;
  }
 
  /* generic form stuff */

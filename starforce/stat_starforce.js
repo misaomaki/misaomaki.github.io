@@ -224,21 +224,21 @@ $(function() {
                                     return `
                                     <span style="display: inline-block; padding: 5px;">
                                         <label for="stat_cb_${b}">
-                                            <input type="checkbox" class="stat_checkbox_sg" id="stat_cb_${b}" value="${a}"> ${a}
+                                            <input type="checkbox" class="stat_checkbox_sg" id="stat_cb_${b}" value="${a}" data-enhance-picker="stat_enhance_mode"> ${a}
                                         </label>
                                     </span>
                                     `
                                 }).join("")
                             }
                         </div>
+                        <br>
+                        Enhancement Mode at stars:
+                        ${enhance_mode_picker.html("stat_enhance_mode")}
                     ` : ""
                 }
                 <br>
-                Starcatch:
-                <textarea id="stat_starcatch" 
-                style="width:100%;height:50px"
-                placeholder="Add stars to starcatch in a comma-delimited list here (ex. '14,20,21'). You can specify a range by using '-' (ex. '1-5'). This can be mixed and matched (ex. '10-15,20,21'). Leave blank to not starcatch."
-            ></textarea>
+                Starcatch at stars:
+                ${star_picker.html("stat_starcatch", Item.idata.meta.max_stars)}
             </div>
             <hr>
             <div id="stat_results">
@@ -342,7 +342,8 @@ $(function() {
         sf_data.user_settings = user_settings,
         sf_data.event_options = event_options,
         sf_data.safeguard = $("#stat_options .stat_checkbox_sg:checked").map(function(a,b) {return +$(b).val()}).get();
-        sf_data.starcatch = get_starcatch();
+        sf_data.enhance_mode = enhance_mode_picker.get("stat_enhance_mode");
+        sf_data.starcatch = star_picker.get("stat_starcatch");
         sf_data.sys_type = $("#stat_sfrates").val();
 
         begin_statistical_run();
@@ -368,9 +369,9 @@ $(function() {
         $(".stat-container").html("");
     });
 
-    /* check all safeguard */
+    /* check all safeguard. trigger change so the enhancement mode picker resets those stars */
     stats_screen.on("click", "#stat_cb_all", function(e) {
-        $("#stat_options .stat_checkbox_sg").prop("checked", e.target.checked);
+        $("#stat_options .stat_checkbox_sg").prop("checked", e.target.checked).trigger("change");
     });
 
     /* recursively starforce item to desired stars while the processing flag is active */
@@ -385,33 +386,6 @@ $(function() {
     var update_main_ui = function() {
         $("#stat_totalRuns").html(sf_idx);
      }
-
-    /* copy from dom.js (todo: make both use same function) - get starcatch values from textarea */
-    var get_starcatch = function() {
-        let starcatch = [];
-        let val = $("#stat_starcatch").val();
-
-        if (val === "") return starcatch;
-
-        let starcatch_a = val.split(",");
-                    
-        //get the starcatch stars from textarea
-        for (let i = 0; i < starcatch_a.length; ++i) {
-            let _i = starcatch_a[i];
-
-            if (_i.includes("-")) {
-                let i_range = _i.split("-");
-
-                for (let j = i_range[0]; j <= i_range[1]; ++j) {
-                    starcatch.push(+j);
-                }
-            } else {
-                starcatch.push(+_i);
-            }
-        }
-
-        return starcatch;
-    }
 
     var cost_key = {
         "1.0": "Normal",
