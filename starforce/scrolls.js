@@ -133,8 +133,8 @@ item.prototype.cache.scroll = {
 item.prototype.cache.x_scroll = {
     weapon: {
         rates: {
-            "10": 0.85,
-            "11": 0.10,
+            "10": 0.10,
+            "11": 0.85,
             "12": 0.05
         },
         stats: {
@@ -146,16 +146,16 @@ item.prototype.cache.x_scroll = {
     },
     armor: {
         rates: {
-            "5": 0.85,
-            "6": 0.10,
+            "5": 0.10,
+            "6": 0.85,
             "7": 0.05
         },
         stats: {}
     },
     accessory: {
         rates: {
-            "5": 0.85,
-            "6": 0.10,
+            "5": 0.10,
+            "6": 0.85,
             "7": 0.05
         },
         stats: {}
