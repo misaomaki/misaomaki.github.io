@@ -54,6 +54,12 @@
     background-size: contain;
 }
 
+.item-x-scroll {
+    background: url("../assets/maple_items/etc/XScroll.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .item-evolution-scroll {
     background: url("../assets/maple_items/etc/EvolutionScroll.png");
     background-repeat: no-repeat;

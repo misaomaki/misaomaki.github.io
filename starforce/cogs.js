@@ -55,8 +55,9 @@ const cogs = {
 
         apply chaos scroll. loop through the item's stat list and if it is in cogs.stats, then
         run cog probability and apply the stat
+        forced = {str: 3, hp: 2} to use picked values instead of rolling them (hp/mp are still multiplied by 10)
     */
-    scroll: function(type) {
+    scroll: function(type, forced = {}) {
         let scroll = cogs.rates[type];
 
         let stats_modified = Object.assign({
@@ -79,7 +80,7 @@ const cogs = {
 
             let cog_rng = {};
         
-            let tier_result = get_random_result(scroll, (a) => {
+            let tier_result = forced[stat] ?? get_random_result(scroll, (a) => {
                 cog_rng.r_map = a;
             }, (a)=>{
                 cog_rng.tier_prng = a;

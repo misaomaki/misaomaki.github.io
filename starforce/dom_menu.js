@@ -84,6 +84,202 @@ $(function() {
         }
     };
 
+    /*
+        chaos and x scrolls roll their stats from rates. let the user pick the value of each scroll instead (Roll = roll it).
+        chaos scrolls only list the stats they can affect: chaos-able stats that the item has a base value for
+    */
+    const scroll_value_con = $("#scroll_value_con");
+    const scroll_value_names = {
+        watt: "ATT",
+        matt: "MATT"
+    };
+
+    /* dropdown options for the rate values. hp/mp chaos values are displayed multiplied by 10 */
+    const scroll_value_options = function(rates, multiplier = 1) {
+        return `<option value="">Roll</option>` + Object.keys(rates).sort((a, b) => a - b).map((v) => {
+            let display = v * multiplier;
+            return `<option value="${v}">${display > 0 ? "+" : ""}${display}</option>`;
+        }).join("");
+    };
+
+    const render_scroll_values = function() {
+        let item_val = ddl_item.val();
+
+        /* keep the values that were already picked when the rows are redrawn */
+        let picked = {};
+        scroll_value_con.find(".scroll-value").each(function() {
+            let _this = $(this);
+            picked[`${_this.attr("data-type")}|${_this.attr("data-index")}|${_this.attr("data-stat")}`] = _this.val();
+        });
+
+        let html = "";
+
+        if (item_val != null && item_val != 0) {
+            let item_type = item_val.split("|||");
+            let this_item = items_store[item_type[0]][item_type[1]];
+
+            scroll_textbox.each(function() {
+                let _this = $(this);
+                let type = _this.attr("data-id");
+                let is_chaos = cogs.types.includes(type);
+
+                if (!is_chaos && !type.startsWith("x_")) return;
+
+                let amount = Math.min(+_this.val() || 0, +_this.attr("max") || 0);
+                if (amount <= 0) return;
+
+                let scroll_label = _this.siblings(".item-scroll-label");
+                let scroll_name = scroll_label.text().replace("[?]", "").trim();
+                let scroll_icon = scroll_label.find(".item-label-icon").attr("class");
+
+                /* {stat: options} */
+                let stat_options = {};
+                if (is_chaos) {
+                    for (let stat of cogs.stats) {
+                        if (!this_item.bstat[stat]) continue;
+                        stat_options[stat] = scroll_value_options(cogs.rates[type], ["hp", "mp"].includes(stat) ? 10 : 1);
+                    }
+                } else {
+                    stat_options[type.replace("x_", "")] = scroll_value_options(item.prototype.cache.x_scroll[get_x_scroll_type(this_item)].rates);
+                }
+
+                let stat_keys = Object.keys(stat_options);
+                let scroll_title = `
+                    <div class="scroll-value-title">
+                        <span class="${scroll_icon}"></span> ${scroll_name} x${amount}
+                    </div>
+                `;
+
+                if (stat_keys.length === 0) {
+                    html += `
+                        <div class="scroll-value-form">
+                            ${scroll_title}
+                            No stats affected
+                        </div>
+                    `;
+                    return;
+                }
+
+                /* table: a column per stat, a row per scroll. the All row copies its value to every scroll */
+                let rows = "";
+                for (let i = 0; i < amount; ++i) {
+                    rows += `
+                        <tr>
+                            <td>#${i + 1}</td>
+                            ${stat_keys.map((stat) => `
+                                <td>
+                                    <select class="scroll-value" data-type="${type}" data-index="${i}" data-stat="${stat}">
+                                        ${stat_options[stat]}
+                                    </select>
+                                </td>
+                            `).join("")}
+                        </tr>
+                    `;
+                }
+
+                html += `
+                    <div class="scroll-value-form">
+                        ${scroll_title}
+                        <div class="scroll-value-wrap">
+                            <table class="scroll-value-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        ${stat_keys.map((stat) => `<th>${scroll_value_names[stat] ?? stat.toUpperCase()}</th>`).join("")}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="scroll-value-all-row" title="Copy the value to every ${scroll_name} scroll">
+                                        <td>All</td>
+                                        ${stat_keys.map((stat) => `
+                                            <td>
+                                                <select class="scroll-value-all" data-type="${type}" data-stat="${stat}">
+                                                    <option value="mixed" disabled>Mixed</option>
+                                                    ${stat_options[stat]}
+                                                </select>
+                                            </td>
+                                        `).join("")}
+                                    </tr>
+                                    ${rows}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        scroll_value_con.html(html === "" ? "" : `
+            <hr>
+            <b>Scroll Values</b> (Roll = random value from the scroll's rates, All = copy to every scroll of that type)
+            ${html}
+        `).toggleClass("hidden", html === "");
+
+        scroll_value_con.find(".scroll-value").each(function() {
+            let _this = $(this);
+            let key = `${_this.attr("data-type")}|${_this.attr("data-index")}|${_this.attr("data-stat")}`;
+
+            if (key in picked) {
+                _this.val(picked[key]);
+            }
+        });
+
+        scroll_value_con.find(".scroll-value-all").each(function() {
+            sync_scroll_value_all($(this));
+        });
+    };
+
+    /* the All dropdown shows the value when every scroll of that type has the same value for the stat, otherwise Mixed */
+    const sync_scroll_value_all = function(all_select) {
+        let values = scroll_value_con.find(`.scroll-value[data-type="${all_select.attr("data-type")}"][data-stat="${all_select.attr("data-stat")}"]`).map(function() {
+            return $(this).val();
+        }).get();
+
+        all_select.val(values.every((v) => v === values[0]) ? values[0] : "mixed");
+    };
+
+    /* copy the All value to every scroll of that type */
+    scroll_value_con.on("change", ".scroll-value-all", function() {
+        let _this = $(this);
+        scroll_value_con.find(`.scroll-value[data-type="${_this.attr("data-type")}"][data-stat="${_this.attr("data-stat")}"]`).val(_this.val());
+    });
+
+    scroll_value_con.on("change", ".scroll-value", function() {
+        let _this = $(this);
+        sync_scroll_value_all(scroll_value_con.find(`.scroll-value-all[data-type="${_this.attr("data-type")}"][data-stat="${_this.attr("data-stat")}"]`));
+    });
+
+    /*
+        all scroll inputs share the item's max scrolls. the input that changed (_this) is lowered to fit what the other inputs left,
+        and every input's max is set to its value + the scrolls remaining
+    */
+    const item_scroll_amount = $("#item_scroll_amount");
+    const limit_scroll_amount = function(_this = null) {
+        let max_scrolls = +item_scroll_amount.text() || 0;
+        let total = 0;
+
+        scroll_textbox.each(function() {
+            total += Math.max(+$(this).val() || 0, 0);
+        });
+
+        if (_this !== null && total > max_scrolls) {
+            _this.val(Math.max((+_this.val() || 0) - (total - max_scrolls), 0));
+            total = max_scrolls;
+        }
+
+        let remaining = max_scrolls - total;
+
+        scroll_textbox.each(function() {
+            let __this = $(this);
+            __this.attr("max", Math.max(+__this.val() || 0, 0) + remaining);
+        });
+    };
+
+    scroll_textbox.on("input change", function() {
+        limit_scroll_amount($(this));
+        render_scroll_values();
+    });
+
     const init_item = function() {
         item_create.dialog({
             closeOnEscape: false,
@@ -169,6 +365,17 @@ $(function() {
                         } else if (!scroll_type_box_att.hasClass("hidden")) {
                             scr.stat = scroll_type_att.val();
                         }
+
+                        /* values picked for chaos/x scrolls: [{stat: value}] by scroll index. Roll is left out so it rolls */
+                        scr.values = [];
+                        scroll_value_con.find(`.scroll-value[data-type="${this_attr}"]`).each(function() {
+                            let sv = $(this);
+                            if (sv.val() === "") return;
+
+                            let idx = +sv.attr("data-index");
+                            scr.values[idx] = scr.values[idx] ?? {};
+                            scr.values[idx][sv.attr("data-stat")] = +sv.val();
+                        });
 
                         if (val !== 0) {
                             scroll_options.push(scr);
@@ -491,6 +698,7 @@ $(function() {
 
                 flame_textbox.val(0);
                 scroll_textbox.val(0);
+                render_scroll_values();
 
                 //reset potential options because changing to different equipment changes the stat options
                 $("#cube_select_main").val("").trigger("change");
@@ -527,8 +735,6 @@ $(function() {
                 //set total scroll data for scroll textbox
                 let tot_scroll = this_item.upgrades + this_item.hammers_added;
                 scr_amount.html(tot_scroll);
-
-                scroll_textbox.attr("max", tot_scroll);
 
                 weapon_init.removeClass("hidden");
 
@@ -622,6 +828,8 @@ $(function() {
                 } else {
                     $("#item_starforce").val(0);
                 }
+
+                limit_scroll_amount();
 
                 /* item not cubeable so don't display cube options */
                 item_cube_con.removeClass("hidden");

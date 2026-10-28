@@ -98,6 +98,57 @@
     padding: 5px;
 }
 
+/*
+    chaos/x scroll values
+*/
+.scroll-value-form {
+    padding: 5px;
+}
+
+.scroll-value-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+}
+
+.scroll-value-wrap {
+    overflow-x: auto;
+}
+
+.scroll-value-table {
+    border: none;
+    border-collapse: collapse;
+    font-size: 0.8em;
+    margin-top: 3px;
+}
+
+.scroll-value-table th, .scroll-value-table td {
+    border: none;
+    padding: 1px 2px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.scroll-value-table th {
+    border-bottom: 1px solid #999;
+}
+
+.scroll-value-table th:first-child, .scroll-value-table td:first-child {
+    text-align: left;
+    padding-right: 6px;
+}
+
+.scroll-value-table select {
+    font-size: 1em;
+    width: 58px;
+}
+
+.scroll-value-all-row td {
+    border-bottom: 1px solid #ccc;
+    padding: 3px 2px;
+}
+
 .flame-box {
     display: inline-block;
     width: 100%;

@@ -125,6 +125,89 @@ item.prototype.cache.scroll = {
     }
 } //scroll data
 
+/*
+    x scrolls (100% success rate). like chaos scrolls, the attack/magic attack gained is rolled from the rate table.
+    one-handed and two-handed weapon x scrolls have the same stats, so they share the weapon type.
+    mechanical hearts use the weapon x scroll
+*/
+item.prototype.cache.x_scroll = {
+    weapon: {
+        rates: {
+            "10": 0.85,
+            "11": 0.10,
+            "12": 0.05
+        },
+        stats: {
+            str: 5,
+            dex: 5,
+            int: 5,
+            luk: 5
+        }
+    },
+    armor: {
+        rates: {
+            "5": 0.85,
+            "6": 0.10,
+            "7": 0.05
+        },
+        stats: {}
+    },
+    accessory: {
+        rates: {
+            "5": 0.85,
+            "6": 0.10,
+            "7": 0.05
+        },
+        stats: {}
+    }
+};
+
+/* get the x scroll type (weapon, armor, accessory) for the item data */
+const get_x_scroll_type = function(idata) {
+    if (idata.class === "weapon" || idata.type === "mechanical heart") {
+        return "weapon";
+    } else if (["hat", "top", "bottom", "shoes", "cape", "shoulder", "shield", "overall", "gloves"].includes(idata.type)) {
+        return "armor";
+    }
+
+    return "accessory";
+};
+
+/*
+    apply x scroll. att_type is watt or matt
+    forced = {watt: 11} to use a picked value instead of rolling it
+*/
+item.prototype.x_scroll = function(att_type, forced = {}) {
+    let x_type = get_x_scroll_type(this.idata);
+
+    let x_scr = this.cache.x_scroll[x_type];
+
+    let this_stat = Object.assign({}, stats);
+    this_stat._scroll = "x_" + x_type;
+    this_stat.stat_success = true;
+
+    for (let stat in x_scr.stats) {
+        this_stat[stat] += x_scr.stats[stat];
+    }
+
+    let x_rng = {};
+
+    let att_result = forced[att_type] ?? get_random_result(x_scr.rates, (a) => {
+        x_rng.r_map = a;
+    }, (a)=>{
+        x_rng.tier_prng = a;
+    });
+
+    this_stat[att_type] += +att_result;
+
+    this.idata.boosts.scroll_data.push(this_stat);
+    this.idata.meta.scroll_log.push([{
+        rng: x_rng,
+        stat: att_type,
+        value: +att_result
+    }]);
+};
+
 /* different equipment types have different level "tiers". this is used to get the index of stats to use for the spell trace */
 item.prototype.get_item_scroll_tier = function() {
     let level = this.idata.effective_level;
@@ -174,7 +257,17 @@ item.prototype.set_item_scroll = function(s) {
         if (cogs.types.includes(_s.type)) {
             for (let k = 0; k < scr_amount; ++k) {
                 if (curr_scrolls >= max_scrolls) break;
-                cogs.scroll.call(this, _s.type);
+                cogs.scroll.call(this, _s.type, _s.values?.[k]);
+                ++curr_scrolls;
+            }
+            continue;
+        }
+
+        /* x scroll. x_watt or x_matt */
+        if (_s.type.startsWith("x_")) {
+            for (let k = 0; k < scr_amount; ++k) {
+                if (curr_scrolls >= max_scrolls) break;
+                this.x_scroll(_s.type.replace("x_", ""), _s.values?.[k]);
                 ++curr_scrolls;
             }
             continue;
@@ -272,6 +365,7 @@ $(function() {
         "chaos": "item-chaos-scroll",
         "cog": "item-chaos-scroll",
         "icog": "item-chaos-scroll",
+        "x": "item-x-scroll",
         "evolution": "item-evolution-scroll",
         "basic_gollux": "item-gollux-scroll",
         "advanced_gollux": "item-gollux-scroll",
@@ -313,6 +407,8 @@ $(function() {
                                 type = "trace";
                             } else if (type.startsWith("prime")) {
                                 type = "prime";
+                            } else if (type.startsWith("x_")) {
+                                type = "x";
                             }
 
                             let scroll_icon = scroll_img[type];
