@@ -587,30 +587,29 @@ cube.recalculate_rates_for_uni = function(r_cube_lines) {
             let prime_lines = {};
             let non_prime_lines = {};
 
-            /* 
-                get their odds scaling to visualize prime vs. nonprime. prime lines will have very low odds scaling and non-prime will have very large values  
-                (this is not necessary but i can't deal with decimals right now)
+            /*
+                prime lines have rates close to the smallest rate on the line; non-prime lines are far larger.
+                assume a rate that is 10x or more the smallest rate is nonprime. keep the original rate of each stat for proportional scaling below
             */
-            const prime_tester = cube.odds_scaler(base_line);
-            
-            /* assume an odds scaling of greater than 10 is nonprime */
-            for (let stat in prime_tester) {
-                if (prime_tester[stat] < 10) {
-                    prime_lines[stat] = 0.15;
+            const smallest_rate = Math.min(...Object.values(base_line));
+            let prime_total = 0;
+            let nonprime_total = 0;
+            for (let stat in base_line) {
+                if (base_line[stat] < smallest_rate * 10) {
+                    prime_lines[stat] = base_line[stat];
+                    prime_total += base_line[stat];
                 } else {
-                    non_prime_lines[stat] = 0.85;
+                    non_prime_lines[stat] = base_line[stat];
+                    nonprime_total += base_line[stat];
                 }
             }
 
-            let prime_length = Object.keys(prime_lines).length;
-            let nonprime_length = Object.keys(non_prime_lines).length;
-
-            /* loop through prime and non prime and divide their baser value by the number of items in their class */
+            /* scale each class so it sums to its share (15% / 85%), preserving each stat's proportion within the class */
             for (let stat in prime_lines) {
-                prime_lines[stat] = prime_lines[stat] / prime_length;
+                prime_lines[stat] = 0.15 * prime_lines[stat] / prime_total;
             }
             for (let stat in non_prime_lines) {
-                non_prime_lines[stat] = non_prime_lines[stat] / nonprime_length;
+                non_prime_lines[stat] = 0.85 * non_prime_lines[stat] / nonprime_total;
             }
 
             /* 
@@ -628,20 +627,6 @@ cube.recalculate_rates_for_uni = function(r_cube_lines) {
     }
 
     return r_cube_lines;
-}
-
-cube.odds_scaler = function(inputObject) {
-    // Get the smallest value from the object
-    const values = Object.values(inputObject);
-    const smallestValue = Math.min(...values);
-
-    // Create a new object with values divided by the smallest value
-    const scaledObject = {};
-    for (const [key, value] of Object.entries(inputObject)) {
-        scaledObject[key] = value / smallestValue;
-    }
-
-    return scaledObject;
 }
 
 /* get the cube line hash data that points to cube line data */
