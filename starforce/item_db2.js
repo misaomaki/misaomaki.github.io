@@ -10636,6 +10636,182 @@ items_store["secondary: keir"] = {
     }
 };
 
+items_store["secondary: quill"] = {
+    "meridies_quill": {
+        "name": "Meridies Quill",
+        "level": 10,
+        "class": "weapon",
+        "type": "quill",
+        "job": ["magician"],
+        "mstat": "int",
+        "pstat": ["int", "luk"],
+        "att_type": "matt",
+        "flame_type": 0,
+        "bstat": {
+            "int": 3,
+            "luk": 3
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-meridiesquill",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "vespera_quill": {
+        "name": "Vespera Quill",
+        "level": 30,
+        "class": "weapon",
+        "type": "quill",
+        "job": ["magician"],
+        "mstat": "int",
+        "pstat": ["int", "luk"],
+        "att_type": "matt",
+        "flame_type": 0,
+        "bstat": {
+            "int": 4,
+            "luk": 4,
+            "matt": 1
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-vesperaquill",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "crepusculum_quill": {
+        "name": "Crepusculum Quill",
+        "level": 60,
+        "class": "weapon",
+        "type": "quill",
+        "job": ["magician"],
+        "mstat": "int",
+        "pstat": ["int", "luk"],
+        "att_type": "matt",
+        "flame_type": 0,
+        "bstat": {
+            "int": 6,
+            "luk": 6,
+            "matt": 2
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-crepusculumquill",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "nox_quill": {
+        "name": "Nox Quill",
+        "level": 100,
+        "class": "weapon",
+        "type": "quill",
+        "job": ["magician"],
+        "mstat": "int",
+        "pstat": ["int", "luk"],
+        "att_type": "matt",
+        "flame_type": 0,
+        "bstat": {
+            "int": 10,
+            "luk": 10,
+            "matt": 3
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-noxquill",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "evolving_nox_quill": {
+        "name": "Evolving Nox Quill",
+        "level": 100,
+        "class": "weapon",
+        "type": "quill",
+        "job": ["magician"],
+        "mstat": "int",
+        "pstat": ["int", "luk"],
+        "att_type": "matt",
+        "flame_type": 0,
+        "bstat": {
+            "int": 10,
+            "luk": 10,
+            "matt": 5
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-evolvingnoxquill",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "princess_nos_quill": {
+        "name": "Princess No's Quill",
+        "level": 140,
+        "class": "weapon",
+        "type": "quill",
+        "job": ["magician"],
+        "mstat": "int",
+        "pstat": ["int", "luk"],
+        "att_type": "matt",
+        "flame_type": 0,
+        "bstat": {
+            "int": 14,
+            "luk": 14,
+            "matt": 9
+        },
+        "req": {
+            "str": 0,
+            "dex": 0,
+            "int": 0,
+            "luk": 0
+        },
+        "img": "item-princessnosquill",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": false,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    }
+};
+
 items_store["astra"] = {
     "astra_keir": {
         "name": "Astra Keir",
@@ -11659,6 +11835,26 @@ items_store["astra"] = {
         "bstat": { "int": 50, "luk": 20, "matt": 47 },
         "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
         "img": "item-astraleafshield",
+        "upgrades": 0,
+        "hammers_added": 0,
+        "starforce": true,
+        "enhanceable": true,
+        "scrollable": false,
+        "sub_class": "secondary"
+    },
+    "astra_quill": {
+        "name": "Astra Quill",
+        "level": 200,
+        "class": "weapon",
+        "type": "quill",
+        "job": ["magician"],
+        "mstat": "int",
+        "pstat": ["int", "luk"],
+        "att_type": "matt",
+        "flame_type": 0,
+        "bstat": { "int": 20, "luk": 20, "matt": 7 },
+        "req": { "str": 0, "dex": 0, "int": 0, "luk": 0 },
+        "img": "item-astraquill",
         "upgrades": 0,
         "hammers_added": 0,
         "starforce": true,

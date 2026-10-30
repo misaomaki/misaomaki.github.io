@@ -1349,6 +1349,31 @@ var items_store = {
             "upgrades": 8,
             "hammers_added": 2
         },
+        "utgard_decree": {
+            "name": "Utgard Decree",
+            "level": 140,
+            "class": "weapon",
+            "type": "dominium",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 93,
+                "matt": 153
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 415,
+                "luk": 0
+            },
+            "img": "item-utgarddecree",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         "warrior_desperado": {
             "name": "Utgard Desperado",
             "level": 140,
@@ -3116,6 +3141,35 @@ var items_store = {
             "luk": 0
             },
             "img": "item-absolabcelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
+        "absolab_treatise": {
+            "name": "AbsoLab Treatise",
+            "level": 160,
+            "class": "weapon",
+            "type": "dominium",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 143,
+                "matt": 241,
+                "int": 60,
+                "luk": 60,
+                "boss_damage": 0.3,
+                "ied": 0.1
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 480,
+                "luk": 0
+            },
+            "img": "item-absolabtreatise",
             "upgrades": 8,
             "hammers_added": 2
         },
@@ -5247,6 +5301,35 @@ var items_store = {
             "luk": 0
             },
             "img": "item-sweetwatercelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
+        "sweetwater_dominium": {
+            "name": "Sweetwater Dominium",
+            "level": 160,
+            "class": "weapon",
+            "type": "dominium",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 126,
+                "matt": 208,
+                "int": 45,
+                "luk": 45,
+                "boss_damage": 0.3,
+                "ied": 0.1
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 475,
+                "luk": 0
+            },
+            "img": "item-sweetwaterdominium",
             "upgrades": 8,
             "hammers_added": 2
         },
@@ -9019,6 +9102,35 @@ var items_store = {
             "upgrades": 8,
             "hammers_added": 2
         },
+        "fafnir_edict": {
+            "name": "Fafnir Edict",
+            "level": 150,
+            "class": "weapon",
+            "type": "dominium",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 119,
+                "matt": 201,
+                "int": 40,
+                "luk": 40,
+                "boss_damage": 0.3,
+                "ied": 0.1
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 450,
+                "luk": 0
+            },
+            "img": "item-fafniredict",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         energy_chain_str: {
             name: "Fafnir Split Edge",
             alt_name: "Fafnir Split Edge (STR)",
@@ -10154,6 +10266,35 @@ var items_store = {
             "luk": 0
             },
             "img": "item-arcanecelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
+        "arcane_umbra_dictio": {
+            "name": "Arcane Umbra Dictio",
+            "level": 200,
+            "class": "weapon",
+            "type": "dominium",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 206,
+                "matt": 347,
+                "int": 100,
+                "luk": 100,
+                "boss_damage": 0.3,
+                "ied": 0.2
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 600,
+                "luk": 0
+            },
+            "img": "item-arcaneumbradictio",
             "upgrades": 8,
             "hammers_added": 2
         },
@@ -12261,6 +12402,35 @@ var items_store = {
             "luk": 0
             },
             "img": "item-genesiscelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
+        "genesis_dominium": {
+            "name": "Genesis Dominium",
+            "level": 200,
+            "class": "weapon",
+            "type": "dominium",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 237,
+                "matt": 400,
+                "int": 150,
+                "luk": 150,
+                "boss_damage": 0.3,
+                "ied": 0.2
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 600,
+                "luk": 0
+            },
+            "img": "item-genesisdominium",
             "upgrades": 8,
             "hammers_added": 2
         },
@@ -15948,6 +16118,33 @@ var items_store = {
             "upgrades": 8,
             "hammers_added": 2
         },
+        "dragon_tail_decree": {
+            "name": "Dragon Tail Decree",
+            "level": 140,
+            "class": "weapon",
+            "type": "dominium",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 95,
+                "matt": 161,
+                "int": 36,
+                "luk": 20
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 420,
+                "luk": 0
+            },
+            "img": "item-dragontaildecree",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
         "magician_shoes": {
             "name": "Dragon Tail Mage Shoes",
             "level": 140,
@@ -17130,6 +17327,62 @@ var items_store = {
             "luk": 0
             },
             "img": "item-amenouzumeslupinecelestiallight",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
+        "ame_no_uzumes_dominium": {
+            "name": "Ame-no-Uzume's Dominium",
+            "level": 150,
+            "class": "weapon",
+            "type": "dominium",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 109,
+                "matt": 185,
+                "int": 53,
+                "luk": 30
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 480,
+                "luk": 0
+            },
+            "img": "item-amenouzumesdominium",
+            "upgrades": 8,
+            "hammers_added": 2
+        },
+        "ame_no_uzumes_lupine_dominium": {
+            "name": "Ame-no-Uzume's Lupine Dominium",
+            "level": 160,
+            "class": "weapon",
+            "type": "dominium",
+            "speed": "average",
+            "job": ["magician"],
+            "mstat": "int",
+            "pstat": ["int", "luk"],
+            "att_type": "matt",
+            "flame_type": 2,
+            "bstat": {
+                "watt": 143,
+                "matt": 241,
+                "int": 60,
+                "luk": 60,
+                "boss_damage": 0.3,
+                "ied": 0.1
+            },
+            "req": {
+                "str": 0,
+                "dex": 0,
+                "int": 480,
+                "luk": 0
+            },
+            "img": "item-amenouzumeslupinedominium",
             "upgrades": 8,
             "hammers_added": 2
         },

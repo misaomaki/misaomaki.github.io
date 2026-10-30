@@ -64,6 +64,10 @@ const item_meta = {
                 class: "Demon Avenger",
                 speed: 4
             },
+            dominium: {
+                class: "Lethe",
+                speed: 4
+            },
             "dual bowguns": {
                 class: "",
                 speed: 4
