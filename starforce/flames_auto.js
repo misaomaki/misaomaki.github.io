@@ -2,6 +2,7 @@ $(function(){
     let w_f = {terminate:()=>{}}; //worker
     let w_e = {terminate:()=>{}}; //worker for flame combo estimates
     let flame_combos = []; /* saved flame combos. auto flame stops at the first flame matching any of them */
+    let selected_flame = 2; /* flame selected in auto flames. the saved combos are for this flame */
     const lines_1 = [
         {
             name: "Any Stat",
@@ -129,7 +130,7 @@ $(function(){
 
 //#region AUTO FLAMES
     $("#auto_flames").on("click", function() {
-        generate_flame_html(2);
+        generate_flame_html(selected_flame);
     });
 
     var generate_flame_html = function(flame_type) {
@@ -371,6 +372,12 @@ $(function(){
             let _this = $(this);
             _this.addClass("auto-cube-selected");
             let id = +_this.attr("data-val");
+
+            /* saved combos are for one flame, so changing the flame clears them */
+            if (id !== selected_flame) {
+                flame_combos = [];
+                selected_flame = id;
+            }
 
             generate_flame_html(id);
 

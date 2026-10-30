@@ -391,6 +391,19 @@ $(function() {
             let type = _this.attr("data-type");
             let cube_type = _this.attr("data-id");
 
+            /* saved combos are for one cube, so changing the cube clears them. remember the new cube for the item */
+            if (cube_type !== user_cube_option.selected_cube) {
+                cube_combos = [];
+                user_cube_option = {
+                    selected_cube: cube_type,
+                    cube_type: type,
+                    selected_pot: "",
+                    selected_lines: {},
+                    combos: cube_combos
+                };
+                user_settings.cube[Item.idata.name] = user_cube_option;
+            }
+
             let ddl_options = cube.get_dropdown_option(cube_type);
             
             $(".auto-cube.auto-cube-selected").removeClass("auto-cube-selected");
