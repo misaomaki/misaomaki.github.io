@@ -74,25 +74,167 @@ $(function() {
                     </div>
                 </div>
             </div>
-            <span id="cube_msg2" class="hidden">
-                <span style="color:blue;display:block;padding-bottom:15px;">
-                    Estimated cubes to use (binomial probablity): <span id="cube_expected">1</span>
-                    <span style="font-size:0.6em;display:block;">
-                        Excludes cubes needed to get to desired tier.
-                        <div id="autoCubeMsgViolet" class="hidden">
-                            <div class="cube cube-violet" data-id="violet" style="width:20px;height:20px;"></div>
-                            <span style="position:relative;top:-6px;">
-                                Select up to 3 lines to view the probability of the item getting those lines. 
-                                Selecting more lines will give you probability of those lines appearing among the 6 lines for the violet cubing process.
-                            </span>
-                        </div>
+            <div class="auto-combo-add">
+                <button id="btnAddCubeCombo">Add Cube Combo</button>
+                <label style="font-size:0.9em">
+                    Save the lines above as a combo to search for multiple combos at once. Cubing stops at the first cube that matches ANY saved combo or the lines currently selected above.
+                    Lines count by their total stat, so STR 12% and STR 9% match any lines adding up to 21% STR or more, including All Stats lines.
+                </label>
+            </div>
+            <hr>
+            <div id="conCubeOptions">
+            </div>
+            <span style="font-size:0.8em;display:block;padding-bottom:15px;">
+                Chances are per cube at the selected potential tier, and exclude cubes needed to get to that tier.
+                <div id="autoCubeMsgViolet" class="hidden">
+                    <div class="cube cube-violet" data-id="violet" style="width:20px;height:20px;"></div>
+                    <span style="position:relative;top:-6px;">
+                        For violet cubes, the chance is of the lines appearing among the 6 lines rolled.
                     </span>
-                </span>
+                </div>
             </span>
             <span id="cube_msg" style="color:red"></span>
         `;
 
         let w_c = {terminate:()=>{}}; //worker
+        let w_e = null; //worker for cube combo estimates. kept while the dialog is open, so the cube rates only load once
+        let estimate_id = 0; /* only the latest estimate is drawn */
+
+        /* saved cube combos for the item. auto cube stops at the first cube matching any of them */
+        let cube_combos = user_cube_option.combos ?? [];
+
+        const save_cube_combos = ()=>{
+            user_cube_option.combos = cube_combos;
+            user_settings.cube[Item.idata.name] = user_cube_option;
+        };
+
+        /* selected cube, its potential type (main/bonus), and the potential tier */
+        const get_cube_selection = ()=>{
+            let c_cube = $("#cube_select .auto-cube-selected");
+            let cube_type = c_cube.attr("data-type");
+
+            return {
+                cube: c_cube.attr("data-id"),
+                cube_type: cube_type,
+                pot_tier: $("#option_box #auto_cube_select_" + cube_type).val()
+            };
+        };
+
+        /* lines selected in the form. -1 is any line */
+        const get_form_lines = ()=>$("#auto_cube_lines .cube-selector-auto:visible").map(function(){ return $(this).val()}).get();
+
+        /*
+            the lines selected in the form are searched too, so a single combo doesn't need to be saved first.
+            all <Any Line> only cubes to the potential tier, so it's left out when there are saved combos
+        */
+        const use_form_lines = ()=>{
+            let lines = get_form_lines();
+
+            return lines.length > 0 && (cube_combos.length === 0 || lines.some((a)=>a !== "-1"));
+        };
+
+        /* read the lines selected in the form as a cube combo. returns an error message if the lines can't be used */
+        const read_cube_combo = ()=>{
+            let lines = get_form_lines();
+
+            if (lines.length === 0) {
+                return "Error: Must select a cube and potential lines.";
+            }
+
+            /*
+                check if pot lines have stat lines that go over the restriction limit.
+            */
+            let lines_check = lines.map((a)=>{
+                return cube.stat_restriction_map[a]; /* resolve line into common type to check against (e.g., boss damage 40%/35%/30% becomes boss_dmg) */
+            }).reduce((a,b)=>{
+                if (b in a) {
+                    ++a[b]
+                } else {
+                    a[b] = 1;
+                }
+
+                return a;
+            }, {});
+
+            for (let i in lines_check) {
+                if (cube.stat_restriction[i] < lines_check[i]) {
+                    return "Potential combination contain lines that are restricted to 2 or fewer instances.";
+                }
+            }
+
+            let chosen = lines.filter((a)=>a !== "-1");
+
+            return {
+                lines: lines,
+                labels: chosen.length > 0 ? chosen.map((a)=>HtmlEncode(a)) : ["Any lines"]
+            };
+        };
+
+        /* draw the saved cube combos and the lines selected in the form, with the chance to roll each of them */
+        const draw_cube_combos = ()=>{
+            let con = $("#conCubeOptions");
+
+            /* dialog was closed */
+            if (con.length === 0 || !optionbox.dialog("isOpen")) return;
+
+            let rows = cube_combos.map((a,i)=>({
+                combo: a,
+                labels: a.labels,
+                idx: i,
+                error: ""
+            }));
+
+            if (use_form_lines()) {
+                let combo = read_cube_combo();
+
+                rows.push(typeof combo === "string" ? {labels: [], idx: null, error: combo} : {combo: combo, labels: combo.labels, idx: null, error: ""});
+            }
+
+            let set_estimate = draw_combo_table(con, rows, "Cube");
+
+            let valid = rows.map((a,i)=>({...a, row: i})).filter((a)=>a.error === "");
+            let sel = get_cube_selection();
+
+            ++estimate_id;
+
+            /* the chance depends on the cube and potential tier */
+            if (valid.length === 0 || sel.cube == null || !sel.pot_tier) {
+                valid.forEach((a)=>set_estimate(a.row, null));
+                set_estimate("total", null);
+                return;
+            }
+
+            if (w_e == null) {
+                w_e = new Worker("./starforce/worker_cube.js");
+            }
+
+            w_e.onmessage = function(d) {
+                if (d.data.id !== estimate_id) return;
+
+                d.data.combos.forEach((p,i)=>set_estimate(valid[i].row, p));
+
+                /* no total if a combo can't be used, since cubing won't start */
+                set_estimate("total", valid.length === rows.length ? d.data.any : null);
+            };
+
+            w_e.postMessage({
+                estimate: true,
+                id: estimate_id,
+                item: combo_estimate_item(Item),
+                cube: sel.cube,
+                pot_tier: sel.pot_tier,
+                cube_combos: valid.map((a)=>a.combo.lines),
+                stat_restriction_map: cube.stat_restriction_map,
+                cube_line_stats: cube.cube_line_stats
+            });
+        };
+
+        let draw_timer = 0;
+        const draw_cube_combos_later = ()=>{
+            clearTimeout(draw_timer);
+            draw_timer = setTimeout(draw_cube_combos, 300);
+        };
+
         optionbox.html(html).dialog({
             title: "Auto Cube",
             width: 1000,
@@ -105,6 +247,8 @@ $(function() {
             height: "auto",
             close: ()=>{
                 w_c.terminate();
+                w_e?.terminate();
+                clearTimeout(draw_timer);
             },
             buttons: [{
                 text: "Close",
@@ -135,19 +279,32 @@ $(function() {
 
                     let pot_tier = $("#option_box #auto_cube_select_" + cube_type).val();
 
+                    let combos = cube_combos.map((a)=>a.lines);
+                    let error = "";
+
                     if (line_1 == null || line_2 == null || line_3 == null) {
-                        alert("Error: Must select a cube and potential lines.");
+                        error = "Error: Must select a cube and potential lines.";
+                    } else if (use_form_lines()) {
+                        let combo = read_cube_combo();
+
+                        if (typeof combo === "string") {
+                            error = combo;
+                        } else {
+                            combos.push(combo.lines);
+                        }
+                    }
+
+                    if (error !== "") {
+                        alert(error);
 
                         btn.prop("disabled", false);
                         btn.html("Begin Cubing");
                         return false;
                     }
 
-                    let lines = $("#auto_cube_lines .cube-selector-auto:visible").map(function(){ return $(this).val()}).get();
-
                     let data = {
                         item: Item,
-                        cube_lines: lines,
+                        cube_combos: combos,
                         cube_type: cube_type,
                         cube: cube_name,
                         pot_tier: pot_tier,
@@ -163,7 +320,7 @@ $(function() {
                     let cube_msg = $("#cube_msg");
 
                     /* reset user cube option and store the lines */
-                    user_settings.cube[Item.idata.name] = {
+                    user_cube_option = {
                         selected_cube: cube_name,
                         cube_type: cube_type,
                         selected_pot: pot_tier,
@@ -174,8 +331,10 @@ $(function() {
                             line_3: line_4,
                             line_4: line_5,
                             line_5: line_6
-                        }
+                        },
+                        combos: cube_combos
                     };
+                    user_settings.cube[Item.idata.name] = user_cube_option;
 
                     w_c.onmessage = async function(d) {
                         //codes less than 1 are errors that cannot proceed
@@ -242,8 +401,7 @@ $(function() {
             $("#auto_cube_form_" + type).removeClass("hidden");
 
             $(`#auto_cube_select_${type}`).html(ddl_options);
-            
-            cube_msg2.addClass("hidden");
+
             $(`#auto_cube_line_con_${type}`).addClass("hidden");
 
             if (cube_type === "violet") {
@@ -251,10 +409,10 @@ $(function() {
             } else {
                 $("#autoCubeMsgViolet").addClass("hidden");
             }
+
+            draw_cube_combos();
         });
 
-        let cube_msg2 = $("#cube_msg2");
-        let cube_expected = $("#cube_expected");
         /* change the potential tier for cube */
         $("#option_box .auto-select-cube-type").on("change", async function() {
             let _this = $(this);
@@ -264,35 +422,51 @@ $(function() {
 
             const lineCon = $("#auto_cube_line_con_" + type);
 
-            cube_msg2.removeClass("hidden");
-            cube_expected.html(1); /* changing tier sets cube lines back to any, so probability is always 1 */
-
             if (pot_tier === "") {
                 lineCon.html("");
+                draw_cube_combos();
                 return;
             }
             let tier_html = await cube_pot_dropdown_html(Item.idata, cube_type, pot_tier, {
                 wildcard: true
             });
-        
+
             lineCon.html(tier_html);
-            
-            var cube_select = $(".select-cube-line-" + cube_type).select2();
+
+            $(".select-cube-line-" + cube_type).select2();
             lineCon.removeClass("hidden");
-            /* calculate probabilities based on lines chosen */
-            cube_select.on("select2:select", async function(e) {
-                let c_cube = $("#cube_select .auto-cube-selected");
-                let cube_type = c_cube.attr("data-type");
-                let cube_name = c_cube.attr("data-id");
 
-                let lines = $("#auto_cube_lines .cube-selector-auto:visible").map(function(){ return $(this).val()}).get();
-
-                /* estimated cubes to use to desired lines */
-                let expected_cubes = parseInt(1 / await cube.stats.calculateProbability.call(Item, cube_name, pot_tier, lines)).toNumber();
-                
-                cube_expected.html(expected_cubes);
-            });
+            draw_cube_combos();
         });
+
+        /* update the chances as lines are selected */
+        cube_line_con.on("change select2:select", ".cube-selector-auto", draw_cube_combos_later);
+
+        /* save the selected lines as a combo. auto cube stops at the first cube matching any saved combo */
+        $("#btnAddCubeCombo").on("click", function() {
+            let combo = read_cube_combo();
+
+            if (typeof combo === "string") {
+                alert(combo);
+                return;
+            }
+
+            cube_combos.push(combo);
+            save_cube_combos();
+
+            /* reset the lines to <Any Line> for the next combo */
+            $("#auto_cube_lines .cube-selector-auto:visible").val("-1").trigger("change");
+
+            draw_cube_combos();
+        });
+
+        $("#conCubeOptions").on("click", ".auto-combo-remove", function() {
+            cube_combos.splice(+$(this).attr("data-idx"), 1);
+            save_cube_combos();
+            draw_cube_combos();
+        });
+
+        draw_cube_combos();
 
         /* if user options are present, init them */
         if (user_cube_option.selected_cube != "none") {

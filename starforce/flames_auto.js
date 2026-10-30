@@ -1,5 +1,7 @@
 $(function(){
     let w_f = {terminate:()=>{}}; //worker
+    let w_e = {terminate:()=>{}}; //worker for flame combo estimates
+    let flame_combos = []; /* saved flame combos. auto flame stops at the first flame matching any of them */
     const lines_1 = [
         {
             name: "Any Stat",
@@ -116,6 +118,9 @@ $(function(){
             tier: 1
         }
     ];
+
+    /* flame line definitions keyed by type */
+    const flame_lines = Object.fromEntries([...lines_1, ...lines_2].map(a=>[a.type, a]));
 
     let optionbox = $("#option_box").dialog({
         autoOpen: false,
@@ -244,7 +249,12 @@ $(function(){
                     ` : ""
                 } 
             </div>
-            <button id="btnAddNewFlame" class="hidden">Add Flame Combo</button>
+            <div class="auto-combo-add">
+                <button id="btnAddNewFlame">Add Flame Combo</button>
+                <label style="font-size:0.9em">
+                    Save the values above as a combo to search for multiple combos at once. Flaming stops at the first flame that matches ANY saved combo or the values currently entered above.
+                </label>
+            </div>
             <hr>
             <div id="conFlameOptions">
             </div>
@@ -257,6 +267,7 @@ $(function(){
             height: "auto",
             close: ()=>{
                 w_f.terminate();
+                w_e.terminate();
             },
             buttons: [{
                 text: "Close",
@@ -323,16 +334,36 @@ $(function(){
             flame_textbox.val(0);
         });
 
-        /* add flame options to a list of flame lists you want to  */
+        /* save the entered flame values as a combo. auto flame stops at the first flame matching any saved combo */
         $("#btnAddNewFlame").on("click", function() {
-            const selected_flame_tiers = Array.from(document.querySelectorAll("input.flame-form")).reduce((a,b)=>{
-                if (b.value == 0) return a;
-                
-                a[b.getAttribute("data-id")] = +b.value;
-            
-                return a;
-            }, {});
+            let combo = read_flame_combo(min_flames, max_flames);
+
+            if (typeof combo === "string") {
+                alert(combo);
+                return;
+            }
+
+            flame_combos.push(combo);
+
+            /* clear the form for the next combo */
+            $("#auto_flame_container .flame-form").val(0);
+
+            draw_flame_combos(min_flames, max_flames);
         });
+
+        $("#conFlameOptions").on("click", ".auto-combo-remove", function() {
+            flame_combos.splice(+$(this).attr("data-idx"), 1);
+            draw_flame_combos(min_flames, max_flames);
+        });
+
+        /* update the estimate for the values entered in the form as they're typed */
+        let draw_timer = 0;
+        $("#auto_flame_container").on("input change", function() {
+            clearTimeout(draw_timer);
+            draw_timer = setTimeout(()=>draw_flame_combos(min_flames, max_flames), 300);
+        });
+
+        draw_flame_combos(min_flames, max_flames);
 
         let auto_flame_flames = $("#auto_flame_container .auto-flame-flame");
         auto_flame_flames.on("click", function() {
@@ -347,83 +378,211 @@ $(function(){
         });
     }
     
-    var process_auto_flame = function(min_flames, max_flames) {
-        let flame_calc_type = $("input[name=flame-selector]:checked").val() ?? 1; /* 1 - flame stats, 2 - flame score. default to flame stat if the radio buttons don't exist */
-            
-        /* get flame values and the type */
-        var data = {
-            item: Item,
-            calc_type: flame_calc_type,
-            flame: +$("#auto_flame_container .auto-flame-flame.auto-cube-selected").attr("data-val") /* powerful, eternal, abyssal flame */
+    /* 1 - flame stats, 2 - flame score. default to flame stat if the radio buttons don't exist */
+    var get_flame_calc_type = function() {
+        return $("input[name=flame-selector]:checked").val() ?? 1;
+    }
+
+    /* non-zero flame line inputs */
+    var get_flame_inputs = function() {
+        return $("#auto_flame_container .flame-form:not(.flame-score-form)").filter(function() {
+            return +$(this).val() > 0;
+        });
+    }
+
+    /* true if nothing has been entered in the flame form */
+    var flame_form_empty = function() {
+        if (get_flame_calc_type() == 2) {
+            return !(+$("#af_flame_score").val() > 0);
         }
 
-        if (flame_calc_type == 1) {
-            /* validation */
-            let flames_out_of_bounds = false;
+        return get_flame_inputs().length === 0;
+    }
 
-            data.is_tier = $("#auto_flame_as_tier").prop("checked");
-            data.max_flames = max_flames;
-            data.flame_options = {};
-            data.flame_options_search = {};
-
-            /* get non-zero flame values */
-            let flames = $("#auto_flame_container .flame-form").filter(function() {
-                let fval =  +$(this).val();
-
-                if (fval !== 0 && (fval > max_flames || fval < min_flames)) {
-                    flames_out_of_bounds = true;
-                }
-
-                return fval > 0;
-            });
-
-            if (flames.length === 0) {
-                alert("No flames have been selected.");
-                return false;
-            }
-
-            if (data.is_tier) {
-                if (flames.length > 4) {
-                    alert("Please limit flame lines to 4 or less.");
-                    return false;
-                }
-                if (flames_out_of_bounds) {
-                    alert(`Flame values must be between ${min_flames} and ${max_flames}`);
-                    return false;
-                }
-            }
-
-            //set up flame data to send to flame function
-            flames.each(function() {
-                let _this = $(this);
-                let this_attr = _this.attr("data-id");
-                let type = _this.attr("data-type") || "";
-                let val = +_this.val() || 0;
-                let equal_type = data.is_tier ? $(`#auto_flame_${this_attr}_search`).val() : "1"; /* search type is always greater than or equal to for non-tier values */
-
-                if (data.is_tier && (["str", "dex", "int", "luk"].includes(this_attr) || this_attr.includes(","))) {
-                    this_attr = "stats:" + this_attr;
-                } else if (!data.is_tier) {
-                    if (type === "%") {
-                        val = val / 100;
-                    } else if (type === "-") {
-                        val = Math.abs(val) * -1;
-                    }
-                }
-
-                data.flame_options[this_attr] = val;
-                data.flame_options_search[this_attr] = equal_type;
-            });
-        } else {
+    /* read the values entered in the flame form as a flame combo. returns an error message if the values are invalid */
+    var read_flame_combo = function(min_flames, max_flames) {
+        if (get_flame_calc_type() == 2) {
             let flame_score = +$("#af_flame_score").val();
 
             if (flame_score === "" || isNaN(flame_score) || flame_score <= 0) {
-                alert(`Flame Score must be a valid number greater than 0.`);
-                return false;
+                return `Flame Score must be a valid number greater than 0.`;
             }
 
             /* check against flame score */
-            data.flame_score = flame_score;
+            return {
+                calc_type: 2,
+                flame_score: flame_score,
+                labels: [`Flame Score &ge; ${flame_score}`]
+            };
+        }
+
+        let combo = {
+            calc_type: 1,
+            is_tier: $("#auto_flame_as_tier").prop("checked"),
+            flame_options: {},
+            flame_options_search: {},
+            lines: [], /* line types, to check the combo is still valid if the item changes */
+            labels: []
+        };
+
+        /* validation */
+        let flames_out_of_bounds = false;
+
+        $("#auto_flame_container .flame-form:not(.flame-score-form)").each(function() {
+            let fval = +$(this).val();
+
+            if (fval !== 0 && (fval > max_flames || fval < min_flames)) {
+                flames_out_of_bounds = true;
+            }
+        });
+
+        /* get non-zero flame values */
+        let flames = get_flame_inputs();
+
+        if (flames.length === 0) {
+            return "No flames have been selected.";
+        }
+
+        if (combo.is_tier) {
+            if (flames.length > 4) {
+                return "Please limit flame lines to 4 or less.";
+            }
+            if (flames_out_of_bounds) {
+                return `Flame values must be between ${min_flames} and ${max_flames}`;
+            }
+        }
+
+        //set up flame data to send to flame function
+        flames.each(function() {
+            let _this = $(this);
+            let this_attr = _this.attr("data-id");
+            let type = _this.attr("data-type") || "";
+            let val = +_this.val() || 0;
+            let equal_type = combo.is_tier ? $(`#auto_flame_${this_attr}_search`).val() : "1"; /* search type is always greater than or equal to for non-tier values */
+
+            combo.lines.push(this_attr);
+
+            if (combo.is_tier) {
+                combo.labels.push(`${flame_lines[this_attr].name} ${equal_type == 0 ? "=" : "&ge;"} T${val}`);
+            } else {
+                combo.labels.push(`${flame_lines[this_attr].name} &ge; ${type === "-" ? "-" : ""}${val}${type === "%" ? "%" : ""}`);
+            }
+
+            if (combo.is_tier && (["str", "dex", "int", "luk"].includes(this_attr) || this_attr.includes(","))) {
+                this_attr = "stats:" + this_attr;
+            } else if (!combo.is_tier) {
+                if (type === "%") {
+                    val = val / 100;
+                } else if (type === "-") {
+                    val = Math.abs(val) * -1;
+                }
+            }
+
+            combo.flame_options[this_attr] = val;
+            combo.flame_options_search[this_attr] = equal_type;
+        });
+
+        return combo;
+    }
+
+    /* saved combos are kept between flame types and items, so check they can still be rolled. returns an error message or "" */
+    var check_flame_combo = function(combo, min_flames, max_flames) {
+        if (combo.calc_type == 2) {
+            return Item.idata.class === "armor" ? "" : "Flame Score is only available for armor.";
+        }
+
+        for (let a of combo.lines) {
+            if (flame_lines[a].for === 2 && Item.idata.class === "armor") {
+                return `${flame_lines[a].name} is only available for weapons.`;
+            }
+        }
+
+        if (combo.is_tier && Object.values(combo.flame_options).some(a=>a > max_flames || a < min_flames)) {
+            return `Flame values must be between ${min_flames} and ${max_flames}`;
+        }
+
+        return "";
+    }
+
+    /* draw the saved flame combos and the values entered in the form, with the chance to roll each of them */
+    var draw_flame_combos = function(min_flames, max_flames) {
+        let con = $("#conFlameOptions");
+
+        w_e.terminate();
+
+        /* dialog was closed */
+        if (con.length === 0) return;
+
+        let rows = flame_combos.map((a,i)=>({
+            combo: a,
+            labels: a.labels,
+            idx: i,
+            error: check_flame_combo(a, min_flames, max_flames)
+        }));
+
+        /* values entered in the form are searched too */
+        if (!flame_form_empty()) {
+            let combo = read_flame_combo(min_flames, max_flames);
+
+            rows.push(typeof combo === "string" ? {labels: [], idx: null, error: combo} : {combo: combo, labels: combo.labels, idx: null, error: ""});
+        }
+
+        let set_estimate = draw_combo_table(con, rows, "Flame");
+
+        let valid = rows.map((a,i)=>({...a, row: i})).filter((a)=>a.error === "");
+
+        if (valid.length === 0) {
+            set_estimate("total", null);
+            return;
+        }
+
+        /* the worker goes through every roll of the lines in the combos, so let it run off the main thread */
+        w_e = new Worker("./starforce/worker_flames.js");
+
+        w_e.onmessage = function(d) {
+            d.data.combos.forEach((p,i)=>set_estimate(valid[i].row, p));
+
+            /* no total if a combo can't be used, since flaming won't start */
+            set_estimate("total", valid.length === rows.length ? d.data.any : null);
+        };
+
+        w_e.postMessage({
+            estimate: true,
+            item: combo_estimate_item(Item),
+            flame: +$("#auto_flame_container .auto-flame-flame.auto-cube-selected").attr("data-val"),
+            flame_combos: valid.map((a)=>a.combo)
+        });
+    }
+
+    var process_auto_flame = function(min_flames, max_flames) {
+        for (let i = 0; i < flame_combos.length; ++i) {
+            let err = check_flame_combo(flame_combos[i], min_flames, max_flames);
+
+            if (err !== "") {
+                alert(`Saved flame combo ${i + 1}: ${err}`);
+                return false;
+            }
+        }
+
+        let combos = flame_combos.concat();
+
+        /* the values entered in the form are searched too, so a single combo doesn't need to be saved first */
+        if (combos.length === 0 || !flame_form_empty()) {
+            let combo = read_flame_combo(min_flames, max_flames);
+
+            if (typeof combo === "string") {
+                alert(combo);
+                return false;
+            }
+
+            combos.push(combo);
+        }
+
+        /* get flame values and the type */
+        var data = {
+            item: Item,
+            flame: +$("#auto_flame_container .auto-flame-flame.auto-cube-selected").attr("data-val"), /* powerful, eternal, abyssal flame */
+            flame_combos: combos
         }
 
         w_f = new Worker("./starforce/worker_flames.js");

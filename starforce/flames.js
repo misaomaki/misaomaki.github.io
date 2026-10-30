@@ -755,6 +755,18 @@ const FLAME_SCORE_TIER_DEF = [
     [160,10000,'#ff8000', 'Level 250+; For: Solo All Bosses'] /* orange */
 ];
 
+/* number of ways to choose k items from n */
+var n_choose_k = function(n, k) {
+    if (k < 0 || k > n) return 0;
+
+    let r = 1;
+    for (let i = 1; i <= k; ++i) {
+        r = r * (n - k + i) / i;
+    }
+
+    return r;
+}
+
 var flames = {
     flame_score_tier: function(score) {
         for (let i = 0; i < FLAME_SCORE_TIER_DEF.length; ++i) {
@@ -804,6 +816,8 @@ var flames = {
 
         return tiers;
     },
+    line_apply_rate: 0.20, /* probability to add new line */
+    line_apply_rolls: 3, /* number of times to check for an additional line */
     /*
         get the amount of flame lines to apply
 
@@ -816,11 +830,11 @@ var flames = {
     line_rates: function() {
         /* if max lines flag set, always return max lines */
         if (this.idata.meta.flame_always_max_lines) {
-            return [4, []];
+            return [flames.line_apply_rolls + 1, []];
         }
 
         let flame_lines = 1; /* number of lines to apply */
-        let flame_line_apply_rate = 0.20; /* probability to add new line */
+        let flame_line_apply_rate = flames.line_apply_rate;
 
         /* log the probability determination */
         let flame_log = [];
@@ -829,7 +843,7 @@ var flames = {
             do probabilty check 3x to see how many
             additional lines to add
         */
-        for (let i = 1; i <= 3; ++i) {
+        for (let i = 1; i <= flames.line_apply_rolls; ++i) {
             let rng = prng();
 
             let log = {
@@ -848,20 +862,33 @@ var flames = {
 
         return [flame_lines, flame_log];
     },
-    /* 
-        get the flame tiers to apply to an item
+    /*
+        probability of getting each number of flame lines from line_rates. index = number of lines
+
         this = item object
     */
-    apply: function(flame, o) {
-        o = Object.assign({
-            idx: -1 /* for processes that dump data, idx has to be tallied from an outside process and cannot use the meta log length */
-        }, o);
+    line_count_rates: function() {
+        let rolls = flames.line_apply_rolls;
+        let rates = new Array(rolls + 2).fill(0);
 
-        if  (this.idata.flame_type === 0) return false;
+        if (this.idata.meta.flame_always_max_lines) {
+            rates[rolls + 1] = 1;
+            return rates;
+        }
 
-        let tr = flames.tier_rates(flame);
-        let [lr, lr_log] = flames.line_rates.call(this);
+        /* always 1 line, plus k additional lines */
+        let p = flames.line_apply_rate;
+        for (let k = 0; k <= rolls; ++k) {
+            rates[k + 1] = n_choose_k(rolls, k) * p ** k * (1 - p) ** (rolls - k);
+        }
 
+        return rates;
+    },
+    /*
+        flame lines the item can get
+        this = item object
+    */
+    available_lines: function() {
         let avail_flames = [
             "stats:str",
             "stats:dex",
@@ -892,6 +919,24 @@ var flames = {
 
             avail_flames.push(...weapon_flames);
         }
+
+        return avail_flames;
+    },
+    /*
+        get the flame tiers to apply to an item
+        this = item object
+    */
+    apply: function(flame, o) {
+        o = Object.assign({
+            idx: -1 /* for processes that dump data, idx has to be tallied from an outside process and cannot use the meta log length */
+        }, o);
+
+        if  (this.idata.flame_type === 0) return false;
+
+        let tr = flames.tier_rates(flame);
+        let [lr, lr_log] = flames.line_rates.call(this);
+
+        let avail_flames = flames.available_lines.call(this);
 
         shuffle(avail_flames);
 

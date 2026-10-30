@@ -74,24 +74,130 @@ var compare_flames = function(is_tier, item_flame, desired_flame, desired_flame_
     }
 }
 
+/* check a flame against a flame combo */
+var match_combo = function(item_flame, c) {
+    /* flame score comparison */
+    if (c.calc_type == 2) {
+        return compare_score(item_flame.score, c.flame_score);
+    }
+
+    return compare_flames(c.is_tier, item_flame, c.flame_options, c.flame_options_search);
+}
+
+/*
+    chance for a single flame to match each flame combo, and to match any of them.
+
+    goes through every roll of the lines the combos look at. the other lines only matter
+    in how many of them take up the flame's line slots.
+*/
+var estimate_combos = function(this_item, flame, combos) {
+    let avail = flames.available_lines.call(this_item);
+    let tier_rates = flames.tier_rates(flame);
+    let line_rates = flames.line_count_rates.call(this_item);
+    let max_lines = line_rates.length - 1;
+
+    /* tier, stats, and flame score of each line on its own. a flame's stats and score are the sum of its lines */
+    let line_rolls = {};
+    for (let line of avail) {
+        line_rolls[line] = [];
+
+        tier_rates.forEach((p, i)=>{
+            if (p === 0) return;
+
+            let tier = i + 1 + (this_item.idata.flame_type === 2 ? 2 : 0); /* boss flames always +2 */
+            let stats = this_item.set_item_flame_tier({[line]: tier});
+
+            line_rolls[line].push({
+                p: p,
+                tier: tier,
+                stats: Object.fromEntries(Object.entries(stats).filter(([key,value])=>value !== 0)),
+                score: this_item.get_flame_score()
+            });
+        });
+    }
+
+    /* lines that can change whether a flame matches any of the combos */
+    let watched = avail.filter((line)=>combos.some((c)=>{
+        if (c.calc_type == 2) {
+            return line_rolls[line].some((r)=>r.score > 0);
+        } else if (c.is_tier) {
+            return line in c.flame_options;
+        } else {
+            let keys = Object.keys(c.flame_options).flatMap((k)=>k === "any_stat" ? all_stat : [k]);
+            return line_rolls[line].some((r)=>keys.some((k)=>k in r.stats));
+        }
+    }));
+
+    /* chance that a flame's lines include a specific set of j watched lines and no other watched lines */
+    let n = avail.length;
+    let w = watched.length;
+    let pick_rates = [];
+    for (let j = 0; j <= max_lines; ++j) {
+        pick_rates[j] = 0;
+
+        for (let l = j; l <= max_lines; ++l) {
+            pick_rates[j] += line_rates[l] * n_choose_k(n - w, l - j) / n_choose_k(n, l);
+        }
+    }
+
+    let combo_rates = combos.map(()=>0);
+    let any_rate = 0;
+
+    let walk = function(start, picked, p, tiers, stats, score) {
+        let item_flame = {tiers: tiers, stats: stats, score: score};
+        let rate = p * pick_rates[picked];
+        let any = false;
+
+        combos.forEach((c, i)=>{
+            if (match_combo(item_flame, c)) {
+                combo_rates[i] += rate;
+                any = true;
+            }
+        });
+
+        if (any) any_rate += rate;
+
+        if (picked === max_lines) return;
+
+        for (let i = start; i < watched.length; ++i) {
+            let line = watched[i];
+
+            for (let r of line_rolls[line]) {
+                let next_stats = {...stats};
+                for (let k in r.stats) {
+                    next_stats[k] = (next_stats[k] ?? 0) + r.stats[k];
+                }
+
+                walk(i + 1, picked + 1, p * r.p, {...tiers, [line]: {tier: r.tier}}, next_stats, score + r.score);
+            }
+        }
+    }
+
+    walk(0, 0, 1, {}, {}, 0);
+
+    return {
+        combos: combo_rates,
+        any: any_rate
+    };
+}
+
 onmessage = function(o) {
     let this_item = new item(o.data.item.idata, {
         virtual: true
     });
 
-    let current_tiers = {};
-    let idx = 0; 
-    log_cache = [];
-
-    let search = function() {
-        return compare_flames(o.data.is_tier, current_tiers, o.data.flame_options, o.data.flame_options_search);
+    if (o.data.estimate) {
+        postMessage(estimate_combos(this_item, o.data.flame, o.data.flame_combos));
+        return;
     }
 
-    /* flame score comparison */
-    if (o.data.calc_type == 2) {
-        search = function() {
-            return compare_score(current_tiers.score, o.data.flame_score);
-        }
+    let current_tiers = {};
+    let idx = 0;
+    log_cache = [];
+
+    /* flame combos are OR'd together. stop at the first flame that matches any of them */
+    let search = function() {
+        return o.data.flame_combos.some((c)=>match_combo(current_tiers, c));
     }
 
     do {

@@ -2200,3 +2200,75 @@ body, html {
     font-size: 0.8em;
     font-style: italic;
  }
+
+/*
+    auto flame/cube combos
+*/
+.auto-combo-add {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.auto-combo-add button {
+    flex-shrink: 0;
+}
+
+.auto-combo-table {
+    width: 100%;
+}
+
+.auto-combo-table, .auto-combo-table th, .auto-combo-table td {
+    border: none;
+}
+
+.auto-combo-table th {
+    border-bottom: 2px solid #999;
+    padding: 4px 6px;
+    font-size: 0.9em;
+}
+
+.auto-combo-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 4px 6px;
+}
+
+.auto-combo-table td.auto-combo-lines {
+    text-align: left;
+}
+
+.auto-combo-line {
+    display: inline-block;
+    margin: 2px;
+    padding: 1px 8px;
+    border: 1px solid #e0a050;
+    border-radius: 10px;
+    background-color: #fff3e0;
+    white-space: nowrap;
+}
+
+.auto-combo-unsaved .auto-combo-line {
+    border-style: dashed;
+    background-color: transparent;
+}
+
+.auto-combo-note {
+    margin-left: 4px;
+    font-size: 0.85em;
+    font-style: italic;
+    color: #777;
+}
+
+.auto-combo-error, .auto-combo-never {
+    color: red;
+}
+
+.auto-combo-error {
+    font-size: 0.9em;
+}
+
+.auto-combo-total td {
+    border-top: 2px solid #999;
+    border-bottom: none;
+    font-weight: bold;
+}

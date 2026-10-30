@@ -68,29 +68,125 @@ let resolve_stat_lines = function(a,b) {
 };
 
 /*
-    compare overall stats from current lines to the desired lines
+    compare overall stats from current lines to the desired lines. both are resolved into their stats
 */
-let stat_compare = function(desired_lines, current_lines_unprocessed, stat_lines) {
-    let current_lines = current_lines_unprocessed.reduce(resolve_stat_lines.bind({
-        all_stats: true,
-        stat_lines: stat_lines
-    }),{});
-    let has_any_desired = true;
-    
-    for (desired_line in desired_lines) {
-        if (desired_line in current_lines) {
-            if (current_lines[desired_line].value < desired_lines[desired_line].value) return false;
-        } else if (current_lines[desired_line] == null) {
-            return false;
-        }
+let compare_lines = function(desired_lines, current_lines) {
+    for (let desired_line in desired_lines) {
+        if (current_lines[desired_line] == null) return false;
+        if (current_lines[desired_line].value < desired_lines[desired_line].value) return false;
     }
-    
-    return has_any_desired;
+
+    return true;
+}
+
+/* item type for the cube rates, with sub class taking priority (copied from cube.js) */
+let cube_item_type = function(idata) {
+    let item_type = idata.sub_class;
+
+    if (idata.class == "weapon") {
+        item_type = idata.class;
+    } else if (item_type === "") {
+        item_type = idata.type;
+    }
+
+    return item_type;
+}
+
+/*
+    chance for a single cube at the desired tier to roll lines matching each cube combo, and to match any of them.
+    excludes cubes used to get to the desired tier.
+
+    goes through the rolls of each line, keeping track of only what the combos look at: the totals of the desired stats
+    and the count of lines that are limited (e.g., 2 ignore damage lines max), since those get rerolled when over the limit
+*/
+let estimate_combos = async function(d) {
+    let line_rates = await cube.get_cube_type(d.item.idata.effective_level, cube_item_type(d.item.idata), d.cube, d.pot_tier);
+
+    let desired = d.cube_combos.map((a)=>a.reduce(resolve_stat_lines.bind({
+        all_stats: false,
+        stat_lines: d.cube_line_stats
+    }),{}));
+    let watched = [...new Set(desired.flatMap((a)=>Object.keys(a)))];
+
+    /* group each line's rolls by what they add to the desired stats and their limit type. other rolls don't change anything */
+    let line_groups = line_rates.map((rates)=>{
+        let groups = {};
+
+        for (let id in rates) {
+            let resolved = [id].reduce(resolve_stat_lines.bind({
+                all_stats: true,
+                stat_lines: d.cube_line_stats
+            }),{});
+            let adds = Object.fromEntries(watched.filter((k)=>k in resolved).map((k)=>[k, resolved[k].value]));
+            let limit = d.stat_restriction_map[id];
+
+            if (cube.stat_restriction[limit] == null) {
+                limit = null;
+            }
+
+            if (Object.keys(adds).length === 0 && limit == null) continue;
+
+            let key = JSON.stringify([adds, limit]);
+            groups[key] = groups[key] ?? {p: 0, adds: adds, limit: limit};
+            groups[key].p += rates[id];
+        }
+
+        return Object.values(groups);
+    });
+
+    /* chance of matching each combo, then any combo, from line i onwards */
+    let memo = new Map();
+    let walk = function(i, totals, limited) {
+        if (i === line_groups.length) {
+            let current = Object.fromEntries(Object.entries(totals).map(([k,v])=>[k, {value: v}]));
+            let matches = desired.map((a)=>compare_lines(a, current) ? 1 : 0);
+
+            return [...matches, matches.includes(1) ? 1 : 0];
+        }
+
+        let key = JSON.stringify([i, totals, limited]);
+        if (memo.has(key)) return memo.get(key);
+
+        let groups = line_groups[i];
+        let at_limit = (g)=>g.limit != null && (limited[g.limit] ?? 0) >= cube.stat_restriction[g.limit];
+        let reroll = groups.reduce((a,g)=>a + (at_limit(g) ? g.p : 0), 0);
+        let rest = 1 - groups.reduce((a,g)=>a + g.p, 0); /* rolls that don't change anything */
+
+        let result = new Array(desired.length + 1).fill(0);
+        let add = (p, r)=>r.forEach((v,k)=>{ result[k] += p / (1 - reroll) * v; });
+
+        for (let g of groups) {
+            if (at_limit(g)) continue;
+
+            let next_totals = {...totals};
+            for (let k in g.adds) {
+                next_totals[k] = k in next_totals ? next_totals[k] + g.adds[k] : g.adds[k];
+            }
+
+            let next_limited = g.limit == null ? limited : {...limited, [g.limit]: (limited[g.limit] ?? 0) + 1};
+
+            add(g.p, walk(i + 1, next_totals, next_limited));
+        }
+
+        if (rest > 1e-12) {
+            add(rest, walk(i + 1, totals, limited));
+        }
+
+        memo.set(key, result);
+        return result;
+    }
+
+    let result = walk(0, {}, {});
+
+    return {
+        combos: result.slice(0, -1),
+        any: result[result.length - 1]
+    };
 }
 
 onmessage = async function(o) {
     let d = Object.assign({
-        cube_lines: [],
+        cube_combos: [],
         cube_type: "main",
         pot_tier: "legendary",
         cube: "red",
@@ -99,51 +195,36 @@ onmessage = async function(o) {
         cube_line_stats: {}
     }, o.data);
 
+    if (d.estimate) {
+        postMessage({id: d.id, ...await estimate_combos(d)});
+        return;
+    }
+
     let lines = [];
 
     let Item = new item(d.item.idata, {
         virtual: true
     });
 
-    /*
-        check if pot lines have stat lines that go over the restriction limit.
-    */
-    let lines_check = d.cube_lines.map((a)=>{
-        return d.stat_restriction_map[a]; /* resolve line into common type to check against (e.g., boss damage 40%/35%/30% becomes boss_dmg) */
-    }).reduce((a,b)=>{
-        if (b in a) {
-            ++a[b]
-        } else {
-            a[b] = 1;
-        }
-
-        return a;
-    }, {});
-
-    for (let i in lines_check) {
-        let i_line = lines_check[i];
-
-        let restriction_check = cube.stat_restriction[i];
-
-        if (restriction_check < i_line) {
-            postMessage({done: false, code: -1, message: "Potential combination contain lines that are restricted to 2 or fewer instances.", data: d.item.idata.meta.cube_meta_data});
-            return false;
-        }
-    }
-
     const cube_stat_lines = d.cube_line_stats;
 
-    let desired_lines = d.cube_lines.reduce(resolve_stat_lines.bind({
+    let desired_combos = d.cube_combos.map((a)=>a.reduce(resolve_stat_lines.bind({
         all_stats: false,
         stat_lines: cube_stat_lines
-    }),{});
+    }),{}));
 
+    /* cube combos are OR'd together. stop at the first cube that matches any of them */
     let search = function() {
-        return stat_compare(desired_lines, lines, cube_stat_lines);
+        let current_lines = lines.reduce(resolve_stat_lines.bind({
+            all_stats: true,
+            stat_lines: cube_stat_lines
+        }),{});
+
+        return desired_combos.some((a)=>compare_lines(a, current_lines));
     }
-    
+
     let same_tier = false; //desired tier is equal to item tier
-    if (d.cube_lines.length !== 0) {
+    if (d.cube_combos.length !== 0) {
         /*
             run cube proc then check the results against the desired lines.
             keep running until they match.
